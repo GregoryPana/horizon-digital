@@ -131,6 +131,9 @@ export default function Home() {
             <Card key={tier.title}>
               <h3 className="text-lg font-semibold text-text">{tier.title}</h3>
               <p className="mt-5 text-2xl font-semibold text-text">{tier.price}</p>
+              {tier.priceNote && (
+                <p className="mt-3 text-sm text-text-muted">{tier.priceNote}</p>
+              )}
               <p className="mt-3 text-sm text-text-muted">{tier.description}</p>
               <ul className="mt-7 space-y-4 text-sm text-text-muted">
                 {tier.features.map((feature) => (

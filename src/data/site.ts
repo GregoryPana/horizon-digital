@@ -138,8 +138,8 @@ export const processSteps = [
 export const pricingTiers = [
   {
     title: "Starter",
-    price: "From £2,500",
-    description: "Best for small businesses starting out.",
+    price: "From SCR 15,000",
+    description: "Best for businesses starting out.",
     features: [
       "Up to 5 pages",
       "Custom homepage design",
@@ -153,7 +153,7 @@ export const pricingTiers = [
   },
   {
     title: "Growth",
-    price: "From £4,000",
+    price: "From SCR 25,000",
     description: "For growing businesses needing more content and structure.",
     badge: "Most popular",
     features: [
@@ -170,8 +170,9 @@ export const pricingTiers = [
   },
   {
     title: "Custom",
-    price: "From £7,000",
-    description: "For businesses requiring more advanced functionality.",
+    price: "Let's chat",
+    priceNote: "Final pricing depends on agreed scope and project requirements.",
+    description: "For businesses requiring advanced functionality.",
     features: [
       "Custom page count (scoped per project)",
       "Advanced layouts",
@@ -187,7 +188,7 @@ export const pricingTiers = [
 
 export const hostingPlan = {
   title: "Managed hosting",
-  price: "£29 per month / £320 per year",
+  price: "SCR 450 per month / SCR 4,800 per year",
   description: "Required if we host your website.",
   features: [
     "Secure hosting environment",
@@ -204,10 +205,10 @@ export const hostingPlan = {
 export const supportPlans = [
   {
     title: "Digital Care Plan",
-    price: "£149 per month",
+    price: "SCR 1,200 per month",
     description: "For businesses that want peace of mind.",
     features: [
-      "Minor content updates (up to 1 hour per month)",
+      "Minor content updates (up to 1 hour per week)",
       "Ongoing system updates",
       "Monthly website health check",
       "Priority email support",
@@ -216,10 +217,10 @@ export const supportPlans = [
   },
   {
     title: "Growth Support Plan",
-    price: "£299 per month",
+    price: "SCR 1,800 per month",
     description: "For businesses actively improving and expanding.",
     features: [
-      "Up to 3 hours of updates or improvements per month",
+      "Up to 3 hours of updates or improvements per week",
       "Design refinements",
       "New page additions (within allocated time)",
       "Advice and guidance",
@@ -231,9 +232,9 @@ export const supportPlans = [
 
 export const adHocRate = {
   title: "Ad-hoc work",
-  price: "£85 per hour",
+  price: "SCR 1,200 per hour",
   description: "For clients not on a support plan. Scoped per task where needed.",
-  note: "Response times are not prioritised without a support plan.",
+  note: "Support plan clients receive priority scheduling.",
 };
 
 export const stabilisationPeriod = {

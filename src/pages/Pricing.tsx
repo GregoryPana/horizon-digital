@@ -15,14 +15,19 @@ export default function Pricing() {
       >
         <div className="grid gap-10 lg:grid-cols-3">
           {pricingTiers.map((tier) => (
-            <Card key={tier.title}>
+            <Card key={tier.title} className="relative">
               {tier.badge && (
-                <p className="text-xs uppercase tracking-[0.3em] text-accent">{tier.badge}</p>
+                <span className="absolute -top-3 left-6 rounded-full border border-accent/40 bg-bg px-3 py-1 text-[0.65rem] uppercase tracking-[0.28em] text-accent">
+                  {tier.badge}
+                </span>
               )}
-              <h3 className={`text-lg font-semibold text-text ${tier.badge ? "mt-3" : ""}`.trim()}>
+              <h3 className="text-lg font-semibold text-accent-2">
                 {tier.title}
               </h3>
-              <p className="mt-5 text-2xl font-semibold text-text">{tier.price}</p>
+              <p className="mt-5 text-2xl font-semibold text-accent">{tier.price}</p>
+              {tier.priceNote && (
+                <p className="mt-3 text-sm text-text-muted">{tier.priceNote}</p>
+              )}
               <p className="mt-3 text-sm text-text-muted">{tier.description}</p>
               <ul className="mt-7 space-y-4 text-sm text-text-muted">
                 {tier.features.map((feature) => (
@@ -72,8 +77,8 @@ export default function Pricing() {
         description="Required only when we host your website."
       >
         <Card>
-          <h3 className="text-lg font-semibold text-text">{hostingPlan.title}</h3>
-          <p className="mt-4 text-2xl font-semibold text-text">{hostingPlan.price}</p>
+          <h3 className="text-lg font-semibold text-accent-2">{hostingPlan.title}</h3>
+          <p className="mt-4 text-2xl font-semibold text-accent">{hostingPlan.price}</p>
           <p className="mt-3 text-sm text-text-muted">{hostingPlan.description}</p>
           <ul className="mt-7 grid gap-4 text-sm text-text-muted sm:grid-cols-2">
             {hostingPlan.features.map((feature) => (
@@ -103,7 +108,7 @@ export default function Pricing() {
         description="Small fixes and adjustments after launch."
       >
         <Card>
-          <h3 className="text-lg font-semibold text-text">{stabilisationPeriod.title}</h3>
+          <h3 className="text-lg font-semibold text-accent-2">{stabilisationPeriod.title}</h3>
           <p className="mt-3 text-sm text-text-muted">{stabilisationPeriod.description}</p>
           <div className="mt-6 grid gap-6 md:grid-cols-2">
             <div>
@@ -140,8 +145,8 @@ export default function Pricing() {
         <div className="grid gap-10 lg:grid-cols-2">
           {supportPlans.map((plan) => (
             <Card key={plan.title}>
-              <h3 className="text-lg font-semibold text-text">{plan.title}</h3>
-              <p className="mt-4 text-2xl font-semibold text-text">{plan.price}</p>
+              <h3 className="text-lg font-semibold text-accent-2">{plan.title}</h3>
+              <p className="mt-4 text-2xl font-semibold text-accent">{plan.price}</p>
               <p className="mt-3 text-sm text-text-muted">{plan.description}</p>
               <ul className="mt-6 space-y-4 text-sm text-text-muted">
                 {plan.features.map((feature) => (
@@ -163,8 +168,8 @@ export default function Pricing() {
         description="For clients not on a support plan."
       >
         <Card>
-          <h3 className="text-lg font-semibold text-text">{adHocRate.title}</h3>
-          <p className="mt-4 text-2xl font-semibold text-text">{adHocRate.price}</p>
+          <h3 className="text-lg font-semibold text-accent-2">{adHocRate.title}</h3>
+          <p className="mt-4 text-2xl font-semibold text-accent">{adHocRate.price}</p>
           <p className="mt-3 text-sm text-text-muted">{adHocRate.description}</p>
           <p className="mt-6 text-sm text-text-muted">{adHocRate.note}</p>
         </Card>

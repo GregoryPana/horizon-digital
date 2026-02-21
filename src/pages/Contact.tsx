@@ -50,7 +50,7 @@ export default function Contact() {
             <p className="text-xs uppercase tracking-[0.4em] text-accent">Direct contact</p>
             <p className="mt-4 text-sm text-text-muted">Email or call us at</p>
             <a
-              className="mt-2 block text-lg font-semibold text-text transition hover:text-accent"
+              className="mt-2 block break-all text-lg font-semibold text-text transition hover:text-accent"
               href={`mailto:${siteConfig.email}`}
             >
               {siteConfig.email}
@@ -66,7 +66,7 @@ export default function Contact() {
                 shimmerColor="#0b1212"
                 shimmerDuration="4.2s"
                 background="linear-gradient(135deg, rgba(34,241,214,0.95), rgba(34,241,214,0.7))"
-                className="px-6 py-3 text-sm font-semibold tracking-[0.08em] text-black"
+                className="w-full px-6 py-3 text-sm font-semibold tracking-[0.08em] text-black sm:w-auto"
                 type="button"
                 onClick={() => {
                   window.location.href = `mailto:${siteConfig.email}`;
