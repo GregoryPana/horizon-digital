@@ -1,0 +1,115 @@
+PS C:\Users\Gregory\antigravity_projects\horizon-digital> git status
+warning: could not open directory 'Application Data/': Permission denied
+warning: could not open directory 'Cookies/': Permission denied
+warning: could not open directory 'Local Settings/': Permission denied
+warning: could not open directory 'My Documents/': Permission denied
+warning: could not open directory 'NetHood/': Permission denied
+warning: could not open directory 'PrintHood/': Permission denied
+warning: could not open directory 'Recent/': Permission denied
+warning: could not open directory 'SendTo/': Permission denied
+warning: could not open directory 'Start Menu/': Permission denied
+warning: could not open directory 'Templates/': Permission denied
+On branch master
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        ../../.android/
+        ../../.antigravity/
+        ../../.arduinoIDE/
+        ../../.bash_history
+        ../../.bun/
+        ../../.cache/
+        ../../.codeium/
+        ../../.config/
+        ../../.crossnote/
+        ../../.dbclient/
+        ../../.docker/
+        ../../.dotnet/
+        ../../.emulator_console_auth_token
+        ../../.gemini/
+        ../../.gitconfig
+        ../../.gitignore
+        ../../.gradle/
+        ../../.idlerc/
+        ../../.insomniac/
+        ../../.keras/
+        ../../.local/
+        ../../.matplotlib/
+        ../../.nbi/
+        ../../.skiko/
+        ../../.streamlit/
+        ../../.vscode/
+        ../../.windsurf/
+        ../../3D Objects/
+        ../../AMDRM_Install.log
+        ../../AMD_RyzenMaster.log
+        ../../AndroidStudioProjects/
+        ../../AppData/
+        ../../Budget App/
+        ../../CSS/
+        ../../Contacts/
+        ../../Desktop/
+        ../../Documents/
+        ../../Downloads/
+        ../../Easy_Choice_app/
+        ../../Easy_Choices/
+        ../../Favorites/
+        ../../GDP INTEGRATED.zip
+        ../../GDP INTEGRATED/
+        ../../GDP PROJECT (2).zip
+        ../../GDP PROJECT ZIP Latest.zip
+        ../../GDP PROJECT.zip
+        ../../GDP PROJECT/
+        ../../GDP_PROJECT_BACKUP/
+        ../../Links/
+        ../../MimiFY Budget App Backups/
+        ../../MimiFY Budget App.rar
+        ../../MimiFY Budget App/
+        ../../Music/
+        ../../NTUSER.DAT
+        ../../NTUSER.DAT{53b39e88-18c4-11ea-a811-000d3aa4692b}.TM.blf
+        ../../NTUSER.DAT{53b39e88-18c4-11ea-a811-000d3aa4692b}.TMContainer00000000000000000001.regtrans-ms
+        ../../NTUSER.DAT{53b39e88-18c4-11ea-a811-000d3aa4692b}.TMContainer00000000000000000002.regtrans-ms
+        ../../OneDrive/
+        ../../Pictures/
+        ../../PycharmProjects/
+        ../../Saved Games/
+        ../../Searches/
+        ../../StoreApp/
+        ../../Tracing/
+        ../../Videos/
+        ../../anti_grav_dash/
+        ../anti_grav_dash/
+        ../antigrav_local_rag.zip
+        ../antigrav_local_rag/
+        ../billing-platform/
+        ../drake-redesign/
+        ../installation_assessment_app/
+        ../mimi_app/
+        ../wallet-app/
+        ../../bun.lock
+        ../../coinapp/
+        ../../drake-dashboard/
+        ../../exitlag ow2 test.png
+        ../../get-pip.py
+        ../../learningdart/
+        ../../n8n-local-test/
+        ../../n8n/
+        ../../n8n_backup/
+        ../../n8n_backup_20251023_202644.zip
+        ../../n8n_backup_20251023_202644/
+        ../../ntuser.dat.LOG1
+        ../../ntuser.dat.LOG2
+        ../../ntuser.ini
+        ../../package-lock.json
+        ../../package.json
+        ../../source/
+        ../../test exitlag.png
+
+nothing added to commit but untracked files present (use "git add" to track)
+PS C:\Users\Gregory\antigravity_projects\horizon-digital> git remote -v
+origin  https://github.com/GregoryPana/Portfolio.git (fetch)
+origin  https://github.com/GregoryPana/Portfolio.git (push)
+PS C:\Users\Gregory\antigravity_projects\horizon-digital> git branch
+* master
+PS C:\Users\Gregory\antigravity_projects\horizon-digital> git log -1 --oneline
+276cc14 (HEAD -> master) Initial site build
