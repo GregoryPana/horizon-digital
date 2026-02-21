@@ -1,7 +1,9 @@
 {
   "name": "horizon-digital",
   "compatibility_date": "2026-02-21",
+  "main": "./src/worker.ts",
   "assets": {
-    "directory": "./dist"
+    "directory": "./dist",
+    "binding": "ASSETS"
   }
 }
