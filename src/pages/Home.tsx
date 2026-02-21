@@ -126,11 +126,11 @@ export default function Home() {
         title="Website build packages"
         description="Clear starting points for the build. Hosting and ongoing support are separate."
       >
-        <div className="grid gap-10 lg:grid-cols-3">
+        <div className="grid items-stretch gap-10 lg:grid-cols-3">
           {pricingTiers.map((tier) => (
             <Card
               key={tier.title}
-              className={`relative pricing-pop ${
+              className={`relative flex h-full flex-col pricing-pop ${
                 tier.badge ? "pricing-pop-strong" : "pricing-pop-soft"
               }`.trim()}
             >
@@ -153,7 +153,9 @@ export default function Home() {
                   </li>
                 ))}
               </ul>
-              <Button label="View details" to="/pricing" variant="outline" size="sm" className="mt-10" />
+              <div className="mt-auto pt-8">
+                <Button label="View details" to="/pricing" variant="outline" size="sm" />
+              </div>
             </Card>
           ))}
         </div>

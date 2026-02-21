@@ -13,11 +13,11 @@ export default function Pricing() {
         title="Clear pricing with no hidden extras"
         description="Website builds, hosting, and support are separate so you stay in control."
       >
-        <div className="grid gap-10 lg:grid-cols-3">
+        <div className="grid items-stretch gap-10 lg:grid-cols-3">
           {pricingTiers.map((tier) => (
             <Card
               key={tier.title}
-              className={`relative pricing-pop ${
+              className={`relative flex h-full flex-col pricing-pop ${
                 tier.badge ? "pricing-pop-strong" : "pricing-pop-soft"
               }`.trim()}
             >
@@ -57,13 +57,14 @@ export default function Pricing() {
                   </ul>
                 </div>
               )}
-              <Button
-                label="Discuss your project"
-                to="/contact"
-                variant="outline"
-                size="sm"
-                className="mt-10"
-              />
+              <div className="mt-auto pt-8">
+                <Button
+                  label="Discuss your project"
+                  to="/contact"
+                  variant="outline"
+                  size="sm"
+                />
+              </div>
             </Card>
           ))}
         </div>
