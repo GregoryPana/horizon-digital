@@ -8,23 +8,23 @@ export default function About() {
     <div>
       <Section
         eyebrow="About"
-        title="A boutique studio built on clarity"
-        description="Direct communication, reliable delivery, and a long-term growth mindset."
+        title="A small studio built on clarity"
+        description="Direct communication, reliable delivery, and practical guidance."
       >
         <div className="grid gap-10 md:grid-cols-2">
           <Card>
             <h3 className="text-lg font-semibold text-text">Built with intention</h3>
             <p className="mt-3 text-sm text-text-muted">
-              Horizon Digital is a focused studio that partners directly with growing businesses.
-              Every site is structured to build credibility, communicate value fast, and convert
-              visitors into inquiries or bookings.
+              Horizon Digital is a focused studio that partners directly with local businesses.
+              Every site is built to build trust, explain your service clearly, and turn visitors
+              into enquiries or bookings.
             </p>
           </Card>
           <Card>
             <h3 className="text-lg font-semibold text-text">Reliable partnership</h3>
             <p className="mt-3 text-sm text-text-muted">
-              You work directly with the builder, not a rotating team. The approach is structured,
-              transparent, and designed for long-term support as your business grows.
+              You work directly with the builder, not a rotating team. The approach is clear,
+              transparent, and designed to support you over time.
             </p>
           </Card>
         </div>
@@ -35,7 +35,7 @@ export default function About() {
           <div>
             <p className="text-xs uppercase tracking-[0.4em] text-accent">Let's connect</p>
             <h2 className="mt-3 text-3xl font-semibold text-text md:text-4xl">
-              Build a site that supports where your business is heading.
+              Build a site that supports where your business is going.
             </h2>
           </div>
           <Link to="/contact">

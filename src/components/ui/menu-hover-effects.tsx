@@ -30,8 +30,8 @@ export default function NavMenu() {
 
       <div
         className={
-          `absolute right-0 top-full z-40 mt-4 w-[min(90vw,420px)] rounded-3xl border border-border bg-bg-elev p-6 shadow-soft ` +
-          `transition-all duration-300 lg:static lg:mt-0 lg:block lg:w-auto lg:border-none lg:bg-transparent lg:p-0 lg:shadow-none lg:transition-none ` +
+          `fixed left-1/2 top-24 z-40 w-[min(90vw,420px)] -translate-x-1/2 rounded-3xl border border-border bg-bg p-6 shadow-soft ` +
+          `transition-all duration-300 lg:static lg:mt-0 lg:block lg:w-auto lg:translate-x-0 lg:border-none lg:bg-transparent lg:p-0 lg:shadow-none lg:transition-none ` +
           `lg:opacity-100 lg:translate-y-0 lg:pointer-events-auto ` +
           `${isMenuOpen ? "opacity-100 translate-y-0" : "pointer-events-none opacity-0 -translate-y-2"}`
         }

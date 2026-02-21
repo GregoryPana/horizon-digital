@@ -6,6 +6,7 @@
 
 :root {
   color-scheme: light;
+  --app-height: 100vh;
   --bg: #f7faf9;
   --bg-elev: rgba(255, 255, 255, 0.85);
   --bg-panel: rgba(255, 255, 255, 0.7);
@@ -17,6 +18,18 @@
   --accent-2-soft: rgba(241, 199, 92, 0.22);
   --border: rgba(11, 18, 18, 0.18);
   --glow: rgba(5, 198, 177, 0.4);
+}
+
+@supports (height: 100svh) {
+  :root {
+    --app-height: 100svh;
+  }
+}
+
+@supports (height: 100dvh) {
+  :root {
+    --app-height: 100dvh;
+  }
 }
 
 html[data-theme="dark"] {
@@ -42,6 +55,11 @@ html,
 body {
   width: 100%;
   overflow-x: hidden;
+}
+
+body,
+#root {
+  min-height: var(--app-height);
 }
 
 body {
@@ -199,6 +217,13 @@ img {
   border-color: rgba(34 241 214 / calc(0.12 + 0.53 * var(--glow-strength)));
   box-shadow: 0 0 calc(31px * var(--glow-strength))
     rgba(34 241 214 / calc(0.1 + 0.385 * var(--glow-strength)));
+}
+
+@media (min-width: 768px) {
+  .scroll-glow.is-inview {
+    box-shadow: 0 0 calc(28px * var(--glow-strength))
+      rgba(34 241 214 / calc(0.1 + 0.385 * var(--glow-strength)));
+  }
 }
 
 .preview-frame {

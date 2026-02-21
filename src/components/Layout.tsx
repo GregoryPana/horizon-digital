@@ -1,4 +1,5 @@
 import { ReactNode, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 
@@ -7,6 +8,8 @@ type LayoutProps = {
 };
 
 export default function Layout({ children }: LayoutProps) {
+  const location = useLocation();
+
   useEffect(() => {
     const cards = Array.from(document.querySelectorAll<HTMLElement>(".scroll-glow"));
     if (!cards.length) return;
@@ -63,12 +66,17 @@ export default function Layout({ children }: LayoutProps) {
       window.removeEventListener("resize", scheduleUpdate);
       if (frameId !== null) window.cancelAnimationFrame(frameId);
     };
-  }, []);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.scrollTo({ top: 0, left: 0, behavior: prefersReducedMotion ? "auto" : "smooth" });
+  }, [location.pathname]);
 
   return (
     <div className="flex min-h-screen flex-col bg-bg text-text">
       <Navbar />
-      <main className="flex-1">{children}</main>
+      <main className="flex-1 pt-24 pb-[env(safe-area-inset-bottom)] md:pt-28">{children}</main>
       <Footer />
     </div>
   );

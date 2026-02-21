@@ -36,8 +36,8 @@ export default function Home() {
 
       <Section
         eyebrow="Services"
-        title="Designed for growth and performance"
-        description="Structured, modern websites that build trust and convert visitors."
+        title="Designed to be clear and reliable"
+        description="Modern websites that help customers understand you and get in touch."
         className="!pt-16 !pb-24 md:!pt-24 md:!pb-32"
       >
         <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
@@ -74,15 +74,20 @@ export default function Home() {
 
       <Section
         eyebrow="Featured work"
-        title="Concept demos to show the direction"
-        description="A preview of the kind of clarity-driven layouts we build."
+        title="Concept demos to show layout direction"
+        description="Examples that show structure and flow before real content is added."
       >
         <div className="grid gap-10 md:grid-cols-2 xl:grid-cols-3">
           {workItems.map((item) => (
             <Card key={item.label} className="relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-accent/10 via-transparent to-transparent" />
               <div className="relative">
-                <div className="mb-7 h-40 w-full rounded-2xl border border-border bg-gradient-to-br from-accent/20 via-transparent to-accent-2/20" />
+                <div className="preview-frame mb-6 h-32 w-full rounded-2xl border border-border bg-gradient-to-br from-accent/20 via-transparent to-accent-2/20">
+                  <div className="absolute inset-0 preview-shimmer" />
+                  <div className="absolute left-4 top-4 h-12 w-20 rounded-lg bg-bg-elev/70 blur-[1px]" />
+                  <div className="absolute right-5 top-6 h-6 w-16 rounded-md bg-bg-elev/60 blur-[1px]" />
+                  <div className="absolute left-6 bottom-4 h-5 w-24 rounded-md bg-bg-elev/60 blur-[1px]" />
+                </div>
                 <p className="text-xs uppercase tracking-[0.3em] text-accent">{item.label}</p>
                 <h3 className="mt-2 text-lg font-semibold text-text">{item.title}</h3>
                 <p className="mt-4 text-sm text-text-muted">{item.outcome}</p>
@@ -102,8 +107,8 @@ export default function Home() {
 
       <Section
         eyebrow="Process"
-        title="A structured four-step workflow"
-        description="Clear milestones, direct communication, and reliable delivery."
+        title="A clear four-step workflow"
+        description="Simple milestones, direct communication, and reliable delivery."
       >
         <div className="mt-12 grid gap-10 md:grid-cols-2 lg:grid-cols-4">
           {processSteps.map((step, index) => (
@@ -118,8 +123,8 @@ export default function Home() {
 
       <Section
         eyebrow="Pricing"
-        title="Flexible tiers for growing businesses"
-        description="Transparent starting points with clear deliverables."
+        title="Website build packages"
+        description="Clear starting points for the build. Hosting and ongoing support are separate."
       >
         <div className="grid gap-10 lg:grid-cols-3">
           {pricingTiers.map((tier) => (
@@ -156,7 +161,7 @@ export default function Home() {
           ))}
         </div>
         <div className="mt-10 flex flex-wrap items-center justify-between gap-6 rounded-3xl border border-border bg-bg-elev px-6 py-6">
-          <p className="text-sm text-text-muted">Still have questions? Let's talk.</p>
+          <p className="text-sm text-text-muted">Still have questions? We can walk you through it.</p>
           <Link to="/contact">
             <ShimmerButton
               shimmerColor="#0b1212"
@@ -178,7 +183,7 @@ export default function Home() {
               Empowering Your <span className="text-accent-2">Digital Horizon</span>
             </h2>
             <p className="mt-4 text-sm text-text-muted">
-              Ready to build something structured and built to convert?
+              Ready for a website that feels clear and easy to use?
             </p>
           </div>
           <Link to="/contact">
@@ -200,8 +205,8 @@ export default function Home() {
         onClose={() => setActiveWork(null)}
       >
         <p>
-          This preview is a concept demo showcasing a possible layout direction. Each project is
-          custom built around your goals, content, and conversion flow.
+          This is a concept demo showing layout direction and flow. Each project is built around
+          your goals, content, and customer journey.
         </p>
         <div className="mt-6">
           <Button label="Request similar site" to="/contact" size="sm" />

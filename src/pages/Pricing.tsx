@@ -1,7 +1,7 @@
 import Button from "../components/Button";
 import Card from "../components/Card";
 import Section from "../components/Section";
-import { pricingTiers } from "../data/site";
+import { adHocRate, hostingPlan, pricingTiers, stabilisationPeriod, supportPlans } from "../data/site";
 import { ShimmerButton } from "../components/ui/shimmer-button";
 import { Link } from "react-router-dom";
 
@@ -10,13 +10,18 @@ export default function Pricing() {
     <div>
       <Section
         eyebrow="Pricing"
-        title="Clear starting points with flexible scope"
-        description="Each package scales with your content, goals, and functionality needs."
+        title="Clear pricing with no hidden extras"
+        description="Website builds, hosting, and support are separate so you stay in control."
       >
         <div className="grid gap-10 lg:grid-cols-3">
           {pricingTiers.map((tier) => (
             <Card key={tier.title}>
-              <h3 className="text-lg font-semibold text-text">{tier.title}</h3>
+              {tier.badge && (
+                <p className="text-xs uppercase tracking-[0.3em] text-accent">{tier.badge}</p>
+              )}
+              <h3 className={`text-lg font-semibold text-text ${tier.badge ? "mt-3" : ""}`.trim()}>
+                {tier.title}
+              </h3>
               <p className="mt-5 text-2xl font-semibold text-text">{tier.price}</p>
               <p className="mt-3 text-sm text-text-muted">{tier.description}</p>
               <ul className="mt-7 space-y-4 text-sm text-text-muted">
@@ -27,11 +32,142 @@ export default function Pricing() {
                   </li>
                 ))}
               </ul>
-              <Button label="Start a scope" to="/contact" variant="outline" size="sm" className="mt-10" />
+              {tier.exclusions && tier.exclusions.length > 0 && (
+                <div className="mt-7">
+                  <p className="text-xs uppercase tracking-[0.3em] text-text-muted">
+                    Available separately
+                  </p>
+                  <ul className="mt-4 space-y-3 text-sm text-text-muted">
+                    {tier.exclusions.map((item) => (
+                      <li key={item} className="flex items-center gap-2">
+                        <span className="h-2 w-2 rounded-full bg-border" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              <Button
+                label="Discuss your project"
+                to="/contact"
+                variant="outline"
+                size="sm"
+                className="mt-10"
+              />
             </Card>
           ))}
         </div>
-        <p className="mt-6 text-sm text-text-muted">Final pricing depends on scope.</p>
+        <p className="mt-6 text-sm text-text-muted">
+          Hosting and ongoing support are available separately to keep your website flexible and
+          under your control.
+        </p>
+        <p className="mt-3 text-sm text-text-muted">
+          Final pricing depends on project requirements and agreed details.
+        </p>
+      </Section>
+
+      <Section
+        eyebrow="Managed hosting"
+        title="Hosting if we manage the site"
+        description="Required only when we host your website."
+      >
+        <Card>
+          <h3 className="text-lg font-semibold text-text">{hostingPlan.title}</h3>
+          <p className="mt-4 text-2xl font-semibold text-text">{hostingPlan.price}</p>
+          <p className="mt-3 text-sm text-text-muted">{hostingPlan.description}</p>
+          <ul className="mt-7 grid gap-4 text-sm text-text-muted sm:grid-cols-2">
+            {hostingPlan.features.map((feature) => (
+              <li key={feature} className="flex items-center gap-2">
+                <span className="h-2 w-2 rounded-full bg-accent" />
+                {feature}
+              </li>
+            ))}
+          </ul>
+          <div className="mt-7">
+            <p className="text-xs uppercase tracking-[0.3em] text-text-muted">Not included</p>
+            <ul className="mt-4 space-y-3 text-sm text-text-muted">
+              {hostingPlan.exclusions.map((item) => (
+                <li key={item} className="flex items-center gap-2">
+                  <span className="h-2 w-2 rounded-full bg-border" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Card>
+      </Section>
+
+      <Section
+        eyebrow="Stabilisation"
+        title="30-day post-launch support"
+        description="Small fixes and adjustments after launch."
+      >
+        <Card>
+          <h3 className="text-lg font-semibold text-text">{stabilisationPeriod.title}</h3>
+          <p className="mt-3 text-sm text-text-muted">{stabilisationPeriod.description}</p>
+          <div className="mt-6 grid gap-6 md:grid-cols-2">
+            <div>
+              <p className="text-xs uppercase tracking-[0.3em] text-text-muted">Covers</p>
+              <ul className="mt-4 space-y-3 text-sm text-text-muted">
+                {stabilisationPeriod.covers.map((item) => (
+                  <li key={item} className="flex items-center gap-2">
+                    <span className="h-2 w-2 rounded-full bg-accent" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <p className="text-xs uppercase tracking-[0.3em] text-text-muted">Does not cover</p>
+              <ul className="mt-4 space-y-3 text-sm text-text-muted">
+                {stabilisationPeriod.exclusions.map((item) => (
+                  <li key={item} className="flex items-center gap-2">
+                    <span className="h-2 w-2 rounded-full bg-border" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </Card>
+      </Section>
+
+      <Section
+        eyebrow="Ongoing support"
+        title="Optional monthly support plans"
+        description="For regular updates and steady improvements."
+      >
+        <div className="grid gap-10 lg:grid-cols-2">
+          {supportPlans.map((plan) => (
+            <Card key={plan.title}>
+              <h3 className="text-lg font-semibold text-text">{plan.title}</h3>
+              <p className="mt-4 text-2xl font-semibold text-text">{plan.price}</p>
+              <p className="mt-3 text-sm text-text-muted">{plan.description}</p>
+              <ul className="mt-6 space-y-4 text-sm text-text-muted">
+                {plan.features.map((feature) => (
+                  <li key={feature} className="flex items-center gap-2">
+                    <span className="h-2 w-2 rounded-full bg-accent" />
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-6 text-sm text-text-muted">{plan.note}</p>
+            </Card>
+          ))}
+        </div>
+      </Section>
+
+      <Section
+        eyebrow="Ad-hoc"
+        title="One-off updates"
+        description="For clients not on a support plan."
+      >
+        <Card>
+          <h3 className="text-lg font-semibold text-text">{adHocRate.title}</h3>
+          <p className="mt-4 text-2xl font-semibold text-text">{adHocRate.price}</p>
+          <p className="mt-3 text-sm text-text-muted">{adHocRate.description}</p>
+          <p className="mt-6 text-sm text-text-muted">{adHocRate.note}</p>
+        </Card>
       </Section>
 
       <section className="bg-bg-elev">
@@ -39,7 +175,7 @@ export default function Pricing() {
           <div>
             <p className="text-xs uppercase tracking-[0.4em] text-accent">Next step</p>
             <h2 className="mt-3 text-3xl font-semibold text-text md:text-4xl">
-              Let's define the right package for your growth goals.
+              Let's choose the right package for your goals.
             </h2>
           </div>
           <Link to="/contact">

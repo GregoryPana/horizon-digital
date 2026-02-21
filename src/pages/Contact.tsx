@@ -9,11 +9,12 @@ export default function Contact() {
     <div>
       <Section
         eyebrow="Contact"
-        title="Start a project conversation"
-        description="Tell us about your business, goals, and timeline."
+        title="Start a clear project conversation"
+        description="Tell us about your business, your goals, and your timeline."
+        className="!pt-16 !pb-24 md:!pt-32 md:!pb-32"
       >
-        <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr]">
-          <Card>
+        <div className="mx-auto grid w-full max-w-2xl min-w-0 gap-10 lg:max-w-none lg:grid-cols-[1.2fr_0.8fr]">
+          <Card className="min-w-0">
             <form className="grid gap-7">
               <label className="text-sm text-text">
                 Name
@@ -45,7 +46,7 @@ export default function Contact() {
               <Button label="Send inquiry" type="submit" size="lg" className="w-fit" />
             </form>
           </Card>
-          <Card>
+          <Card className="min-w-0">
             <p className="text-xs uppercase tracking-[0.4em] text-accent">Direct contact</p>
             <p className="mt-4 text-sm text-text-muted">Email or call us at</p>
             <a

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { navLinks, siteConfig } from "../data/site";
 import Logo from "./Logo";
-import logo from "../assets/logo/favicon.jpeg";
+import logo from "../assets/logo/favicon.png";
 
 export default function Footer() {
   return (

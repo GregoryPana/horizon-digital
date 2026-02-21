@@ -1,6 +1,6 @@
 import Card from "../components/Card";
 import Section from "../components/Section";
-import { addOns, services } from "../data/site";
+import { addOns, buildIncludes, buildNotes, serviceLayers, services } from "../data/site";
 import { ShimmerButton } from "../components/ui/shimmer-button";
 import { Link } from "react-router-dom";
 
@@ -9,8 +9,8 @@ export default function Services() {
     <div>
       <Section
         eyebrow="Services"
-        title="Structured solutions engineered to convert attention into action."
-        description="Every build is structured to communicate credibility and guide action."
+        title="Clear services built for growing businesses"
+        description="Each site is organised so visitors understand you and take the next step."
       >
         <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
           {services.map((service, index) => (
@@ -32,9 +32,46 @@ export default function Services() {
       </Section>
 
       <Section
+        eyebrow="Service layers"
+        title="Three clear ways we work"
+        description="Build projects, hosting, and support are presented separately."
+      >
+        <div className="grid gap-8 md:grid-cols-3">
+          {serviceLayers.map((layer) => (
+            <Card key={layer.title}>
+              <h3 className="text-lg font-semibold text-text">{layer.title}</h3>
+              <p className="mt-3 text-sm text-text-muted">{layer.description}</p>
+            </Card>
+          ))}
+        </div>
+      </Section>
+
+      <Section
+        eyebrow="Every build includes"
+        title="What is included in the build"
+        description="Clear scope and a steady launch process."
+      >
+        <Card>
+          <ul className="grid gap-4 text-sm text-text-muted sm:grid-cols-2">
+            {buildIncludes.map((item) => (
+              <li key={item} className="flex items-start gap-2">
+                <span className="mt-1.5 h-2 w-2 rounded-full bg-accent" />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </Card>
+        <div className="mt-8 space-y-2 text-sm text-text-muted">
+          {buildNotes.map((note) => (
+            <p key={note}>{note}</p>
+          ))}
+        </div>
+      </Section>
+
+      <Section
         eyebrow="Add-ons"
         title="Optional enhancements"
-        description="Extend your site with conversion-ready functionality."
+        description="Add helpful features without overcomplicating the site."
       >
         <div className="grid gap-10 md:grid-cols-2">
           {addOns.map((addon) => (
@@ -50,7 +87,7 @@ export default function Services() {
           <div>
             <p className="text-xs uppercase tracking-[0.4em] text-accent">Let's scope it</p>
             <h2 className="mt-3 text-3xl font-semibold text-text md:text-4xl">
-              Build a website that drives bookings and inquiries.
+              Build a website that brings in bookings and enquiries.
             </h2>
           </div>
           <Link to="/contact">
