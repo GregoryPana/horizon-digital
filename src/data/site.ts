@@ -6,6 +6,27 @@ export const siteConfig = {
   phone: "+248 2524490",
 };
 
+export const emailTemplate = {
+  subject: "New Project Inquiry - [Business Name]",
+  body: `Hi Horizon Digital,
+
+I'd like to discuss a new website project.
+
+Business name:
+Industry:
+Current website (if any):
+
+Main goal for the website:
+(e.g. more bookings, more inquiries, clearer brand presence)
+
+Estimated timeline:
+(e.g. ASAP, 1-2 months, flexible)
+
+Anything else you'd like us to know:
+
+Looking forward to your reply.`,
+};
+
 export const navLinks = [
   { label: "Home", path: "/" },
   { label: "Services", path: "/services" },
@@ -204,9 +225,9 @@ export const hostingPlan = {
 
 export const supportPlans = [
   {
-    title: "Digital Care Plan",
+    title: "Starter Care Plan",
     price: "SCR 1,200 per month",
-    description: "For businesses that want peace of mind.",
+    description: "For businesses that want steady care and support.",
     features: [
       "Minor content updates (up to 1 hour per week)",
       "Ongoing system updates",

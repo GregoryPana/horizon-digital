@@ -57,7 +57,7 @@ export default function Home() {
             </div>
           ))}
         </div>
-        <div className="mt-16 flex flex-wrap items-center gap-5 text-sm text-text-muted">
+        <div className="mt-16 flex flex-col items-start gap-3 text-sm text-text-muted sm:flex-row sm:flex-wrap sm:items-center sm:gap-5">
           <span className="text-xs uppercase tracking-[0.4em] text-accent">Add-ons</span>
           {addOns.map((addon) => (
             <span
@@ -128,9 +128,19 @@ export default function Home() {
       >
         <div className="grid gap-10 lg:grid-cols-3">
           {pricingTiers.map((tier) => (
-            <Card key={tier.title}>
-              <h3 className="text-lg font-semibold text-text">{tier.title}</h3>
-              <p className="mt-5 text-2xl font-semibold text-text">{tier.price}</p>
+            <Card
+              key={tier.title}
+              className={`relative pricing-pop ${
+                tier.badge ? "pricing-pop-strong" : "pricing-pop-soft"
+              }`.trim()}
+            >
+              {tier.badge && (
+                <span className="absolute -top-3 left-6 rounded-full border border-accent/40 bg-bg px-3 py-1 text-[0.65rem] uppercase tracking-[0.28em] text-accent">
+                  {tier.badge}
+                </span>
+              )}
+              <h3 className="text-lg font-semibold text-accent-2">{tier.title}</h3>
+              <p className="mt-5 text-2xl font-semibold text-accent">{tier.price}</p>
               {tier.priceNote && (
                 <p className="mt-3 text-sm text-text-muted">{tier.priceNote}</p>
               )}

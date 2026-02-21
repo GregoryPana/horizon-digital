@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
-import { navLinks, siteConfig } from "../data/site";
+import { emailTemplate, navLinks, siteConfig } from "../data/site";
 import Logo from "./Logo";
 import logo from "../assets/logo/favicon.png";
+import { buildMailtoLink } from "../lib/utils";
 
 export default function Footer() {
   return (
@@ -28,7 +29,7 @@ export default function Footer() {
               <p className="text-xs uppercase tracking-[0.4em] text-accent">Contact</p>
               <a
                 className="mt-4 block text-sm text-text-muted transition hover:text-accent"
-                href={`mailto:${siteConfig.email}`}
+                href={buildMailtoLink(siteConfig.email, emailTemplate.subject, emailTemplate.body)}
               >
                 {siteConfig.email}
               </a>

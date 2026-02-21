@@ -15,7 +15,12 @@ export default function Pricing() {
       >
         <div className="grid gap-10 lg:grid-cols-3">
           {pricingTiers.map((tier) => (
-            <Card key={tier.title} className="relative">
+            <Card
+              key={tier.title}
+              className={`relative pricing-pop ${
+                tier.badge ? "pricing-pop-strong" : "pricing-pop-soft"
+              }`.trim()}
+            >
               {tier.badge && (
                 <span className="absolute -top-3 left-6 rounded-full border border-accent/40 bg-bg px-3 py-1 text-[0.65rem] uppercase tracking-[0.28em] text-accent">
                   {tier.badge}
@@ -76,7 +81,7 @@ export default function Pricing() {
         title="Hosting if we manage the site"
         description="Required only when we host your website."
       >
-        <Card>
+        <Card className="relative pricing-pop pricing-pop-strong">
           <h3 className="text-lg font-semibold text-accent-2">{hostingPlan.title}</h3>
           <p className="mt-4 text-2xl font-semibold text-accent">{hostingPlan.price}</p>
           <p className="mt-3 text-sm text-text-muted">{hostingPlan.description}</p>
@@ -144,7 +149,7 @@ export default function Pricing() {
       >
         <div className="grid gap-10 lg:grid-cols-2">
           {supportPlans.map((plan) => (
-            <Card key={plan.title}>
+            <Card key={plan.title} className="relative pricing-pop">
               <h3 className="text-lg font-semibold text-accent-2">{plan.title}</h3>
               <p className="mt-4 text-2xl font-semibold text-accent">{plan.price}</p>
               <p className="mt-3 text-sm text-text-muted">{plan.description}</p>
@@ -167,7 +172,7 @@ export default function Pricing() {
         title="One-off updates"
         description="For clients not on a support plan."
       >
-        <Card>
+        <Card className="relative pricing-pop">
           <h3 className="text-lg font-semibold text-accent-2">{adHocRate.title}</h3>
           <p className="mt-4 text-2xl font-semibold text-accent">{adHocRate.price}</p>
           <p className="mt-3 text-sm text-text-muted">{adHocRate.description}</p>

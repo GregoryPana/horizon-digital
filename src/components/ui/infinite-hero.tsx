@@ -257,8 +257,11 @@ export default function InfiniteHero() {
       className="relative h-[90svh] w-full overflow-hidden bg-bg text-text md:h-svh"
     >
       <div className="absolute inset-0 brightness-110 md:brightness-100">
-        <div className="absolute inset-0" ref={bgRef}>
+        <div className="absolute inset-0 hidden md:block" ref={bgRef}>
           <ShaderBackground className="h-full w-full" />
+        </div>
+        <div className="absolute inset-0 md:hidden">
+          <div className="h-full w-full bg-gradient-to-br from-accent/45 via-transparent to-accent-2/45" />
         </div>
       </div>
 
