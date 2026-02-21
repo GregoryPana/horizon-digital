@@ -10,21 +10,26 @@ export const emailTemplate = {
   subject: "New Project Inquiry - [Business Name]",
   body: `Hi Horizon Digital,
 
-I'd like to discuss a new website project.
+ I'd like to discuss a new website project.
 
-Business name:
-Industry:
-Current website (if any):
 
-Main goal for the website:
-(e.g. more bookings, more inquiries, clearer brand presence)
+ Business name:
+ Industry:
+ Current website (if any):
 
-Estimated timeline:
-(e.g. ASAP, 1-2 months, flexible)
 
-Anything else you'd like us to know:
+ Main goal for the website:
+ (e.g. more bookings, more inquiries, clearer brand presence)
 
-Looking forward to your reply.`,
+
+ Estimated timeline:
+ (e.g. ASAP, 1-2 months, flexible)
+
+
+ Anything else you'd like us to know:
+
+
+ Looking forward to your reply.`,
 };
 
 export const navLinks = [
