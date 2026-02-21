@@ -51,7 +51,7 @@ export default function Home() {
               </Card>
               {(index + 1) % 2 === 0 && (
                 <div className="col-span-full md:hidden">
-                  <div className="h-px w-full bg-gradient-to-r from-transparent via-border/60 to-transparent" />
+                  <div className="mx-auto w-1/2 horizon-line" />
                 </div>
               )}
             </div>

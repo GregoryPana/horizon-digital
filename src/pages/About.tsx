@@ -8,7 +8,7 @@ export default function About() {
     <div>
       <Section
         eyebrow="About"
-        title="A small studio built on clarity"
+        title="A studio built on clarity"
         description="Direct communication, reliable delivery, and practical guidance."
       >
         <div className="grid gap-10 md:grid-cols-2">
@@ -16,8 +16,8 @@ export default function About() {
             <h3 className="text-lg font-semibold text-text">Built with intention</h3>
             <p className="mt-3 text-sm text-text-muted">
               Horizon Digital is a focused studio that partners directly with local businesses.
-              Every site is built to build trust, explain your service clearly, and turn visitors
-              into enquiries or bookings.
+              Every site is designed to attract visitors and turn them into enquiries or bookings
+              — not just look modern.
             </p>
           </Card>
           <Card>
@@ -26,8 +26,27 @@ export default function About() {
               You work directly with the builder, not a rotating team. The approach is clear,
               transparent, and designed to support you over time.
             </p>
+            <ul className="mt-4 space-y-2 text-sm text-text-muted">
+              <li>No handoffs</li>
+              <li>No account managers</li>
+              <li>No layered approvals</li>
+            </ul>
           </Card>
         </div>
+      </Section>
+
+      <Section
+        eyebrow="Why this exists"
+        title="Why Horizon Digital exists"
+        description="A simpler, clearer way to build websites."
+      >
+        <Card>
+          <p className="text-sm text-text-muted">
+            After seeing businesses struggle with unclear websites and complex agency processes,
+            Horizon Digital was built to offer something simpler — direct communication, practical
+            solutions, and websites designed for measurable growth.
+          </p>
+        </Card>
       </Section>
 
       <section className="bg-bg-elev">
@@ -35,7 +54,7 @@ export default function About() {
           <div>
             <p className="text-xs uppercase tracking-[0.4em] text-accent">Let's connect</p>
             <h2 className="mt-3 text-3xl font-semibold text-text md:text-4xl">
-              Build a site that supports where your business is going.
+              Let's build a site that supports where your business is going next.
             </h2>
           </div>
           <Link to="/contact">

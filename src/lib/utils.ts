@@ -3,9 +3,8 @@ export function cn(...classes: Array<string | undefined | null | false>) {
 }
 
 export function buildMailtoLink(email: string, subject: string, body: string) {
-  const params = new URLSearchParams({
-    subject,
-    body,
-  });
-  return `mailto:${email}?${params.toString()}`;
+  const normalizedBody = body.replace(/\n/g, "\r\n");
+  const encodedSubject = encodeURIComponent(subject);
+  const encodedBody = encodeURIComponent(normalizedBody);
+  return `mailto:${email}?subject=${encodedSubject}&body=${encodedBody}`;
 }

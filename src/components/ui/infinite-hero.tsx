@@ -271,15 +271,16 @@ export default function InfiniteHero() {
 
       <div className="relative z-10 flex h-[90svh] w-full items-center justify-center px-6 md:h-svh md:px-8">
         <div className="text-center">
-          <p className="text-base uppercase tracking-[0.45em] text-accent">
+          <p className="hero-brand-glow text-base uppercase tracking-[0.45em] text-accent">
             Horizon Digital
           </p>
-          <p className="mt-3 text-[0.65rem] uppercase tracking-[0.35em] text-text/60 leading-tight md:text-xs md:tracking-[0.4em]">
+          <p className="mt-3 text-[0.65rem] uppercase tracking-[0.35em] text-text/60 leading-tight md:mt-2 md:text-xs md:tracking-[0.4em]">
             Built for growing businesses in Seychelles and beyond.
           </p>
+          <div className="mx-auto mt-6 h-px w-20 horizon-line md:mt-8 md:w-32" />
           <h1
             ref={h1Ref}
-            className="mx-auto mt-6 max-w-3xl text-[clamp(2.35rem,5.4vw,4rem)] font-light leading-[0.98] tracking-tight"
+            className="mx-auto mt-6 max-w-3xl text-[clamp(2.35rem,5.4vw,4rem)] font-light leading-[0.98] tracking-tight md:mt-10"
           >
             <span className="block font-normal leading-[0.92] md:leading-[0.98]">
               Empowering Your
