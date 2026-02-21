@@ -38,6 +38,12 @@ html[data-theme="dark"] {
   box-sizing: border-box;
 }
 
+html,
+body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
 body {
   margin: 0;
   font-family: "Sora", "Space Grotesk", sans-serif;
@@ -185,6 +191,46 @@ img {
   opacity: 0.75;
 }
 
+.scroll-glow {
+  transition: box-shadow 0.6s ease, border-color 0.6s ease, transform 0.6s ease;
+}
+
+.scroll-glow.is-inview {
+  border-color: rgba(34 241 214 / calc(0.12 + 0.53 * var(--glow-strength)));
+  box-shadow: 0 0 calc(31px * var(--glow-strength))
+    rgba(34 241 214 / calc(0.1 + 0.385 * var(--glow-strength)));
+}
+
+.preview-frame {
+  position: relative;
+  overflow: hidden;
+}
+
+.preview-shimmer {
+  background-image: linear-gradient(
+    120deg,
+    transparent 35%,
+    rgba(255, 255, 255, 0.12) 50%,
+    transparent 65%
+  );
+  transform: translateX(-120%) skewX(-12deg);
+  animation: preview-shimmer 7s ease-in-out infinite;
+  mix-blend-mode: screen;
+  opacity: 0.4;
+}
+
+@keyframes preview-shimmer {
+  0% {
+    transform: translateX(-120%) skewX(-12deg);
+  }
+  45% {
+    transform: translateX(120%) skewX(-12deg);
+  }
+  100% {
+    transform: translateX(120%) skewX(-12deg);
+  }
+}
+
 .glass {
   background: var(--bg-panel);
   border: 1px solid var(--border);
@@ -222,6 +268,9 @@ img {
   }
   body::before,
   body::after {
+    animation: none !important;
+  }
+  .preview-shimmer {
     animation: none !important;
   }
 }
