@@ -28,7 +28,7 @@ export default function Contact() {
     const message = String(data.get("message") ?? "").trim();
 
     const budgetLabelMap: Record<string, string> = {
-      "8000-15000": "SCR 8,000-15,000",
+      "9500-15000": "SCR 9,500-15,000",
       "15000-30000": "SCR 15,000-30,000",
       "30000+": "SCR 30,000+",
       "not-sure": "Not sure yet - I'd like guidance",
@@ -147,7 +147,7 @@ Looking forward to your reply.`;
                   <option value="" disabled>
                     Select a range
                   </option>
-                  <option value="8000-15000">SCR 8,000-15,000</option>
+                  <option value="9500-15000">SCR 9,500-15,000</option>
                   <option value="15000-30000">SCR 15,000-30,000</option>
                   <option value="30000+">SCR 30,000+</option>
                   <option value="not-sure">Not sure yet - I'd like guidance</option>

@@ -61,7 +61,10 @@ export default function Pricing() {
           <Card className="flex h-full flex-col pricing-pop pricing-pop-soft">
             <h3 className="text-lg font-semibold text-accent-2">{foundationPackage.title}</h3>
             <p className="mt-4 text-2xl font-semibold text-accent">{foundationPackage.price}</p>
-            <p className="mt-3 text-sm text-text-muted">{foundationPackage.description}</p>
+            <div className="mt-3 min-h-[120px] text-sm text-text-muted md:min-h-[140px]">
+              <p>{foundationPackage.description}</p>
+              <p className="mt-3">Includes core build essentials.</p>
+            </div>
             <div className="mt-6 space-y-3 text-sm text-text-muted">
               <ul className="space-y-3 mb-8">
                 {foundationPackage.includes.map((item) => (
@@ -109,7 +112,14 @@ export default function Pricing() {
             </span>
             <h3 className="text-lg font-semibold text-accent-2">{starterPackage.title}</h3>
             <p className="mt-4 text-2xl font-semibold text-accent">{starterPackage.price}</p>
-            <p className="mt-3 text-sm text-text-muted">{starterPackage.description}</p>
+            <div className="mt-3 min-h-[120px] text-sm text-text-muted md:min-h-[140px]">
+              <p>{starterPackage.description}</p>
+              <p className="mt-3 font-medium text-text">
+                Ideal for cafes, guesthouses, salons, small shops, consultants, and trades. Up to 5
+                pages.
+              </p>
+              <p className="mt-3">Includes core build essentials.</p>
+            </div>
             <div className="mt-6 space-y-3 text-sm text-text-muted">
               <ul className="space-y-3">
                 {starterPackage.includes.map((item) => (
@@ -145,9 +155,15 @@ export default function Pricing() {
           <Card className="flex h-full flex-col pricing-pop pricing-pop-soft">
             <h3 className="text-lg font-semibold text-accent-2">{growthPackage.title}</h3>
             <p className="mt-4 text-2xl font-semibold text-accent">{growthPackage.price}</p>
-            <p className="mt-3 text-sm text-text-muted">{growthPackage.description}</p>
+            <div className="mt-3 min-h-[120px] text-sm text-text-muted md:min-h-[140px]">
+              <p>{growthPackage.description}</p>
+              <p className="mt-3 font-medium text-text">
+                Ideal for law firms, construction companies, clinics, tour operators, and
+                expanding hospitality businesses. Up to 10-12 pages.
+              </p>
+              <p className="mt-3">Includes everything in Starter, plus:</p>
+            </div>
             <div className="mt-6 space-y-3 text-sm text-text-muted">
-              <p>Includes everything in Starter, plus:</p>
               <ul className="space-y-3">
                 {growthPackage.includes.map((item) => (
                   <li key={item} className="flex items-center gap-2">
@@ -184,6 +200,9 @@ export default function Pricing() {
           <h3 className="text-lg font-semibold text-accent-2">{customPackage.title}</h3>
           <p className="mt-4 text-2xl font-semibold text-accent">Let's chat</p>
           <p className="mt-4 text-sm text-text-muted">{customPackage.description}</p>
+          <p className="mt-3 text-sm text-text-muted">
+            For larger businesses or advanced functionality. May include 15+ pages.
+          </p>
           <p className="mt-4 text-sm text-text-muted">
             Advanced builds are scoped per project. We will clarify your requirements, then
             provide a clear proposal and timeline.

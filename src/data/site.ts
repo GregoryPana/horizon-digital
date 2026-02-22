@@ -101,7 +101,7 @@ export const servicesPricingIntro = {
 
 export const foundationPackage = {
   title: "Foundation",
-  price: "From SCR 8,000",
+  price: "From SCR 9,500",
   description:
     "For businesses that need a simple, professional online presence using a structured Horizon Digital layout.",
   includes: [
@@ -294,7 +294,7 @@ export const processSteps = [
 export const pricingTiers = [
   {
     title: "Foundation",
-    price: "From SCR 8,000",
+    price: "From SCR 9,500",
     description:
       "For businesses that need a simple, professional online presence using a structured layout.",
     features: [
