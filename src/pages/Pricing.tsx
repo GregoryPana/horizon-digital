@@ -1,92 +1,185 @@
-import Button from "../components/Button";
 import Card from "../components/Card";
 import Section from "../components/Section";
-import { adHocRate, hostingPlan, pricingTiers, stabilisationPeriod, supportPlans } from "../data/site";
+import Seo from "../components/Seo";
+import {
+  addOnItems,
+  carePlanNotes,
+  carePlans,
+  customPackage,
+  growthPackage,
+  hostingPlan,
+  projectSteps,
+  servicesPricingIntro,
+  starterPackage,
+  stabilisationPlan,
+  trustStatement,
+} from "../data/site";
 import { ShimmerButton } from "../components/ui/shimmer-button";
 import { Link } from "react-router-dom";
 
 export default function Pricing() {
   return (
     <div>
+      <h1 className="sr-only">Services & Pricing</h1>
+      <Seo
+        title="Services & Pricing"
+        description="Clear packages, add-ons, hosting, and care plans for Seychelles businesses."
+        path="/services-pricing"
+        keywords="website pricing Seychelles"
+      />
       <Section
-        eyebrow="Pricing"
-        title="Clear pricing with no hidden extras"
-        description="Website builds, hosting, and support are separate so you stay in control."
+        eyebrow="Services & Pricing"
+        title={servicesPricingIntro.title}
+        description={servicesPricingIntro.subtitle}
       >
-        <div className="grid items-stretch gap-10 lg:grid-cols-3">
-          {pricingTiers.map((tier) => (
-            <Card
-              key={tier.title}
-              className={`relative flex h-full flex-col pricing-pop ${
-                tier.badge ? "pricing-pop-strong" : "pricing-pop-soft"
-              }`.trim()}
-            >
-              {tier.badge && (
-                <span className="absolute -top-3 left-6 rounded-full border border-accent/40 bg-bg px-3 py-1 text-[0.65rem] uppercase tracking-[0.28em] text-accent">
-                  {tier.badge}
-                </span>
-              )}
-              <h3 className="text-lg font-semibold text-accent-2">
-                {tier.title}
-              </h3>
-              <p className="mt-5 text-2xl font-semibold text-accent">{tier.price}</p>
-              {tier.priceNote && (
-                <p className="mt-3 text-sm text-text-muted">{tier.priceNote}</p>
-              )}
-              <p className="mt-3 text-sm text-text-muted">{tier.description}</p>
-              <ul className="mt-7 space-y-4 text-sm text-text-muted">
-                {tier.features.map((feature) => (
-                  <li key={feature} className="flex items-center gap-2">
-                    <span className="h-2 w-2 rounded-full bg-accent" />
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-              {tier.exclusions && tier.exclusions.length > 0 && (
-                <div className="mt-7">
-                  <p className="text-xs uppercase tracking-[0.3em] text-text-muted">
-                    Available separately
-                  </p>
-                  <ul className="mt-4 space-y-3 text-sm text-text-muted">
-                    {tier.exclusions.map((item) => (
-                      <li key={item} className="flex items-center gap-2">
-                        <span className="h-2 w-2 rounded-full bg-border" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-              <div className="mt-auto pt-8">
-                <Button
-                  label="Discuss your project"
-                  to="/contact"
-                  variant="outline"
-                  size="sm"
-                />
-              </div>
+        <p className="text-sm text-text-muted">{servicesPricingIntro.summary}</p>
+      </Section>
+
+      <Section
+        eyebrow="How it works"
+        title="How your project works"
+        description="A simple, structured process from start to launch."
+      >
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-5">
+          {projectSteps.map((step, index) => (
+            <Card key={step.title}>
+              <p className="text-xs uppercase tracking-[0.4em] text-accent">Step {index + 1}</p>
+              <h3 className="mt-3 text-lg font-semibold text-text">{step.title}</h3>
+              <p className="mt-3 text-sm text-text-muted">{step.description}</p>
             </Card>
           ))}
         </div>
-        <p className="mt-6 text-sm text-text-muted">
-          Hosting and ongoing support are available separately to keep your website flexible and
-          under your control.
-        </p>
-        <p className="mt-3 text-sm text-text-muted">
-          Final pricing depends on project requirements and agreed details.
-        </p>
+      </Section>
+
+      <Section
+        eyebrow="Packages"
+        title="Choose the right package"
+        description="Starter, Growth, and Custom side by side for a clear comparison."
+      >
+        <div className="grid items-stretch gap-8 lg:grid-cols-3">
+          <Card className="flex h-full flex-col pricing-pop pricing-pop-soft">
+            <h3 className="text-lg font-semibold text-accent-2">{starterPackage.title}</h3>
+            <p className="mt-4 text-2xl font-semibold text-accent">{starterPackage.price}</p>
+            <p className="mt-3 text-sm text-text-muted">{starterPackage.description}</p>
+            <div className="mt-6 space-y-3 text-sm text-text-muted md:min-h-[420px] lg:min-h-[440px]">
+              <ul className="space-y-3">
+                {starterPackage.includes.map((item) => (
+                  <li key={item} className="flex items-center gap-2">
+                    <span className="h-2 w-2 rounded-full bg-accent" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="mt-6">
+              <p className="text-xs uppercase tracking-[0.3em] text-text-muted">Payment terms</p>
+              <ul className="mt-4 space-y-2 text-sm text-text-muted">
+                {starterPackage.paymentTerms.map((term) => (
+                  <li key={term}>{term}</li>
+                ))}
+              </ul>
+            </div>
+            <div className="mt-auto pt-8">
+              <Link to="/contact">
+                <ShimmerButton
+                  shimmerColor="#0b1212"
+                  shimmerDuration="4.2s"
+                  background="linear-gradient(135deg, rgba(34,241,214,0.95), rgba(34,241,214,0.7))"
+                  className="px-5 py-2 text-xs font-semibold tracking-[0.12em] text-black"
+                >
+                  Discuss your project
+                </ShimmerButton>
+              </Link>
+            </div>
+          </Card>
+
+          <Card className="relative flex h-full flex-col pricing-pop pricing-pop-strong">
+            <span className="absolute -top-3 left-6 rounded-full border border-accent/40 bg-bg px-3 py-1 text-[0.65rem] uppercase tracking-[0.28em] text-accent">
+              Most popular
+            </span>
+            <h3 className="text-lg font-semibold text-accent-2">{growthPackage.title}</h3>
+            <p className="mt-4 text-2xl font-semibold text-accent">{growthPackage.price}</p>
+            <p className="mt-3 text-sm text-text-muted">{growthPackage.description}</p>
+            <div className="mt-6 space-y-3 text-sm text-text-muted md:min-h-[420px] lg:min-h-[440px]">
+              <p>Includes everything in Starter, plus:</p>
+              <ul className="space-y-3">
+                {growthPackage.includes.map((item) => (
+                  <li key={item} className="flex items-center gap-2">
+                    <span className="h-2 w-2 rounded-full bg-accent" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="mt-6">
+              <p className="text-xs uppercase tracking-[0.3em] text-text-muted">Payment terms</p>
+              <ul className="mt-4 space-y-2 text-sm text-text-muted">
+                {growthPackage.paymentTerms.map((term) => (
+                  <li key={term}>{term}</li>
+                ))}
+              </ul>
+            </div>
+            <div className="mt-auto pt-8">
+              <Link to="/contact">
+                <ShimmerButton
+                  shimmerColor="#0b1212"
+                  shimmerDuration="4.2s"
+                  background="linear-gradient(135deg, rgba(34,241,214,0.95), rgba(34,241,214,0.7))"
+                  className="px-5 py-2 text-xs font-semibold tracking-[0.12em] text-black"
+                >
+                  Discuss your project
+                </ShimmerButton>
+              </Link>
+            </div>
+          </Card>
+
+          <Card className="flex h-full flex-col pricing-pop pricing-pop-soft">
+            <h3 className="text-lg font-semibold text-accent-2">{customPackage.title}</h3>
+            <p className="mt-4 text-2xl font-semibold text-accent">Let's chat</p>
+            <p className="mt-3 text-sm text-text-muted">{customPackage.description}</p>
+            <p className="mt-4 text-sm text-text-muted">
+              Advanced builds are scoped per project. We will clarify your requirements, then
+              provide a clear proposal and timeline.
+            </p>
+            <div className="mt-auto pt-8">
+              <Link to="/contact">
+                <ShimmerButton
+                  shimmerColor="#0b1212"
+                  shimmerDuration="4.2s"
+                  background="linear-gradient(135deg, rgba(34,241,214,0.95), rgba(34,241,214,0.7))"
+                  className="px-5 py-2 text-xs font-semibold tracking-[0.12em] text-black"
+                >
+                  Request a custom scope
+                </ShimmerButton>
+              </Link>
+            </div>
+          </Card>
+        </div>
+      </Section>
+
+      <Section
+        eyebrow="Add-ons"
+        title="Optional add-ons"
+        description="All add-ons are clearly scoped before work begins."
+      >
+        <div className="grid gap-6 md:grid-cols-2">
+          {addOnItems.map((item) => (
+            <Card key={item.title}>
+              <h3 className="text-base font-semibold text-accent-2">{item.title}</h3>
+              <p className="mt-3 text-sm text-accent">{item.price}</p>
+            </Card>
+          ))}
+        </div>
       </Section>
 
       <Section
         eyebrow="Managed hosting"
-        title="Hosting if we manage the site"
-        description="Required only when we host your website."
+        title={hostingPlan.title}
+        description="Hosting that keeps your site secure and stable."
       >
-        <Card className="relative pricing-pop pricing-pop-strong">
-          <h3 className="text-lg font-semibold text-accent-2">{hostingPlan.title}</h3>
-          <p className="mt-4 text-2xl font-semibold text-accent">{hostingPlan.price}</p>
-          <p className="mt-3 text-sm text-text-muted">{hostingPlan.description}</p>
-          <ul className="mt-7 grid gap-4 text-sm text-text-muted sm:grid-cols-2">
+        <Card className="pricing-pop pricing-pop-soft">
+          <p className="text-2xl font-semibold text-accent">{hostingPlan.price}</p>
+          <ul className="mt-6 grid gap-4 text-sm text-text-muted sm:grid-cols-2">
             {hostingPlan.features.map((feature) => (
               <li key={feature} className="flex items-center gap-2">
                 <span className="h-2 w-2 rounded-full bg-accent" />
@@ -94,33 +187,21 @@ export default function Pricing() {
               </li>
             ))}
           </ul>
-          <div className="mt-7">
-            <p className="text-xs uppercase tracking-[0.3em] text-text-muted">Not included</p>
-            <ul className="mt-4 space-y-3 text-sm text-text-muted">
-              {hostingPlan.exclusions.map((item) => (
-                <li key={item} className="flex items-center gap-2">
-                  <span className="h-2 w-2 rounded-full bg-border" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
+          <p className="mt-6 text-sm text-text-muted">{hostingPlan.note}</p>
         </Card>
       </Section>
 
       <Section
         eyebrow="Stabilisation"
-        title="30-day post-launch support"
-        description="Small fixes and adjustments after launch."
+        title={stabilisationPlan.title}
+        description="Included with every website build."
       >
         <Card>
-          <h3 className="text-lg font-semibold text-accent-2">{stabilisationPeriod.title}</h3>
-          <p className="mt-3 text-sm text-text-muted">{stabilisationPeriod.description}</p>
-          <div className="mt-6 grid gap-6 md:grid-cols-2">
+          <div className="grid gap-6 md:grid-cols-2">
             <div>
               <p className="text-xs uppercase tracking-[0.3em] text-text-muted">Covers</p>
               <ul className="mt-4 space-y-3 text-sm text-text-muted">
-                {stabilisationPeriod.covers.map((item) => (
+                {stabilisationPlan.covers.map((item) => (
                   <li key={item} className="flex items-center gap-2">
                     <span className="h-2 w-2 rounded-full bg-accent" />
                     {item}
@@ -131,7 +212,7 @@ export default function Pricing() {
             <div>
               <p className="text-xs uppercase tracking-[0.3em] text-text-muted">Does not cover</p>
               <ul className="mt-4 space-y-3 text-sm text-text-muted">
-                {stabilisationPeriod.exclusions.map((item) => (
+                {stabilisationPlan.excludes.map((item) => (
                   <li key={item} className="flex items-center gap-2">
                     <span className="h-2 w-2 rounded-full bg-border" />
                     {item}
@@ -144,17 +225,16 @@ export default function Pricing() {
       </Section>
 
       <Section
-        eyebrow="Ongoing support"
-        title="Optional monthly support plans"
-        description="For regular updates and steady improvements."
+        eyebrow="Ongoing care"
+        title="Ongoing Care Plans"
+        description="Care plans help keep your website secure and gradually improving over time."
       >
-        <div className="grid gap-10 lg:grid-cols-2">
-          {supportPlans.map((plan) => (
-            <Card key={plan.title} className="relative pricing-pop">
+        <div className="grid gap-10 lg:grid-cols-3">
+          {carePlans.map((plan) => (
+            <Card key={plan.title} className="pricing-pop pricing-pop-soft">
               <h3 className="text-lg font-semibold text-accent-2">{plan.title}</h3>
               <p className="mt-4 text-2xl font-semibold text-accent">{plan.price}</p>
-              <p className="mt-3 text-sm text-text-muted">{plan.description}</p>
-              <ul className="mt-6 space-y-4 text-sm text-text-muted">
+              <ul className="mt-6 space-y-3 text-sm text-text-muted">
                 {plan.features.map((feature) => (
                   <li key={feature} className="flex items-center gap-2">
                     <span className="h-2 w-2 rounded-full bg-accent" />
@@ -162,22 +242,59 @@ export default function Pricing() {
                   </li>
                 ))}
               </ul>
-              <p className="mt-6 text-sm text-text-muted">{plan.note}</p>
+              {plan.note && <p className="mt-6 text-sm text-text-muted">{plan.note}</p>}
             </Card>
+          ))}
+        </div>
+        <div className="mt-8 text-sm text-text-muted">
+          {carePlanNotes.map((note) => (
+            <p key={note}>{note}</p>
           ))}
         </div>
       </Section>
 
       <Section
-        eyebrow="Ad-hoc"
-        title="One-off updates"
-        description="For clients not on a support plan."
+        eyebrow="Ad-hoc support"
+        title="Ad-hoc Support"
+        description="For clients not on a care plan."
       >
-        <Card className="relative pricing-pop">
-          <h3 className="text-lg font-semibold text-accent-2">{adHocRate.title}</h3>
-          <p className="mt-4 text-2xl font-semibold text-accent">{adHocRate.price}</p>
-          <p className="mt-3 text-sm text-text-muted">{adHocRate.description}</p>
-          <p className="mt-6 text-sm text-text-muted">{adHocRate.note}</p>
+        <Card className="pricing-pop pricing-pop-soft">
+          <p className="text-2xl font-semibold text-accent">SCR 1,200 per hour</p>
+          <ul className="mt-6 space-y-3 text-sm text-text-muted">
+            <li className="flex items-start gap-2">
+              <span className="mt-1.5 h-2 w-2 rounded-full bg-accent" />
+              Available for clients not on a care plan
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="mt-1.5 h-2 w-2 rounded-full bg-accent" />
+              All work scoped and approved before starting
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="mt-1.5 h-2 w-2 rounded-full bg-accent" />
+              Subject to scheduling availability
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="mt-1.5 h-2 w-2 rounded-full bg-accent" />
+              Care plan clients receive priority scheduling
+            </li>
+          </ul>
+        </Card>
+      </Section>
+
+      <Section
+        eyebrow="Trust"
+        title="Clear scope. Clear outcomes."
+        description="We keep everything transparent from day one."
+      >
+        <Card>
+          <ul className="grid gap-4 text-sm text-text-muted sm:grid-cols-2">
+            {trustStatement.map((item) => (
+              <li key={item} className="flex items-center gap-2">
+                <span className="h-2 w-2 rounded-full bg-accent" />
+                {item}
+              </li>
+            ))}
+          </ul>
         </Card>
       </Section>
 
@@ -186,7 +303,7 @@ export default function Pricing() {
           <div>
             <p className="text-xs uppercase tracking-[0.4em] text-accent">Next step</p>
             <h2 className="mt-3 text-3xl font-semibold text-text md:text-4xl">
-              Let's choose the right package for your goals.
+              Ready to start? Let's define your scope.
             </h2>
           </div>
           <Link to="/contact">

@@ -18,17 +18,17 @@ export default function Section({
   className,
 }: SectionProps) {
   return (
-    <section id={id} className={`py-24 md:py-40 ${className ?? ""}`.trim()}>
+    <section id={id} className={`pt-16 pb-24 md:pt-24 md:pb-40 ${className ?? ""}`.trim()}>
       <div className="mx-auto w-full max-w-7xl px-8">
         {(eyebrow || title || description) && (
           <div className="mb-14 max-w-2xl">
             {eyebrow && (
-              <p className="text-xs uppercase tracking-[0.4em] text-accent">
+              <p className="text-xs font-semibold uppercase tracking-[0.32em] text-accent section-eyebrow-glow">
                 {eyebrow}
               </p>
             )}
             {title && (
-              <h2 className="mt-4 text-3xl font-semibold text-text md:text-5xl">
+              <h2 className="mt-3 text-3xl font-semibold text-text md:text-5xl">
                 {title}
               </h2>
             )}

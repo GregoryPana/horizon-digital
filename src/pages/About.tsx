@@ -1,11 +1,19 @@
 import Card from "../components/Card";
 import Section from "../components/Section";
+import Seo from "../components/Seo";
 import { ShimmerButton } from "../components/ui/shimmer-button";
 import { Link } from "react-router-dom";
 
 export default function About() {
   return (
     <div>
+      <h1 className="sr-only">About Horizon Digital</h1>
+      <Seo
+        title="About"
+        description="A studio built on clarity, direct communication, and reliable delivery."
+        path="/about"
+        keywords="web design studio Seychelles"
+      />
       <Section
         eyebrow="About"
         title="A studio built on clarity"

@@ -1,6 +1,7 @@
 import Button from "../components/Button";
 import Card from "../components/Card";
 import Section from "../components/Section";
+import Seo from "../components/Seo";
 import { emailTemplate, siteConfig } from "../data/site";
 import { ShimmerButton } from "../components/ui/shimmer-button";
 import { buildMailtoLink } from "../lib/utils";
@@ -72,6 +73,13 @@ Looking forward to your reply.`;
 
   return (
     <div>
+      <h1 className="sr-only">Contact Horizon Digital</h1>
+      <Seo
+        title="Contact"
+        description="Tell us about your goals and timeline. We'll respond within 24 hours."
+        path="/contact"
+        keywords="website project enquiry Seychelles"
+      />
       <Section
         eyebrow="Contact"
         title="Let's plan your next launch"

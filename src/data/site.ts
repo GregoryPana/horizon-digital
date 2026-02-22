@@ -1,9 +1,15 @@
+import guesthousePreview from "../assets/work/guesthouse.jpg";
+import restaurantPreview from "../assets/work/restaurant.jpg";
+import cafePreview from "../assets/work/cafe.jpg";
+import consultingPreview from "../assets/work/consulting.jpg";
+
 export const siteConfig = {
   name: "Horizon Digital",
   tagline: "Empowering Your Digital Horizon",
   taglineLong: "Empowering Your Digital Horizon - one website at a time",
   email: "horizondigital.sey@gmail.com",
   phone: "+248 2524490",
+  url: "https://horizon-digital.gregorypanagary.workers.dev",
 };
 
 export const emailTemplate = {
@@ -34,10 +40,7 @@ export const emailTemplate = {
 
 export const navLinks = [
   { label: "Home", path: "/" },
-  { label: "Services", path: "/services" },
-  { label: "Work", path: "/work" },
-  { label: "Process", path: "/process" },
-  { label: "Pricing", path: "/pricing" },
+  { label: "Services & Pricing", path: "/services-pricing" },
   { label: "About", path: "/about" },
   { label: "Contact", path: "/contact" },
 ];
@@ -72,41 +75,145 @@ export const services = [
 ];
 
 export const addOns = [
-  "Blog or news pages",
-  "Booking or enquiry systems",
-  "Basic analytics setup",
-  "Content transfer from an old site",
+  "Additional page",
+  "Content writing support",
+  "Structured booking / enquiry form",
+  "Google Business Profile setup",
+  "Website speed & performance audit",
+  "Rush delivery",
 ];
 
-export const serviceLayers = [
+export const projectSteps = [
+  { title: "Discovery", description: "We learn your goals and needs." },
+  { title: "Proposal & Deposit", description: "Clear scope and agreed milestones." },
+  { title: "Design & Build", description: "We design and build your site." },
+  { title: "Review & Launch", description: "Final review and go live." },
+  { title: "30-Day Stabilisation", description: "We handle small fixes after launch." },
+];
+
+export const servicesPricingIntro = {
+  title: "Services & Pricing",
+  subtitle: "Custom-built websites for Seychelles businesses.",
+  summary:
+    "Clean, fast, professional websites with no templates, no hidden extras, and a limited number of projects each month for quality.",
+};
+
+export const starterPackage = {
+  title: "Starter",
+  price: "From SCR 15,000",
+  description: "For small businesses needing a professional online presence.",
+  includes: [
+    "Custom design (not a template)",
+    "Mobile-first layout",
+    "Contact form",
+    "WhatsApp integration (if required)",
+    "Google Maps integration",
+    "Social media integration",
+    "Basic search structure",
+    "Google Analytics setup",
+    "SSL certificate",
+    "2 revision rounds",
+    "30-day stabilisation",
+    "Full handover",
+  ],
+  paymentTerms: ["50% deposit", "50% on launch"],
+};
+
+export const growthPackage = {
+  title: "Growth",
+  price: "From SCR 30,000",
+  description: "For established businesses needing more structure and flexibility.",
+  includes: [
+    "Expanded service structure",
+    "Testimonials",
+    "Team section (if required)",
+    "Blog capability",
+    "Portfolio/gallery",
+    "Multi-step enquiry form",
+    "Google Business setup assistance",
+    "Newsletter integration",
+    "Full search structure",
+    "Sitemap submission",
+    "3 revision rounds",
+    "60-day support",
+  ],
+  paymentTerms: ["40% deposit", "40% at design approval", "20% on launch"],
+};
+
+export const customPackage = {
+  title: "Custom",
+  description:
+    "Scoped per project for advanced requirements and custom functionality.",
+};
+
+export const addOnItems = [
+  { title: "Additional page", price: "SCR 2,000 - 3,500" },
+  { title: "Content writing support", price: "SCR 1,200 - 2,500 per page" },
+  { title: "Structured booking / enquiry form", price: "SCR 3,000 - 6,000" },
+  { title: "Google Business Profile setup", price: "SCR 2,500 - 4,000" },
+  { title: "Website speed & performance audit", price: "SCR 3,000 - 5,000" },
+  { title: "Rush delivery", price: "+40%, subject to availability" },
+];
+
+export const hostingPlan = {
+  title: "Managed hosting",
+  price: "SCR 450 per month / SCR 4,800 per year",
+  features: [
+    "Secure hosting",
+    "SSL certificate",
+    "Daily backups",
+    "Monitoring",
+    "Technical maintenance",
+  ],
+  note: "You are free to host elsewhere if preferred.",
+};
+
+export const stabilisationPlan = {
+  title: "30-day stabilisation",
+  covers: ["Bug fixes", "Minor corrections", "Small adjustments"],
+  excludes: ["New features", "Redesigns"],
+};
+
+export const carePlans = [
   {
-    title: "Website build",
-    description: "A one-off project with clear planning, design, and launch.",
+    title: "Basic Care",
+    price: "SCR 1,200 - 2,000 per month",
+    features: ["Security check", "Backup monitoring", "Minor updates", "Email support"],
+    note: "Does not include structural changes or search optimisation.",
   },
   {
-    title: "Managed hosting",
-    description: "Required if we host the site. Covers security, backups, and monitoring.",
+    title: "Growth Care",
+    price: "SCR 3,000 - 4,500 per month",
+    features: [
+      "Up to 2 hours of structured updates",
+      "Search visibility improvements",
+      "Google presence review",
+      "Performance optimisation",
+      "Simple monthly summary",
+    ],
   },
   {
-    title: "Ongoing support",
-    description: "Optional monthly support for updates and improvements.",
+    title: "Full Care",
+    price: "SCR 6,000 - 10,000 per month",
+    features: [
+      "Up to 4 hours of improvements",
+      "Ongoing search optimisation",
+      "Content expansion support",
+      "Monthly reporting",
+      "Conversion improvement suggestions",
+      "Priority scheduling",
+    ],
   },
 ];
 
-export const buildIncludes = [
-  "Discovery and planning session",
-  "Structured site planning",
-  "Custom design tailored to the business",
-  "Mobile-friendly layout",
-  "Fast, secure build",
-  "Basic on-page SEO setup",
-  "Contact forms and essential integrations",
-  "30-day post-launch stabilisation",
-];
+export const carePlanNotes = ["3-month minimum commitment", "Unused time does not roll over"];
 
-export const buildNotes = [
-  "Hosting is not included in build packages.",
-  "After 30 days, updates move to support or ad-hoc work.",
+export const trustStatement = [
+  "Clear scope",
+  "Transparent pricing",
+  "Defined revisions",
+  "Direct communication",
+  "No hidden extras",
 ];
 
 export const workItems = [
@@ -114,31 +221,25 @@ export const workItems = [
     label: "Guesthouse",
     title: "Concept Demo",
     outcome: "Simple booking-friendly layout",
+    image: guesthousePreview,
   },
   {
     label: "Restaurant",
     title: "Concept Demo",
     outcome: "Menu-first layout with clear contact buttons",
-  },
-  {
-    label: "Wellness Studio",
-    title: "Concept Demo",
-    outcome: "Clear services and easy inquiry path",
-  },
-  {
-    label: "Local Services",
-    title: "Concept Demo",
-    outcome: "Trust-building homepage with clear next steps",
+    image: restaurantPreview,
   },
   {
     label: "Cafe",
     title: "Concept Demo",
     outcome: "Mobile-first story with location details",
+    image: cafePreview,
   },
   {
     label: "Consulting",
     title: "Concept Demo",
     outcome: "Clear contact flow for new enquiries",
+    image: consultingPreview,
   },
 ];
 
@@ -165,32 +266,41 @@ export const pricingTiers = [
   {
     title: "Starter",
     price: "From SCR 15,000",
-    description: "Best for businesses starting out.",
+    description: "For small businesses needing a professional online presence.",
     features: [
-      "Up to 5 pages",
-      "Custom homepage design",
-      "Internal page layout structure",
-      "Contact form setup",
-      "Basic SEO structure",
-      "2 structured revision rounds",
+      "Custom design (not a template)",
+      "Mobile-first layout",
+      "Contact form",
+      "WhatsApp integration (if required)",
+      "Google Maps integration",
+      "Social media integration",
+      "Basic search structure",
+      "Google Analytics setup",
+      "SSL certificate",
+      "2 revision rounds",
       "30-day stabilisation",
+      "Full handover",
     ],
     exclusions: ["Hosting", "Ongoing updates beyond stabilisation", "Advanced integrations"],
   },
   {
     title: "Growth",
-    price: "From SCR 25,000",
-    description: "For growing businesses needing more content and structure.",
+    price: "From SCR 30,000",
+    description: "For established businesses needing more structure and flexibility.",
     badge: "Most popular",
     features: [
-      "Up to 10 pages",
-      "Custom homepage and internal layouts",
-      "Clear service page structure",
-      "Blog/news capability (if required)",
-      "Basic analytics setup",
-      "Enhanced SEO structure",
-      "2-3 revision rounds",
-      "30-day stabilisation",
+      "Expanded service structure",
+      "Testimonials",
+      "Team section (if required)",
+      "Blog capability",
+      "Portfolio/gallery",
+      "Multi-step enquiry form",
+      "Google Business setup assistance",
+      "Newsletter integration",
+      "Full search structure",
+      "Sitemap submission",
+      "3 revision rounds",
+      "60-day support",
     ],
     exclusions: ["Hosting", "Ongoing feature development", "Complex integrations"],
   },
@@ -198,77 +308,18 @@ export const pricingTiers = [
     title: "Custom",
     price: "Let's chat",
     priceNote: "Final pricing depends on agreed scope and project requirements.",
-    description: "For businesses requiring advanced functionality.",
+    description: "Scoped per project for advanced requirements.",
     features: [
-      "Custom page count (scoped per project)",
+      "Custom page count",
       "Advanced layouts",
-      "Custom functionality (scoped clearly)",
-      "Booking systems or integrations (where agreed)",
+      "Custom functionality",
+      "Booking systems or integrations",
       "Structured content planning",
-      "Expanded SEO configuration",
-      "30-day stabilisation",
+      "Expanded search configuration",
     ],
     exclusions: ["Hosting", "Ongoing feature development", "Large system integrations"],
   },
 ];
-
-export const hostingPlan = {
-  title: "Managed hosting",
-  price: "SCR 450 per month / SCR 4,800 per year",
-  description: "Required if we host your website.",
-  features: [
-    "Secure hosting environment",
-    "SSL configuration",
-    "Daily backups",
-    "Security updates",
-    "Core system updates",
-    "Uptime monitoring",
-    "Basic technical maintenance",
-  ],
-  exclusions: ["Content updates", "New feature development", "Redesign work"],
-};
-
-export const supportPlans = [
-  {
-    title: "Starter Care Plan",
-    price: "SCR 1,200 per month",
-    description: "For businesses that want steady care and support.",
-    features: [
-      "Minor content updates (up to 1 hour per week)",
-      "Ongoing system updates",
-      "Monthly website health check",
-      "Priority email support",
-    ],
-    note: "Unused time does not roll over.",
-  },
-  {
-    title: "Growth Support Plan",
-    price: "SCR 1,800 per month",
-    description: "For businesses actively improving and expanding.",
-    features: [
-      "Up to 3 hours of updates or improvements per week",
-      "Design refinements",
-      "New page additions (within allocated time)",
-      "Advice and guidance",
-      "Quarterly performance review",
-    ],
-    note: "Unused time does not roll over.",
-  },
-];
-
-export const adHocRate = {
-  title: "Ad-hoc work",
-  price: "SCR 1,200 per hour",
-  description: "For clients not on a support plan. Scoped per task where needed.",
-  note: "Support plan clients receive priority scheduling.",
-};
-
-export const stabilisationPeriod = {
-  title: "30-day stabilisation",
-  description: "Included with every build after launch.",
-  covers: ["Bug fixes", "Minor content corrections", "Small adjustments"],
-  exclusions: ["New features", "New pages", "Design changes", "Structural rebuilds"],
-};
 
 export const faqs = [
   {

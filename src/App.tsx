@@ -3,9 +3,6 @@ import { Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
 
 const Home = lazy(() => import("./pages/Home"));
-const Services = lazy(() => import("./pages/Services"));
-const Work = lazy(() => import("./pages/Work"));
-const Process = lazy(() => import("./pages/Process"));
 const Pricing = lazy(() => import("./pages/Pricing"));
 const About = lazy(() => import("./pages/About"));
 const Contact = lazy(() => import("./pages/Contact"));
@@ -16,10 +13,7 @@ export default function App() {
       <Suspense fallback={<div className="mx-auto w-full max-w-7xl px-8 py-24 text-sm text-text-muted">Loading...</div>}>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/work" element={<Work />} />
-          <Route path="/process" element={<Process />} />
-          <Route path="/pricing" element={<Pricing />} />
+          <Route path="/services-pricing" element={<Pricing />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>

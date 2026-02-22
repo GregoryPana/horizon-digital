@@ -3,6 +3,7 @@ import Button from "../components/Button";
 import Card from "../components/Card";
 import Modal from "../components/Modal";
 import Section from "../components/Section";
+import Seo from "../components/Seo";
 import InfiniteHero from "../components/ui/infinite-hero";
 import { ShimmerButton } from "../components/ui/shimmer-button";
 import { Link } from "react-router-dom";
@@ -10,8 +11,7 @@ import {
   addOns,
   faqs,
   pricingTiers,
-  processSteps,
-  services,
+  projectSteps,
   trustItems,
   workItems,
 } from "../data/site";
@@ -21,6 +21,12 @@ export default function Home() {
 
   return (
     <div>
+      <Seo
+        title="Horizon Digital"
+        description="Custom-built websites for Seychelles businesses. Clean, fast, and structured for clarity and results."
+        path="/"
+        keywords="Seychelles web design"
+      />
       <InfiniteHero />
 
       <section className="border-y border-border bg-bg-elev">
@@ -40,24 +46,25 @@ export default function Home() {
         description="Modern websites that help customers understand you and get in touch."
         className="!pt-16 !pb-24 md:!pt-24 md:!pb-32"
       >
-        <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
-          {services.map((service, index) => (
-            <div key={service.title} className="contents">
-              <Card>
-                <h3 className="text-lg font-semibold text-text">{service.title}</h3>
-                <p className="mt-3 text-sm leading-snug text-text-muted">
-                  {service.description}
-                </p>
-              </Card>
-              {(index + 1) % 2 === 0 && (
-                <div className="col-span-full md:hidden">
-                  <div className="mx-auto w-1/2 horizon-line" />
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-        <div className="mt-16 flex flex-col items-start gap-3 text-sm text-text-muted sm:flex-row sm:flex-wrap sm:items-center sm:gap-5">
+        <Card>
+          <p className="text-sm text-text-muted">
+            We build clean, fast websites with clear structure, thoughtful design, and practical
+            support options. Everything is scoped up front so you know exactly what to expect.
+          </p>
+          <div className="mt-6">
+            <Link to="/services-pricing">
+              <ShimmerButton
+                shimmerColor="#0b1212"
+                shimmerDuration="4.2s"
+                background="linear-gradient(135deg, rgba(34,241,214,0.95), rgba(34,241,214,0.7))"
+                className="px-5 py-2 text-xs font-semibold tracking-[0.12em] text-black"
+              >
+                View services & pricing
+              </ShimmerButton>
+            </Link>
+          </div>
+        </Card>
+        <div className="mt-16 flex flex-col items-start gap-3 text-sm text-text-muted">
           <span className="text-xs uppercase tracking-[0.4em] text-accent">Add-ons</span>
           {addOns.map((addon) => (
             <span
@@ -82,11 +89,16 @@ export default function Home() {
             <Card key={item.label} className="relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-accent/10 via-transparent to-transparent" />
               <div className="relative">
-                <div className="preview-frame mb-6 h-32 w-full rounded-2xl border border-border bg-gradient-to-br from-accent/20 via-transparent to-accent-2/20">
-                  <div className="absolute inset-0 preview-shimmer" />
-                  <div className="absolute left-4 top-4 h-12 w-20 rounded-lg bg-bg-elev/70 blur-[1px]" />
-                  <div className="absolute right-5 top-6 h-6 w-16 rounded-md bg-bg-elev/60 blur-[1px]" />
-                  <div className="absolute left-6 bottom-4 h-5 w-24 rounded-md bg-bg-elev/60 blur-[1px]" />
+                <div className="preview-frame mb-6 h-32 w-full overflow-hidden rounded-2xl border border-border">
+                  {item.image ? (
+                    <img
+                      src={item.image}
+                      alt={`${item.label} concept preview`}
+                      className="h-full w-full object-cover"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 preview-shimmer" />
+                  )}
                 </div>
                 <p className="text-xs uppercase tracking-[0.3em] text-accent">{item.label}</p>
                 <h3 className="mt-2 text-lg font-semibold text-text">{item.title}</h3>
@@ -107,11 +119,11 @@ export default function Home() {
 
       <Section
         eyebrow="Process"
-        title="A clear four-step workflow"
+        title="A clear five-step workflow"
         description="Simple milestones, direct communication, and reliable delivery."
       >
-        <div className="mt-12 grid gap-10 md:grid-cols-2 lg:grid-cols-4">
-          {processSteps.map((step, index) => (
+        <div className="mt-12 grid gap-10 md:grid-cols-2 lg:grid-cols-5">
+          {projectSteps.map((step, index) => (
             <Card key={step.title}>
               <p className="text-xs uppercase tracking-[0.4em] text-accent">Step {index + 1}</p>
               <h3 className="mt-3 text-lg font-semibold text-text">{step.title}</h3>
@@ -122,9 +134,9 @@ export default function Home() {
       </Section>
 
       <Section
-        eyebrow="Pricing"
+        eyebrow="Services & Pricing"
         title="Website build packages"
-        description="Clear starting points for the build. Hosting and ongoing support are separate."
+        description="Clear starting points for the build. Hosting and care plans are separate."
       >
         <div className="grid items-stretch gap-10 lg:grid-cols-3">
           {pricingTiers.map((tier) => (
@@ -154,7 +166,14 @@ export default function Home() {
                 ))}
               </ul>
               <div className="mt-auto pt-8">
-                <Button label="View details" to="/pricing" variant="outline" size="sm" />
+                <ShimmerButton
+                  shimmerColor="#0b1212"
+                  shimmerDuration="4.2s"
+                  background="linear-gradient(135deg, rgba(34,241,214,0.95), rgba(34,241,214,0.7))"
+                  className="px-5 py-2 text-xs font-semibold tracking-[0.12em] text-black"
+                >
+                  <Link to="/services-pricing">Discuss your project</Link>
+                </ShimmerButton>
               </div>
             </Card>
           ))}

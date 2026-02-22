@@ -20,11 +20,16 @@ export default function Work() {
             <Card key={item.label} className="relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-accent/10 via-transparent to-transparent" />
               <div className="relative">
-                <div className="preview-frame mb-6 h-32 w-full rounded-2xl border border-border bg-gradient-to-br from-accent/20 via-transparent to-accent-2/20">
-                  <div className="absolute inset-0 preview-shimmer" />
-                  <div className="absolute left-4 top-4 h-12 w-20 rounded-lg bg-bg-elev/70 blur-[1px]" />
-                  <div className="absolute right-5 top-6 h-6 w-16 rounded-md bg-bg-elev/60 blur-[1px]" />
-                  <div className="absolute left-6 bottom-4 h-5 w-24 rounded-md bg-bg-elev/60 blur-[1px]" />
+                <div className="preview-frame mb-6 h-32 w-full overflow-hidden rounded-2xl border border-border">
+                  {item.image ? (
+                    <img
+                      src={item.image}
+                      alt={`${item.label} concept preview`}
+                      className="h-full w-full object-cover"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 preview-shimmer" />
+                  )}
                 </div>
                 <p className="text-xs uppercase tracking-[0.3em] text-accent">{item.label}</p>
                 <h3 className="mt-2 text-lg font-semibold text-text">{item.title}</h3>
