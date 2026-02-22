@@ -142,7 +142,7 @@ export default function Home() {
           {pricingTiers.map((tier) => (
             <Card
               key={tier.title}
-              className={`relative flex h-full flex-col pricing-pop ${
+              className={`relative flex h-full flex-col pricing-pop no-blur-glow ${
                 tier.badge ? "pricing-pop-strong" : "pricing-pop-soft"
               }`.trim()}
             >
@@ -166,14 +166,16 @@ export default function Home() {
                 ))}
               </ul>
               <div className="mt-auto pt-8">
-                <ShimmerButton
-                  shimmerColor="#0b1212"
-                  shimmerDuration="4.2s"
-                  background="linear-gradient(135deg, rgba(34,241,214,0.95), rgba(34,241,214,0.7))"
-                  className="px-5 py-2 text-xs font-semibold tracking-[0.12em] text-black"
-                >
-                  <Link to="/services-pricing">Discuss your project</Link>
-                </ShimmerButton>
+                <Link to="/services-pricing">
+                  <ShimmerButton
+                    shimmerColor="#0b1212"
+                    shimmerDuration="4.2s"
+                    background="linear-gradient(135deg, rgba(34,241,214,0.95), rgba(34,241,214,0.7))"
+                    className="px-5 py-2 text-xs font-semibold tracking-[0.12em] text-black"
+                  >
+                    Discuss your project
+                  </ShimmerButton>
+                </Link>
               </div>
             </Card>
           ))}

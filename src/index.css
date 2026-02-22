@@ -249,6 +249,10 @@ option {
     filter: brightness(calc(0.9 + 0.1 * var(--glow-strength)))
       blur(calc(0.6px - 0.6px * var(--glow-strength)));
   }
+
+  .scroll-glow.no-blur-glow.is-inview {
+    filter: brightness(calc(0.95 + 0.05 * var(--glow-strength)));
+  }
 }
 
 @media (min-width: 768px) {
