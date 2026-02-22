@@ -81,8 +81,8 @@ export default function Home() {
 
       <Section
         eyebrow="Featured work"
-        title="Concept demos to show layout direction"
-        description="Examples that show structure and flow before real content is added."
+        title="Selected work and layout previews"
+        description="A mix of real projects and concept demos to show the direction."
       >
         <div className="grid gap-10 md:grid-cols-2 xl:grid-cols-3">
           {workItems.map((item) => (
@@ -94,7 +94,7 @@ export default function Home() {
                     <img
                       src={item.image}
                       alt={`${item.label} concept preview`}
-                      className="h-full w-full object-cover"
+                      className="h-full w-full bg-bg object-contain scale-[1.08] md:scale-[1.12]"
                     />
                   ) : (
                     <div className="absolute inset-0 preview-shimmer" />
@@ -104,12 +104,23 @@ export default function Home() {
                 <h3 className="mt-2 text-lg font-semibold text-text">{item.title}</h3>
                 <p className="mt-4 text-sm text-text-muted">{item.outcome}</p>
                 <div className="mt-10 flex flex-wrap gap-5">
-                  <Button
-                    label="View preview"
-                    variant="outline"
-                    size="sm"
-                    onClick={() => setActiveWork(item)}
-                  />
+                  {item.url ? (
+                    <Button
+                      label="View live site"
+                      href={item.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      variant="outline"
+                      size="sm"
+                    />
+                  ) : (
+                    <Button
+                      label="View preview"
+                      variant="outline"
+                      size="sm"
+                      onClick={() => setActiveWork(item)}
+                    />
+                  )}
                 </div>
               </div>
             </Card>
@@ -144,7 +155,7 @@ export default function Home() {
               key={tier.title}
               className={`relative flex h-full flex-col pricing-pop no-blur-glow ${
                 tier.badge ? "pricing-pop-strong" : "pricing-pop-soft"
-              }`.trim()}
+              } ${tier.title === "Custom" ? "lg:col-start-2" : ""}`.trim()}
             >
               {tier.badge && (
                 <span className="absolute -top-3 left-6 rounded-full border border-accent/40 bg-bg px-3 py-1 text-[0.65rem] uppercase tracking-[0.28em] text-accent">
@@ -166,21 +177,21 @@ export default function Home() {
                 ))}
               </ul>
               <div className="mt-auto pt-8">
-                <Link to="/services-pricing">
+                <Link to={tier.title === "Custom" ? "/contact" : "/services-pricing"}>
                   <ShimmerButton
                     shimmerColor="#0b1212"
                     shimmerDuration="4.2s"
                     background="linear-gradient(135deg, rgba(34,241,214,0.95), rgba(34,241,214,0.7))"
                     className="px-5 py-2 text-xs font-semibold tracking-[0.12em] text-black"
                   >
-                    Discuss your project
+                    {tier.title === "Custom" ? "Request a custom scope" : "Discuss your project"}
                   </ShimmerButton>
                 </Link>
               </div>
             </Card>
           ))}
         </div>
-        <p className="mt-6 text-sm text-text-muted">Final pricing depends on scope.</p>
+        <p className="mt-6 text-center text-sm text-text-muted">Final pricing depends on scope.</p>
       </Section>
 
       <Section

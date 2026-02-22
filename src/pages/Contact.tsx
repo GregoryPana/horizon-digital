@@ -18,17 +18,19 @@ export default function Contact() {
     const form = event.currentTarget;
     const data = new FormData(form);
 
+    const businessName = String(data.get("businessName") ?? "").trim();
     const name = String(data.get("name") ?? "").trim();
     const email = String(data.get("email") ?? "").trim();
+    const industry = String(data.get("industry") ?? "").trim();
+    const website = String(data.get("website") ?? "").trim();
     const budget = String(data.get("budget") ?? "").trim();
     const timeline = String(data.get("timeline") ?? "").trim();
     const message = String(data.get("message") ?? "").trim();
 
     const budgetLabelMap: Record<string, string> = {
-      "under-15000": "Under SCR 15,000",
-      "15000-25000": "SCR 15,000-25,000",
-      "25000-40000": "SCR 25,000-40,000",
-      "40000+": "SCR 40,000+",
+      "8000-15000": "SCR 8,000-15,000",
+      "15000-30000": "SCR 15,000-30,000",
+      "30000+": "SCR 30,000+",
       "not-sure": "Not sure yet - I'd like guidance",
     };
 
@@ -45,25 +47,23 @@ export default function Contact() {
 
     const subject = emailTemplate.subject.replace(
       "[Business Name]",
-      name || "Business"
+      businessName || "Business"
     );
 
     const body = `Hi Horizon Digital,
 
-I'd like to discuss a new website project.
+ I'd like to discuss a new website project.
 
-Business name: ${name}
-Industry:
-Current website (if any):
-
-Main goal for the website:
-(e.g. more bookings, more inquiries, clearer brand presence)
+Business name: ${businessName}
+Your name: ${name}
+Industry: ${industry}
+Current website (if any): ${website}
 
 Estimated timeline: ${timelineLabel}
 Project budget range: ${budgetLabel}
 Contact email: ${email}
 
-Anything else you'd like us to know:
+Main goal details:
 ${message}
 
 Looking forward to your reply.`;
@@ -93,7 +93,16 @@ Looking forward to your reply.`;
           <Card className="min-w-0">
             <form className="grid gap-7" onSubmit={handleSubmit}>
               <label className="text-sm text-text">
-                Name
+                Business name
+                <input
+                  type="text"
+                  name="businessName"
+                  className="mt-3 w-full rounded-xl border border-border bg-transparent px-4 py-3 text-sm text-text focus-ring"
+                  placeholder="Your business"
+                />
+              </label>
+              <label className="text-sm text-text">
+                Your name (optional)
                 <input
                   type="text"
                   name="name"
@@ -111,6 +120,24 @@ Looking forward to your reply.`;
                 />
               </label>
               <label className="text-sm text-text">
+                Industry (optional)
+                <input
+                  type="text"
+                  name="industry"
+                  className="mt-3 w-full rounded-xl border border-border bg-transparent px-4 py-3 text-sm text-text focus-ring"
+                  placeholder="e.g. Hospitality, Services, Retail"
+                />
+              </label>
+              <label className="text-sm text-text">
+                Current website (if any)
+                <input
+                  type="url"
+                  name="website"
+                  className="mt-3 w-full rounded-xl border border-border bg-transparent px-4 py-3 text-sm text-text focus-ring"
+                  placeholder="https://"
+                />
+              </label>
+              <label className="text-sm text-text">
                 Project budget range (optional)
                 <select
                   name="budget"
@@ -120,10 +147,9 @@ Looking forward to your reply.`;
                   <option value="" disabled>
                     Select a range
                   </option>
-                  <option value="under-15000">Under SCR 15,000</option>
-                  <option value="15000-25000">SCR 15,000-25,000</option>
-                  <option value="25000-40000">SCR 25,000-40,000</option>
-                  <option value="40000+">SCR 40,000+</option>
+                  <option value="8000-15000">SCR 8,000-15,000</option>
+                  <option value="15000-30000">SCR 15,000-30,000</option>
+                  <option value="30000+">SCR 30,000+</option>
                   <option value="not-sure">Not sure yet - I'd like guidance</option>
                 </select>
               </label>

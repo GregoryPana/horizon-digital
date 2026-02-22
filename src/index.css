@@ -244,6 +244,20 @@ option {
 }
 
 @media (max-width: 767px) {
+  .pricing-pop,
+  .pricing-pop::after {
+    animation: none !important;
+  }
+
+  .shimmer-button .animate-shimmer-slide,
+  .shimmer-button .animate-spin-around {
+    animation-duration: 10s !important;
+  }
+
+  .shimmer-button .animate-spin-around {
+    opacity: 0.6;
+  }
+
   .scroll-glow.is-inview {
     transform: scale(calc(0.94 + 0.06 * var(--glow-strength)));
     filter: brightness(calc(0.9 + 0.1 * var(--glow-strength)))
@@ -281,6 +295,22 @@ option {
   opacity: 0;
   pointer-events: none;
   animation: pricing-glow 6s ease-in-out infinite;
+}
+
+.pricing-pop,
+.pricing-pop-soft,
+.pricing-pop-strong {
+  animation-duration: 6s;
+  animation-delay: 0s;
+  animation-iteration-count: infinite;
+}
+
+.pricing-pop::after,
+.pricing-pop-soft::after,
+.pricing-pop-strong::after {
+  animation-duration: 6s;
+  animation-delay: 0s;
+  animation-iteration-count: infinite;
 }
 
 .pricing-pop-soft {
@@ -369,7 +399,11 @@ option {
   }
   86% {
     opacity: 1;
-    box-shadow: 0 0 36px rgba(34, 241, 214, 0.4);
+    box-shadow: 0 0 40px rgba(237, 198, 100, 0.55);
+  }
+  97% {
+    opacity: 0.9;
+    box-shadow: 0 0 34px rgba(34, 241, 214, 0.35);
   }
 }
 

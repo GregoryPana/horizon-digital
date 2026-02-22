@@ -6,6 +6,7 @@ import {
   carePlanNotes,
   carePlans,
   customPackage,
+  foundationPackage,
   growthPackage,
   hostingPlan,
   projectSteps,
@@ -54,14 +55,62 @@ export default function Pricing() {
       <Section
         eyebrow="Packages"
         title="Choose the right package"
-        description="Starter, Growth, and Custom side by side for a clear comparison."
+        description="Foundation, Starter, and Growth side by side for a clear comparison."
       >
-        <div className="grid items-stretch gap-8 lg:grid-cols-3">
+        <div className="grid items-stretch gap-8 md:grid-cols-2 lg:grid-cols-3">
           <Card className="flex h-full flex-col pricing-pop pricing-pop-soft">
+            <h3 className="text-lg font-semibold text-accent-2">{foundationPackage.title}</h3>
+            <p className="mt-4 text-2xl font-semibold text-accent">{foundationPackage.price}</p>
+            <p className="mt-3 text-sm text-text-muted">{foundationPackage.description}</p>
+            <div className="mt-6 space-y-3 text-sm text-text-muted">
+              <ul className="space-y-3 mb-8">
+                {foundationPackage.includes.map((item) => (
+                  <li key={item} className="flex items-center gap-2">
+                    <span className="h-2 w-2 rounded-full bg-accent" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <p className="text-xs uppercase tracking-[0.3em] text-text-muted">Not included</p>
+              <ul className="mt-4 space-y-2 text-sm text-text-muted">
+                {foundationPackage.exclusions.map((item) => (
+                  <li key={item} className="flex items-start gap-2">
+                    <span className="mt-1.5 h-2 w-2 rounded-full bg-accent" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="mt-auto pt-10">
+              <p className="text-xs uppercase tracking-[0.3em] text-text-muted">Payment terms</p>
+              <ul className="mt-4 space-y-2 text-sm text-text-muted">
+                {foundationPackage.paymentTerms.map((term) => (
+                  <li key={term}>{term}</li>
+                ))}
+              </ul>
+              <div className="mt-8">
+                <Link to="/contact">
+                  <ShimmerButton
+                    shimmerColor="#0b1212"
+                    shimmerDuration="4.2s"
+                    background="linear-gradient(135deg, rgba(34,241,214,0.95), rgba(34,241,214,0.7))"
+                    className="px-5 py-2 text-xs font-semibold tracking-[0.12em] text-black"
+                  >
+                    Discuss your project
+                  </ShimmerButton>
+                </Link>
+              </div>
+            </div>
+          </Card>
+
+          <Card className="relative flex h-full flex-col pricing-pop pricing-pop-strong">
+            <span className="absolute -top-3 left-6 rounded-full border border-accent/40 bg-bg px-3 py-1 text-[0.65rem] uppercase tracking-[0.28em] text-accent">
+              Most popular
+            </span>
             <h3 className="text-lg font-semibold text-accent-2">{starterPackage.title}</h3>
             <p className="mt-4 text-2xl font-semibold text-accent">{starterPackage.price}</p>
             <p className="mt-3 text-sm text-text-muted">{starterPackage.description}</p>
-            <div className="mt-6 space-y-3 text-sm text-text-muted md:min-h-[420px] lg:min-h-[440px]">
+            <div className="mt-6 space-y-3 text-sm text-text-muted">
               <ul className="space-y-3">
                 {starterPackage.includes.map((item) => (
                   <li key={item} className="flex items-center gap-2">
@@ -71,36 +120,33 @@ export default function Pricing() {
                 ))}
               </ul>
             </div>
-            <div className="mt-6">
+            <div className="mt-auto pt-10">
               <p className="text-xs uppercase tracking-[0.3em] text-text-muted">Payment terms</p>
               <ul className="mt-4 space-y-2 text-sm text-text-muted">
                 {starterPackage.paymentTerms.map((term) => (
                   <li key={term}>{term}</li>
                 ))}
               </ul>
-            </div>
-            <div className="mt-auto pt-8">
-              <Link to="/contact">
-                <ShimmerButton
-                  shimmerColor="#0b1212"
-                  shimmerDuration="4.2s"
-                  background="linear-gradient(135deg, rgba(34,241,214,0.95), rgba(34,241,214,0.7))"
-                  className="px-5 py-2 text-xs font-semibold tracking-[0.12em] text-black"
-                >
-                  Discuss your project
-                </ShimmerButton>
-              </Link>
+              <div className="mt-8">
+                <Link to="/contact">
+                  <ShimmerButton
+                    shimmerColor="#0b1212"
+                    shimmerDuration="4.2s"
+                    background="linear-gradient(135deg, rgba(34,241,214,0.95), rgba(34,241,214,0.7))"
+                    className="px-5 py-2 text-xs font-semibold tracking-[0.12em] text-black"
+                  >
+                    Discuss your project
+                  </ShimmerButton>
+                </Link>
+              </div>
             </div>
           </Card>
 
-          <Card className="relative flex h-full flex-col pricing-pop pricing-pop-strong">
-            <span className="absolute -top-3 left-6 rounded-full border border-accent/40 bg-bg px-3 py-1 text-[0.65rem] uppercase tracking-[0.28em] text-accent">
-              Most popular
-            </span>
+          <Card className="flex h-full flex-col pricing-pop pricing-pop-soft">
             <h3 className="text-lg font-semibold text-accent-2">{growthPackage.title}</h3>
             <p className="mt-4 text-2xl font-semibold text-accent">{growthPackage.price}</p>
             <p className="mt-3 text-sm text-text-muted">{growthPackage.description}</p>
-            <div className="mt-6 space-y-3 text-sm text-text-muted md:min-h-[420px] lg:min-h-[440px]">
+            <div className="mt-6 space-y-3 text-sm text-text-muted">
               <p>Includes everything in Starter, plus:</p>
               <ul className="space-y-3">
                 {growthPackage.includes.map((item) => (
@@ -111,50 +157,50 @@ export default function Pricing() {
                 ))}
               </ul>
             </div>
-            <div className="mt-6">
+            <div className="mt-auto pt-10">
               <p className="text-xs uppercase tracking-[0.3em] text-text-muted">Payment terms</p>
               <ul className="mt-4 space-y-2 text-sm text-text-muted">
                 {growthPackage.paymentTerms.map((term) => (
                   <li key={term}>{term}</li>
                 ))}
               </ul>
-            </div>
-            <div className="mt-auto pt-8">
-              <Link to="/contact">
-                <ShimmerButton
-                  shimmerColor="#0b1212"
-                  shimmerDuration="4.2s"
-                  background="linear-gradient(135deg, rgba(34,241,214,0.95), rgba(34,241,214,0.7))"
-                  className="px-5 py-2 text-xs font-semibold tracking-[0.12em] text-black"
-                >
-                  Discuss your project
-                </ShimmerButton>
-              </Link>
-            </div>
-          </Card>
-
-          <Card className="flex h-full flex-col pricing-pop pricing-pop-soft">
-            <h3 className="text-lg font-semibold text-accent-2">{customPackage.title}</h3>
-            <p className="mt-4 text-2xl font-semibold text-accent">Let's chat</p>
-            <p className="mt-3 text-sm text-text-muted">{customPackage.description}</p>
-            <p className="mt-4 text-sm text-text-muted">
-              Advanced builds are scoped per project. We will clarify your requirements, then
-              provide a clear proposal and timeline.
-            </p>
-            <div className="mt-auto pt-8">
-              <Link to="/contact">
-                <ShimmerButton
-                  shimmerColor="#0b1212"
-                  shimmerDuration="4.2s"
-                  background="linear-gradient(135deg, rgba(34,241,214,0.95), rgba(34,241,214,0.7))"
-                  className="px-5 py-2 text-xs font-semibold tracking-[0.12em] text-black"
-                >
-                  Request a custom scope
-                </ShimmerButton>
-              </Link>
+              <div className="mt-8">
+                <Link to="/contact">
+                  <ShimmerButton
+                    shimmerColor="#0b1212"
+                    shimmerDuration="4.2s"
+                    background="linear-gradient(135deg, rgba(34,241,214,0.95), rgba(34,241,214,0.7))"
+                    className="px-5 py-2 text-xs font-semibold tracking-[0.12em] text-black"
+                  >
+                    Discuss your project
+                  </ShimmerButton>
+                </Link>
+              </div>
             </div>
           </Card>
         </div>
+        <div className="mt-10 horizon-line" />
+        <Card className="mt-10 flex h-full flex-col pricing-pop pricing-pop-soft">
+          <h3 className="text-lg font-semibold text-accent-2">{customPackage.title}</h3>
+          <p className="mt-4 text-2xl font-semibold text-accent">Let's chat</p>
+          <p className="mt-4 text-sm text-text-muted">{customPackage.description}</p>
+          <p className="mt-4 text-sm text-text-muted">
+            Advanced builds are scoped per project. We will clarify your requirements, then
+            provide a clear proposal and timeline.
+          </p>
+          <div className="mt-8">
+            <Link to="/contact">
+              <ShimmerButton
+                shimmerColor="#0b1212"
+                shimmerDuration="4.2s"
+                background="linear-gradient(135deg, rgba(34,241,214,0.95), rgba(34,241,214,0.7))"
+                className="px-5 py-2 text-xs font-semibold tracking-[0.12em] text-black"
+              >
+                Request a custom scope
+              </ShimmerButton>
+            </Link>
+          </div>
+        </Card>
       </Section>
 
       <Section

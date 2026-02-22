@@ -1,4 +1,4 @@
-import guesthousePreview from "../assets/work/guesthouse.jpg";
+import guesthousePreview from "../assets/work/drake-seaside.png";
 import restaurantPreview from "../assets/work/restaurant.jpg";
 import cafePreview from "../assets/work/cafe.jpg";
 import consultingPreview from "../assets/work/consulting.jpg";
@@ -41,6 +41,7 @@ export const emailTemplate = {
 export const navLinks = [
   { label: "Home", path: "/" },
   { label: "Services & Pricing", path: "/services-pricing" },
+  { label: "Our Work", path: "/work" },
   { label: "About", path: "/about" },
   { label: "Contact", path: "/contact" },
 ];
@@ -96,6 +97,33 @@ export const servicesPricingIntro = {
   subtitle: "Custom-built websites for Seychelles businesses.",
   summary:
     "Clean, fast, professional websites with no templates, no hidden extras, and a limited number of projects each month for quality.",
+};
+
+export const foundationPackage = {
+  title: "Foundation",
+  price: "From SCR 8,000",
+  description:
+    "For businesses that need a simple, professional online presence using a structured Horizon Digital layout.",
+  includes: [
+    "Choice of predefined Horizon Digital layout",
+    "Up to 3 pages",
+    "Mobile-friendly design",
+    "Contact form",
+    "WhatsApp integration (if required)",
+    "Google Maps embed",
+    "Basic search structure",
+    "SSL certificate",
+    "1 structured revision round",
+    "14-day post-launch stabilisation",
+    "Full handover of credentials",
+  ],
+  paymentTerms: ["50% deposit", "50% before launch"],
+  exclusions: [
+    "Layout structure cannot be modified",
+    "Design customisation is limited to colours, logo, and content",
+    "Blog functionality not included",
+    "Advanced integrations not included",
+  ],
 };
 
 export const starterPackage = {
@@ -219,9 +247,10 @@ export const trustStatement = [
 export const workItems = [
   {
     label: "Guesthouse",
-    title: "Concept Demo",
-    outcome: "Simple booking-friendly layout",
+    title: "Drake Seaside Apartments",
+    outcome: "Redesign with new pages, updated content, faster load times, and higher click-through conversions.",
     image: guesthousePreview,
+    url: "https://thedrake-seaside.com/",
   },
   {
     label: "Restaurant",
@@ -264,9 +293,35 @@ export const processSteps = [
 
 export const pricingTiers = [
   {
+    title: "Foundation",
+    price: "From SCR 8,000",
+    description:
+      "For businesses that need a simple, professional online presence using a structured layout.",
+    features: [
+      "Choice of predefined Horizon Digital layout",
+      "Up to 3 pages",
+      "Mobile-friendly design",
+      "Contact form",
+      "WhatsApp integration (if required)",
+      "Google Maps embed",
+      "Basic search structure",
+      "SSL certificate",
+      "1 structured revision round",
+      "14-day post-launch stabilisation",
+      "Full handover of credentials",
+    ],
+    exclusions: [
+      "Layout structure cannot be modified",
+      "Design customisation is limited to colours, logo, and content",
+      "Blog functionality not included",
+      "Advanced integrations not included",
+    ],
+  },
+  {
     title: "Starter",
     price: "From SCR 15,000",
     description: "For small businesses needing a professional online presence.",
+    badge: "Most popular",
     features: [
       "Custom design (not a template)",
       "Mobile-first layout",
@@ -287,7 +342,6 @@ export const pricingTiers = [
     title: "Growth",
     price: "From SCR 30,000",
     description: "For established businesses needing more structure and flexibility.",
-    badge: "Most popular",
     features: [
       "Expanded service structure",
       "Testimonials",

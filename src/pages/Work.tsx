@@ -3,6 +3,7 @@ import Button from "../components/Button";
 import Card from "../components/Card";
 import Modal from "../components/Modal";
 import Section from "../components/Section";
+import Seo from "../components/Seo";
 import { workItems } from "../data/site";
 
 export default function Work() {
@@ -10,10 +11,16 @@ export default function Work() {
 
   return (
     <div>
+      <Seo
+        title="Our Work"
+        description="Selected work and concept demos for Seychelles businesses."
+        path="/work"
+        keywords="portfolio web design Seychelles"
+      />
       <Section
-        eyebrow="Work"
-        title="Concept demos to show structure"
-        description="Examples that show layout direction without claiming real clients."
+        eyebrow="Our Work"
+        title="Selected work and layout previews"
+        description="A mix of real projects and concept demos to show the direction."
       >
         <div className="grid gap-10 md:grid-cols-2 xl:grid-cols-3">
           {workItems.map((item) => (
@@ -25,7 +32,7 @@ export default function Work() {
                     <img
                       src={item.image}
                       alt={`${item.label} concept preview`}
-                      className="h-full w-full object-cover"
+                      className="h-full w-full bg-bg object-contain scale-[1.08] md:scale-[1.12]"
                     />
                   ) : (
                     <div className="absolute inset-0 preview-shimmer" />
@@ -35,12 +42,23 @@ export default function Work() {
                 <h3 className="mt-2 text-lg font-semibold text-text">{item.title}</h3>
                 <p className="mt-4 text-sm text-text-muted">{item.outcome}</p>
                 <div className="mt-10 flex flex-wrap gap-5">
-                  <Button
-                    label="View preview"
-                    variant="outline"
-                    size="sm"
-                    onClick={() => setActiveWork(item)}
-                  />
+                  {item.url ? (
+                    <Button
+                      label="View live site"
+                      href={item.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      variant="outline"
+                      size="sm"
+                    />
+                  ) : (
+                    <Button
+                      label="View preview"
+                      variant="outline"
+                      size="sm"
+                      onClick={() => setActiveWork(item)}
+                    />
+                  )}
                 </div>
               </div>
             </Card>
@@ -53,13 +71,31 @@ export default function Work() {
         title={activeWork ? `${activeWork.title} - ${activeWork.label}` : ""}
         onClose={() => setActiveWork(null)}
       >
-        <p>
-          This is a concept demo showing layout direction, button placement, and section order. We
-          build each site around your content and goals.
-        </p>
-        <div className="mt-6">
-          <Button label="Request similar site" to="/contact" size="sm" />
-        </div>
+        {activeWork?.url ? (
+          <>
+            <p>This is a live website built for a real client.</p>
+            <div className="mt-6 flex flex-wrap gap-4">
+              <Button
+                label="View live site"
+                href={activeWork.url}
+                target="_blank"
+                rel="noreferrer"
+                size="sm"
+              />
+              <Button label="Request similar site" to="/contact" size="sm" variant="outline" />
+            </div>
+          </>
+        ) : (
+          <>
+            <p>
+              This is a concept demo showing layout direction, button placement, and section
+              order. We build each site around your content and goals.
+            </p>
+            <div className="mt-6">
+              <Button label="Request similar site" to="/contact" size="sm" />
+            </div>
+          </>
+        )}
       </Modal>
     </div>
   );

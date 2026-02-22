@@ -8,7 +8,11 @@ export default function Navbar() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-bg-elev backdrop-blur-lg">
       <div className="mx-auto flex w-full max-w-[1400px] items-center gap-8 px-10 py-8 xl:px-14">
-        <NavLink to="/" className="focus-ring rounded-full">
+        <NavLink
+          to="/"
+          className="focus-ring rounded-full"
+          onClick={() => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })}
+        >
           <Logo imageSrc={logo} />
         </NavLink>
         <div className="ml-auto flex items-center gap-6">

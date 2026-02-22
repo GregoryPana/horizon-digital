@@ -1,13 +1,32 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { navLinks } from "../../data/site";
 
 export default function NavMenu() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement | null>(null);
 
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev);
   };
+
+  useEffect(() => {
+    if (!isMenuOpen) return;
+
+    const handlePointerDown = (event: MouseEvent | TouchEvent) => {
+      if (!menuRef.current) return;
+      if (menuRef.current.contains(event.target as Node)) return;
+      setIsMenuOpen(false);
+    };
+
+    document.addEventListener("mousedown", handlePointerDown);
+    document.addEventListener("touchstart", handlePointerDown, { passive: true });
+
+    return () => {
+      document.removeEventListener("mousedown", handlePointerDown);
+      document.removeEventListener("touchstart", handlePointerDown);
+    };
+  }, [isMenuOpen]);
 
   return (
     <nav className="relative w-full">
@@ -35,6 +54,7 @@ export default function NavMenu() {
           `lg:opacity-100 lg:translate-y-0 lg:pointer-events-auto ` +
           `${isMenuOpen ? "opacity-100 translate-y-0" : "pointer-events-none opacity-0 -translate-y-2"}`
         }
+        ref={menuRef}
       >
         <ul className="flex flex-col items-start gap-4 lg:flex-row lg:items-center lg:gap-6 xl:gap-10">
           {navLinks.map((item) => (
@@ -54,14 +74,16 @@ export default function NavMenu() {
                   <>
                     <span
                       className={`relative z-10 block whitespace-nowrap px-3 py-2 text-xs uppercase tracking-[0.18em] transition-colors duration-300 group-hover:text-accent ${
-                        isActive
-                          ? "rounded-full border border-accent/60 bg-accent/10 lg:rounded-none lg:border-transparent lg:bg-transparent"
-                          : ""
+                        isActive ? "" : ""
                       }`.trim()}
                     >
                       {item.label}
                     </span>
-                    <span className="pointer-events-none absolute inset-0 border-y border-accent/70 opacity-0 transition-all duration-300 group-hover:opacity-100" />
+                    <span
+                      className={`pointer-events-none absolute inset-0 border-y border-accent/70 opacity-0 transition-all duration-300 ${
+                        isActive ? "opacity-100" : "group-hover:opacity-100"
+                      }`}
+                    />
                     <span className="pointer-events-none absolute inset-0 z-0 bg-accent/10 opacity-0 transition-all duration-300 group-hover:opacity-100" />
                   </>
                 )}

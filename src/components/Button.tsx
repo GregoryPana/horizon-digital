@@ -4,6 +4,8 @@ type ButtonProps = {
   label: string;
   to?: string;
   href?: string;
+  target?: string;
+  rel?: string;
   onClick?: () => void;
   variant?: "primary" | "ghost" | "outline";
   size?: "sm" | "md" | "lg";
@@ -29,6 +31,8 @@ export default function Button({
   label,
   to,
   href,
+  target,
+  rel,
   onClick,
   variant = "primary",
   size = "md",
@@ -54,7 +58,7 @@ export default function Button({
 
   if (href) {
     return (
-      <a href={href} className={classes}>
+      <a href={href} className={classes} target={target} rel={rel}>
         {label}
       </a>
     );
