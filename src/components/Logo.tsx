@@ -15,6 +15,8 @@ export default function Logo({ imageSrc, className }: LogoProps) {
         <img
           src={imageSrc}
           alt={`${siteConfig.name} logo`}
+          width={40}
+          height={40}
           className="h-10 w-10 rounded-xl object-cover"
         />
       ) : (

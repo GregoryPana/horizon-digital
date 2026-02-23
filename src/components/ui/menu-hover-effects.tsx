@@ -29,10 +29,10 @@ export default function NavMenu() {
   }, [isMenuOpen]);
 
   return (
-    <nav className="relative w-full">
+    <nav className="nav-menu relative w-full">
       <button
         onClick={toggleMenu}
-        className="focus-ring rounded-full border border-accent/40 bg-bg-elev/80 px-5 py-2 text-xs uppercase tracking-[0.22em] text-text shadow-[0_0_12px_var(--glow)] lg:hidden"
+        className="nav-menu-button focus-ring rounded-full border border-accent/40 bg-bg-elev/80 px-5 py-2 text-xs uppercase tracking-[0.22em] text-text shadow-[0_0_12px_var(--glow)] lg:hidden"
         aria-label={isMenuOpen ? "Close menu" : "Open menu"}
       >
         {isMenuOpen ? "Close" : "Menu"}
@@ -73,7 +73,7 @@ export default function NavMenu() {
                 {({ isActive }) => (
                   <>
                     <span
-                      className={`relative z-10 block whitespace-nowrap px-3 py-2 text-xs uppercase tracking-[0.18em] transition-colors duration-300 group-hover:text-accent ${
+                      className={`nav-menu-item relative z-10 block whitespace-nowrap px-3 py-2 text-xs uppercase tracking-[0.18em] transition-colors duration-300 group-hover:text-accent ${
                         isActive ? "" : ""
                       }`.trim()}
                     >

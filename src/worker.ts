@@ -6,10 +6,10 @@ export default {
   async fetch(request: Request, env: WorkerEnv) {
     const url = new URL(request.url);
     const isAssetRequest = url.pathname.includes(".");
-    const origin = url.origin;
+    const canonicalOrigin = "https://horizondigitalsey.com";
 
     if (url.pathname === "/robots.txt") {
-      const body = `User-agent: *\nAllow: /\n\nSitemap: ${origin}/sitemap.xml`;
+      const body = `User-agent: *\nAllow: /\n\nSitemap: ${canonicalOrigin}/sitemap.xml`;
       return new Response(body, {
         headers: { "content-type": "text/plain; charset=utf-8" },
       });
@@ -28,7 +28,7 @@ export default {
       const urls = routes
         .map(
           (route) => `  <url>\n` +
-            `    <loc>${origin}${route.path}</loc>\n` +
+            `    <loc>${canonicalOrigin}${route.path}</loc>\n` +
             `    <lastmod>${lastmod}</lastmod>\n` +
             `    <changefreq>${route.changefreq}</changefreq>\n` +
             `    <priority>${route.priority}</priority>\n` +

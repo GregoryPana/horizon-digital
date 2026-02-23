@@ -1,8 +1,15 @@
-@import url("https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap");
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "Sora Fallback";
+  src: local("Arial");
+  ascent-override: 92%;
+  descent-override: 24%;
+  line-gap-override: 0%;
+  size-adjust: 105%;
+}
 
 :root {
   color-scheme: light;
@@ -64,7 +71,7 @@ body,
 
 body {
   margin: 0;
-  font-family: "Sora", "Space Grotesk", sans-serif;
+  font-family: "Sora", "Sora Fallback", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   background-color: var(--bg);
   background-image: radial-gradient(
       70% 50% at 10% 10%,
@@ -74,6 +81,12 @@ body {
     radial-gradient(55% 45% at 80% 0%, rgba(241, 199, 92, 0.16), transparent 60%),
     linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
   min-height: 100vh;
+}
+
+@supports (font-size-adjust: 1) {
+  body {
+    font-size-adjust: 0.52;
+  }
 }
 
 body::before,
@@ -231,6 +244,20 @@ option {
   transition: box-shadow 0.6s ease, border-color 0.6s ease, transform 0.6s ease;
 }
 
+.nav-menu-button {
+  min-height: 2.25rem;
+  min-width: 5.5rem;
+  line-height: 1;
+}
+
+.nav-menu-item {
+  line-height: 1.2;
+}
+
+.footer-content {
+  line-height: 1.5;
+}
+
 .scroll-glow.is-inview {
   border-color: rgba(34 241 214 / calc(0.08 + 0.52 * var(--glow-strength)));
   box-shadow: 0 0 calc(18px * var(--glow-strength))
@@ -244,6 +271,10 @@ option {
 }
 
 @media (max-width: 767px) {
+  .footer-content {
+    min-height: clamp(56rem, 120vh, 96rem);
+  }
+
   .pricing-pop,
   .pricing-pop::after {
     animation: none !important;

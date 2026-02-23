@@ -94,6 +94,8 @@ export default function Home() {
                     <img
                       src={item.image}
                       alt={`${item.label} concept preview`}
+                      width={640}
+                      height={360}
                       className="h-full w-full bg-bg object-contain scale-[1.08] md:scale-[1.12]"
                     />
                   ) : (

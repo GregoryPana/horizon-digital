@@ -8,7 +8,7 @@ export default function Footer() {
   return (
     <footer className="border-t border-border bg-bg-elev">
       <div className="mx-auto w-full max-w-7xl px-8 py-20">
-        <div className="flex flex-col gap-14 lg:flex-row lg:items-start lg:justify-between">
+        <div className="footer-content flex flex-col gap-14 lg:flex-row lg:items-start lg:justify-between">
           <Logo imageSrc={logo} />
           <div className="grid gap-12 sm:grid-cols-2">
             <div>
