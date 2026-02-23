@@ -13,7 +13,6 @@
 
 :root {
   color-scheme: light;
-  --app-height: 100vh;
   --bg: #f7faf9;
   --bg-elev: rgba(255, 255, 255, 0.85);
   --bg-panel: rgba(255, 255, 255, 0.7);
@@ -27,17 +26,6 @@
   --glow: rgba(5, 198, 177, 0.4);
 }
 
-@supports (height: 100svh) {
-  :root {
-    --app-height: 100svh;
-  }
-}
-
-@supports (height: 100dvh) {
-  :root {
-    --app-height: 100dvh;
-  }
-}
 
 html[data-theme="dark"] {
   color-scheme: dark;
@@ -66,7 +54,7 @@ body {
 
 body,
 #root {
-  min-height: var(--app-height);
+  min-height: 100vh;
 }
 
 body {
