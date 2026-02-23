@@ -6,11 +6,13 @@ import {
   carePlanNotes,
   carePlans,
   customPackage,
+  faqs,
   foundationPackage,
   growthPackage,
   hostingPlan,
   projectSteps,
   servicesPricingIntro,
+  siteConfig,
   starterPackage,
   stabilisationPlan,
   trustStatement,
@@ -19,14 +21,64 @@ import { ShimmerButton } from "../components/ui/shimmer-button";
 import { Link } from "react-router-dom";
 
 export default function Pricing() {
+  const packageOffers = [foundationPackage, starterPackage, growthPackage]
+    .map((pkg) => {
+      const priceValue = pkg.price.replace(/[^\d]/g, "");
+      if (!priceValue) return null;
+      return {
+        "@type": "Offer",
+        name: pkg.title,
+        priceCurrency: "SCR",
+        price: priceValue,
+        url: new URL("/services-pricing", siteConfig.url).toString(),
+      };
+    })
+    .filter(Boolean) as Array<{
+    "@type": "Offer";
+    name: string;
+    priceCurrency: string;
+    price: string;
+    url: string;
+  }>;
+
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "Website design and development",
+    description: servicesPricingIntro.summary,
+    provider: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      url: siteConfig.url,
+      email: siteConfig.email,
+      telephone: siteConfig.phone,
+    },
+    areaServed: siteConfig.location,
+    offers: packageOffers,
+  };
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  };
+
   return (
     <div>
       <h1 className="sr-only">Services & Pricing</h1>
       <Seo
-        title="Services & Pricing"
+        title="Website Design Pricing"
         description="Clear packages, add-ons, hosting, and care plans for Seychelles businesses."
         path="/services-pricing"
         keywords="website pricing Seychelles"
+        structuredData={[serviceSchema, faqSchema]}
       />
       <Section
         eyebrow="Services & Pricing"

@@ -11,8 +11,9 @@ export default function Work() {
 
   return (
     <div>
+      <h1 className="sr-only">Our Work</h1>
       <Seo
-        title="Our Work"
+        title="Web Design Portfolio"
         description="Selected work and concept demos for Seychelles businesses."
         path="/work"
         keywords="portfolio web design Seychelles"

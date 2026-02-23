@@ -9,7 +9,7 @@ export default function About() {
     <div>
       <h1 className="sr-only">About Horizon Digital</h1>
       <Seo
-        title="About"
+        title="Web Design Company"
         description="A studio built on clarity, direct communication, and reliable delivery."
         path="/about"
         keywords="web design studio Seychelles"

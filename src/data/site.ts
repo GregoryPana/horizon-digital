@@ -1,4 +1,5 @@
 import guesthousePreview from "../assets/work/drake-seaside.png";
+import ogImage from "../assets/logo/Horizon Digital crop.jpg";
 import restaurantPreview from "../assets/work/restaurant.jpg";
 import cafePreview from "../assets/work/cafe.jpg";
 import consultingPreview from "../assets/work/consulting.jpg";
@@ -9,7 +10,9 @@ export const siteConfig = {
   taglineLong: "Empowering Your Digital Horizon - one website at a time",
   email: "horizondigital.sey@gmail.com",
   phone: "+248 2524490",
-  url: "https://horizon-digital.gregorypanagary.workers.dev",
+  url: "https://horizondigitalsey.com",
+  location: "Seychelles",
+  ogImage,
 };
 
 export const emailTemplate = {
