@@ -9,7 +9,13 @@ export default function Footer() {
     <footer className="border-t border-border bg-bg-elev">
       <div className="mx-auto w-full max-w-7xl px-8 py-20">
         <div className="footer-content flex flex-col gap-14 lg:flex-row lg:items-start lg:justify-between">
-          <Logo imageSrc={logo} />
+          <div className="max-w-sm">
+            <Logo imageSrc={logo} />
+            <p className="mt-6 text-sm text-text-muted">
+              Horizon Digital builds custom, clear, fast websites for Seychelles businesses. We focus on calm
+              design, structured content, and performance that helps visitors take action.
+            </p>
+          </div>
           <div className="grid gap-12 sm:grid-cols-2">
             <div>
               <p className="text-xs uppercase tracking-[0.4em] text-accent">Navigate</p>
