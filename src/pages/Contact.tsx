@@ -75,7 +75,7 @@ Looking forward to your reply.`;
     <div>
       <h1 className="sr-only">Contact Horizon Digital</h1>
       <Seo
-        title="Contact Web Designer"
+        title="Contact a Web Designer in Seychelles"
         description="Tell us about your goals and timeline. We'll respond within 24 hours."
         path="/contact"
         keywords="website project enquiry Seychelles"

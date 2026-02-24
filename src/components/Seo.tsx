@@ -11,7 +11,7 @@ type SeoProps = {
 
 export default function Seo({ title, description, path, keywords, structuredData }: SeoProps) {
   const canonical = new URL(path, siteConfig.url).toString();
-  const fullTitle = `${title} | ${siteConfig.name} - Web Design in ${siteConfig.location}`;
+  const fullTitle = `${title} | ${siteConfig.name}`;
   const ogImageUrl = new URL(siteConfig.ogImage, siteConfig.url).toString();
   const schemas: Array<Record<string, unknown>> = [];
 

@@ -22,7 +22,7 @@ export default function Home() {
   return (
     <div>
       <Seo
-        title="Web Design"
+        title="Custom Web Design in Seychelles"
         description="Custom-built websites for Seychelles businesses. Clean, fast, and structured for clarity and results."
         path="/"
         keywords="Seychelles web design"

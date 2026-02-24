@@ -74,7 +74,7 @@ export default function Pricing() {
     <div>
       <h1 className="sr-only">Services & Pricing</h1>
       <Seo
-        title="Website Design Pricing"
+        title="Website Design Pricing in Seychelles"
         description="Clear packages, add-ons, hosting, and care plans for Seychelles businesses."
         path="/services-pricing"
         keywords="website pricing Seychelles"
