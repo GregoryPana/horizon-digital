@@ -207,6 +207,17 @@ Looking forward to your reply.`;
             >
               {siteConfig.phone}
             </a>
+            <a
+              className="group mt-3 block text-sm text-text-muted transition hover:text-accent"
+              href={siteConfig.whatsappUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Lets chat on {" "}
+              <span className="font-medium text-text transition-colors group-hover:text-accent">
+                Whatsapp
+              </span>
+            </a>
             <div className="mt-8">
               <ShimmerButton
                 shimmerColor="#0b1212"

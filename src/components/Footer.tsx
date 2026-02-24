@@ -39,10 +39,21 @@ export default function Footer() {
               >
                 {siteConfig.phone}
               </a>
+              <a
+                className="group mt-3 block text-sm text-text-muted transition hover:text-accent"
+                href={siteConfig.whatsappUrl}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Lets chat on {" "}
+                <span className="font-medium text-text transition-colors group-hover:text-accent">
+                  Whatsapp
+                </span>
+              </a>
               <p className="mt-6 text-xs text-text-muted">
                 Designed and built by {" "}
                 <a
-                  className="text-text-muted transition hover:text-accent"
+                  className="text-text/90 transition hover:text-accent"
                   href={siteConfig.url}
                 >
                   {siteConfig.name}
@@ -50,14 +61,14 @@ export default function Footer() {
                 {" — Web Design in "}
                 {siteConfig.location}. Contact: {" "}
                 <a
-                  className="text-text-muted transition hover:text-accent"
+                  className="text-text/90 transition hover:text-accent"
                   href={buildMailtoLink(siteConfig.email, emailTemplate.subject, emailTemplate.body)}
                 >
                   {siteConfig.email}
                 </a>
                 {" | "}
                 <a
-                  className="text-text-muted transition hover:text-accent"
+                  className="text-text/90 transition hover:text-accent"
                   href={`tel:${siteConfig.phone.replace(/\s+/g, "")}`}
                 >
                   {siteConfig.phone}
