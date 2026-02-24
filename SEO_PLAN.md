@@ -284,3 +284,28 @@ Included work (everything in Starter, plus):
 - Check Search Console for new errors.
 - Refresh outdated content.
 - Add new internal links when content grows.
+
+## 18) Footer credit (client sites)
+Use a quiet, non-salesy footer credit that matches the brand tone and supports SEO.
+
+Goals:
+- Show build attribution without distracting from the client brand.
+- Provide a subtle backlink to Horizon Digital.
+- Include a clear contact method.
+
+Client-friendly credit copy (recommended):
+"Designed and built by Horizon Digital — Web Design in Seychelles. Contact: email | phone."
+
+Implementation guidelines:
+- Link only the brand name to your homepage.
+- Keep it small and understated (footer only).
+- Use the client site's tone (avoid aggressive marketing).
+- Make the email clickable (mailto) and phone clickable (tel).
+
+HTML example:
+<p class="footer-credit">
+  Designed and built by <a href="https://horizondigitalsey.com">Horizon Digital</a>
+  — Web Design in Seychelles. Contact:
+  <a href="mailto:horizondigital.sey@gmail.com">horizondigital.sey@gmail.com</a>
+  | <a href="tel:+2482604525">+248 2604525</a>
+</p>

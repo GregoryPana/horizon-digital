@@ -9,7 +9,7 @@ export const siteConfig = {
   tagline: "Empowering Your Digital Horizon",
   taglineLong: "Empowering Your Digital Horizon - one website at a time",
   email: "horizondigital.sey@gmail.com",
-  phone: "+248 2524490",
+  phone: "+248 2604525",
   url: "https://horizondigitalsey.com",
   location: "Seychelles",
   ogImage,

@@ -144,7 +144,7 @@ export default function Pricing() {
                 ))}
               </ul>
               <div className="mt-8">
-                <Link to="/contact">
+                <Link to="/contact?budget=9500-15000">
                   <ShimmerButton
                     shimmerColor="#0b1212"
                     shimmerDuration="4.2s"
@@ -190,7 +190,7 @@ export default function Pricing() {
                 ))}
               </ul>
               <div className="mt-8">
-                <Link to="/contact">
+                <Link to="/contact?budget=15000-30000">
                   <ShimmerButton
                     shimmerColor="#0b1212"
                     shimmerDuration="4.2s"
@@ -233,7 +233,7 @@ export default function Pricing() {
                 ))}
               </ul>
               <div className="mt-8">
-                <Link to="/contact">
+                <Link to="/contact?budget=30000%2B">
                   <ShimmerButton
                     shimmerColor="#0b1212"
                     shimmerDuration="4.2s"

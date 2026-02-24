@@ -40,7 +40,28 @@ export default function Footer() {
                 {siteConfig.phone}
               </a>
               <p className="mt-6 text-xs text-text-muted">
-                Website designed by {siteConfig.name}. Need a tailored web solution? {siteConfig.email}
+                Designed and built by {" "}
+                <a
+                  className="text-text-muted transition hover:text-accent"
+                  href={siteConfig.url}
+                >
+                  {siteConfig.name}
+                </a>
+                {" — Web Design in "}
+                {siteConfig.location}. Contact: {" "}
+                <a
+                  className="text-text-muted transition hover:text-accent"
+                  href={buildMailtoLink(siteConfig.email, emailTemplate.subject, emailTemplate.body)}
+                >
+                  {siteConfig.email}
+                </a>
+                {" | "}
+                <a
+                  className="text-text-muted transition hover:text-accent"
+                  href={`tel:${siteConfig.phone.replace(/\s+/g, "")}`}
+                >
+                  {siteConfig.phone}
+                </a>
               </p>
             </div>
           </div>

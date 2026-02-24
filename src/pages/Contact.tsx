@@ -5,13 +5,19 @@ import Seo from "../components/Seo";
 import { emailTemplate, siteConfig } from "../data/site";
 import { ShimmerButton } from "../components/ui/shimmer-button";
 import { buildMailtoLink } from "../lib/utils";
+import { useLocation } from "react-router-dom";
 
 export default function Contact() {
+  const location = useLocation();
   const mailtoHref = buildMailtoLink(
     siteConfig.email,
     emailTemplate.subject,
     emailTemplate.body
   );
+
+  const allowedBudgets = ["9500-15000", "15000-30000", "30000+", "not-sure"];
+  const budgetParam = new URLSearchParams(location.search).get("budget") ?? "";
+  const defaultBudget = allowedBudgets.includes(budgetParam) ? budgetParam : "";
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -142,7 +148,7 @@ Looking forward to your reply.`;
                 <select
                   name="budget"
                   className="mt-3 w-full rounded-xl border border-border bg-transparent px-4 py-3 text-sm text-text focus-ring"
-                  defaultValue=""
+                  defaultValue={defaultBudget}
                 >
                   <option value="" disabled>
                     Select a range
