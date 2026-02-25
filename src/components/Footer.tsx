@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { emailTemplate, navLinks, siteConfig } from "../data/site";
 import Logo from "./Logo";
 import logo from "../assets/logo/favicon.png";
-import { buildMailtoLink } from "../lib/utils";
+import { buildMailtoLink, scrollToTopSmooth } from "../lib/utils";
 
 export default function Footer() {
   return (
@@ -24,6 +24,9 @@ export default function Footer() {
                   <Link
                     key={link.path}
                     to={link.path}
+                    onClick={() => {
+                      if (link.path === "/work") scrollToTopSmooth();
+                    }}
                     className="text-sm text-text-muted transition hover:text-accent"
                   >
                     {link.label}

@@ -58,7 +58,7 @@ export default function Process() {
             <ShimmerButton
               shimmerColor="#0b1212"
               shimmerDuration="4.2s"
-              background="linear-gradient(135deg, rgba(34,241,214,0.95), rgba(34,241,214,0.7))"
+              background="#22f1d6"
               className="px-7 py-3.5 text-base font-semibold tracking-[0.08em] text-black"
             >
               Book a free consult

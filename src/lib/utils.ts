@@ -8,3 +8,13 @@ export function buildMailtoLink(email: string, subject: string, body: string) {
   const encodedBody = encodeURIComponent(normalizedBody);
   return `mailto:${email}?subject=${encodedSubject}&body=${encodedBody}`;
 }
+
+export function scrollToTopSmooth() {
+  if (typeof window === "undefined") return;
+  window.requestAnimationFrame(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  });
+  window.setTimeout(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, 250);
+}

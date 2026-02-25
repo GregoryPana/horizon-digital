@@ -1,14 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { navLinks } from "../../data/site";
+import { scrollToTopSmooth } from "../../lib/utils";
 
 export default function NavMenu() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement | null>(null);
 
-  const toggleMenu = () => {
-    setIsMenuOpen((prev) => !prev);
-  };
+  const openMenu = () => setIsMenuOpen(true);
+  const closeMenu = () => setIsMenuOpen(false);
 
   useEffect(() => {
     if (!isMenuOpen) return;
@@ -31,7 +31,7 @@ export default function NavMenu() {
   return (
     <nav className="nav-menu relative w-full">
       <button
-        onClick={toggleMenu}
+        onClick={isMenuOpen ? closeMenu : openMenu}
         className="nav-menu-button focus-ring rounded-full border border-accent/40 bg-bg-elev/80 px-5 py-2 text-xs uppercase tracking-[0.22em] text-text shadow-[0_0_12px_var(--glow)] lg:hidden"
         aria-label={isMenuOpen ? "Close menu" : "Open menu"}
       >
@@ -43,7 +43,7 @@ export default function NavMenu() {
           `fixed inset-0 z-30 bg-black/40 transition-opacity duration-300 lg:hidden ` +
           `${isMenuOpen ? "opacity-100" : "pointer-events-none opacity-0"}`
         }
-        onClick={() => setIsMenuOpen(false)}
+        onClick={closeMenu}
         aria-hidden="true"
       />
 
@@ -61,7 +61,10 @@ export default function NavMenu() {
             <li key={item.path} className="list-none">
               <NavLink
                 to={item.path}
-                onClick={() => setIsMenuOpen(false)}
+                onClick={() => {
+                  if (item.path === "/work") scrollToTopSmooth();
+                  closeMenu();
+                }}
                 className={({ isActive }) =>
                   `group relative inline-flex items-center rounded-full lg:rounded-none ${
                     isActive

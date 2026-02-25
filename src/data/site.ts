@@ -1,8 +1,12 @@
-import guesthousePreview from "../assets/work/drake-seaside.png";
+import guesthousePreview from "../assets/work/drake-seaside/drake-seaside 2.png";
+import guesthousePreviewWebp from "../assets/work/drake-seaside/drake-seaside 2.webp";
 import ogImage from "../assets/logo/Horizon Digital crop.jpg";
-import restaurantPreview from "../assets/work/restaurant.jpg";
-import cafePreview from "../assets/work/cafe.jpg";
-import consultingPreview from "../assets/work/consulting.jpg";
+import cafePreview from "../assets/work/demos/cafe.jpg";
+import cafePreviewWebp from "../assets/work/demos/cafe.webp";
+import consultingPreview from "../assets/work/demos/consulting.jpg";
+import consultingPreviewWebp from "../assets/work/demos/consulting.webp";
+import seykelzPreview from "../assets/work/seykelz/seykelz.png";
+import seykelzPreviewWebp from "../assets/work/seykelz/seykelz.webp";
 
 export const siteConfig = {
   name: "Horizon Digital",
@@ -107,26 +111,20 @@ export const foundationPackage = {
   title: "Foundation",
   price: "From SCR 9,500",
   description:
-    "For businesses that need a simple, professional online presence using a structured Horizon Digital layout.",
+    "For businesses that need a simple, professional online presence using a structured Horizon Digital layout. Up to 3 pages.",
   includes: [
     "Choice of predefined Horizon Digital layout",
-    "Up to 3 pages",
     "Mobile-friendly design",
     "Contact form",
     "WhatsApp integration (if required)",
     "Google Maps embed",
-    "Basic search structure",
-    "SSL certificate",
     "1 structured revision round",
-    "14-day post-launch stabilisation",
-    "Full handover of credentials",
+    "30-day post-launch stabilisation",
   ],
   paymentTerms: ["50% deposit", "50% before launch"],
   exclusions: [
     "Layout structure cannot be modified",
     "Design customisation is limited to colours, logo, and content",
-    "Blog functionality not included",
-    "Advanced integrations not included",
   ],
 };
 
@@ -141,12 +139,9 @@ export const starterPackage = {
     "WhatsApp integration (if required)",
     "Google Maps integration",
     "Social media integration",
-    "Basic search structure",
     "Google Analytics setup",
-    "SSL certificate",
     "2 revision rounds",
     "30-day stabilisation",
-    "Full handover",
   ],
   paymentTerms: ["50% deposit", "50% on launch"],
 };
@@ -254,25 +249,31 @@ export const workItems = [
     title: "Drake Seaside Apartments",
     outcome: "Redesign with new pages, updated content, faster load times, and higher click-through conversions.",
     image: guesthousePreview,
+    imageWebp: guesthousePreviewWebp,
     url: "https://thedrake-seaside.com/",
   },
   {
-    label: "Restaurant",
-    title: "Concept Demo",
-    outcome: "Menu-first layout with clear contact buttons",
-    image: restaurantPreview,
+    label: "Retail",
+    title: "SeyKelz",
+    outcome:
+      "Foundation-tier website for a Seychelles toner cartridge store selling genuine and compatible supplies for HP, Epson, and Canon printers.",
+    image: seykelzPreview,
+    imageWebp: seykelzPreviewWebp,
+    url: "https://sey-kelz.horizondigitalsey.com/",
   },
   {
     label: "Cafe",
     title: "Concept Demo",
     outcome: "Mobile-first story with location details",
     image: cafePreview,
+    imageWebp: cafePreviewWebp,
   },
   {
     label: "Consulting",
     title: "Concept Demo",
     outcome: "Clear contact flow for new enquiries",
     image: consultingPreview,
+    imageWebp: consultingPreviewWebp,
   },
 ];
 
@@ -299,26 +300,20 @@ export const pricingTiers = [
   {
     title: "Foundation",
     price: "From SCR 9,500",
-    description:
-      "For businesses that need a simple, professional online presence using a structured layout.",
-    features: [
-      "Choice of predefined Horizon Digital layout",
-      "Up to 3 pages",
-      "Mobile-friendly design",
-      "Contact form",
-      "WhatsApp integration (if required)",
-      "Google Maps embed",
-      "Basic search structure",
-      "SSL certificate",
-      "1 structured revision round",
-      "14-day post-launch stabilisation",
-      "Full handover of credentials",
-    ],
+  description:
+    "For businesses that need a simple, professional online presence using a structured layout. Up to 3 pages.",
+  features: [
+    "Choice of predefined Horizon Digital layout",
+    "Mobile-friendly design",
+    "Contact form",
+    "WhatsApp integration (if required)",
+    "Google Maps embed",
+    "1 structured revision round",
+    "30-day post-launch stabilisation",
+  ],
     exclusions: [
       "Layout structure cannot be modified",
       "Design customisation is limited to colours, logo, and content",
-      "Blog functionality not included",
-      "Advanced integrations not included",
     ],
   },
   {
@@ -326,20 +321,17 @@ export const pricingTiers = [
     price: "From SCR 15,000",
     description: "For small businesses needing a professional online presence.",
     badge: "Most popular",
-    features: [
-      "Custom design (not a template)",
-      "Mobile-first layout",
-      "Contact form",
-      "WhatsApp integration (if required)",
-      "Google Maps integration",
-      "Social media integration",
-      "Basic search structure",
-      "Google Analytics setup",
-      "SSL certificate",
-      "2 revision rounds",
-      "30-day stabilisation",
-      "Full handover",
-    ],
+  features: [
+    "Custom design (not a template)",
+    "Mobile-first layout",
+    "Contact form",
+    "WhatsApp integration (if required)",
+    "Google Maps integration",
+    "Social media integration",
+    "Google Analytics setup",
+    "2 revision rounds",
+    "30-day stabilisation",
+  ],
     exclusions: ["Hosting", "Ongoing updates beyond stabilisation", "Advanced integrations"],
   },
   {

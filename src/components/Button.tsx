@@ -50,7 +50,7 @@ export default function Button({
 
   if (to) {
     return (
-      <Link to={to} className={classes}>
+      <Link to={to} className={classes} onClick={onClick}>
         {label}
       </Link>
     );
@@ -58,7 +58,7 @@ export default function Button({
 
   if (href) {
     return (
-      <a href={href} className={classes} target={target} rel={rel}>
+      <a href={href} className={classes} target={target} rel={rel} onClick={onClick}>
         {label}
       </a>
     );

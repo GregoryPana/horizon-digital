@@ -7,6 +7,7 @@ import { useMemo, useRef } from "react";
 import { Link } from "react-router-dom";
 import * as THREE from "three";
 import Button from "../Button";
+import { scrollToTopSmooth } from "../../lib/utils";
 import { ShimmerButton } from "./shimmer-button";
 
 interface ShaderPlaneProps {
@@ -209,6 +210,7 @@ export default function InfiniteHero() {
   const h1Ref = useRef<HTMLHeadingElement>(null);
   const pRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
+  const handleWorkScrollTop = () => scrollToTopSmooth();
 
   useGSAP(
     () => {
@@ -311,7 +313,7 @@ export default function InfiniteHero() {
               <ShimmerButton
                 shimmerColor="#0b1212"
                 shimmerDuration="4.2s"
-                background="linear-gradient(135deg, rgba(34,241,214,0.95), rgba(34,241,214,0.7))"
+                background="#22f1d6"
                 className="w-full px-7 py-3.5 text-base font-semibold tracking-[0.08em] text-black"
               >
                 Book a free consult
@@ -322,6 +324,7 @@ export default function InfiniteHero() {
               to="/work"
               variant="outline"
               size="lg"
+              onClick={handleWorkScrollTop}
               className="w-full border-accent-2/60 text-accent-2/80 hover:border-accent-2 hover:text-accent-2 sm:w-auto"
             />
           </div>

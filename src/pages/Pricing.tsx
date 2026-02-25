@@ -110,7 +110,7 @@ export default function Pricing() {
         description="Foundation, Starter, and Growth side by side for a clear comparison."
       >
         <div className="grid items-stretch gap-8 md:grid-cols-2 lg:grid-cols-3">
-          <Card className="flex h-full flex-col pricing-pop pricing-pop-soft">
+          <Card className="flex h-full flex-col no-scroll-glow pricing-card">
             <h3 className="text-lg font-semibold text-accent-2">{foundationPackage.title}</h3>
             <p className="mt-4 text-2xl font-semibold text-accent">{foundationPackage.price}</p>
             <div className="mt-3 min-h-[120px] text-sm text-text-muted md:min-h-[140px]">
@@ -148,8 +148,8 @@ export default function Pricing() {
                   <ShimmerButton
                     shimmerColor="#0b1212"
                     shimmerDuration="4.2s"
-                    background="linear-gradient(135deg, rgba(34,241,214,0.95), rgba(34,241,214,0.7))"
-                    className="px-5 py-2 text-xs font-semibold tracking-[0.12em] text-black"
+                    background="#0e3a36"
+                    className="px-5 py-2 text-xs font-semibold tracking-[0.12em] text-white !shadow-none"
                   >
                     Discuss your project
                   </ShimmerButton>
@@ -158,7 +158,7 @@ export default function Pricing() {
             </div>
           </Card>
 
-          <Card className="relative flex h-full flex-col pricing-pop pricing-pop-strong">
+          <Card className="relative flex h-full flex-col no-scroll-glow pricing-card pricing-card-featured">
             <span className="absolute -top-3 left-6 rounded-full border border-accent/40 bg-bg px-3 py-1 text-[0.65rem] uppercase tracking-[0.28em] text-accent">
               Most popular
             </span>
@@ -194,7 +194,7 @@ export default function Pricing() {
                   <ShimmerButton
                     shimmerColor="#0b1212"
                     shimmerDuration="4.2s"
-                    background="linear-gradient(135deg, rgba(34,241,214,0.95), rgba(34,241,214,0.7))"
+                    background="#22f1d6"
                     className="px-5 py-2 text-xs font-semibold tracking-[0.12em] text-black"
                   >
                     Discuss your project
@@ -204,7 +204,7 @@ export default function Pricing() {
             </div>
           </Card>
 
-          <Card className="flex h-full flex-col pricing-pop pricing-pop-soft">
+          <Card className="flex h-full flex-col no-scroll-glow pricing-card">
             <h3 className="text-lg font-semibold text-accent-2">{growthPackage.title}</h3>
             <p className="mt-4 text-2xl font-semibold text-accent">{growthPackage.price}</p>
             <div className="mt-3 min-h-[120px] text-sm text-text-muted md:min-h-[140px]">
@@ -237,8 +237,8 @@ export default function Pricing() {
                   <ShimmerButton
                     shimmerColor="#0b1212"
                     shimmerDuration="4.2s"
-                    background="linear-gradient(135deg, rgba(34,241,214,0.95), rgba(34,241,214,0.7))"
-                    className="px-5 py-2 text-xs font-semibold tracking-[0.12em] text-black"
+                    background="#0e3a36"
+                    className="px-5 py-2 text-xs font-semibold tracking-[0.12em] text-white !shadow-none"
                   >
                     Discuss your project
                   </ShimmerButton>
@@ -264,7 +264,7 @@ export default function Pricing() {
               <ShimmerButton
                 shimmerColor="#0b1212"
                 shimmerDuration="4.2s"
-                background="linear-gradient(135deg, rgba(34,241,214,0.95), rgba(34,241,214,0.7))"
+                background="#22f1d6"
                 className="px-5 py-2 text-xs font-semibold tracking-[0.12em] text-black"
               >
                 Request a custom scope
@@ -427,7 +427,7 @@ export default function Pricing() {
             <ShimmerButton
               shimmerColor="#0b1212"
               shimmerDuration="4.2s"
-              background="linear-gradient(135deg, rgba(34,241,214,0.95), rgba(34,241,214,0.7))"
+              background="#22f1d6"
               className="px-7 py-3.5 text-base font-semibold tracking-[0.08em] text-black"
             >
               Book a free consult

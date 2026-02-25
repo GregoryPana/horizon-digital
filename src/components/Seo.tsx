@@ -32,8 +32,15 @@ export default function Seo({ title, description, path, keywords, structuredData
     url: siteConfig.url,
     email: siteConfig.email,
     telephone: siteConfig.phone,
-    address: siteConfig.location,
-    areaServed: siteConfig.location,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: siteConfig.location,
+      addressCountry: "SC",
+    },
+    areaServed: {
+      "@type": "AdministrativeArea",
+      name: siteConfig.location,
+    },
   };
 
   schemas.push(organizationSchema, localBusinessSchema);

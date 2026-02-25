@@ -7,6 +7,7 @@ import Seo from "../components/Seo";
 import InfiniteHero from "../components/ui/infinite-hero";
 import { ShimmerButton } from "../components/ui/shimmer-button";
 import { Link } from "react-router-dom";
+import { scrollToTopSmooth } from "../lib/utils";
 import {
   addOns,
   faqs,
@@ -18,6 +19,7 @@ import {
 
 export default function Home() {
   const [activeWork, setActiveWork] = useState<null | (typeof workItems)[0]>(null);
+  const handleWorkScrollTop = () => scrollToTopSmooth();
 
   return (
     <div>
@@ -56,7 +58,7 @@ export default function Home() {
               <ShimmerButton
                 shimmerColor="#0b1212"
                 shimmerDuration="4.2s"
-                background="linear-gradient(135deg, rgba(34,241,214,0.95), rgba(34,241,214,0.7))"
+                background="#22f1d6"
                 className="px-5 py-2 text-xs font-semibold tracking-[0.12em] text-black"
               >
                 View services & pricing
@@ -86,18 +88,35 @@ export default function Home() {
       >
         <div className="grid gap-10 md:grid-cols-2 xl:grid-cols-3">
           {workItems.map((item) => (
-            <Card key={item.label} className="relative overflow-hidden">
+            <Card key={item.label} className="relative flex h-full flex-col overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-accent/10 via-transparent to-transparent" />
-              <div className="relative">
+              <div className="relative flex h-full flex-col">
                 <div className="preview-frame mb-6 h-32 w-full overflow-hidden rounded-2xl border border-border">
                   {item.image ? (
-                    <img
-                      src={item.image}
-                      alt={`${item.label} concept preview`}
-                      width={640}
-                      height={360}
-                      className="h-full w-full bg-bg object-contain scale-[1.08] md:scale-[1.12]"
-                    />
+                    item.imageWebp ? (
+                      <picture>
+                        <source srcSet={item.imageWebp} type="image/webp" />
+                        <img
+                          src={item.image}
+                          alt={`${item.label} concept preview`}
+                          width={640}
+                          height={360}
+                          loading="lazy"
+                          decoding="async"
+                          className="h-full w-full bg-bg object-contain scale-[1.08] md:scale-[1.12]"
+                        />
+                      </picture>
+                    ) : (
+                      <img
+                        src={item.image}
+                        alt={`${item.label} concept preview`}
+                        width={640}
+                        height={360}
+                        loading="lazy"
+                        decoding="async"
+                        className="h-full w-full bg-bg object-contain scale-[1.08] md:scale-[1.12]"
+                      />
+                    )
                   ) : (
                     <div className="absolute inset-0 preview-shimmer" />
                   )}
@@ -105,7 +124,7 @@ export default function Home() {
                 <p className="text-xs uppercase tracking-[0.3em] text-accent">{item.label}</p>
                 <h3 className="mt-2 text-lg font-semibold text-text">{item.title}</h3>
                 <p className="mt-4 text-sm text-text-muted">{item.outcome}</p>
-                <div className="mt-10 flex flex-wrap gap-5">
+                <div className="mt-auto flex flex-wrap gap-5 pt-10">
                   {item.url ? (
                     <Button
                       label="View live site"
@@ -127,6 +146,9 @@ export default function Home() {
               </div>
             </Card>
           ))}
+        </div>
+        <div className="mt-10 flex justify-center">
+          <Button label="View all work" to="/work" size="sm" onClick={handleWorkScrollTop} />
         </div>
       </Section>
 
@@ -155,8 +177,8 @@ export default function Home() {
           {pricingTiers.map((tier) => (
             <Card
               key={tier.title}
-              className={`relative flex h-full flex-col pricing-pop no-blur-glow ${
-                tier.badge ? "pricing-pop-strong" : "pricing-pop-soft"
+              className={`relative flex h-full flex-col no-blur-glow no-scroll-glow pricing-card ${
+                tier.badge ? "pricing-card-featured" : ""
               } ${tier.title === "Custom" ? "lg:col-start-2" : ""}`.trim()}
             >
               {tier.badge && (
@@ -183,8 +205,14 @@ export default function Home() {
                   <ShimmerButton
                     shimmerColor="#0b1212"
                     shimmerDuration="4.2s"
-                    background="linear-gradient(135deg, rgba(34,241,214,0.95), rgba(34,241,214,0.7))"
-                    className="px-5 py-2 text-xs font-semibold tracking-[0.12em] text-black"
+                    background={
+                      tier.title === "Foundation" || tier.title === "Growth" ? "#0e3a36" : "#22f1d6"
+                    }
+                    className={`px-5 py-2 text-xs font-semibold tracking-[0.12em] ${
+                      tier.title === "Foundation" || tier.title === "Growth"
+                        ? "text-white !shadow-none"
+                        : "text-black"
+                    }`.trim()}
                   >
                     {tier.title === "Custom" ? "Request a custom scope" : "Discuss your project"}
                   </ShimmerButton>
@@ -215,7 +243,7 @@ export default function Home() {
             <ShimmerButton
               shimmerColor="#0b1212"
               shimmerDuration="4.2s"
-              background="linear-gradient(135deg, rgba(34,241,214,0.95), rgba(34,241,214,0.7))"
+              background="#22f1d6"
               className="px-5 py-2 text-xs font-semibold tracking-[0.12em] text-black"
             >
               Book a free consult
@@ -239,7 +267,7 @@ export default function Home() {
             <ShimmerButton
               shimmerColor="#0b1212"
               shimmerDuration="4.2s"
-              background="linear-gradient(135deg, rgba(34,241,214,0.95), rgba(34,241,214,0.7))"
+              background="#22f1d6"
               className="px-7 py-3.5 text-base font-semibold tracking-[0.08em] text-black"
             >
               Book a free consult
