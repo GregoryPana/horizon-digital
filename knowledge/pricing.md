@@ -34,6 +34,8 @@ Payment terms:
 **From SCR 15,000**
 
 For small businesses needing a professional online presence.
+Ideal for cafes, guesthouses, salons, small shops, consultants, and trades. Up to 5 pages.
+Includes core build essentials.
 
 Includes:
 - Custom design (not a template)
@@ -57,6 +59,7 @@ Payment terms:
 **From SCR 30,000**
 
 For established businesses needing more structure and flexibility.
+Ideal for law firms, construction companies, clinics, tour operators, and expanding hospitality businesses. Up to 10-12 pages.
 
 Includes:
 - Expanded service structure
