@@ -1,208 +1,14 @@
 "use client";
 
 import { useGSAP } from "@gsap/react";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { gsap } from "gsap";
-import { useMemo, useRef } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import * as THREE from "three";
 import Button from "../Button";
 import { scrollToTopSmooth } from "../../lib/utils";
 import { ShimmerButton } from "./shimmer-button";
 
-interface ShaderPlaneProps {
-  vertexShader: string;
-  fragmentShader: string;
-  uniforms: { [key: string]: { value: unknown } };
-}
-
-function ShaderPlane({ vertexShader, fragmentShader, uniforms }: ShaderPlaneProps) {
-  const meshRef = useRef<THREE.Mesh>(null);
-  const { size } = useThree();
-  const material = useMemo(
-    () =>
-      new THREE.ShaderMaterial({
-        vertexShader,
-        fragmentShader,
-        uniforms,
-        side: THREE.DoubleSide,
-        depthTest: false,
-        depthWrite: false,
-      }),
-    [vertexShader, fragmentShader, uniforms]
-  );
-
-  useFrame((state: { clock: { elapsedTime: number } }) => {
-    if (meshRef.current) {
-      const material = meshRef.current.material as THREE.ShaderMaterial;
-      material.uniforms.u_time.value = state.clock.elapsedTime * 0.5;
-      material.uniforms.u_resolution.value.set(size.width, size.height, 1.0);
-    }
-  });
-
-  return (
-    <mesh ref={meshRef}>
-      <planeGeometry args={[2, 2]} />
-      <primitive object={material} attach="material" />
-    </mesh>
-  );
-}
-
-interface ShaderBackgroundProps {
-  vertexShader?: string;
-  fragmentShader?: string;
-  uniforms?: { [key: string]: { value: unknown } };
-  className?: string;
-}
-
-function ShaderBackground({
-  vertexShader = `
-    varying vec2 vUv;
-    void main() {
-      vUv = uv;
-      gl_Position = vec4(position, 1.0);
-    }
-  `,
-  fragmentShader = `
-    precision highp float;
-
-    varying vec2 vUv;
-    uniform float u_time;
-    uniform vec3 u_resolution;
-
-    #define STEP 256
-    #define EPS .001
-
-    float smin( float a, float b, float k )
-    {
-      float h = clamp( 0.5+0.5*(b-a)/k, 0.0, 1.0 );
-      return mix( b, a, h ) - k*h*(1.0-h);
-    }
-
-    const mat2 m = mat2(.8,.6,-.6,.8);
-
-    float noise( in vec2 x )
-    {
-      return sin(1.5*x.x)*sin(1.5*x.y);
-    }
-
-    float fbm6( vec2 p )
-    {
-      float f = 0.0;
-      f += 0.500000*(0.5+0.5*noise( p )); p = m*p*2.02;
-      f += 0.250000*(0.5+0.5*noise( p )); p = m*p*2.03;
-      f += 0.125000*(0.5+0.5*noise( p )); p = m*p*2.01;
-      f += 0.062500*(0.5+0.5*noise( p )); p = m*p*2.04;
-      f += 0.015625*(0.5+0.5*noise( p ));
-      return f/0.96875;
-    }
-
-    mat2 getRot(float a)
-    {
-      float sa = sin(a), ca = cos(a);
-      return mat2(ca,-sa,sa,ca);
-    }
-
-    vec3 _position;
-
-    float sphere(vec3 center, float radius)
-    {
-      return distance(_position,center) - radius;
-    }
-
-    float swingPlane(float height)
-    {
-      vec3 pos = _position + vec3(0.,0.,u_time * 5.5);
-      float def =  fbm6(pos.xz * .25) * 0.5;
-      float way = pow(abs(pos.x) * 34. ,2.5) *.0000125;
-      def *= way;
-      float ch = height + def;
-      return max(pos.y - ch,0.);
-    }
-
-    float map(vec3 pos)
-    {
-      _position = pos;
-      float dist;
-      dist = swingPlane(0.);
-      float sminFactor = 5.25;
-      dist = smin(dist,sphere(vec3(0.,-15.,80.),60.),sminFactor);
-      return dist;
-    }
-
-    vec3 getNormal(vec3 pos)
-    {
-      vec3 nor = vec3(0.);
-      vec3 vv = vec3(0.,1.,-1.)*.01;
-      nor.x = map(pos + vv.zxx) - map(pos + vv.yxx);
-      nor.y = map(pos + vv.xzx) - map(pos + vv.xyx);
-      nor.z = map(pos + vv.xxz) - map(pos + vv.xxy);
-      nor /= 2.;
-      return normalize(nor);
-    }
-
-    void mainImage( out vec4 fragColor, in vec2 fragCoord )
-    {
-      vec2 uv = (fragCoord.xy-.5*u_resolution.xy)/u_resolution.y;
-      vec3 rayOrigin = vec3(uv + vec2(0.,6.), -1. );
-      vec3 rayDir = normalize(vec3(uv , 1.));
-      rayDir.zy = getRot(.15) * rayDir.zy;
-      vec3 position = rayOrigin;
-      float curDist;
-      int nbStep = 0;
-
-      for(; nbStep < STEP;++nbStep)
-      {
-        curDist = map(position);
-        if(curDist < EPS)
-          break;
-        position += rayDir * curDist * .5;
-      }
-
-      float f;
-      float dist = distance(rayOrigin,position);
-      f = dist /(98.);
-      f = float(nbStep) / float(STEP);
-      f *= .9;
-      vec3 teal = vec3(0.13, 0.95, 0.85);
-      vec3 gold = vec3(0.97, 0.83, 0.42);
-      float gradient = smoothstep(0.0, 1.0, vUv.y);
-      vec3 tint = mix(teal, gold, gradient);
-      vec3 col = tint * f;
-      fragColor = vec4(col,1.0);
-    }
-
-    void main() {
-      vec4 fragColor;
-      vec2 fragCoord = vUv * u_resolution.xy;
-      mainImage(fragColor, fragCoord);
-      gl_FragColor = fragColor;
-    }
-  `,
-  uniforms = {},
-  className = "w-full h-full",
-}: ShaderBackgroundProps) {
-  const shaderUniforms = useMemo(
-    () => ({
-      u_time: { value: 0 },
-      u_resolution: { value: new THREE.Vector3(1, 1, 1) },
-      ...uniforms,
-    }),
-    [uniforms]
-  );
-
-  return (
-    <div className={className}>
-      <Canvas className={className}>
-        <ShaderPlane
-          vertexShader={vertexShader}
-          fragmentShader={fragmentShader}
-          uniforms={shaderUniforms}
-        />
-      </Canvas>
-    </div>
-  );
-}
+const ShaderBackgroundCanvas = lazy(() => import("./shader-background-canvas"));
 
 export default function InfiniteHero() {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -210,7 +16,26 @@ export default function InfiniteHero() {
   const h1Ref = useRef<HTMLHeadingElement>(null);
   const pRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
+  const [showShader, setShowShader] = useState(false);
   const handleWorkScrollTop = () => scrollToTopSmooth();
+
+  useEffect(() => {
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const desktop = window.matchMedia("(min-width: 768px)");
+
+    const updateVisibility = () => {
+      setShowShader(desktop.matches && !reduceMotion.matches);
+    };
+
+    updateVisibility();
+    reduceMotion.addEventListener("change", updateVisibility);
+    desktop.addEventListener("change", updateVisibility);
+
+    return () => {
+      reduceMotion.removeEventListener("change", updateVisibility);
+      desktop.removeEventListener("change", updateVisibility);
+    };
+  }, []);
 
   useGSAP(
     () => {
@@ -260,23 +85,33 @@ export default function InfiniteHero() {
     >
       <div className="absolute inset-0 brightness-110 md:brightness-100">
         <div className="absolute inset-0 hidden md:block" ref={bgRef}>
-          <ShaderBackground className="h-full w-full" />
+          {showShader ? (
+            <Suspense
+              fallback={
+                <div className="h-full w-full bg-gradient-to-br from-accent/35 via-transparent to-accent-2/35" />
+              }
+            >
+              <ShaderBackgroundCanvas className="h-full w-full" />
+            </Suspense>
+          ) : (
+            <div className="h-full w-full bg-gradient-to-br from-accent/35 via-transparent to-accent-2/35" />
+          )}
         </div>
         <div className="absolute inset-0 md:hidden">
           <div className="h-full w-full bg-gradient-to-br from-accent/45 via-transparent to-accent-2/45" />
         </div>
       </div>
 
-      <div className="pointer-events-none absolute inset-0 [background:radial-gradient(120%_80%_at_50%_50%,_transparent_28%,_rgba(2,8,10,0.92)_100%)]" />
-      <div className="pointer-events-none absolute inset-0 [background:radial-gradient(65%_45%_at_50%_45%,_rgba(7,20,22,0.0)_0%,_rgba(7,20,22,0.35)_70%,_rgba(7,20,22,0.65)_100%)]" />
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-bg/70 to-bg" />
+      <div className="hero-veil-a pointer-events-none absolute inset-0 [background:radial-gradient(120%_80%_at_50%_50%,_transparent_28%,_rgba(2,8,10,0.92)_100%)]" />
+      <div className="hero-veil-b pointer-events-none absolute inset-0 [background:radial-gradient(65%_45%_at_50%_45%,_rgba(7,20,22,0.0)_0%,_rgba(7,20,22,0.35)_70%,_rgba(7,20,22,0.65)_100%)]" />
+      <div className="hero-veil-c pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-bg/70 to-bg" />
 
       <div className="relative z-10 flex h-[90svh] w-full items-center justify-center px-6 md:h-svh md:px-8">
         <div className="text-center">
           <p className="hero-brand-glow text-base uppercase tracking-[0.45em] text-accent">
             Horizon Digital
           </p>
-          <p className="mt-3 text-[0.65rem] uppercase tracking-[0.35em] text-text/60 leading-tight md:mt-2 md:text-xs md:tracking-[0.4em]">
+          <p className="hero-subtext mt-3 text-[0.65rem] uppercase tracking-[0.35em] leading-tight md:mt-2 md:text-xs md:tracking-[0.4em]">
             Built for growing businesses in Seychelles and beyond.
           </p>
           <div className="mx-auto mt-6 h-px w-20 horizon-line md:mt-8 md:w-32" />
@@ -322,10 +157,10 @@ export default function InfiniteHero() {
             <Button
               label="View work"
               to="/work"
-              variant="outline"
+              variant="primary"
               size="lg"
               onClick={handleWorkScrollTop}
-              className="w-full border-accent-2/60 text-accent-2/80 hover:border-accent-2 hover:text-accent-2 sm:w-auto"
+              className="w-full bg-accent-2 text-black shadow-none hover:bg-[#8f650b] hover:text-white sm:w-auto"
             />
           </div>
         </div>

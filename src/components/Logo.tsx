@@ -1,4 +1,5 @@
 import { siteConfig } from "../data/site";
+import primaryLogo from "../assets/logo/Horizon Digital crop.jpg";
 
 type LogoProps = {
   imageSrc?: string;
@@ -9,15 +10,17 @@ export default function Logo({ imageSrc, className }: LogoProps) {
   const wrapperClass = ["flex items-center gap-3", className]
     .filter(Boolean)
     .join(" ");
+  const src = imageSrc ?? primaryLogo;
+
   return (
     <div className={wrapperClass}>
-      {imageSrc ? (
+      {src ? (
         <img
-          src={imageSrc}
+          src={src}
           alt={`${siteConfig.name} logo`}
-          width={40}
+          width={132}
           height={40}
-          className="h-10 w-10 rounded-xl object-cover"
+          className="h-10 w-auto rounded-md object-contain"
         />
       ) : (
         <svg
@@ -39,14 +42,6 @@ export default function Logo({ imageSrc, className }: LogoProps) {
           />
         </svg>
       )}
-      <div className="leading-tight">
-        <div className="text-sm font-semibold tracking-[0.3em] text-text">
-          HORIZON
-        </div>
-        <div className="text-xs font-semibold tracking-[0.4em] text-accent">
-          DIGITAL
-        </div>
-      </div>
     </div>
   );
 }
