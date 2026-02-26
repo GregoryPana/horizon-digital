@@ -9,7 +9,7 @@ export default {
     const canonicalOrigin = "https://horizondigitalsey.com";
 
     if (url.pathname === "/robots.txt") {
-      const body = `User-agent: *\nAllow: /\n\nSitemap: ${canonicalOrigin}/sitemap.xml`;
+      const body = `User-agent: *\nAllow: /\nHost: ${canonicalOrigin}\n\nSitemap: ${canonicalOrigin}/sitemap.xml`;
       return new Response(body, {
         headers: { "content-type": "text/plain; charset=utf-8" },
       });

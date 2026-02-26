@@ -3,8 +3,15 @@
 ## Overview
 Pricing depends on scope, page count, and required integrations. We keep scope clear and pricing transparent.
 
+## What a website includes
+- Design and build: how the website looks and works for your customers.
+- Domain name: your web address, renewed yearly through a registrar.
+- Hosting: the service that keeps your website live online.
+
+Horizon Digital builds the website and can also help you with domain setup and hosting management.
+
 ## Foundation
-**From SCR 9,500**
+**From SCR 7,500**
 
 For businesses that need a simple, professional online presence using a structured Horizon Digital layout.
 
@@ -15,23 +22,19 @@ Includes:
 - Contact form
 - WhatsApp integration (if required)
 - Google Maps embed
-- Basic search structure
-- SSL certificate
 - 1 structured revision round
-- 14-day post-launch stabilisation
-- Full handover of credentials
+- 30-day post-launch stabilisation
 
 Not included:
 - Layout structure changes
-- Advanced integrations
-- Blog functionality
+- Design customisation beyond colours, logo, and content
 
 Payment terms:
 - 50% deposit
 - 50% before launch
 
 ## Starter
-**From SCR 15,000**
+**From SCR 12,500**
 
 For small businesses needing a professional online presence.
 Ideal for cafes, guesthouses, salons, small shops, consultants, and trades. Up to 5 pages.
@@ -44,19 +47,16 @@ Includes:
 - WhatsApp integration (if required)
 - Google Maps integration
 - Social media integration
-- Basic search structure
 - Google Analytics setup
-- SSL certificate
 - 2 revision rounds
 - 30-day stabilisation
-- Full handover
 
 Payment terms:
 - 50% deposit
 - 50% on launch
 
 ## Growth
-**From SCR 30,000**
+**From SCR 25,000**
 
 For established businesses needing more structure and flexibility.
 Ideal for law firms, construction companies, clinics, tour operators, and expanding hospitality businesses. Up to 10-12 pages.
@@ -82,6 +82,9 @@ Payment terms:
 
 ## Custom
 Advanced builds are scoped per project. We clarify your requirements, then provide a clear proposal and timeline.
+
+## Ongoing care plans
+Ongoing care plans are no longer offered.
 
 ## Add-ons
 - Additional page: SCR 2,000 - 3,500

@@ -30,3 +30,21 @@ Your website is built around your goals, content, and audience. Starter and Grow
 
 ## What we can add
 We can add WhatsApp integration, contact forms, booking or enquiry forms, Google Maps, and other scoped add-ons.
+
+## What a website includes (for any business)
+- Design and build: how your website looks, reads, and guides visitors.
+- Domain name: your web address (like yourbusiness.com), renewed yearly through a registrar.
+- Hosting: the service that keeps your website online and accessible.
+
+Horizon Digital can design and build your website, guide domain setup and renewals, and manage hosting if you want one team handling everything.
+
+## Current package baselines
+- Foundation: from SCR 7,500
+- Starter: from SCR 12,500
+- Growth: from SCR 25,000
+
+## Hosting
+Managed hosting is available at SCR 250 per month or SCR 2,500 per year.
+
+## Ongoing care plans
+Ongoing care plans are no longer offered.

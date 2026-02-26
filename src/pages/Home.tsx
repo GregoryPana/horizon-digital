@@ -9,17 +9,27 @@ import { ShimmerButton } from "../components/ui/shimmer-button";
 import { Link } from "react-router-dom";
 import { scrollToTopSmooth } from "../lib/utils";
 import {
-  addOns,
+  customPackage,
   faqs,
-  pricingTiers,
+  foundationPackage,
+  growthPackage,
   projectSteps,
-  trustItems,
+  starterPackage,
   workItems,
 } from "../data/site";
 
 export default function Home() {
   const [activeWork, setActiveWork] = useState<null | (typeof workItems)[0]>(null);
   const handleWorkScrollTop = () => scrollToTopSmooth();
+  const normalizeFeature = (value: string) => value.trim().toLowerCase();
+  const foundationFeatureSet = new Set(foundationPackage.includes.map(normalizeFeature));
+  const starterFeatureSet = new Set(starterPackage.includes.map(normalizeFeature));
+  const starterUniqueIncludes = starterPackage.includes.filter(
+    (item) => !foundationFeatureSet.has(normalizeFeature(item))
+  );
+  const growthUniqueIncludes = growthPackage.includes.filter(
+    (item) => !starterFeatureSet.has(normalizeFeature(item))
+  );
 
   return (
     <div>
@@ -31,52 +41,31 @@ export default function Home() {
       />
       <InfiniteHero />
 
-      <section className="border-y border-border bg-bg-elev">
-        <div className="mx-auto flex w-full max-w-7xl flex-wrap items-center justify-between gap-10 px-8 py-12 text-xs uppercase tracking-[0.4em] text-text-muted">
-          {trustItems.map((item) => (
-            <span key={item} className="flex items-center gap-3">
-              <span className="h-1 w-8 bg-horizon" />
-              {item}
-            </span>
-          ))}
-        </div>
-      </section>
-
       <Section
         eyebrow="Services"
         title="Designed to be clear and reliable"
         description="Modern websites that help customers understand you and get in touch."
         className="!pt-16 !pb-24 md:!pt-24 md:!pb-32"
       >
-        <Card>
-          <p className="text-sm text-text-muted">
-            We build clean, fast websites with clear structure, thoughtful design, and practical
-            support options. Everything is scoped up front so you know exactly what to expect.
-          </p>
-          <div className="mt-6">
-            <Link to="/services-pricing">
-              <ShimmerButton
-                shimmerColor="#0b1212"
-                shimmerDuration="4.2s"
-                background="#22f1d6"
-                className="px-5 py-2 text-xs font-semibold tracking-[0.12em] text-black"
-              >
-                View services & pricing
-              </ShimmerButton>
-            </Link>
+        <div className="section-band section-band-strong relative left-1/2 right-1/2 -mx-[50vw] my-8 w-screen py-14 md:my-10 md:py-16">
+          <div className="mx-auto w-full max-w-7xl px-8">
+            <p className="max-w-3xl text-sm text-text">
+              We build clean, fast websites with clear structure, thoughtful design, and practical
+              support options. Everything is scoped up front so you know exactly what to expect.
+            </p>
+            <div className="mt-6">
+              <Link to="/services-pricing">
+                <ShimmerButton
+                  shimmerColor="#0b1212"
+                  shimmerDuration="4.2s"
+                  background="#22f1d6"
+                  className="px-5 py-2 text-xs font-semibold tracking-[0.12em] text-black"
+                >
+                  View services & pricing
+                </ShimmerButton>
+              </Link>
+            </div>
           </div>
-        </Card>
-        <div className="mt-16 flex flex-col items-start gap-3 text-sm text-text-muted">
-          <span className="text-xs uppercase tracking-[0.4em] text-accent">Add-ons</span>
-          {addOns.map((addon) => (
-            <span
-              key={addon}
-              className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-bg-elev/80 px-3 py-1 text-text active:shadow-[inset_0_0_10px_var(--glow)]"
-            >
-              <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-              {addon}
-            </span>
-          ))}
         </div>
         <div className="mt-12 horizon-line" />
       </Section>
@@ -95,7 +84,11 @@ export default function Home() {
                   {item.image ? (
                     item.imageWebp ? (
                       <picture>
-                        <source srcSet={item.imageWebp} type="image/webp" />
+                        <source
+                          srcSet={item.imageWebp800 ? `${item.imageWebp800} 800w, ${item.imageWebp} 1600w` : item.imageWebp}
+                          sizes="(max-width: 640px) 92vw, (max-width: 1024px) 42vw, 360px"
+                          type="image/webp"
+                        />
                         <img
                           src={item.image}
                           alt={`${item.label} concept preview`}
@@ -157,70 +150,141 @@ export default function Home() {
         title="A clear five-step workflow"
         description="Simple milestones, direct communication, and reliable delivery."
       >
-        <div className="mt-12 grid gap-10 md:grid-cols-2 lg:grid-cols-5">
+        <div className="section-band section-band-medium relative left-1/2 right-1/2 mt-14 -mx-[50vw] mb-8 w-screen py-16 md:mt-16 md:mb-10 md:py-20">
+          <div className="mx-auto grid w-full max-w-7xl gap-8 px-8 md:grid-cols-2 lg:grid-cols-5">
           {projectSteps.map((step, index) => (
-            <Card key={step.title}>
+            <div key={step.title} className="min-w-0">
               <p className="text-xs uppercase tracking-[0.4em] text-accent">Step {index + 1}</p>
               <h3 className="mt-3 text-lg font-semibold text-text">{step.title}</h3>
               <p className="mt-3 text-sm text-text-muted">{step.description}</p>
-            </Card>
+            </div>
           ))}
+          </div>
         </div>
       </Section>
 
       <Section
         eyebrow="Services & Pricing"
         title="Website build packages"
-        description="Clear starting points for the build. Hosting and care plans are separate."
+        description="Clear starting points for the build."
       >
-        <div className="grid items-stretch gap-10 lg:grid-cols-3">
-          {pricingTiers.map((tier) => (
-            <Card
-              key={tier.title}
-              className={`relative flex h-full flex-col no-blur-glow no-scroll-glow pricing-card ${
-                tier.badge ? "pricing-card-featured" : ""
-              } ${tier.title === "Custom" ? "lg:col-start-2" : ""}`.trim()}
-            >
-              {tier.badge && (
-                <span className="absolute -top-3 left-6 rounded-full border border-accent/40 bg-bg px-3 py-1 text-[0.65rem] uppercase tracking-[0.28em] text-accent">
-                  {tier.badge}
-                </span>
-              )}
-              <h3 className="text-lg font-semibold text-accent-2">{tier.title}</h3>
-              <p className="mt-5 text-2xl font-semibold text-accent">{tier.price}</p>
-              {tier.priceNote && (
-                <p className="mt-3 text-sm text-text-muted">{tier.priceNote}</p>
-              )}
-              <p className="mt-3 text-sm text-text-muted">{tier.description}</p>
-              <ul className="mt-7 space-y-4 text-sm text-text-muted">
-                {tier.features.map((feature) => (
-                  <li key={feature} className="flex items-center gap-2">
-                    <span className="h-2 w-2 rounded-full bg-accent" />
-                    {feature}
+        <div className="grid items-stretch gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <Card className="flex h-full flex-col no-scroll-glow pricing-card">
+            <h3 className="text-lg font-semibold text-accent-2">{foundationPackage.title}</h3>
+            <p className="mt-4 text-2xl font-semibold text-accent">{foundationPackage.price}</p>
+            <p className="mt-3 text-sm text-text-muted">{foundationPackage.description}</p>
+            <div className="mt-6 space-y-3 text-sm text-text-muted">
+              <ul className="space-y-3 mb-8">
+                {foundationPackage.includes.map((item) => (
+                  <li key={item} className="flex items-center gap-2">
+                    <span className="text-accent">✓</span>
+                    {item}
                   </li>
                 ))}
               </ul>
-              <div className="mt-auto pt-8">
-                <Link to={tier.title === "Custom" ? "/contact" : "/services-pricing"}>
-                  <ShimmerButton
-                    shimmerColor="#0b1212"
-                    shimmerDuration="4.2s"
-                    background={
-                      tier.title === "Foundation" || tier.title === "Growth" ? "#0e3a36" : "#22f1d6"
-                    }
-                    className={`px-5 py-2 text-xs font-semibold tracking-[0.12em] ${
-                      tier.title === "Foundation" || tier.title === "Growth"
-                        ? "text-white !shadow-none"
-                        : "text-black"
-                    }`.trim()}
-                  >
-                    {tier.title === "Custom" ? "Request a custom scope" : "Discuss your project"}
-                  </ShimmerButton>
-                </Link>
-              </div>
-            </Card>
-          ))}
+              <p className="text-xs uppercase tracking-[0.3em] text-text-muted">Not included</p>
+              <ul className="mt-4 space-y-2 text-sm text-text-muted">
+                {foundationPackage.exclusions.map((item) => (
+                  <li key={item} className="flex items-start gap-2">
+                    <span className="mt-1.5 h-2 w-2 rounded-full bg-accent" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="mt-auto pt-8">
+              <Link to="/services-pricing">
+                <ShimmerButton
+                  shimmerColor="#0b1212"
+                  shimmerDuration="4.2s"
+                  background="#0e3a36"
+                  className="px-5 py-2 text-xs font-semibold tracking-[0.12em] text-white !shadow-none"
+                >
+                  Discuss your project
+                </ShimmerButton>
+              </Link>
+            </div>
+          </Card>
+
+          <Card className="relative flex h-full flex-col overflow-visible pt-8 no-scroll-glow pricing-card pricing-card-featured pricing-card-featured-shine">
+            <h3 className="text-lg font-semibold text-accent-2">{starterPackage.title}</h3>
+            <p className="mt-4 text-2xl font-semibold text-accent">{starterPackage.price}</p>
+            <p className="mt-3 text-sm text-text-muted">{starterPackage.description}</p>
+            <div className="mt-6 space-y-3 text-sm text-text-muted">
+              <p className="text-sm font-medium text-text">Includes everything in Foundation, plus:</p>
+              <ul className="space-y-3">
+                {starterUniqueIncludes.map((item) => (
+                  <li key={item} className="flex items-center gap-2">
+                    <span className="text-accent">✓</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="mt-auto pt-8">
+              <Link to="/services-pricing">
+                <ShimmerButton
+                  shimmerColor="#0b1212"
+                  shimmerDuration="4.2s"
+                  background="#22f1d6"
+                  className="px-5 py-2 text-xs font-semibold tracking-[0.12em] text-black"
+                >
+                  Discuss your project
+                </ShimmerButton>
+              </Link>
+            </div>
+          </Card>
+
+          <Card className="flex h-full flex-col no-scroll-glow pricing-card">
+            <h3 className="text-lg font-semibold text-accent-2">{growthPackage.title}</h3>
+            <p className="mt-4 text-2xl font-semibold text-accent">{growthPackage.price}</p>
+            <p className="mt-3 text-sm text-text-muted">{growthPackage.description}</p>
+            <div className="mt-6 space-y-3 text-sm text-text-muted">
+              <p className="text-sm font-medium text-text">Includes everything in Starter, plus:</p>
+              <ul className="space-y-3">
+                {growthUniqueIncludes.map((item) => (
+                  <li key={item} className="flex items-center gap-2">
+                    <span className="text-accent">✓</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="mt-auto pt-8">
+              <Link to="/services-pricing">
+                <ShimmerButton
+                  shimmerColor="#0b1212"
+                  shimmerDuration="4.2s"
+                  background="#0e3a36"
+                  className="px-5 py-2 text-xs font-semibold tracking-[0.12em] text-white !shadow-none"
+                >
+                  Discuss your project
+                </ShimmerButton>
+              </Link>
+            </div>
+          </Card>
         </div>
+        <Card className="relative mt-10 flex h-full flex-col no-scroll-glow pricing-card pricing-card-featured-shine pricing-card-featured-shine-muted lg:mx-auto lg:max-w-3xl">
+          <h3 className="text-lg font-semibold text-accent-2">{customPackage.title}</h3>
+          <p className="mt-4 text-2xl font-semibold text-accent">Let's chat</p>
+          <p className="mt-4 text-sm text-text-muted">{customPackage.description}</p>
+          <p className="mt-4 text-sm text-text-muted">
+            Advanced builds are scoped per project. We will clarify your requirements, then provide
+            a clear proposal and timeline.
+          </p>
+          <div className="mt-8">
+            <Link to="/contact">
+              <ShimmerButton
+                shimmerColor="#0b1212"
+                shimmerDuration="4.2s"
+                background="#22f1d6"
+                className="px-5 py-2 text-xs font-semibold tracking-[0.12em] text-black"
+              >
+                Request a custom scope
+              </ShimmerButton>
+            </Link>
+          </div>
+        </Card>
         <p className="mt-6 text-center text-sm text-text-muted">Final pricing depends on scope.</p>
       </Section>
 

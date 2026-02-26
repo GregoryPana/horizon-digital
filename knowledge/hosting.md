@@ -1,13 +1,11 @@
 # Managed Hosting
 
 ## Managed hosting
-**SCR 450 per month / SCR 4,800 per year**
+**SCR 250 per month / SCR 2,500 per year**
 
 Includes:
-- Secure hosting
-- SSL certificate
-- Daily backups
-- Monitoring
-- Technical maintenance
+- Secure website (SSL) and monitoring
+- Monthly analytics report
+- Backups
 
-You are free to host elsewhere if preferred.
+For advanced builds, hosting charges may differ.

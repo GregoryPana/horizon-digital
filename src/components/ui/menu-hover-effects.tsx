@@ -32,10 +32,23 @@ export default function NavMenu() {
     <nav className="nav-menu relative w-full">
       <button
         onClick={isMenuOpen ? closeMenu : openMenu}
-        className="nav-menu-button focus-ring rounded-full border border-accent/40 bg-bg-elev/80 px-5 py-2 text-xs uppercase tracking-[0.22em] text-text shadow-[0_0_12px_var(--glow)] lg:hidden"
+        className="nav-menu-button focus-ring inline-flex h-10 w-10 items-center justify-center rounded-full border border-accent/45 bg-bg-elev/90 text-text shadow-[0_0_12px_var(--glow)] lg:hidden"
         aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+        aria-expanded={isMenuOpen}
+        aria-controls="mobile-site-menu"
       >
-        {isMenuOpen ? "Close" : "Menu"}
+        {isMenuOpen ? (
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M6 6L18 18" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+            <path d="M18 6L6 18" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+          </svg>
+        ) : (
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M4 7H20" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+            <path d="M4 12H20" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+            <path d="M4 17H20" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+          </svg>
+        )}
       </button>
 
       <div
@@ -48,6 +61,7 @@ export default function NavMenu() {
       />
 
       <div
+        id="mobile-site-menu"
         className={
           `fixed left-1/2 top-24 z-40 w-[min(90vw,420px)] -translate-x-1/2 rounded-3xl border border-border bg-bg p-6 shadow-soft ` +
           `transition-all duration-300 lg:static lg:mt-0 lg:block lg:w-auto lg:translate-x-0 lg:border-none lg:bg-transparent lg:p-0 lg:shadow-none lg:transition-none ` +
@@ -56,7 +70,7 @@ export default function NavMenu() {
         }
         ref={menuRef}
       >
-        <ul className="flex flex-col items-start gap-4 lg:flex-row lg:items-center lg:gap-6 xl:gap-10">
+        <ul className="flex flex-col items-start gap-4 lg:flex-row lg:items-center lg:gap-4 xl:gap-6">
           {navLinks.map((item) => (
             <li key={item.path} className="list-none">
               <NavLink
@@ -76,7 +90,7 @@ export default function NavMenu() {
                 {({ isActive }) => (
                   <>
                     <span
-                      className={`nav-menu-item relative z-10 block whitespace-nowrap px-3 py-2 text-xs uppercase tracking-[0.18em] transition-colors duration-300 group-hover:text-accent ${
+                      className={`nav-menu-item relative z-10 block whitespace-nowrap px-3 py-2 text-sm uppercase tracking-[0.16em] transition-colors duration-300 group-hover:text-accent lg:px-2.5 lg:py-1.5 lg:text-[0.68rem] ${
                         isActive ? "" : ""
                       }`.trim()}
                     >

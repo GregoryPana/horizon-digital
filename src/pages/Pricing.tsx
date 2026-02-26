@@ -1,10 +1,10 @@
+import { useState } from "react";
+import { motion } from "framer-motion";
 import Card from "../components/Card";
 import Section from "../components/Section";
 import Seo from "../components/Seo";
 import {
   addOnItems,
-  carePlanNotes,
-  carePlans,
   customPackage,
   faqs,
   foundationPackage,
@@ -21,6 +21,20 @@ import { ShimmerButton } from "../components/ui/shimmer-button";
 import { Link } from "react-router-dom";
 
 export default function Pricing() {
+  const [hostingBilling, setHostingBilling] = useState<"monthly" | "annual">("monthly");
+
+  const normalizeFeature = (value: string) => value.trim().toLowerCase();
+  const foundationFeatureSet = new Set(foundationPackage.includes.map(normalizeFeature));
+  const starterFeatureSet = new Set(starterPackage.includes.map(normalizeFeature));
+
+  const starterUniqueIncludes = starterPackage.includes.filter(
+    (item) => !foundationFeatureSet.has(normalizeFeature(item))
+  );
+
+  const growthUniqueIncludes = growthPackage.includes.filter(
+    (item) => !starterFeatureSet.has(normalizeFeature(item))
+  );
+
   const packageOffers = [foundationPackage, starterPackage, growthPackage]
     .map((pkg) => {
       const priceValue = pkg.price.replace(/[^\d]/g, "");
@@ -75,7 +89,7 @@ export default function Pricing() {
       <h1 className="sr-only">Services & Pricing</h1>
       <Seo
         title="Website Design Pricing in Seychelles"
-        description="Clear packages, add-ons, hosting, and care plans for Seychelles businesses."
+        description="Clear packages, add-ons, and hosting for Seychelles businesses."
         path="/services-pricing"
         keywords="website pricing Seychelles"
         structuredData={[serviceSchema, faqSchema]}
@@ -89,24 +103,63 @@ export default function Pricing() {
       </Section>
 
       <Section
+        eyebrow="Website basics"
+        title="What you are really getting"
+        description="A website always includes three parts: the build, the name, and the hosting."
+      >
+        <div className="section-band section-band-strong relative left-1/2 right-1/2 -mx-[50vw] my-8 w-screen py-16 md:my-10 md:py-20">
+          <div className="mx-auto grid w-full max-w-7xl gap-8 px-5 sm:px-8 md:grid-cols-3">
+            <div>
+            <h3 className="text-base font-semibold text-accent-2">Design and build</h3>
+            <p className="mt-3 text-sm text-text-muted">
+              This is how your website looks, reads, and guides people to contact you. Horizon Digital
+              plans and builds this part with you, so it feels clear, professional, and easy to use.
+            </p>
+            </div>
+            <div>
+            <h3 className="text-base font-semibold text-accent-2">Domain name</h3>
+            <p className="mt-3 text-sm text-text-muted">
+              Your domain is your website name, like yourbusiness.com. It is rented yearly through a
+              domain registrar. This is separate from Horizon Digital, but we can help you choose and
+              set it up correctly.
+            </p>
+            </div>
+            <div>
+            <h3 className="text-base font-semibold text-accent-2">Hosting</h3>
+            <p className="mt-3 text-sm text-text-muted">
+              Hosting is what keeps your website live on the internet every day. You can host with
+              Horizon Digital or another provider. We can manage it for you to keep things simple.
+            </p>
+            </div>
+          </div>
+          <p className="mx-auto mt-8 w-full max-w-7xl px-5 text-sm text-text-muted sm:px-8">
+            If you want one team to handle everything from build to launch, Horizon Digital can guide
+            you through each step and keep the process stress-free.
+          </p>
+        </div>
+      </Section>
+
+      <Section
         eyebrow="How it works"
         title="How your project works"
         description="A simple, structured process from start to launch."
       >
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-5">
+        <div className="section-band section-band-medium relative left-1/2 right-1/2 -mx-[50vw] my-8 w-screen py-16 md:my-10 md:py-20">
+          <div className="mx-auto grid w-full max-w-7xl gap-8 px-5 sm:px-8 md:grid-cols-2 lg:grid-cols-5">
           {projectSteps.map((step, index) => (
-            <Card key={step.title}>
+            <div key={step.title} className="min-w-0">
               <p className="text-xs uppercase tracking-[0.4em] text-accent">Step {index + 1}</p>
               <h3 className="mt-3 text-lg font-semibold text-text">{step.title}</h3>
               <p className="mt-3 text-sm text-text-muted">{step.description}</p>
-            </Card>
+            </div>
           ))}
+          </div>
         </div>
       </Section>
 
       <Section
         eyebrow="Packages"
-        title="Choose the right package"
+        title="Choose the right package for your business"
         description="Foundation, Starter, and Growth side by side for a clear comparison."
       >
         <div className="grid items-stretch gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -121,7 +174,7 @@ export default function Pricing() {
               <ul className="space-y-3 mb-8">
                 {foundationPackage.includes.map((item) => (
                   <li key={item} className="flex items-center gap-2">
-                    <span className="h-2 w-2 rounded-full bg-accent" />
+                    <span className="text-accent">✓</span>
                     {item}
                   </li>
                 ))}
@@ -158,50 +211,44 @@ export default function Pricing() {
             </div>
           </Card>
 
-          <Card className="relative flex h-full flex-col no-scroll-glow pricing-card pricing-card-featured">
-            <span className="absolute -top-3 left-6 rounded-full border border-accent/40 bg-bg px-3 py-1 text-[0.65rem] uppercase tracking-[0.28em] text-accent">
-              Most popular
-            </span>
-            <h3 className="text-lg font-semibold text-accent-2">{starterPackage.title}</h3>
-            <p className="mt-4 text-2xl font-semibold text-accent">{starterPackage.price}</p>
-            <div className="mt-3 min-h-[120px] text-sm text-text-muted md:min-h-[140px]">
-              <p>{starterPackage.description}</p>
-              <p className="mt-3 font-medium text-text">
-                Ideal for cafes, guesthouses, salons, small shops, consultants, and trades. Up to 5
-                pages.
-              </p>
-              <p className="mt-3">Includes core build essentials.</p>
-            </div>
-            <div className="mt-6 space-y-3 text-sm text-text-muted">
-              <ul className="space-y-3">
-                {starterPackage.includes.map((item) => (
-                  <li key={item} className="flex items-center gap-2">
-                    <span className="h-2 w-2 rounded-full bg-accent" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="mt-auto pt-10">
-              <p className="text-xs uppercase tracking-[0.3em] text-text-muted">Payment terms</p>
-              <ul className="mt-4 space-y-2 text-sm text-text-muted">
-                {starterPackage.paymentTerms.map((term) => (
-                  <li key={term}>{term}</li>
-                ))}
-              </ul>
-              <div className="mt-8">
-                <Link to="/contact?budget=15000-30000">
-                  <ShimmerButton
-                    shimmerColor="#0b1212"
-                    shimmerDuration="4.2s"
-                    background="#22f1d6"
-                    className="px-5 py-2 text-xs font-semibold tracking-[0.12em] text-black"
-                  >
-                    Discuss your project
-                  </ShimmerButton>
-                </Link>
+          <Card className="relative flex h-full flex-col overflow-visible pt-8 no-scroll-glow pricing-card pricing-card-featured pricing-card-featured-shine">
+              <h3 className="text-lg font-semibold text-accent-2">{starterPackage.title}</h3>
+              <p className="mt-4 text-2xl font-semibold text-accent">{starterPackage.price}</p>
+              <div className="mt-3 min-h-[120px] text-sm text-text-muted md:min-h-[140px]">
+                <p>{starterPackage.description}</p>
+                <p className="mt-3">Includes core build essentials.</p>
               </div>
-            </div>
+              <div className="mt-6 space-y-3 text-sm text-text-muted">
+                <p className="text-sm font-medium text-text">Includes everything in Foundation, plus:</p>
+                <ul className="space-y-3">
+                  {starterUniqueIncludes.map((item) => (
+                    <li key={item} className="flex items-center gap-2">
+                      <span className="text-accent">✓</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="mt-auto pt-10">
+                <p className="text-xs uppercase tracking-[0.3em] text-text-muted">Payment terms</p>
+                <ul className="mt-4 space-y-2 text-sm text-text-muted">
+                  {starterPackage.paymentTerms.map((term) => (
+                    <li key={term}>{term}</li>
+                  ))}
+                </ul>
+                <div className="mt-8">
+                  <Link to="/contact?budget=15000-30000">
+                    <ShimmerButton
+                      shimmerColor="#0b1212"
+                      shimmerDuration="4.2s"
+                      background="#22f1d6"
+                      className="px-5 py-2 text-xs font-semibold tracking-[0.12em] text-black"
+                    >
+                      Discuss your project
+                    </ShimmerButton>
+                  </Link>
+                </div>
+              </div>
           </Card>
 
           <Card className="flex h-full flex-col no-scroll-glow pricing-card">
@@ -209,17 +256,13 @@ export default function Pricing() {
             <p className="mt-4 text-2xl font-semibold text-accent">{growthPackage.price}</p>
             <div className="mt-3 min-h-[120px] text-sm text-text-muted md:min-h-[140px]">
               <p>{growthPackage.description}</p>
-              <p className="mt-3 font-medium text-text">
-                Ideal for law firms, construction companies, clinics, tour operators, and
-                expanding hospitality businesses. Up to 10-12 pages.
-              </p>
-              <p className="mt-3">Includes everything in Starter, plus:</p>
             </div>
             <div className="mt-6 space-y-3 text-sm text-text-muted">
+              <p className="text-sm font-medium text-text">Includes everything in Starter, plus:</p>
               <ul className="space-y-3">
-                {growthPackage.includes.map((item) => (
+                {growthUniqueIncludes.map((item) => (
                   <li key={item} className="flex items-center gap-2">
-                    <span className="h-2 w-2 rounded-full bg-accent" />
+                    <span className="text-accent">✓</span>
                     {item}
                   </li>
                 ))}
@@ -248,7 +291,7 @@ export default function Pricing() {
           </Card>
         </div>
         <div className="mt-10 horizon-line" />
-        <Card className="mt-10 flex h-full flex-col pricing-pop pricing-pop-soft">
+        <Card className="relative mt-10 flex h-full flex-col no-scroll-glow pricing-card pricing-card-featured-shine pricing-card-featured-shine-muted">
           <h3 className="text-lg font-semibold text-accent-2">{customPackage.title}</h3>
           <p className="mt-4 text-2xl font-semibold text-accent">Let's chat</p>
           <p className="mt-4 text-sm text-text-muted">{customPackage.description}</p>
@@ -275,37 +318,111 @@ export default function Pricing() {
       </Section>
 
       <Section
-        eyebrow="Add-ons"
-        title="Optional add-ons"
-        description="All add-ons are clearly scoped before work begins."
+        eyebrow="Managed hosting"
+        title={hostingPlan.title}
+        description="One clear plan to keep your website secure and running smoothly."
       >
-        <div className="grid gap-6 md:grid-cols-2">
-          {addOnItems.map((item) => (
-            <Card key={item.title}>
-              <h3 className="text-base font-semibold text-accent-2">{item.title}</h3>
-              <p className="mt-3 text-sm text-accent">{item.price}</p>
-            </Card>
-          ))}
+        <div className="mx-auto w-full max-w-5xl">
+          <Card className="!rounded-2xl no-scroll-glow pricing-card">
+            <div className="grid items-start gap-8 p-5 sm:p-8 md:grid-cols-2 md:gap-10 md:p-12">
+              <div className="flex flex-col items-center pb-10 text-center md:pb-0 md:px-10 md:border-r md:border-[color:var(--split-line)]">
+                <div className="relative mx-auto mb-6 grid w-full max-w-[17rem] grid-cols-2 rounded-full border border-border bg-bg-elev p-1">
+                  <motion.span
+                    aria-hidden="true"
+                    animate={{ x: hostingBilling === "monthly" ? "0%" : "100%" }}
+                    transition={{ type: "spring", stiffness: 420, damping: 32, mass: 0.7 }}
+                    className="pointer-events-none absolute left-1 top-1 h-[calc(100%-0.5rem)] w-[calc(50%-0.25rem)] rounded-full bg-accent"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setHostingBilling("monthly")}
+                    className={`relative z-10 whitespace-nowrap rounded-full px-3 py-2 text-[0.62rem] font-semibold uppercase tracking-[0.08em] transition-colors duration-300 sm:px-4 sm:text-xs sm:tracking-[0.16em] ${
+                      hostingBilling === "monthly" ? "text-black" : "text-text-muted hover:text-text"
+                    }`.trim()}
+                  >
+                    Monthly
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setHostingBilling("annual")}
+                    className={`relative z-10 whitespace-nowrap rounded-full px-3 py-2 text-[0.62rem] font-semibold uppercase tracking-[0.08em] transition-colors duration-300 sm:px-4 sm:text-xs sm:tracking-[0.16em] ${
+                      hostingBilling === "annual" ? "text-black" : "text-text-muted hover:text-text"
+                    }`.trim()}
+                  >
+                    Annual
+                  </button>
+                </div>
+                <div className="mb-2 min-h-[1.75rem]">
+                  {hostingBilling === "annual" ? (
+                    <motion.span
+                      initial={{ opacity: 0, y: -6 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.22, ease: "easeOut" }}
+                      className="inline-flex items-center rounded-full border border-accent/45 bg-accent-soft px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-accent"
+                    >
+                      Save 16%
+                    </motion.span>
+                  ) : null}
+                </div>
+                <h3 className="text-3xl font-semibold text-accent-2">Hosting Plan</h3>
+                <p className="mt-3 text-lg text-text-muted">For Business Websites of any size</p>
+                <p className="mb-6 mt-10 flex w-full min-h-[4.1rem] items-end justify-center gap-2 text-[clamp(2.55rem,12vw,4.5rem)] font-bold tabular-nums text-accent sm:min-h-[5rem] md:min-h-[5.75rem] md:text-7xl">
+                  <span className="text-[clamp(1.45rem,6.5vw,2.25rem)]">SCR</span>
+                  <motion.span
+                    layout
+                    transition={{ type: "spring", stiffness: 380, damping: 30, mass: 0.7 }}
+                    className="inline-block leading-none"
+                  >
+                    {hostingBilling === "monthly" ? "250" : "2,500"}
+                  </motion.span>
+                </p>
+                <p className="min-h-[1.25rem] text-sm text-text-muted">
+                  {hostingBilling === "monthly" ? "Billed monthly" : "Billed annually"}
+                </p>
+                <div className="mt-8 flex justify-center">
+                  <Link to="/contact">
+                    <ShimmerButton
+                      shimmerColor="#0b1212"
+                      shimmerDuration="4.2s"
+                      background="#22f1d6"
+                      className="px-6 py-2.5 text-sm font-semibold text-black"
+                    >
+                      Get started
+                    </ShimmerButton>
+                  </Link>
+                </div>
+              </div>
+              <div className="md:px-10">
+                <ul className="space-y-4 text-base text-text">
+                  {hostingPlan.features.map((feature) => (
+                    <li key={feature} className="flex items-start gap-3">
+                      <span className="mt-0.5 text-accent">✓</span>
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+                <p className="mt-8 text-sm text-text-muted">{hostingPlan.note}</p>
+              </div>
+            </div>
+          </Card>
         </div>
       </Section>
 
       <Section
-        eyebrow="Managed hosting"
-        title={hostingPlan.title}
-        description="Hosting that keeps your site secure and stable."
+        eyebrow="Add-ons"
+        title="Optional add-ons"
+        description="All add-ons are clearly scoped before work begins, if not included in selected tier."
       >
-        <Card className="pricing-pop pricing-pop-soft">
-          <p className="text-2xl font-semibold text-accent">{hostingPlan.price}</p>
-          <ul className="mt-6 grid gap-4 text-sm text-text-muted sm:grid-cols-2">
-            {hostingPlan.features.map((feature) => (
-              <li key={feature} className="flex items-center gap-2">
-                <span className="h-2 w-2 rounded-full bg-accent" />
-                {feature}
-              </li>
-            ))}
-          </ul>
-          <p className="mt-6 text-sm text-text-muted">{hostingPlan.note}</p>
-        </Card>
+        <div className="section-band section-band-soft relative left-1/2 right-1/2 -mx-[50vw] my-8 w-screen py-14 md:my-10 md:py-16">
+          <div className="mx-auto grid w-full max-w-7xl gap-x-10 gap-y-5 px-5 sm:px-8 md:grid-cols-2">
+          {addOnItems.map((item) => (
+            <div key={item.title}>
+              <h3 className="text-base font-semibold text-accent-2">{item.title}</h3>
+              <p className="mt-2 text-sm text-accent">{item.price}</p>
+            </div>
+          ))}
+          </div>
+        </div>
       </Section>
 
       <Section
@@ -342,63 +459,6 @@ export default function Pricing() {
       </Section>
 
       <Section
-        eyebrow="Ongoing care"
-        title="Ongoing Care Plans"
-        description="Care plans help keep your website secure and gradually improving over time."
-      >
-        <div className="grid gap-10 lg:grid-cols-3">
-          {carePlans.map((plan) => (
-            <Card key={plan.title} className="pricing-pop pricing-pop-soft">
-              <h3 className="text-lg font-semibold text-accent-2">{plan.title}</h3>
-              <p className="mt-4 text-2xl font-semibold text-accent">{plan.price}</p>
-              <ul className="mt-6 space-y-3 text-sm text-text-muted">
-                {plan.features.map((feature) => (
-                  <li key={feature} className="flex items-center gap-2">
-                    <span className="h-2 w-2 rounded-full bg-accent" />
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-              {plan.note && <p className="mt-6 text-sm text-text-muted">{plan.note}</p>}
-            </Card>
-          ))}
-        </div>
-        <div className="mt-8 text-sm text-text-muted">
-          {carePlanNotes.map((note) => (
-            <p key={note}>{note}</p>
-          ))}
-        </div>
-      </Section>
-
-      <Section
-        eyebrow="Ad-hoc support"
-        title="Ad-hoc Support"
-        description="For clients not on a care plan."
-      >
-        <Card className="pricing-pop pricing-pop-soft">
-          <p className="text-2xl font-semibold text-accent">SCR 1,200 per hour</p>
-          <ul className="mt-6 space-y-3 text-sm text-text-muted">
-            <li className="flex items-start gap-2">
-              <span className="mt-1.5 h-2 w-2 rounded-full bg-accent" />
-              Available for clients not on a care plan
-            </li>
-            <li className="flex items-start gap-2">
-              <span className="mt-1.5 h-2 w-2 rounded-full bg-accent" />
-              All work scoped and approved before starting
-            </li>
-            <li className="flex items-start gap-2">
-              <span className="mt-1.5 h-2 w-2 rounded-full bg-accent" />
-              Subject to scheduling availability
-            </li>
-            <li className="flex items-start gap-2">
-              <span className="mt-1.5 h-2 w-2 rounded-full bg-accent" />
-              Care plan clients receive priority scheduling
-            </li>
-          </ul>
-        </Card>
-      </Section>
-
-      <Section
         eyebrow="Trust"
         title="Clear scope. Clear outcomes."
         description="We keep everything transparent from day one."
@@ -413,6 +473,27 @@ export default function Pricing() {
             ))}
           </ul>
         </Card>
+      </Section>
+
+      <Section
+        eyebrow="Performance & Visibility"
+        title="Built to look good and be found"
+        description="We focus on speed, clarity, and helping people discover your business online."
+      >
+        <div className="section-band section-band-medium relative left-1/2 right-1/2 -mx-[50vw] my-8 w-screen py-14 md:my-10 md:py-16">
+          <div className="mx-auto w-full max-w-7xl px-8">
+            <p className="max-w-4xl text-sm leading-7 text-text">
+              A beautiful website should also be fast and easy to find. Horizon Digital prioritises
+              clean structure, quick loading pages, clear page content, and strong setup for search
+              visibility so customers can discover your business more easily. In simple terms, we help
+              your website look professional, load smoothly, and show up better when people search.
+            </p>
+            <p className="mt-6 text-base font-medium text-accent-2">
+              Do you want a beautiful, fast website? Are you ready to take this next step towards
+              the horizon of your digital journey?
+            </p>
+          </div>
+        </div>
       </Section>
 
       <section className="bg-bg-elev">

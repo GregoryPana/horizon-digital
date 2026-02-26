@@ -19,7 +19,7 @@ export default function Section({
 }: SectionProps) {
   return (
     <section id={id} className={`pt-16 pb-24 md:pt-24 md:pb-40 ${className ?? ""}`.trim()}>
-      <div className="mx-auto w-full max-w-7xl px-8">
+      <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
         {(eyebrow || title || description) && (
           <div className="mb-14 max-w-2xl">
             {eyebrow && (

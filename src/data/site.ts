@@ -1,12 +1,16 @@
 import guesthousePreview from "../assets/work/drake-seaside/drake-seaside 2.png";
 import guesthousePreviewWebp from "../assets/work/drake-seaside/drake-seaside 2.webp";
+import guesthousePreviewWebp800 from "../assets/work/drake-seaside/drake-seaside 2-800.webp";
 import ogImage from "../assets/logo/Horizon Digital crop.jpg";
 import cafePreview from "../assets/work/demos/cafe.jpg";
 import cafePreviewWebp from "../assets/work/demos/cafe.webp";
+import cafePreviewWebp800 from "../assets/work/demos/cafe-800.webp";
 import consultingPreview from "../assets/work/demos/consulting.jpg";
 import consultingPreviewWebp from "../assets/work/demos/consulting.webp";
+import consultingPreviewWebp800 from "../assets/work/demos/consulting-800.webp";
 import seykelzPreview from "../assets/work/seykelz/seykelz.png";
 import seykelzPreviewWebp from "../assets/work/seykelz/seykelz.webp";
+import seykelzPreviewWebp800 from "../assets/work/seykelz/seykelz-800.webp";
 
 export const siteConfig = {
   name: "Horizon Digital",
@@ -109,17 +113,18 @@ export const servicesPricingIntro = {
 
 export const foundationPackage = {
   title: "Foundation",
-  price: "From SCR 9,500",
+  price: "From SCR 7,500",
   description:
-    "For businesses that need a simple, professional online presence using a structured Horizon Digital layout. Up to 3 pages.",
+    "For businesses that need a simple, professional online presence using a structured Horizon Digital layout.",
   includes: [
+    "Up to 3 pages",
     "Choice of predefined Horizon Digital layout",
     "Mobile-friendly design",
     "Contact form",
     "WhatsApp integration (if required)",
-    "Google Maps embed",
+    "Google Maps",
     "1 structured revision round",
-    "30-day post-launch stabilisation",
+    "30-day post-launch support",
   ],
   paymentTerms: ["50% deposit", "50% before launch"],
   exclusions: [
@@ -130,39 +135,38 @@ export const foundationPackage = {
 
 export const starterPackage = {
   title: "Starter",
-  price: "From SCR 15,000",
+  price: "From SCR 12,500",
   description: "For small businesses needing a professional online presence.",
   includes: [
+    "Up to 5 pages",
     "Custom design (not a template)",
     "Mobile-first layout",
     "Contact form",
     "WhatsApp integration (if required)",
-    "Google Maps integration",
+    "Google Maps",
     "Social media integration",
     "Google Analytics setup",
     "2 revision rounds",
-    "30-day stabilisation",
+    "30-day post-launch support",
   ],
   paymentTerms: ["50% deposit", "50% on launch"],
 };
 
 export const growthPackage = {
   title: "Growth",
-  price: "From SCR 30,000",
+  price: "From SCR 25,000",
   description: "For established businesses needing more structure and flexibility.",
   includes: [
+    "Up to 10-12 pages",
     "Expanded service structure",
     "Testimonials",
     "Team section (if required)",
-    "Blog capability",
     "Portfolio/gallery",
     "Multi-step enquiry form",
     "Google Business setup assistance",
-    "Newsletter integration",
-    "Full search structure",
     "Sitemap submission",
     "3 revision rounds",
-    "60-day support",
+    "60-day post-launch support",
   ],
   paymentTerms: ["40% deposit", "40% at design approval", "20% on launch"],
 };
@@ -174,25 +178,23 @@ export const customPackage = {
 };
 
 export const addOnItems = [
-  { title: "Additional page", price: "SCR 2,000 - 3,500" },
-  { title: "Content writing support", price: "SCR 1,200 - 2,500 per page" },
-  { title: "Structured booking / enquiry form", price: "SCR 3,000 - 6,000" },
-  { title: "Google Business Profile setup", price: "SCR 2,500 - 4,000" },
+  { title: "Additional page", price: "SCR 2,500 per page" },
+  { title: "Content writing support", price: "SCR 600 per page" },
+  { title: "Structured booking / enquiry form", price: "SCR 2,000" },
+  { title: "Google Business Profile setup", price: "SCR 2,200" },
   { title: "Website speed & performance audit", price: "SCR 3,000 - 5,000" },
-  { title: "Rush delivery", price: "+40%, subject to availability" },
+  { title: "Rush delivery", price: "+40% (subject to availability)" },
 ];
 
 export const hostingPlan = {
   title: "Managed hosting",
-  price: "SCR 450 per month / SCR 4,800 per year",
+  price: "SCR 250 per month / SCR 2,500 per year",
   features: [
-    "Secure hosting",
-    "SSL certificate",
-    "Daily backups",
-    "Monitoring",
-    "Technical maintenance",
+    "Secure website (SSL) and monitoring",
+    "Monthly analytics report",
+    "Backups",
   ],
-  note: "You are free to host elsewhere if preferred.",
+  note: "For advanced builds, hosting charges may differ.",
 };
 
 export const stabilisationPlan = {
@@ -250,6 +252,7 @@ export const workItems = [
     outcome: "Redesign with new pages, updated content, faster load times, and higher click-through conversions.",
     image: guesthousePreview,
     imageWebp: guesthousePreviewWebp,
+    imageWebp800: guesthousePreviewWebp800,
     url: "https://thedrake-seaside.com/",
   },
   {
@@ -259,6 +262,7 @@ export const workItems = [
       "Foundation-tier website for a Seychelles toner cartridge store selling genuine and compatible supplies for HP, Epson, and Canon printers.",
     image: seykelzPreview,
     imageWebp: seykelzPreviewWebp,
+    imageWebp800: seykelzPreviewWebp800,
     url: "https://sey-kelz.horizondigitalsey.com/",
   },
   {
@@ -267,6 +271,7 @@ export const workItems = [
     outcome: "Mobile-first story with location details",
     image: cafePreview,
     imageWebp: cafePreviewWebp,
+    imageWebp800: cafePreviewWebp800,
   },
   {
     label: "Consulting",
@@ -274,6 +279,7 @@ export const workItems = [
     outcome: "Clear contact flow for new enquiries",
     image: consultingPreview,
     imageWebp: consultingPreviewWebp,
+    imageWebp800: consultingPreviewWebp800,
   },
 ];
 
@@ -299,18 +305,19 @@ export const processSteps = [
 export const pricingTiers = [
   {
     title: "Foundation",
-    price: "From SCR 9,500",
-  description:
-    "For businesses that need a simple, professional online presence using a structured layout. Up to 3 pages.",
-  features: [
-    "Choice of predefined Horizon Digital layout",
-    "Mobile-friendly design",
-    "Contact form",
-    "WhatsApp integration (if required)",
-    "Google Maps embed",
-    "1 structured revision round",
-    "30-day post-launch stabilisation",
-  ],
+    price: "From SCR 7,500",
+    description:
+      "For businesses that need a simple, professional online presence using a structured layout.",
+    features: [
+      "Up to 3 pages",
+      "Choice of predefined Horizon Digital layout",
+      "Mobile-friendly design",
+      "Contact form",
+      "WhatsApp integration (if required)",
+      "Google Maps",
+      "1 structured revision round",
+      "30-day post-launch support",
+    ],
     exclusions: [
       "Layout structure cannot be modified",
       "Design customisation is limited to colours, logo, and content",
@@ -318,39 +325,38 @@ export const pricingTiers = [
   },
   {
     title: "Starter",
-    price: "From SCR 15,000",
+    price: "From SCR 12,500",
     description: "For small businesses needing a professional online presence.",
     badge: "Most popular",
-  features: [
-    "Custom design (not a template)",
-    "Mobile-first layout",
-    "Contact form",
-    "WhatsApp integration (if required)",
-    "Google Maps integration",
-    "Social media integration",
-    "Google Analytics setup",
-    "2 revision rounds",
-    "30-day stabilisation",
-  ],
-    exclusions: ["Hosting", "Ongoing updates beyond stabilisation", "Advanced integrations"],
+    features: [
+      "Up to 5 pages",
+      "Custom design (not a template)",
+      "Mobile-first layout",
+      "Contact form",
+      "WhatsApp integration (if required)",
+      "Google Maps",
+      "Social media integration",
+      "Google Analytics setup",
+      "2 revision rounds",
+      "30-day post-launch support",
+    ],
+    exclusions: ["Hosting", "Ongoing updates beyond support period", "Advanced integrations"],
   },
   {
     title: "Growth",
-    price: "From SCR 30,000",
+    price: "From SCR 25,000",
     description: "For established businesses needing more structure and flexibility.",
     features: [
+      "Up to 10-12 pages",
       "Expanded service structure",
       "Testimonials",
       "Team section (if required)",
-      "Blog capability",
       "Portfolio/gallery",
       "Multi-step enquiry form",
       "Google Business setup assistance",
-      "Newsletter integration",
-      "Full search structure",
       "Sitemap submission",
       "3 revision rounds",
-      "60-day support",
+      "60-day post-launch support",
     ],
     exclusions: ["Hosting", "Ongoing feature development", "Complex integrations"],
   },
@@ -385,8 +391,14 @@ export const faqs = [
     answer: "Absolutely. You own the final codebase and assets once the project closes.",
   },
   {
-    question: "Can you handle updates after launch?",
-    answer: "Yes. Ongoing support is available if you want it.",
+    question: "Who controls my domain name?",
+    answer:
+      "Your domain name is managed through a domain registrar and renewed yearly. It is not controlled by Horizon Digital, but we can help you set it up and manage renewals.",
+  },
+  {
+    question: "What is hosting and who provides it?",
+    answer:
+      "Hosting keeps your website live on the internet. You can host with Horizon Digital or use another hosting provider if you prefer.",
   },
   {
     question: "How many revisions are included?",

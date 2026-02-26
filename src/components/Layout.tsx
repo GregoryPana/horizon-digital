@@ -1,7 +1,8 @@
-import { ReactNode, useEffect, useRef } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
+import { scrollToTopSmooth } from "../lib/utils";
 
 type LayoutProps = {
   children: ReactNode;
@@ -10,6 +11,7 @@ type LayoutProps = {
 export default function Layout({ children }: LayoutProps) {
   const location = useLocation();
   const mainRef = useRef<HTMLElement | null>(null);
+  const [showTopButton, setShowTopButton] = useState(false);
 
   useEffect(() => {
     let frameId: number | null = null;
@@ -93,6 +95,13 @@ export default function Layout({ children }: LayoutProps) {
     window.scrollTo({ top: 0, left: 0, behavior: prefersReducedMotion ? "auto" : "smooth" });
   }, [location.pathname]);
 
+  useEffect(() => {
+    const onScroll = () => setShowTopButton(window.scrollY > 360);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <div className="flex min-h-screen flex-col bg-bg text-text">
       <Navbar />
@@ -103,6 +112,16 @@ export default function Layout({ children }: LayoutProps) {
         {children}
       </main>
       <Footer />
+      <button
+        type="button"
+        onClick={scrollToTopSmooth}
+        className={`focus-ring fixed bottom-4 right-4 z-[70] inline-flex h-10 w-10 items-center justify-center rounded-full border border-accent/45 bg-bg-elev text-accent shadow-[0_0_12px_var(--glow)] transition duration-300 hover:bg-accent-soft ${
+          showTopButton ? "opacity-100" : "pointer-events-none opacity-0"
+        }`.trim()}
+        aria-label="Back to top"
+      >
+        ↑
+      </button>
     </div>
   );
 }
