@@ -87,9 +87,8 @@ Advanced builds are scoped per project. We clarify your requirements, then provi
 Ongoing care plans are no longer offered.
 
 ## Add-ons
-- Additional page: SCR 2,000 - 3,500
-- Content writing support: SCR 1,200 - 2,500 per page
-- Structured booking / enquiry form: SCR 3,000 - 6,000
-- Google Business Profile setup: SCR 2,500 - 4,000
-- Website speed & performance audit: SCR 3,000 - 5,000
+- Additional page: SCR 2,000 per page
+- Content writing support: SCR 600 per page
+- Structured booking / enquiry form: SCR 1,500
+- Google Business Profile setup: SCR 2,500 - 2,200
 - Rush delivery: +40%, subject to availability
