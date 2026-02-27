@@ -119,7 +119,7 @@ export default function InfiniteHero() {
             ref={h1Ref}
             className="mx-auto mt-6 max-w-3xl text-[clamp(2.35rem,5.4vw,4rem)] font-light leading-[0.98] tracking-tight md:mt-10"
           >
-            <span className="block font-normal leading-[0.92] md:leading-[0.98]">
+            <span className="hero-title-prefix block font-normal leading-[0.92] md:leading-[0.98]">
               Empowering Your
             </span>
             <span className="hero-glow-text text-accent">Digital Horizon</span>
@@ -128,17 +128,20 @@ export default function InfiniteHero() {
             ref={pRef}
             className="mx-auto mt-6 max-w-2xl text-sm/7 md:text-base/7 font-light tracking-tight text-text/80"
           >
-            <span className="block">Modern, high-performance websites,</span>
-            <span className="block">built for clarity, speed, and conversion.</span>
+            <span className="block">
+              <span className="hero-subline-emphasis">Modern,</span>{" "}
+              <span className="hero-subline-emphasis">high-performance websites,</span>
+            </span>
+            <span className="hero-support-line block">built for clarity, speed, and conversion.</span>
           </p>
 
           <div className="mt-6 flex flex-col items-center">
             <div className="h-px w-20 bg-gradient-to-r from-transparent via-accent/50 to-transparent" />
-            <div className="mt-4 flex items-center justify-center gap-2 text-xs uppercase tracking-[0.32em] text-text/70">
+            <div className="hero-trust-row mt-4 flex items-center justify-center gap-2 text-xs uppercase tracking-[0.32em] text-text/70">
               <span>Fast</span>
-              <span className="text-[10px] text-accent-2">•</span>
+              <span className="hero-trust-dot text-[10px] text-accent-2">•</span>
               <span>Secure</span>
-              <span className="text-[10px] text-accent-2">•</span>
+              <span className="hero-trust-dot text-[10px] text-accent-2">•</span>
               <span>Optimized</span>
             </div>
           </div>
@@ -160,7 +163,7 @@ export default function InfiniteHero() {
               variant="primary"
               size="lg"
               onClick={handleWorkScrollTop}
-              className="w-full bg-accent-2 text-black shadow-none hover:bg-[#8f650b] hover:text-white sm:w-auto"
+              className="hero-work-cta w-full bg-accent-2 text-black shadow-none hover:bg-[#b78622] hover:text-black sm:w-auto"
             />
           </div>
         </div>

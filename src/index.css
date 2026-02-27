@@ -464,7 +464,24 @@ option {
   background-color: var(--band-soft);
 }
 
+html:not([data-theme="dark"]) .hero-work-cta {
+  background-color: #e0bb62;
+}
+
+html:not([data-theme="dark"]) .hero-work-cta:hover {
+  background-color: #cf9f3b;
+}
+
 @media (min-width: 768px) {
+  .hero-title-prefix,
+  .hero-subline-emphasis,
+  .hero-support-line,
+  .hero-subtext,
+  .hero-trust-row,
+  .hero-trust-dot {
+    color: #ffffff;
+  }
+
   html:not([data-theme="dark"]) .hero-veil-a {
     opacity: 0.68;
   }
@@ -484,9 +501,6 @@ option {
     );
   }
 
-  html:not([data-theme="dark"]) .hero-subtext {
-    color: rgba(11, 18, 18, 0.82);
-  }
 }
 
 @keyframes pricing-pop {
