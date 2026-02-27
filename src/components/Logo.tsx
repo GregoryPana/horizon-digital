@@ -4,13 +4,17 @@ import primaryLogo from "../assets/logo/Horizon Digital crop.jpg";
 type LogoProps = {
   imageSrc?: string;
   className?: string;
+  imageClassName?: string;
 };
 
-export default function Logo({ imageSrc, className }: LogoProps) {
+export default function Logo({ imageSrc, className, imageClassName }: LogoProps) {
   const wrapperClass = ["flex items-center gap-3", className]
     .filter(Boolean)
     .join(" ");
   const src = imageSrc ?? primaryLogo;
+  const imageClasses = ["h-10 w-auto rounded-md object-contain", imageClassName]
+    .filter(Boolean)
+    .join(" ");
 
   return (
     <div className={wrapperClass}>
@@ -20,7 +24,7 @@ export default function Logo({ imageSrc, className }: LogoProps) {
           alt={`${siteConfig.name} logo`}
           width={132}
           height={40}
-          className="h-10 w-auto rounded-md object-contain"
+          className={imageClasses}
         />
       ) : (
         <svg

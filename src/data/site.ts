@@ -52,8 +52,9 @@ export const emailTemplate = {
 
 export const navLinks = [
   { label: "Home", path: "/" },
-  { label: "Services & Pricing", path: "/services-pricing" },
+  { label: "What You Need", path: "/what-you-need" },
   { label: "Our Work", path: "/work" },
+  { label: "Services & Pricing", path: "/services-pricing" },
   { label: "About", path: "/about" },
   { label: "Contact", path: "/contact" },
 ];

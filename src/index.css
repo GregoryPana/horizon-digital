@@ -13,17 +13,17 @@
 
 :root {
   color-scheme: light;
-  --bg: #f4f8f7;
+  --bg: #eaf1f0;
   --bg-elev: rgba(255, 255, 255, 0.85);
   --bg-panel: rgba(229, 234, 236, 0.94);
   --text: #0b1212;
   --text-muted: rgba(11, 18, 18, 0.74);
-  --accent: #05c6b1;
-  --accent-2: #a9770f;
-  --accent-soft: rgba(5, 198, 177, 0.2);
-  --accent-2-soft: rgba(169, 119, 15, 0.24);
+  --accent: #22f1d6;
+  --accent-2: #f7d36b;
+  --accent-soft: rgba(34, 241, 214, 0.18);
+  --accent-2-soft: rgba(247, 211, 107, 0.2);
   --border: rgba(11, 18, 18, 0.24);
-  --glow: rgba(5, 198, 177, 0.4);
+  --glow: rgba(34, 241, 214, 0.55);
   --band-strong: #bfe8e0;
   --band-medium: #d1efe8;
   --band-soft: #e2f5f0;
@@ -178,7 +178,7 @@ body::after {
 }
 
 .hero-brand-glow {
-  text-shadow: 0 0 18px rgba(34, 241, 214, 0.6), 0 0 34px rgba(34, 241, 214, 0.3);
+  text-shadow: 0 0 14px rgba(10, 104, 94, 0.78), 0 0 28px rgba(7, 70, 63, 0.55);
 }
 
 .hero-subtext {
@@ -464,15 +464,108 @@ option {
   background-color: var(--band-soft);
 }
 
-html:not([data-theme="dark"]) .hero-work-cta {
-  background-color: #e0bb62;
+.gold-cta {
+  background-color: var(--accent-2);
+  color: #000000;
+  box-shadow: none;
 }
 
-html:not([data-theme="dark"]) .hero-work-cta:hover {
-  background-color: #cf9f3b;
+.gold-cta,
+.btn-primary,
+.cta-shimmer {
+  color: #000000;
+}
+
+@media (max-width: 767px) {
+  .hero-brand-glow {
+    text-shadow: 0 0 18px rgba(10, 104, 94, 0.85), 0 0 34px rgba(7, 70, 63, 0.62);
+  }
+
+  .hero-main-subtext {
+    text-shadow: 0 1px 12px rgba(0, 0, 0, 0.55);
+  }
+}
+
+html:not([data-theme="dark"]) :is(h1, h2, h3, h4, h5, h6).text-accent,
+html:not([data-theme="dark"]) :is(h1, h2, h3, h4, h5, h6) .text-accent,
+html:not([data-theme="dark"]) .section-eyebrow-glow,
+html:not([data-theme="dark"]) .hero-glow-text {
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.549), 0 0 2px rgba(0, 0, 0, 0.32);
+  font-size: 1.06em;
+}
+
+html:not([data-theme="dark"]) .btn-primary,
+html:not([data-theme="dark"]) .cta-shimmer {
+  box-shadow: 0 0 14px rgba(7, 70, 63, 0.26);
+}
+
+html:not([data-theme="dark"]) .btn-primary:hover,
+html:not([data-theme="dark"]) .cta-shimmer:hover {
+  box-shadow: 0 0 20px rgba(7, 70, 63, 0.34);
+}
+
+.site-header-dark {
+  --bg-elev: rgba(11, 25, 32, 0.82);
+  --border: rgba(222, 236, 235, 0.16);
+  --text: #f4fbfa;
+  --text-muted: rgba(222, 236, 235, 0.74);
+  --glow: rgba(34, 241, 214, 0.55);
 }
 
 @media (min-width: 768px) {
+  .site-header-dark {
+    background-color: #0b1920 !important;
+    border-color: rgba(222, 236, 235, 0.16) !important;
+    backdrop-filter: none !important;
+  }
+}
+
+.site-header-dark .header-control-dark {
+  border-color: rgba(222, 236, 235, 0.26);
+  background-color: rgba(11, 25, 32, 0.9);
+  color: #f4fbfa;
+}
+
+.site-header-dark .header-control-dark:hover {
+  border-color: #22f1d6;
+  background-color: rgba(34, 241, 214, 0.16);
+  color: #f4fbfa;
+}
+
+.site-header-dark .mobile-nav-dropdown {
+  background-color: rgba(11, 25, 32, 0.96);
+  border-color: rgba(222, 236, 235, 0.2);
+}
+
+@media (max-width: 767px) {
+  html:not([data-theme="dark"]) .hero-main-subtext {
+    color: #ffffff;
+  }
+}
+
+.gold-cta:hover,
+.btn-primary:hover,
+.cta-shimmer:hover {
+  color: #000000;
+}
+
+html:not([data-theme="dark"]) .btn-outline-gold {
+  background-color: var(--accent-2);
+  color: #000000;
+  border-color: rgba(169, 119, 15, 0.35);
+}
+
+html:not([data-theme="dark"]) .btn-outline-gold:hover {
+  background-color: #ddb14f;
+  color: #000000;
+  border-color: rgba(169, 119, 15, 0.42);
+}
+
+@media (min-width: 768px) {
+  .hero-main-subtext {
+    color: #ffffff;
+  }
+
   .hero-title-prefix,
   .hero-subline-emphasis,
   .hero-support-line,
@@ -589,6 +682,27 @@ html:not([data-theme="dark"]) .hero-work-cta:hover {
     opacity: 0.9;
     box-shadow: 0 0 34px rgba(34, 241, 214, 0.35);
   }
+}
+
+@keyframes pricing-glow-strong-dark {
+  0%,
+  80%,
+  100% {
+    opacity: 0;
+    box-shadow: 0 0 0 0 rgba(34, 241, 214, 0);
+  }
+  86% {
+    opacity: 1;
+    box-shadow: 0 0 40px rgba(34, 241, 214, 0.46);
+  }
+  97% {
+    opacity: 0.9;
+    box-shadow: 0 0 34px rgba(34, 241, 214, 0.34);
+  }
+}
+
+html[data-theme="dark"] .pricing-pop-strong::after {
+  animation-name: pricing-glow-strong-dark;
 }
 
 .preview-shimmer {

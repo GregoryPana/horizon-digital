@@ -21,10 +21,10 @@ const sizeClasses = {
 
 const variantClasses = {
   primary:
-    "bg-accent text-black shadow-glow hover:shadow-[0_0_36px_var(--glow)] focus-ring",
+    "btn-primary bg-accent text-black shadow-glow hover:shadow-[0_0_36px_var(--glow)] focus-ring",
   ghost: "bg-transparent text-text hover:text-accent focus-ring",
   outline:
-    "border border-accent-2 text-accent-2 hover:border-accent hover:text-accent focus-ring",
+    "btn-outline-gold border border-accent-2 text-accent-2 hover:border-accent hover:text-accent focus-ring",
 };
 
 export default function Button({
@@ -40,7 +40,7 @@ export default function Button({
   type = "button",
 }: ButtonProps) {
   const classes = [
-    "inline-flex items-center justify-center gap-2 rounded-full font-medium transition",
+    "btn inline-flex items-center justify-center gap-2 rounded-full font-medium transition",
     sizeClasses[size],
     variantClasses[variant],
     className,

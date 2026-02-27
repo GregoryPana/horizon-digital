@@ -5,6 +5,7 @@ import Modal from "../components/Modal";
 import Section from "../components/Section";
 import Seo from "../components/Seo";
 import InfiniteHero from "../components/ui/infinite-hero";
+import HomeFaq from "../components/ui/home-faq";
 import { ShimmerButton } from "../components/ui/shimmer-button";
 import { Link } from "react-router-dom";
 import { scrollToTopSmooth } from "../lib/utils";
@@ -14,12 +15,18 @@ import {
   foundationPackage,
   growthPackage,
   projectSteps,
+  siteConfig,
   starterPackage,
   workItems,
 } from "../data/site";
 
 export default function Home() {
   const [activeWork, setActiveWork] = useState<null | (typeof workItems)[0]>(null);
+  const [mobileOpen, setMobileOpen] = useState({
+    foundation: false,
+    starter: false,
+    growth: false,
+  });
   const handleWorkScrollTop = () => scrollToTopSmooth();
   const normalizeFeature = (value: string) => value.trim().toLowerCase();
   const foundationFeatureSet = new Set(foundationPackage.includes.map(normalizeFeature));
@@ -31,6 +38,20 @@ export default function Home() {
     (item) => !starterFeatureSet.has(normalizeFeature(item))
   );
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+    mainEntityOfPage: new URL("/", siteConfig.url).toString(),
+  };
+
   return (
     <div>
       <Seo
@@ -38,6 +59,7 @@ export default function Home() {
         description="Custom-built websites for Seychelles businesses. Clean, fast, and structured for clarity and results."
         path="/"
         keywords="Seychelles web design"
+        structuredData={faqSchema}
       />
       <InfiniteHero />
 
@@ -141,7 +163,12 @@ export default function Home() {
           ))}
         </div>
         <div className="mt-10 flex justify-center">
-          <Button label="View all work" to="/work" size="sm" onClick={handleWorkScrollTop} />
+          <Button
+            label="View all work"
+            to="/work"
+            size="sm"
+            onClick={handleWorkScrollTop}
+          />
         </div>
       </Section>
 
@@ -173,24 +200,42 @@ export default function Home() {
             <h3 className="text-lg font-semibold text-accent-2">{foundationPackage.title}</h3>
             <p className="mt-4 text-2xl font-semibold text-accent">{foundationPackage.price}</p>
             <p className="mt-3 text-sm text-text-muted">{foundationPackage.description}</p>
-            <div className="mt-6 space-y-3 text-sm text-text-muted">
-              <ul className="space-y-3 mb-8">
-                {foundationPackage.includes.map((item) => (
-                  <li key={item} className="flex items-center gap-2">
-                    <span className="text-accent">✓</span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <p className="text-xs uppercase tracking-[0.3em] text-text-muted">Not included</p>
-              <ul className="mt-4 space-y-2 text-sm text-text-muted">
-                {foundationPackage.exclusions.map((item) => (
-                  <li key={item} className="flex items-start gap-2">
-                    <span className="mt-1.5 h-2 w-2 rounded-full bg-accent" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
+            <button
+              type="button"
+              onClick={() =>
+                setMobileOpen((prev) => ({ ...prev, foundation: !prev.foundation }))
+              }
+              className="mt-4 inline-flex w-full items-center justify-between rounded-full border border-border px-4 py-2 text-xs uppercase tracking-[0.2em] text-text-muted md:hidden"
+            >
+              <span>View included items</span>
+              <span aria-hidden="true" className="text-accent">
+                {mobileOpen.foundation ? "-" : "+"}
+              </span>
+            </button>
+            <div
+              className={`grid transition-[grid-template-rows,opacity,margin] duration-300 md:mt-6 md:block md:opacity-100 ${
+                mobileOpen.foundation ? "mt-6 grid-rows-[1fr] opacity-100" : "mt-0 grid-rows-[0fr] opacity-0"
+              }`.trim()}
+            >
+              <div className="space-y-3 overflow-hidden text-sm text-text-muted md:overflow-visible">
+                <ul className="space-y-3 mb-8">
+                  {foundationPackage.includes.map((item) => (
+                    <li key={item} className="flex items-center gap-2">
+                      <span className="text-accent">✓</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <p className="text-xs uppercase tracking-[0.3em] text-text-muted">Not included</p>
+                <ul className="mt-4 space-y-2 text-sm text-text-muted">
+                  {foundationPackage.exclusions.map((item) => (
+                    <li key={item} className="flex items-start gap-2">
+                      <span className="mt-1.5 h-2 w-2 rounded-full bg-accent" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
             <div className="mt-auto pt-8">
               <Link to="/services-pricing">
@@ -210,16 +255,32 @@ export default function Home() {
             <h3 className="text-lg font-semibold text-accent-2">{starterPackage.title}</h3>
             <p className="mt-4 text-2xl font-semibold text-accent">{starterPackage.price}</p>
             <p className="mt-3 text-sm text-text-muted">{starterPackage.description}</p>
-            <div className="mt-6 space-y-3 text-sm text-text-muted">
-              <p className="text-sm font-medium text-text">Includes everything in Foundation, plus:</p>
-              <ul className="space-y-3">
-                {starterUniqueIncludes.map((item) => (
-                  <li key={item} className="flex items-center gap-2">
-                    <span className="text-accent">✓</span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
+            <button
+              type="button"
+              onClick={() => setMobileOpen((prev) => ({ ...prev, starter: !prev.starter }))}
+              className="mt-4 inline-flex w-full items-center justify-between rounded-full border border-border px-4 py-2 text-xs uppercase tracking-[0.2em] text-text-muted md:hidden"
+            >
+              <span>View included items</span>
+              <span aria-hidden="true" className="text-accent">
+                {mobileOpen.starter ? "-" : "+"}
+              </span>
+            </button>
+            <div
+              className={`grid transition-[grid-template-rows,opacity,margin] duration-300 md:mt-6 md:block md:opacity-100 ${
+                mobileOpen.starter ? "mt-6 grid-rows-[1fr] opacity-100" : "mt-0 grid-rows-[0fr] opacity-0"
+              }`.trim()}
+            >
+              <div className="space-y-3 overflow-hidden text-sm text-text-muted md:overflow-visible">
+                <p className="text-sm font-medium text-text">Includes everything in Foundation, plus:</p>
+                <ul className="space-y-3">
+                  {starterUniqueIncludes.map((item) => (
+                    <li key={item} className="flex items-center gap-2">
+                      <span className="text-accent">✓</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
             <div className="mt-auto pt-8">
               <Link to="/services-pricing">
@@ -239,16 +300,32 @@ export default function Home() {
             <h3 className="text-lg font-semibold text-accent-2">{growthPackage.title}</h3>
             <p className="mt-4 text-2xl font-semibold text-accent">{growthPackage.price}</p>
             <p className="mt-3 text-sm text-text-muted">{growthPackage.description}</p>
-            <div className="mt-6 space-y-3 text-sm text-text-muted">
-              <p className="text-sm font-medium text-text">Includes everything in Starter, plus:</p>
-              <ul className="space-y-3">
-                {growthUniqueIncludes.map((item) => (
-                  <li key={item} className="flex items-center gap-2">
-                    <span className="text-accent">✓</span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
+            <button
+              type="button"
+              onClick={() => setMobileOpen((prev) => ({ ...prev, growth: !prev.growth }))}
+              className="mt-4 inline-flex w-full items-center justify-between rounded-full border border-border px-4 py-2 text-xs uppercase tracking-[0.2em] text-text-muted md:hidden"
+            >
+              <span>View included items</span>
+              <span aria-hidden="true" className="text-accent">
+                {mobileOpen.growth ? "-" : "+"}
+              </span>
+            </button>
+            <div
+              className={`grid transition-[grid-template-rows,opacity,margin] duration-300 md:mt-6 md:block md:opacity-100 ${
+                mobileOpen.growth ? "mt-6 grid-rows-[1fr] opacity-100" : "mt-0 grid-rows-[0fr] opacity-0"
+              }`.trim()}
+            >
+              <div className="space-y-3 overflow-hidden text-sm text-text-muted md:overflow-visible">
+                <p className="text-sm font-medium text-text">Includes everything in Starter, plus:</p>
+                <ul className="space-y-3">
+                  {growthUniqueIncludes.map((item) => (
+                    <li key={item} className="flex items-center gap-2">
+                      <span className="text-accent">✓</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
             <div className="mt-auto pt-8">
               <Link to="/services-pricing">
@@ -293,14 +370,7 @@ export default function Home() {
         title="Clarity before we start"
         description="Straight answers to help you plan with confidence."
       >
-        <div className="grid gap-10 md:grid-cols-2">
-          {faqs.map((faq) => (
-            <Card key={faq.question}>
-              <h3 className="text-base font-semibold text-text">{faq.question}</h3>
-              <p className="mt-3 text-sm text-text-muted">{faq.answer}</p>
-            </Card>
-          ))}
-        </div>
+        <HomeFaq items={faqs} />
         <div className="mt-10 flex flex-wrap items-center justify-between gap-6 rounded-3xl border border-border bg-bg-elev px-6 py-6">
           <p className="text-sm text-text-muted">Still have questions? We can walk you through it.</p>
           <Link to="/contact">

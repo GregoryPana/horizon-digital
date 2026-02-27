@@ -22,6 +22,11 @@ import { Link } from "react-router-dom";
 
 export default function Pricing() {
   const [hostingBilling, setHostingBilling] = useState<"monthly" | "annual">("monthly");
+  const [mobileOpen, setMobileOpen] = useState({
+    foundation: false,
+    starter: false,
+    growth: false,
+  });
 
   const normalizeFeature = (value: string) => value.trim().toLowerCase();
   const foundationFeatureSet = new Set(foundationPackage.includes.map(normalizeFeature));
@@ -103,43 +108,6 @@ export default function Pricing() {
       </Section>
 
       <Section
-        eyebrow="Website basics"
-        title="What you are really getting"
-        description="A website always includes three parts: the build, the name, and the hosting."
-      >
-        <div className="section-band section-band-strong relative left-1/2 right-1/2 -mx-[50vw] my-8 w-screen py-16 md:my-10 md:py-20">
-          <div className="mx-auto grid w-full max-w-7xl gap-8 px-5 sm:px-8 md:grid-cols-3">
-            <div>
-            <h3 className="text-base font-semibold text-accent-2">Design and build</h3>
-            <p className="mt-3 text-sm text-text-muted">
-              This is how your website looks, reads, and guides people to contact you. Horizon Digital
-              plans and builds this part with you, so it feels clear, professional, and easy to use.
-            </p>
-            </div>
-            <div>
-            <h3 className="text-base font-semibold text-accent-2">Domain name</h3>
-            <p className="mt-3 text-sm text-text-muted">
-              Your domain is your website name, like yourbusiness.com. It is rented yearly through a
-              domain registrar. This is separate from Horizon Digital, but we can help you choose and
-              set it up correctly.
-            </p>
-            </div>
-            <div>
-            <h3 className="text-base font-semibold text-accent-2">Hosting</h3>
-            <p className="mt-3 text-sm text-text-muted">
-              Hosting is what keeps your website live on the internet every day. You can host with
-              Horizon Digital or another provider. We can manage it for you to keep things simple.
-            </p>
-            </div>
-          </div>
-          <p className="mx-auto mt-8 w-full max-w-7xl px-5 text-sm text-text-muted sm:px-8">
-            If you want one team to handle everything from build to launch, Horizon Digital can guide
-            you through each step and keep the process stress-free.
-          </p>
-        </div>
-      </Section>
-
-      <Section
         eyebrow="How it works"
         title="How your project works"
         description="A simple, structured process from start to launch."
@@ -170,24 +138,42 @@ export default function Pricing() {
               <p>{foundationPackage.description}</p>
               <p className="mt-3">Includes core build essentials.</p>
             </div>
-            <div className="mt-6 space-y-3 text-sm text-text-muted">
-              <ul className="space-y-3 mb-8">
-                {foundationPackage.includes.map((item) => (
-                  <li key={item} className="flex items-center gap-2">
-                    <span className="text-accent">✓</span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <p className="text-xs uppercase tracking-[0.3em] text-text-muted">Not included</p>
-              <ul className="mt-4 space-y-2 text-sm text-text-muted">
-                {foundationPackage.exclusions.map((item) => (
-                  <li key={item} className="flex items-start gap-2">
-                    <span className="mt-1.5 h-2 w-2 rounded-full bg-accent" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
+            <button
+              type="button"
+              onClick={() =>
+                setMobileOpen((prev) => ({ ...prev, foundation: !prev.foundation }))
+              }
+              className="mt-4 inline-flex w-full items-center justify-between rounded-full border border-border px-4 py-2 text-xs uppercase tracking-[0.2em] text-text-muted md:hidden"
+            >
+              <span>View included items</span>
+              <span aria-hidden="true" className="text-accent">
+                {mobileOpen.foundation ? "-" : "+"}
+              </span>
+            </button>
+            <div
+              className={`grid transition-[grid-template-rows,opacity,margin] duration-300 md:mt-6 md:block md:opacity-100 ${
+                mobileOpen.foundation ? "mt-6 grid-rows-[1fr] opacity-100" : "mt-0 grid-rows-[0fr] opacity-0"
+              }`.trim()}
+            >
+              <div className="space-y-3 overflow-hidden text-sm text-text-muted md:overflow-visible">
+                <ul className="space-y-3 mb-8">
+                  {foundationPackage.includes.map((item) => (
+                    <li key={item} className="flex items-center gap-2">
+                      <span className="text-accent">✓</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <p className="text-xs uppercase tracking-[0.3em] text-text-muted">Not included</p>
+                <ul className="mt-4 space-y-2 text-sm text-text-muted">
+                  {foundationPackage.exclusions.map((item) => (
+                    <li key={item} className="flex items-start gap-2">
+                      <span className="mt-1.5 h-2 w-2 rounded-full bg-accent" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
             <div className="mt-auto pt-10">
               <p className="text-xs uppercase tracking-[0.3em] text-text-muted">Payment terms</p>
@@ -218,16 +204,32 @@ export default function Pricing() {
                 <p>{starterPackage.description}</p>
                 <p className="mt-3">Includes core build essentials.</p>
               </div>
-              <div className="mt-6 space-y-3 text-sm text-text-muted">
-                <p className="text-sm font-medium text-text">Includes everything in Foundation, plus:</p>
-                <ul className="space-y-3">
-                  {starterUniqueIncludes.map((item) => (
-                    <li key={item} className="flex items-center gap-2">
-                      <span className="text-accent">✓</span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
+              <button
+                type="button"
+                onClick={() => setMobileOpen((prev) => ({ ...prev, starter: !prev.starter }))}
+                className="mt-4 inline-flex w-full items-center justify-between rounded-full border border-border px-4 py-2 text-xs uppercase tracking-[0.2em] text-text-muted md:hidden"
+              >
+                <span>View included items</span>
+                <span aria-hidden="true" className="text-accent">
+                  {mobileOpen.starter ? "-" : "+"}
+                </span>
+              </button>
+              <div
+                className={`grid transition-[grid-template-rows,opacity,margin] duration-300 md:mt-6 md:block md:opacity-100 ${
+                  mobileOpen.starter ? "mt-6 grid-rows-[1fr] opacity-100" : "mt-0 grid-rows-[0fr] opacity-0"
+                }`.trim()}
+              >
+                <div className="space-y-3 overflow-hidden text-sm text-text-muted md:overflow-visible">
+                  <p className="text-sm font-medium text-text">Includes everything in Foundation, plus:</p>
+                  <ul className="space-y-3">
+                    {starterUniqueIncludes.map((item) => (
+                      <li key={item} className="flex items-center gap-2">
+                        <span className="text-accent">✓</span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
               <div className="mt-auto pt-10">
                 <p className="text-xs uppercase tracking-[0.3em] text-text-muted">Payment terms</p>
@@ -257,16 +259,32 @@ export default function Pricing() {
             <div className="mt-3 min-h-[120px] text-sm text-text-muted md:min-h-[140px]">
               <p>{growthPackage.description}</p>
             </div>
-            <div className="mt-6 space-y-3 text-sm text-text-muted">
-              <p className="text-sm font-medium text-text">Includes everything in Starter, plus:</p>
-              <ul className="space-y-3">
-                {growthUniqueIncludes.map((item) => (
-                  <li key={item} className="flex items-center gap-2">
-                    <span className="text-accent">✓</span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
+            <button
+              type="button"
+              onClick={() => setMobileOpen((prev) => ({ ...prev, growth: !prev.growth }))}
+              className="mt-4 inline-flex w-full items-center justify-between rounded-full border border-border px-4 py-2 text-xs uppercase tracking-[0.2em] text-text-muted md:hidden"
+            >
+              <span>View included items</span>
+              <span aria-hidden="true" className="text-accent">
+                {mobileOpen.growth ? "-" : "+"}
+              </span>
+            </button>
+            <div
+              className={`grid transition-[grid-template-rows,opacity,margin] duration-300 md:mt-6 md:block md:opacity-100 ${
+                mobileOpen.growth ? "mt-6 grid-rows-[1fr] opacity-100" : "mt-0 grid-rows-[0fr] opacity-0"
+              }`.trim()}
+            >
+              <div className="space-y-3 overflow-hidden text-sm text-text-muted md:overflow-visible">
+                <p className="text-sm font-medium text-text">Includes everything in Starter, plus:</p>
+                <ul className="space-y-3">
+                  {growthUniqueIncludes.map((item) => (
+                    <li key={item} className="flex items-center gap-2">
+                      <span className="text-accent">✓</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
             <div className="mt-auto pt-10">
               <p className="text-xs uppercase tracking-[0.3em] text-text-muted">Payment terms</p>

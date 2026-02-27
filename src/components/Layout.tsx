@@ -12,6 +12,27 @@ export default function Layout({ children }: LayoutProps) {
   const location = useLocation();
   const mainRef = useRef<HTMLElement | null>(null);
   const [showTopButton, setShowTopButton] = useState(false);
+  const [headerHeight, setHeaderHeight] = useState(96);
+
+  useEffect(() => {
+    const header = document.querySelector<HTMLElement>("[data-site-header]");
+    if (!header) return;
+
+    const syncHeaderHeight = () => {
+      setHeaderHeight(Math.ceil(header.getBoundingClientRect().height));
+    };
+
+    syncHeaderHeight();
+
+    const resizeObserver = new ResizeObserver(() => syncHeaderHeight());
+    resizeObserver.observe(header);
+    window.addEventListener("resize", syncHeaderHeight);
+
+    return () => {
+      resizeObserver.disconnect();
+      window.removeEventListener("resize", syncHeaderHeight);
+    };
+  }, []);
 
   useEffect(() => {
     let frameId: number | null = null;
@@ -107,7 +128,8 @@ export default function Layout({ children }: LayoutProps) {
       <Navbar />
       <main
         ref={mainRef}
-        className="flex-1 pt-24 pb-[env(safe-area-inset-bottom)] md:pt-28"
+        className="flex-1 pb-[env(safe-area-inset-bottom)]"
+        style={{ paddingTop: `${headerHeight}px` }}
       >
         {children}
       </main>
