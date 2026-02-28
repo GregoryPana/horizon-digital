@@ -1,6 +1,5 @@
 import { NavLink } from "react-router-dom";
 import { emailTemplate, navLinks, siteConfig } from "../data/site";
-import Logo from "./Logo";
 import { buildMailtoLink, scrollToTopSmooth } from "../lib/utils";
 
 export default function Footer() {
@@ -9,7 +8,7 @@ export default function Footer() {
       <div className="mx-auto w-full max-w-7xl px-8 py-20">
         <div className="footer-content flex flex-col gap-14 lg:flex-row lg:items-start lg:justify-between">
           <div className="max-w-sm">
-            <Logo />
+            <p className="brand-name text-sm uppercase tracking-[0.2em] text-accent">Horizon Digital</p>
             <p className="mt-6 text-sm text-text-muted">
               Horizon Digital builds custom, clear, fast websites for Seychelles businesses. We focus on calm
               design, structured content, and performance that helps visitors take action.
