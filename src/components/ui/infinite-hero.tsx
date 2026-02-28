@@ -8,6 +8,7 @@ import Button from "../Button";
 import { scrollToTopSmooth } from "../../lib/utils";
 import { ShimmerButton } from "./shimmer-button";
 import desktopSplash from "../../assets/hero/splash-desktop.jpg";
+import desktopSplashWebp from "../../assets/hero/splash-desktop.webp";
 import mobileSplash from "../../assets/hero/splash-mobile.jpg";
 import mobileSplashWebp from "../../assets/hero/splash-mobile.webp";
 import mobileSplashWebp720 from "../../assets/hero/splash-mobile-720.webp";
@@ -69,13 +70,16 @@ export default function InfiniteHero() {
     >
       <div className="absolute inset-0 brightness-110 md:brightness-100">
         <div className="absolute inset-0 hidden md:block" ref={bgRef}>
-          <img
-            src={desktopSplash}
-            alt=""
-            aria-hidden="true"
-            fetchPriority="high"
-            className="h-full w-full object-cover object-center"
-          />
+          <picture>
+            <source srcSet={desktopSplashWebp} type="image/webp" />
+            <img
+              src={desktopSplash}
+              alt=""
+              aria-hidden="true"
+              fetchPriority="high"
+              className="h-full w-full object-cover object-center"
+            />
+          </picture>
         </div>
         <div className="absolute inset-0 md:hidden">
           <picture>

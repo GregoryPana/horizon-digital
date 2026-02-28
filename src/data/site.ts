@@ -1,14 +1,14 @@
-import guesthousePreview from "../assets/work/drake-seaside/drake-seaside 2.png";
-import guesthousePreviewWebp from "../assets/work/drake-seaside/drake-seaside 2.webp";
-import guesthousePreviewWebp800 from "../assets/work/drake-seaside/drake-seaside 2-800.webp";
-import ogImage from "../assets/logo/Horizon Digital crop.jpg";
+import guesthousePreview from "../assets/work/drake-seaside/drake-seaside.jpg";
+import guesthousePreviewWebp from "../assets/work/drake-seaside/drake-seaside.webp";
+import guesthousePreviewWebp800 from "../assets/work/drake-seaside/drake-seaside-600.webp";
+import ogImage from "../assets/logo/svg logo (1).png";
 import cafePreview from "../assets/work/demos/cafe.jpg";
 import cafePreviewWebp from "../assets/work/demos/cafe.webp";
 import cafePreviewWebp800 from "../assets/work/demos/cafe-800.webp";
 import consultingPreview from "../assets/work/demos/consulting.jpg";
 import consultingPreviewWebp from "../assets/work/demos/consulting.webp";
 import consultingPreviewWebp800 from "../assets/work/demos/consulting-800.webp";
-import seykelzPreview from "../assets/work/seykelz/seykelz.png";
+import seykelzPreview from "../assets/work/seykelz/seykelz.jpg";
 import seykelzPreviewWebp from "../assets/work/seykelz/seykelz.webp";
 import seykelzPreviewWebp800 from "../assets/work/seykelz/seykelz-800.webp";
 

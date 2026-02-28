@@ -131,10 +131,10 @@ export default function Pricing() {
         description="Foundation, Starter, and Growth side by side for a clear comparison."
       >
         <div className="grid items-stretch gap-8 md:grid-cols-2 lg:grid-cols-3">
-          <Card className="flex h-full flex-col no-scroll-glow pricing-card">
+          <Card className="flex h-full flex-col no-scroll-glow pricing-card pricing-card-foundation !p-5 md:!p-7">
             <h3 className="text-lg font-semibold text-accent-2">{foundationPackage.title}</h3>
-            <p className="mt-4 text-2xl font-semibold text-accent">{foundationPackage.price}</p>
-            <div className="mt-3 min-h-[120px] text-sm text-text-muted md:min-h-[140px]">
+            <p className="pricing-price mt-4 text-2xl font-semibold text-accent">{foundationPackage.price}</p>
+            <div className="mt-3 text-sm text-text-muted md:min-h-[140px]">
               <p>{foundationPackage.description}</p>
               <p className="mt-3">Includes core build essentials.</p>
             </div>
@@ -173,9 +173,29 @@ export default function Pricing() {
                     </li>
                   ))}
                 </ul>
+                <div className="mt-6 md:hidden">
+                  <p className="text-xs uppercase tracking-[0.3em] text-text-muted">Payment terms</p>
+                  <ul className="mt-4 space-y-2 text-sm text-text-muted">
+                    {foundationPackage.paymentTerms.map((term) => (
+                      <li key={term}>{term}</li>
+                    ))}
+                  </ul>
+                  <div className="mt-6">
+                    <Link to="/contact?budget=9500-15000">
+                      <ShimmerButton
+                        shimmerColor="#0b1212"
+                        shimmerDuration="4.2s"
+                        background="#2ca99b"
+                        className="!border-[#2ca99b] px-5 py-2 text-xs font-semibold tracking-[0.12em] text-white !shadow-none"
+                      >
+                        Discuss your project
+                      </ShimmerButton>
+                    </Link>
+                  </div>
+                </div>
               </div>
             </div>
-            <div className="mt-auto pt-10">
+            <div className="mt-auto hidden pt-10 md:block">
               <p className="text-xs uppercase tracking-[0.3em] text-text-muted">Payment terms</p>
               <ul className="mt-4 space-y-2 text-sm text-text-muted">
                 {foundationPackage.paymentTerms.map((term) => (
@@ -187,8 +207,8 @@ export default function Pricing() {
                   <ShimmerButton
                     shimmerColor="#0b1212"
                     shimmerDuration="4.2s"
-                    background="#0e3a36"
-                    className="px-5 py-2 text-xs font-semibold tracking-[0.12em] text-white !shadow-none"
+                    background="#2ca99b"
+                    className="!border-[#2ca99b] px-5 py-2 text-xs font-semibold tracking-[0.12em] text-white !shadow-none"
                   >
                     Discuss your project
                   </ShimmerButton>
@@ -197,13 +217,13 @@ export default function Pricing() {
             </div>
           </Card>
 
-          <Card className="relative flex h-full flex-col overflow-visible pt-8 no-scroll-glow pricing-card pricing-card-featured pricing-card-featured-shine">
+          <Card className="relative flex h-full flex-col overflow-visible pt-8 no-scroll-glow pricing-card pricing-card-featured pricing-card-featured-shine !p-5 md:!p-7">
               <h3 className="text-lg font-semibold text-accent-2">{starterPackage.title}</h3>
-              <p className="mt-4 text-2xl font-semibold text-accent">{starterPackage.price}</p>
-              <div className="mt-3 min-h-[120px] text-sm text-text-muted md:min-h-[140px]">
-                <p>{starterPackage.description}</p>
-                <p className="mt-3">Includes core build essentials.</p>
-              </div>
+              <p className="pricing-price mt-4 text-2xl font-semibold text-accent">{starterPackage.price}</p>
+               <div className="mt-3 text-sm text-text-muted md:min-h-[140px]">
+                 <p>{starterPackage.description}</p>
+                 <p className="mt-3">Includes core build essentials.</p>
+               </div>
               <button
                 type="button"
                 onClick={() => setMobileOpen((prev) => ({ ...prev, starter: !prev.starter }))}
@@ -229,9 +249,29 @@ export default function Pricing() {
                       </li>
                     ))}
                   </ul>
+                  <div className="mt-6 md:hidden">
+                    <p className="text-xs uppercase tracking-[0.3em] text-text-muted">Payment terms</p>
+                    <ul className="mt-4 space-y-2 text-sm text-text-muted">
+                      {starterPackage.paymentTerms.map((term) => (
+                        <li key={term}>{term}</li>
+                      ))}
+                    </ul>
+                    <div className="mt-6">
+                      <Link to="/contact?budget=15000-30000">
+                        <ShimmerButton
+                          shimmerColor="#0b1212"
+                          shimmerDuration="4.2s"
+                          background="#22f1d6"
+                          className="px-5 py-2 text-xs font-semibold tracking-[0.12em] text-black"
+                        >
+                          Discuss your project
+                        </ShimmerButton>
+                      </Link>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div className="mt-auto pt-10">
+              <div className="mt-auto hidden pt-10 md:block">
                 <p className="text-xs uppercase tracking-[0.3em] text-text-muted">Payment terms</p>
                 <ul className="mt-4 space-y-2 text-sm text-text-muted">
                   {starterPackage.paymentTerms.map((term) => (
@@ -253,10 +293,10 @@ export default function Pricing() {
               </div>
           </Card>
 
-          <Card className="flex h-full flex-col no-scroll-glow pricing-card">
+          <Card className="flex h-full flex-col no-scroll-glow pricing-card pricing-card-growth !p-5 md:!p-7">
             <h3 className="text-lg font-semibold text-accent-2">{growthPackage.title}</h3>
-            <p className="mt-4 text-2xl font-semibold text-accent">{growthPackage.price}</p>
-            <div className="mt-3 min-h-[120px] text-sm text-text-muted md:min-h-[140px]">
+            <p className="pricing-price mt-4 text-2xl font-semibold text-accent">{growthPackage.price}</p>
+            <div className="mt-3 text-sm text-text-muted md:min-h-[140px]">
               <p>{growthPackage.description}</p>
             </div>
             <button
@@ -284,9 +324,29 @@ export default function Pricing() {
                     </li>
                   ))}
                 </ul>
+                <div className="mt-6 md:hidden">
+                  <p className="text-xs uppercase tracking-[0.3em] text-text-muted">Payment terms</p>
+                  <ul className="mt-4 space-y-2 text-sm text-text-muted">
+                    {growthPackage.paymentTerms.map((term) => (
+                      <li key={term}>{term}</li>
+                    ))}
+                  </ul>
+                  <div className="mt-6">
+                    <Link to="/contact?budget=30000%2B">
+                      <ShimmerButton
+                        shimmerColor="#0b1212"
+                        shimmerDuration="4.2s"
+                        background="#2ca99b"
+                        className="!border-[#2ca99b] px-5 py-2 text-xs font-semibold tracking-[0.12em] text-white !shadow-none"
+                      >
+                        Discuss your project
+                      </ShimmerButton>
+                    </Link>
+                  </div>
+                </div>
               </div>
             </div>
-            <div className="mt-auto pt-10">
+            <div className="mt-auto hidden pt-10 md:block">
               <p className="text-xs uppercase tracking-[0.3em] text-text-muted">Payment terms</p>
               <ul className="mt-4 space-y-2 text-sm text-text-muted">
                 {growthPackage.paymentTerms.map((term) => (
@@ -298,8 +358,8 @@ export default function Pricing() {
                   <ShimmerButton
                     shimmerColor="#0b1212"
                     shimmerDuration="4.2s"
-                    background="#0e3a36"
-                    className="px-5 py-2 text-xs font-semibold tracking-[0.12em] text-white !shadow-none"
+                    background="#2ca99b"
+                    className="!border-[#2ca99b] px-5 py-2 text-xs font-semibold tracking-[0.12em] text-white !shadow-none"
                   >
                     Discuss your project
                   </ShimmerButton>
@@ -342,7 +402,7 @@ export default function Pricing() {
       >
         <div className="mx-auto w-full max-w-5xl">
           <Card className="!rounded-2xl no-scroll-glow pricing-card">
-            <div className="grid items-start gap-8 p-5 sm:p-8 md:grid-cols-2 md:gap-10 md:p-12">
+            <div className="grid items-start gap-6 p-4 sm:p-7 md:grid-cols-2 md:gap-10 md:p-12">
               <div className="flex flex-col items-center pb-10 text-center md:pb-0 md:px-10 md:border-r md:border-[color:var(--split-line)]">
                 <div className="relative mx-auto mb-6 grid w-full max-w-[17rem] grid-cols-2 rounded-full border border-border bg-bg-elev p-1">
                   <motion.span

@@ -133,9 +133,9 @@ export default function Home() {
         description="Clear starting points for the build."
       >
         <div className="grid items-stretch gap-8 md:grid-cols-2 lg:grid-cols-3">
-          <Card className="flex h-full flex-col no-scroll-glow pricing-card">
+          <Card className="flex h-full flex-col no-scroll-glow pricing-card pricing-card-foundation">
             <h3 className="text-lg font-semibold text-accent-2">{foundationPackage.title}</h3>
-            <p className="mt-4 text-2xl font-semibold text-accent">{foundationPackage.price}</p>
+            <p className="pricing-price mt-4 text-2xl font-semibold text-accent">{foundationPackage.price}</p>
             <p className="mt-3 text-sm text-text-muted">{foundationPackage.description}</p>
             <button
               type="button"
@@ -172,15 +172,27 @@ export default function Home() {
                     </li>
                   ))}
                 </ul>
+                <div className="mt-6 md:hidden">
+                  <Link to="/services-pricing">
+                    <ShimmerButton
+                      shimmerColor="#0b1212"
+                      shimmerDuration="4.2s"
+                      background="#2ca99b"
+                      className="!border-[#2ca99b] px-5 py-2 text-xs font-semibold tracking-[0.12em] text-white !shadow-none"
+                    >
+                      Discuss your project
+                    </ShimmerButton>
+                  </Link>
+                </div>
               </div>
             </div>
-            <div className="mt-auto pt-8">
+            <div className="mt-auto hidden pt-8 md:block">
               <Link to="/services-pricing">
                 <ShimmerButton
                   shimmerColor="#0b1212"
                   shimmerDuration="4.2s"
-                  background="#0e3a36"
-                  className="px-5 py-2 text-xs font-semibold tracking-[0.12em] text-white !shadow-none"
+                  background="#2ca99b"
+                  className="!border-[#2ca99b] px-5 py-2 text-xs font-semibold tracking-[0.12em] text-white !shadow-none"
                 >
                   Discuss your project
                 </ShimmerButton>
@@ -190,7 +202,7 @@ export default function Home() {
 
           <Card className="relative flex h-full flex-col overflow-visible pt-8 no-scroll-glow pricing-card pricing-card-featured pricing-card-featured-shine">
             <h3 className="text-lg font-semibold text-accent-2">{starterPackage.title}</h3>
-            <p className="mt-4 text-2xl font-semibold text-accent">{starterPackage.price}</p>
+            <p className="pricing-price mt-4 text-2xl font-semibold text-accent">{starterPackage.price}</p>
             <p className="mt-3 text-sm text-text-muted">{starterPackage.description}</p>
             <button
               type="button"
@@ -215,11 +227,23 @@ export default function Home() {
                       <span className="text-accent">✓</span>
                       {item}
                     </li>
-                  ))}
+                    ))}
                 </ul>
+                <div className="mt-6 md:hidden">
+                  <Link to="/services-pricing">
+                    <ShimmerButton
+                      shimmerColor="#0b1212"
+                      shimmerDuration="4.2s"
+                      background="#22f1d6"
+                      className="px-5 py-2 text-xs font-semibold tracking-[0.12em] text-black"
+                    >
+                      Discuss your project
+                    </ShimmerButton>
+                  </Link>
+                </div>
               </div>
             </div>
-            <div className="mt-auto pt-8">
+            <div className="mt-auto hidden pt-8 md:block">
               <Link to="/services-pricing">
                 <ShimmerButton
                   shimmerColor="#0b1212"
@@ -233,9 +257,9 @@ export default function Home() {
             </div>
           </Card>
 
-          <Card className="flex h-full flex-col no-scroll-glow pricing-card">
+          <Card className="flex h-full flex-col no-scroll-glow pricing-card pricing-card-growth">
             <h3 className="text-lg font-semibold text-accent-2">{growthPackage.title}</h3>
-            <p className="mt-4 text-2xl font-semibold text-accent">{growthPackage.price}</p>
+            <p className="pricing-price mt-4 text-2xl font-semibold text-accent">{growthPackage.price}</p>
             <p className="mt-3 text-sm text-text-muted">{growthPackage.description}</p>
             <button
               type="button"
@@ -260,17 +284,29 @@ export default function Home() {
                       <span className="text-accent">✓</span>
                       {item}
                     </li>
-                  ))}
+                    ))}
                 </ul>
+                <div className="mt-6 md:hidden">
+                  <Link to="/services-pricing">
+                    <ShimmerButton
+                      shimmerColor="#0b1212"
+                      shimmerDuration="4.2s"
+                      background="#2ca99b"
+                      className="!border-[#2ca99b] px-5 py-2 text-xs font-semibold tracking-[0.12em] text-white !shadow-none"
+                    >
+                      Discuss your project
+                    </ShimmerButton>
+                  </Link>
+                </div>
               </div>
             </div>
-            <div className="mt-auto pt-8">
+            <div className="mt-auto hidden pt-8 md:block">
               <Link to="/services-pricing">
                 <ShimmerButton
                   shimmerColor="#0b1212"
                   shimmerDuration="4.2s"
-                  background="#0e3a36"
-                  className="px-5 py-2 text-xs font-semibold tracking-[0.12em] text-white !shadow-none"
+                  background="#2ca99b"
+                  className="!border-[#2ca99b] px-5 py-2 text-xs font-semibold tracking-[0.12em] text-white !shadow-none"
                 >
                   Discuss your project
                 </ShimmerButton>

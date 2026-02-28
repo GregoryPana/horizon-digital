@@ -63,14 +63,14 @@ export default function NavMenu() {
       <div
         id="mobile-site-menu"
         className={
-          `mobile-nav-dropdown absolute right-0 top-full z-40 mt-2 w-max max-w-[90vw] rounded-2xl border border-border bg-bg p-[1.05rem] shadow-soft ` +
+          `mobile-nav-dropdown absolute right-0 top-full z-40 mt-2 w-max max-w-[92vw] rounded-2xl border border-border bg-bg p-[1.2rem] shadow-soft ` +
           `origin-top-right transition-all duration-250 lg:static lg:mt-0 lg:block lg:w-auto lg:translate-x-0 lg:border-none lg:bg-transparent lg:p-0 lg:shadow-none lg:transition-none ` +
           `lg:opacity-100 lg:translate-y-0 lg:pointer-events-auto ` +
           `${isMenuOpen ? "opacity-100 scale-100 translate-y-0" : "pointer-events-none opacity-0 scale-95 -translate-y-2"}`
         }
         ref={menuRef}
       >
-        <ul className="flex flex-col items-end gap-2 text-right lg:flex-row lg:items-center lg:text-left lg:gap-4 xl:gap-6">
+        <ul className="flex flex-col items-end gap-2.5 text-right lg:flex-row lg:items-center lg:text-left lg:gap-4 xl:gap-6">
           {navLinks.map((item) => (
             <li key={item.path} className="list-none">
               <NavLink
@@ -90,7 +90,7 @@ export default function NavMenu() {
                 {({ isActive }) => (
                   <>
                     <span
-                      className={`nav-menu-item relative z-10 block whitespace-nowrap px-2.5 py-1.5 text-[0.76rem] uppercase tracking-[0.13em] transition-colors duration-300 group-hover:text-accent lg:px-2.5 lg:py-1.5 lg:text-[0.68rem] ${
+                      className={`nav-menu-item relative z-10 block whitespace-nowrap px-3 py-1.5 text-[0.8rem] uppercase tracking-[0.13em] transition-colors duration-300 group-hover:text-accent lg:px-2.5 lg:py-1.5 lg:text-[0.68rem] ${
                         isActive ? "" : ""
                       }`.trim()}
                     >

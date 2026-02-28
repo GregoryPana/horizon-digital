@@ -56,7 +56,7 @@ export default function HomeWorkAccordion({ items, onPreview }: HomeWorkAccordio
                   <div className="preview-frame h-32 w-full overflow-hidden rounded-xl border border-border">
                     <picture>
                       <source
-                        srcSet={`${item.imageWebp800} 800w, ${item.imageWebp} 1600w`}
+                        srcSet={`${item.imageWebp800} 800w`}
                         sizes="(max-width: 640px) 92vw, 520px"
                         type="image/webp"
                       />
@@ -81,13 +81,13 @@ export default function HomeWorkAccordion({ items, onPreview }: HomeWorkAccordio
                           href={item.url}
                           target="_blank"
                           rel="noreferrer"
-                          variant="outline"
+                          variant="primary"
                           size="sm"
                         />
                       ) : (
                         <Button
                           label="View preview"
-                          variant="outline"
+                          variant="primary"
                           size="sm"
                           onClick={() => onPreview(item)}
                         />

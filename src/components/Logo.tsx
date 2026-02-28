@@ -1,5 +1,5 @@
 import { siteConfig } from "../data/site";
-import primaryLogo from "../assets/logo/Horizon Digital crop.jpg";
+import primaryLogo from "../assets/logo/svg logo (1).png";
 
 type LogoProps = {
   imageSrc?: string;

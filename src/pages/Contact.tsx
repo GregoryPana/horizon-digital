@@ -103,7 +103,7 @@ Looking forward to your reply.`;
                 <input
                   type="text"
                   name="businessName"
-                  className="mt-3 w-full rounded-xl border border-border bg-transparent px-4 py-3 text-sm text-text focus-ring"
+                  className="contact-input mt-3 w-full rounded-xl border border-border bg-transparent px-4 py-3 text-sm text-text focus-ring"
                   placeholder="Your business"
                 />
               </label>
@@ -112,7 +112,7 @@ Looking forward to your reply.`;
                 <input
                   type="text"
                   name="name"
-                  className="mt-3 w-full rounded-xl border border-border bg-transparent px-4 py-3 text-sm text-text focus-ring"
+                  className="contact-input mt-3 w-full rounded-xl border border-border bg-transparent px-4 py-3 text-sm text-text focus-ring"
                   placeholder="Your name"
                 />
               </label>
@@ -121,7 +121,7 @@ Looking forward to your reply.`;
                 <input
                   type="email"
                   name="email"
-                  className="mt-3 w-full rounded-xl border border-border bg-transparent px-4 py-3 text-sm text-text focus-ring"
+                  className="contact-input mt-3 w-full rounded-xl border border-border bg-transparent px-4 py-3 text-sm text-text focus-ring"
                   placeholder="you@example.com"
                 />
               </label>
@@ -130,7 +130,7 @@ Looking forward to your reply.`;
                 <input
                   type="text"
                   name="industry"
-                  className="mt-3 w-full rounded-xl border border-border bg-transparent px-4 py-3 text-sm text-text focus-ring"
+                  className="contact-input mt-3 w-full rounded-xl border border-border bg-transparent px-4 py-3 text-sm text-text focus-ring"
                   placeholder="e.g. Hospitality, Services, Retail"
                 />
               </label>
@@ -139,7 +139,7 @@ Looking forward to your reply.`;
                 <input
                   type="url"
                   name="website"
-                  className="mt-3 w-full rounded-xl border border-border bg-transparent px-4 py-3 text-sm text-text focus-ring"
+                  className="contact-input mt-3 w-full rounded-xl border border-border bg-transparent px-4 py-3 text-sm text-text focus-ring"
                   placeholder="https://"
                 />
               </label>
@@ -147,7 +147,7 @@ Looking forward to your reply.`;
                 Project budget range (optional)
                 <select
                   name="budget"
-                  className="mt-3 w-full rounded-xl border border-border bg-transparent px-4 py-3 text-sm text-text focus-ring"
+                  className="contact-input mt-3 w-full rounded-xl border border-border bg-transparent px-4 py-3 text-sm text-text focus-ring"
                   defaultValue={defaultBudget}
                 >
                   <option value="" disabled>
@@ -163,7 +163,7 @@ Looking forward to your reply.`;
                 Estimated timeline (optional)
                 <select
                   name="timeline"
-                  className="mt-3 w-full rounded-xl border border-border bg-transparent px-4 py-3 text-sm text-text focus-ring"
+                  className="contact-input mt-3 w-full rounded-xl border border-border bg-transparent px-4 py-3 text-sm text-text focus-ring"
                   defaultValue=""
                 >
                   <option value="" disabled>
@@ -181,7 +181,7 @@ Looking forward to your reply.`;
                 <textarea
                   name="message"
                   rows={5}
-                  className="mt-3 w-full rounded-xl border border-border bg-transparent px-4 py-3 text-sm text-text focus-ring"
+                  className="contact-input mt-3 w-full rounded-xl border border-border bg-transparent px-4 py-3 text-sm text-text focus-ring"
                   placeholder="Tell us about your project"
                 />
               </label>
