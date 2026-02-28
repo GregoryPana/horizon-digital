@@ -282,7 +282,7 @@ option {
   }
 
   .footer-content {
-    min-height: clamp(56rem, 120vh, 96rem);
+    min-height: auto;
   }
 
   .pricing-pop,
@@ -502,7 +502,22 @@ html:not([data-theme="dark"]) :is(h1, h2, h3, h4, h5, h6).text-accent,
 html:not([data-theme="dark"]) :is(h1, h2, h3, h4, h5, h6) .text-accent,
 html:not([data-theme="dark"]) .section-eyebrow-glow,
 html:not([data-theme="dark"]) .hero-glow-text {
-  text-shadow: 0 0 1px rgba(0, 0, 0, 0.549), 0 0 2px rgba(0, 0, 0, 0.32);
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.38);
+}
+
+html :is(h1, h2, h3, h4, h5, h6).text-accent,
+html :is(h1, h2, h3, h4, h5, h6) .text-accent,
+html .section-eyebrow-glow,
+html .hero-glow-text {
+  font-size: 1.06em;
+}
+
+html:not([data-theme="dark"]) .section-title,
+html:not([data-theme="dark"]) .section-eyebrow-glow {
+  text-shadow: none;
+}
+
+html:not([data-theme="dark"]) .section-title {
   font-size: 1.06em;
 }
 
@@ -511,8 +526,24 @@ html:not([data-theme="dark"]) .cta-shimmer {
   box-shadow: 0 0 14px rgba(7, 70, 63, 0.26);
 }
 
+html:not([data-theme="dark"]) .hero-consult-cta {
+  box-shadow: 0 0 20px var(--glow);
+}
+
+html:not([data-theme="dark"]) .hero-consult-cta:hover {
+  box-shadow: 0 0 28px var(--glow);
+}
+
 html:not([data-theme="dark"]) .section-band .text-accent,
 html:not([data-theme="dark"]) .section-band .section-eyebrow-glow {
+  color: #0f8f81;
+}
+
+html:not([data-theme="dark"]) .section-band .text-accent-2 {
+  color: #bc8c25;
+}
+
+html:not([data-theme="dark"]) .glass .text-accent {
   color: #0f8f81;
 }
 

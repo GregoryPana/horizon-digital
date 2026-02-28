@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { emailTemplate, navLinks, siteConfig } from "../data/site";
 import Logo from "./Logo";
 import { buildMailtoLink, scrollToTopSmooth } from "../lib/utils";
@@ -20,16 +20,22 @@ export default function Footer() {
               <p className="text-xs uppercase tracking-[0.4em] text-accent">Navigate</p>
               <div className="mt-4 flex flex-col gap-2">
                 {navLinks.map((link) => (
-                  <Link
+                  <NavLink
                     key={link.path}
                     to={link.path}
                     onClick={() => {
                       if (link.path === "/work") scrollToTopSmooth();
                     }}
-                    className="text-sm text-text-muted transition hover:text-accent"
+                    className={({ isActive }) =>
+                      `footer-nav-link text-sm transition ${
+                        isActive
+                          ? "text-accent drop-shadow-[0_0_10px_rgba(34,241,214,0.5)]"
+                          : "text-text-muted hover:text-accent"
+                      }`
+                    }
                   >
                     {link.label}
-                  </Link>
+                  </NavLink>
                 ))}
               </div>
             </div>

@@ -3,7 +3,7 @@ import Button from "./Button";
 import Logo from "./Logo";
 import NavMenu from "./ui/menu-hover-effects";
 import ThemeToggle from "./ThemeToggle";
-import headerLogo from "../assets/logo/logo 1 (1).png";
+import headerLogo from "../assets/logo/svg logo (1).png";
 
 export default function Navbar() {
   return (
@@ -14,10 +14,13 @@ export default function Navbar() {
       <div className="mx-auto flex w-full max-w-[1400px] items-center gap-6 px-6 py-5 md:px-8 lg:px-10 xl:px-14">
         <NavLink
           to="/"
-          className="focus-ring rounded-full"
+          className="focus-ring inline-flex items-center rounded-full"
           onClick={() => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })}
         >
           <Logo imageSrc={headerLogo} imageClassName="rounded-none" />
+          <span className="ml-2 text-sm font-semibold uppercase tracking-[0.18em] text-accent">
+            Horizon Digital
+          </span>
         </NavLink>
         <div className="ml-auto flex items-center gap-3">
           <ThemeToggle />
