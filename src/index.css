@@ -583,6 +583,16 @@ html:not([data-theme="dark"]) .cta-shimmer:hover {
   --glow: rgba(34, 241, 214, 0.55);
 }
 
+.site-footer-dark {
+  --bg-elev: #0b1920;
+  --border: rgba(222, 236, 235, 0.16);
+  --text: #f4fbfa;
+  --text-muted: rgba(222, 236, 235, 0.74);
+  --glow: rgba(34, 241, 214, 0.55);
+  background-color: #0b1920 !important;
+  border-color: rgba(222, 236, 235, 0.16) !important;
+}
+
 @media (min-width: 768px) {
   .site-header-dark {
     background-color: #0b1920 !important;
