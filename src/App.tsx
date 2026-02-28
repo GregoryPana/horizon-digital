@@ -12,7 +12,13 @@ const Contact = lazy(() => import("./pages/Contact"));
 export default function App() {
   return (
     <Layout>
-      <Suspense fallback={<div className="mx-auto w-full max-w-7xl px-8 py-24 text-sm text-text-muted">Loading...</div>}>
+      <Suspense
+        fallback={
+          <div className="mx-auto flex min-h-[70svh] w-full max-w-7xl items-start px-8 py-24 text-sm text-text-muted">
+            Loading...
+          </div>
+        }
+      >
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/what-you-need" element={<WhatYouNeed />} />
