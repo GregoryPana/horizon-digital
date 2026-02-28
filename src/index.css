@@ -13,7 +13,7 @@
 
 :root {
   color-scheme: light;
-  --bg: #eaf1f0;
+  --bg: #f2faf8;
   --bg-elev: rgba(255, 255, 255, 0.85);
   --bg-panel: rgba(229, 234, 236, 0.94);
   --text: #0b1212;
@@ -276,6 +276,11 @@ option {
 }
 
 @media (max-width: 767px) {
+  .section-band {
+    padding-top: 3.25rem !important;
+    padding-bottom: 3.25rem !important;
+  }
+
   .footer-content {
     min-height: clamp(56rem, 120vh, 96rem);
   }
@@ -470,6 +475,13 @@ option {
   box-shadow: none;
 }
 
+@media (min-width: 768px) {
+  .section-band {
+    padding-top: 4.25rem !important;
+    padding-bottom: 4.25rem !important;
+  }
+}
+
 .gold-cta,
 .btn-primary,
 .cta-shimmer {
@@ -497,6 +509,11 @@ html:not([data-theme="dark"]) .hero-glow-text {
 html:not([data-theme="dark"]) .btn-primary,
 html:not([data-theme="dark"]) .cta-shimmer {
   box-shadow: 0 0 14px rgba(7, 70, 63, 0.26);
+}
+
+html:not([data-theme="dark"]) .section-band .text-accent,
+html:not([data-theme="dark"]) .section-band .section-eyebrow-glow {
+  color: #0f8f81;
 }
 
 html:not([data-theme="dark"]) .btn-primary:hover,
@@ -735,6 +752,21 @@ html[data-theme="dark"] .pricing-pop-strong::after {
   border: 1px solid var(--border);
   box-shadow: 0 14px 32px rgba(0, 0, 0, 0.18);
   backdrop-filter: blur(14px);
+}
+
+html:not([data-theme="dark"]) .glass {
+  background: var(--band-medium);
+  border-color: var(--band-border);
+}
+
+html:not([data-theme="dark"]) .faq-surface {
+  background: rgba(255, 255, 255, 0.96);
+}
+
+html:not([data-theme="dark"]) .pricing-card,
+html:not([data-theme="dark"]) .pricing-card-featured {
+  background: rgba(255, 255, 255, 0.96) !important;
+  border-color: rgba(11, 18, 18, 0.16) !important;
 }
 
 .glow-ring {

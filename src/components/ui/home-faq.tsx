@@ -14,7 +14,7 @@ export default function HomeFaq({ items }: HomeFaqProps) {
 
   return (
     <div className="mx-auto w-full max-w-4xl">
-      <div className="overflow-hidden rounded-2xl border border-border bg-bg-elev/95">
+      <div className="faq-surface overflow-hidden rounded-2xl border border-border">
         {items.map((item, index) => {
           const isOpen = openItem === index;
 

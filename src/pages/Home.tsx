@@ -67,7 +67,7 @@ export default function Home() {
         eyebrow="Services"
         title="Designed to be clear and reliable"
         description="Modern websites that help customers understand you and get in touch."
-        className="!pt-16 !pb-24 md:!pt-24 md:!pb-32"
+        className="!pt-12 !pb-16 md:!pt-20 md:!pb-24"
       >
         <div className="section-band section-band-strong relative left-1/2 right-1/2 -mx-[50vw] my-8 w-screen py-14 md:my-10 md:py-16">
           <div className="mx-auto w-full max-w-7xl px-8">

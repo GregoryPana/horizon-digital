@@ -93,7 +93,6 @@ export const addOns = [
   "Content writing support",
   "Structured booking / enquiry form",
   "Google Business Profile setup",
-  "Website speed & performance audit",
   "Rush delivery",
 ];
 
@@ -183,7 +182,6 @@ export const addOnItems = [
   { title: "Content writing support", price: "SCR 600 per page" },
   { title: "Structured booking / enquiry form", price: "SCR 2,000" },
   { title: "Google Business Profile setup", price: "SCR 2,200" },
-  { title: "Website speed & performance audit", price: "SCR 3,000 - 5,000" },
   { title: "Rush delivery", price: "+40% (subject to availability)" },
 ];
 
