@@ -12,6 +12,15 @@
 }
 
 @font-face {
+  font-family: "Inter Fallback";
+  src: local("Arial");
+  ascent-override: 92%;
+  descent-override: 24%;
+  line-gap-override: 0%;
+  size-adjust: 104%;
+}
+
+@font-face {
   font-family: "Sora Variable";
   src: url("https://cdn.jsdelivr.net/npm/@fontsource-variable/sora/files/sora-latin-wght-normal.woff2")
     format("woff2-variations");
@@ -87,7 +96,7 @@ body,
 
 body {
   margin: 0;
-  font-family: "Inter Variable", "Inter", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-family: "Inter Variable", "Inter Fallback", "Inter", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   font-weight: 600;
   line-height: 1.6;
   background-color: var(--bg);
