@@ -517,10 +517,6 @@ html:not([data-theme="dark"]) .section-eyebrow-glow {
   text-shadow: none;
 }
 
-html:not([data-theme="dark"]) .section-title {
-  font-size: 1.06em;
-}
-
 html:not([data-theme="dark"]) .btn-primary,
 html:not([data-theme="dark"]) .cta-shimmer {
   box-shadow: 0 0 14px rgba(7, 70, 63, 0.26);
@@ -528,6 +524,21 @@ html:not([data-theme="dark"]) .cta-shimmer {
 
 html:not([data-theme="dark"]) .hero-consult-cta {
   box-shadow: 0 0 20px var(--glow);
+}
+
+@media (max-width: 767px) {
+  .hero-view-work-cta {
+    background-color: transparent !important;
+    border: 1px solid rgba(188, 140, 37, 0.86);
+    color: #e9c764;
+    box-shadow: 0 0 20px rgba(188, 140, 37, 0.42), 0 0 34px rgba(188, 140, 37, 0.2) !important;
+  }
+
+  .hero-view-work-cta:hover {
+    background-color: rgba(188, 140, 37, 0.12) !important;
+    color: #f0d27a;
+    box-shadow: 0 0 26px rgba(188, 140, 37, 0.52), 0 0 44px rgba(188, 140, 37, 0.28) !important;
+  }
 }
 
 html:not([data-theme="dark"]) .hero-consult-cta:hover {

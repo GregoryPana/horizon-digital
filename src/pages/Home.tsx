@@ -6,6 +6,7 @@ import Section from "../components/Section";
 import Seo from "../components/Seo";
 import InfiniteHero from "../components/ui/infinite-hero";
 import HomeFaq from "../components/ui/home-faq";
+import HomeWorkAccordion from "../components/ui/home-work-accordion";
 import { ShimmerButton } from "../components/ui/shimmer-button";
 import { Link } from "react-router-dom";
 import { scrollToTopSmooth } from "../lib/utils";
@@ -97,71 +98,7 @@ export default function Home() {
         title="Selected work and layout previews"
         description="A mix of real projects and concept demos to show the direction."
       >
-        <div className="grid gap-10 md:grid-cols-2 xl:grid-cols-3">
-          {workItems.map((item) => (
-            <Card key={item.label} className="relative flex h-full flex-col overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-accent/10 via-transparent to-transparent" />
-              <div className="relative flex h-full flex-col">
-                <div className="preview-frame mb-6 h-32 w-full overflow-hidden rounded-2xl border border-border">
-                  {item.image ? (
-                    item.imageWebp ? (
-                      <picture>
-                        <source
-                          srcSet={item.imageWebp800 ? `${item.imageWebp800} 800w, ${item.imageWebp} 1600w` : item.imageWebp}
-                          sizes="(max-width: 640px) 92vw, (max-width: 1024px) 42vw, 360px"
-                          type="image/webp"
-                        />
-                        <img
-                          src={item.image}
-                          alt={`${item.label} concept preview`}
-                          width={640}
-                          height={360}
-                          loading="lazy"
-                          decoding="async"
-                          className="h-full w-full bg-bg object-contain scale-[1.08] md:scale-[1.12]"
-                        />
-                      </picture>
-                    ) : (
-                      <img
-                        src={item.image}
-                        alt={`${item.label} concept preview`}
-                        width={640}
-                        height={360}
-                        loading="lazy"
-                        decoding="async"
-                        className="h-full w-full bg-bg object-contain scale-[1.08] md:scale-[1.12]"
-                      />
-                    )
-                  ) : (
-                    <div className="absolute inset-0 preview-shimmer" />
-                  )}
-                </div>
-                <p className="text-xs uppercase tracking-[0.3em] text-accent">{item.label}</p>
-                <h3 className="mt-2 text-lg font-semibold text-text">{item.title}</h3>
-                <p className="mt-4 text-sm text-text-muted">{item.outcome}</p>
-                <div className="mt-auto flex flex-wrap gap-5 pt-10">
-                  {item.url ? (
-                    <Button
-                      label="View live site"
-                      href={item.url}
-                      target="_blank"
-                      rel="noreferrer"
-                      variant="outline"
-                      size="sm"
-                    />
-                  ) : (
-                    <Button
-                      label="View preview"
-                      variant="outline"
-                      size="sm"
-                      onClick={() => setActiveWork(item)}
-                    />
-                  )}
-                </div>
-              </div>
-            </Card>
-          ))}
-        </div>
+        <HomeWorkAccordion items={workItems} onPreview={setActiveWork} />
         <div className="mt-10 flex justify-center">
           <Button
             label="View all work"

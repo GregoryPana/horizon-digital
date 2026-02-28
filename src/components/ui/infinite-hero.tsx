@@ -113,7 +113,7 @@ export default function InfiniteHero() {
           </p>
           <p
             ref={pRef}
-            className="hero-main-subtext mx-auto mt-5 max-w-[92vw] translate-y-[16%] text-[0.82rem]/6 font-semibold tracking-tight text-text/80 md:mt-14 md:max-w-xl md:translate-y-0 md:text-base/7 md:font-light"
+            className="hero-main-subtext mx-auto mt-8 max-w-[92vw] translate-y-[46%] text-[0.82rem]/6 font-semibold tracking-tight text-text/80 md:mt-14 md:max-w-xl md:translate-y-0 md:text-base/7 md:font-light"
           >
             <span className="md:hidden">
               Building Beautiful Custom, Mobile Ready,
@@ -142,7 +142,7 @@ export default function InfiniteHero() {
                 variant="primary"
                 size="lg"
                 onClick={handleWorkScrollTop}
-              className="gold-cta w-full sm:w-auto"
+              className="gold-cta hero-view-work-cta self-center sm:w-auto"
               />
           </div>
         </div>
