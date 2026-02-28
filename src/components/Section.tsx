@@ -18,22 +18,22 @@ export default function Section({
   className,
 }: SectionProps) {
   return (
-    <section id={id} className={`pt-12 pb-16 md:pt-20 md:pb-28 ${className ?? ""}`.trim()}>
+    <section id={id} className={`pt-11 pb-14 md:pt-20 md:pb-28 ${className ?? ""}`.trim()}>
       <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
         {(eyebrow || title || description) && (
-          <div className="mb-10 max-w-2xl md:mb-12">
+          <div className="mb-9 max-w-2xl md:mb-12">
             {eyebrow && (
               <p className="text-xs font-semibold uppercase tracking-[0.32em] text-accent section-eyebrow-glow">
                 {eyebrow}
               </p>
             )}
             {title && (
-              <h2 className="section-title mt-3 text-[2.25rem] font-bold tracking-[-0.015em] text-text md:text-[3.45rem]">
+              <h2 className="section-title mt-3 text-[2.02rem] font-semibold tracking-[-0.012em] text-text md:text-[3.45rem]">
                 {title}
               </h2>
             )}
             {description && (
-              <p className="section-description mt-4 text-base text-text-muted">{description}</p>
+              <p className="section-description mt-4 text-[0.98rem] leading-[1.62] text-text-muted md:text-base md:leading-normal">{description}</p>
             )}
             <div className="mt-6 horizon-line" />
           </div>

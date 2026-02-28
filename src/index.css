@@ -11,13 +11,31 @@
   size-adjust: 105%;
 }
 
+@font-face {
+  font-family: "Sora Variable";
+  src: url("https://cdn.jsdelivr.net/npm/@fontsource-variable/sora/files/sora-latin-wght-normal.woff2")
+    format("woff2-variations");
+  font-weight: 100 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter Variable";
+  src: url("https://cdn.jsdelivr.net/npm/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2")
+    format("woff2-variations");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   color-scheme: light;
   --bg: #f2faf8;
   --bg-elev: rgba(255, 255, 255, 0.85);
   --bg-panel: rgba(229, 234, 236, 0.94);
-  --text: #0b1212;
-  --text-muted: rgba(11, 18, 18, 0.74);
+  --text: #111111;
+  --text-muted: rgba(26, 26, 26, 0.74);
   --accent: #22f1d6;
   --accent-2: #f7d36b;
   --accent-soft: rgba(34, 241, 214, 0.18);
@@ -28,7 +46,7 @@
   --band-medium: #d1efe8;
   --band-soft: #e2f5f0;
   --band-border: rgba(5, 198, 177, 0.42);
-  --split-line: #0b1212;
+  --split-line: #1a1a1a;
 }
 
 
@@ -37,8 +55,8 @@ html[data-theme="dark"] {
   --bg: #08141b;
   --bg-elev: rgba(11, 25, 32, 0.82);
   --bg-panel: rgba(13, 30, 38, 0.74);
-  --text: #f4fbfa;
-  --text-muted: rgba(222, 236, 235, 0.74);
+  --text: #eaeaea;
+  --text-muted: rgba(234, 234, 234, 0.74);
   --accent: #22f1d6;
   --accent-2: #f7d36b;
   --accent-soft: rgba(34, 241, 214, 0.18);
@@ -69,7 +87,9 @@ body,
 
 body {
   margin: 0;
-  font-family: "Sora", "Sora Fallback", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-family: "Inter Variable", "Inter", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
   background-color: var(--bg);
   background-image: radial-gradient(
       70% 50% at 10% 10%,
@@ -79,6 +99,22 @@ body {
     radial-gradient(55% 45% at 80% 0%, rgba(241, 199, 92, 0.16), transparent 60%),
     linear-gradient(180deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
   min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Sora Variable", "Sora", "Sora Fallback", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.brand-name {
+  font-family: "Sora Variable", "Sora", "Sora Fallback", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
 }
 
 @supports (font-size-adjust: 1) {
@@ -245,7 +281,7 @@ option {
 
 .scroll-glow {
   transition: box-shadow 0.75s ease, border-color 0.75s ease, transform 0.75s ease,
-    background-color 0.75s ease, filter 0.75s ease;
+    background-color 0.75s ease;
 }
 
 .nav-menu-button {
@@ -259,14 +295,13 @@ option {
 }
 
 .footer-content {
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 .scroll-glow.is-inview {
   border-color: rgba(34 241 214 / calc(0.06 + 0.42 * var(--glow-strength)));
   box-shadow: 0 0 calc(14px * var(--glow-strength))
     rgba(34 241 214 / calc(0.03 + 0.11 * var(--glow-strength)));
-  filter: brightness(calc(0.96 + 0.13 * var(--glow-strength)));
 }
 
 .pricing-pop.is-inview {
@@ -276,9 +311,14 @@ option {
 }
 
 @media (max-width: 767px) {
+  body {
+    font-size: 15.5px;
+    line-height: 1.65;
+  }
+
   .section-band {
-    padding-top: 3.25rem !important;
-    padding-bottom: 3.25rem !important;
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
   }
 
   .footer-content {
@@ -301,12 +341,6 @@ option {
 
   .scroll-glow.is-inview {
     transform: scale(calc(0.94 + 0.06 * var(--glow-strength)));
-    filter: brightness(calc(0.9 + 0.1 * var(--glow-strength)))
-      blur(calc(0.6px - 0.6px * var(--glow-strength)));
-  }
-
-  .scroll-glow.no-blur-glow.is-inview {
-    filter: brightness(calc(0.95 + 0.05 * var(--glow-strength)));
   }
 }
 
@@ -471,7 +505,7 @@ option {
 
 .gold-cta {
   background-color: var(--accent-2);
-  color: #000000;
+  color: #111111;
   box-shadow: none;
 }
 
@@ -485,7 +519,7 @@ option {
 .gold-cta,
 .btn-primary,
 .cta-shimmer {
-  color: #000000;
+  color: #111111;
 }
 
 @media (max-width: 767px) {
@@ -578,16 +612,16 @@ html:not([data-theme="dark"]) .cta-shimmer:hover {
 .site-header-dark {
   --bg-elev: rgba(11, 25, 32, 0.82);
   --border: rgba(222, 236, 235, 0.16);
-  --text: #f4fbfa;
-  --text-muted: rgba(222, 236, 235, 0.74);
+  --text: #eaeaea;
+  --text-muted: rgba(234, 234, 234, 0.74);
   --glow: rgba(34, 241, 214, 0.55);
 }
 
 .site-footer-dark {
   --bg-elev: #0b1920;
   --border: rgba(222, 236, 235, 0.16);
-  --text: #f4fbfa;
-  --text-muted: rgba(222, 236, 235, 0.74);
+  --text: #eaeaea;
+  --text-muted: rgba(234, 234, 234, 0.74);
   --glow: rgba(34, 241, 214, 0.55);
   background-color: #0b1920 !important;
   border-color: rgba(222, 236, 235, 0.16) !important;
@@ -604,13 +638,13 @@ html:not([data-theme="dark"]) .cta-shimmer:hover {
 .site-header-dark .header-control-dark {
   border-color: rgba(222, 236, 235, 0.26);
   background-color: rgba(11, 25, 32, 0.9);
-  color: #f4fbfa;
+  color: #eaeaea;
 }
 
 .site-header-dark .header-control-dark:hover {
   border-color: #22f1d6;
   background-color: rgba(34, 241, 214, 0.16);
-  color: #f4fbfa;
+  color: #eaeaea;
 }
 
 .site-header-dark .mobile-nav-dropdown {
@@ -620,31 +654,39 @@ html:not([data-theme="dark"]) .cta-shimmer:hover {
 
 @media (max-width: 767px) {
   html:not([data-theme="dark"]) .hero-main-subtext {
-    color: #ffffff;
+    color: #f2f2f2;
   }
 }
 
 .gold-cta:hover,
 .btn-primary:hover,
 .cta-shimmer:hover {
-  color: #000000;
+  color: #111111;
 }
 
 html:not([data-theme="dark"]) .btn-outline-gold {
   background-color: var(--accent-2);
-  color: #000000;
+  color: #111111;
   border-color: rgba(169, 119, 15, 0.35);
 }
 
 html:not([data-theme="dark"]) .btn-outline-gold:hover {
   background-color: #ddb14f;
-  color: #000000;
+  color: #111111;
   border-color: rgba(169, 119, 15, 0.42);
+}
+
+.text-black {
+  color: #111111 !important;
+}
+
+.text-white {
+  color: #f2f2f2 !important;
 }
 
 @media (min-width: 768px) {
   .hero-main-subtext {
-    color: #ffffff;
+    color: #f2f2f2;
   }
 
   .hero-title-prefix,
@@ -653,7 +695,7 @@ html:not([data-theme="dark"]) .btn-outline-gold:hover {
   .hero-subtext,
   .hero-trust-row,
   .hero-trust-dot {
-    color: #ffffff;
+    color: #f2f2f2;
   }
 
   html:not([data-theme="dark"]) .hero-veil-a {

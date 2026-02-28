@@ -89,11 +89,11 @@ Looking forward to your reply.`;
       <Section
         eyebrow="Contact"
         title="Let's plan your next launch"
-        description="Tell us about your business, your goals, and your timeline."
+        description="Tell us about your business and goals. We will guide you to a website that is tailored, easy to understand, and easier to find online."
         className="!pt-16 !pb-24 md:!pt-32 md:!pb-32"
       >
         <p className="-mt-6 text-sm text-text-muted">
-          Trusted by growing businesses across Seychelles.
+          Clear process, tailored work, and no template look.
         </p>
         <div className="mx-auto mt-6 grid w-full max-w-2xl min-w-0 items-start gap-10 lg:max-w-none lg:grid-cols-[1.2fr_0.8fr]">
           <Card className="min-w-0">
@@ -194,7 +194,10 @@ Looking forward to your reply.`;
           <Card className="min-w-0">
             <p className="text-xs uppercase tracking-[0.4em] text-accent">Direct contact</p>
             <p className="mt-4 text-sm text-text-muted">We typically respond within 24 hours.</p>
-            <p className="mt-3 text-sm text-text-muted">Email or call us at</p>
+            <p className="mt-3 text-sm text-text-muted">
+              Email or call us for a simple conversation about what makes your business different,
+              and how your website can stand out and be found more easily.
+            </p>
             <a
               className="mt-2 block break-all text-lg font-semibold text-text transition hover:text-accent"
               href={mailtoHref}

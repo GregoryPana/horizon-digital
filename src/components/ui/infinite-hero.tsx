@@ -101,23 +101,23 @@ export default function InfiniteHero() {
 
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/20 via-black/25 to-black/40 md:from-black/18 md:via-black/22 md:to-black/36" />
 
-      <div className="relative z-10 flex h-[90svh] w-full items-center justify-center px-6 md:h-svh md:px-8">
-        <div className="-translate-y-[11%] text-center md:translate-y-[6%]">
+      <div className="relative z-10 flex h-[90svh] w-full items-center justify-center px-5 md:h-svh md:px-8">
+        <div className="-translate-y-[7%] text-center md:translate-y-[6%]">
           <img
             src={heroLogo}
             alt="Horizon Digital"
-            className="mx-auto mb-3 h-12 w-auto object-contain sm:h-14 md:mb-4 md:h-16"
+            className="mx-auto mb-2 h-11 w-auto object-contain sm:h-14 md:mb-4 md:h-16"
           />
           <p
             ref={h1Ref}
-            className="hero-brand-glow -translate-y-[30%] text-5xl font-semibold uppercase tracking-[0.14em] text-accent sm:text-6xl md:-translate-y-1/4 md:text-[clamp(2.35rem,5.4vw,4rem)] md:tracking-[0.2em]"
+            className="brand-name hero-brand-glow -translate-y-[18%] text-[2.55rem] uppercase tracking-[0.13em] text-accent sm:text-6xl md:-translate-y-1/4 md:text-[clamp(2.35rem,5.4vw,4rem)] md:tracking-[0.2em]"
           >
             <span className="block md:inline">Horizon</span>
             <span className="block md:ml-[0.35em] md:inline">Digital</span>
           </p>
           <p
             ref={pRef}
-            className="hero-main-subtext mx-auto mt-8 max-w-[92vw] translate-y-[46%] text-[0.82rem]/6 font-semibold tracking-tight text-text/80 md:mt-14 md:max-w-xl md:translate-y-0 md:text-base/7 md:font-light"
+            className="hero-main-subtext mx-auto mt-7 max-w-[93vw] translate-y-[30%] px-1 text-[0.97rem]/[1.62] font-medium tracking-tight text-text/80 md:mt-14 md:max-w-xl md:translate-y-0 md:px-0 md:text-base/7 md:font-light"
           >
             <span className="md:hidden">
               Building Beautiful Custom, Mobile Ready,
@@ -129,13 +129,13 @@ export default function InfiniteHero() {
             </span>
           </p>
 
-          <div ref={ctaRef} className="mt-10 flex w-full translate-y-[55%] flex-col items-stretch justify-center gap-4 sm:mt-12 sm:translate-y-[47%] sm:flex-row sm:items-center sm:gap-6 md:translate-y-0">
+          <div ref={ctaRef} className="mt-9 flex w-full translate-y-[32%] flex-col items-stretch justify-center gap-3.5 sm:mt-12 sm:translate-y-[47%] sm:flex-row sm:items-center sm:gap-6 md:translate-y-0">
             <Link to="/contact" className="w-full sm:w-auto">
               <ShimmerButton
                 shimmerColor="#0b1212"
                 shimmerDuration="4.2s"
                 background="#22f1d6"
-                className="hero-consult-cta w-full px-7 py-3.5 text-base font-semibold tracking-[0.08em] text-black"
+                className="hero-consult-cta w-full px-6 py-3 text-[0.95rem] font-semibold tracking-[0.08em] text-black sm:px-7 sm:py-3.5 sm:text-base"
               >
                 Book a free consult
               </ShimmerButton>

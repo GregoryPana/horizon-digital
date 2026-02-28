@@ -24,7 +24,8 @@ module.exports = {
         glass: "10px",
       },
       fontFamily: {
-        display: ["Sora", "Space Grotesk", "sans-serif"],
+        sans: ["Inter Variable", "Inter", "Segoe UI", "Helvetica Neue", "Arial", "sans-serif"],
+        display: ["Sora Variable", "Sora", "Segoe UI", "Helvetica Neue", "Arial", "sans-serif"],
       },
       backgroundImage: {
         "horizon": "linear-gradient(90deg, transparent, var(--accent), var(--accent-2), transparent)",

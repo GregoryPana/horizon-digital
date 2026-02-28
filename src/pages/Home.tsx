@@ -21,8 +21,18 @@ import {
   workItems,
 } from "../data/site";
 
+type WorkPreviewItem = {
+  label: string;
+  title: string;
+  outcome: string;
+  image: string;
+  imageWebp: string;
+  imageWebp800: string;
+  url?: string;
+};
+
 export default function Home() {
-  const [activeWork, setActiveWork] = useState<null | (typeof workItems)[0]>(null);
+  const [activeWork, setActiveWork] = useState<WorkPreviewItem | null>(null);
   const [mobileOpen, setMobileOpen] = useState({
     foundation: false,
     starter: false,
@@ -96,7 +106,7 @@ export default function Home() {
       <Section
         eyebrow="Featured work"
         title="Selected work and layout previews"
-        description="A mix of real projects and concept demos to show the direction."
+        description="A focused snapshot of recent builds and layout direction."
       >
         <HomeWorkAccordion items={workItems} onPreview={setActiveWork} />
         <div className="mt-10 flex justify-center">
@@ -142,7 +152,7 @@ export default function Home() {
               onClick={() =>
                 setMobileOpen((prev) => ({ ...prev, foundation: !prev.foundation }))
               }
-              className="mt-4 inline-flex w-full items-center justify-between rounded-full border border-border px-4 py-2 text-xs uppercase tracking-[0.2em] text-text-muted md:hidden"
+              className="mt-4 inline-flex w-full items-center justify-between rounded-full border border-border px-4 py-2.5 text-[0.68rem] uppercase tracking-[0.16em] text-text-muted md:hidden"
             >
               <span>View included items</span>
               <span aria-hidden="true" className="text-accent">
@@ -207,7 +217,7 @@ export default function Home() {
             <button
               type="button"
               onClick={() => setMobileOpen((prev) => ({ ...prev, starter: !prev.starter }))}
-              className="mt-4 inline-flex w-full items-center justify-between rounded-full border border-border px-4 py-2 text-xs uppercase tracking-[0.2em] text-text-muted md:hidden"
+              className="mt-4 inline-flex w-full items-center justify-between rounded-full border border-border px-4 py-2.5 text-[0.68rem] uppercase tracking-[0.16em] text-text-muted md:hidden"
             >
               <span>View included items</span>
               <span aria-hidden="true" className="text-accent">
@@ -264,7 +274,7 @@ export default function Home() {
             <button
               type="button"
               onClick={() => setMobileOpen((prev) => ({ ...prev, growth: !prev.growth }))}
-              className="mt-4 inline-flex w-full items-center justify-between rounded-full border border-border px-4 py-2 text-xs uppercase tracking-[0.2em] text-text-muted md:hidden"
+              className="mt-4 inline-flex w-full items-center justify-between rounded-full border border-border px-4 py-2.5 text-[0.68rem] uppercase tracking-[0.16em] text-text-muted md:hidden"
             >
               <span>View included items</span>
               <span aria-hidden="true" className="text-accent">
@@ -389,8 +399,8 @@ export default function Home() {
         onClose={() => setActiveWork(null)}
       >
         <p>
-          This is a concept demo showing layout direction and flow. Each project is built around
-          your goals, content, and customer journey.
+          This preview shows layout direction and flow. Each project is built around your goals,
+          content, and customer journey.
         </p>
         <div className="mt-6">
           <Button label="Request similar site" to="/contact" size="sm" />

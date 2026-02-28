@@ -9,10 +9,6 @@ import seykelzMain from "../assets/work/seykelz/seykelz.png";
 import seykelzAltOne from "../assets/work/seykelz/seykelz 2.png";
 import seykelzMainWebp from "../assets/work/seykelz/seykelz.webp";
 import seykelzAltOneWebp from "../assets/work/seykelz/seykelz 2.webp";
-import demoCafe from "../assets/work/demos/cafe.jpg";
-import demoConsulting from "../assets/work/demos/consulting.jpg";
-import demoCafeWebp from "../assets/work/demos/cafe.webp";
-import demoConsultingWebp from "../assets/work/demos/consulting.webp";
 
 export default function Work() {
   const timelineData = [
@@ -21,7 +17,7 @@ export default function Work() {
       content: (
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent-2">
-            Starter Tier
+            Growth Tier
           </p>
           <p className="mt-4 text-sm text-text-muted">
             Redesign with new pages, updated content, faster load times, and higher click-through
@@ -104,39 +100,6 @@ export default function Work() {
         </div>
       ),
     },
-    {
-      title: <span className="text-accent">ConceptDemo</span>,
-      content: (
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent-2">Growth Tier</p>
-          <p className="mt-4 text-sm text-text-muted">
-            Layout previews showing structure, hierarchy, and conversion flow for new builds.
-          </p>
-          <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
-            {[
-              { src: demoCafe, webp: demoCafeWebp, label: "Concept cafe" },
-              { src: demoConsulting, webp: demoConsultingWebp, label: "Concept consulting" },
-            ].map((image) => (
-              <picture key={image.label}>
-                <source srcSet={image.webp} type="image/webp" />
-                <img
-                  src={image.src}
-                  alt={image.label}
-                  width={800}
-                  height={520}
-                  loading="lazy"
-                  decoding="async"
-                  className="h-48 w-full rounded-2xl border border-border bg-bg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08)]"
-                />
-              </picture>
-            ))}
-          </div>
-          <div className="mt-6 flex flex-wrap gap-3">
-            <Button label="Request a demo" to="/contact" size="sm" variant="outline" />
-          </div>
-        </div>
-      ),
-    },
   ];
 
   return (
@@ -144,14 +107,14 @@ export default function Work() {
       <h1 className="sr-only">Our Work</h1>
       <Seo
         title="Web Design Portfolio in Seychelles"
-        description="Selected work and concept demos for Seychelles businesses."
+        description="Selected web design work for Seychelles businesses."
         path="/work"
         keywords="portfolio web design Seychelles"
       />
       <Timeline
         eyebrow="Our Work"
         title="Selected highlights"
-        description="A focused snapshot of real builds and concept demos, with the tier and outcome for each."
+        description="A focused snapshot of real builds, with the tier and outcome for each."
         data={timelineData}
       />
     </div>

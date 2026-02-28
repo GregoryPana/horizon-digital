@@ -52,8 +52,8 @@ export default function HomeWorkAccordion({ items, onPreview }: HomeWorkAccordio
               }`.trim()}
             >
               <div className="overflow-hidden">
-                <div className="grid gap-4 border-t border-border/80 px-4 py-4 md:grid-cols-[1.1fr_1fr] md:gap-6 md:px-6">
-                  <div className="preview-frame h-32 w-full overflow-hidden rounded-xl border border-border">
+                <div className="grid gap-4 border-t border-border/80 px-4 py-4 md:grid-cols-[0.82fr_1.18fr] md:gap-6 md:px-6">
+                  <div className="preview-frame h-32 w-full overflow-hidden rounded-xl border border-border md:h-36">
                     <picture>
                       <source
                         srcSet={`${item.imageWebp800} 800w`}
@@ -67,7 +67,7 @@ export default function HomeWorkAccordion({ items, onPreview }: HomeWorkAccordio
                         height={360}
                         loading="lazy"
                         decoding="async"
-                        className="h-full w-full bg-bg object-contain"
+                        className="h-full w-full bg-bg object-cover object-center"
                       />
                     </picture>
                   </div>

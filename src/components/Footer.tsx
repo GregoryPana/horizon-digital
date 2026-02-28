@@ -78,7 +78,7 @@ export default function Footer() {
               <p className="mt-6 text-xs text-text-muted">
                 Designed and built by {" "}
                 <a
-                  className="text-text/90 transition hover:text-accent"
+                  className="brand-name text-text/90 transition hover:text-accent"
                   href={siteConfig.url}
                 >
                   {siteConfig.name}
@@ -103,7 +103,9 @@ export default function Footer() {
           </div>
         </div>
         <div className="mt-10 horizon-line" />
-        <p className="mt-6 text-xs text-text-muted">(c) {new Date().getFullYear()} {siteConfig.name}</p>
+        <p className="mt-6 text-xs text-text-muted">
+          (c) {new Date().getFullYear()} <span className="brand-name">{siteConfig.name}</span>
+        </p>
       </div>
     </footer>
   );

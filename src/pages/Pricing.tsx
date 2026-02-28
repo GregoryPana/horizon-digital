@@ -15,12 +15,12 @@ import {
   siteConfig,
   starterPackage,
   stabilisationPlan,
-  trustStatement,
 } from "../data/site";
 import { ShimmerButton } from "../components/ui/shimmer-button";
 import { Link } from "react-router-dom";
 
 export default function Pricing() {
+  const compactDesktopSection = "md:!pt-14 md:!pb-16";
   const [hostingBilling, setHostingBilling] = useState<"monthly" | "annual">("monthly");
   const [mobileOpen, setMobileOpen] = useState({
     foundation: false,
@@ -103,6 +103,7 @@ export default function Pricing() {
         eyebrow="Services & Pricing"
         title={servicesPricingIntro.title}
         description={servicesPricingIntro.subtitle}
+        className={compactDesktopSection}
       >
         <p className="text-sm text-text-muted">{servicesPricingIntro.summary}</p>
       </Section>
@@ -111,6 +112,7 @@ export default function Pricing() {
         eyebrow="How it works"
         title="How your project works"
         description="A simple, structured process from start to launch."
+        className={compactDesktopSection}
       >
         <div className="section-band section-band-medium relative left-1/2 right-1/2 -mx-[50vw] my-8 w-screen py-16 md:my-10 md:py-20">
           <div className="mx-auto grid w-full max-w-7xl gap-8 px-5 sm:px-8 md:grid-cols-2 lg:grid-cols-5">
@@ -129,6 +131,7 @@ export default function Pricing() {
         eyebrow="Packages"
         title="Choose the right package for your business"
         description="Foundation, Starter, and Growth side by side for a clear comparison."
+        className={compactDesktopSection}
       >
         <div className="grid items-stretch gap-8 md:grid-cols-2 lg:grid-cols-3">
           <Card className="flex h-full flex-col no-scroll-glow pricing-card pricing-card-foundation !p-5 md:!p-7">
@@ -143,7 +146,7 @@ export default function Pricing() {
               onClick={() =>
                 setMobileOpen((prev) => ({ ...prev, foundation: !prev.foundation }))
               }
-              className="mt-4 inline-flex w-full items-center justify-between rounded-full border border-border px-4 py-2 text-xs uppercase tracking-[0.2em] text-text-muted md:hidden"
+              className="mt-4 inline-flex w-full items-center justify-between rounded-full border border-border px-4 py-2.5 text-[0.68rem] uppercase tracking-[0.16em] text-text-muted md:hidden"
             >
               <span>View included items</span>
               <span aria-hidden="true" className="text-accent">
@@ -227,7 +230,7 @@ export default function Pricing() {
               <button
                 type="button"
                 onClick={() => setMobileOpen((prev) => ({ ...prev, starter: !prev.starter }))}
-                className="mt-4 inline-flex w-full items-center justify-between rounded-full border border-border px-4 py-2 text-xs uppercase tracking-[0.2em] text-text-muted md:hidden"
+                className="mt-4 inline-flex w-full items-center justify-between rounded-full border border-border px-4 py-2.5 text-[0.68rem] uppercase tracking-[0.16em] text-text-muted md:hidden"
               >
                 <span>View included items</span>
                 <span aria-hidden="true" className="text-accent">
@@ -302,7 +305,7 @@ export default function Pricing() {
             <button
               type="button"
               onClick={() => setMobileOpen((prev) => ({ ...prev, growth: !prev.growth }))}
-              className="mt-4 inline-flex w-full items-center justify-between rounded-full border border-border px-4 py-2 text-xs uppercase tracking-[0.2em] text-text-muted md:hidden"
+              className="mt-4 inline-flex w-full items-center justify-between rounded-full border border-border px-4 py-2.5 text-[0.68rem] uppercase tracking-[0.16em] text-text-muted md:hidden"
             >
               <span>View included items</span>
               <span aria-hidden="true" className="text-accent">
@@ -399,6 +402,7 @@ export default function Pricing() {
         eyebrow="Managed hosting"
         title={hostingPlan.title}
         description="One clear plan to keep your website secure and running smoothly."
+        className={compactDesktopSection}
       >
         <div className="mx-auto w-full max-w-5xl">
           <Card className="!rounded-2xl no-scroll-glow pricing-card">
@@ -490,6 +494,7 @@ export default function Pricing() {
         eyebrow="Add-ons"
         title="Optional add-ons"
         description="All add-ons are clearly scoped before work begins, if not included in selected tier."
+        className={compactDesktopSection}
       >
         <div className="section-band section-band-soft relative left-1/2 right-1/2 -mx-[50vw] my-8 w-screen py-14 md:my-10 md:py-16">
           <div className="mx-auto grid w-full max-w-7xl gap-x-10 gap-y-5 px-5 sm:px-8 md:grid-cols-2">
@@ -507,6 +512,7 @@ export default function Pricing() {
         eyebrow="Stabilisation"
         title={stabilisationPlan.title}
         description="Included with every website build."
+        className={compactDesktopSection}
       >
         <Card>
           <div className="grid gap-6 md:grid-cols-2">
@@ -537,38 +543,22 @@ export default function Pricing() {
       </Section>
 
       <Section
-        eyebrow="Trust"
-        title="Clear scope. Clear outcomes."
-        description="We keep everything transparent from day one."
-      >
-        <Card>
-          <ul className="grid gap-4 text-sm text-text-muted sm:grid-cols-2">
-            {trustStatement.map((item) => (
-              <li key={item} className="flex items-center gap-2">
-                <span className="h-2 w-2 rounded-full bg-accent" />
-                {item}
-              </li>
-            ))}
-          </ul>
-        </Card>
-      </Section>
-
-      <Section
         eyebrow="Performance & Visibility"
         title="Built to look good and be found"
-        description="We focus on speed, clarity, and helping people discover your business online."
+        description="We focus on speed, clarity, and practical search setup so people can discover your business online."
+        className={compactDesktopSection}
       >
         <div className="section-band section-band-medium relative left-1/2 right-1/2 -mx-[50vw] my-8 w-screen py-14 md:my-10 md:py-16">
           <div className="mx-auto w-full max-w-7xl px-8">
             <p className="max-w-4xl text-sm leading-7 text-text">
-              A beautiful website should also be fast and easy to find. Horizon Digital prioritises
-              clean structure, quick loading pages, clear page content, and strong setup for search
-              visibility so customers can discover your business more easily. In simple terms, we help
-              your website look professional, load smoothly, and show up better when people search.
+              A beautiful website should also be easy to find. We set up each site with clean page
+              structure, clear headings, search-friendly page content, and technical signals that help
+              Google understand what your business offers. In simple terms, your website is built to
+              look professional, load quickly, and appear in front of the right people when they search.
             </p>
             <p className="mt-6 text-base font-medium text-accent-2">
-              Do you want a beautiful, fast website? Are you ready to take this next step towards
-              the horizon of your digital journey?
+              If you want a website that feels truly yours and is easier for customers to find,
+              Horizon Digital can help you launch with confidence.
             </p>
           </div>
         </div>

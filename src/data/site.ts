@@ -2,12 +2,6 @@ import guesthousePreview from "../assets/work/drake-seaside/drake-seaside.jpg";
 import guesthousePreviewWebp from "../assets/work/drake-seaside/drake-seaside.webp";
 import guesthousePreviewWebp800 from "../assets/work/drake-seaside/drake-seaside-600.webp";
 import ogImage from "../assets/logo/svg logo (1).png";
-import cafePreview from "../assets/work/demos/cafe.jpg";
-import cafePreviewWebp from "../assets/work/demos/cafe.webp";
-import cafePreviewWebp800 from "../assets/work/demos/cafe-800.webp";
-import consultingPreview from "../assets/work/demos/consulting.jpg";
-import consultingPreviewWebp from "../assets/work/demos/consulting.webp";
-import consultingPreviewWebp800 from "../assets/work/demos/consulting-800.webp";
 import seykelzPreview from "../assets/work/seykelz/seykelz.jpg";
 import seykelzPreviewWebp from "../assets/work/seykelz/seykelz.webp";
 import seykelzPreviewWebp800 from "../assets/work/seykelz/seykelz-800.webp";
@@ -106,9 +100,9 @@ export const projectSteps = [
 
 export const servicesPricingIntro = {
   title: "Services & Pricing",
-  subtitle: "Custom-built websites for Seychelles businesses.",
+  subtitle: "Tailored websites for Seychelles businesses, built around how your business actually works.",
   summary:
-    "Clean, fast, professional websites with no templates, no hidden extras, and a limited number of projects each month for quality.",
+    "Every website is planned around your services, your customers, and your goals - not copied from a generic template. We combine clear design with strong search setup so people can find you more easily, trust what they see, and contact you faster.",
 };
 
 export const foundationPackage = {
@@ -136,7 +130,8 @@ export const foundationPackage = {
 export const starterPackage = {
   title: "Starter",
   price: "From SCR 12,500",
-  description: "For small businesses needing a professional online presence.",
+  description:
+    "For small businesses that want a unique, custom website with clear messaging and better visibility in search.",
   includes: [
     "Up to 5 pages",
     "Custom design (not a template)",
@@ -155,7 +150,8 @@ export const starterPackage = {
 export const growthPackage = {
   title: "Growth",
   price: "From SCR 25,000",
-  description: "For established businesses needing more structure and flexibility.",
+  description:
+    "For established businesses that need a fully tailored website, deeper structure, and stronger search visibility.",
   includes: [
     "Up to 10-12 pages",
     "Expanded service structure",
@@ -246,7 +242,7 @@ export const trustStatement = [
 
 export const workItems = [
   {
-    label: "Guesthouse",
+    label: "Guesthouse · Growth Tier",
     title: "Drake Seaside Apartments",
     outcome: "Redesign with new pages, updated content, faster load times, and higher click-through conversions.",
     image: guesthousePreview,
@@ -255,7 +251,7 @@ export const workItems = [
     url: "https://thedrake-seaside.com/",
   },
   {
-    label: "Retail",
+    label: "Retail · Foundation Tier",
     title: "SeyKelz",
     outcome:
       "Foundation-tier website for a Seychelles toner cartridge store selling genuine and compatible supplies for HP, Epson, and Canon printers.",
@@ -263,22 +259,6 @@ export const workItems = [
     imageWebp: seykelzPreviewWebp,
     imageWebp800: seykelzPreviewWebp800,
     url: "https://sey-kelz.horizondigitalsey.com/",
-  },
-  {
-    label: "Cafe",
-    title: "Concept Demo",
-    outcome: "Mobile-first story with location details",
-    image: cafePreview,
-    imageWebp: cafePreviewWebp,
-    imageWebp800: cafePreviewWebp800,
-  },
-  {
-    label: "Consulting",
-    title: "Concept Demo",
-    outcome: "Clear contact flow for new enquiries",
-    image: consultingPreview,
-    imageWebp: consultingPreviewWebp,
-    imageWebp800: consultingPreviewWebp800,
   },
 ];
 
