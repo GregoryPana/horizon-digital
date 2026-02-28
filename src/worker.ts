@@ -49,8 +49,12 @@ export default {
     }
 
     const response = await env.ASSETS.fetch(request);
+    const location = response.headers.get("location");
+    const isSpaRouteRequest = !isAssetRequest && url.pathname !== "/";
+    const isHomepageRedirect =
+      response.status >= 300 && response.status < 400 && (location === "/" || location === "./");
 
-    if (response.status === 404 && !isAssetRequest) {
+    if ((response.status === 404 && !isAssetRequest) || (isSpaRouteRequest && isHomepageRedirect)) {
       return env.ASSETS.fetch(new Request(new URL("/index.html", url).toString(), request));
     }
 
