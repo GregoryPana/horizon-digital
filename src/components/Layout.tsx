@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useRef, useState } from "react";
+import { ReactNode, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
@@ -12,9 +12,9 @@ export default function Layout({ children }: LayoutProps) {
   const location = useLocation();
   const mainRef = useRef<HTMLElement | null>(null);
   const [showTopButton, setShowTopButton] = useState(false);
-  const [headerHeight, setHeaderHeight] = useState(96);
+  const [headerHeight, setHeaderHeight] = useState(88);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const header = document.querySelector<HTMLElement>("[data-site-header]");
     if (!header) return;
 
