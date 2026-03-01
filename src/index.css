@@ -573,13 +573,13 @@ html:not([data-theme="dark"]) .hero-consult-cta {
   .hero-view-work-cta {
     background-color: transparent !important;
     border: 1px solid rgba(188, 140, 37, 0.86);
-    color: #e9c764;
+    color: #e9c764 !important;
     box-shadow: 0 0 20px rgba(188, 140, 37, 0.42), 0 0 34px rgba(188, 140, 37, 0.2) !important;
   }
 
   .hero-view-work-cta:hover {
     background-color: rgba(188, 140, 37, 0.12) !important;
-    color: #f0d27a;
+    color: #f0d27a !important;
     box-shadow: 0 0 26px rgba(188, 140, 37, 0.52), 0 0 44px rgba(188, 140, 37, 0.28) !important;
   }
 

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Card from "../components/Card";
 import Section from "../components/Section";
@@ -19,9 +19,21 @@ import {
 import { ShimmerButton } from "../components/ui/shimmer-button";
 import { Link } from "react-router-dom";
 
+const pricingSectionLinks = [
+  { id: "overview", label: "Overview" },
+  { id: "process", label: "Process" },
+  { id: "packages", label: "Packages" },
+  { id: "hosting", label: "Hosting" },
+  { id: "addons", label: "Add-ons" },
+  { id: "stabilisation", label: "Stabilise" },
+  { id: "visibility", label: "Visibility" },
+] as const;
+
 export default function Pricing() {
   const compactDesktopSection = "md:!pt-14 md:!pb-16";
   const [hostingBilling, setHostingBilling] = useState<"monthly" | "annual">("monthly");
+  const [passedSectionIds, setPassedSectionIds] = useState<string[]>([]);
+  const [isRailOpen, setIsRailOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState({
     foundation: false,
     starter: false,
@@ -39,6 +51,31 @@ export default function Pricing() {
   const growthUniqueIncludes = growthPackage.includes.filter(
     (item) => !starterFeatureSet.has(normalizeFeature(item))
   );
+
+  useEffect(() => {
+    const syncPassedSections = () => {
+      const threshold = window.innerHeight * 0.42;
+      const nextPassed = pricingSectionLinks
+        .filter((section) => {
+          const node = document.getElementById(section.id);
+          return node ? node.getBoundingClientRect().top <= threshold : false;
+        })
+        .map((section) => section.id);
+
+      setPassedSectionIds((current) =>
+        current.join("|") === nextPassed.join("|") ? current : nextPassed
+      );
+    };
+
+    syncPassedSections();
+    window.addEventListener("scroll", syncPassedSections, { passive: true });
+    window.addEventListener("resize", syncPassedSections);
+
+    return () => {
+      window.removeEventListener("scroll", syncPassedSections);
+      window.removeEventListener("resize", syncPassedSections);
+    };
+  }, []);
 
   const packageOffers = [foundationPackage, starterPackage, growthPackage]
     .map((pkg) => {
@@ -99,7 +136,56 @@ export default function Pricing() {
         keywords="website pricing Seychelles"
         structuredData={[serviceSchema, faqSchema]}
       />
+      {passedSectionIds.length > 0 && (
+        <div className="fixed left-0 top-1/2 z-40 -translate-y-1/2 md:hidden">
+          <button
+            type="button"
+            onClick={() => setIsRailOpen((prev) => !prev)}
+            className="focus-ring rounded-r-full border border-l-0 border-accent/40 bg-bg-elev/95 px-2.5 py-2 text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-accent shadow-[0_8px_24px_rgba(2,8,12,0.32)]"
+          >
+            {isRailOpen ? "Close" : "Jump"}
+          </button>
+
+          {isRailOpen && (
+            <nav aria-label="Pricing section quick nav" className="ml-2 mt-2">
+              <ul className="flex max-h-[64svh] flex-col gap-2 overflow-y-auto rounded-2xl border border-border bg-bg-elev/92 px-2 py-2 shadow-[0_8px_30px_rgba(2,8,12,0.35)] backdrop-blur">
+                <li>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+                      setIsRailOpen(false);
+                    }}
+                    className="focus-ring rounded-full border border-border px-2.5 py-1 text-[0.62rem] uppercase tracking-[0.14em] text-text-muted"
+                  >
+                    Top
+                  </button>
+                </li>
+                {pricingSectionLinks
+                  .filter((section) => passedSectionIds.includes(section.id))
+                  .map((section) => (
+                    <li key={section.id}>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          document
+                            .getElementById(section.id)
+                            ?.scrollIntoView({ behavior: "smooth", block: "start" });
+                          setIsRailOpen(false);
+                        }}
+                        className="focus-ring rounded-full border border-accent/35 bg-accent-soft px-2.5 py-1 text-[0.62rem] uppercase tracking-[0.14em] text-accent"
+                      >
+                        {section.label}
+                      </button>
+                    </li>
+                  ))}
+              </ul>
+            </nav>
+          )}
+        </div>
+      )}
       <Section
+        id="overview"
         eyebrow="Services & Pricing"
         title={servicesPricingIntro.title}
         description={servicesPricingIntro.subtitle}
@@ -109,6 +195,7 @@ export default function Pricing() {
       </Section>
 
       <Section
+        id="process"
         eyebrow="How it works"
         title="How your project works"
         description="A simple, structured process from start to launch."
@@ -128,6 +215,7 @@ export default function Pricing() {
       </Section>
 
       <Section
+        id="packages"
         eyebrow="Packages"
         title="Choose the right package for your business"
         description="Foundation, Starter, and Growth side by side for a clear comparison."
@@ -399,6 +487,7 @@ export default function Pricing() {
       </Section>
 
       <Section
+        id="hosting"
         eyebrow="Managed hosting"
         title={hostingPlan.title}
         description="One clear plan to keep your website secure and running smoothly."
@@ -491,6 +580,7 @@ export default function Pricing() {
       </Section>
 
       <Section
+        id="addons"
         eyebrow="Add-ons"
         title="Optional add-ons"
         description="All add-ons are clearly scoped before work begins, if not included in selected tier."
@@ -509,6 +599,7 @@ export default function Pricing() {
       </Section>
 
       <Section
+        id="stabilisation"
         eyebrow="Stabilisation"
         title={stabilisationPlan.title}
         description="Included with every website build."
@@ -543,6 +634,7 @@ export default function Pricing() {
       </Section>
 
       <Section
+        id="visibility"
         eyebrow="Performance & Visibility"
         title="Built to look good and be found"
         description="We focus on speed, clarity, and practical search setup so people can discover your business online."
