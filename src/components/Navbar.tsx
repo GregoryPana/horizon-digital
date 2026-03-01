@@ -1,14 +1,9 @@
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Button from "./Button";
-import Logo from "./Logo";
 import NavMenu from "./ui/menu-hover-effects";
 import ThemeToggle from "./ThemeToggle";
-import headerLogo from "../assets/logo/svg logo (1).png";
 
 export default function Navbar() {
-  const { pathname } = useLocation();
-  const showHeaderLogo = pathname === "/";
-
   return (
     <header
       data-site-header
@@ -20,7 +15,6 @@ export default function Navbar() {
           className="focus-ring inline-flex items-center rounded-full"
           onClick={() => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })}
         >
-          {showHeaderLogo ? <Logo imageSrc={headerLogo} imageClassName="rounded-none" /> : null}
           <span className="brand-name ml-2 text-sm uppercase tracking-[0.18em] text-accent">
             Horizon Digital
           </span>

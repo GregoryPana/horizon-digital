@@ -12,11 +12,9 @@ import desktopSplashWebp from "../../assets/hero/splash-desktop.webp";
 import mobileSplash from "../../assets/hero/splash-mobile.jpg";
 import mobileSplashWebp from "../../assets/hero/splash-mobile.webp";
 import mobileSplashWebp720 from "../../assets/hero/splash-mobile-720.webp";
-import heroLogo from "../../assets/logo/svg logo (1).png";
 
 export default function InfiniteHero() {
   const rootRef = useRef<HTMLDivElement>(null);
-  const bgRef = useRef<HTMLDivElement>(null);
   const h1Ref = useRef<HTMLParagraphElement>(null);
   const pRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
@@ -26,9 +24,8 @@ export default function InfiniteHero() {
     () => {
       const ctas = ctaRef.current ? Array.from(ctaRef.current.children) : [];
 
-      if (!bgRef.current || !h1Ref.current || !pRef.current) return;
+      if (!h1Ref.current || !pRef.current) return;
 
-      gsap.set(bgRef.current, { filter: "blur(24px)" });
       gsap.set([h1Ref.current, pRef.current], {
         opacity: 0,
         y: 24,
@@ -37,8 +34,7 @@ export default function InfiniteHero() {
       if (ctas.length) gsap.set(ctas, { opacity: 0, y: 16 });
 
       const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
-      tl.to(bgRef.current, { filter: "blur(0px)", duration: 1.2 }, 0)
-        .to(
+      tl.to(
           h1Ref.current,
           {
             opacity: 1,
@@ -46,7 +42,7 @@ export default function InfiniteHero() {
             filter: "blur(0px)",
             duration: 0.9,
           },
-          0.3
+          0.15
         )
         .to(
           pRef.current,
@@ -56,9 +52,9 @@ export default function InfiniteHero() {
             filter: "blur(0px)",
             duration: 0.7,
           },
-          0.5
+          0.35
         )
-        .to(ctas, { opacity: 1, y: 0, duration: 0.6, stagger: 0.08 }, 0.7);
+        .to(ctas, { opacity: 1, y: 0, duration: 0.6, stagger: 0.08 }, 0.55);
     },
     { scope: rootRef }
   );
@@ -69,7 +65,7 @@ export default function InfiniteHero() {
       className="relative h-[90svh] w-full overflow-hidden bg-bg text-text md:h-svh"
     >
       <div className="absolute inset-0 brightness-110 md:brightness-100">
-        <div className="absolute inset-0 hidden md:block" ref={bgRef}>
+        <div className="absolute inset-0 hidden md:block">
           <picture>
             <source srcSet={desktopSplashWebp} type="image/webp" />
             <img
@@ -77,6 +73,8 @@ export default function InfiniteHero() {
               alt=""
               aria-hidden="true"
               fetchPriority="high"
+              loading="eager"
+              decoding="sync"
               className="h-full w-full object-cover object-center"
             />
           </picture>
@@ -93,6 +91,8 @@ export default function InfiniteHero() {
               alt=""
               aria-hidden="true"
               fetchPriority="high"
+              loading="eager"
+              decoding="sync"
               className="h-full w-full object-cover object-center"
             />
           </picture>
@@ -103,14 +103,9 @@ export default function InfiniteHero() {
 
       <div className="relative z-10 flex h-[90svh] w-full items-center justify-center px-5 md:h-svh md:px-8">
         <div className="-translate-y-[7%] text-center md:translate-y-[6%]">
-          <img
-            src={heroLogo}
-            alt="Horizon Digital"
-            className="mx-auto mb-2 h-11 w-auto object-contain sm:h-14 md:mb-4 md:h-16"
-          />
           <p
             ref={h1Ref}
-            className="brand-name hero-brand-glow -translate-y-[18%] text-[2.55rem] uppercase tracking-[0.13em] text-accent sm:text-6xl md:-translate-y-1/4 md:text-[clamp(2.35rem,5.4vw,4rem)] md:tracking-[0.2em]"
+            className="brand-name hero-brand-glow -translate-y-[10%] text-[2.55rem] uppercase tracking-[0.13em] text-accent sm:text-6xl md:-translate-y-1/4 md:text-[clamp(2.35rem,5.4vw,4rem)] md:tracking-[0.2em]"
           >
             <span className="block md:inline">Horizon</span>
             <span className="block md:ml-[0.35em] md:inline">Digital</span>
