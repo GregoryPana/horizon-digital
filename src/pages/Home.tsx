@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../components/Button";
 import Card from "../components/Card";
 import Modal from "../components/Modal";
 import Section from "../components/Section";
 import Seo from "../components/Seo";
-import InfiniteHero from "../components/ui/infinite-hero";
+import HomeHero from "../components/ui/home-hero";
 import HomeFaq from "../components/ui/home-faq";
 import HomeWorkAccordion from "../components/ui/home-work-accordion";
 import { ShimmerButton } from "../components/ui/shimmer-button";
@@ -31,6 +31,15 @@ type WorkPreviewItem = {
   url?: string;
 };
 
+const homeSectionLinks = [
+  { id: "services", label: "Services" },
+  { id: "featured-work", label: "Work" },
+  { id: "process", label: "Process" },
+  { id: "packages", label: "Packages" },
+  { id: "faq", label: "FAQ" },
+  { id: "ready", label: "Ready" },
+] as const;
+
 export default function Home() {
   const [activeWork, setActiveWork] = useState<WorkPreviewItem | null>(null);
   const [mobileOpen, setMobileOpen] = useState({
@@ -38,6 +47,7 @@ export default function Home() {
     starter: false,
     growth: false,
   });
+  const [passedSectionIds, setPassedSectionIds] = useState<string[]>([]);
   const handleWorkScrollTop = () => scrollToTopSmooth();
   const normalizeFeature = (value: string) => value.trim().toLowerCase();
   const foundationFeatureSet = new Set(foundationPackage.includes.map(normalizeFeature));
@@ -48,6 +58,31 @@ export default function Home() {
   const growthUniqueIncludes = growthPackage.includes.filter(
     (item) => !starterFeatureSet.has(normalizeFeature(item))
   );
+
+  useEffect(() => {
+    const syncPassedSections = () => {
+      const threshold = window.innerHeight * 0.42;
+      const nextPassed = homeSectionLinks
+        .filter((section) => {
+          const node = document.getElementById(section.id);
+          return node ? node.getBoundingClientRect().top <= threshold : false;
+        })
+        .map((section) => section.id);
+
+      setPassedSectionIds((current) =>
+        current.join("|") === nextPassed.join("|") ? current : nextPassed
+      );
+    };
+
+    syncPassedSections();
+    window.addEventListener("scroll", syncPassedSections, { passive: true });
+    window.addEventListener("resize", syncPassedSections);
+
+    return () => {
+      window.removeEventListener("scroll", syncPassedSections);
+      window.removeEventListener("resize", syncPassedSections);
+    };
+  }, []);
 
   const faqSchema = {
     "@context": "https://schema.org",
@@ -72,9 +107,46 @@ export default function Home() {
         keywords="Seychelles web design"
         structuredData={faqSchema}
       />
-      <InfiniteHero />
+      <HomeHero />
+
+      {passedSectionIds.length > 0 && (
+        <nav
+          aria-label="Section quick nav"
+          className="fixed left-2 top-1/2 z-40 -translate-y-1/2 md:hidden"
+        >
+          <ul className="flex max-h-[70svh] flex-col gap-2 overflow-y-auto rounded-2xl border border-border bg-bg-elev/92 px-2 py-2 shadow-[0_8px_30px_rgba(2,8,12,0.35)] backdrop-blur">
+            <li>
+              <button
+                type="button"
+                onClick={scrollToTopSmooth}
+                className="focus-ring rounded-full border border-border px-2.5 py-1 text-[0.62rem] uppercase tracking-[0.14em] text-text-muted"
+              >
+                Top
+              </button>
+            </li>
+            {homeSectionLinks
+              .filter((section) => passedSectionIds.includes(section.id))
+              .map((section) => (
+                <li key={section.id}>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      document
+                        .getElementById(section.id)
+                        ?.scrollIntoView({ behavior: "smooth", block: "start" })
+                    }
+                    className="focus-ring rounded-full border border-accent/35 bg-accent-soft px-2.5 py-1 text-[0.62rem] uppercase tracking-[0.14em] text-accent"
+                  >
+                    {section.label}
+                  </button>
+                </li>
+              ))}
+          </ul>
+        </nav>
+      )}
 
       <Section
+        id="services"
         eyebrow="Services"
         title="Designed to be clear and reliable"
         description="Modern websites that help customers understand you and get in touch."
@@ -104,6 +176,7 @@ export default function Home() {
       </Section>
 
       <Section
+        id="featured-work"
         eyebrow="Featured work"
         title="Selected work and layout previews"
         description="A focused snapshot of recent builds and layout direction."
@@ -120,6 +193,7 @@ export default function Home() {
       </Section>
 
       <Section
+        id="process"
         eyebrow="Process"
         title="A clear five-step workflow"
         description="Simple milestones, direct communication, and reliable delivery."
@@ -138,6 +212,7 @@ export default function Home() {
       </Section>
 
       <Section
+        id="packages"
         eyebrow="Services & Pricing"
         title="Website build packages"
         description="Clear starting points for the build."
@@ -349,6 +424,7 @@ export default function Home() {
       </Section>
 
       <Section
+        id="faq"
         eyebrow="FAQ"
         title="Clarity before we start"
         description="Straight answers to help you plan with confidence."
@@ -369,7 +445,7 @@ export default function Home() {
         </div>
       </Section>
 
-      <section className="bg-bg-elev">
+      <section id="ready" className="bg-bg-elev">
         <div className="mx-auto flex w-full max-w-7xl flex-col items-start gap-10 px-8 py-28 md:flex-row md:items-center md:justify-between">
           <div>
             <p className="text-xs uppercase tracking-[0.4em] text-accent">Ready to build</p>
