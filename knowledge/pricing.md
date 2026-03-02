@@ -37,10 +37,11 @@ Payment terms:
 **From SCR 12,500**
 
 For small businesses needing a professional online presence.
-Ideal for cafes, guesthouses, salons, small shops, consultants, and trades. Up to 5 pages.
+Ideal for cafes, guesthouses, salons, small shops, consultants, and trades.
 Includes core build essentials.
 
 Includes:
+- Up to 5 pages
 - Custom design (not a template)
 - Mobile-first layout
 - Contact form
@@ -59,9 +60,10 @@ Payment terms:
 **From SCR 25,000**
 
 For established businesses needing more structure and flexibility.
-Ideal for law firms, construction companies, clinics, tour operators, and expanding hospitality businesses. Up to 10-12 pages.
+Ideal for law firms, construction companies, clinics, tour operators, and expanding hospitality businesses. 
 
 Includes:
+- Up to 10-12 pages
 - Expanded service structure
 - Testimonials
 - Team section (if required)
@@ -90,5 +92,5 @@ Ongoing care plans are no longer offered.
 - Additional page: SCR 2,000 per page
 - Content writing support: SCR 600 per page
 - Structured booking / enquiry form: SCR 1,500
-- Google Business Profile setup: SCR 2,500 - 2,200
+- Google Business Profile setup: SCR 2,200
 - Rush delivery: +40%, subject to availability
