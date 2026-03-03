@@ -84,7 +84,7 @@ export default function HomeHero() {
               variant="primary"
               size="lg"
               onClick={handleWorkScrollTop}
-              className="gold-cta hero-view-work-cta self-center sm:w-auto"
+              className="gold-cta hero-view-work-cta self-center !text-[#e9c764] hover:!text-[#f0d27a] sm:w-auto md:!text-black"
             />
           </div>
         </div>

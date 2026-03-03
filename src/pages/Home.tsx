@@ -111,14 +111,14 @@ export default function Home() {
       <HomeHero />
 
       {passedSectionIds.length > 0 && (
-        <div className="fixed left-0 top-1/2 z-40 -translate-y-1/2 md:hidden">
+        <div className="fixed left-0 top-[64%] z-40 -translate-y-1/2 md:hidden">
           <button
             type="button"
             onClick={() => setIsRailOpen((prev) => !prev)}
             aria-label={isRailOpen ? "Close section jump rail" : "Open section jump rail"}
-            className="focus-ring rounded-r-full border border-l-0 border-accent/40 bg-bg-elev/95 px-2 py-2 text-sm font-semibold text-accent shadow-[0_8px_24px_rgba(2,8,12,0.32)]"
+            className="focus-ring h-12 w-[18px] rounded-r-full border border-l-0 border-accent/40 bg-bg-elev/95 text-base leading-none text-accent shadow-[0_8px_24px_rgba(2,8,12,0.32)]"
           >
-            {isRailOpen ? "<" : ">"}
+            {isRailOpen ? "‹" : "›"}
           </button>
 
           {isRailOpen && (

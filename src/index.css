@@ -693,6 +693,16 @@ html:not([data-theme="dark"]) .btn-outline-gold:hover {
   color: #f2f2f2 !important;
 }
 
+@media (max-width: 767px) {
+  .hero-view-work-cta.text-black {
+    color: #e9c764 !important;
+  }
+
+  .hero-view-work-cta.text-black:hover {
+    color: #f0d27a !important;
+  }
+}
+
 @media (min-width: 768px) {
   .hero-main-subtext {
     color: #f2f2f2;
