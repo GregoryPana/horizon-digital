@@ -141,9 +141,10 @@ export default function Pricing() {
           <button
             type="button"
             onClick={() => setIsRailOpen((prev) => !prev)}
-            className="focus-ring rounded-r-full border border-l-0 border-accent/40 bg-bg-elev/95 px-2.5 py-2 text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-accent shadow-[0_8px_24px_rgba(2,8,12,0.32)]"
+            aria-label={isRailOpen ? "Close section jump rail" : "Open section jump rail"}
+            className="focus-ring rounded-r-full border border-l-0 border-accent/40 bg-bg-elev/95 px-2 py-2 text-sm font-semibold text-accent shadow-[0_8px_24px_rgba(2,8,12,0.32)]"
           >
-            {isRailOpen ? "Close" : "Jump"}
+            {isRailOpen ? "<" : ">"}
           </button>
 
           {isRailOpen && (

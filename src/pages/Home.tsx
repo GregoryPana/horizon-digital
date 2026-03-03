@@ -48,6 +48,7 @@ export default function Home() {
     growth: false,
   });
   const [passedSectionIds, setPassedSectionIds] = useState<string[]>([]);
+  const [isRailOpen, setIsRailOpen] = useState(false);
   const handleWorkScrollTop = () => scrollToTopSmooth();
   const normalizeFeature = (value: string) => value.trim().toLowerCase();
   const foundationFeatureSet = new Set(foundationPackage.includes.map(normalizeFeature));
@@ -110,39 +111,53 @@ export default function Home() {
       <HomeHero />
 
       {passedSectionIds.length > 0 && (
-        <nav
-          aria-label="Section quick nav"
-          className="fixed left-2 top-1/2 z-40 -translate-y-1/2 md:hidden"
-        >
-          <ul className="flex max-h-[70svh] flex-col gap-2 overflow-y-auto rounded-2xl border border-border bg-bg-elev/92 px-2 py-2 shadow-[0_8px_30px_rgba(2,8,12,0.35)] backdrop-blur">
-            <li>
-              <button
-                type="button"
-                onClick={scrollToTopSmooth}
-                className="focus-ring rounded-full border border-border px-2.5 py-1 text-[0.62rem] uppercase tracking-[0.14em] text-text-muted"
-              >
-                Top
-              </button>
-            </li>
-            {homeSectionLinks
-              .filter((section) => passedSectionIds.includes(section.id))
-              .map((section) => (
-                <li key={section.id}>
+        <div className="fixed left-0 top-1/2 z-40 -translate-y-1/2 md:hidden">
+          <button
+            type="button"
+            onClick={() => setIsRailOpen((prev) => !prev)}
+            aria-label={isRailOpen ? "Close section jump rail" : "Open section jump rail"}
+            className="focus-ring rounded-r-full border border-l-0 border-accent/40 bg-bg-elev/95 px-2 py-2 text-sm font-semibold text-accent shadow-[0_8px_24px_rgba(2,8,12,0.32)]"
+          >
+            {isRailOpen ? "<" : ">"}
+          </button>
+
+          {isRailOpen && (
+            <nav aria-label="Section quick nav" className="ml-2 mt-2">
+              <ul className="flex max-h-[64svh] flex-col gap-2 overflow-y-auto rounded-2xl border border-border bg-bg-elev/92 px-2 py-2 shadow-[0_8px_30px_rgba(2,8,12,0.35)] backdrop-blur">
+                <li>
                   <button
                     type="button"
-                    onClick={() =>
-                      document
-                        .getElementById(section.id)
-                        ?.scrollIntoView({ behavior: "smooth", block: "start" })
-                    }
-                    className="focus-ring rounded-full border border-accent/35 bg-accent-soft px-2.5 py-1 text-[0.62rem] uppercase tracking-[0.14em] text-accent"
+                    onClick={() => {
+                      scrollToTopSmooth();
+                      setIsRailOpen(false);
+                    }}
+                    className="focus-ring rounded-full border border-border px-2.5 py-1 text-[0.62rem] uppercase tracking-[0.14em] text-text-muted"
                   >
-                    {section.label}
+                    Top
                   </button>
                 </li>
-              ))}
-          </ul>
-        </nav>
+                {homeSectionLinks
+                  .filter((section) => passedSectionIds.includes(section.id))
+                  .map((section) => (
+                    <li key={section.id}>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          document
+                            .getElementById(section.id)
+                            ?.scrollIntoView({ behavior: "smooth", block: "start" });
+                          setIsRailOpen(false);
+                        }}
+                        className="focus-ring rounded-full border border-accent/35 bg-accent-soft px-2.5 py-1 text-[0.62rem] uppercase tracking-[0.14em] text-accent"
+                      >
+                        {section.label}
+                      </button>
+                    </li>
+                  ))}
+              </ul>
+            </nav>
+          )}
+        </div>
       )}
 
       <Section
