@@ -1,0 +1,487 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "chunkSize": 700,
+        "chunkOverlap": 200,
+        "options": {
+          "splitCode": "markdown"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
+      "typeVersion": 1,
+      "position": [
+        3328,
+        1312
+      ],
+      "id": "f5adeebc-6c10-4802-9f6a-f421b62514f9",
+      "name": "Recursive Character Text Splitter"
+    },
+    {
+      "parameters": {
+        "textSplittingMode": "custom",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "typeVersion": 1.1,
+      "position": [
+        3248,
+        1200
+      ],
+      "id": "ac6124be-1691-49e9-8ced-17f1297cd9ba",
+      "name": "Default Data Loader"
+    },
+    {
+      "parameters": {
+        "model": "nomic-embed-text:latest"
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOllama",
+      "typeVersion": 1,
+      "position": [
+        3088,
+        1200
+      ],
+      "id": "f1597b59-fbde-4c64-9403-b9f54e1a56bb",
+      "name": "Embeddings Ollama",
+      "credentials": {
+        "ollamaApi": {
+          "id": "OrlJ3ioO6UFjuRUN",
+          "name": "Ollama account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "qdrantCollection": {
+          "__rl": true,
+          "value": "horizon_digital",
+          "mode": "list",
+          "cachedResultName": "horizon_digital"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreQdrant",
+      "typeVersion": 1.3,
+      "position": [
+        3136,
+        1056
+      ],
+      "id": "d29e6c9c-7e37-4a69-9379-3e515ccac04c",
+      "name": "Qdrant Vector Store",
+      "credentials": {
+        "qdrantApi": {
+          "id": "zO8dcjnqWgtN9V6o",
+          "name": "QdrantApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fileSelector": "/root/.n8n-files/knowledge/*.md",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        2592,
+        1056
+      ],
+      "id": "424cc3c3-89cc-4fe3-a96a-3205e9a3c5a5",
+      "name": "Read/Write Files from Disk"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        2368,
+        1056
+      ],
+      "id": "8ad5fa79-6eb4-4bec-a5d4-090eab218079",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "rag-chat",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        2000,
+        1712
+      ],
+      "id": "45122e7f-cb96-48f1-8ad5-47af6015b25a",
+      "name": "Webhook",
+      "webhookId": "2fa3e57f-deff-4466-a839-7266474eb8c8"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3,
+      "position": [
+        2208,
+        1712
+      ],
+      "id": "228e361b-3fde-4fb3-ae2f-186525841d10",
+      "name": "Extract input"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://ollama:11434/api/embeddings",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"nomic-embed-text:latest\",\n  \"prompt\": \"{{$json.body.message}}\"\n}",
+        "options": {
+          "timeout": 120000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        2416,
+        1712
+      ],
+      "id": "541c5a75-2275-4396-961c-b2e362b2eb31",
+      "name": "Ollama Embed"
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\nconst results = [];\n\nfor (const item of items) {\n  const embedding = item.json.embedding;\n\n  if (!embedding || !Array.isArray(embedding) || embedding.length === 0) {\n    results.push({ json: { ok: false, error: \"No embedding returned from Ollama\" } });\n    continue;\n  }\n\n  // Compute L2 norm\n  const norm = Math.sqrt(embedding.reduce((sum, val) => sum + val * val, 0));\n\n  // Normalize to unit vector (avoid division by zero)\n  const normalized = norm > 0 ? embedding.map(v => v / norm) : embedding;\n\n  results.push({\n    json: {\n      ok: true,\n      embedding: normalized,\n      // Pass through the original message if needed downstream\n      message: item.json.prompt ?? \"\"\n    }\n  });\n}\n\nreturn results;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2608,
+        1712
+      ],
+      "id": "3ca0f949-0a88-4a67-b00d-60672f485f88",
+      "name": "Normalize Embedding"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{$json.ok}}",
+              "value2": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        2784,
+        1712
+      ],
+      "id": "c5aa99ad-027a-463c-a3e3-21df89308b56",
+      "name": "Embedding OK?"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://qdrant:6333/collections/horizon_digital/points/search",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ { vector: $json.embedding, limit: 5, with_payload: true } }}",
+        "options": {
+          "timeout": 120000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        3072,
+        1616
+      ],
+      "id": "a74377c3-1df5-4be6-b1c2-7ebca286ff65",
+      "name": "Qdrant Search"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        2992,
+        1904
+      ],
+      "id": "c519b67c-2a35-4e34-b759-5d8ea0590ef5",
+      "name": "Respond - Embedding Error"
+    },
+    {
+      "parameters": {
+        "jsCode": "const qdrantResults = $input.first().json;\n\n// Extract context chunks from Qdrant results\nconst hits = qdrantResults.result ?? [];\n\nconsole.log('Qdrant hits:', hits.length);\n\nconst context = hits\n  .map((hit, i) => {\n    const text = hit.payload?.text ?? hit.payload?.content ?? JSON.stringify(hit.payload);\n    console.log(`Context ${i + 1}:`, text.substring(0, 100));\n    return `[${i + 1}] ${text}`;\n  })\n  .join(\"\\n\\n\");\n\n// Retrieve the original user message - try multiple sources\nlet userMessage = \"\";\ntry {\n  userMessage = $('Normalize Embedding').first().json.message || \"\";\n} catch (e) {\n  console.log('Could not get message from Normalize Embedding');\n}\n\nif (!userMessage) {\n  try {\n    userMessage = $('Extract input').first().json.body?.message || \"\";\n  } catch (e) {\n    console.log('Could not get message from Extract input');\n  }\n}\n\nif (!userMessage) {\n  userMessage = \"No user message found\";\n}\n\nconsole.log('User message:', userMessage);\nconsole.log('Context length:', context.length);\n\nconst prompt = `You are a friendly and professional assistant for Horizon Digital, a web design company in Seychelles. Your goal is to help potential clients quickly understand our services.\n\nRESPONSE GUIDELINES:\n- Be warm, conversational, and helpful\n- Keep answers BRIEF and focused (2-3 sentences max for main answer)\n- ALWAYS use bullet points for ALL lists - NEVER use paragraphs\n- Each bullet point must be exactly 1 line - no exceptions\n- Start each bullet point with \"•\" (bullet character) and space after\n- Focus on the most important information first\n- If they ask about packages, format: \"• Package Name - Key feature + SCR price\"\n- If they ask about services, format: \"• Service Name - 1-line description\"\n- End with a simple question if more detail is needed\n- Avoid long explanations or feature dumps\n- If mentioning prices, always include the currency (SCR)\n- Format: Clean, scannable, easy to read\n\nEXAMPLES:\nQ: \"What packages do you offer?\"\nA: \"We offer 3 main packages:\n• Foundation - 5-page website + basic SEO - SCR 7,500\n• Starter - 10-page website + WhatsApp integration - SCR 15,000\n• Growth - 20-page website + blog + testimonials - SCR 30,000\n\nWhich package interests you?\"\n\nQ: \"What services do you provide?\"\nA: \"We provide comprehensive web services:\n• Website Design & Refresh - Modern design and performance improvements\n• Technical & Hosting - Managed hosting at SCR 250/month or SCR 2,500/year\n• Digital Marketing - SEO and online presence optimization\n\nNeed details on any service?\"\n\nCONTEXT:\n${context}\n\nUSER QUESTION:\n${userMessage}\n\nANSWER:`;\n\n// Pre-serialize the body so Ollama Generate node receives a clean JSON string\nconst body = JSON.stringify({\n  model: \"llama3.2:3b\",\n  prompt: prompt,\n  stream: false\n});\n\nconsole.log('Generated prompt length:', prompt.length);\n\nreturn [{ json: { prompt, body } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3312,
+        1616
+      ],
+      "id": "c5899a38-64f1-4697-83d6-900a33e38b9e",
+      "name": "Build Prompt"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        3824,
+        1616
+      ],
+      "id": "6fb5d7cb-81f8-452a-b678-d9a68b2c80f0",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.groq.com/openai/v1/chat/completions",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{$env.GROQ_API_KEY}}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ {\n  model: \"llama-3.1-8b-instant\",\n  messages: [\n    { role: \"system\", content: \"You are Horizon Digital's assistant. Answer only from provided context, keep it concise, and use bullet points for lists.\" },\n    { role: \"user\", content: $json.body?.prompt ?? $json.prompt ?? \"\" }\n  ],\n  temperature: 0.2,\n  max_tokens: 450\n} }}",
+        "options": {
+          "timeout": 120000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        3568,
+        1616
+      ],
+      "id": "2d917d27-8b5e-465e-ac0a-4595b5251fca",
+      "name": "Groq Generate"
+    },
+    {
+      "parameters": {
+        "jsCode": "const data = $input.first().json || {};\nconst rawReply = String(data.choices?.[0]?.message?.content || \"Sorry, I could not generate a response right now.\");\n\nconst formattedReply = rawReply\n  .replace(/\\r\\n/g, '\\n')\n  .replace(/\\\\n/g, '\\n')\n  .replace(/:\\s*•/g, ':\\n•')\n  .replace(/\\s+•\\s+/g, '\\n• ')\n  .replace(/\\s+-\\s+/g, '\\n- ')\n  .replace(/\\n{3,}/g, '\\n\\n')\n  .trim();\n\nreturn [{\n  json: {\n    reply: formattedReply,\n    response: formattedReply,\n    model: data.model || \"llama-3.1-8b-instant\",\n    usage: data.usage || null,\n    provider: \"groq\"\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3728,
+        1616
+      ],
+      "id": "b7f5f4db-8a8e-40a8-b6b7-8c8d221fd2b5",
+      "name": "Format Groq Response"
+    },
+    {
+      "parameters": {
+        "operation": "text",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1.1,
+      "position": [
+        2864,
+        1056
+      ],
+      "id": "c1e72eaf-4815-4854-95d4-254d76e89bfe",
+      "name": "Extract from File"
+    }
+  ],
+  "connections": {
+    "Recursive Character Text Splitter": {
+      "ai_textSplitter": [
+        [
+          {
+            "node": "Default Data Loader",
+            "type": "ai_textSplitter",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Default Data Loader": {
+      "ai_document": [
+        [
+          {
+            "node": "Qdrant Vector Store",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings Ollama": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Qdrant Vector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read/Write Files from Disk": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Read/Write Files from Disk",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Extract input",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract input": {
+      "main": [
+        [
+          {
+            "node": "Ollama Embed",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ollama Embed": {
+      "main": [
+        [
+          {
+            "node": "Normalize Embedding",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalize Embedding": {
+      "main": [
+        [
+          {
+            "node": "Embedding OK?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embedding OK?": {
+      "main": [
+        [
+          {
+            "node": "Qdrant Search",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond - Embedding Error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Qdrant Search": {
+      "main": [
+        [
+          {
+            "node": "Build Prompt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Prompt": {
+      "main": [
+        [
+          {
+            "node": "Groq Generate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq Generate": {
+      "main": [
+        [
+          {
+            "node": "Format Groq Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Groq Response": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "Qdrant Vector Store",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "58bc29f6dac343ccae5af881445ef43d0f4917d2a05670cedb04426e77d928e8"
+  }
+}

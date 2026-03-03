@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 import { scrollToTopSmooth } from "../lib/utils";
+import ChatbotWidget from "./ChatbotWidget";
 
 type LayoutProps = {
   children: ReactNode;
@@ -134,6 +135,7 @@ export default function Layout({ children }: LayoutProps) {
         {children}
       </main>
       <Footer />
+      <ChatbotWidget />
       <button
         type="button"
         onClick={scrollToTopSmooth}

@@ -1,0 +1,53 @@
+services:
+  n8n:
+    image: n8nio/n8n:latest
+    container_name: horizon_chatbot_n8n
+    restart: unless-stopped
+    ports:
+      - "5680:5678"
+    env_file:
+      - .env
+    environment:
+      - N8N_BASIC_AUTH_ACTIVE=true
+      - N8N_HOST=${N8N_HOST}
+      - N8N_PORT=${N8N_PORT}
+      - N8N_PROTOCOL=http
+      - WEBHOOK_URL=${WEBHOOK_URL}
+      - N8N_ENCRYPTION_KEY=${N8N_ENCRYPTION_KEY}
+      - OLLAMA_BASE_URL=${OLLAMA_BASE_URL}
+      - EMBED_MODEL=${EMBED_MODEL}
+      - LOCAL_CHAT_MODEL=${LOCAL_CHAT_MODEL}
+      - GROQ_API_KEY=${GROQ_API_KEY}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - QDRANT_COLLECTION=${QDRANT_COLLECTION}
+    volumes:
+      - n8n_data:/home/node/.n8n
+      - ./knowledge:/root/.n8n-files/knowledge:ro
+      - ./workflows:/root/.n8n-files/workflows
+    depends_on:
+      - ollama
+      - qdrant
+
+  ollama:
+    image: ollama/ollama:latest
+    container_name: horizon_chatbot_ollama
+    restart: unless-stopped
+    expose:
+      - "11434"
+    volumes:
+      - ollama_data:/root/.ollama
+
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: horizon_chatbot_qdrant
+    restart: unless-stopped
+    ports:
+      - "6335:6333"
+      - "6336:6334"
+    volumes:
+      - qdrant_data:/qdrant/storage
+
+volumes:
+  n8n_data:
+  ollama_data:
+  qdrant_data:

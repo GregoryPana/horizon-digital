@@ -23,6 +23,8 @@ pricing.md
 .DS_Store
 .env
 .env.*
+!.env.example
+!chatbot/.env.example
 *.tsbuildinfo
 vite.config.js
 vite.config.d.ts
