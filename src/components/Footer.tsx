@@ -41,7 +41,7 @@ export default function Footer() {
             <div>
               <p className="text-xs uppercase tracking-[0.4em] text-accent">Contact</p>
               <a
-                className="mt-4 inline-flex items-center gap-2 text-sm text-text-muted transition hover:text-accent"
+                className="mt-4 flex w-fit items-center gap-2 text-sm text-text-muted transition hover:text-accent"
                 href={buildMailtoLink(siteConfig.email, emailTemplate.subject, emailTemplate.body)}
               >
                 <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4">
@@ -51,7 +51,7 @@ export default function Footer() {
                 {siteConfig.email}
               </a>
               <a
-                className="mt-3 inline-flex items-center gap-2 text-sm text-text-muted transition hover:text-accent"
+                className="mt-3 flex w-fit items-center gap-2 text-sm text-text-muted transition hover:text-accent"
                 href={`tel:${siteConfig.phone.replace(/\s+/g, "")}`}
               >
                 <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4">
@@ -60,7 +60,7 @@ export default function Footer() {
                 {siteConfig.phone}
               </a>
               <a
-                className="group mt-3 inline-flex items-center gap-2 text-sm text-text-muted transition hover:text-accent"
+                className="group mt-3 flex w-fit items-center gap-2 text-sm text-text-muted transition hover:text-accent"
                 href={siteConfig.whatsappUrl}
                 target="_blank"
                 rel="noreferrer"
@@ -74,30 +74,39 @@ export default function Footer() {
                   Whatsapp
                 </span>
               </a>
-              <p className="mt-6 text-xs text-text-muted">
-                Designed and built by {" "}
+              <div className="mt-6 space-y-1.5 text-xs text-text-muted">
+                <p>
+                  Designed and built by {" "}
+                  <a
+                    className="brand-name text-text/90 transition hover:text-accent"
+                    href={siteConfig.url}
+                  >
+                    {siteConfig.name}
+                  </a>
+                  {" — Web Design in "}
+                  {siteConfig.location}.
+                </p>
                 <a
-                  className="brand-name text-text/90 transition hover:text-accent"
-                  href={siteConfig.url}
-                >
-                  {siteConfig.name}
-                </a>
-                {" — Web Design in "}
-                {siteConfig.location}. Contact: {" "}
-                <a
-                  className="text-text/90 transition hover:text-accent"
+                  className="block text-text/90 transition hover:text-accent"
                   href={buildMailtoLink(siteConfig.email, emailTemplate.subject, emailTemplate.body)}
                 >
                   {siteConfig.email}
                 </a>
-                {" | "}
                 <a
-                  className="text-text/90 transition hover:text-accent"
+                  className="block text-text/90 transition hover:text-accent"
                   href={`tel:${siteConfig.phone.replace(/\s+/g, "")}`}
                 >
                   {siteConfig.phone}
                 </a>
-              </p>
+                <a
+                  className="block text-text/90 transition hover:text-accent"
+                  href={siteConfig.whatsappUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  WhatsApp
+                </a>
+              </div>
             </div>
           </div>
         </div>
