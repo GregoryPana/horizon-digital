@@ -2,9 +2,9 @@ import guesthousePreview from "../assets/work/drake-seaside/drake-seaside.jpg";
 import guesthousePreviewWebp from "../assets/work/drake-seaside/drake-seaside.webp";
 import guesthousePreviewWebp800 from "../assets/work/drake-seaside/drake-seaside-600.webp";
 import ogImage from "../assets/logo/svg logo (1).png";
-import seykelzPreview from "../assets/work/seykelz/seykelz.jpg";
-import seykelzPreviewWebp from "../assets/work/seykelz/seykelz.webp";
-import seykelzPreviewWebp800 from "../assets/work/seykelz/seykelz-800.webp";
+import seykelzPreview from "../assets/work/demo-beauty/demo-beauty.jpg";
+import seykelzPreviewWebp from "../assets/work/demo-beauty/demo-beauty.webp";
+import seykelzPreviewWebp800 from "../assets/work/demo-beauty/demo-beauty 600.webp";
 
 export const siteConfig = {
   name: "Horizon Digital",

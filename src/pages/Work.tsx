@@ -5,8 +5,8 @@ import drakeMain from "../assets/work/drake-seaside/drake-seaside.png";
 import drakeAltOne from "../assets/work/drake-seaside/drake-seaside 2.png";
 import drakeMainWebp from "../assets/work/drake-seaside/drake-seaside.webp";
 import drakeAltOneWebp from "../assets/work/drake-seaside/drake-seaside 2.webp";
-import seykelzMain from "../assets/work/seykelz/seykelz.jpg";
-import seykelzMainWebp from "../assets/work/seykelz/seykelz.webp";
+import seykelzMain from "../assets/work/demo-beauty/demo-beauty.jpg";
+import seykelzMainWebp from "../assets/work/demo-beauty/demo-beauty.webp";
 
 export default function Work() {
   const timelineData = [
