@@ -57,20 +57,20 @@ export default function Work() {
       ),
     },
     {
-      title: <span className="text-accent">SeyKelz</span>,
+      title: <span className="text-accent">Beauty Demo</span>,
       content: (
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent-2">
             Foundation Tier
           </p>
           <p className="mt-4 text-sm text-text-muted">
-            Foundation-tier website for a Seychelles toner cartridge store selling genuine and
-            compatible supplies.
+            Foundation-tier website demo for a beauty business with a clear service layout and
+            streamlined contact path.
           </p>
           <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
             {[
-              { src: seykelzMain, webp: seykelzMainWebp, label: "SeyKelz main" },
-              { src: seykelzAltOne, webp: seykelzAltOneWebp, label: "SeyKelz detail" },
+              { src: seykelzMain, webp: seykelzMainWebp, label: "Beauty demo main" },
+              { src: seykelzAltOne, webp: seykelzAltOneWebp, label: "Beauty demo detail" },
             ].map((image) => (
               <picture key={image.label}>
                 <source srcSet={image.webp} type="image/webp" />
@@ -89,7 +89,7 @@ export default function Work() {
           <div className="mt-6 flex flex-wrap gap-3">
             <Button
               label="View live site"
-              href="https://sey-kelz.horizondigitalsey.com/"
+                href="https://demo-beauty.horizondigitalsey.com/"
               target="_blank"
               rel="noreferrer"
               size="sm"

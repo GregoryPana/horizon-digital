@@ -252,13 +252,13 @@ export const workItems = [
   },
   {
     label: "Retail · Foundation Tier",
-    title: "SeyKelz",
+    title: "Beauty Demo",
     outcome:
-      "Foundation-tier website for a Seychelles toner cartridge store selling genuine and compatible supplies for HP, Epson, and Canon printers.",
+      "Foundation-tier website demo for a beauty business with clear services, trust cues, and conversion-focused contact flow.",
     image: seykelzPreview,
     imageWebp: seykelzPreviewWebp,
     imageWebp800: seykelzPreviewWebp800,
-    url: "https://sey-kelz.horizondigitalsey.com/",
+    url: "https://demo-beauty.horizondigitalsey.com/",
   },
 ];
 
