@@ -28,3 +28,5 @@ pricing.md
 *.tsbuildinfo
 vite.config.js
 vite.config.d.ts
+
+chatbot/qa-results/
