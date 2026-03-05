@@ -86,6 +86,13 @@ export default function Pricing() {
     };
   }, []);
 
+  useEffect(() => {
+    const hash = window.location.hash.replace("#", "");
+    if (hash === "overview" || hash === "packages" || hash === "hosting" || hash === "addons") {
+      setActiveServiceTab(hash);
+    }
+  }, []);
+
   const packageOffers = [foundationPackage, starterPackage, growthPackage]
     .map((pkg) => {
       const priceValue = pkg.price.replace(/[^\d]/g, "");
@@ -137,6 +144,7 @@ export default function Pricing() {
 
   const activateServiceTab = (tabId: "overview" | "packages" | "hosting" | "addons") => {
     setActiveServiceTab(tabId);
+    window.history.replaceState(null, "", `#${tabId}`);
 
     window.requestAnimationFrame(() => {
       const target = document.getElementById(tabId);
@@ -212,11 +220,14 @@ export default function Pricing() {
           <p className="px-1 pb-2 text-[0.6rem] uppercase tracking-[0.18em] text-text-muted">
             Services & Pricing
           </p>
-          <div className="flex flex-col gap-2">
+          <div role="tablist" aria-label="Pricing sections" className="flex flex-col gap-2">
             {serviceTabs.map((tab) => (
               <button
                 key={tab.id}
                 type="button"
+                role="tab"
+                aria-selected={activeServiceTab === tab.id}
+                aria-controls={`panel-${tab.id}`}
                 onClick={() => activateServiceTab(tab.id)}
                 className={`focus-ring rounded-xl border px-3 py-2 text-left text-[0.66rem] font-semibold uppercase tracking-[0.14em] transition-colors ${
                   activeServiceTab === tab.id
@@ -232,12 +243,14 @@ export default function Pricing() {
       </aside>
       <Section
         id="overview"
+        className={`${compactDesktopSection} ${activeServiceTab === "overview" ? "lg:!block" : "lg:!hidden"}`}
         eyebrow="Services & Pricing"
         title={servicesPricingIntro.title}
         description={servicesPricingIntro.subtitle}
-        className={`${compactDesktopSection} ${activeServiceTab === "overview" ? "lg:!block" : "lg:!hidden"}`}
       >
-        <p className="text-sm text-text-muted">{servicesPricingIntro.summary}</p>
+        <div id="panel-overview" role="tabpanel" aria-hidden={activeServiceTab !== "overview"}>
+          <p className="text-sm text-text-muted">{servicesPricingIntro.summary}</p>
+        </div>
       </Section>
 
       <Section
@@ -262,11 +275,12 @@ export default function Pricing() {
 
       <Section
         id="packages"
+        className={`${compactDesktopSection} ${activeServiceTab === "packages" ? "lg:!block" : "lg:!hidden"}`}
         eyebrow="Packages"
         title="Choose the right package for your business"
         description="Foundation, Starter, and Growth side by side for a clear comparison."
-        className={`${compactDesktopSection} ${activeServiceTab === "packages" ? "lg:!block" : "lg:!hidden"}`}
       >
+        <div id="panel-packages" role="tabpanel" aria-hidden={activeServiceTab !== "packages"}>
         <div className="grid items-stretch gap-8 md:grid-cols-2 lg:grid-cols-3">
           <Card className="flex h-full flex-col no-scroll-glow pricing-card pricing-card-foundation !p-5 md:!p-7">
             <h3 className="text-lg font-semibold text-accent-2">{foundationPackage.title}</h3>
@@ -530,15 +544,17 @@ export default function Pricing() {
             </Link>
           </div>
         </Card>
+        </div>
       </Section>
 
       <Section
         id="hosting"
+        className={`${compactDesktopSection} ${activeServiceTab === "hosting" ? "lg:!block" : "lg:!hidden"}`}
         eyebrow="Managed hosting"
         title={hostingPlan.title}
         description="One clear plan to keep your website secure and running smoothly."
-        className={`${compactDesktopSection} ${activeServiceTab === "hosting" ? "lg:!block" : "lg:!hidden"}`}
       >
+        <div id="panel-hosting" role="tabpanel" aria-hidden={activeServiceTab !== "hosting"}>
         <div className="mx-auto w-full max-w-5xl">
           <Card className="!rounded-2xl no-scroll-glow pricing-card">
             <div className="grid items-start gap-6 p-4 sm:p-7 md:grid-cols-2 md:gap-10 md:p-12">
@@ -623,15 +639,17 @@ export default function Pricing() {
             </div>
           </Card>
         </div>
+        </div>
       </Section>
 
       <Section
         id="addons"
+        className={`${compactDesktopSection} ${activeServiceTab === "addons" ? "lg:!block" : "lg:!hidden"}`}
         eyebrow="Add-ons"
         title="Optional add-ons"
         description="All add-ons are clearly scoped before work begins, if not included in selected tier."
-        className={`${compactDesktopSection} ${activeServiceTab === "addons" ? "lg:!block" : "lg:!hidden"}`}
       >
+        <div id="panel-addons" role="tabpanel" aria-hidden={activeServiceTab !== "addons"}>
         <div className="section-band section-band-soft relative left-1/2 right-1/2 -mx-[50vw] my-8 w-screen py-14 md:my-10 md:py-16">
           <div className="mx-auto grid w-full max-w-7xl gap-x-10 gap-y-5 px-5 sm:px-8 md:grid-cols-2">
           {addOnItems.map((item) => (
@@ -641,6 +659,7 @@ export default function Pricing() {
             </div>
           ))}
           </div>
+        </div>
         </div>
       </Section>
 
