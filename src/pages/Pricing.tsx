@@ -32,14 +32,15 @@ const pricingSectionLinks = [
 export default function Pricing() {
   const compactDesktopSection = "md:!pt-14 md:!pb-16";
   const serviceTabs = [
+    { id: "overview", label: "Services" },
     { id: "packages", label: "Packages" },
     { id: "hosting", label: "Hosting" },
-    { id: "addons", label: "Add-ons" },
+    { id: "addons", label: "Optional Add-ons" },
   ] as const;
   const [hostingBilling, setHostingBilling] = useState<"monthly" | "annual">("monthly");
-  const [activeServiceTab, setActiveServiceTab] = useState<"packages" | "hosting" | "addons">(
-    "packages"
-  );
+  const [activeServiceTab, setActiveServiceTab] = useState<
+    "overview" | "packages" | "hosting" | "addons"
+  >("overview");
   const [passedSectionIds, setPassedSectionIds] = useState<string[]>([]);
   const [isRailOpen, setIsRailOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState({
@@ -69,6 +70,14 @@ export default function Pricing() {
           return node ? node.getBoundingClientRect().top <= threshold : false;
         })
         .map((section) => section.id);
+
+      const nextActiveTab = [...serviceTabs.map((tab) => tab.id)]
+        .reverse()
+        .find((id) => nextPassed.includes(id));
+
+      if (nextActiveTab) {
+        setActiveServiceTab(nextActiveTab as "overview" | "packages" | "hosting" | "addons");
+      }
 
       setPassedSectionIds((current) =>
         current.join("|") === nextPassed.join("|") ? current : nextPassed
@@ -193,30 +202,44 @@ export default function Pricing() {
           )}
         </div>
       )}
-      <aside className="fixed left-4 top-1/2 z-30 hidden -translate-y-1/2 lg:block">
-        <div className="rounded-2xl border border-border bg-bg-elev/92 p-2 shadow-[0_8px_30px_rgba(2,8,12,0.3)] backdrop-blur">
-          <p className="px-2 pb-2 pt-1 text-[0.58rem] uppercase tracking-[0.18em] text-text-muted">Browse</p>
-          <div className="flex w-[132px] flex-col gap-2">
-            {serviceTabs.map((tab) => (
-              <button
-                key={tab.id}
-                type="button"
-                onClick={() => {
-                  setActiveServiceTab(tab.id);
-                  document.getElementById(tab.id)?.scrollIntoView({ behavior: "smooth", block: "start" });
-                }}
-                className={`focus-ring rounded-xl border px-3 py-2 text-left text-[0.66rem] font-semibold uppercase tracking-[0.14em] transition-colors ${
-                  activeServiceTab === tab.id
-                    ? "border-accent/45 bg-accent-soft text-accent"
-                    : "border-border text-text-muted hover:text-text"
-                }`.trim()}
-              >
-                {tab.label}
-              </button>
-            ))}
+      <section className="mx-auto w-full max-w-7xl px-5 pt-2 sm:px-8 lg:pt-4">
+        <div className="grid items-start gap-5 lg:grid-cols-[220px_1fr] lg:gap-8">
+          <aside className="lg:sticky lg:top-[118px]">
+            <div className="rounded-2xl border border-border bg-bg-elev p-3">
+              <p className="px-1 pb-2 text-[0.6rem] uppercase tracking-[0.18em] text-text-muted">
+                Services & Pricing
+              </p>
+              <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 lg:grid-cols-1">
+                {serviceTabs.map((tab) => (
+                  <button
+                    key={tab.id}
+                    type="button"
+                    onClick={() => {
+                      const target = document.getElementById(tab.id);
+                      if (!target) return;
+                      setActiveServiceTab(tab.id);
+                      const header = document.querySelector<HTMLElement>("[data-site-header]");
+                      const offset = (header?.getBoundingClientRect().height ?? 88) + 14;
+                      const top = window.scrollY + target.getBoundingClientRect().top - offset;
+                      window.scrollTo({ top, left: 0, behavior: "smooth" });
+                    }}
+                    className={`focus-ring rounded-xl border px-3 py-2 text-left text-[0.66rem] font-semibold uppercase tracking-[0.14em] transition-colors ${
+                      activeServiceTab === tab.id
+                        ? "border-accent/45 bg-accent-soft text-accent"
+                        : "border-border text-text-muted hover:text-text"
+                    }`.trim()}
+                  >
+                    {tab.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </aside>
+          <div className="rounded-2xl border border-border bg-bg-elev px-4 py-4 text-sm text-text-muted sm:px-5">
+            Use the left panel to jump between Services, Packages, Hosting, and Optional Add-ons.
           </div>
         </div>
-      </aside>
+      </section>
       <Section
         id="overview"
         eyebrow="Services & Pricing"
@@ -252,7 +275,7 @@ export default function Pricing() {
         eyebrow="Packages"
         title="Choose the right package for your business"
         description="Foundation, Starter, and Growth side by side for a clear comparison."
-        className={`${compactDesktopSection} ${activeServiceTab === "packages" ? "lg:!block" : "lg:!hidden"}`}
+        className={compactDesktopSection}
       >
         <div className="grid items-stretch gap-8 md:grid-cols-2 lg:grid-cols-3">
           <Card className="flex h-full flex-col no-scroll-glow pricing-card pricing-card-foundation !p-5 md:!p-7">
@@ -524,7 +547,7 @@ export default function Pricing() {
         eyebrow="Managed hosting"
         title={hostingPlan.title}
         description="One clear plan to keep your website secure and running smoothly."
-        className={`${compactDesktopSection} ${activeServiceTab === "hosting" ? "lg:!block" : "lg:!hidden"}`}
+        className={compactDesktopSection}
       >
         <div className="mx-auto w-full max-w-5xl">
           <Card className="!rounded-2xl no-scroll-glow pricing-card">
@@ -617,7 +640,7 @@ export default function Pricing() {
         eyebrow="Add-ons"
         title="Optional add-ons"
         description="All add-ons are clearly scoped before work begins, if not included in selected tier."
-        className={`${compactDesktopSection} ${activeServiceTab === "addons" ? "lg:!block" : "lg:!hidden"}`}
+        className={compactDesktopSection}
       >
         <div className="section-band section-band-soft relative left-1/2 right-1/2 -mx-[50vw] my-8 w-screen py-14 md:my-10 md:py-16">
           <div className="mx-auto grid w-full max-w-7xl gap-x-10 gap-y-5 px-5 sm:px-8 md:grid-cols-2">
