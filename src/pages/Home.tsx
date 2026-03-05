@@ -116,14 +116,14 @@ export default function Home() {
             type="button"
             onClick={() => setIsRailOpen((prev) => !prev)}
             aria-label={isRailOpen ? "Close section jump rail" : "Open section jump rail"}
-            className="focus-ring h-12 w-[18px] rounded-r-full border border-l-0 border-accent/40 bg-bg-elev/95 text-base leading-none text-accent shadow-[0_8px_24px_rgba(2,8,12,0.32)]"
+            className="jump-rail-toggle focus-ring h-12 w-[18px] rounded-r-full border border-l-0 border-accent/40 bg-bg-elev/95 text-base leading-none text-accent shadow-[0_8px_24px_rgba(2,8,12,0.32)]"
           >
             {isRailOpen ? "‹" : "›"}
           </button>
 
           {isRailOpen && (
             <nav aria-label="Section quick nav" className="ml-2 mt-2">
-              <ul className="flex max-h-[64svh] flex-col gap-2 overflow-y-auto rounded-2xl border border-border bg-bg-elev/92 px-2 py-2 shadow-[0_8px_30px_rgba(2,8,12,0.35)] backdrop-blur">
+              <ul className="jump-rail-panel flex max-h-[64svh] flex-col gap-2 overflow-y-auto rounded-2xl border border-border bg-bg-elev/92 px-2 py-2 shadow-[0_8px_30px_rgba(2,8,12,0.35)] backdrop-blur">
                 <li>
                   <button
                     type="button"
@@ -131,7 +131,7 @@ export default function Home() {
                       scrollToTopSmooth();
                       setIsRailOpen(false);
                     }}
-                    className="focus-ring rounded-full border border-border px-2.5 py-1 text-[0.62rem] uppercase tracking-[0.14em] text-text-muted"
+                    className="jump-rail-top focus-ring rounded-full border border-border px-2.5 py-1 text-[0.62rem] uppercase tracking-[0.14em] text-text-muted"
                   >
                     Top
                   </button>
@@ -148,7 +148,7 @@ export default function Home() {
                             ?.scrollIntoView({ behavior: "smooth", block: "start" });
                           setIsRailOpen(false);
                         }}
-                        className="focus-ring rounded-full border border-accent/35 bg-accent-soft px-2.5 py-1 text-[0.62rem] uppercase tracking-[0.14em] text-accent"
+                        className="jump-rail-item focus-ring rounded-full border border-accent/35 bg-accent-soft px-2.5 py-1 text-[0.62rem] uppercase tracking-[0.14em] text-accent"
                       >
                         {section.label}
                       </button>

@@ -172,14 +172,14 @@ export default function Pricing() {
             type="button"
             onClick={() => setIsRailOpen((prev) => !prev)}
             aria-label={isRailOpen ? "Close section jump rail" : "Open section jump rail"}
-            className="focus-ring h-12 w-[18px] rounded-r-full border border-l-0 border-accent/40 bg-bg-elev/95 text-base leading-none text-accent shadow-[0_8px_24px_rgba(2,8,12,0.32)]"
+            className="jump-rail-toggle focus-ring h-12 w-[18px] rounded-r-full border border-l-0 border-accent/40 bg-bg-elev/95 text-base leading-none text-accent shadow-[0_8px_24px_rgba(2,8,12,0.32)]"
           >
             {isRailOpen ? "‹" : "›"}
           </button>
 
           {isRailOpen && (
             <nav aria-label="Pricing section quick nav" className="ml-2 mt-2">
-              <ul className="flex max-h-[64svh] flex-col gap-2 overflow-y-auto rounded-2xl border border-border bg-bg-elev/92 px-2 py-2 shadow-[0_8px_30px_rgba(2,8,12,0.35)] backdrop-blur">
+              <ul className="jump-rail-panel flex max-h-[64svh] flex-col gap-2 overflow-y-auto rounded-2xl border border-border bg-bg-elev/92 px-2 py-2 shadow-[0_8px_30px_rgba(2,8,12,0.35)] backdrop-blur">
                 <li>
                   <button
                     type="button"
@@ -187,7 +187,7 @@ export default function Pricing() {
                       window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
                       setIsRailOpen(false);
                     }}
-                    className="focus-ring rounded-full border border-border px-2.5 py-1 text-[0.62rem] uppercase tracking-[0.14em] text-text-muted"
+                    className="jump-rail-top focus-ring rounded-full border border-border px-2.5 py-1 text-[0.62rem] uppercase tracking-[0.14em] text-text-muted"
                   >
                     Top
                   </button>
@@ -204,7 +204,7 @@ export default function Pricing() {
                             ?.scrollIntoView({ behavior: "smooth", block: "start" });
                           setIsRailOpen(false);
                         }}
-                        className="focus-ring rounded-full border border-accent/35 bg-accent-soft px-2.5 py-1 text-[0.62rem] uppercase tracking-[0.14em] text-accent"
+                        className="jump-rail-item focus-ring rounded-full border border-accent/35 bg-accent-soft px-2.5 py-1 text-[0.62rem] uppercase tracking-[0.14em] text-accent"
                       >
                         {section.label}
                       </button>
@@ -216,8 +216,8 @@ export default function Pricing() {
         </div>
       )}
       <aside className="fixed left-4 top-1/2 z-30 hidden -translate-y-1/2 lg:block">
-        <div className="w-[188px] rounded-2xl border border-border bg-bg-elev/96 p-3 shadow-[0_8px_28px_rgba(2,8,12,0.3)] backdrop-blur">
-          <p className="px-1 pb-2 text-[0.6rem] uppercase tracking-[0.18em] text-text-muted">
+        <div className="pricing-side-nav-panel w-[188px] rounded-2xl border border-border bg-bg-elev/96 p-3 shadow-[0_8px_28px_rgba(2,8,12,0.3)] backdrop-blur">
+          <p className="pricing-side-nav-title px-1 pb-2 text-[0.6rem] uppercase tracking-[0.18em] text-text-muted">
             Services & Pricing
           </p>
           <div role="tablist" aria-label="Pricing sections" className="flex flex-col gap-2">
@@ -229,9 +229,9 @@ export default function Pricing() {
                 aria-selected={activeServiceTab === tab.id}
                 aria-controls={`panel-${tab.id}`}
                 onClick={() => activateServiceTab(tab.id)}
-                className={`focus-ring rounded-xl border px-3 py-2 text-left text-[0.66rem] font-semibold uppercase tracking-[0.14em] transition-colors ${
+                className={`pricing-side-nav-btn focus-ring rounded-xl border px-3 py-2 text-left text-[0.66rem] font-semibold uppercase tracking-[0.14em] transition-colors ${
                   activeServiceTab === tab.id
-                    ? "border-accent/45 bg-accent-soft text-accent"
+                    ? "pricing-side-nav-btn-active border-accent/45 bg-accent-soft text-accent"
                     : "border-border text-text-muted hover:text-text"
                 }`.trim()}
               >

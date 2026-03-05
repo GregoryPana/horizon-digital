@@ -693,6 +693,55 @@ html:not([data-theme="dark"]) .btn-outline-gold:hover {
   color: #f2f2f2 !important;
 }
 
+html:not([data-theme="dark"]) .pricing-side-nav-panel {
+  background: #f2f7f7;
+  border-color: #9baaaa;
+}
+
+html:not([data-theme="dark"]) .pricing-side-nav-title {
+  color: #2b3a3a;
+}
+
+html:not([data-theme="dark"]) .pricing-side-nav-btn {
+  border-color: #95a5a5;
+  color: #243131;
+  background: #eef4f4;
+}
+
+html:not([data-theme="dark"]) .pricing-side-nav-btn:hover {
+  background: #e2ecec;
+  color: #111111;
+}
+
+html:not([data-theme="dark"]) .pricing-side-nav-btn-active {
+  border-color: #2ca99b;
+  background: #b8ece6;
+  color: #0e7a6f;
+}
+
+html:not([data-theme="dark"]) .jump-rail-toggle {
+  border-color: #738f8f;
+  background: #e6efef;
+  color: #0e7a6f;
+}
+
+html:not([data-theme="dark"]) .jump-rail-panel {
+  background: #f2f7f7;
+  border-color: #9baaaa;
+}
+
+html:not([data-theme="dark"]) .jump-rail-top {
+  border-color: #95a5a5;
+  background: #ffffff;
+  color: #1a1a1a;
+}
+
+html:not([data-theme="dark"]) .jump-rail-item {
+  border-color: #2ca99b;
+  background: #d9f3ef;
+  color: #0e7a6f;
+}
+
 @media (max-width: 767px) {
   .hero-view-work-cta.text-black {
     color: #e9c764 !important;
