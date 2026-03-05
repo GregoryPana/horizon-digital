@@ -31,7 +31,15 @@ const pricingSectionLinks = [
 
 export default function Pricing() {
   const compactDesktopSection = "md:!pt-14 md:!pb-16";
+  const serviceTabs = [
+    { id: "packages", label: "Packages" },
+    { id: "hosting", label: "Hosting" },
+    { id: "addons", label: "Add-ons" },
+  ] as const;
   const [hostingBilling, setHostingBilling] = useState<"monthly" | "annual">("monthly");
+  const [activeServiceTab, setActiveServiceTab] = useState<"packages" | "hosting" | "addons">(
+    "packages"
+  );
   const [passedSectionIds, setPassedSectionIds] = useState<string[]>([]);
   const [isRailOpen, setIsRailOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState({
@@ -185,6 +193,30 @@ export default function Pricing() {
           )}
         </div>
       )}
+      <aside className="fixed left-4 top-1/2 z-30 hidden -translate-y-1/2 lg:block">
+        <div className="rounded-2xl border border-border bg-bg-elev/92 p-2 shadow-[0_8px_30px_rgba(2,8,12,0.3)] backdrop-blur">
+          <p className="px-2 pb-2 pt-1 text-[0.58rem] uppercase tracking-[0.18em] text-text-muted">Browse</p>
+          <div className="flex w-[132px] flex-col gap-2">
+            {serviceTabs.map((tab) => (
+              <button
+                key={tab.id}
+                type="button"
+                onClick={() => {
+                  setActiveServiceTab(tab.id);
+                  document.getElementById(tab.id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+                }}
+                className={`focus-ring rounded-xl border px-3 py-2 text-left text-[0.66rem] font-semibold uppercase tracking-[0.14em] transition-colors ${
+                  activeServiceTab === tab.id
+                    ? "border-accent/45 bg-accent-soft text-accent"
+                    : "border-border text-text-muted hover:text-text"
+                }`.trim()}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
+        </div>
+      </aside>
       <Section
         id="overview"
         eyebrow="Services & Pricing"
@@ -220,7 +252,7 @@ export default function Pricing() {
         eyebrow="Packages"
         title="Choose the right package for your business"
         description="Foundation, Starter, and Growth side by side for a clear comparison."
-        className={compactDesktopSection}
+        className={`${compactDesktopSection} ${activeServiceTab === "packages" ? "lg:!block" : "lg:!hidden"}`}
       >
         <div className="grid items-stretch gap-8 md:grid-cols-2 lg:grid-cols-3">
           <Card className="flex h-full flex-col no-scroll-glow pricing-card pricing-card-foundation !p-5 md:!p-7">
@@ -492,7 +524,7 @@ export default function Pricing() {
         eyebrow="Managed hosting"
         title={hostingPlan.title}
         description="One clear plan to keep your website secure and running smoothly."
-        className={compactDesktopSection}
+        className={`${compactDesktopSection} ${activeServiceTab === "hosting" ? "lg:!block" : "lg:!hidden"}`}
       >
         <div className="mx-auto w-full max-w-5xl">
           <Card className="!rounded-2xl no-scroll-glow pricing-card">
@@ -585,7 +617,7 @@ export default function Pricing() {
         eyebrow="Add-ons"
         title="Optional add-ons"
         description="All add-ons are clearly scoped before work begins, if not included in selected tier."
-        className={compactDesktopSection}
+        className={`${compactDesktopSection} ${activeServiceTab === "addons" ? "lg:!block" : "lg:!hidden"}`}
       >
         <div className="section-band section-band-soft relative left-1/2 right-1/2 -mx-[50vw] my-8 w-screen py-14 md:my-10 md:py-16">
           <div className="mx-auto grid w-full max-w-7xl gap-x-10 gap-y-5 px-5 sm:px-8 md:grid-cols-2">
