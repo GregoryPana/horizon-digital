@@ -1,4 +1,3 @@
-import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { navLinks } from "../../data/site";
@@ -43,7 +42,6 @@ export default function NavMenu() {
   const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [expandedGroups, setExpandedGroups] = useState<string[]>([]);
-  const buttonRef = useRef<HTMLButtonElement | null>(null);
   const scrollLockRef = useRef(0);
 
   const closeMenu = () => setIsMenuOpen(false);
@@ -88,7 +86,6 @@ export default function NavMenu() {
   return (
     <nav className="nav-menu relative inline-block">
       <button
-        ref={buttonRef}
         onClick={() => setIsMenuOpen((prev) => !prev)}
         className="nav-menu-button header-control-dark focus-ring inline-flex h-11 w-11 items-center justify-center rounded-full border shadow-[0_0_12px_var(--glow)] lg:hidden"
         aria-label={isMenuOpen ? "Close menu" : "Open menu"}
@@ -114,144 +111,126 @@ export default function NavMenu() {
         </span>
       </button>
 
-      <AnimatePresence>
-        {isMenuOpen ? (
-          <div
-            id="mobile-site-menu"
-            className="fixed inset-0 z-[95] h-[100dvh] w-screen overflow-y-auto overscroll-contain bg-[#060b12] text-[#e8edf5] lg:hidden"
-            style={{ backgroundColor: "rgba(6, 11, 18, 0.99)" }}
-          >
-            <div aria-hidden="true" className="pointer-events-none fixed inset-0 bg-[#060b12]" />
-            <motion.div
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ duration: 0.28, ease: "easeOut" }}
-              className="relative z-[1] mx-auto flex min-h-full w-full max-w-3xl flex-col px-6 pb-10 pt-20"
-            >
-              <div className="flex items-center justify-between">
-                <p className="text-xs uppercase tracking-[0.34em] text-[#a8bfd4]">Navigation</p>
-                <button
-                  type="button"
-                  onClick={closeMenu}
-                  className="focus-ring inline-flex h-9 w-9 items-center justify-center rounded-full border border-[#36506b] text-[#a8bfd4]"
-                  aria-label="Close menu"
-                >
-                  <svg viewBox="0 0 20 20" aria-hidden="true" className="h-4 w-4">
-                    <path
-                      d="M5 5l10 10M15 5L5 15"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.8"
-                      strokeLinecap="round"
-                    />
-                  </svg>
-                </button>
-              </div>
+      <div
+        id="mobile-site-menu"
+        className={`fixed inset-0 z-[95] h-[100dvh] w-screen overflow-y-auto overscroll-contain bg-[#060b12] text-[#e8edf5] transition-all duration-300 ease-out lg:hidden ${
+          isMenuOpen ? "pointer-events-auto translate-x-0 opacity-100" : "pointer-events-none translate-x-full opacity-0"
+        }`.trim()}
+        style={{ backgroundColor: "rgba(6, 11, 18, 0.99)" }}
+      >
+        <div aria-hidden="true" className="pointer-events-none fixed inset-0 bg-[#060b12]" />
 
-              <ul className="mt-8 flex-1">
-                {mobileMenuItems.map((item, index) => {
-                  const isExpanded = expandedGroups.includes(item.id);
-                  return (
-                    <li key={item.id} className="border-b border-[#28415a]">
-                      <motion.div
-                        initial={{ opacity: 0, x: 14 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.22, delay: index * 0.03, ease: "easeOut" }}
-                        className="py-4"
+        <div className="relative z-[1] mx-auto flex min-h-full w-full max-w-3xl flex-col px-6 pb-10 pt-20">
+          <div className="flex items-center justify-between">
+            <p className="text-xs uppercase tracking-[0.34em] text-[#a8bfd4]">Navigation</p>
+            <button
+              type="button"
+              onClick={closeMenu}
+              className="focus-ring inline-flex h-9 w-9 items-center justify-center rounded-full border border-[#36506b] text-[#a8bfd4]"
+              aria-label="Close menu"
+            >
+              <svg viewBox="0 0 20 20" aria-hidden="true" className="h-4 w-4">
+                <path
+                  d="M5 5l10 10M15 5L5 15"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </button>
+          </div>
+
+          <ul className="mt-8 flex-1">
+            {mobileMenuItems.map((item) => {
+              const isExpanded = expandedGroups.includes(item.id);
+              return (
+                <li key={item.id} className="border-b border-[#28415a] py-4">
+                  <div className="flex items-center justify-between gap-3">
+                    {item.to ? (
+                      <NavLink
+                        to={item.to}
+                        onClick={() => {
+                          if (item.to === "/work") scrollToTopSmooth();
+                          closeMenu();
+                        }}
+                        className={({ isActive }) =>
+                          `focus-ring text-sm font-semibold uppercase tracking-[0.14em] transition ${
+                            isActive ? "text-[#46c6e8]" : "text-[#e8edf5]"
+                          }`
+                        }
                       >
-                        <div className="flex items-center justify-between gap-3">
-                          {item.to ? (
+                        {item.label}
+                      </NavLink>
+                    ) : (
+                      <p className="text-sm font-semibold uppercase tracking-[0.14em] text-[#e8edf5]">
+                        {item.label}
+                      </p>
+                    )}
+
+                    {item.children?.length ? (
+                      <button
+                        type="button"
+                        onClick={() => toggleGroup(item.id)}
+                        className="focus-ring inline-flex h-7 w-7 items-center justify-center rounded-full border border-[#36506b] text-sm text-[#a8bfd4]"
+                        aria-expanded={isExpanded}
+                        aria-controls={`mobile-submenu-${item.id}`}
+                        aria-label={isExpanded ? `Hide ${item.label} options` : `Show ${item.label} options`}
+                      >
+                        <svg
+                          viewBox="0 0 20 20"
+                          aria-hidden="true"
+                          className={`h-4 w-4 transition-transform duration-200 ${
+                            isExpanded ? "rotate-90" : "rotate-0"
+                          }`.trim()}
+                        >
+                          <path
+                            d="M7 4l6 6-6 6"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="1.8"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </button>
+                    ) : null}
+                  </div>
+
+                  {item.children?.length ? (
+                    <div
+                      id={`mobile-submenu-${item.id}`}
+                      className={`grid overflow-hidden transition-[grid-template-rows,opacity,margin] duration-300 ${
+                        isExpanded ? "mt-3 grid-rows-[1fr] opacity-100" : "mt-0 grid-rows-[0fr] opacity-0"
+                      }`.trim()}
+                    >
+                      <ul className="overflow-hidden border-l border-[#36506b] pl-3">
+                        {item.children.map((subItem) => (
+                          <li key={subItem.to} className="py-1.5">
                             <NavLink
-                              to={item.to}
-                              onClick={() => {
-                                if (item.to === "/work") scrollToTopSmooth();
-                                closeMenu();
-                              }}
+                              to={subItem.to}
+                              onClick={closeMenu}
                               className={({ isActive }) =>
-                                `focus-ring text-sm font-semibold uppercase tracking-[0.14em] transition ${
-                                  isActive ? "text-[#46c6e8]" : "text-[#e8edf5]"
+                                `focus-ring text-xs uppercase tracking-[0.13em] transition ${
+                                  isActive ? "text-[#ff8f5a]" : "text-[#bfd0de] hover:text-[#46c6e8]"
                                 }`
                               }
                             >
-                              {item.label}
+                              {subItem.label}
                             </NavLink>
-                          ) : (
-                            <p className="text-sm font-semibold uppercase tracking-[0.14em] text-[#e8edf5]">
-                              {item.label}
-                            </p>
-                          )}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ) : null}
+                </li>
+              );
+            })}
+          </ul>
 
-                          {item.children?.length ? (
-                            <button
-                              type="button"
-                              onClick={() => toggleGroup(item.id)}
-                              className="focus-ring inline-flex h-7 w-7 items-center justify-center rounded-full border border-[#36506b] text-sm text-[#a8bfd4]"
-                              aria-expanded={isExpanded}
-                              aria-controls={`mobile-submenu-${item.id}`}
-                              aria-label={isExpanded ? `Hide ${item.label} options` : `Show ${item.label} options`}
-                            >
-                              <svg
-                                viewBox="0 0 20 20"
-                                aria-hidden="true"
-                                className={`h-4 w-4 transition-transform duration-200 ${
-                                  isExpanded ? "rotate-90" : "rotate-0"
-                                }`.trim()}
-                              >
-                                <path
-                                  d="M7 4l6 6-6 6"
-                                  fill="none"
-                                  stroke="currentColor"
-                                  strokeWidth="1.8"
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                />
-                              </svg>
-                            </button>
-                          ) : null}
-                        </div>
-
-                        <AnimatePresence initial={false}>
-                          {item.children?.length && isExpanded ? (
-                            <motion.ul
-                              id={`mobile-submenu-${item.id}`}
-                              initial={{ opacity: 0, height: 0 }}
-                              animate={{ opacity: 1, height: "auto" }}
-                              exit={{ opacity: 0, height: 0 }}
-                              transition={{ duration: 0.24, ease: "easeOut" }}
-                              className="overflow-hidden"
-                            >
-                              <div className="mt-3 border-l border-[#36506b] pl-3">
-                                {item.children.map((subItem) => (
-                                  <li key={subItem.to} className="py-1.5">
-                                    <NavLink
-                                      to={subItem.to}
-                                      onClick={closeMenu}
-                                      className={({ isActive }) =>
-                                        `focus-ring text-xs uppercase tracking-[0.13em] transition ${
-                                          isActive ? "text-[#ff8f5a]" : "text-[#bfd0de] hover:text-[#46c6e8]"
-                                        }`
-                                      }
-                                    >
-                                      {subItem.label}
-                                    </NavLink>
-                                  </li>
-                                ))}
-                              </div>
-                            </motion.ul>
-                          ) : null}
-                        </AnimatePresence>
-                      </motion.div>
-                    </li>
-                  );
-                })}
-              </ul>
-
-              <div className="horizon-line mt-6" />
-            </motion.div>
-          </div>
-        ) : null}
-      </AnimatePresence>
+          <div className="horizon-line mt-6" />
+        </div>
+      </div>
 
       <div className="hidden lg:block">
         <ul className="flex flex-row items-center gap-4 text-left xl:gap-6">
