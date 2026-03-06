@@ -53,6 +53,7 @@ export default function AIDigitalTools() {
       />
 
       <Section
+        id="awareness"
         eyebrow="Digital Awareness"
         title="Understanding Artificial Intelligence and Digital Tools for Businesses"
         description="Around the world, businesses are beginning to use artificial intelligence, automation, and digital tools to work more efficiently and better understand their customers."
@@ -66,6 +67,7 @@ export default function AIDigitalTools() {
       </Section>
 
       <Section
+        id="future-trends"
         eyebrow="Why this matters"
         title="The Future of Digital Technology in Seychelles"
         description="Awareness and understanding are practical first steps toward future adoption."
@@ -84,6 +86,7 @@ export default function AIDigitalTools() {
       </Section>
 
       <Section
+        id="key-technologies"
         eyebrow="Key technologies"
         title="Digital Technologies Businesses Should Know About"
         description="Practical explanations for non-technical business owners."
@@ -98,7 +101,7 @@ export default function AIDigitalTools() {
         </div>
       </Section>
 
-      <Section eyebrow="Important" title="Our Current Focus" description="Clear scope and transparency.">
+      <Section id="current-focus" eyebrow="Important" title="Our Current Focus" description="Clear scope and transparency.">
         <Card>
           <p className="text-sm text-text-muted">
             Horizon Digital currently focuses on building clear, fast, and professional websites for
@@ -109,7 +112,12 @@ export default function AIDigitalTools() {
         </Card>
       </Section>
 
-      <Section eyebrow="Digital Insights" title="Stay informed" description="Read practical updates about emerging digital tools.">
+      <Section
+        id="insights-hub"
+        eyebrow="Digital Insights"
+        title="Stay informed"
+        description="Read practical updates about emerging digital tools."
+      >
         <Card>
           <p className="text-sm text-text-muted">
             We regularly share insights about websites, digital tools, and emerging technologies

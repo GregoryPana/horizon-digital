@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
 import Card from "../components/Card";
 import Section from "../components/Section";
 import Seo from "../components/Seo";
@@ -37,7 +36,6 @@ export default function Pricing() {
     { id: "hosting", label: "Hosting" },
     { id: "addons", label: "Optional Add-ons" },
   ] as const;
-  const [hostingBilling, setHostingBilling] = useState<"monthly" | "annual">("monthly");
   const [activeServiceTab, setActiveServiceTab] = useState<
     "overview" | "packages" | "hosting" | "addons"
   >("overview");
@@ -215,32 +213,45 @@ export default function Pricing() {
           )}
         </div>
       )}
-      <aside className="fixed left-4 top-1/2 z-30 hidden -translate-y-1/2 lg:block">
-        <div className="pricing-side-nav-panel w-[188px] rounded-2xl border border-border bg-bg-elev/96 p-3 shadow-[0_8px_28px_rgba(2,8,12,0.3)] backdrop-blur">
-          <p className="pricing-side-nav-title px-1 pb-2 text-[0.6rem] uppercase tracking-[0.18em] text-text-muted">
-            Services & Pricing
-          </p>
-          <div role="tablist" aria-label="Pricing sections" className="flex flex-col gap-2">
-            {serviceTabs.map((tab) => (
-              <button
-                key={tab.id}
-                type="button"
-                role="tab"
-                aria-selected={activeServiceTab === tab.id}
-                aria-controls={`panel-${tab.id}`}
-                onClick={() => activateServiceTab(tab.id)}
-                className={`pricing-side-nav-btn focus-ring rounded-xl border px-3 py-2 text-left text-[0.66rem] font-semibold uppercase tracking-[0.14em] transition-colors ${
-                  activeServiceTab === tab.id
-                    ? "pricing-side-nav-btn-active border-accent/45 bg-accent-soft text-accent"
-                    : "border-border text-text-muted hover:text-text"
-                }`.trim()}
-              >
-                {tab.label}
-              </button>
-            ))}
+      <section className="pricing-nav-shell sticky top-[84px] z-30">
+        <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
+          <div className="pricing-nav-hub mb-6 rounded-3xl border border-border bg-bg-elev/95 p-5 shadow-[0_10px_34px_rgba(2,8,12,0.32)] backdrop-blur">
+            <div className="mb-4 flex items-end justify-between gap-6 border-b border-border/70 pb-4">
+              <div>
+                <p className="text-[0.62rem] font-semibold uppercase tracking-[0.24em] text-text-muted">
+                  Services & Pricing
+                </p>
+                <p className="mt-2 text-sm text-text-muted">
+                  Jump directly to the section you want to compare.
+                </p>
+              </div>
+            </div>
+            <div
+              role="tablist"
+              aria-label="Pricing sections"
+              className="grid grid-cols-2 gap-3 md:grid-cols-4 xl:grid-cols-4"
+            >
+              {serviceTabs.map((tab) => (
+                <button
+                  key={tab.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={activeServiceTab === tab.id}
+                  aria-controls={`panel-${tab.id}`}
+                  onClick={() => activateServiceTab(tab.id)}
+                  className={`pricing-nav-btn focus-ring rounded-2xl border px-4 py-3 text-left text-[0.67rem] font-semibold uppercase tracking-[0.13em] transition-colors ${
+                    activeServiceTab === tab.id
+                      ? "pricing-nav-btn-active border-accent/45 bg-accent-soft text-accent"
+                      : "border-border bg-bg-panel/55 text-text-muted hover:border-accent/30 hover:text-text"
+                  }`.trim()}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
-      </aside>
+      </section>
       <Section
         id="overview"
         className={`${compactDesktopSection} ${activeServiceTab === "overview" ? "lg:!block" : "lg:!hidden"}`}
@@ -555,63 +566,30 @@ export default function Pricing() {
         description="One clear plan to keep your website secure and running smoothly."
       >
         <div id="panel-hosting" role="tabpanel" aria-hidden={activeServiceTab !== "hosting"}>
+        <div className="mb-8 rounded-2xl border border-border bg-bg-panel/65 p-5 md:p-7">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-2">What hosting means</p>
+          <div className="mt-4 space-y-4">
+            {hostingPlan.details.map((detail) => (
+              <p key={detail} className="text-sm text-text-muted">
+                {detail}
+              </p>
+            ))}
+          </div>
+        </div>
         <div className="mx-auto w-full max-w-5xl">
           <Card className="!rounded-2xl no-scroll-glow pricing-card">
             <div className="grid items-start gap-6 p-4 sm:p-7 md:grid-cols-2 md:gap-10 md:p-12">
               <div className="flex flex-col items-center pb-10 text-center md:pb-0 md:px-10 md:border-r md:border-[color:var(--split-line)]">
-                <div className="relative mx-auto mb-6 grid w-full max-w-[17rem] grid-cols-2 rounded-full border border-border bg-bg-elev p-1">
-                  <motion.span
-                    aria-hidden="true"
-                    animate={{ x: hostingBilling === "monthly" ? "0%" : "100%" }}
-                    transition={{ type: "spring", stiffness: 420, damping: 32, mass: 0.7 }}
-                    className="pointer-events-none absolute left-1 top-1 h-[calc(100%-0.5rem)] w-[calc(50%-0.25rem)] rounded-full bg-accent"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setHostingBilling("monthly")}
-                    className={`relative z-10 whitespace-nowrap rounded-full px-3 py-2 text-[0.62rem] font-semibold uppercase tracking-[0.08em] transition-colors duration-300 sm:px-4 sm:text-xs sm:tracking-[0.16em] ${
-                      hostingBilling === "monthly" ? "text-black" : "text-text-muted hover:text-text"
-                    }`.trim()}
-                  >
-                    Monthly
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setHostingBilling("annual")}
-                    className={`relative z-10 whitespace-nowrap rounded-full px-3 py-2 text-[0.62rem] font-semibold uppercase tracking-[0.08em] transition-colors duration-300 sm:px-4 sm:text-xs sm:tracking-[0.16em] ${
-                      hostingBilling === "annual" ? "text-black" : "text-text-muted hover:text-text"
-                    }`.trim()}
-                  >
-                    Annual
-                  </button>
-                </div>
-                <div className="mb-2 min-h-[1.75rem]">
-                  {hostingBilling === "annual" ? (
-                    <motion.span
-                      initial={{ opacity: 0, y: -6 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.22, ease: "easeOut" }}
-                      className="inline-flex items-center rounded-full border border-accent/45 bg-accent-soft px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-accent"
-                    >
-                      Save 16%
-                    </motion.span>
-                  ) : null}
-                </div>
+                <p className="mb-5 inline-flex items-center rounded-full border border-accent/45 bg-accent-soft px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-accent">
+                  Annual plan only
+                </p>
                 <h3 className="text-3xl font-semibold text-accent-2">Hosting Plan</h3>
                 <p className="mt-3 text-lg text-text-muted">For Business Websites of any size</p>
                 <p className="mb-6 mt-10 flex w-full min-h-[4.1rem] items-end justify-center gap-2 text-[clamp(2.55rem,12vw,4.5rem)] font-bold tabular-nums text-accent sm:min-h-[5rem] md:min-h-[5.75rem] md:text-7xl">
                   <span className="text-[clamp(1.45rem,6.5vw,2.25rem)]">SCR</span>
-                  <motion.span
-                    layout
-                    transition={{ type: "spring", stiffness: 380, damping: 30, mass: 0.7 }}
-                    className="inline-block leading-none"
-                  >
-                    {hostingBilling === "monthly" ? "250" : "2,500"}
-                  </motion.span>
+                  <span className="inline-block leading-none">2,500</span>
                 </p>
-                <p className="min-h-[1.25rem] text-sm text-text-muted">
-                  {hostingBilling === "monthly" ? "Billed monthly" : "Billed annually"}
-                </p>
+                <p className="min-h-[1.25rem] text-sm text-text-muted">{hostingPlan.billing}</p>
                 <div className="mt-8 flex justify-center">
                   <Link to="/contact">
                     <ShimmerButton

@@ -184,11 +184,20 @@ export const addOnItems = [
 
 export const hostingPlan = {
   title: "Managed hosting",
-  price: "SCR 250 per month / SCR 2,500 per year",
+  price: "SCR 2,500 per year",
+  billing: "Billed annually",
   features: [
-    "Secure website (SSL) and monitoring",
-    "Monthly analytics report",
-    "Backups",
+    "Secure hosting environment with SSL certificate and uptime monitoring",
+    "Routine backups and recovery support",
+    "Server and dependency updates for stability",
+    "Basic technical maintenance and incident checks",
+    "Monthly performance and traffic snapshot",
+  ],
+  details: [
+    "Hosting is the server infrastructure that keeps your website online 24/7. Without hosting, your website files cannot be reached from a domain like horizondigitalsey.com.",
+    "When a visitor opens your website, their browser requests files from the hosting server. The server returns page content, images, and scripts so the site can load.",
+    "Managed hosting means Horizon Digital handles setup, SSL, backups, monitoring, and technical maintenance so you do not have to manage server tasks directly.",
+    "Domain and hosting are different: your domain is the address people type, while hosting is where the website actually runs.",
   ],
   note: "For advanced builds, hosting charges may differ.",
 };
