@@ -149,6 +149,23 @@ export default function Layout({ children }: LayoutProps) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    if (!location.hash) return;
+
+    const targetId = location.hash.replace("#", "");
+    const scrollToHashTarget = () => {
+      const target = document.getElementById(targetId);
+      if (!target) return;
+      const header = document.querySelector<HTMLElement>("[data-site-header]");
+      const offset = (header?.getBoundingClientRect().height ?? headerHeight) + 14;
+      const top = window.scrollY + target.getBoundingClientRect().top - offset;
+      window.scrollTo({ top, left: 0, behavior: "smooth" });
+    };
+
+    const timer = window.setTimeout(scrollToHashTarget, 30);
+    return () => window.clearTimeout(timer);
+  }, [location.pathname, location.hash, headerHeight]);
+
   return (
     <div
       className={`flex min-h-screen flex-col bg-bg text-text ${

@@ -16,7 +16,7 @@ import {
   stabilisationPlan,
 } from "../data/site";
 import { ShimmerButton } from "../components/ui/shimmer-button";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const pricingSectionLinks = [
   { id: "overview", label: "Overview" },
@@ -29,13 +29,8 @@ const pricingSectionLinks = [
 ] as const;
 
 export default function Pricing() {
+  const location = useLocation();
   const compactDesktopSection = "md:!pt-14 md:!pb-16";
-  const serviceTabs = [
-    { id: "overview", label: "Services" },
-    { id: "packages", label: "Packages" },
-    { id: "hosting", label: "Hosting" },
-    { id: "addons", label: "Optional Add-ons" },
-  ] as const;
   const [activeServiceTab, setActiveServiceTab] = useState<
     "overview" | "packages" | "hosting" | "addons"
   >("overview");
@@ -85,11 +80,11 @@ export default function Pricing() {
   }, []);
 
   useEffect(() => {
-    const hash = window.location.hash.replace("#", "");
+    const hash = location.hash.replace("#", "");
     if (hash === "overview" || hash === "packages" || hash === "hosting" || hash === "addons") {
       setActiveServiceTab(hash);
     }
-  }, []);
+  }, [location.hash]);
 
   const packageOffers = [foundationPackage, starterPackage, growthPackage]
     .map((pkg) => {
@@ -138,20 +133,6 @@ export default function Pricing() {
         text: faq.answer,
       },
     })),
-  };
-
-  const activateServiceTab = (tabId: "overview" | "packages" | "hosting" | "addons") => {
-    setActiveServiceTab(tabId);
-    window.history.replaceState(null, "", `#${tabId}`);
-
-    window.requestAnimationFrame(() => {
-      const target = document.getElementById(tabId);
-      if (!target) return;
-      const header = document.querySelector<HTMLElement>("[data-site-header]");
-      const offset = (header?.getBoundingClientRect().height ?? 88) + 14;
-      const top = window.scrollY + target.getBoundingClientRect().top - offset;
-      window.scrollTo({ top, left: 0, behavior: "smooth" });
-    });
   };
 
   return (
@@ -213,45 +194,6 @@ export default function Pricing() {
           )}
         </div>
       )}
-      <section className="pricing-nav-shell sticky top-[84px] z-30">
-        <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
-          <div className="pricing-nav-hub mb-6 rounded-3xl border border-border bg-bg-elev/95 p-5 shadow-[0_10px_34px_rgba(2,8,12,0.32)] backdrop-blur">
-            <div className="mb-4 flex items-end justify-between gap-6 border-b border-border/70 pb-4">
-              <div>
-                <p className="text-[0.62rem] font-semibold uppercase tracking-[0.24em] text-text-muted">
-                  Services & Pricing
-                </p>
-                <p className="mt-2 text-sm text-text-muted">
-                  Jump directly to the section you want to compare.
-                </p>
-              </div>
-            </div>
-            <div
-              role="tablist"
-              aria-label="Pricing sections"
-              className="grid grid-cols-2 gap-3 md:grid-cols-4 xl:grid-cols-4"
-            >
-              {serviceTabs.map((tab) => (
-                <button
-                  key={tab.id}
-                  type="button"
-                  role="tab"
-                  aria-selected={activeServiceTab === tab.id}
-                  aria-controls={`panel-${tab.id}`}
-                  onClick={() => activateServiceTab(tab.id)}
-                  className={`pricing-nav-btn focus-ring rounded-2xl border px-4 py-3 text-left text-[0.67rem] font-semibold uppercase tracking-[0.13em] transition-colors ${
-                    activeServiceTab === tab.id
-                      ? "pricing-nav-btn-active border-accent/45 bg-accent-soft text-accent"
-                      : "border-border bg-bg-panel/55 text-text-muted hover:border-accent/30 hover:text-text"
-                  }`.trim()}
-                >
-                  {tab.label}
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
       <Section
         id="overview"
         className={`${compactDesktopSection} ${activeServiceTab === "overview" ? "lg:!block" : "lg:!hidden"}`}
