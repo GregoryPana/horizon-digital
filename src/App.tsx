@@ -8,6 +8,9 @@ const Pricing = lazy(() => import("./pages/Pricing"));
 const Work = lazy(() => import("./pages/Work"));
 const About = lazy(() => import("./pages/About"));
 const Contact = lazy(() => import("./pages/Contact"));
+const AIDigitalTools = lazy(() => import("./pages/AIDigitalTools"));
+const Insights = lazy(() => import("./pages/Insights"));
+const InsightArticle = lazy(() => import("./pages/InsightArticle"));
 
 export default function App() {
   return (
@@ -24,6 +27,9 @@ export default function App() {
           <Route path="/what-you-need" element={<WhatYouNeed />} />
           <Route path="/work" element={<Work />} />
           <Route path="/services-pricing" element={<Pricing />} />
+          <Route path="/ai-digital-tools" element={<AIDigitalTools />} />
+          <Route path="/insights" element={<Insights />} />
+          <Route path="/insights/:slug" element={<InsightArticle />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>

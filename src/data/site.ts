@@ -49,6 +49,7 @@ export const navLinks = [
   { label: "What You Need", path: "/what-you-need" },
   { label: "Our Work", path: "/work" },
   { label: "Services & Pricing", path: "/services-pricing" },
+  { label: "Digital Insights", path: "/ai-digital-tools" },
   { label: "About", path: "/about" },
   { label: "Contact", path: "/contact" },
 ];

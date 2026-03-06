@@ -40,7 +40,7 @@ export default function Button({
   type = "button",
 }: ButtonProps) {
   const classes = [
-    "btn inline-flex items-center justify-center gap-2 rounded-full font-medium transition",
+    "btn inline-flex items-center justify-center gap-2 rounded-full text-center font-medium transition",
     sizeClasses[size],
     variantClasses[variant],
     className,

@@ -57,6 +57,32 @@ export default function About() {
         </Card>
       </Section>
 
+      <Section
+        eyebrow="Digital Insights"
+        title="Looking ahead at emerging digital tools"
+        description="Educational content for Seychelles businesses exploring AI and automation trends."
+      >
+        <Card>
+          <p className="text-sm text-text-muted">
+            We share practical insights on artificial intelligence, automation, and digital tools in
+            a clear way for non-technical business owners. This helps local businesses stay informed
+            as technology evolves.
+          </p>
+          <div className="mt-6">
+            <Link to="/ai-digital-tools">
+              <ShimmerButton
+                shimmerColor="#0b1212"
+                shimmerDuration="4.2s"
+                background="#22f1d6"
+                className="px-5 py-2 text-xs font-semibold tracking-[0.12em] text-black"
+              >
+                Visit Digital Insights
+              </ShimmerButton>
+            </Link>
+          </div>
+        </Card>
+      </Section>
+
       <section className="bg-bg-elev">
         <div className="mx-auto flex w-full max-w-7xl flex-col items-start gap-10 px-8 py-28 md:flex-row md:items-center md:justify-between">
           <div>

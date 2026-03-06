@@ -7,6 +7,7 @@ import drakeMainWebp from "../assets/work/drake-seaside/drake-seaside.webp";
 import drakeAltOneWebp from "../assets/work/drake-seaside/drake-seaside 2.webp";
 import seykelzMain from "../assets/work/demo-beauty/demo-beauty.jpg";
 import seykelzMainWebp from "../assets/work/demo-beauty/demo-beauty.webp";
+import seykelzAltOne from "../assets/work/demo-beauty/demo-beauty 2.png";
 
 export default function Work() {
   const timelineData = [
@@ -65,12 +66,13 @@ export default function Work() {
             Foundation-tier website demo for a beauty business with a clear service layout and
             streamlined contact path.
           </p>
-          <div className="mt-6 grid grid-cols-1 gap-4">
+          <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
             {[
               { src: seykelzMain, webp: seykelzMainWebp, label: "Beauty demo preview" },
+              { src: seykelzAltOne, label: "Beauty demo detail" },
             ].map((image) => (
               <picture key={image.label}>
-                <source srcSet={image.webp} type="image/webp" />
+                {image.webp ? <source srcSet={image.webp} type="image/webp" /> : null}
                 <img
                   src={image.src}
                   alt={image.label}

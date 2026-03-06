@@ -10,6 +10,8 @@ type LayoutProps = {
 
 export default function Layout({ children }: LayoutProps) {
   const location = useLocation();
+  const isInsightsThemeRoute =
+    location.pathname === "/ai-digital-tools" || location.pathname.startsWith("/insights");
   const mainRef = useRef<HTMLElement | null>(null);
   const [showTopButton, setShowTopButton] = useState(false);
   const [headerHeight, setHeaderHeight] = useState(88);
@@ -112,6 +114,30 @@ export default function Layout({ children }: LayoutProps) {
   }, [location.pathname]);
 
   useEffect(() => {
+    const revealItems = Array.from(document.querySelectorAll<HTMLElement>(".reveal-on-scroll"));
+    if (!revealItems.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const target = entry.target as HTMLElement;
+          target.classList.add("is-revealed");
+          observer.unobserve(target);
+        });
+      },
+      { threshold: 0.16, rootMargin: "0px 0px -8% 0px" }
+    );
+
+    revealItems.forEach((item) => {
+      if (item.classList.contains("is-revealed")) return;
+      observer.observe(item);
+    });
+
+    return () => observer.disconnect();
+  }, [location.pathname]);
+
+  useEffect(() => {
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     window.scrollTo({ top: 0, left: 0, behavior: prefersReducedMotion ? "auto" : "smooth" });
   }, [location.pathname]);
@@ -124,7 +150,11 @@ export default function Layout({ children }: LayoutProps) {
   }, []);
 
   return (
-    <div className="flex min-h-screen flex-col bg-bg text-text">
+    <div
+      className={`flex min-h-screen flex-col bg-bg text-text ${
+        isInsightsThemeRoute ? "insights-theme-shell" : ""
+      }`.trim()}
+    >
       <Navbar />
       <main
         ref={mainRef}

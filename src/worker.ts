@@ -22,6 +22,13 @@ export default {
         { path: "/what-you-need", priority: "0.9", changefreq: "monthly" },
         { path: "/work", priority: "0.8", changefreq: "monthly" },
         { path: "/services-pricing", priority: "0.9", changefreq: "monthly" },
+        { path: "/ai-digital-tools", priority: "0.8", changefreq: "monthly" },
+        { path: "/insights", priority: "0.8", changefreq: "weekly" },
+        { path: "/insights/ai-small-business-seychelles", priority: "0.7", changefreq: "monthly" },
+        { path: "/insights/automation-save-time-businesses", priority: "0.7", changefreq: "monthly" },
+        { path: "/insights/why-data-analytics-matter", priority: "0.7", changefreq: "monthly" },
+        { path: "/insights/digital-trends-small-businesses", priority: "0.7", changefreq: "monthly" },
+        { path: "/insights/understanding-ai-chatbots", priority: "0.7", changefreq: "monthly" },
         { path: "/about", priority: "0.7", changefreq: "monthly" },
         { path: "/contact", priority: "0.7", changefreq: "monthly" },
       ];

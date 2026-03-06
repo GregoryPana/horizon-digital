@@ -9,7 +9,7 @@ export default function Navbar() {
       data-site-header
       className="site-header-dark fixed top-0 left-0 right-0 z-50 border-b border-border bg-bg-elev backdrop-blur-lg"
     >
-      <div className="mx-auto flex w-full max-w-[1400px] items-center gap-4 px-5 py-4 md:gap-6 md:px-8 md:py-5 lg:px-10 xl:px-14">
+      <div className="mx-auto flex w-full max-w-[1760px] items-center gap-4 px-5 py-4 md:gap-6 md:px-8 md:py-5 lg:px-12 xl:px-16 2xl:px-20">
         <NavLink
           to="/"
           className="focus-ring inline-flex items-center rounded-full"
@@ -29,7 +29,7 @@ export default function Navbar() {
               label="Book a free consult"
               to="/contact"
               size="sm"
-              className="shadow-[0_0_20px_var(--glow)]"
+              className="whitespace-nowrap text-center shadow-[0_0_20px_var(--glow)]"
             />
           </div>
           <div className="lg:hidden">
