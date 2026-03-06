@@ -508,7 +508,7 @@ export default function Pricing() {
         description="One clear plan to keep your website secure and running smoothly."
       >
         <div id="panel-hosting" role="tabpanel" aria-hidden={activeServiceTab !== "hosting"}>
-        <div className="mb-8 rounded-2xl border border-border bg-bg-panel/65 p-5 md:p-7">
+        <div className="mb-8 max-w-5xl">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-2">What hosting means</p>
           <div className="mt-4 space-y-4">
             {hostingPlan.details.map((detail) => (
@@ -523,7 +523,7 @@ export default function Pricing() {
             <div className="grid items-start gap-6 p-4 sm:p-7 md:grid-cols-2 md:gap-10 md:p-12">
               <div className="flex flex-col items-center pb-10 text-center md:pb-0 md:px-10 md:border-r md:border-[color:var(--split-line)]">
                 <p className="mb-5 inline-flex items-center rounded-full border border-accent/45 bg-accent-soft px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-accent">
-                  Annual plan only
+                  Annual plan
                 </p>
                 <h3 className="text-3xl font-semibold text-accent-2">Hosting Plan</h3>
                 <p className="mt-3 text-lg text-text-muted">For Business Websites of any size</p>

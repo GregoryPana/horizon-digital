@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { insightArticles } from "../../data/insights";
 import { navLinks, workItems } from "../../data/site";
 import { scrollToTopSmooth } from "../../lib/utils";
 
@@ -58,16 +57,7 @@ const desktopDropdowns: Record<string, Array<{ label: string; to: string }>> = {
   ],
   "/ai-digital-tools": [
     { label: "Main page", to: "/ai-digital-tools" },
-    { label: "Digital awareness", to: "/ai-digital-tools#awareness" },
-    { label: "Future trends", to: "/ai-digital-tools#future-trends" },
-    { label: "Key technologies", to: "/ai-digital-tools#key-technologies" },
-    { label: "Current focus", to: "/ai-digital-tools#current-focus" },
-    { label: "Insights hub", to: "/ai-digital-tools#insights-hub" },
     { label: "All insights", to: "/insights" },
-    ...insightArticles.slice(0, 3).map((article) => ({
-      label: article.title,
-      to: `/insights/${article.slug}`,
-    })),
   ],
 };
 
@@ -341,29 +331,26 @@ export default function NavMenu() {
                         }`.trim()}
                       >
                         {hasWorkDropdown ? (
-                          <div className="grid min-w-[200px] grid-cols-1 gap-3">
+                          <div className="grid min-w-[150px] grid-cols-1 gap-2">
                             {workItems.map((work) => (
                               <a
                                 key={work.title}
                                 href={work.url ?? "/work"}
                                 target="_blank"
                                 rel="noreferrer"
-                                className="group rounded-xl border border-border bg-bg-panel/75 p-2 transition hover:border-accent/50"
+                                className="group flex items-center gap-2 rounded-lg border border-border bg-bg-panel/70 p-1.5 transition hover:border-accent/50"
                               >
                                 <img
                                   src={work.imageWebp800 || work.imageWebp || work.image}
                                   alt={work.title}
-                                  width={168}
-                                  height={220}
+                                  width={52}
+                                  height={68}
                                   loading="lazy"
                                   decoding="async"
-                                  className="h-[220px] w-full rounded-lg object-cover"
+                                  className="h-[68px] w-[52px] rounded-md object-cover"
                                 />
-                                <p className="mt-2 text-xs font-semibold uppercase tracking-[0.12em] text-accent-2">
+                                <p className="line-clamp-2 text-[0.62rem] font-semibold uppercase tracking-[0.11em] text-accent-2">
                                   {work.title}
-                                </p>
-                                <p className="mt-1 line-clamp-2 text-[0.72rem] text-text">
-                                  {work.outcome}
                                 </p>
                               </a>
                             ))}

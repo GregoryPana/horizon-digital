@@ -27,6 +27,17 @@ export default function Insights() {
         description="Educational articles on AI, automation, analytics, and practical digital trends."
       >
         <div className="grid gap-6 md:grid-cols-2">
+          <Card className="no-scroll-glow border-dashed">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent-2">
+              All Insights
+            </p>
+            <h2 className="mt-4 text-xl font-semibold text-text">Monthly AI updates are coming</h2>
+            <p className="mt-3 text-sm text-text-muted">
+              We will publish monthly updates with practical AI news, plus simple tips and tricks
+              to help businesses use AI tools in a clear and useful way.
+            </p>
+          </Card>
+
           {insightArticles.map((article) => (
             <Card key={article.slug} className="no-scroll-glow">
               <picture>
