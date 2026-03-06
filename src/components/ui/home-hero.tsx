@@ -21,9 +21,11 @@ export default function HomeHero() {
               src={desktopSplash}
               alt=""
               aria-hidden="true"
+              width={1920}
+              height={1080}
               fetchPriority="high"
               loading="eager"
-              decoding="sync"
+              decoding="async"
               className="h-full w-full object-cover object-center"
             />
           </picture>
@@ -39,9 +41,11 @@ export default function HomeHero() {
               src={mobileSplash}
               alt=""
               aria-hidden="true"
+              width={1080}
+              height={1920}
               fetchPriority="high"
               loading="eager"
-              decoding="sync"
+              decoding="async"
               className="h-full w-full object-cover object-center"
             />
           </picture>

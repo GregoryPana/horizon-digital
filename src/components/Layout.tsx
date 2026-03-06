@@ -42,6 +42,7 @@ export default function Layout({ children }: LayoutProps) {
     const activeCards = new Set<HTMLElement>();
     let cancelled = false;
     let mutationObserver: MutationObserver | null = null;
+    let setupTimer: number | null = null;
 
     const updateGlow = () => {
       frameId = null;
@@ -94,17 +95,21 @@ export default function Layout({ children }: LayoutProps) {
       window.addEventListener("resize", scheduleUpdate);
     };
 
-    initObserver();
+    setupTimer = window.setTimeout(() => {
+      if (cancelled) return;
+      initObserver();
 
-    if (mainRef.current) {
-      mutationObserver = new MutationObserver(() => {
-        if (!activeCards.size) initObserver();
-      });
-      mutationObserver.observe(mainRef.current, { childList: true, subtree: true });
-    }
+      if (mainRef.current) {
+        mutationObserver = new MutationObserver(() => {
+          if (!activeCards.size) initObserver();
+        });
+        mutationObserver.observe(mainRef.current, { childList: true, subtree: true });
+      }
+    }, 160);
 
     return () => {
       cancelled = true;
+      if (setupTimer !== null) window.clearTimeout(setupTimer);
       mutationObserver?.disconnect();
       observer?.disconnect();
       window.removeEventListener("scroll", scheduleUpdate);
