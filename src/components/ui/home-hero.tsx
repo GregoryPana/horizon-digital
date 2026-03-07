@@ -2,11 +2,8 @@ import { Link } from "react-router-dom";
 import Button from "../Button";
 import { scrollToTopSmooth } from "../../lib/utils";
 import { ShimmerButton } from "./shimmer-button";
-import desktopSplash from "../../assets/hero/splash-desktop.jpg";
-import desktopSplashWebp from "../../assets/hero/splash-desktop.webp";
-import mobileSplash from "../../assets/hero/splash-mobile.jpg";
-import mobileSplashWebp from "../../assets/hero/splash-mobile.webp";
-import mobileSplashWebp720 from "../../assets/hero/splash-mobile-720.webp";
+import desktopSplash from "../../assets/hero/hero-desktop.png";
+import mobileSplash from "../../assets/hero/hero-mobile.png";
 
 export default function HomeHero() {
   const handleWorkScrollTop = () => scrollToTopSmooth();
@@ -15,40 +12,30 @@ export default function HomeHero() {
     <section id="top" className="relative h-[90svh] w-full overflow-hidden bg-bg text-text md:h-svh">
       <div className="absolute inset-0 brightness-110 md:brightness-100">
         <div className="absolute inset-0 hidden md:block">
-          <picture>
-            <source srcSet={desktopSplashWebp} type="image/webp" />
-            <img
-              src={desktopSplash}
-              alt=""
-              aria-hidden="true"
-              width={1920}
-              height={1080}
-              fetchPriority="high"
-              loading="eager"
-              decoding="async"
-              className="h-full w-full object-cover object-center"
-            />
-          </picture>
+          <img
+            src={desktopSplash}
+            alt=""
+            aria-hidden="true"
+            width={1920}
+            height={1080}
+            fetchPriority="high"
+            loading="eager"
+            decoding="async"
+            className="h-full w-full object-cover object-center"
+          />
         </div>
         <div className="absolute inset-0 md:hidden">
-          <picture>
-            <source
-              srcSet={`${mobileSplashWebp720} 720w, ${mobileSplashWebp} 1024w`}
-              sizes="100vw"
-              type="image/webp"
-            />
-            <img
-              src={mobileSplash}
-              alt=""
-              aria-hidden="true"
-              width={1080}
-              height={1920}
-              fetchPriority="high"
-              loading="eager"
-              decoding="async"
-              className="h-full w-full object-cover object-center"
-            />
-          </picture>
+          <img
+            src={mobileSplash}
+            alt=""
+            aria-hidden="true"
+            width={1080}
+            height={1920}
+            fetchPriority="high"
+            loading="eager"
+            decoding="async"
+            className="h-full w-full object-cover object-center"
+          />
         </div>
       </div>
 

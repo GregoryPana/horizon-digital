@@ -1,5 +1,4 @@
-import heroDesktop from "../assets/hero/splash-desktop.jpg";
-import heroDesktopWebp from "../assets/hero/splash-desktop.webp";
+import heroDesktop from "../assets/hero/hero-desktop.png";
 import businessAutomationImage from "../assets/insights/business automation.png";
 import aiToolsImage from "../assets/insights/ai tools.png";
 import dataAnalysisImage from "../assets/insights/data analysis.png";
@@ -133,7 +132,6 @@ export const insightArticles: InsightArticle[] = [
       "Digital change is gradual for most businesses, but understanding direction early helps with better long-term planning.",
     keywords: "future of technology Seychelles, digital transformation Seychelles, AI Seychelles",
     image: heroDesktop,
-    imageWebp: heroDesktopWebp,
     sections: [
       {
         heading: "Digital expectations continue to rise",
