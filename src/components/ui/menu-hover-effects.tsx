@@ -1,7 +1,16 @@
 import { useEffect, useRef, useState } from "react";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
+} from "./navigation-menu";
 import { navLinks, workItems } from "../../data/site";
-import { scrollToTopSmooth } from "../../lib/utils";
+import { cn, scrollToTopSmooth } from "../../lib/utils";
 
 type MobileMenuItem = {
   id: string;
@@ -63,11 +72,10 @@ const desktopDropdowns: Record<string, Array<{ label: string; to: string }>> = {
 
 export default function NavMenu() {
   const location = useLocation();
+  const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [expandedGroups, setExpandedGroups] = useState<string[]>([]);
-  const [activeDesktopMenu, setActiveDesktopMenu] = useState<string | null>(null);
   const scrollLockRef = useRef(0);
-  const closeDesktopTimerRef = useRef<number | null>(null);
 
   const closeMenu = () => setIsMenuOpen(false);
 
@@ -77,36 +85,34 @@ export default function NavMenu() {
     );
   };
 
+  const handleDesktopPrimaryNavClick = (path: string) => {
+    navigate(path);
+    if (path === "/work") {
+      scrollToTopSmooth();
+      return;
+    }
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  };
+
+  const normalizePath = (value: string) => {
+    if (value === "/") return "/";
+    return value.replace(/\/+$/, "") || "/";
+  };
+
+  const isDesktopItemActive = (path: string) => {
+    const currentPath = normalizePath(location.pathname);
+    const itemPath = normalizePath(path);
+
+    if (itemPath === "/") return currentPath === "/";
+    if (path === "/ai-digital-tools") {
+      return currentPath === "/ai-digital-tools" || currentPath.startsWith("/insights");
+    }
+    return currentPath === itemPath;
+  };
+
   useEffect(() => {
     closeMenu();
-    setActiveDesktopMenu(null);
   }, [location.pathname, location.hash]);
-
-  useEffect(() => {
-    return () => {
-      if (closeDesktopTimerRef.current !== null) {
-        window.clearTimeout(closeDesktopTimerRef.current);
-      }
-    };
-  }, []);
-
-  const openDesktopMenu = (path: string) => {
-    if (closeDesktopTimerRef.current !== null) {
-      window.clearTimeout(closeDesktopTimerRef.current);
-      closeDesktopTimerRef.current = null;
-    }
-    setActiveDesktopMenu(path);
-  };
-
-  const scheduleDesktopMenuClose = () => {
-    if (closeDesktopTimerRef.current !== null) {
-      window.clearTimeout(closeDesktopTimerRef.current);
-    }
-    closeDesktopTimerRef.current = window.setTimeout(() => {
-      setActiveDesktopMenu(null);
-      closeDesktopTimerRef.current = null;
-    }, 220);
-  };
 
   useEffect(() => {
     if (!isMenuOpen) {
@@ -285,101 +291,94 @@ export default function NavMenu() {
       </div>
 
       <div className="hidden lg:block">
-        <nav className="relative" onMouseLeave={scheduleDesktopMenuClose}>
-          <ul className="flex flex-row items-center gap-4 text-left xl:gap-6">
+        <NavigationMenu viewport={false} className="relative">
+          <NavigationMenuList className="gap-3 xl:gap-5">
             {navLinks.map((item) => {
-              const hasSectionDropdown = Object.keys(desktopDropdowns).includes(item.path);
+              const hasSectionDropdown = Object.prototype.hasOwnProperty.call(desktopDropdowns, item.path);
               const hasWorkDropdown = item.path === "/work";
               const hasDropdown = hasSectionDropdown || hasWorkDropdown;
-              const isOpen = activeDesktopMenu === item.path;
               const isInsightsMenu = item.path === "/ai-digital-tools";
+              const isActive = isDesktopItemActive(item.path);
+
+              if (!hasDropdown) {
+                return (
+                  <NavigationMenuItem key={item.path}>
+                    <NavigationMenuLink asChild>
+                      <NavLink
+                        to={item.path}
+                        className={cn(
+                          navigationMenuTriggerStyle(),
+                          isActive ? "nav-active-page !text-accent" : "hover:border-accent/18"
+                        )}
+                      >
+                        {item.label}
+                      </NavLink>
+                    </NavigationMenuLink>
+                  </NavigationMenuItem>
+                );
+              }
 
               return (
-                <li key={item.path} className="relative list-none" onMouseEnter={() => openDesktopMenu(item.path)}>
-                  <NavLink
-                    to={item.path}
-                    onClick={() => {
-                      if (item.path === "/work") scrollToTopSmooth();
-                    }}
-                    className={({ isActive }) =>
-                      `group relative inline-flex items-center rounded-none ${
-                        isActive
-                          ? "text-accent drop-shadow-[0_0_10px_rgba(34,241,214,0.5)]"
-                          : "text-text-muted"
-                      }`
-                    }
+                <NavigationMenuItem key={item.path}>
+                  <NavigationMenuTrigger
+                    onClick={() => handleDesktopPrimaryNavClick(item.path)}
+                    className={cn(
+                      isActive ? "nav-active-page !text-accent" : "hover:border-accent/18"
+                    )}
                   >
-                    <span className="nav-menu-item relative z-10 block whitespace-nowrap px-2.5 py-1.5 text-[0.68rem] uppercase tracking-[0.13em] transition-colors duration-300 group-hover:text-accent">
-                      {item.label}
-                    </span>
-                    <span className="pointer-events-none absolute inset-0 border-y border-accent/70 opacity-0 transition-all duration-300 group-hover:opacity-100" />
-                    <span className="pointer-events-none absolute inset-0 z-0 bg-accent/10 opacity-0 transition-all duration-300 group-hover:opacity-100" />
-                  </NavLink>
+                    {item.label}
+                  </NavigationMenuTrigger>
 
-                  {hasDropdown ? (
-                    <div
-                      onMouseEnter={() => openDesktopMenu(item.path)}
-                      className={`absolute left-1/2 top-[calc(100%+14px)] z-50 w-max -translate-x-1/2 transition-all duration-200 ${
-                        isOpen ? "pointer-events-auto translate-y-0 opacity-100" : "pointer-events-none translate-y-2 opacity-0"
-                      }`.trim()}
-                    >
-                      <div
-                        className={`rounded-2xl border p-4 shadow-[0_16px_40px_rgba(0,0,0,0.45)] backdrop-blur ${
-                          isInsightsMenu
-                            ? "border-[#4fa7c4]/60 bg-[#07101b]/98 text-[#dceaf6]"
-                            : "border-border bg-bg-elev"
-                        }`.trim()}
-                      >
-                        {hasWorkDropdown ? (
-                          <div className="grid min-w-[150px] grid-cols-1 gap-2">
-                            {workItems.map((work) => (
-                              <a
-                                key={work.title}
-                                href={work.url ?? "/work"}
-                                target="_blank"
-                                rel="noreferrer"
-                                className="group flex items-center gap-2 rounded-lg border border-border bg-bg-panel/70 p-1.5 transition hover:border-accent/50"
-                              >
-                                <img
-                                  src={work.imageWebp800 || work.imageWebp || work.image}
-                                  alt={work.title}
-                                  width={52}
-                                  height={68}
-                                  loading="lazy"
-                                  decoding="async"
-                                  className="h-[68px] w-[52px] rounded-md object-cover"
-                                />
-                                <p className="line-clamp-2 text-[0.62rem] font-semibold uppercase tracking-[0.11em] text-accent-2">
-                                  {work.title}
-                                </p>
-                              </a>
-                            ))}
-                          </div>
-                        ) : (
-                          <div className="grid min-w-[460px] grid-cols-2 gap-x-8 gap-y-2">
-                            {desktopDropdowns[item.path].map((sectionLink) => (
-                              <Link
-                                key={`${item.path}-${sectionLink.to}`}
-                                to={sectionLink.to}
-                                className={`rounded-md px-1.5 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.12em] transition ${
-                                  isInsightsMenu
-                                    ? "text-[#dceaf6] hover:bg-[#11253d] hover:text-[#46c6e8]"
-                                    : "text-text hover:bg-accent-soft hover:text-accent"
-                                }`.trim()}
-                              >
-                                {sectionLink.label}
-                              </Link>
-                            ))}
-                          </div>
-                        )}
+                  <NavigationMenuContent className={isInsightsMenu ? "nav-dropdown-insights" : undefined}>
+                    {hasWorkDropdown ? (
+                      <div className="grid min-w-[170px] grid-cols-1 gap-2">
+                        {workItems.map((work) => (
+                          <a
+                            key={work.title}
+                            href={work.url ?? "/work"}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="group flex items-center gap-2 rounded-lg border border-border bg-bg-panel/80 p-1.5 transition hover:border-accent/50"
+                          >
+                            <img
+                              src={work.imageWebp800 || work.imageWebp || work.image}
+                              alt={work.title}
+                              width={52}
+                              height={68}
+                              loading="lazy"
+                              decoding="async"
+                              className="h-[68px] w-[52px] rounded-md object-cover"
+                            />
+                            <p className="line-clamp-2 text-[0.62rem] font-semibold uppercase tracking-[0.11em] text-accent-2">
+                              {work.title}
+                            </p>
+                          </a>
+                        ))}
                       </div>
-                    </div>
-                  ) : null}
-                </li>
+                    ) : (
+                      <div className="grid min-w-[460px] grid-cols-2 gap-x-8 gap-y-2">
+                        {desktopDropdowns[item.path].map((sectionLink) => (
+                          <Link
+                            key={`${item.path}-${sectionLink.to}`}
+                            to={sectionLink.to}
+                            className={cn(
+                              "nav-dropdown-link rounded-md px-1.5 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.12em] transition",
+                              isInsightsMenu
+                                ? "nav-dropdown-link-insights"
+                                : "text-text hover:bg-accent-soft hover:text-accent"
+                            )}
+                          >
+                            {sectionLink.label}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
               );
             })}
-          </ul>
-        </nav>
+          </NavigationMenuList>
+        </NavigationMenu>
       </div>
     </nav>
   );

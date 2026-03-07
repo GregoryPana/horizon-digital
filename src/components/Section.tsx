@@ -20,18 +20,18 @@ export default function Section({
   return (
     <section
       id={id}
-      className={`pt-11 pb-14 md:pt-20 md:pb-28 ${className ?? ""}`.trim()}
+      className={`pt-12 pb-16 md:pt-20 md:pb-28 ${className ?? ""}`.trim()}
     >
       <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
         {(eyebrow || title || description) && (
-          <div className="mb-9 max-w-2xl md:mb-12">
+          <div className="mb-10 max-w-3xl md:mb-14">
             {eyebrow && (
               <p className="text-xs font-semibold uppercase tracking-[0.32em] text-accent section-eyebrow-glow">
                 {eyebrow}
               </p>
             )}
             {title && (
-              <h2 className="section-title mt-3 text-[2.02rem] font-semibold tracking-[-0.012em] text-text md:text-[3.45rem]">
+              <h2 className="section-title mt-3 text-[2.1rem] font-semibold tracking-[-0.012em] text-text md:text-[3.55rem]">
                 {title}
               </h2>
             )}

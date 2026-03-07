@@ -17,6 +17,7 @@ import {
 } from "../data/site";
 import { ShimmerButton } from "../components/ui/shimmer-button";
 import { Link, useLocation } from "react-router-dom";
+import MenuVertical from "../components/ui/menu-vertical";
 
 const pricingSectionLinks = [
   { id: "overview", label: "Overview" },
@@ -28,12 +29,20 @@ const pricingSectionLinks = [
   { id: "visibility", label: "Visibility" },
 ] as const;
 
+const pricingVerticalTabs = [
+  { id: "overview", label: "Overview" },
+  { id: "packages", label: "Packages" },
+  { id: "hosting", label: "Hosting" },
+  { id: "addons", label: "Optional Add-ons" },
+] as const;
+
 export default function Pricing() {
   const location = useLocation();
   const compactDesktopSection = "md:!pt-14 md:!pb-16";
   const [activeServiceTab, setActiveServiceTab] = useState<
     "overview" | "packages" | "hosting" | "addons"
   >("overview");
+  const [pricingViewMode, setPricingViewMode] = useState<"all" | "tab">("all");
   const [passedSectionIds, setPassedSectionIds] = useState<string[]>([]);
   const [isRailOpen, setIsRailOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState({
@@ -53,6 +62,29 @@ export default function Pricing() {
   const growthUniqueIncludes = growthPackage.includes.filter(
     (item) => !starterFeatureSet.has(normalizeFeature(item))
   );
+
+  const scrollToSectionTop = (sectionId: "overview" | "packages" | "hosting" | "addons") => {
+    window.requestAnimationFrame(() => {
+      window.setTimeout(() => {
+        const target = document.getElementById(sectionId);
+        if (!target) return;
+        const header = document.querySelector<HTMLElement>("[data-site-header]");
+        const offset = (header?.getBoundingClientRect().height ?? 88) + 14;
+        const top = window.scrollY + target.getBoundingClientRect().top - offset;
+        window.scrollTo({ top, left: 0, behavior: "smooth" });
+      }, 70);
+    });
+  };
+
+  const jumpToSection = (sectionId: "overview" | "packages" | "hosting" | "addons") => {
+    setPricingViewMode("tab");
+    setActiveServiceTab(sectionId);
+    window.history.replaceState(null, "", `#${sectionId}`);
+    scrollToSectionTop(sectionId);
+  };
+
+  const showSelectedOrAll = (tabId: "overview" | "packages" | "hosting" | "addons") =>
+    pricingViewMode === "all" || activeServiceTab === tabId;
 
   useEffect(() => {
     const syncPassedSections = () => {
@@ -83,7 +115,11 @@ export default function Pricing() {
     const hash = location.hash.replace("#", "");
     if (hash === "overview" || hash === "packages" || hash === "hosting" || hash === "addons") {
       setActiveServiceTab(hash);
+      setPricingViewMode("tab");
+      scrollToSectionTop(hash);
+      return;
     }
+    setPricingViewMode("all");
   }, [location.hash]);
 
   const packageOffers = [foundationPackage, starterPackage, growthPackage]
@@ -194,14 +230,25 @@ export default function Pricing() {
           )}
         </div>
       )}
+
+      <div className="pointer-events-none fixed left-5 top-1/2 z-40 hidden -translate-y-1/2 xl:block">
+        <div className="pointer-events-auto">
+          <MenuVertical
+            menuItems={pricingVerticalTabs.map((section) => ({ id: section.id, label: section.label }))}
+            activeId={pricingViewMode === "tab" ? activeServiceTab : undefined}
+            onSelect={(id) => jumpToSection(id as "overview" | "packages" | "hosting" | "addons")}
+          />
+        </div>
+      </div>
+
       <Section
         id="overview"
-        className={`${compactDesktopSection} ${activeServiceTab === "overview" ? "lg:!block" : "lg:!hidden"}`}
+        className={`${compactDesktopSection} ${showSelectedOrAll("overview") ? "lg:!block" : "lg:!hidden"}`}
         eyebrow="Services & Pricing"
         title={servicesPricingIntro.title}
         description={servicesPricingIntro.subtitle}
       >
-        <div id="panel-overview" role="tabpanel" aria-hidden={activeServiceTab !== "overview"}>
+        <div id="panel-overview" role="tabpanel" aria-hidden={!showSelectedOrAll("overview")}>
           <p className="text-sm text-text-muted">{servicesPricingIntro.summary}</p>
         </div>
       </Section>
@@ -211,7 +258,7 @@ export default function Pricing() {
         eyebrow="How it works"
         title="How your project works"
         description="A simple, structured process from start to launch."
-        className={compactDesktopSection}
+        className={`${compactDesktopSection} ${showSelectedOrAll("overview") ? "lg:!block" : "lg:!hidden"}`}
       >
         <div className="section-band section-band-medium relative left-1/2 right-1/2 -mx-[50vw] my-8 w-screen py-16 md:my-10 md:py-20">
           <div className="mx-auto grid w-full max-w-7xl gap-8 px-5 sm:px-8 md:grid-cols-2 lg:grid-cols-5">
@@ -228,12 +275,12 @@ export default function Pricing() {
 
       <Section
         id="packages"
-        className={`${compactDesktopSection} ${activeServiceTab === "packages" ? "lg:!block" : "lg:!hidden"}`}
+        className={`${compactDesktopSection} ${showSelectedOrAll("packages") ? "lg:!block" : "lg:!hidden"}`}
         eyebrow="Packages"
         title="Choose the right package for your business"
         description="Foundation, Starter, and Growth side by side for a clear comparison."
       >
-        <div id="panel-packages" role="tabpanel" aria-hidden={activeServiceTab !== "packages"}>
+        <div id="panel-packages" role="tabpanel" aria-hidden={!showSelectedOrAll("packages")}>
         <div className="grid items-stretch gap-8 md:grid-cols-2 lg:grid-cols-3">
           <Card className="flex h-full flex-col no-scroll-glow pricing-card pricing-card-foundation !p-5 md:!p-7">
             <h3 className="text-lg font-semibold text-accent-2">{foundationPackage.title}</h3>
@@ -502,12 +549,12 @@ export default function Pricing() {
 
       <Section
         id="hosting"
-        className={`${compactDesktopSection} ${activeServiceTab === "hosting" ? "lg:!block" : "lg:!hidden"}`}
+        className={`${compactDesktopSection} ${showSelectedOrAll("hosting") ? "lg:!block" : "lg:!hidden"}`}
         eyebrow="Managed hosting"
         title={hostingPlan.title}
         description="One clear plan to keep your website secure and running smoothly."
       >
-        <div id="panel-hosting" role="tabpanel" aria-hidden={activeServiceTab !== "hosting"}>
+        <div id="panel-hosting" role="tabpanel" aria-hidden={!showSelectedOrAll("hosting")}>
         <div className="mb-8 max-w-5xl">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-2">What hosting means</p>
           <div className="mt-4 space-y-4">
@@ -564,12 +611,12 @@ export default function Pricing() {
 
       <Section
         id="addons"
-        className={`${compactDesktopSection} ${activeServiceTab === "addons" ? "lg:!block" : "lg:!hidden"}`}
+        className={`${compactDesktopSection} ${showSelectedOrAll("addons") ? "lg:!block" : "lg:!hidden"}`}
         eyebrow="Add-ons"
         title="Optional add-ons"
         description="All add-ons are clearly scoped before work begins, if not included in selected tier."
       >
-        <div id="panel-addons" role="tabpanel" aria-hidden={activeServiceTab !== "addons"}>
+        <div id="panel-addons" role="tabpanel" aria-hidden={!showSelectedOrAll("addons")}>
         <div className="section-band section-band-soft relative left-1/2 right-1/2 -mx-[50vw] my-8 w-screen py-14 md:my-10 md:py-16">
           <div className="mx-auto grid w-full max-w-7xl gap-x-10 gap-y-5 px-5 sm:px-8 md:grid-cols-2">
           {addOnItems.map((item) => (
@@ -588,7 +635,7 @@ export default function Pricing() {
         eyebrow="Stabilisation"
         title={stabilisationPlan.title}
         description="Included with every website build."
-        className={compactDesktopSection}
+        className={`${compactDesktopSection} ${showSelectedOrAll("overview") ? "lg:!block" : "lg:!hidden"}`}
       >
         <Card>
           <div className="grid gap-6 md:grid-cols-2">
@@ -623,7 +670,7 @@ export default function Pricing() {
         eyebrow="Performance & Visibility"
         title="Built to look good and be found"
         description="We focus on speed, clarity, and practical search setup so people can discover your business online."
-        className={compactDesktopSection}
+        className={`${compactDesktopSection} ${showSelectedOrAll("overview") ? "lg:!block" : "lg:!hidden"}`}
       >
         <div className="section-band section-band-medium relative left-1/2 right-1/2 -mx-[50vw] my-8 w-screen py-14 md:my-10 md:py-16">
           <div className="mx-auto w-full max-w-7xl px-8">

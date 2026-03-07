@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 import Section from "../components/Section";
 import Seo from "../components/Seo";
 import Card from "../components/Card";
 import { ShimmerButton } from "../components/ui/shimmer-button";
 import InsightsHero from "../components/InsightsHero";
+import MenuVertical from "../components/ui/menu-vertical";
 
 const technologyCards = [
   {
@@ -25,6 +27,46 @@ const technologyCards = [
 ];
 
 export default function AIDigitalTools() {
+  const insightSectionLinks = [
+    { id: "awareness", label: "Awareness" },
+    { id: "future-trends", label: "Future Trends" },
+    { id: "key-technologies", label: "Technologies" },
+    { id: "current-focus", label: "Current Focus" },
+    { id: "insights-hub", label: "Insights Hub" },
+  ] as const;
+  const [activeSection, setActiveSection] = useState<string>("awareness");
+
+  const jumpToSection = (sectionId: string) => {
+    const target = document.getElementById(sectionId);
+    if (!target) return;
+    const header = document.querySelector<HTMLElement>("[data-site-header]");
+    const offset = (header?.getBoundingClientRect().height ?? 88) + 14;
+    const top = window.scrollY + target.getBoundingClientRect().top - offset;
+    window.history.replaceState(null, "", `#${sectionId}`);
+    window.scrollTo({ top, left: 0, behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    const nodes = insightSectionLinks
+      .map((section) => document.getElementById(section.id))
+      .filter(Boolean) as HTMLElement[];
+    if (!nodes.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (!visible.length) return;
+        setActiveSection(visible[0].target.id);
+      },
+      { rootMargin: "-24% 0px -58% 0px", threshold: [0.2, 0.45, 0.7] }
+    );
+
+    nodes.forEach((node) => observer.observe(node));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div>
       <Seo
@@ -51,6 +93,17 @@ export default function AIDigitalTools() {
           </Link>
         }
       />
+
+      <div className="pointer-events-none fixed left-5 top-1/2 z-40 hidden -translate-y-1/2 xl:block">
+        <div className="pointer-events-auto">
+          <MenuVertical
+            menuItems={insightSectionLinks.map((section) => ({ id: section.id, label: section.label }))}
+            activeId={activeSection}
+            onSelect={jumpToSection}
+            color="var(--accent-2)"
+          />
+        </div>
+      </div>
 
       <Section
         id="awareness"
