@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { motion } from "framer-motion";
 
 type SectionProps = {
   id?: string;
@@ -24,22 +25,27 @@ export default function Section({
     >
       <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
         {(eyebrow || title || description) && (
-          <div className="mb-10 max-w-3xl md:mb-14">
+          <motion.div
+            initial={{ opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.35, margin: "0px 0px -12% 0px" }}
+            transition={{ duration: 0.45, ease: "easeOut" }}
+            className="mx-auto mb-10 max-w-3xl text-center md:mb-12"
+          >
             {eyebrow && (
               <p className="text-xs font-semibold uppercase tracking-[0.32em] text-accent section-eyebrow-glow">
                 {eyebrow}
               </p>
             )}
             {title && (
-              <h2 className="section-title mt-3 text-[2.1rem] font-semibold tracking-[-0.012em] text-text md:text-[3.55rem]">
+              <h2 className="section-title mt-3 text-[1.95rem] font-semibold tracking-[-0.01em] text-text md:text-[3.15rem]">
                 {title}
               </h2>
             )}
             {description && (
-              <p className="section-description mt-4 text-[0.98rem] leading-[1.62] text-text-muted md:text-base md:leading-normal">{description}</p>
+              <p className="section-description mt-4 text-[1.05rem] leading-[1.65] text-text-muted md:text-[1.1rem] md:leading-[1.62]">{description}</p>
             )}
-            <div className="mt-6 horizon-line" />
-          </div>
+          </motion.div>
         )}
         {children}
       </div>

@@ -34,9 +34,9 @@ export default function MenuVertical({
                 <motion.button
                   type="button"
                   onClick={() => onSelect(item.id)}
-                  className={`group focus-ring flex w-full items-center gap-2 rounded-xl px-3 py-2.5 text-left text-[0.69rem] font-semibold uppercase tracking-[0.13em] transition ${
+                  className={`menu-vertical-btn group focus-ring flex w-full items-center gap-2 rounded-xl px-3 py-2.5 text-left text-[0.69rem] font-semibold uppercase tracking-[0.13em] transition ${
                     isActive
-                      ? "bg-accent-soft text-accent"
+                      ? "menu-vertical-btn-active bg-accent-soft text-accent"
                       : "text-text-muted hover:bg-accent-soft/50 hover:text-text"
                   }`.trim()}
                   whileHover={{ x: 2 }}

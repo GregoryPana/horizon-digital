@@ -100,7 +100,7 @@ export default function AIDigitalTools() {
             menuItems={insightSectionLinks.map((section) => ({ id: section.id, label: section.label }))}
             activeId={activeSection}
             onSelect={jumpToSection}
-            color="var(--accent-2)"
+            color="var(--accent)"
           />
         </div>
       </div>
