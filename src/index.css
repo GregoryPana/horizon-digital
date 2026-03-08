@@ -581,6 +581,13 @@ html:not([data-theme="dark"]) .hero-consult-cta {
   box-shadow: 0 0 20px var(--glow);
 }
 
+.hero-bento-fixed {
+  border: 1px solid rgba(132, 171, 197, 0.54);
+  background: linear-gradient(140deg, rgba(8, 19, 30, 0.82), rgba(12, 28, 41, 0.78));
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.24);
+  backdrop-filter: blur(8px);
+}
+
 @media (max-width: 767px) {
   .hero-view-work-cta {
     background-color: transparent !important;
