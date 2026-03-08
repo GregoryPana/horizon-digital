@@ -5,14 +5,13 @@ import Modal from "../components/Modal";
 import Section from "../components/Section";
 import Seo from "../components/Seo";
 import HomeHero from "../components/ui/home-hero";
-import HomeFaq from "../components/ui/home-faq";
+import HomeFaq, { type HomeFaqCategory } from "../components/ui/home-faq";
 import HomeWorkAccordion from "../components/ui/home-work-accordion";
 import { ShimmerButton } from "../components/ui/shimmer-button";
 import { Link } from "react-router-dom";
 import { scrollToTopSmooth } from "../lib/utils";
 import {
   customPackage,
-  faqs,
   foundationPackage,
   growthPackage,
   projectSteps,
@@ -40,6 +39,93 @@ const homeSectionLinks = [
   { id: "ready", label: "Ready" },
 ] as const;
 
+const homeFaqCategories: HomeFaqCategory[] = [
+  {
+    key: "services",
+    label: "Services",
+    items: [
+      {
+        question: "What kind of websites do you build?",
+        answer:
+          "We design and develop custom business websites focused on clarity, speed, and enquiry flow. Most projects include service pages, contact capture, and SEO-ready structure from day one.",
+      },
+      {
+        question: "Can you refresh my current website instead of starting from scratch?",
+        answer:
+          "Yes. We can either redesign your current site or rebuild it on a cleaner structure if performance and content flow need major improvements.",
+      },
+      {
+        question: "Do you also help with content and structure?",
+        answer:
+          "Absolutely. We guide page structure, section order, and messaging so visitors understand your offer quickly and know what action to take.",
+      },
+    ],
+  },
+  {
+    key: "process",
+    label: "Process",
+    items: [
+      {
+        question: "What is a typical timeline?",
+        answer:
+          "Most projects launch in 3 to 6 weeks, depending on scope, feedback speed, and content readiness.",
+      },
+      {
+        question: "How many revisions are included?",
+        answer:
+          "Each package includes clear revision rounds tied to project milestones, so feedback stays focused and predictable.",
+      },
+      {
+        question: "How involved do I need to be during the project?",
+        answer:
+          "We keep the process lightweight. You mainly review milestone drafts, approve direction, and share business details we use to shape the final site.",
+      },
+    ],
+  },
+  {
+    key: "packages",
+    label: "Packages",
+    items: [
+      {
+        question: "Is pricing flexible?",
+        answer:
+          "Yes. Package pricing gives a clear starting range, then we adjust based on page count, content complexity, and extra functionality.",
+      },
+      {
+        question: "How do I choose the right package?",
+        answer:
+          "We recommend a package after a short discovery call. The goal is to match your current business stage without overbuilding.",
+      },
+      {
+        question: "Can I start small and expand later?",
+        answer:
+          "Definitely. We can launch with a focused scope and extend the site in phases as your business grows.",
+      },
+    ],
+  },
+  {
+    key: "hosting",
+    label: "Hosting & Ownership",
+    items: [
+      {
+        question: "Do I own the website when the project is complete?",
+        answer:
+          "Yes. You own the final codebase and approved assets once the project closes.",
+      },
+      {
+        question: "Who controls my domain name?",
+        answer:
+          "Your domain stays under your registrar account and renews yearly. We can assist with setup and renewals, but ownership remains with you.",
+      },
+      {
+        question: "What is hosting and who provides it?",
+        answer:
+          "Hosting keeps your site live online. You can host with Horizon Digital or choose your own provider. We support both options.",
+      },
+    ],
+  },
+];
+
 export default function Home() {
   const [activeWork, setActiveWork] = useState<WorkPreviewItem | null>(null);
   const [mobileOpen, setMobileOpen] = useState({
@@ -59,6 +145,7 @@ export default function Home() {
   const growthUniqueIncludes = growthPackage.includes.filter(
     (item) => !starterFeatureSet.has(normalizeFeature(item))
   );
+  const allHomeFaqItems = homeFaqCategories.flatMap((category) => category.items);
 
   useEffect(() => {
     const syncPassedSections = () => {
@@ -88,7 +175,7 @@ export default function Home() {
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: faqs.map((faq) => ({
+    mainEntity: allHomeFaqItems.map((faq) => ({
       "@type": "Question",
       name: faq.question,
       acceptedAnswer: {
@@ -444,7 +531,7 @@ export default function Home() {
         title="Clarity before we start"
         description="Straight answers to help you plan with confidence."
       >
-        <HomeFaq items={faqs} />
+        <HomeFaq categories={homeFaqCategories} />
         <div className="mt-10 flex flex-wrap items-center justify-between gap-6 rounded-3xl border border-border bg-bg-elev px-6 py-6">
           <p className="text-sm text-text-muted">Still have questions? We can walk you through it.</p>
           <Link to="/contact">
