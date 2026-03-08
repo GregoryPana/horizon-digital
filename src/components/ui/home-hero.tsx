@@ -89,7 +89,7 @@ export default function HomeHero() {
             <ShimmerButton
               shimmerColor="#0b1212"
               shimmerDuration="4.2s"
-              background="#22f1d6"
+              background="#46c6e8"
               className="hero-consult-cta w-full px-6 py-3 text-[0.95rem] font-semibold tracking-[0.08em] text-black sm:px-7 sm:py-3.5 sm:text-base"
             >
               Book a free consult
@@ -106,7 +106,7 @@ export default function HomeHero() {
         </div>
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent blur-[0.2px]" />
+      <div className="hero-edge-line absolute bottom-0 left-0 right-0 h-[2px]" />
     </section>
   );
 }

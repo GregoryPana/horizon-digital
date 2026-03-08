@@ -412,7 +412,7 @@ export default function Pricing() {
                         <ShimmerButton
                           shimmerColor="#0b1212"
                           shimmerDuration="4.2s"
-                          background="#22f1d6"
+                          background="#46c6e8"
                           className="px-5 py-2 text-xs font-semibold tracking-[0.12em] text-black"
                         >
                           Discuss your project
@@ -434,7 +434,7 @@ export default function Pricing() {
                     <ShimmerButton
                       shimmerColor="#0b1212"
                       shimmerDuration="4.2s"
-                      background="#22f1d6"
+                      background="#46c6e8"
                       className="px-5 py-2 text-xs font-semibold tracking-[0.12em] text-black"
                     >
                       Discuss your project
@@ -536,7 +536,7 @@ export default function Pricing() {
               <ShimmerButton
                 shimmerColor="#0b1212"
                 shimmerDuration="4.2s"
-                background="#22f1d6"
+                background="#46c6e8"
                 className="px-5 py-2 text-xs font-semibold tracking-[0.12em] text-black"
               >
                 Request a custom scope
@@ -584,7 +584,7 @@ export default function Pricing() {
                     <ShimmerButton
                       shimmerColor="#0b1212"
                       shimmerDuration="4.2s"
-                      background="#22f1d6"
+                      background="#46c6e8"
                       className="px-6 py-2.5 text-sm font-semibold text-black"
                     >
                       Get started
@@ -700,7 +700,7 @@ export default function Pricing() {
             <ShimmerButton
               shimmerColor="#0b1212"
               shimmerDuration="4.2s"
-              background="#22f1d6"
+              background="#46c6e8"
               className="px-7 py-3.5 text-base font-semibold tracking-[0.08em] text-black"
             >
               Book a free consult

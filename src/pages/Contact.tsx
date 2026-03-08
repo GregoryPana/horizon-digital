@@ -225,7 +225,7 @@ Looking forward to your reply.`;
               <ShimmerButton
                 shimmerColor="#0b1212"
                 shimmerDuration="4.2s"
-                background="#22f1d6"
+                background="#46c6e8"
                 className="w-full px-6 py-3 text-sm font-semibold tracking-[0.08em] text-black sm:w-auto"
                 type="button"
                 onClick={() => {

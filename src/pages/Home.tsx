@@ -265,7 +265,7 @@ export default function Home() {
                 <ShimmerButton
                   shimmerColor="#0b1212"
                   shimmerDuration="4.2s"
-                  background="#22f1d6"
+                  background="#46c6e8"
                   className="px-5 py-2 text-xs font-semibold tracking-[0.12em] text-black"
                 >
                   View services & pricing
@@ -421,7 +421,7 @@ export default function Home() {
                     <ShimmerButton
                       shimmerColor="#0b1212"
                       shimmerDuration="4.2s"
-                      background="#22f1d6"
+                      background="#46c6e8"
                       className="px-5 py-2 text-xs font-semibold tracking-[0.12em] text-black"
                     >
                       Discuss your project
@@ -435,7 +435,7 @@ export default function Home() {
                 <ShimmerButton
                   shimmerColor="#0b1212"
                   shimmerDuration="4.2s"
-                  background="#22f1d6"
+                  background="#46c6e8"
                   className="px-5 py-2 text-xs font-semibold tracking-[0.12em] text-black"
                 >
                   Discuss your project
@@ -514,7 +514,7 @@ export default function Home() {
               <ShimmerButton
                 shimmerColor="#0b1212"
                 shimmerDuration="4.2s"
-                background="#22f1d6"
+                background="#46c6e8"
                 className="px-5 py-2 text-xs font-semibold tracking-[0.12em] text-black"
               >
                 Request a custom scope
@@ -538,7 +538,7 @@ export default function Home() {
             <ShimmerButton
               shimmerColor="#0b1212"
               shimmerDuration="4.2s"
-              background="#22f1d6"
+              background="#46c6e8"
               className="px-5 py-2 text-xs font-semibold tracking-[0.12em] text-black"
             >
               Book a free consult
@@ -562,7 +562,7 @@ export default function Home() {
             <ShimmerButton
               shimmerColor="#0b1212"
               shimmerDuration="4.2s"
-              background="#22f1d6"
+              background="#46c6e8"
               className="px-7 py-3.5 text-base font-semibold tracking-[0.08em] text-black"
             >
               Book a free consult
