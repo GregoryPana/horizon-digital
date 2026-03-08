@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 type SectionProps = {
   id?: string;
@@ -18,6 +18,8 @@ export default function Section({
   children,
   className,
 }: SectionProps) {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <section
       id={id}
@@ -26,10 +28,10 @@ export default function Section({
       <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
         {(eyebrow || title || description) && (
           <motion.div
-            initial={{ opacity: 0, y: 28 }}
+            initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 24 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.35, margin: "0px 0px -12% 0px" }}
-            transition={{ duration: 0.45, ease: "easeOut" }}
+            viewport={{ once: false, amount: 0.35, margin: "0px 0px -12% 0px" }}
+            transition={{ duration: shouldReduceMotion ? 0 : 0.4, ease: "easeOut" }}
             className="mx-auto mb-10 max-w-3xl text-center md:mb-12"
           >
             {eyebrow && (
@@ -47,7 +49,14 @@ export default function Section({
             )}
           </motion.div>
         )}
-        {children}
+        <motion.div
+          initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.14, margin: "0px 0px -8% 0px" }}
+          transition={{ duration: shouldReduceMotion ? 0 : 0.36, ease: "easeOut" }}
+        >
+          {children}
+        </motion.div>
       </div>
     </section>
   );

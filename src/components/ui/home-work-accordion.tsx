@@ -17,27 +17,36 @@ type HomeWorkAccordionProps = {
 };
 
 export default function HomeWorkAccordion({ items, onPreview }: HomeWorkAccordionProps) {
-  const [openIndex, setOpenIndex] = useState(0);
+  const [openIndex, setOpenIndex] = useState(items.length > 1 ? 1 : 0);
 
   return (
     <div className="overflow-hidden rounded-2xl border border-border bg-bg-elev/95">
       {items.map((item, index) => {
         const isOpen = index === openIndex;
+        const itemId = `${String(index + 1).padStart(2, "0")}`;
 
         return (
-          <div key={`${item.label}-${item.title}`} className={index === items.length - 1 ? "" : "border-b border-border"}>
+          <div
+            key={`${item.label}-${item.title}`}
+            className={index === items.length - 1 ? "relative" : "relative border-b border-border"}
+          >
             <button
               type="button"
               onClick={() => setOpenIndex(isOpen ? -1 : index)}
-              className="flex w-full items-center justify-between gap-4 px-4 py-4 text-left md:px-6"
+              className="flex w-full items-center justify-between gap-4 px-4 py-4 text-left md:px-6 md:py-5"
               aria-expanded={isOpen}
             >
-              <div>
-                <p className="text-[0.68rem] uppercase tracking-[0.28em] text-accent">{item.label}</p>
-                <h3 className="mt-2 text-base font-semibold text-text md:text-lg">{item.title}</h3>
+              <div className="flex min-w-0 items-start gap-3 md:gap-4">
+                <span className="mt-0.5 inline-flex h-6 min-w-8 items-center justify-center rounded-md border border-border bg-bg px-1.5 text-[0.62rem] font-semibold tracking-[0.18em] text-text-muted md:h-7 md:min-w-9 md:text-[0.65rem]">
+                  {itemId}
+                </span>
+                <div className="min-w-0">
+                  <p className="text-[0.66rem] uppercase tracking-[0.24em] text-accent">{item.label}</p>
+                  <h3 className="mt-1.5 text-base font-semibold text-text md:text-lg">{item.title}</h3>
+                </div>
               </div>
               <span
-                className={`inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-accent/45 text-accent transition-transform duration-200 ${
+                className={`inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-accent/45 text-accent transition-transform duration-200 md:h-7 md:w-7 ${
                   isOpen ? "rotate-45" : "rotate-0"
                 }`.trim()}
                 aria-hidden="true"
@@ -52,29 +61,10 @@ export default function HomeWorkAccordion({ items, onPreview }: HomeWorkAccordio
               }`.trim()}
             >
               <div className="overflow-hidden">
-                <div className="grid gap-4 border-t border-border/80 px-4 py-4 md:grid-cols-[0.82fr_1.18fr] md:gap-6 md:px-6">
-                  <div className="preview-frame h-32 w-full overflow-hidden rounded-xl border border-border md:h-36">
-                    <picture>
-                      <source
-                        srcSet={`${item.imageWebp800} 800w`}
-                        sizes="(max-width: 640px) 92vw, 520px"
-                        type="image/webp"
-                      />
-                      <img
-                        src={item.image}
-                        alt={`${item.label} preview`}
-                        width={640}
-                        height={360}
-                        loading="lazy"
-                        decoding="async"
-                        className="h-full w-full bg-bg object-cover object-center"
-                      />
-                    </picture>
-                  </div>
-
-                  <div className="flex flex-col">
-                    <p className="text-sm text-text-muted">{item.outcome}</p>
-                    <div className="mt-4">
+                <div className="grid gap-4 border-t border-border/80 px-4 py-4 md:grid-cols-2 md:gap-0 md:px-0 md:py-0">
+                  <div className="px-0 md:px-6 md:py-6">
+                    <p className="text-sm leading-relaxed text-text-muted">{item.outcome}</p>
+                    <div className="mt-5">
                       {item.url ? (
                         <Button
                           label="View live site"
@@ -93,6 +83,25 @@ export default function HomeWorkAccordion({ items, onPreview }: HomeWorkAccordio
                         />
                       )}
                     </div>
+                  </div>
+
+                  <div className="preview-frame h-40 w-full overflow-hidden rounded-xl border border-border md:h-full md:rounded-none md:border-y-0 md:border-r-0 md:border-l">
+                    <picture>
+                      <source
+                        srcSet={`${item.imageWebp800} 800w`}
+                        sizes="(max-width: 767px) 92vw, 560px"
+                        type="image/webp"
+                      />
+                      <img
+                        src={item.image}
+                        alt={`${item.label} preview`}
+                        width={640}
+                        height={360}
+                        loading="lazy"
+                        decoding="async"
+                        className="h-full w-full bg-bg object-cover object-center"
+                      />
+                    </picture>
                   </div>
                 </div>
               </div>

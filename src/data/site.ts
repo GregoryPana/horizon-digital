@@ -92,11 +92,31 @@ export const addOns = [
 ];
 
 export const projectSteps = [
-  { title: "Discovery", description: "We learn your goals and needs." },
-  { title: "Proposal & Deposit", description: "Clear scope and agreed milestones." },
-  { title: "Design & Build", description: "We design and build your site." },
-  { title: "Review & Launch", description: "Final review and go live." },
-  { title: "30-Day Stabilisation", description: "We handle small fixes after launch." },
+  {
+    title: "Discovery",
+    description:
+      "We start with a focused call to understand your business, your audience, and what success should look like. This helps us define clear priorities before any design work begins.",
+  },
+  {
+    title: "Proposal & Deposit",
+    description:
+      "You receive a clear proposal with scope, timeline, and milestone breakdown so expectations are aligned from day one. Once approved, the deposit confirms your project slot and we begin production.",
+  },
+  {
+    title: "Design & Build",
+    description:
+      "We design the visual direction and build the full site with responsive layouts, structured content flow, and technical setup in parallel. You get staged progress updates so decisions stay quick and practical.",
+  },
+  {
+    title: "Review & Launch",
+    description:
+      "You review the near-final site and we complete agreed revisions to polish content, layout, and usability. After sign-off, we launch with checks in place for forms, speed, and SEO essentials.",
+  },
+  {
+    title: "30-Day Stabilisation",
+    description:
+      "After launch, we monitor performance and handle small fixes, adjustments, and guidance while your team starts using the new site. This gives you a smoother handover with support during the first month.",
+  },
 ];
 
 export const servicesPricingIntro = {

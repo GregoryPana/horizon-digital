@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import Button from "./Button";
 import NavMenu from "./ui/menu-hover-effects";
 import ThemeToggle from "./ThemeToggle";
+import Logo from "./Logo";
 
 export default function Navbar() {
   return (
@@ -15,6 +16,10 @@ export default function Navbar() {
           className="focus-ring inline-flex items-center rounded-full"
           onClick={() => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })}
         >
+          <Logo
+            className="items-center gap-2"
+            imageClassName="h-8 w-auto rounded-sm object-contain md:h-9"
+          />
           <span className="brand-name ml-2 text-sm uppercase tracking-[0.18em] text-accent">
             Horizon Digital
           </span>
