@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import Card from "../components/Card";
 import Section from "../components/Section";
 import Seo from "../components/Seo";
@@ -37,6 +38,7 @@ const pricingVerticalTabs = [
 ] as const;
 
 export default function Pricing() {
+  const shouldReduceMotion = useReducedMotion();
   const location = useLocation();
   const compactDesktopSection = "md:!pt-14 md:!pb-16";
   const [activeServiceTab, setActiveServiceTab] = useState<
@@ -263,11 +265,18 @@ export default function Pricing() {
         <div className="section-band section-band-medium relative left-1/2 right-1/2 -mx-[50vw] my-8 w-screen py-16 md:my-10 md:py-20">
           <div className="mx-auto grid w-full max-w-7xl gap-8 px-5 sm:px-8 md:grid-cols-2 lg:grid-cols-5">
           {projectSteps.map((step, index) => (
-            <div key={step.title} className="min-w-0">
+            <motion.div
+              key={step.title}
+              initial={{ opacity: shouldReduceMotion ? 1 : 0, x: shouldReduceMotion ? 0 : 42 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: false, amount: 0.38 }}
+              transition={{ duration: shouldReduceMotion ? 0 : 0.42, delay: index * 0.06, ease: "easeOut" }}
+              className="min-w-0"
+            >
               <p className="text-xs uppercase tracking-[0.4em] text-accent">Step {index + 1}</p>
               <h3 className="mt-3 text-lg font-semibold text-text">{step.title}</h3>
               <p className="mt-3 text-sm text-text-muted">{step.description}</p>
-            </div>
+            </motion.div>
           ))}
           </div>
         </div>
