@@ -177,8 +177,16 @@ export default function Layout({ children }: LayoutProps) {
         isInsightsThemeRoute ? "insights-theme-shell" : ""
       }`.trim()}
     >
+      <a
+        href="#main-content"
+        className="focus-ring sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[120] focus:rounded-md focus:bg-bg focus:px-3 focus:py-2 focus:text-sm focus:text-text"
+      >
+        Skip to main content
+      </a>
       <Navbar />
       <main
+        id="main-content"
+        tabIndex={-1}
         ref={mainRef}
         className="flex-1 pb-[env(safe-area-inset-bottom)]"
         style={{ paddingTop: `${headerHeight}px` }}

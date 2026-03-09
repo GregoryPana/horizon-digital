@@ -103,6 +103,8 @@ Looking forward to your reply.`;
                 <input
                   type="text"
                   name="businessName"
+                  autoComplete="organization"
+                  required
                   className="contact-input mt-3 w-full rounded-xl border border-border bg-transparent px-4 py-3 text-sm text-text focus-ring"
                   placeholder="Your business"
                 />
@@ -112,6 +114,7 @@ Looking forward to your reply.`;
                 <input
                   type="text"
                   name="name"
+                  autoComplete="name"
                   className="contact-input mt-3 w-full rounded-xl border border-border bg-transparent px-4 py-3 text-sm text-text focus-ring"
                   placeholder="Your name"
                 />
@@ -121,6 +124,8 @@ Looking forward to your reply.`;
                 <input
                   type="email"
                   name="email"
+                  autoComplete="email"
+                  required
                   className="contact-input mt-3 w-full rounded-xl border border-border bg-transparent px-4 py-3 text-sm text-text focus-ring"
                   placeholder="you@example.com"
                 />
@@ -181,6 +186,7 @@ Looking forward to your reply.`;
                 <textarea
                   name="message"
                   rows={5}
+                  required
                   className="contact-input mt-3 w-full rounded-xl border border-border bg-transparent px-4 py-3 text-sm text-text focus-ring"
                   placeholder="Tell us about your project"
                 />
