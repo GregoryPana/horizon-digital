@@ -270,7 +270,7 @@ export default function Home() {
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
           <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
             <motion.div
-              className="lg:col-span-7"
+              className="lg:col-span-7 relative z-20"
               initial={{ opacity: shouldReduceMotion ? 1 : 0, x: shouldReduceMotion ? 0 : -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, amount: 0.3 }}
@@ -325,15 +325,19 @@ export default function Home() {
             </motion.div>
 
             <motion.div
-              className="lg:col-span-5"
-              initial={{ opacity: shouldReduceMotion ? 1 : 0, x: shouldReduceMotion ? 0 : 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              className="lg:col-span-5 relative flex items-center justify-center lg:justify-end mt-12 lg:-ml-[25%] xl:-ml-[35%] lg:mt-0 pointer-events-none"
+              initial={{ opacity: shouldReduceMotion ? 1 : 0, filter: "drop-shadow(0px 0px 0px rgba(70,198,232,0))" }}
+              whileInView={{ opacity: 1, filter: "drop-shadow(0px 0px 40px rgba(70,198,232,0.3))" }}
               viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
+              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
             >
-              <div className="image-placeholder aspect-[4/3] lg:aspect-[3/4]">
-                <p className="relative z-10 text-sm font-medium text-text-muted/70">Service showcase preview</p>
-              </div>
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-accent/15 blur-[100px] rounded-full z-0" />
+              <img 
+                src="/services 2.png" 
+                alt="Custom Web Design Interfaces in Seychelles" 
+                className="relative z-10 w-full max-w-[500px] lg:max-w-none lg:w-[130%] xl:w-[140%] h-auto object-contain" 
+                loading="lazy" 
+              />
             </motion.div>
           </div>
         </div>
@@ -432,24 +436,28 @@ export default function Home() {
                 desc: "Hotels, guesthouses, and tourism services benefit from clear information, strong visual presentation, and easy booking or enquiry paths.",
                 span: "lg:col-span-7",
                 bg: "bg-bg-panel/30",
+                img: "/hospitality.png",
               },
               {
                 title: "Retail Businesses",
                 desc: "Retail websites can showcase products, clarify what is available, and make it easy for customers to ask questions or place enquiries.",
                 span: "lg:col-span-5",
                 bg: "bg-bg-panel/50",
+                img: "/retail.png",
               },
               {
                 title: "Professional Services",
                 desc: "Consultants, agencies, and service providers need websites that explain value clearly and guide visitors toward confident contact decisions.",
                 span: "lg:col-span-5",
                 bg: "bg-bg-panel/50",
+                img: "/professional services.png",
               },
               {
                 title: "Growing Local Businesses",
                 desc: "Businesses expanding their online presence need a structure that communicates credibility and supports steady growth over time.",
                 span: "lg:col-span-7",
                 bg: "bg-bg-panel/30",
+                img: "/growing local business.png",
               },
             ].map((industry, i) => (
               <motion.div
@@ -468,10 +476,9 @@ export default function Home() {
                     {industry.desc}
                   </p>
                 </div>
-                <div className="mt-12 h-32 w-full max-w-[200px] overflow-hidden rounded-xl">
-                  <div className="image-placeholder h-full w-full">
-                    <span className="text-xs text-text-muted/50">Industry img</span>
-                  </div>
+                <div className="mt-12 h-64 md:h-80 w-full overflow-hidden rounded-xl border border-border/40 shadow-2xl relative isolate transition-transform duration-500 group-hover:scale-[1.02]">
+                  <div className="absolute inset-0 z-10 bg-gradient-to-t from-bg-panel/90 md:from-bg-panel/70 to-transparent pointer-events-none" />
+                  <img src={industry.img} alt={industry.title} className="w-full h-full object-cover object-top" loading="lazy" />
                 </div>
               </motion.div>
             ))}
@@ -769,7 +776,7 @@ export default function Home() {
             className="group relative overflow-hidden rounded-3xl border border-border/50 bg-bg-panel/30"
           >
             <div className="grid lg:grid-cols-12">
-              <div className="flex flex-col justify-center p-10 md:p-16 lg:col-span-7">
+              <div className="relative z-20 flex flex-col justify-center p-10 md:p-16 lg:col-span-7">
                 <p className="text-xs font-semibold uppercase tracking-[0.32em] text-accent section-eyebrow-glow">
                   Digital Insights
                 </p>
@@ -801,12 +808,14 @@ export default function Home() {
                 </div>
               </div>
               
-              <div className="relative min-h-[350px] lg:col-span-5 lg:min-h-full flex items-center justify-center p-8 lg:p-12 overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-r from-bg-panel/30 to-transparent z-0 lg:hidden" />
-                <div className="relative z-10 flex h-full w-full max-w-[400px] items-center justify-center pt-8 pr-12">
+              <div className="relative min-h-[350px] lg:col-span-5 lg:min-h-full flex items-center justify-center p-8 lg:p-12 overflow-visible">
+                <div className="absolute inset-0 bg-gradient-to-r from-bg-panel/30 to-transparent z-0 lg:hidden pointer-events-none" />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full lg:w-[150%] lg:h-[120%] bg-accent/20 blur-[130px] rounded-full z-0 pointer-events-none" />
+
+                <div className="relative z-10 flex h-full w-full max-w-[400px] lg:max-w-none lg:w-[160%] lg:absolute lg:top-1/2 lg:-translate-y-1/2 lg:-left-24 items-center justify-center pt-8 pr-12 lg:pr-0 pointer-events-none">
                   <motion.div
-                    className="absolute left-4 top-1/2 w-48 -translate-y-[45%] rounded-xl shadow-[0_0_40px_rgba(70,198,232,0.15)] border border-accent/20 z-10"
-                    initial={{ opacity: 0, x: -20, rotate: -4 }}
+                    className="absolute left-0 lg:left-0 top-1/2 w-52 lg:w-64 -translate-y-[45%] rounded-[1.25rem] shadow-[0_0_50px_rgba(70,198,232,0.25)] border-2 border-accent/20 z-10"
+                    initial={{ opacity: 0, x: -30, rotate: -4 }}
                     whileInView={{ opacity: 1, x: 0, rotate: -4 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.2 }}
@@ -815,8 +824,8 @@ export default function Home() {
                   </motion.div>
                   
                   <motion.div
-                    className="absolute left-[25%] top-1/2 w-[13rem] -translate-y-[50%] rounded-xl shadow-[0_0_50px_rgba(70,198,232,0.25)] border border-accent/30 z-20"
-                    initial={{ opacity: 0, x: 0 }}
+                    className="absolute left-[20%] lg:left-[22%] top-1/2 w-60 lg:w-[18rem] -translate-y-[48%] rounded-[1.25rem] shadow-[0_0_70px_rgba(70,198,232,0.35)] border-2 border-accent/30 z-20"
+                    initial={{ opacity: 0, x: -10 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.3 }}
@@ -825,7 +834,7 @@ export default function Home() {
                   </motion.div>
 
                   <motion.div
-                    className="absolute left-[50%] top-1/2 w-56 -translate-y-[55%] rounded-xl shadow-[0_0_60px_rgba(70,198,232,0.4)] border border-accent/40 z-30"
+                    className="absolute left-[40%] lg:left-[45%] top-1/2 w-64 lg:w-[22rem] -translate-y-[52%] rounded-[1.25rem] shadow-[0_0_100px_rgba(70,198,232,0.5)] border-2 border-accent/40 z-30"
                     initial={{ opacity: 0, x: 20, rotate: 3 }}
                     whileInView={{ opacity: 1, x: 0, rotate: 3 }}
                     viewport={{ once: true }}
@@ -839,6 +848,7 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
+
 
       {/* ══════════════════════════════════════════════════════
           FAQ
