@@ -142,7 +142,7 @@ export default function WhatYouNeed() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
                {/* Option 1 */}
                <motion.div 
-                 className="group relative overflow-hidden rounded-3xl border border-border bg-bg-elev p-8 md:p-12 hover:border-border transition-colors"
+                 className="group relative overflow-hidden rounded-3xl border border-border/40 bg-transparent p-8 md:p-12 hover:border-border/80 transition-colors"
                  {...fadeInUp}
                >
                  <div className="absolute top-0 right-0 p-8 opacity-20 group-hover:opacity-40 transition-opacity">

@@ -111,7 +111,7 @@ export default function AIDigitalTools() {
         title="Understanding Artificial Intelligence and Digital Tools for Businesses"
         description="Around the world, businesses are beginning to use artificial intelligence, automation, and digital tools to work more efficiently and better understand their customers."
       >
-        <p className="max-w-4xl text-sm text-text-muted">
+        <p className="mx-auto max-w-4xl text-center text-sm text-text-muted">
           While many of these technologies are still emerging in Seychelles, they are likely to play
           an increasing role in the future of business. At Horizon Digital, we follow these
           developments closely and help businesses understand what these technologies are and how
@@ -126,7 +126,7 @@ export default function AIDigitalTools() {
         description="Awareness and understanding are practical first steps toward future adoption."
       >
         <div className="section-band section-band-medium relative left-1/2 right-1/2 -mx-[50vw] my-8 w-screen py-14 md:my-10 md:py-16">
-          <div className="mx-auto w-full max-w-7xl px-8">
+          <div className="mx-auto flex w-full max-w-7xl flex-col items-center px-8 text-center">
             <p className="max-w-4xl text-sm leading-7 text-text">
               Digital technology continues to evolve rapidly. Artificial intelligence, automation
               tools, and data analysis are already transforming industries globally. For businesses
@@ -171,12 +171,12 @@ export default function AIDigitalTools() {
         title="Stay informed"
         description="Read practical updates about emerging digital tools."
       >
-        <Card>
+        <Card className="flex flex-col items-center text-center">
           <p className="text-sm text-text-muted">
             We regularly share insights about websites, digital tools, and emerging technologies
             that may shape the future of businesses in Seychelles.
           </p>
-          <div className="mt-6">
+          <div className="mt-6 flex justify-center">
             <Link to="/insights">
               <ShimmerButton
                 shimmerColor="rgba(70, 198, 232, 0.65)"
