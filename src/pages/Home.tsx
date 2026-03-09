@@ -341,74 +341,155 @@ export default function Home() {
       {/* ══════════════════════════════════════════════════════
           WHAT WE BUILD 
           ══════════════════════════════════════════════════════ */}
-      <Section
-        id="what-we-build"
-        eyebrow="What Horizon Digital Builds"
-        title="Core website services"
-        description="Built around clarity, speed, and customer journey structure."
-      >
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {services.slice(0, 5).map((service) => (
-            <div key={service.title} className="rounded-2xl border border-border bg-bg-panel/40 p-6 transition-colors hover:bg-bg-panel/80">
-              <h3 className="text-lg font-semibold text-accent-2">{service.title}</h3>
-              <p className="mt-3 text-sm text-text-muted">{service.description}</p>
+      <section id="what-we-build" className="py-20 md:py-32">
+        <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
+          <div className="grid items-start gap-12 lg:grid-cols-12 lg:gap-16">
+            <motion.div
+              className="lg:col-span-5 lg:sticky lg:top-32"
+              initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+            >
+              <p className="text-xs font-semibold uppercase tracking-[0.32em] text-accent section-eyebrow-glow">
+                What Horizon Digital Builds
+              </p>
+              <h2 className="section-title mt-4 text-[2rem] font-semibold tracking-[-0.01em] text-text md:text-[3.2rem] md:leading-[1.1]">
+                <WordReveal staggerDelay={0.05}>Core website services</WordReveal>
+              </h2>
+              <AccentLine className="mt-6 w-16" direction="left" />
+              <p className="mt-6 text-base leading-relaxed text-text-muted md:text-lg">
+                Built around clarity, speed, and customer journey structure.
+              </p>
+              <div className="mt-10 mb-8 aspect-[4/3] w-full max-w-sm overflow-hidden rounded-2xl bg-bg-panel lg:mb-0">
+                <div className="image-placeholder h-full w-full">
+                  <span className="text-sm font-medium text-text-muted/60">Builds showcase</span>
+                </div>
+              </div>
+            </motion.div>
+            
+            <div className="lg:col-span-7">
+              <div className="flex flex-col gap-8">
+                {services.slice(0, 5).map((service, idx) => (
+                  <motion.div
+                    key={service.title}
+                    initial={{ opacity: shouldReduceMotion ? 1 : 0, x: shouldReduceMotion ? 0 : 30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    transition={{ duration: 0.5, delay: idx * 0.1, ease: "easeOut" }}
+                    className="group border-b border-border/40 pb-8 last:border-0"
+                  >
+                    <div className="flex items-start gap-5">
+                      <span className="mt-1 text-sm font-bold text-accent-2/40 transition-colors group-hover:text-accent-2">
+                        / 0{idx + 1}
+                      </span>
+                      <div>
+                        <h3 className="text-xl font-semibold text-text md:text-2xl">{service.title}</h3>
+                        <p className="mt-3 text-sm leading-relaxed text-text-muted md:text-base">
+                          {service.description}
+                        </p>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
             </div>
-          ))}
+          </div>
         </div>
-      </Section>
+      </section>
 
       {/* ══════════════════════════════════════════════════════
           INDUSTRIES — Banner style list
           ══════════════════════════════════════════════════════ */}
-      <Section
-        id="industries"
-        eyebrow="Built for Seychelles Businesses"
-        title="Shaped for real local business needs"
-        description="From hospitality to professional services, structure changes based on how your customers decide."
-      >
-        <div className="grid gap-4 md:grid-cols-2">
-          <div className="flex items-start gap-4 rounded-xl border border-border bg-bg-elev/40 p-6">
-            <div className="mt-1 h-3 w-3 rounded-full bg-accent" />
-            <div>
-              <h3 className="text-base font-semibold text-text">Hospitality Businesses</h3>
-              <p className="mt-2 text-sm leading-relaxed text-text-muted">
-                Hotels, guesthouses, and tourism services benefit from clear information, strong visual
-                presentation, and easy booking or enquiry paths.
-              </p>
+      <section id="industries" className="relative py-20 md:py-32">
+        <div className="absolute inset-0 z-0 bg-gradient-to-b from-transparent via-bg-panel/20 to-transparent" />
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-5 sm:px-8">
+          <motion.div
+            initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            className="text-center"
+          >
+            <p className="text-xs font-semibold uppercase tracking-[0.32em] text-accent section-eyebrow-glow">
+              Built for Seychelles Businesses
+            </p>
+            <h2 className="section-title mx-auto mt-4 max-w-3xl text-[2rem] font-semibold tracking-[-0.01em] text-text md:text-[3.2rem] md:leading-[1.1]">
+              Shaped for real local business needs
+            </h2>
+            <div className="mt-6 flex justify-center">
+              <AccentLine className="w-24" direction="center" />
             </div>
+            <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-text-muted md:text-lg">
+              From hospitality to professional services, structure changes based on how your customers decide.
+            </p>
+          </motion.div>
+
+          <div className="mt-16 grid gap-0 md:grid-cols-2 lg:grid-cols-12">
+            {[
+              {
+                title: "Hospitality Businesses",
+                desc: "Hotels, guesthouses, and tourism services benefit from clear information, strong visual presentation, and easy booking or enquiry paths.",
+                span: "lg:col-span-7",
+                bg: "bg-bg-panel/30",
+              },
+              {
+                title: "Retail Businesses",
+                desc: "Retail websites can showcase products, clarify what is available, and make it easy for customers to ask questions or place enquiries.",
+                span: "lg:col-span-5",
+                bg: "bg-bg-panel/50",
+              },
+              {
+                title: "Professional Services",
+                desc: "Consultants, agencies, and service providers need websites that explain value clearly and guide visitors toward confident contact decisions.",
+                span: "lg:col-span-5",
+                bg: "bg-bg-panel/50",
+              },
+              {
+                title: "Growing Local Businesses",
+                desc: "Businesses expanding their online presence need a structure that communicates credibility and supports steady growth over time.",
+                span: "lg:col-span-7",
+                bg: "bg-bg-panel/30",
+              },
+            ].map((industry, i) => (
+              <motion.div
+                key={industry.title}
+                initial={{ opacity: shouldReduceMotion ? 1 : 0, scale: shouldReduceMotion ? 1 : 0.96 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.5, delay: i * 0.1, ease: "easeOut" }}
+                className={`${industry.span} ${industry.bg} group flex flex-col justify-between border border-border/40 p-10 transition-colors hover:bg-bg-panel/80 md:p-14`}
+              >
+                <div>
+                  <h3 className="text-xl font-semibold text-text md:text-3xl">
+                    <GlowUnderline>{industry.title}</GlowUnderline>
+                  </h3>
+                  <p className="mt-5 max-w-sm text-sm leading-relaxed text-text-muted md:text-base">
+                    {industry.desc}
+                  </p>
+                </div>
+                <div className="mt-12 h-32 w-full max-w-[200px] overflow-hidden rounded-xl">
+                  <div className="image-placeholder h-full w-full">
+                    <span className="text-xs text-text-muted/50">Industry img</span>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
           </div>
-          <div className="flex items-start gap-4 rounded-xl border border-border bg-bg-elev/40 p-6">
-            <div className="mt-1 h-3 w-3 rounded-full bg-accent-2" />
-            <div>
-              <h3 className="text-base font-semibold text-text">Retail Businesses</h3>
-              <p className="mt-2 text-sm leading-relaxed text-text-muted">
-                Retail websites can showcase products, clarify what is available, and make it easy for
-                customers to ask questions or place enquiries.
-              </p>
-            </div>
-          </div>
-          <div className="flex items-start gap-4 rounded-xl border border-border bg-bg-elev/40 p-6">
-            <div className="mt-1 h-3 w-3 rounded-full bg-accent-2" />
-            <div>
-              <h3 className="text-base font-semibold text-text">Professional Services</h3>
-              <p className="mt-2 text-sm leading-relaxed text-text-muted">
-                Consultants, agencies, and service providers need websites that explain value clearly
-                and guide visitors toward confident contact decisions.
-              </p>
-            </div>
-          </div>
-          <div className="flex items-start gap-4 rounded-xl border border-border bg-bg-elev/40 p-6">
-            <div className="mt-1 h-3 w-3 rounded-full bg-accent" />
-            <div>
-              <h3 className="text-base font-semibold text-text">Growing Local Businesses</h3>
-              <p className="mt-2 text-sm leading-relaxed text-text-muted">
-                Businesses expanding their online presence need a structure that communicates
-                credibility and supports steady growth over time.
-              </p>
-            </div>
+
+          <div className="mt-16 flex justify-center">
+            <Link to="/contact">
+              <ShimmerButton
+                shimmerColor="#0b1212"
+                shimmerDuration="4.2s"
+                background="#46c6e8"
+                className="px-6 py-3 text-sm font-semibold tracking-[0.1em] text-black"
+              >
+                Discuss your industry
+              </ShimmerButton>
+            </Link>
           </div>
         </div>
-      </Section>
+      </section>
 
       {/* ══════════════════════════════════════════════════════
           FEATURED WORK 
@@ -629,74 +710,99 @@ export default function Home() {
       {/* ══════════════════════════════════════════════════════
           WHY US 
           ══════════════════════════════════════════════════════ */}
-      <Section
-        id="why-us"
-        eyebrow="Why businesses choose Horizon Digital"
-        title="Clear process, practical design, modern performance"
-        description="Every decision is focused on clarity, speed, and better enquiries."
-      >
-        <div className="grid gap-6 md:grid-cols-2">
-          <div className="rounded-2xl bg-bg-panel/40 p-6">
-            <h3 className="text-lg font-semibold text-accent-2">Clear Communication</h3>
-            <p className="mt-3 text-sm text-text-muted">
-              The project process stays straightforward from scope to launch, so you always know
-              what is happening next.
+      <section id="why-us" className="py-20 md:py-32">
+        <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
+          <div className="mb-16 text-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.32em] text-accent section-eyebrow-glow">
+              Why businesses choose Horizon Digital
             </p>
+            <h2 className="section-title mx-auto mt-4 max-w-4xl text-[2rem] font-semibold tracking-[-0.01em] text-text md:text-[3.2rem] md:leading-[1.1]">
+              <WordReveal>Clear process, practical design, modern performance</WordReveal>
+            </h2>
+            <div className="mt-6 flex justify-center">
+              <AccentLine className="w-20" direction="center" />
+            </div>
           </div>
-          <div className="rounded-2xl bg-bg-panel/40 p-6">
-            <h3 className="text-lg font-semibold text-accent-2">Practical Website Design</h3>
-            <p className="mt-3 text-sm text-text-muted">
-              Layout and content decisions are made to help visitors understand your offer quickly
-              and take clear action.
-            </p>
-          </div>
-          <div className="rounded-2xl bg-bg-panel/40 p-6">
-            <h3 className="text-lg font-semibold text-accent-2">Modern Performance</h3>
-            <p className="mt-3 text-sm text-text-muted">
-              Fast loading, mobile responsiveness, and clean technical setup improve trust and
-              usability from first visit.
-            </p>
-          </div>
-          <div className="rounded-2xl bg-bg-panel/40 p-6">
-            <h3 className="text-lg font-semibold text-accent-2">Structured Projects</h3>
-            <p className="mt-3 text-sm text-text-muted">
-              A defined milestone flow helps the project move efficiently with fewer delays and
-              better delivery confidence.
-            </p>
+
+          <div className="grid gap-12 lg:grid-cols-4 lg:gap-8">
+            {[
+              { title: "Clear Communication", text: "The project process stays straightforward from scope to launch, so you always know what is happening next." },
+              { title: "Practical Website Design", text: "Layout and content decisions are made to help visitors understand your offer quickly and take clear action." },
+              { title: "Modern Performance", text: "Fast loading, mobile responsiveness, and clean technical setup improve trust and usability from first visit." },
+              { title: "Structured Projects", text: "A defined milestone flow helps the project move efficiently with fewer delays and better delivery confidence." },
+            ].map((feature, i) => (
+              <motion.div
+                key={feature.title}
+                initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.5, delay: i * 0.1, ease: "easeOut" }}
+                className="relative flex flex-col border-t border-border pt-8"
+              >
+                <span className="absolute -top-6 left-0 bg-bg px-2 font-display text-4xl font-bold text-accent/20">
+                  [{i + 1}]
+                </span>
+                <h3 className="text-xl font-semibold text-accent-2">{feature.title}</h3>
+                <p className="mt-4 text-sm leading-relaxed text-text-muted">{feature.text}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
-      </Section>
+      </section>
 
       {/* ══════════════════════════════════════════════════════
           INSIGHTS 
           ══════════════════════════════════════════════════════ */}
-      <Section
-        id="insights"
-        eyebrow="Digital Insights"
-        title="Digital insights for business owners"
-        description="Simple, practical reads on AI, automation, analytics, and modern digital decisions."
-      >
-        <div className="flex flex-col items-center justify-between rounded-2xl border border-border bg-bg-elev p-8 md:flex-row">
-          <ul className="grid gap-3 text-sm text-text-muted md:grid-cols-2">
-            <li className="flex items-center gap-2"><span className="text-accent">•</span> Digital trends affecting small businesses</li>
-            <li className="flex items-center gap-2"><span className="text-accent">•</span> Understanding AI chatbots</li>
-            <li className="flex items-center gap-2"><span className="text-accent">•</span> Why data and analytics matter</li>
-            <li className="flex items-center gap-2"><span className="text-accent">•</span> How automation saves time</li>
-          </ul>
-          <div className="mt-8 shrink-0 md:mt-0 md:ml-6">
-            <Link to="/insights">
-              <ShimmerButton
-                shimmerColor="#0b1212"
-                shimmerDuration="4.2s"
-                background="#46c6e8"
-                className="px-5 py-2 text-xs font-semibold tracking-[0.12em] text-black"
-              >
-                Read digital insights
-              </ShimmerButton>
-            </Link>
-          </div>
+      <section id="insights" className="py-20 md:py-32">
+        <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
+          <motion.div
+            initial={{ opacity: shouldReduceMotion ? 1 : 0, scale: shouldReduceMotion ? 1 : 0.98 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, amount: 0.3 }}
+            className="group relative overflow-hidden rounded-3xl border border-border/50 bg-bg-panel/30"
+          >
+            <div className="grid lg:grid-cols-12">
+              <div className="flex flex-col justify-center p-10 md:p-16 lg:col-span-7">
+                <p className="text-xs font-semibold uppercase tracking-[0.32em] text-accent section-eyebrow-glow">
+                  Digital Insights
+                </p>
+                <h2 className="mt-4 text-3xl font-semibold text-text md:text-5xl">
+                  Digital insights for <GlowUnderline>business owners</GlowUnderline>
+                </h2>
+                <p className="mt-5 text-base leading-relaxed text-text-muted md:text-lg">
+                  Simple, practical reads on AI, automation, analytics, and modern digital decisions.
+                </p>
+                
+                <ul className="mt-8 space-y-4 text-sm text-text-muted md:text-base">
+                  <li className="flex items-center gap-3"><span className="text-accent">↗</span> Digital trends affecting small businesses</li>
+                  <li className="flex items-center gap-3"><span className="text-accent">↗</span> Understanding AI chatbots</li>
+                  <li className="flex items-center gap-3"><span className="text-accent">↗</span> Why data and analytics matter</li>
+                  <li className="flex items-center gap-3"><span className="text-accent">↗</span> How automation saves time</li>
+                </ul>
+
+                <div className="mt-10 flex justify-start">
+                  <Link to="/insights">
+                    <ShimmerButton
+                      shimmerColor="#0b1212"
+                      shimmerDuration="4.2s"
+                      background="#46c6e8"
+                      className="px-6 py-3 text-sm font-semibold tracking-[0.1em] text-black"
+                    >
+                      Read digital insights
+                    </ShimmerButton>
+                  </Link>
+                </div>
+              </div>
+              
+              <div className="relative min-h-[300px] lg:col-span-5 lg:min-h-full">
+                <div className="image-placeholder absolute inset-0 rounded-none border-0 transition-colors duration-500 group-hover:after:bg-black/10">
+                  <span className="relative z-10 text-sm font-medium uppercase tracking-widest text-text-muted/60">Insights Visual</span>
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
-      </Section>
+      </section>
 
       {/* ══════════════════════════════════════════════════════
           FAQ
