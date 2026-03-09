@@ -251,7 +251,7 @@ export default function Pricing() {
         description="Website design services built to help businesses communicate clearly online and convert interest into enquiries." 
       >
         <div id="panel-overview" role="tabpanel" aria-hidden={!showSelectedOrAll("overview")} className="bg-bg-panel/20 p-8 rounded-2xl border border-white/[0.05]">
-          <p className="text-sm md:text-base text-text-muted max-w-4xl">{servicesPricingIntro.summary}</p>
+          <p className="text-sm md:text-base text-text-muted max-w-4xl text-center mx-auto">{servicesPricingIntro.summary}</p>
           <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {services.slice(0, 5).map((service) => (
               <div key={service.title} className="p-6 rounded-2xl border border-white/5 bg-bg hover:border-accent/30 transition-colors">
@@ -545,7 +545,7 @@ export default function Pricing() {
             <p className="mt-3 text-sm text-text-muted">
               For larger businesses or advanced functionality. May include 15+ pages.
             </p>
-            <div className="mt-8">
+            <div className="mt-8 flex justify-center">
               <Link to="/contact">
                 <ShimmerButton
                   shimmerColor="#0b1212"
@@ -594,7 +594,7 @@ export default function Pricing() {
                   <span className="inline-block leading-none">2,500</span>
                 </p>
                 <p className="min-h-[1.25rem] text-sm text-text-muted">{hostingPlan.billing}</p>
-                <div className="mt-10">
+                <div className="mt-10 flex justify-center">
                   <Link to="/contact">
                     <ShimmerButton
                       shimmerColor="#0b1212"

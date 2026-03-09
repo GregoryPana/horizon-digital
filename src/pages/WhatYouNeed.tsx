@@ -133,7 +133,7 @@ export default function WhatYouNeed() {
       <section className="py-24 md:py-32 relative">
          <div className="absolute top-0 right-0 w-1/2 h-full bg-[radial-gradient(circle_at_top_right,rgba(70,198,232,0.05)_0%,transparent_50%)] pointer-events-none"/>
          <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 relative z-10">
-            <motion.div className="mb-16 md:w-2/3" {...fadeInUp}>
+            <motion.div className="mb-16 max-w-3xl mx-auto text-center" {...fadeInUp}>
                <p className="text-xs uppercase tracking-[0.3em] font-semibold text-accent mb-4">Package Fit</p>
                <h2 className="text-3xl md:text-5xl font-semibold text-text mb-6 tracking-tight">Choosing the right approach</h2>
                <p className="text-lg text-text-muted">Simple needs usually fit Foundation, while businesses needing flexibility often prefer Starter or Growth.</p>
