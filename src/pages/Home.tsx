@@ -9,6 +9,7 @@ import HomeHero from "../components/ui/home-hero";
 import HomeFaq, { type HomeFaqCategory } from "../components/ui/home-faq";
 import HomeWorkAccordion from "../components/ui/home-work-accordion";
 import { ShimmerButton } from "../components/ui/shimmer-button";
+import { WordReveal, AccentLine, GlowUnderline } from "../components/ui/animated-text";
 import { Link } from "react-router-dom";
 import { scrollToTopSmooth } from "../lib/utils";
 import {
@@ -132,26 +133,31 @@ const homeFaqCategories: HomeFaqCategory[] = [
   },
 ];
 
+/* ── Package banner data ──────────────────────────────────── */
+const packageBanners = [
+  {
+    ...foundationPackage,
+    highlights: ["Up to 3 pages", "Mobile-friendly", "Contact form", "30-day support"],
+    featured: false,
+  },
+  {
+    ...starterPackage,
+    highlights: ["Custom design", "SEO setup", "5 pages", "Analytics"],
+    featured: true,
+  },
+  {
+    ...growthPackage,
+    highlights: ["10-12 pages", "Portfolio", "Multi-step form", "60-day support"],
+    featured: false,
+  },
+];
+
 export default function Home() {
   const shouldReduceMotion = useReducedMotion();
   const [activeWork, setActiveWork] = useState<WorkPreviewItem | null>(null);
-  const [mobileOpen, setMobileOpen] = useState({
-    foundation: false,
-    starter: false,
-    growth: false,
-  });
   const [passedSectionIds, setPassedSectionIds] = useState<string[]>([]);
   const [isRailOpen, setIsRailOpen] = useState(false);
   const handleWorkScrollTop = () => scrollToTopSmooth();
-  const normalizeFeature = (value: string) => value.trim().toLowerCase();
-  const foundationFeatureSet = new Set(foundationPackage.includes.map(normalizeFeature));
-  const starterFeatureSet = new Set(starterPackage.includes.map(normalizeFeature));
-  const starterUniqueIncludes = starterPackage.includes.filter(
-    (item) => !foundationFeatureSet.has(normalizeFeature(item))
-  );
-  const growthUniqueIncludes = growthPackage.includes.filter(
-    (item) => !starterFeatureSet.has(normalizeFeature(item))
-  );
   const allHomeFaqItems = homeFaqCategories.flatMap((category) => category.items);
 
   useEffect(() => {
@@ -205,6 +211,7 @@ export default function Home() {
       />
       <HomeHero />
 
+      {/* ── Mobile jump rail ── */}
       {passedSectionIds.length > 0 && (
         <div className="fixed left-0 top-[64%] z-40 -translate-y-1/2 md:hidden">
           <button
@@ -255,42 +262,85 @@ export default function Home() {
         </div>
       )}
 
-      <Section
-        id="services"
-        eyebrow="Services"
-        title="Website Design That Works for Real Businesses"
-        description="Structured website design services that make the process simple, clear, and practical."
-        className="!pt-12 !pb-16 md:!pt-20 md:!pb-24"
-      >
-        <div className="section-band section-band-strong relative left-1/2 right-1/2 -mx-[50vw] my-8 w-screen py-14 md:my-10 md:py-16">
-          <div className="mx-auto w-full max-w-7xl px-8">
-            <p className="mx-auto max-w-4xl text-sm text-text">
-              Whether you are launching a new business or improving an existing site, the goal is
-              the same: a website that helps customers understand what you do and how to contact
-              you quickly.
-            </p>
-            <ul className="mx-auto mt-8 grid max-w-4xl gap-4 text-sm text-text-muted sm:grid-cols-2">
-              <li className="rounded-xl border border-border px-4 py-3">Present your business professionally</li>
-              <li className="rounded-xl border border-border px-4 py-3">Guide customers clearly through your services</li>
-              <li className="rounded-xl border border-border px-4 py-3">Work smoothly on mobile devices</li>
-              <li className="rounded-xl border border-border px-4 py-3">Load quickly and support search visibility</li>
-            </ul>
-            <div className="mt-6">
-              <Link to="/services-pricing">
-                <ShimmerButton
-                  shimmerColor="#0b1212"
-                  shimmerDuration="4.2s"
-                  background="#46c6e8"
-                  className="px-5 py-2 text-xs font-semibold tracking-[0.12em] text-black"
-                >
-                  Explore website services and packages
-                </ShimmerButton>
-              </Link>
-            </div>
+      {/* ══════════════════════════════════════════════════════
+          SERVICES — Split banner with 12-col grid
+          ══════════════════════════════════════════════════════ */}
+      <section id="services" className="services-split-banner overflow-hidden py-20 md:py-32">
+        <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
+          <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
+            <motion.div
+              className="lg:col-span-7"
+              initial={{ opacity: shouldReduceMotion ? 1 : 0, x: shouldReduceMotion ? 0 : -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+            >
+              <p className="text-xs font-semibold uppercase tracking-[0.32em] text-accent section-eyebrow-glow">
+                Services
+              </p>
+              <h2 className="section-title mt-4 text-[2rem] font-semibold tracking-[-0.01em] text-text md:text-[3.5rem] md:leading-[1.1]">
+                <WordReveal staggerDelay={0.06}>
+                  Websites designed to be clear and convert
+                </WordReveal>
+              </h2>
+              <AccentLine className="mt-5 w-24 md:w-36" direction="left" />
+              <p className="mt-6 max-w-xl text-base leading-relaxed text-text-muted md:text-lg">
+                Whether you are launching a new business or improving an existing site, the goal is
+                the same: a website that helps customers understand what you do and how to contact
+                you quickly.
+              </p>
+
+              <div className="mt-10 grid gap-6 sm:grid-cols-2">
+                <motion.div className="group">
+                  <h3 className="text-sm font-semibold text-text transition-colors group-hover:text-accent">Present professionally</h3>
+                  <p className="mt-1.5 text-sm text-text-muted">Clear imagery and branding that builds trust.</p>
+                </motion.div>
+                <motion.div className="group">
+                  <h3 className="text-sm font-semibold text-text transition-colors group-hover:text-accent">Guide customers</h3>
+                  <p className="mt-1.5 text-sm text-text-muted">Structured flows that lead to enquiries.</p>
+                </motion.div>
+                <motion.div className="group">
+                  <h3 className="text-sm font-semibold text-text transition-colors group-hover:text-accent">Mobile-first</h3>
+                  <p className="mt-1.5 text-sm text-text-muted">Work seamlessly on every device size.</p>
+                </motion.div>
+                <motion.div className="group">
+                  <h3 className="text-sm font-semibold text-text transition-colors group-hover:text-accent">Fast & visible</h3>
+                  <p className="mt-1.5 text-sm text-text-muted">Load quickly and support search engine discovery.</p>
+                </motion.div>
+              </div>
+
+              <div className="mt-10 flex justify-center lg:justify-start">
+                <Link to="/services-pricing">
+                  <ShimmerButton
+                    shimmerColor="#0b1212"
+                    shimmerDuration="4.2s"
+                    background="#46c6e8"
+                    className="px-6 py-3 text-sm font-semibold tracking-[0.1em] text-black"
+                  >
+                    View services & pricing
+                  </ShimmerButton>
+                </Link>
+              </div>
+            </motion.div>
+
+            <motion.div
+              className="lg:col-span-5"
+              initial={{ opacity: shouldReduceMotion ? 1 : 0, x: shouldReduceMotion ? 0 : 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
+            >
+              <div className="image-placeholder aspect-[4/3] lg:aspect-[3/4]">
+                <p className="relative z-10 text-sm font-medium text-text-muted/70">Service showcase preview</p>
+              </div>
+            </motion.div>
           </div>
         </div>
-      </Section>
+      </section>
 
+      {/* ══════════════════════════════════════════════════════
+          WHAT WE BUILD 
+          ══════════════════════════════════════════════════════ */}
       <Section
         id="what-we-build"
         eyebrow="What Horizon Digital Builds"
@@ -299,52 +349,70 @@ export default function Home() {
       >
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {services.slice(0, 5).map((service) => (
-            <Card key={service.title}>
+            <div key={service.title} className="rounded-2xl border border-border bg-bg-panel/40 p-6 transition-colors hover:bg-bg-panel/80">
               <h3 className="text-lg font-semibold text-accent-2">{service.title}</h3>
               <p className="mt-3 text-sm text-text-muted">{service.description}</p>
-            </Card>
+            </div>
           ))}
         </div>
       </Section>
 
+      {/* ══════════════════════════════════════════════════════
+          INDUSTRIES — Banner style list
+          ══════════════════════════════════════════════════════ */}
       <Section
         id="industries"
         eyebrow="Built for Seychelles Businesses"
-        title="Websites shaped for real local business needs"
+        title="Shaped for real local business needs"
         description="From hospitality to professional services, structure changes based on how your customers decide."
       >
-        <div className="grid gap-6 md:grid-cols-2">
-          <Card>
-            <h3 className="text-lg font-semibold text-accent-2">Hospitality Businesses</h3>
-            <p className="mt-3 text-sm text-text-muted">
-              Hotels, guesthouses, and tourism services benefit from clear information, strong visual
-              presentation, and easy booking or enquiry paths.
-            </p>
-          </Card>
-          <Card>
-            <h3 className="text-lg font-semibold text-accent-2">Retail Businesses</h3>
-            <p className="mt-3 text-sm text-text-muted">
-              Retail websites can showcase products, clarify what is available, and make it easy for
-              customers to ask questions or place enquiries.
-            </p>
-          </Card>
-          <Card>
-            <h3 className="text-lg font-semibold text-accent-2">Professional Services</h3>
-            <p className="mt-3 text-sm text-text-muted">
-              Consultants, agencies, and service providers need websites that explain value clearly
-              and guide visitors toward confident contact decisions.
-            </p>
-          </Card>
-          <Card>
-            <h3 className="text-lg font-semibold text-accent-2">Growing Local Businesses</h3>
-            <p className="mt-3 text-sm text-text-muted">
-              Businesses expanding their online presence need a structure that communicates
-              credibility and supports steady growth over time.
-            </p>
-          </Card>
+        <div className="grid gap-4 md:grid-cols-2">
+          <div className="flex items-start gap-4 rounded-xl border border-border bg-bg-elev/40 p-6">
+            <div className="mt-1 h-3 w-3 rounded-full bg-accent" />
+            <div>
+              <h3 className="text-base font-semibold text-text">Hospitality Businesses</h3>
+              <p className="mt-2 text-sm leading-relaxed text-text-muted">
+                Hotels, guesthouses, and tourism services benefit from clear information, strong visual
+                presentation, and easy booking or enquiry paths.
+              </p>
+            </div>
+          </div>
+          <div className="flex items-start gap-4 rounded-xl border border-border bg-bg-elev/40 p-6">
+            <div className="mt-1 h-3 w-3 rounded-full bg-accent-2" />
+            <div>
+              <h3 className="text-base font-semibold text-text">Retail Businesses</h3>
+              <p className="mt-2 text-sm leading-relaxed text-text-muted">
+                Retail websites can showcase products, clarify what is available, and make it easy for
+                customers to ask questions or place enquiries.
+              </p>
+            </div>
+          </div>
+          <div className="flex items-start gap-4 rounded-xl border border-border bg-bg-elev/40 p-6">
+            <div className="mt-1 h-3 w-3 rounded-full bg-accent-2" />
+            <div>
+              <h3 className="text-base font-semibold text-text">Professional Services</h3>
+              <p className="mt-2 text-sm leading-relaxed text-text-muted">
+                Consultants, agencies, and service providers need websites that explain value clearly
+                and guide visitors toward confident contact decisions.
+              </p>
+            </div>
+          </div>
+          <div className="flex items-start gap-4 rounded-xl border border-border bg-bg-elev/40 p-6">
+            <div className="mt-1 h-3 w-3 rounded-full bg-accent" />
+            <div>
+              <h3 className="text-base font-semibold text-text">Growing Local Businesses</h3>
+              <p className="mt-2 text-sm leading-relaxed text-text-muted">
+                Businesses expanding their online presence need a structure that communicates
+                credibility and supports steady growth over time.
+              </p>
+            </div>
+          </div>
         </div>
       </Section>
 
+      {/* ══════════════════════════════════════════════════════
+          FEATURED WORK 
+          ══════════════════════════════════════════════════════ */}
       <Section
         id="featured-work"
         eyebrow="Selected Website Projects"
@@ -362,244 +430,205 @@ export default function Home() {
         </div>
       </Section>
 
-      <Section
-        id="process"
-        eyebrow="How the website process works"
-        title="A clear five-step project structure"
-        description="Simple milestones from discovery to launch and post-launch support."
-      >
-        <div className="section-band section-band-medium relative left-1/2 right-1/2 mt-14 -mx-[50vw] mb-8 w-screen py-16 md:mt-16 md:mb-10 md:py-20">
-          <div className="mx-auto grid w-full max-w-7xl gap-8 px-8 md:grid-cols-2 lg:grid-cols-5">
-          {projectSteps.map((step, index) => (
+      {/* ══════════════════════════════════════════════════════
+          PROCESS — Asymmetric 12-col layout
+          ══════════════════════════════════════════════════════ */}
+      <section id="process" className="py-20 md:py-32">
+        <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
+          <div className="grid items-start gap-12 lg:grid-cols-12 lg:gap-20">
+            {/* Left column — title area (4 cols) */}
             <motion.div
-              key={step.title}
-              initial={{ opacity: shouldReduceMotion ? 1 : 0, x: shouldReduceMotion ? 0 : 42 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: false, amount: 0.38 }}
-              transition={{ duration: shouldReduceMotion ? 0 : 0.42, delay: index * 0.06, ease: "easeOut" }}
-              className="min-w-0"
+              className="lg:col-span-4 lg:sticky lg:top-32"
+              initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
             >
-              <p className="text-xs uppercase tracking-[0.4em] text-accent">Step {index + 1}</p>
-              <h3 className="mt-3 text-lg font-semibold text-text">{step.title}</h3>
-              <p className="mt-3 text-sm text-text-muted">{step.description}</p>
+              <p className="text-xs font-semibold uppercase tracking-[0.32em] text-accent section-eyebrow-glow">
+                How the website process works
+              </p>
+              <h2 className="section-title mt-3 text-[1.95rem] font-semibold tracking-[-0.01em] text-text md:text-[2.8rem] md:leading-[1.1]">
+                <GlowUnderline>A clear</GlowUnderline> five-step workflow
+              </h2>
+              <p className="mt-4 text-base text-text-muted">
+                Simple milestones from discovery to launch and post-launch support.
+              </p>
+              <div className="mt-8 hidden lg:block">
+                <Link to="/services-pricing">
+                  <ShimmerButton
+                    shimmerColor="#0b1212"
+                    shimmerDuration="4.2s"
+                    background="#46c6e8"
+                    className="px-5 py-2.5 text-xs font-semibold tracking-[0.12em] text-black"
+                  >
+                    See full process
+                  </ShimmerButton>
+                </Link>
+              </div>
             </motion.div>
-          ))}
-          </div>
-        </div>
-      </Section>
 
-      <Section
-        id="packages"
-        eyebrow="Website packages"
-        title="Website packages for different business needs"
-        description="Foundation, Starter, and Growth packages with clear scope and pricing."
-      >
-        <div className="grid items-stretch gap-8 md:grid-cols-2 lg:grid-cols-3">
-          <Card className="flex h-full flex-col no-scroll-glow pricing-card pricing-card-foundation">
-            <h3 className="text-lg font-semibold text-accent-2">{foundationPackage.title}</h3>
-            <p className="pricing-price mt-4 text-2xl font-semibold text-accent">{foundationPackage.price}</p>
-            <p className="mt-3 text-sm text-text-muted">{foundationPackage.description}</p>
-            <button
-              type="button"
-              onClick={() =>
-                setMobileOpen((prev) => ({ ...prev, foundation: !prev.foundation }))
-              }
-              className="mt-4 inline-flex w-full items-center justify-between rounded-full border border-border px-4 py-2.5 text-[0.68rem] uppercase tracking-[0.16em] text-text-muted md:hidden"
-            >
-              <span>View included items</span>
-              <span aria-hidden="true" className="text-accent">
-                {mobileOpen.foundation ? "-" : "+"}
-              </span>
-            </button>
-            <div
-              className={`grid transition-[grid-template-rows,opacity,margin] duration-300 md:mt-6 md:block md:opacity-100 ${
-                mobileOpen.foundation ? "mt-6 grid-rows-[1fr] opacity-100" : "mt-0 grid-rows-[0fr] opacity-0"
-              }`.trim()}
-            >
-              <div className="space-y-3 overflow-hidden text-sm text-text-muted md:overflow-visible">
-                <ul className="space-y-3 mb-8">
-                  {foundationPackage.includes.map((item) => (
-                    <li key={item} className="flex items-center gap-2">
-                      <span className="text-accent">✓</span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-                <p className="text-xs uppercase tracking-[0.3em] text-text-muted">Not included</p>
-                <ul className="mt-4 space-y-2 text-sm text-text-muted">
-                  {foundationPackage.exclusions.map((item) => (
-                    <li key={item} className="flex items-start gap-2">
-                      <span className="mt-1.5 h-2 w-2 rounded-full bg-accent" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-                <div className="mt-6 md:hidden">
-                  <Link to="/services-pricing">
-                    <ShimmerButton
-                      shimmerColor="#0b1212"
-                      shimmerDuration="4.2s"
-                      background="#2ca99b"
-                      className="!border-[#2ca99b] px-5 py-2 text-xs font-semibold tracking-[0.12em] text-white !shadow-none"
-                    >
-                      Discuss your project
-                    </ShimmerButton>
-                  </Link>
-                </div>
-              </div>
-            </div>
-            <div className="mt-auto hidden pt-8 md:block">
-              <Link to="/services-pricing">
-                <ShimmerButton
-                  shimmerColor="#0b1212"
-                  shimmerDuration="4.2s"
-                  background="#2ca99b"
-                  className="!border-[#2ca99b] px-5 py-2 text-xs font-semibold tracking-[0.12em] text-white !shadow-none"
+            {/* Right column — steps (8 cols) */}
+            <div className="space-y-0 lg:col-span-8">
+              {projectSteps.map((step, index) => (
+                <motion.div
+                  key={step.title}
+                  initial={{ opacity: shouldReduceMotion ? 1 : 0, x: shouldReduceMotion ? 0 : 42 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: false, amount: 0.38 }}
+                  transition={{ duration: shouldReduceMotion ? 0 : 0.42, delay: index * 0.06, ease: "easeOut" }}
+                  className="group relative border-b border-border py-8 pl-16 first:pt-0 last:border-0 md:py-10 md:pl-20"
                 >
-                  Discuss your project
-                </ShimmerButton>
-              </Link>
+                  {/* Step number — positioned absolutely left */}
+                  <span className="absolute left-0 top-8 font-display text-[2.5rem] font-bold leading-none text-accent/20 transition-colors group-hover:text-accent/50 md:top-10 md:text-[3rem]">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <p className="text-[0.68rem] uppercase tracking-[0.4em] text-accent">
+                    Step {index + 1}
+                  </p>
+                  <h3 className="mt-2 text-lg font-semibold text-text md:text-xl">{step.title}</h3>
+                  <p className="mt-2.5 text-sm leading-relaxed text-text-muted md:text-base">
+                    {step.description}
+                  </p>
+                </motion.div>
+              ))}
             </div>
-          </Card>
 
-          <Card className="relative flex h-full flex-col overflow-visible pt-8 no-scroll-glow pricing-card pricing-card-featured pricing-card-featured-shine">
-            <h3 className="text-lg font-semibold text-accent-2">{starterPackage.title}</h3>
-            <p className="pricing-price mt-4 text-2xl font-semibold text-accent">{starterPackage.price}</p>
-            <p className="mt-3 text-sm text-text-muted">{starterPackage.description}</p>
-            <button
-              type="button"
-              onClick={() => setMobileOpen((prev) => ({ ...prev, starter: !prev.starter }))}
-              className="mt-4 inline-flex w-full items-center justify-between rounded-full border border-border px-4 py-2.5 text-[0.68rem] uppercase tracking-[0.16em] text-text-muted md:hidden"
-            >
-              <span>View included items</span>
-              <span aria-hidden="true" className="text-accent">
-                {mobileOpen.starter ? "-" : "+"}
-              </span>
-            </button>
-            <div
-              className={`grid transition-[grid-template-rows,opacity,margin] duration-300 md:mt-6 md:block md:opacity-100 ${
-                mobileOpen.starter ? "mt-6 grid-rows-[1fr] opacity-100" : "mt-0 grid-rows-[0fr] opacity-0"
-              }`.trim()}
-            >
-              <div className="space-y-3 overflow-hidden text-sm text-text-muted md:overflow-visible">
-                <p className="text-sm font-medium text-text">Includes everything in Foundation, plus:</p>
-                <ul className="space-y-3">
-                  {starterUniqueIncludes.map((item) => (
-                    <li key={item} className="flex items-center gap-2">
-                      <span className="text-accent">✓</span>
-                      {item}
-                    </li>
-                    ))}
-                </ul>
-                <div className="mt-6 md:hidden">
-                  <Link to="/services-pricing">
-                    <ShimmerButton
-                      shimmerColor="#0b1212"
-                      shimmerDuration="4.2s"
-                      background="#46c6e8"
-                      className="px-5 py-2 text-xs font-semibold tracking-[0.12em] text-black"
-                    >
-                      Discuss your project
-                    </ShimmerButton>
-                  </Link>
-                </div>
-              </div>
-            </div>
-            <div className="mt-auto hidden pt-8 md:block">
+            {/* Mobile CTA */}
+            <div className="flex justify-center lg:hidden">
               <Link to="/services-pricing">
                 <ShimmerButton
                   shimmerColor="#0b1212"
                   shimmerDuration="4.2s"
                   background="#46c6e8"
-                  className="px-5 py-2 text-xs font-semibold tracking-[0.12em] text-black"
+                  className="px-5 py-2.5 text-xs font-semibold tracking-[0.12em] text-black"
                 >
-                  Discuss your project
+                  See full process
                 </ShimmerButton>
               </Link>
             </div>
-          </Card>
+          </div>
+        </div>
+      </section>
 
-          <Card className="flex h-full flex-col no-scroll-glow pricing-card pricing-card-growth">
-            <h3 className="text-lg font-semibold text-accent-2">{growthPackage.title}</h3>
-            <p className="pricing-price mt-4 text-2xl font-semibold text-accent">{growthPackage.price}</p>
-            <p className="mt-3 text-sm text-text-muted">{growthPackage.description}</p>
-            <button
-              type="button"
-              onClick={() => setMobileOpen((prev) => ({ ...prev, growth: !prev.growth }))}
-              className="mt-4 inline-flex w-full items-center justify-between rounded-full border border-border px-4 py-2.5 text-[0.68rem] uppercase tracking-[0.16em] text-text-muted md:hidden"
-            >
-              <span>View included items</span>
-              <span aria-hidden="true" className="text-accent">
-                {mobileOpen.growth ? "-" : "+"}
-              </span>
-            </button>
-            <div
-              className={`grid transition-[grid-template-rows,opacity,margin] duration-300 md:mt-6 md:block md:opacity-100 ${
-                mobileOpen.growth ? "mt-6 grid-rows-[1fr] opacity-100" : "mt-0 grid-rows-[0fr] opacity-0"
-              }`.trim()}
-            >
-              <div className="space-y-3 overflow-hidden text-sm text-text-muted md:overflow-visible">
-                <p className="text-sm font-medium text-text">Includes everything in Starter, plus:</p>
-                <ul className="space-y-3">
-                  {growthUniqueIncludes.map((item) => (
-                    <li key={item} className="flex items-center gap-2">
-                      <span className="text-accent">✓</span>
-                      {item}
-                    </li>
-                    ))}
-                </ul>
-                <div className="mt-6 md:hidden">
-                  <Link to="/services-pricing">
-                    <ShimmerButton
-                      shimmerColor="#0b1212"
-                      shimmerDuration="4.2s"
-                      background="#2ca99b"
-                      className="!border-[#2ca99b] px-5 py-2 text-xs font-semibold tracking-[0.12em] text-white !shadow-none"
-                    >
-                      Discuss your project
-                    </ShimmerButton>
-                  </Link>
+      {/* ══════════════════════════════════════════════════════
+          PACKAGES — Horizontal banner rows
+          ══════════════════════════════════════════════════════ */}
+      <section id="packages" className="py-20 md:py-32">
+        <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
+          <motion.div
+            initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.35 }}
+            transition={{ duration: shouldReduceMotion ? 0 : 0.4, ease: "easeOut" }}
+            className="mb-14 text-center"
+          >
+            <p className="text-xs font-semibold uppercase tracking-[0.32em] text-accent section-eyebrow-glow">
+              Website Packages
+            </p>
+            <h2 className="section-title mt-3 text-[1.95rem] font-semibold tracking-[-0.01em] text-text md:text-[3.15rem]">
+              Website packages for different needs
+            </h2>
+            <p className="section-description mt-4 text-[1.05rem] leading-[1.65] text-text-muted">
+              Foundation, Starter, and Growth packages with clear scope and pricing.
+            </p>
+          </motion.div>
+
+          <div className="banner-row rounded-xl border border-border">
+            {packageBanners.map((pkg, i) => (
+              <motion.div
+                key={pkg.title}
+                initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.25 }}
+                transition={{ duration: 0.4, delay: i * 0.08, ease: "easeOut" }}
+                className={`pkg-banner px-6 py-8 md:px-10 md:py-10 ${
+                  pkg.featured ? "pkg-banner-featured" : ""
+                } last:border-b-0`}
+              >
+                <div className="grid items-center gap-6 lg:grid-cols-12 lg:gap-8">
+                  <div className="lg:col-span-4">
+                    <div className="flex items-baseline gap-3">
+                      <h3 className="text-xl font-semibold text-accent-2 md:text-2xl">{pkg.title}</h3>
+                      {pkg.featured && (
+                        <span className="rounded-full bg-accent/15 px-2.5 py-0.5 text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-accent">
+                          Popular
+                        </span>
+                      )}
+                    </div>
+                    <p className="pricing-price mt-2 text-xl font-semibold text-accent md:text-2xl">{pkg.price}</p>
+                    <p className="mt-2 text-sm text-text-muted">{pkg.description}</p>
+                  </div>
+
+                  <div className="lg:col-span-5">
+                    <div className="flex flex-wrap gap-2">
+                      {pkg.highlights.map((item) => (
+                        <span
+                          key={item}
+                          className="rounded-full border border-border bg-bg-elev px-3 py-1.5 text-[0.72rem] text-text-muted"
+                        >
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="flex justify-center lg:col-span-3 lg:justify-end">
+                    <Link to="/services-pricing">
+                      <ShimmerButton
+                        shimmerColor="#0b1212"
+                        shimmerDuration="4.2s"
+                        background={pkg.featured ? "#46c6e8" : "#2ca99b"}
+                        className={`px-5 py-2.5 text-xs font-semibold tracking-[0.12em] ${
+                          pkg.featured ? "text-black" : "text-white !border-[#2ca99b] !shadow-none"
+                        }`}
+                      >
+                        Discuss your project
+                      </ShimmerButton>
+                    </Link>
+                  </div>
                 </div>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div
+            initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
+            className="mt-10 rounded-2xl border border-accent/30 bg-bg-elev px-8 py-10 md:px-12"
+          >
+            <div className="grid items-center gap-6 lg:grid-cols-12">
+              <div className="lg:col-span-8">
+                <h3 className="text-xl font-semibold text-accent-2">{customPackage.title}</h3>
+                <p className="mt-1 text-2xl font-semibold text-accent">Let's chat</p>
+                <p className="mt-3 max-w-2xl text-sm text-text-muted">{customPackage.description}</p>
+                <p className="mt-2 text-sm text-text-muted">
+                  Advanced builds are scoped per project. We will clarify your requirements, then provide
+                  a clear proposal and timeline.
+                </p>
+              </div>
+              <div className="flex justify-center lg:col-span-4 lg:justify-end">
+                <Link to="/contact">
+                  <ShimmerButton
+                    shimmerColor="#0b1212"
+                    shimmerDuration="4.2s"
+                    background="#46c6e8"
+                    className="px-6 py-3 text-sm font-semibold tracking-[0.1em] text-black"
+                  >
+                    Request a custom scope
+                  </ShimmerButton>
+                </Link>
               </div>
             </div>
-            <div className="mt-auto hidden pt-8 md:block">
-              <Link to="/services-pricing">
-                <ShimmerButton
-                  shimmerColor="#0b1212"
-                  shimmerDuration="4.2s"
-                  background="#2ca99b"
-                  className="!border-[#2ca99b] px-5 py-2 text-xs font-semibold tracking-[0.12em] text-white !shadow-none"
-                >
-                  Discuss your project
-                </ShimmerButton>
-              </Link>
-            </div>
-          </Card>
+          </motion.div>
+          <p className="mt-6 text-center text-sm text-text-muted">Final pricing depends on scope.</p>
         </div>
-        <Card className="relative mt-10 flex h-full flex-col no-scroll-glow pricing-card pricing-card-featured-shine pricing-card-featured-shine-muted lg:mx-auto lg:max-w-3xl">
-          <h3 className="text-lg font-semibold text-accent-2">{customPackage.title}</h3>
-          <p className="mt-4 text-2xl font-semibold text-accent">Let's chat</p>
-          <p className="mt-4 text-sm text-text-muted">{customPackage.description}</p>
-          <p className="mt-4 text-sm text-text-muted">
-            Advanced builds are scoped per project. We will clarify your requirements, then provide
-            a clear proposal and timeline.
-          </p>
-          <div className="mt-8">
-            <Link to="/contact">
-              <ShimmerButton
-                shimmerColor="#0b1212"
-                shimmerDuration="4.2s"
-                background="#46c6e8"
-                className="px-5 py-2 text-xs font-semibold tracking-[0.12em] text-black"
-              >
-                Request a custom scope
-              </ShimmerButton>
-            </Link>
-          </div>
-        </Card>
-        <p className="mt-6 text-center text-sm text-text-muted">Final pricing depends on scope.</p>
-      </Section>
+      </section>
 
+      {/* ══════════════════════════════════════════════════════
+          WHY US 
+          ══════════════════════════════════════════════════════ */}
       <Section
         id="why-us"
         eyebrow="Why businesses choose Horizon Digital"
@@ -607,51 +636,54 @@ export default function Home() {
         description="Every decision is focused on clarity, speed, and better enquiries."
       >
         <div className="grid gap-6 md:grid-cols-2">
-          <Card>
+          <div className="rounded-2xl bg-bg-panel/40 p-6">
             <h3 className="text-lg font-semibold text-accent-2">Clear Communication</h3>
             <p className="mt-3 text-sm text-text-muted">
               The project process stays straightforward from scope to launch, so you always know
               what is happening next.
             </p>
-          </Card>
-          <Card>
+          </div>
+          <div className="rounded-2xl bg-bg-panel/40 p-6">
             <h3 className="text-lg font-semibold text-accent-2">Practical Website Design</h3>
             <p className="mt-3 text-sm text-text-muted">
               Layout and content decisions are made to help visitors understand your offer quickly
               and take clear action.
             </p>
-          </Card>
-          <Card>
+          </div>
+          <div className="rounded-2xl bg-bg-panel/40 p-6">
             <h3 className="text-lg font-semibold text-accent-2">Modern Performance</h3>
             <p className="mt-3 text-sm text-text-muted">
               Fast loading, mobile responsiveness, and clean technical setup improve trust and
               usability from first visit.
             </p>
-          </Card>
-          <Card>
+          </div>
+          <div className="rounded-2xl bg-bg-panel/40 p-6">
             <h3 className="text-lg font-semibold text-accent-2">Structured Projects</h3>
             <p className="mt-3 text-sm text-text-muted">
               A defined milestone flow helps the project move efficiently with fewer delays and
               better delivery confidence.
             </p>
-          </Card>
+          </div>
         </div>
       </Section>
 
+      {/* ══════════════════════════════════════════════════════
+          INSIGHTS 
+          ══════════════════════════════════════════════════════ */}
       <Section
         id="insights"
         eyebrow="Digital Insights"
         title="Digital insights for business owners"
         description="Simple, practical reads on AI, automation, analytics, and modern digital decisions."
       >
-        <Card>
+        <div className="flex flex-col items-center justify-between rounded-2xl border border-border bg-bg-elev p-8 md:flex-row">
           <ul className="grid gap-3 text-sm text-text-muted md:grid-cols-2">
-            <li>Digital trends affecting small businesses</li>
-            <li>Understanding AI chatbots</li>
-            <li>Why data and analytics matter for growth</li>
-            <li>How automation can save business time</li>
+            <li className="flex items-center gap-2"><span className="text-accent">•</span> Digital trends affecting small businesses</li>
+            <li className="flex items-center gap-2"><span className="text-accent">•</span> Understanding AI chatbots</li>
+            <li className="flex items-center gap-2"><span className="text-accent">•</span> Why data and analytics matter</li>
+            <li className="flex items-center gap-2"><span className="text-accent">•</span> How automation saves time</li>
           </ul>
-          <div className="mt-6">
+          <div className="mt-8 shrink-0 md:mt-0 md:ml-6">
             <Link to="/insights">
               <ShimmerButton
                 shimmerColor="#0b1212"
@@ -663,9 +695,12 @@ export default function Home() {
               </ShimmerButton>
             </Link>
           </div>
-        </Card>
+        </div>
       </Section>
 
+      {/* ══════════════════════════════════════════════════════
+          FAQ
+          ══════════════════════════════════════════════════════ */}
       <Section
         id="faq"
         eyebrow="FAQ"
@@ -673,7 +708,7 @@ export default function Home() {
         description="Straight answers to help you plan with confidence."
       >
         <HomeFaq categories={homeFaqCategories} />
-        <div className="mt-10 flex flex-wrap items-center justify-between gap-6 rounded-3xl border border-border bg-bg-elev px-6 py-6">
+        <div className="mt-10 flex flex-col items-center gap-6 rounded-3xl border border-border bg-bg-elev px-6 py-8 text-center md:flex-row md:justify-between md:text-left">
           <p className="text-sm text-text-muted">Still have questions? We can walk you through it.</p>
           <Link to="/contact">
             <ShimmerButton
@@ -688,30 +723,53 @@ export default function Home() {
         </div>
       </Section>
 
-      <section id="ready" className="bg-bg-elev">
-        <div className="mx-auto flex w-full max-w-7xl flex-col items-start gap-10 px-8 py-28 md:flex-row md:items-center md:justify-between">
-          <div>
-            <p className="text-xs uppercase tracking-[0.4em] text-accent">Ready to build</p>
-            <h2 className="mt-3 text-3xl font-semibold text-text md:text-4xl">
-              Start your website project with confidence
-            </h2>
-            <p className="mt-4 text-sm text-text-muted">
-              Tell us about your business and we will guide you through the next steps.
-            </p>
-          </div>
-          <Link to="/contact">
-            <ShimmerButton
-              shimmerColor="#0b1212"
-              shimmerDuration="4.2s"
-              background="#46c6e8"
-              className="px-7 py-3.5 text-base font-semibold tracking-[0.08em] text-black"
+      {/* ══════════════════════════════════════════════════════
+          READY — Full-width CTA banner with 12-col asymmetry
+          ══════════════════════════════════════════════════════ */}
+      <section id="ready" className="ready-banner bg-bg-elev">
+        <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
+          <div className="grid items-center gap-10 py-24 md:py-32 lg:grid-cols-12">
+            <motion.div
+              className="text-center lg:col-span-7 lg:text-left"
+              initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
             >
-              Book a free consult
-            </ShimmerButton>
-          </Link>
+              <p className="text-xs uppercase tracking-[0.4em] text-accent">Ready to build</p>
+              <h2 className="mt-3 text-3xl font-semibold text-text md:text-5xl md:leading-[1.1]">
+                Empowering Your{" "}
+                <GlowUnderline>
+                  <span className="text-accent-2">Digital Horizon</span>
+                </GlowUnderline>
+              </h2>
+              <p className="mx-auto mt-5 max-w-lg text-base text-text-muted lg:mx-0">
+                Start your website project with confidence. Tell us about your business and we will guide you through the next steps.
+              </p>
+            </motion.div>
+            <motion.div
+              className="flex justify-center lg:col-span-5 lg:justify-end"
+              initial={{ opacity: shouldReduceMotion ? 1 : 0, scale: shouldReduceMotion ? 1 : 0.92 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
+            >
+              <Link to="/contact">
+                <ShimmerButton
+                  shimmerColor="#0b1212"
+                  shimmerDuration="4.2s"
+                  background="#46c6e8"
+                  className="px-8 py-4 text-base font-semibold tracking-[0.08em] text-black md:text-lg"
+                >
+                  Book a free consult
+                </ShimmerButton>
+              </Link>
+            </motion.div>
+          </div>
         </div>
       </section>
 
+      {/* ── Work preview modal ── */}
       <Modal
         open={Boolean(activeWork)}
         title={activeWork ? `${activeWork.title} - ${activeWork.label}` : ""}
