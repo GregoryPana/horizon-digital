@@ -673,7 +673,7 @@ export default function Home() {
                         shimmerDuration="4.2s"
                         background={pkg.featured ? "#46c6e8" : "#2ca99b"}
                         className={`px-6 py-3 text-sm font-semibold tracking-[0.12em] flex items-center gap-2 ${
-                          pkg.featured ? "text-black shadow-lg shadow-accent/20" : "text-white !border-[#2ca99b] !shadow-none"
+                          pkg.featured ? "text-black shadow-lg shadow-accent/20" : "text-text !border-[#2ca99b] !shadow-none"
                         }`}
                       >
                         See details

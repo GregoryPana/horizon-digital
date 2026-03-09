@@ -27,7 +27,7 @@ export default function Insights() {
         description="Educational articles on AI, automation, analytics, and practical digital trends."
       >
         <div className="grid gap-6 md:grid-cols-2">
-          <Card className="no-scroll-glow border-dashed">
+          <Card className="no-scroll-glow border-dashed text-center flex flex-col justify-center items-center">
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent-2">
               All Insights
             </p>
@@ -39,8 +39,8 @@ export default function Insights() {
           </Card>
 
           {insightArticles.map((article) => (
-            <Card key={article.slug} className="no-scroll-glow">
-              <picture>
+            <Card key={article.slug} className="no-scroll-glow text-center flex flex-col items-center">
+              <picture className="w-full">
                 {article.imageWebp ? <source srcSet={article.imageWebp} type="image/webp" /> : null}
                 <img
                   src={article.image}
@@ -49,12 +49,12 @@ export default function Insights() {
                   height={680}
                   loading="lazy"
                   decoding="async"
-                  className="h-44 w-full rounded-xl border border-border object-cover"
+                  className="h-44 w-full rounded-xl border border-border object-cover mx-auto"
                 />
               </picture>
               <h2 className="mt-4 text-xl font-semibold text-text">{article.title}</h2>
               <p className="mt-3 text-sm text-text-muted">{article.excerpt}</p>
-              <div className="mt-5">
+              <div className="mt-5 flex justify-center">
                 <Link
                   to={`/insights/${article.slug}`}
                   className="text-sm font-semibold uppercase tracking-[0.12em] text-accent transition hover:text-accent-2"

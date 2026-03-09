@@ -250,11 +250,11 @@ export default function Pricing() {
         title="Website Design Services and Packages"
         description="Website design services built to help businesses communicate clearly online and convert interest into enquiries." 
       >
-        <div id="panel-overview" role="tabpanel" aria-hidden={!showSelectedOrAll("overview")} className="bg-bg-panel/20 p-8 rounded-2xl border border-white/[0.05]">
+        <div id="panel-overview" role="tabpanel" aria-hidden={!showSelectedOrAll("overview")} className="bg-bg-panel/20 p-8 rounded-2xl border border-border">
           <p className="text-sm md:text-base text-text-muted max-w-4xl text-center mx-auto">{servicesPricingIntro.summary}</p>
           <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {services.slice(0, 5).map((service) => (
-              <div key={service.title} className="p-6 rounded-2xl border border-white/5 bg-bg hover:border-accent/30 transition-colors">
+              <div key={service.title} className="p-6 rounded-2xl border border-border bg-bg hover:border-accent/30 transition-colors">
                 <h3 className="text-base font-semibold text-accent-2">{service.title}</h3>
                 <p className="mt-3 text-sm text-text-muted">{service.description}</p>
               </div>
@@ -270,7 +270,7 @@ export default function Pricing() {
         description="Most projects follow a structured sequence from planning to launch."
         className={`${compactDesktopSection} ${showSelectedOrAll("overview") ? "lg:!block" : "lg:!hidden"}`}
       >
-        <div className="relative left-1/2 right-1/2 -mx-[50vw] my-8 w-screen py-16 md:my-10 md:py-20 bg-gradient-to-r from-bg-panel/10 via-accent/5 to-bg-panel/10 border-y border-white/[0.03]">
+        <div className="relative left-1/2 right-1/2 -mx-[50vw] my-8 w-screen py-16 md:my-10 md:py-20 bg-gradient-to-r from-bg-panel/10 via-accent/5 to-bg-panel/10 border-y border-border">
           <div className="mx-auto grid w-full max-w-7xl gap-8 px-5 sm:px-8 md:grid-cols-2 lg:grid-cols-5">
           {projectSteps.map((step, index) => (
             <motion.div
@@ -303,7 +303,7 @@ export default function Pricing() {
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="flex h-full flex-col rounded-3xl border border-white/10 bg-bg p-8 hover:border-white/20 transition-all"
+            className="flex h-full flex-col rounded-3xl border border-border/40 bg-bg p-8 hover:border-accent/30 transition-all"
           >
             <h3 className="text-lg font-semibold text-accent-2">{foundationPackage.title}</h3>
             <p className="mt-4 text-3xl font-semibold text-accent">{foundationPackage.price}</p>
@@ -330,7 +330,7 @@ export default function Pricing() {
               }`.trim()}
             >
               <div className="space-y-3 overflow-hidden text-sm text-text-muted md:overflow-visible">
-                <ul className="space-y-3 mb-8 text-white/80">
+                <ul className="space-y-3 mb-8 text-text">
                   {foundationPackage.includes.map((item) => (
                     <li key={item} className="flex items-start gap-3">
                       <span className="text-accent mt-0.5">✓</span>
@@ -339,7 +339,7 @@ export default function Pricing() {
                   ))}
                 </ul>
                 <p className="text-xs uppercase tracking-[0.3em] text-text-muted">Not included</p>
-                <ul className="mt-4 space-y-2 text-sm text-white/50">
+                <ul className="mt-4 space-y-2 text-sm text-text">
                   {foundationPackage.exclusions.map((item) => (
                     <li key={item} className="flex items-start gap-3">
                       <span className="mt-1.5 h-2 w-2 rounded-full bg-border shrink-0" />
@@ -356,7 +356,7 @@ export default function Pricing() {
                   </ul>
                   <div className="mt-6 flex justify-center">
                     <Link to="/contact?budget=9500-15000" className="w-full">
-                      <button className="w-full py-3 rounded-full border border-white/20 hover:bg-white/5 font-semibold text-sm transition-colors text-white">
+                      <button className="w-full py-3 rounded-full border border-border hover:bg-text/5 font-semibold text-sm transition-colors text-text">
                         Discuss project
                       </button>
                     </Link>
@@ -373,7 +373,7 @@ export default function Pricing() {
               </ul>
               <div className="mt-8">
                 <Link to="/contact?budget=9500-15000">
-                   <button className="w-full py-3 rounded-full border border-white/20 hover:bg-white/5 font-semibold text-sm transition-colors text-white">
+                   <button className="w-full py-3 rounded-full border border-border hover:bg-text/5 font-semibold text-sm transition-colors text-text">
                       Discuss project
                    </button>
                 </Link>
@@ -390,8 +390,8 @@ export default function Pricing() {
             className="flex h-full flex-col rounded-3xl border border-accent/40 bg-bg p-8 shadow-[0_0_40px_rgba(70,198,232,0.1)] relative overflow-hidden pricing-card-featured-shine"
           >
               <div className="absolute top-0 right-0 py-1 px-4 text-xs font-semibold bg-accent text-bg rounded-bl-xl tracking-wider uppercase">Most Popular</div>
-              <h3 className="text-lg font-semibold text-text">{starterPackage.title}</h3>
-              <p className="mt-4 text-3xl font-semibold text-text">{starterPackage.price}</p>
+              <h3 className="text-lg font-semibold text-accent-2">{starterPackage.title}</h3>
+              <p className="mt-4 text-3xl font-semibold text-accent">{starterPackage.price}</p>
                <div className="mt-4 text-sm text-text-muted md:min-h-[140px]">
                  <p>{starterPackage.description}</p>
                  <p className="mt-3 font-medium text-text">Includes core build essentials.</p>
@@ -413,7 +413,7 @@ export default function Pricing() {
               >
                 <div className="space-y-3 overflow-hidden text-sm text-text-muted md:overflow-visible">
                   <p className="text-sm font-semibold text-accent-2 mb-4">Includes everything in Foundation, plus:</p>
-                  <ul className="space-y-3 text-white/90">
+                  <ul className="space-y-3 text-text">
                     {starterUniqueIncludes.map((item) => (
                       <li key={item} className="flex items-start gap-3">
                         <span className="text-accent mt-0.5">✓</span>
@@ -470,7 +470,7 @@ export default function Pricing() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="flex h-full flex-col rounded-3xl border border-white/10 bg-bg p-8 hover:border-white/20 transition-all"
+            className="flex h-full flex-col rounded-3xl border border-border/40 bg-bg p-8 hover:border-accent/30 transition-all"
           >
             <h3 className="text-lg font-semibold text-accent-2">{growthPackage.title}</h3>
             <p className="mt-4 text-3xl font-semibold text-accent">{growthPackage.price}</p>
@@ -493,8 +493,8 @@ export default function Pricing() {
               }`.trim()}
             >
               <div className="space-y-3 overflow-hidden text-sm text-text-muted md:overflow-visible">
-                <p className="text-sm font-semibold text-white mb-4">Includes everything in Starter, plus:</p>
-                <ul className="space-y-3 text-white/80">
+                <p className="text-sm font-semibold text-text mb-4">Includes everything in Starter, plus:</p>
+                <ul className="space-y-3 text-text">
                   {growthUniqueIncludes.map((item) => (
                     <li key={item} className="flex items-start gap-3">
                       <span className="text-accent mt-0.5">✓</span>
@@ -511,7 +511,7 @@ export default function Pricing() {
                   </ul>
                   <div className="mt-6">
                     <Link to="/contact?budget=30000%2B">
-                      <button className="w-full py-3 rounded-full border border-white/20 hover:bg-white/5 font-semibold text-sm transition-colors text-white">
+                      <button className="w-full py-3 rounded-full border border-border hover:bg-text/5 font-semibold text-sm transition-colors text-text">
                         Discuss project
                       </button>
                     </Link>
@@ -528,7 +528,7 @@ export default function Pricing() {
               </ul>
               <div className="mt-8">
                 <Link to="/contact?budget=30000%2B">
-                  <button className="w-full py-3 rounded-full border border-white/20 hover:bg-white/5 font-semibold text-sm transition-colors text-white">
+                  <button className="w-full py-3 rounded-full border border-border hover:bg-text/5 font-semibold text-sm transition-colors text-text">
                      Discuss project
                   </button>
                 </Link>
@@ -537,7 +537,7 @@ export default function Pricing() {
           </motion.div>
         </div>
 
-        <div className="mt-16 text-center max-w-2xl mx-auto p-10 rounded-3xl bg-bg-panel/30 border border-white/5 backdrop-blur-sm relative overflow-hidden">
+        <div className="mt-16 text-center max-w-2xl mx-auto p-10 rounded-3xl bg-bg-panel/30 border border-border backdrop-blur-sm relative overflow-hidden">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-accent/5 blur-[50px] z-0 pointer-events-none"/>
           <div className="relative z-10">
             <h3 className="text-xl font-semibold text-text">{customPackage.title}</h3>
@@ -583,7 +583,7 @@ export default function Pricing() {
         <div className="mx-auto w-full max-w-5xl">
           <div className="rounded-3xl border border-accent/20 bg-gradient-to-r from-bg via-accent/5 to-bg overflow-hidden shadow-lg shadow-accent/5">
             <div className="grid items-center gap-6 p-8 sm:p-12 md:grid-cols-2 md:gap-10">
-              <div className="flex flex-col items-center pb-10 text-center md:pb-0 md:px-10 md:border-r md:border-white/10">
+              <div className="flex flex-col items-center pb-10 text-center md:pb-0 md:px-10 md:border-r md:border-border">
                 <p className="mb-5 inline-flex items-center rounded-full border border-accent/45 bg-accent/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-accent">
                   Annual plan
                 </p>
@@ -632,10 +632,10 @@ export default function Pricing() {
         description="All add-ons are clearly scoped before work begins, if not included in selected tier."
       >
         <div id="panel-addons" role="tabpanel" aria-hidden={!showSelectedOrAll("addons")}>
-        <div className="relative left-1/2 right-1/2 -mx-[50vw] my-8 w-screen py-14 md:my-10 md:py-16 bg-bg-panel/20 border-y border-white/5">
+        <div className="relative left-1/2 right-1/2 -mx-[50vw] my-8 w-screen py-14 md:my-10 md:py-16 bg-bg-panel/20 border-y border-border/40">
           <div className="mx-auto grid w-full max-w-7xl gap-x-10 gap-y-8 px-5 sm:px-8 md:grid-cols-3">
           {addOnItems.map((item) => (
-            <div key={item.title} className="bg-bg border border-white/[0.03] p-6 rounded-2xl hover:border-accent/20 transition-colors">
+            <div key={item.title} className="bg-bg border border-border/40 p-6 rounded-2xl hover:border-accent/40 transition-colors">
               <h3 className="text-base font-semibold text-text">{item.title}</h3>
               <p className="mt-3 inline-block px-3 py-1 rounded border border-accent/20 bg-accent/5 text-sm font-medium text-accent">{item.price}</p>
             </div>
@@ -652,9 +652,9 @@ export default function Pricing() {
         description="Included with every website build."
         className={`${compactDesktopSection} ${showSelectedOrAll("overview") ? "lg:!block" : "lg:!hidden"}`}
       >
-        <div className="p-8 md:p-12 rounded-3xl border border-white/10 bg-bg mt-6">
+        <div className="p-8 md:p-12 rounded-3xl border border-border bg-bg mt-6">
           <div className="grid gap-10 md:grid-cols-2">
-            <div className="bg-bg-panel/30 p-8 rounded-2xl border border-white/5">
+            <div className="bg-bg-panel/30 p-8 rounded-2xl border border-border">
               <p className="text-xs uppercase tracking-[0.3em] font-semibold text-accent mb-6 flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-accent inline-block"/> Covers</p>
               <ul className="space-y-4 text-sm text-text-muted">
                 {stabilisationPlan.covers.map((item) => (
@@ -665,7 +665,7 @@ export default function Pricing() {
                 ))}
               </ul>
             </div>
-            <div className="bg-bg-panel/30 p-8 rounded-2xl border border-white/5 opacity-80">
+            <div className="bg-bg-panel/30 p-8 rounded-2xl border border-border opacity-80">
               <p className="text-xs uppercase tracking-[0.3em] font-semibold text-text-muted mb-6 flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-border inline-block"/> Does not cover</p>
               <ul className="space-y-4 text-sm text-text-muted">
                 {stabilisationPlan.excludes.map((item) => (
@@ -687,7 +687,7 @@ export default function Pricing() {
         description="We focus on speed, clarity, and practical search setup so people can discover your business online."
         className={`${compactDesktopSection} ${showSelectedOrAll("overview") ? "lg:!block" : "lg:!hidden"}`}
       >
-        <div className="mt-8 p-10 md:p-14 rounded-3xl bg-gradient-to-br from-bg-panel/40 to-transparent border border-white/5 text-center">
+        <div className="mt-8 p-10 md:p-14 rounded-3xl bg-gradient-to-br from-bg-panel/40 to-transparent border border-border text-center">
           <p className="max-w-4xl mx-auto text-base md:text-lg leading-relaxed text-text-muted">
             A beautiful website should also be easy to find. We set up each site with clean semantic page structure, clear heading hierarchies, search-friendly page content, optimized Core Web Vitals, and technical signals that help Google seamlessly understand what your business offers. In simple terms, your website is built to perform brilliantly in lighthouse metrics, load instantly on mobile devices, and appear in front of the right local customers when they search.
           </p>
@@ -706,7 +706,7 @@ export default function Pricing() {
       >
         <div className="grid gap-6 md:grid-cols-2 mt-8">
           {faqs.slice(0, 4).map((faq) => (
-            <div key={faq.question} className="p-8 rounded-2xl bg-bg-panel/10 border border-white/5 hover:bg-bg-panel/20 transition-colors">
+            <div key={faq.question} className="p-8 rounded-2xl bg-bg-panel/10 border border-border hover:bg-bg-panel/20 transition-colors">
               <h3 className="text-lg font-semibold text-text mb-4">{faq.question}</h3>
               <p className="text-sm text-text-muted leading-relaxed">{faq.answer}</p>
             </div>
@@ -714,7 +714,7 @@ export default function Pricing() {
         </div>
       </Section>
 
-      <section className="bg-bg-elev border-t border-white/5 mt-16 text-center">
+      <section className="bg-bg-elev border-t border-border mt-16 text-center">
         <div className="mx-auto w-full max-w-4xl px-8 py-28 md:py-32">
            <p className="text-xs uppercase tracking-[0.4em] text-accent font-semibold mb-6">Next step</p>
            <h2 className="text-3xl font-semibold text-text md:text-5xl tracking-tight mb-12">

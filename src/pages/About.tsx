@@ -52,7 +52,7 @@ export default function About() {
             
             <motion.div className="lg:col-span-6 relative" {...fadeIn}>
               <div className="absolute -inset-4 bg-accent/5 blur-[80px] rounded-full z-0" />
-              <div className="relative z-10 p-8 rounded-2xl border border-white/5 bg-gradient-to-br from-white/[0.03] to-transparent backdrop-blur-sm">
+              <div className="relative z-10 p-8 rounded-2xl border border-border bg-gradient-to-br from-white/[0.03] to-transparent backdrop-blur-sm">
                  <h3 className="text-2xl font-semibold text-text">Built with intention</h3>
                   <p className="mt-4 text-base text-text-muted leading-relaxed">
                     Many businesses struggle with websites that are slow, unclear, or difficult to update. Horizon Digital focuses on fixing those friction points with clearer structure, logical design, and engineering focused on performance and WCAG accessibility standards.
@@ -62,7 +62,7 @@ export default function About() {
 
             <motion.div className="lg:col-span-6 relative" {...fadeIn} transition={{ delay: 0.2 }}>
                <div className="absolute -inset-4 bg-accent-2/5 blur-[80px] rounded-full z-0" />
-               <div className="relative z-10 p-8 rounded-2xl border border-white/5 bg-gradient-to-bl from-white/[0.03] to-transparent backdrop-blur-sm">
+               <div className="relative z-10 p-8 rounded-2xl border border-border bg-gradient-to-bl from-white/[0.03] to-transparent backdrop-blur-sm">
                  <h3 className="text-2xl font-semibold text-text">Customer-journey focus</h3>
                   <p className="mt-4 text-base text-text-muted leading-relaxed">
                     Pages are planned to guide visitors from first impression to enquiry. The goal is a website that helps people understand your services and act confidently.
@@ -89,7 +89,7 @@ export default function About() {
       </section>
 
       {/* Feature Banner: Approach */}
-      <section className="py-24 bg-bg-panel/30 border-y border-white/[0.02]">
+      <section className="py-24 bg-bg-panel/30 border-y border-border">
         <div className="mx-auto w-full max-w-5xl px-5 sm:px-8 text-center text-balance">
           <motion.div {...fadeIn}>
             <h2 className="text-3xl font-semibold text-text md:text-5xl tracking-tight">
@@ -107,7 +107,7 @@ export default function About() {
                 { num: "04", title: "Launch & Optimise" },
               ].map((step, i) => (
                 <div key={i} className="flex flex-col items-center">
-                  <span className="text-4xl md:text-5xl font-light text-white/10">{step.num}</span>
+                  <span className="text-4xl md:text-5xl font-light text-text">{step.num}</span>
                   <span className="mt-4 text-sm font-semibold text-text-muted">{step.title}</span>
                 </div>
               ))}
@@ -135,7 +135,7 @@ export default function About() {
                   shimmerColor="#0b1212"
                   shimmerDuration="4.2s"
                   background="#1d2b33"
-                  className="px-6 py-3 text-sm font-semibold tracking-[0.1em] border border-white/10 text-white"
+                  className="px-6 py-3 text-sm font-semibold tracking-[0.1em] border border-border text-text"
                 >
                   Visit Digital Insights
                 </ShimmerButton>

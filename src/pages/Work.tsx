@@ -47,7 +47,7 @@ export default function Work() {
       </section>
 
       {/* Portfolio Item 1: Drake Seaside (Split Banner layout) */}
-      <section className="py-20 md:py-32 border-t border-white/[0.03] bg-gradient-to-b from-transparent to-bg-panel/20">
+      <section className="py-20 md:py-32 border-t border-border bg-gradient-to-b from-transparent to-bg-panel/20">
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
               
@@ -61,7 +61,7 @@ export default function Work() {
                   </p>
                   <div className="flex flex-wrap gap-4">
                      <a href="https://thedrake-seaside.com/" target="_blank" rel="noreferrer" className="inline-block hover:opacity-80 transition-opacity">
-                       <button className="px-6 py-3 border border-border text-sm font-semibold rounded-full hover:bg-white/5 transition-colors">
+                       <button className="px-6 py-3 border border-border text-sm font-semibold rounded-full hover:bg-text/5 transition-colors">
                          View live site
                        </button>
                      </a>
@@ -79,7 +79,7 @@ export default function Work() {
               </motion.div>
 
               <motion.div className="lg:col-span-7 flex flex-col gap-6" {...fadeIn} transition={{ delay: 0.2 }}>
-                 <picture className="block rounded-2xl overflow-hidden shadow-[0_0_40px_rgba(70,198,232,0.1)] border border-white/10 group">
+                 <picture className="block rounded-2xl overflow-hidden shadow-[0_0_40px_rgba(70,198,232,0.1)] border border-border group">
                     <source srcSet={drakeMainWebp} type="image/webp" />
                     <img
                       src={drakeMain}
@@ -93,7 +93,7 @@ export default function Work() {
                     />
                   </picture>
                   <div className="w-full flex justify-end -mt-16 sm:-mt-24 sm:-ml-12 relative z-20 pointer-events-none pr-8 sm:pr-0">
-                    <picture className="block rounded-xl overflow-hidden shadow-2xl border border-white/20 w-2/3 md:w-1/2">
+                    <picture className="block rounded-xl overflow-hidden shadow-2xl border border-border w-2/3 md:w-1/2">
                       <source srcSet={drakeAltOneWebp} type="image/webp" />
                       <img
                         src={drakeAltOne}
@@ -113,12 +113,12 @@ export default function Work() {
       </section>
 
       {/* Portfolio Item 2: Beauty Demo (Alternated layout) */}
-      <section className="py-20 md:py-32 border-t border-white/[0.03]">
+      <section className="py-20 md:py-32 border-t border-border">
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
               
               <motion.div className="lg:col-span-7 flex flex-col gap-6 order-2 lg:order-1" {...fadeIn}>
-                 <picture className="block rounded-2xl overflow-hidden shadow-[0_0_40px_rgba(255,255,255,0.05)] border border-white/10 group">
+                 <picture className="block rounded-2xl overflow-hidden shadow-[0_0_40px_rgba(255,255,255,0.05)] border border-border group">
                     {seykelzMainWebp && <source srcSet={seykelzMainWebp} type="image/webp" />}
                     <img
                       src={seykelzMain}
@@ -131,7 +131,7 @@ export default function Work() {
                     />
                   </picture>
                   <div className="w-full flex justify-start -mt-16 sm:-mt-24 sm:-mr-12 relative z-20 pointer-events-none pl-8 sm:pl-0">
-                    <picture className="block rounded-xl overflow-hidden shadow-2xl border border-white/20 w-2/3 md:w-1/2 bg-bg">
+                    <picture className="block rounded-xl overflow-hidden shadow-2xl border border-border w-2/3 md:w-1/2 bg-bg">
                       <img
                         src={seykelzAltOne}
                         alt="Beauty demo services detail interface"
@@ -146,7 +146,7 @@ export default function Work() {
               </motion.div>
 
               <motion.div className="lg:col-span-5 relative z-10 order-1 lg:order-2" {...fadeIn} transition={{ delay: 0.2 }}>
-                 <p className="text-xs font-semibold uppercase tracking-[0.3em] text-white/50 mb-4 bg-white/5 inline-block px-3 py-1 rounded-full border border-white/10">
+                 <p className="text-xs font-semibold uppercase tracking-[0.3em] text-text mb-4 bg-text/5 inline-block px-3 py-1 rounded-full border border-border">
                     Foundation Tier
                   </p>
                   <h3 className="text-3xl md:text-5xl font-semibold text-text mb-6">Beauty Demo</h3>
@@ -155,7 +155,7 @@ export default function Work() {
                   </p>
                   <div className="flex flex-wrap gap-4">
                      <a href="https://demo-beauty.horizondigitalsey.com/" target="_blank" rel="noreferrer" className="inline-block hover:opacity-80 transition-opacity">
-                       <button className="px-6 py-3 border border-border text-sm font-semibold rounded-full hover:bg-white/5 transition-colors">
+                       <button className="px-6 py-3 border border-border text-sm font-semibold rounded-full hover:bg-text/5 transition-colors">
                          View live site
                        </button>
                      </a>
