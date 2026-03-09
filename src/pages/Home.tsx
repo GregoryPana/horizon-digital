@@ -801,9 +801,38 @@ export default function Home() {
                 </div>
               </div>
               
-              <div className="relative min-h-[300px] lg:col-span-5 lg:min-h-full">
-                <div className="image-placeholder absolute inset-0 rounded-none border-0 transition-colors duration-500 group-hover:after:bg-black/10">
-                  <span className="relative z-10 text-sm font-medium uppercase tracking-widest text-text-muted/60">Insights Visual</span>
+              <div className="relative min-h-[350px] lg:col-span-5 lg:min-h-full flex items-center justify-center p-8 lg:p-12 overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-r from-bg-panel/30 to-transparent z-0 lg:hidden" />
+                <div className="relative z-10 flex h-full w-full max-w-[400px] items-center justify-center pt-8 pr-12">
+                  <motion.div
+                    className="absolute left-4 top-1/2 w-48 -translate-y-[45%] rounded-xl shadow-[0_0_40px_rgba(70,198,232,0.15)] border border-accent/20 z-10"
+                    initial={{ opacity: 0, x: -20, rotate: -4 }}
+                    whileInView={{ opacity: 1, x: 0, rotate: -4 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                  >
+                    <img src="/digital trends 1.png" alt="Digital trends affecting small businesses" className="w-full h-auto rounded-xl object-cover" />
+                  </motion.div>
+                  
+                  <motion.div
+                    className="absolute left-[25%] top-1/2 w-[13rem] -translate-y-[50%] rounded-xl shadow-[0_0_50px_rgba(70,198,232,0.25)] border border-accent/30 z-20"
+                    initial={{ opacity: 0, x: 0 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.3 }}
+                  >
+                    <img src="/digital trends 2.png" alt="Understanding AI chatbots" className="w-full h-auto rounded-xl object-cover" />
+                  </motion.div>
+
+                  <motion.div
+                    className="absolute left-[50%] top-1/2 w-56 -translate-y-[55%] rounded-xl shadow-[0_0_60px_rgba(70,198,232,0.4)] border border-accent/40 z-30"
+                    initial={{ opacity: 0, x: 20, rotate: 3 }}
+                    whileInView={{ opacity: 1, x: 0, rotate: 3 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.4 }}
+                  >
+                    <img src="/digital trends 3.png" alt="Why data and analytics matter" className="w-full h-auto rounded-xl object-cover" />
+                  </motion.div>
                 </div>
               </div>
             </div>
