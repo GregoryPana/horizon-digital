@@ -21,8 +21,6 @@ type MobileMenuItem = {
 
 const mobileMenuItems: MobileMenuItem[] = [
   { id: "home", label: "Home", to: "/" },
-  { id: "need", label: "What You Need", to: "/what-you-need" },
-  { id: "work", label: "Our Work", to: "/work" },
   {
     id: "pricing",
     label: "Services & Pricing",
@@ -34,6 +32,8 @@ const mobileMenuItems: MobileMenuItem[] = [
       { label: "Add-ons", to: "/services-pricing#addons" },
     ],
   },
+  { id: "work", label: "Our Work", to: "/work" },
+  { id: "need", label: "What You Need", to: "/what-you-need" },
   {
     id: "insights",
     label: "Digital Insights",

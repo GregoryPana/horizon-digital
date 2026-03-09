@@ -1,6 +1,8 @@
 import Seo from "../components/Seo";
 import Button from "../components/Button";
 import { Timeline } from "../components/ui/timeline";
+import Section from "../components/Section";
+import Card from "../components/Card";
 import drakeMain from "../assets/work/drake-seaside/drake-seaside.png";
 import drakeAltOne from "../assets/work/drake-seaside/drake-seaside 2.png";
 import drakeMainWebp from "../assets/work/drake-seaside/drake-seaside.webp";
@@ -103,19 +105,45 @@ export default function Work() {
 
   return (
     <div>
-      <h1 className="sr-only">Our Work</h1>
+      <h1 className="sr-only">Website Design Portfolio</h1>
       <Seo
-        title="Web Design Portfolio in Seychelles"
-        description="Selected web design work for Seychelles businesses."
+        title="Website Design Portfolio"
+        description="Horizon Digital builds websites designed to communicate clearly and support real business needs."
         path="/work"
-        keywords="portfolio web design Seychelles"
+        keywords="website design portfolio Seychelles, web design examples Seychelles"
       />
       <Timeline
-        eyebrow="Our Work"
-        title="Selected highlights"
-        description="A focused snapshot of real builds, with the tier and outcome for each."
+        eyebrow="Recent Website Projects"
+        title="Featured case studies"
+        description="Each project is structured around the business goals it needs to support."
         data={timelineData}
       />
+
+      <Section
+        eyebrow="Our Design Philosophy"
+        title="Clear structure, intuitive flow, reliable performance"
+        description="Good websites balance design, usability, and speed to support real business outcomes."
+      >
+        <div className="grid gap-6 md:grid-cols-2">
+          <Card>
+            <h3 className="text-lg font-semibold text-accent-2">Clarity and hierarchy</h3>
+            <p className="mt-3 text-sm text-text-muted">
+              Service pages are structured so visitors can quickly understand your offer and move
+              toward contact actions with confidence.
+            </p>
+          </Card>
+          <Card>
+            <h3 className="text-lg font-semibold text-accent-2">Mobile-first usability</h3>
+            <p className="mt-3 text-sm text-text-muted">
+              Every layout is tested for mobile usability, speed, and readability so your site
+              works smoothly across real devices.
+            </p>
+          </Card>
+        </div>
+        <div className="mt-8 flex justify-center">
+          <Button label="Start your project" to="/contact" size="sm" />
+        </div>
+      </Section>
     </div>
   );
 }

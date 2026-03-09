@@ -15,61 +15,79 @@ export default function WhatYouNeed() {
 
   return (
     <div>
+      <h1 className="sr-only">What Website Does Your Business Need?</h1>
       <Seo
-        title="What You Need Before Launch"
-        description="Clear guidance on website build, domain, and hosting, with practical setup scenarios."
+        title="What Website Does Your Business Need?"
+        description="A clear guide for Seychelles businesses choosing the right website type, features, and package."
         path="/what-you-need"
-        keywords="website domain hosting Seychelles"
+        keywords="what website do I need, business website types Seychelles, website package guidance"
         structuredData={serviceSchema}
       />
 
       <Section
         eyebrow="What You Need"
-        title="The three things every website needs"
-        description="A website always includes three parts: the build, the name, and the hosting."
+        title="What website does your business need?"
+        description="Many businesses know they need a website but are unsure which type is right. This guide helps you choose clearly."
+      >
+        <div className="grid gap-6 md:grid-cols-3">
+          <Card>
+            <h3 className="inline-flex items-center gap-2 text-base font-semibold text-accent-2">
+              <BuildIcon className="h-4 w-4" />
+              <span>Service Business Websites</span>
+            </h3>
+            <p className="mt-3 text-sm text-text-muted">
+              Best for consultants and service providers that need clear service pages and strong
+              enquiry flow.
+            </p>
+          </Card>
+          <Card>
+            <h3 className="inline-flex items-center gap-2 text-base font-semibold text-accent-2">
+              <DomainIcon className="h-4 w-4" />
+              <span>Retail Showcase Websites</span>
+            </h3>
+            <p className="mt-3 text-sm text-text-muted">
+              Useful for businesses that need to display products clearly and guide customers toward
+              contact or order requests.
+            </p>
+          </Card>
+          <Card>
+            <h3 className="inline-flex items-center gap-2 text-base font-semibold text-accent-2">
+              <HostingIcon className="h-4 w-4" />
+              <span>Hospitality Websites</span>
+            </h3>
+            <p className="mt-3 text-sm text-text-muted">
+              Designed to highlight accommodation, facilities, local trust signals, and simplified
+              booking enquiries.
+            </p>
+          </Card>
+        </div>
+      </Section>
+
+      <Section
+        eyebrow="Features"
+        title="Features businesses often need"
+        description="Most business websites rely on a clear core feature set before adding advanced tools."
       >
         <div className="section-band section-band-strong relative left-1/2 right-1/2 -mx-[50vw] my-8 w-screen py-16 md:my-10 md:py-20">
-          <div className="mx-auto grid w-full max-w-7xl gap-8 px-5 sm:px-8 md:grid-cols-3">
-            <div>
-              <h3 className="inline-flex items-center gap-2 text-base font-semibold text-accent-2">
-                <BuildIcon className="h-4 w-4" />
-                <span>Design and build</span>
-              </h3>
-              <p className="mt-3 text-sm text-text-muted">
-                This is how your website looks, reads, and guides people to contact you. Horizon
-                Digital plans and builds this part with you, so it feels clear, professional, and
-                easy to use.
-              </p>
-            </div>
-            <div>
-              <h3 className="inline-flex items-center gap-2 text-base font-semibold text-accent-2">
-                <DomainIcon className="h-4 w-4" />
-                <span>Domain name</span>
-              </h3>
-              <p className="mt-3 text-sm text-text-muted">
-                Your domain is your website name, like yourbusiness.com. It is rented yearly
-                through a domain registrar. It stays in your control, and we can guide you with
-                setup.
-              </p>
-            </div>
-            <div>
-              <h3 className="inline-flex items-center gap-2 text-base font-semibold text-accent-2">
-                <HostingIcon className="h-4 w-4" />
-                <span>Hosting</span>
-              </h3>
-              <p className="mt-3 text-sm text-text-muted">
-                Hosting keeps your website live every day. You can host with Horizon Digital or a
-                different provider. We can manage this for you if you want a simpler process.
-              </p>
-            </div>
+          <div className="mx-auto grid w-full max-w-7xl gap-4 px-5 sm:px-8 md:grid-cols-2 lg:grid-cols-4">
+            {[
+              "Contact forms",
+              "Enquiry forms",
+              "Product displays",
+              "Booking options",
+            ].map((feature) => (
+              <div key={feature} className="rounded-xl border border-border bg-bg-elev px-4 py-4 text-sm text-text">
+                {feature}
+              </div>
+            ))}
           </div>
         </div>
       </Section>
 
       <Section
-        eyebrow="Scenarios"
-        title="Common setup options"
-        description="Choose the setup that fits your business. In every case, your domain remains yours."
+        eyebrow="Package fit"
+        title="Choosing the right website package"
+        description="Simple needs usually fit Foundation, while businesses needing flexibility often prefer Starter or Growth."
       >
         <div className="grid gap-8 md:grid-cols-2">
           <Card>
@@ -116,10 +134,25 @@ export default function WhatYouNeed() {
             </ul>
           </Card>
         </div>
-        <p className="mt-8 text-sm text-text-muted">
-          Domain ownership stays with the client in all scenarios. We can assist with setup,
-          DNS connection, and renewals guidance.
-        </p>
+      </Section>
+
+      <Section
+        eyebrow="Project prep"
+        title="Preparing for a website project"
+        description="A few basics help your project move faster and launch cleaner."
+      >
+        <Card>
+          <ul className="grid gap-3 text-sm text-text-muted md:grid-cols-2">
+            <li>Your services list and priorities</li>
+            <li>Business information and contact details</li>
+            <li>Photos, branding, and logo assets</li>
+            <li>Any existing website or social links</li>
+          </ul>
+          <p className="mt-6 text-sm text-text-muted">
+            If you are not sure where to start, we can guide you through each item during the
+            discovery call.
+          </p>
+        </Card>
       </Section>
     </div>
   );

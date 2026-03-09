@@ -81,15 +81,15 @@ Looking forward to your reply.`;
     <div>
       <h1 className="sr-only">Contact Horizon Digital</h1>
       <Seo
-        title="Contact a Web Designer in Seychelles"
-        description="Tell us about your goals and timeline. We'll respond within 24 hours."
+        title="Start Your Website Project"
+        description="Tell us about your business and the type of website you would like to build."
         path="/contact"
-        keywords="website project enquiry Seychelles"
+        keywords="contact web designer Seychelles, start website project Seychelles"
       />
       <Section
         eyebrow="Contact"
-        title="Let's plan your next launch"
-        description="Tell us about your business and goals. We will guide you to a website that is tailored, easy to understand, and easier to find online."
+        title="Start your website project"
+        description="Tell us about your business and goals and we will guide you to the right website package."
         className="!pt-16 !pb-24 md:!pt-32 md:!pb-32"
       >
         <p className="-mt-6 text-sm text-text-muted">
@@ -192,7 +192,7 @@ Looking forward to your reply.`;
             </p>
           </Card>
           <Card className="min-w-0">
-            <p className="text-xs uppercase tracking-[0.4em] text-accent">Direct contact</p>
+            <p className="text-xs uppercase tracking-[0.4em] text-accent">Contact Horizon Digital</p>
             <p className="mt-4 text-sm text-text-muted">We typically respond within 24 hours.</p>
             <p className="mt-3 text-sm text-text-muted">
               Email or call us for a simple conversation about what makes your business different,
@@ -221,6 +221,14 @@ Looking forward to your reply.`;
                 Whatsapp
               </span>
             </a>
+            <div className="mt-6 rounded-2xl border border-border bg-bg-panel p-4">
+              <p className="text-xs uppercase tracking-[0.2em] text-accent-2">What happens next</p>
+              <ul className="mt-3 space-y-2 text-sm text-text-muted">
+                <li>Your enquiry is reviewed</li>
+                <li>We recommend a suitable package</li>
+                <li>We align scope, timeline, and next steps</li>
+              </ul>
+            </div>
             <div className="mt-8">
               <ShimmerButton
                 shimmerColor="#0b1212"

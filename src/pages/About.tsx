@@ -9,51 +9,52 @@ export default function About() {
     <div>
       <h1 className="sr-only">About Horizon Digital</h1>
       <Seo
-        title="Web Design Company in Seychelles"
-        description="A studio built on clarity, direct communication, and reliable delivery."
+        title="About Horizon Digital"
+        description="Horizon Digital helps businesses create websites that communicate clearly and work effectively."
         path="/about"
-        keywords="web design studio Seychelles"
+        keywords="about Horizon Digital, web design studio Seychelles"
       />
       <Section
         eyebrow="About"
-        title="A studio built on clarity"
-        description="Direct communication, reliable delivery, and practical guidance."
+        title="Helping businesses build better websites"
+        description="Practical solutions for websites that are clearer, faster, and easier to use."
       >
         <div className="grid gap-10 md:grid-cols-2">
           <Card>
-            <h3 className="text-lg font-semibold text-text">Built with intention</h3>
-            <p className="mt-3 text-sm text-text-muted">
-              Horizon Digital is a focused studio that partners directly with local businesses.
-              Every site is designed to attract visitors and turn them into enquiries or bookings
-              — not just look modern.
-            </p>
-          </Card>
-          <Card>
-            <h3 className="text-lg font-semibold text-text">Reliable partnership</h3>
-            <p className="mt-3 text-sm text-text-muted">
-              You work directly with the builder, not a rotating team. The approach is clear,
-              transparent, and designed to support you over time.
-            </p>
-            <ul className="mt-4 space-y-2 text-sm text-text-muted">
-              <li>No handoffs</li>
-              <li>No account managers</li>
-              <li>No layered approvals</li>
-            </ul>
-          </Card>
+              <h3 className="text-lg font-semibold text-text">Built with intention</h3>
+              <p className="mt-3 text-sm text-text-muted">
+                Many businesses struggle with websites that are slow, unclear, or difficult to
+                update. Horizon Digital focuses on fixing those friction points with clearer
+                structure and practical decisions.
+              </p>
+            </Card>
+            <Card>
+              <h3 className="text-lg font-semibold text-text">Customer-journey focus</h3>
+              <p className="mt-3 text-sm text-text-muted">
+                Pages are planned to guide visitors from first impression to enquiry. The goal is a
+                website that helps people understand your services and act confidently.
+              </p>
+              <ul className="mt-4 space-y-2 text-sm text-text-muted">
+                <li>Clarity-first messaging</li>
+                <li>Structured navigation flow</li>
+                <li>Performance-aware builds</li>
+              </ul>
+            </Card>
         </div>
       </Section>
 
       <Section
-        eyebrow="Why this exists"
-        title="Why Horizon Digital exists"
-        description="A simpler, clearer way to build websites."
+        eyebrow="Our approach"
+        title="How we work with businesses"
+        description="Consultation, design, development, launch - with practical communication at each step."
       >
         <Card>
-          <p className="text-sm text-text-muted">
-            After seeing businesses struggle with unclear websites and complex agency processes,
-            Horizon Digital was built to offer something simpler — direct communication, practical
-            solutions, and websites designed for measurable growth.
-          </p>
+          <ul className="grid gap-3 text-sm text-text-muted md:grid-cols-2">
+            <li>Consultation and project scope</li>
+            <li>Design and page structure</li>
+            <li>Development and testing</li>
+            <li>Launch and post-launch stabilisation</li>
+          </ul>
         </Card>
       </Section>
 

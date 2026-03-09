@@ -11,6 +11,7 @@ import {
   growthPackage,
   hostingPlan,
   projectSteps,
+  services,
   servicesPricingIntro,
   siteConfig,
   starterPackage,
@@ -175,12 +176,12 @@ export default function Pricing() {
 
   return (
     <div>
-      <h1 className="sr-only">Services & Pricing</h1>
+      <h1 className="sr-only">Website Design Services and Packages</h1>
       <Seo
-        title="Website Design Pricing in Seychelles"
-        description="Clear packages, add-ons, and hosting for Seychelles businesses."
+        title="Website Packages & Pricing Seychelles"
+        description="Explore Horizon Digital website packages for Seychelles businesses. Clear pricing, professional design, and structured website projects."
         path="/services-pricing"
-        keywords="website pricing Seychelles"
+        keywords="website packages Seychelles, web design pricing Seychelles, website services Seychelles"
         structuredData={[serviceSchema, faqSchema]}
       />
       {passedSectionIds.length > 0 && (
@@ -247,19 +248,27 @@ export default function Pricing() {
         id="overview"
         className={`${compactDesktopSection} ${showSelectedOrAll("overview") ? "lg:!block" : "lg:!hidden"}`}
         eyebrow="Services & Pricing"
-        title={servicesPricingIntro.title}
-        description={servicesPricingIntro.subtitle}
+        title="Website Design Services and Packages"
+        description="Website design services built to help businesses communicate clearly online and convert interest into enquiries." 
       >
         <div id="panel-overview" role="tabpanel" aria-hidden={!showSelectedOrAll("overview")}>
           <p className="text-sm text-text-muted">{servicesPricingIntro.summary}</p>
+          <div className="mt-8 grid gap-6 md:grid-cols-2">
+            {services.slice(0, 5).map((service) => (
+              <Card key={service.title} className="no-scroll-glow !p-5">
+                <h3 className="text-base font-semibold text-accent-2">{service.title}</h3>
+                <p className="mt-3 text-sm text-text-muted">{service.description}</p>
+              </Card>
+            ))}
+          </div>
         </div>
       </Section>
 
       <Section
         id="process"
         eyebrow="How it works"
-        title="How your project works"
-        description="A simple, structured process from start to launch."
+        title="Website project timeline"
+        description="Most projects follow a structured sequence from planning to launch."
         className={`${compactDesktopSection} ${showSelectedOrAll("overview") ? "lg:!block" : "lg:!hidden"}`}
       >
         <div className="section-band section-band-medium relative left-1/2 right-1/2 -mx-[50vw] my-8 w-screen py-16 md:my-10 md:py-20">
@@ -286,8 +295,8 @@ export default function Pricing() {
         id="packages"
         className={`${compactDesktopSection} ${showSelectedOrAll("packages") ? "lg:!block" : "lg:!hidden"}`}
         eyebrow="Packages"
-        title="Choose the right package for your business"
-        description="Foundation, Starter, and Growth side by side for a clear comparison."
+        title="Website packages"
+        description="Foundation, Starter, and Growth with clear scope and starting prices."
       >
         <div id="panel-packages" role="tabpanel" aria-hidden={!showSelectedOrAll("packages")}>
         <div className="grid items-stretch gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -694,6 +703,23 @@ export default function Pricing() {
               Horizon Digital can help you launch with confidence.
             </p>
           </div>
+        </div>
+      </Section>
+
+      <Section
+        id="pricing-faq"
+        eyebrow="Frequently Asked Questions"
+        title="Common questions before starting"
+        description="Straight answers on timeline, redesigns, hosting, and project scope."
+        className={`${compactDesktopSection} ${showSelectedOrAll("overview") ? "lg:!block" : "lg:!hidden"}`}
+      >
+        <div className="grid gap-4">
+          {faqs.slice(0, 4).map((faq) => (
+            <Card key={faq.question} className="no-scroll-glow !p-5">
+              <h3 className="text-base font-semibold text-accent-2">{faq.question}</h3>
+              <p className="mt-3 text-sm text-text-muted">{faq.answer}</p>
+            </Card>
+          ))}
         </div>
       </Section>
 

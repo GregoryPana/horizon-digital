@@ -16,6 +16,7 @@ import {
   foundationPackage,
   growthPackage,
   projectSteps,
+  services,
   siteConfig,
   starterPackage,
   workItems,
@@ -33,9 +34,13 @@ type WorkPreviewItem = {
 
 const homeSectionLinks = [
   { id: "services", label: "Services" },
+  { id: "what-we-build", label: "What we build" },
+  { id: "industries", label: "Industries" },
   { id: "featured-work", label: "Work" },
   { id: "process", label: "Process" },
   { id: "packages", label: "Packages" },
+  { id: "why-us", label: "Why us" },
+  { id: "insights", label: "Insights" },
   { id: "faq", label: "FAQ" },
   { id: "ready", label: "Ready" },
 ] as const;
@@ -190,11 +195,12 @@ export default function Home() {
 
   return (
     <div>
+      <h1 className="sr-only">Clear, Professional Websites for Seychelles Businesses</h1>
       <Seo
-        title="Custom Web Design in Seychelles"
-        description="Custom-built websites for Seychelles businesses. Clean, fast, and structured for clarity and results."
+        title="Website Design Seychelles - Fast Business Websites"
+        description="Custom websites for Seychelles businesses. Clear design, fast performance, and structured packages. Start your website project with Horizon Digital."
         path="/"
-        keywords="Seychelles web design"
+        keywords="website design Seychelles, business websites Seychelles, web design packages Seychelles"
         structuredData={faqSchema}
       />
       <HomeHero />
@@ -252,16 +258,23 @@ export default function Home() {
       <Section
         id="services"
         eyebrow="Services"
-        title="Designed to be clear and reliable"
-        description="Modern websites that help customers understand you and get in touch."
+        title="Website Design That Works for Real Businesses"
+        description="Structured website design services that make the process simple, clear, and practical."
         className="!pt-12 !pb-16 md:!pt-20 md:!pb-24"
       >
         <div className="section-band section-band-strong relative left-1/2 right-1/2 -mx-[50vw] my-8 w-screen py-14 md:my-10 md:py-16">
           <div className="mx-auto w-full max-w-7xl px-8">
-            <p className="max-w-3xl text-sm text-text">
-              We build clean, fast websites with clear structure, thoughtful design, and practical
-              support options. Everything is scoped up front so you know exactly what to expect.
+            <p className="mx-auto max-w-4xl text-sm text-text">
+              Whether you are launching a new business or improving an existing site, the goal is
+              the same: a website that helps customers understand what you do and how to contact
+              you quickly.
             </p>
+            <ul className="mx-auto mt-8 grid max-w-4xl gap-4 text-sm text-text-muted sm:grid-cols-2">
+              <li className="rounded-xl border border-border px-4 py-3">Present your business professionally</li>
+              <li className="rounded-xl border border-border px-4 py-3">Guide customers clearly through your services</li>
+              <li className="rounded-xl border border-border px-4 py-3">Work smoothly on mobile devices</li>
+              <li className="rounded-xl border border-border px-4 py-3">Load quickly and support search visibility</li>
+            </ul>
             <div className="mt-6">
               <Link to="/services-pricing">
                 <ShimmerButton
@@ -270,20 +283,73 @@ export default function Home() {
                   background="#46c6e8"
                   className="px-5 py-2 text-xs font-semibold tracking-[0.12em] text-black"
                 >
-                  View services & pricing
+                  Explore website services and packages
                 </ShimmerButton>
               </Link>
             </div>
           </div>
         </div>
-        <div className="mt-12 horizon-line" />
+      </Section>
+
+      <Section
+        id="what-we-build"
+        eyebrow="What Horizon Digital Builds"
+        title="Core website services"
+        description="Built around clarity, speed, and customer journey structure."
+      >
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {services.slice(0, 5).map((service) => (
+            <Card key={service.title}>
+              <h3 className="text-lg font-semibold text-accent-2">{service.title}</h3>
+              <p className="mt-3 text-sm text-text-muted">{service.description}</p>
+            </Card>
+          ))}
+        </div>
+      </Section>
+
+      <Section
+        id="industries"
+        eyebrow="Built for Seychelles Businesses"
+        title="Websites shaped for real local business needs"
+        description="From hospitality to professional services, structure changes based on how your customers decide."
+      >
+        <div className="grid gap-6 md:grid-cols-2">
+          <Card>
+            <h3 className="text-lg font-semibold text-accent-2">Hospitality Businesses</h3>
+            <p className="mt-3 text-sm text-text-muted">
+              Hotels, guesthouses, and tourism services benefit from clear information, strong visual
+              presentation, and easy booking or enquiry paths.
+            </p>
+          </Card>
+          <Card>
+            <h3 className="text-lg font-semibold text-accent-2">Retail Businesses</h3>
+            <p className="mt-3 text-sm text-text-muted">
+              Retail websites can showcase products, clarify what is available, and make it easy for
+              customers to ask questions or place enquiries.
+            </p>
+          </Card>
+          <Card>
+            <h3 className="text-lg font-semibold text-accent-2">Professional Services</h3>
+            <p className="mt-3 text-sm text-text-muted">
+              Consultants, agencies, and service providers need websites that explain value clearly
+              and guide visitors toward confident contact decisions.
+            </p>
+          </Card>
+          <Card>
+            <h3 className="text-lg font-semibold text-accent-2">Growing Local Businesses</h3>
+            <p className="mt-3 text-sm text-text-muted">
+              Businesses expanding their online presence need a structure that communicates
+              credibility and supports steady growth over time.
+            </p>
+          </Card>
+        </div>
       </Section>
 
       <Section
         id="featured-work"
-        eyebrow="Featured work"
-        title="Selected work and layout previews"
-        description="A focused snapshot of recent builds and layout direction."
+        eyebrow="Selected Website Projects"
+        title="Examples of websites Horizon Digital builds"
+        description="Retail, service, and hospitality website examples with clear business outcomes."
       >
         <HomeWorkAccordion items={workItems} onPreview={setActiveWork} />
         <div className="mt-10 flex justify-center">
@@ -298,9 +364,9 @@ export default function Home() {
 
       <Section
         id="process"
-        eyebrow="Process"
-        title="A clear five-step workflow"
-        description="Simple milestones, direct communication, and reliable delivery."
+        eyebrow="How the website process works"
+        title="A clear five-step project structure"
+        description="Simple milestones from discovery to launch and post-launch support."
       >
         <div className="section-band section-band-medium relative left-1/2 right-1/2 mt-14 -mx-[50vw] mb-8 w-screen py-16 md:mt-16 md:mb-10 md:py-20">
           <div className="mx-auto grid w-full max-w-7xl gap-8 px-8 md:grid-cols-2 lg:grid-cols-5">
@@ -324,9 +390,9 @@ export default function Home() {
 
       <Section
         id="packages"
-        eyebrow="Services & Pricing"
-        title="Website build packages"
-        description="Clear starting points for the build."
+        eyebrow="Website packages"
+        title="Website packages for different business needs"
+        description="Foundation, Starter, and Growth packages with clear scope and pricing."
       >
         <div className="grid items-stretch gap-8 md:grid-cols-2 lg:grid-cols-3">
           <Card className="flex h-full flex-col no-scroll-glow pricing-card pricing-card-foundation">
@@ -535,6 +601,72 @@ export default function Home() {
       </Section>
 
       <Section
+        id="why-us"
+        eyebrow="Why businesses choose Horizon Digital"
+        title="Clear process, practical design, modern performance"
+        description="Every decision is focused on clarity, speed, and better enquiries."
+      >
+        <div className="grid gap-6 md:grid-cols-2">
+          <Card>
+            <h3 className="text-lg font-semibold text-accent-2">Clear Communication</h3>
+            <p className="mt-3 text-sm text-text-muted">
+              The project process stays straightforward from scope to launch, so you always know
+              what is happening next.
+            </p>
+          </Card>
+          <Card>
+            <h3 className="text-lg font-semibold text-accent-2">Practical Website Design</h3>
+            <p className="mt-3 text-sm text-text-muted">
+              Layout and content decisions are made to help visitors understand your offer quickly
+              and take clear action.
+            </p>
+          </Card>
+          <Card>
+            <h3 className="text-lg font-semibold text-accent-2">Modern Performance</h3>
+            <p className="mt-3 text-sm text-text-muted">
+              Fast loading, mobile responsiveness, and clean technical setup improve trust and
+              usability from first visit.
+            </p>
+          </Card>
+          <Card>
+            <h3 className="text-lg font-semibold text-accent-2">Structured Projects</h3>
+            <p className="mt-3 text-sm text-text-muted">
+              A defined milestone flow helps the project move efficiently with fewer delays and
+              better delivery confidence.
+            </p>
+          </Card>
+        </div>
+      </Section>
+
+      <Section
+        id="insights"
+        eyebrow="Digital Insights"
+        title="Digital insights for business owners"
+        description="Simple, practical reads on AI, automation, analytics, and modern digital decisions."
+      >
+        <Card>
+          <ul className="grid gap-3 text-sm text-text-muted md:grid-cols-2">
+            <li>Digital trends affecting small businesses</li>
+            <li>Understanding AI chatbots</li>
+            <li>Why data and analytics matter for growth</li>
+            <li>How automation can save business time</li>
+          </ul>
+          <div className="mt-6">
+            <Link to="/insights">
+              <ShimmerButton
+                shimmerColor="#0b1212"
+                shimmerDuration="4.2s"
+                background="#46c6e8"
+                className="px-5 py-2 text-xs font-semibold tracking-[0.12em] text-black"
+              >
+                Read digital insights
+              </ShimmerButton>
+            </Link>
+          </div>
+        </Card>
+      </Section>
+
+      <Section
         id="faq"
         eyebrow="FAQ"
         title="Clarity before we start"
@@ -561,10 +693,10 @@ export default function Home() {
           <div>
             <p className="text-xs uppercase tracking-[0.4em] text-accent">Ready to build</p>
             <h2 className="mt-3 text-3xl font-semibold text-text md:text-4xl">
-              Empowering Your <span className="text-accent-2">Digital Horizon</span>
+              Start your website project with confidence
             </h2>
             <p className="mt-4 text-sm text-text-muted">
-              Ready for a website that feels clear and easy to use?
+              Tell us about your business and we will guide you through the next steps.
             </p>
           </div>
           <Link to="/contact">
