@@ -12,6 +12,7 @@ import { ShimmerButton } from "../components/ui/shimmer-button";
 import { WordReveal, AccentLine, GlowUnderline } from "../components/ui/animated-text";
 import { Link } from "react-router-dom";
 import { scrollToTopSmooth } from "../lib/utils";
+import { CheckCircle2, ArrowRight } from "lucide-react";
 import {
   customPackage,
   foundationPackage,
@@ -280,7 +281,7 @@ export default function Home() {
               </p>
               <h2 className="section-title mt-4 text-[2rem] font-semibold tracking-[-0.01em] text-text md:text-[3.5rem] md:leading-[1.1]">
                 <WordReveal staggerDelay={0.06}>
-                  Websites designed to be clear and convert
+                  Custom website building in Seychelles, designed to convert
                 </WordReveal>
               </h2>
               <AccentLine className="mt-5 w-24 md:w-36" direction="left" />
@@ -361,10 +362,10 @@ export default function Home() {
               <p className="mt-6 text-base leading-relaxed text-text-muted md:text-lg">
                 Built around clarity, speed, and customer journey structure.
               </p>
-              <div className="mt-10 mb-8 aspect-[4/3] w-full max-w-sm overflow-hidden rounded-2xl bg-bg-panel lg:mb-0">
-                <div className="image-placeholder h-full w-full">
-                  <span className="text-sm font-medium text-text-muted/60">Builds showcase</span>
-                </div>
+              <div className="mt-10 mb-8 aspect-[4/3] w-full max-w-sm overflow-hidden rounded-2xl bg-bg-panel lg:mb-0 relative border border-border/50 shadow-2xl">
+                <img src="/services.png" alt="Custom website in Seychelles for local business" className="w-full h-full object-cover" loading="lazy" />
+                <div className="absolute inset-0 bg-gradient-to-t from-bg-panel/80 to-transparent pointer-events-none" />
+                <span className="absolute bottom-4 left-4 text-sm font-medium text-text-muted">Builds showcase</span>
               </div>
             </motion.div>
             
@@ -607,10 +608,10 @@ export default function Home() {
               Website Packages
             </p>
             <h2 className="section-title mt-3 text-[1.95rem] font-semibold tracking-[-0.01em] text-text md:text-[3.15rem]">
-              Website packages for different needs
+              Website packages for local businesses
             </h2>
-            <p className="section-description mt-4 text-[1.05rem] leading-[1.65] text-text-muted">
-              Foundation, Starter, and Growth packages with clear scope and pricing.
+            <p className="section-description mt-4 text-[1.05rem] leading-[1.65] text-text-muted max-w-2xl mx-auto">
+              Choose from Foundation, Starter, and Growth packages with clear scope and pricing for your custom website in Seychelles. 
             </p>
           </motion.div>
 
@@ -622,33 +623,38 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.25 }}
                 transition={{ duration: 0.4, delay: i * 0.08, ease: "easeOut" }}
-                className={`pkg-banner px-6 py-8 md:px-10 md:py-10 ${
-                  pkg.featured ? "pkg-banner-featured" : ""
-                } last:border-b-0`}
+                className={`pkg-banner px-6 py-8 md:px-10 md:py-10 transition-all duration-300 ${
+                  pkg.featured
+                    ? "relative overflow-hidden pkg-banner-featured shadow-[0_0_40px_rgba(70,198,232,0.15)] bg-gradient-to-r from-accent/5 to-transparent border-t border-b border-accent/20 my-2 z-10 scale-[1.02] rounded-xl"
+                    : "last:border-b-0"
+                }`}
               >
-                <div className="grid items-center gap-6 lg:grid-cols-12 lg:gap-8">
+                {pkg.featured && (
+                  <div className="absolute top-0 right-0 w-64 h-64 bg-accent/10 blur-[80px] rounded-full pointer-events-none" />
+                )}
+                <div className="relative z-10 grid items-center gap-6 lg:grid-cols-12 lg:gap-8">
                   <div className="lg:col-span-4">
                     <div className="flex items-baseline gap-3">
-                      <h3 className="text-xl font-semibold text-accent-2 md:text-2xl">{pkg.title}</h3>
+                      <h3 className={`text-xl font-semibold md:text-2xl ${pkg.featured ? "text-accent" : "text-accent-2"}`}>{pkg.title}</h3>
                       {pkg.featured && (
-                        <span className="rounded-full bg-accent/15 px-2.5 py-0.5 text-[0.62rem] font-semibold uppercase tracking-[0.16em] text-accent">
-                          Popular
+                        <span className="rounded-full bg-accent/20 border border-accent/30 px-3 py-0.5 text-[0.68rem] font-bold uppercase tracking-[0.16em] text-accent">
+                          Best Value
                         </span>
                       )}
                     </div>
-                    <p className="pricing-price mt-2 text-xl font-semibold text-accent md:text-2xl">{pkg.price}</p>
+                    <p className={`pricing-price mt-3 text-2xl font-bold ${pkg.featured ? "text-text" : "text-accent"}`}>{pkg.price}</p>
                     <p className="mt-2 text-sm text-text-muted">{pkg.description}</p>
                   </div>
 
                   <div className="lg:col-span-5">
-                    <div className="flex flex-wrap gap-2">
+                    <div className="grid grid-cols-2 gap-3">
                       {pkg.highlights.map((item) => (
-                        <span
-                          key={item}
-                          className="rounded-full border border-border bg-bg-elev px-3 py-1.5 text-[0.72rem] text-text-muted"
-                        >
-                          {item}
-                        </span>
+                        <div key={item} className="flex items-center gap-2">
+                          <CheckCircle2 className={`w-4 h-4 ${pkg.featured ? "text-accent" : "text-border"}`} />
+                          <span className={`text-[0.8rem] ${pkg.featured ? "text-text" : "text-text-muted"}`}>
+                            {item}
+                          </span>
+                        </div>
                       ))}
                     </div>
                   </div>
@@ -659,11 +665,12 @@ export default function Home() {
                         shimmerColor="#0b1212"
                         shimmerDuration="4.2s"
                         background={pkg.featured ? "#46c6e8" : "#2ca99b"}
-                        className={`px-5 py-2.5 text-xs font-semibold tracking-[0.12em] ${
-                          pkg.featured ? "text-black" : "text-white !border-[#2ca99b] !shadow-none"
+                        className={`px-6 py-3 text-sm font-semibold tracking-[0.12em] flex items-center gap-2 ${
+                          pkg.featured ? "text-black shadow-lg shadow-accent/20" : "text-white !border-[#2ca99b] !shadow-none"
                         }`}
                       >
-                        Discuss your project
+                        See details
+                        <ArrowRight className="w-4 h-4" />
                       </ShimmerButton>
                     </Link>
                   </div>
