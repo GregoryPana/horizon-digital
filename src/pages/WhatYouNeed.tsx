@@ -4,7 +4,7 @@ import Seo from "../components/Seo";
 import { ShimmerButton } from "../components/ui/shimmer-button";
 import { BuildIcon, DomainIcon, HostingIcon, ScenarioIcon } from "../components/ui/symbol-icons";
 import { siteConfig } from "../data/site";
-import WordReveal from "../components/ui/word-reveal";
+import { WordReveal } from "../components/ui/animated-text";
 
 export default function WhatYouNeed() {
   const shouldReduceMotion = useReducedMotion();
@@ -21,7 +21,7 @@ export default function WhatYouNeed() {
     initial: { opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 20 },
     whileInView: { opacity: 1, y: 0 },
     viewport: { once: true, amount: 0.2 },
-    transition: { duration: 0.6, ease: "easeOut" },
+    transition: { duration: 0.6, ease: "easeOut" as const },
   };
 
   return (

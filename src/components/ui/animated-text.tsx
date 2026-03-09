@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, Variants } from "framer-motion";
 
 export const WordReveal = ({
   children,
@@ -22,7 +22,7 @@ export const WordReveal = ({
     }),
   };
 
-  const child = {
+  const child: Variants = {
     visible: {
       opacity: 1,
       y: 0,
@@ -128,7 +128,7 @@ export const CountUp = ({
       className={className}
       initial={{ opacity: 0 }}
       animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration }}
     >
       {isInView ? end : 0}
     </motion.span>

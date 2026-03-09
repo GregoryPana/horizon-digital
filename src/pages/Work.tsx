@@ -9,7 +9,7 @@ import drakeAltOneWebp from "../assets/work/drake-seaside/drake-seaside 2.webp";
 import seykelzMain from "../assets/work/demo-beauty/demo-beauty.jpg";
 import seykelzMainWebp from "../assets/work/demo-beauty/demo-beauty.webp";
 import seykelzAltOne from "../assets/work/demo-beauty/demo-beauty 2.png";
-import WordReveal from "../components/ui/word-reveal";
+import { WordReveal } from "../components/ui/animated-text";
 
 export default function Work() {
   const shouldReduceMotion = useReducedMotion();
@@ -18,7 +18,7 @@ export default function Work() {
     initial: { opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 30 },
     whileInView: { opacity: 1, y: 0 },
     viewport: { once: true, amount: 0.15 },
-    transition: { duration: 0.7, ease: "easeOut" },
+    transition: { duration: 0.7, ease: "easeOut" as const },
   };
 
   return (
@@ -87,7 +87,7 @@ export default function Work() {
                       width={800}
                       height={520}
                       loading="eager"
-                      fetchpriority="high"
+                      fetchPriority="high"
                       decoding="sync"
                       className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
                     />

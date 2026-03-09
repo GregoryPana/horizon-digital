@@ -2,8 +2,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
 import Seo from "../components/Seo";
 import { ShimmerButton } from "../components/ui/shimmer-button";
-import WordReveal from "../components/ui/word-reveal";
-import AccentLine from "../components/ui/accent-line";
+import { WordReveal, AccentLine } from "../components/ui/animated-text";
 
 export default function About() {
   const shouldReduceMotion = useReducedMotion();
@@ -12,7 +11,7 @@ export default function About() {
     initial: { opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 20 },
     whileInView: { opacity: 1, y: 0 },
     viewport: { once: true, amount: 0.2 },
-    transition: { duration: 0.7, ease: "easeOut" },
+    transition: { duration: 0.7, ease: "easeOut" as const },
   };
 
   return (

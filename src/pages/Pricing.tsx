@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import Card from "../components/Card";
 import Section from "../components/Section";
 import Seo from "../components/Seo";
 import {
@@ -388,7 +387,7 @@ export default function Pricing() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="flex h-full flex-col rounded-3xl border border-accent/40 bg-gradient-to-b from-accent/10 to-bg p-8 shadow-[0_0_40px_rgba(70,198,232,0.1)] relative overflow-hidden"
+            className="flex h-full flex-col rounded-3xl border border-accent/40 bg-bg p-8 shadow-[0_0_40px_rgba(70,198,232,0.1)] relative overflow-hidden pricing-card-featured-shine"
           >
               <div className="absolute top-0 right-0 py-1 px-4 text-xs font-semibold bg-accent text-bg rounded-bl-xl tracking-wider uppercase">Most Popular</div>
               <h3 className="text-lg font-semibold text-text">{starterPackage.title}</h3>

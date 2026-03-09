@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import Button from "../components/Button";
-import Card from "../components/Card";
 import Modal from "../components/Modal";
 import Section from "../components/Section";
 import Seo from "../components/Seo";
