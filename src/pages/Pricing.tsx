@@ -178,8 +178,8 @@ export default function Pricing() {
     <div>
       <h1 className="sr-only">Website Design Services and Packages</h1>
       <Seo
-        title="Website Packages & Pricing Seychelles"
-        description="Explore Horizon Digital website packages for Seychelles businesses. Clear pricing, professional design, and structured website projects."
+        title="Website Packages & Pricing Seychelles | Horizon Digital"
+        description="Explore Horizon Digital website packages for Seychelles businesses. Clear pricing, professional design, and structured website projects optimized for Google Core Web Vitals."
         path="/services-pricing"
         keywords="website packages Seychelles, web design pricing Seychelles, website services Seychelles"
         structuredData={[serviceSchema, faqSchema]}
@@ -251,14 +251,14 @@ export default function Pricing() {
         title="Website Design Services and Packages"
         description="Website design services built to help businesses communicate clearly online and convert interest into enquiries." 
       >
-        <div id="panel-overview" role="tabpanel" aria-hidden={!showSelectedOrAll("overview")}>
-          <p className="text-sm text-text-muted">{servicesPricingIntro.summary}</p>
-          <div className="mt-8 grid gap-6 md:grid-cols-2">
+        <div id="panel-overview" role="tabpanel" aria-hidden={!showSelectedOrAll("overview")} className="bg-bg-panel/20 p-8 rounded-2xl border border-white/[0.05]">
+          <p className="text-sm md:text-base text-text-muted max-w-4xl">{servicesPricingIntro.summary}</p>
+          <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {services.slice(0, 5).map((service) => (
-              <Card key={service.title} className="no-scroll-glow !p-5">
+              <div key={service.title} className="p-6 rounded-2xl border border-white/5 bg-bg hover:border-accent/30 transition-colors">
                 <h3 className="text-base font-semibold text-accent-2">{service.title}</h3>
                 <p className="mt-3 text-sm text-text-muted">{service.description}</p>
-              </Card>
+              </div>
             ))}
           </div>
         </div>
@@ -271,20 +271,20 @@ export default function Pricing() {
         description="Most projects follow a structured sequence from planning to launch."
         className={`${compactDesktopSection} ${showSelectedOrAll("overview") ? "lg:!block" : "lg:!hidden"}`}
       >
-        <div className="section-band section-band-medium relative left-1/2 right-1/2 -mx-[50vw] my-8 w-screen py-16 md:my-10 md:py-20">
+        <div className="relative left-1/2 right-1/2 -mx-[50vw] my-8 w-screen py-16 md:my-10 md:py-20 bg-gradient-to-r from-bg-panel/10 via-accent/5 to-bg-panel/10 border-y border-white/[0.03]">
           <div className="mx-auto grid w-full max-w-7xl gap-8 px-5 sm:px-8 md:grid-cols-2 lg:grid-cols-5">
           {projectSteps.map((step, index) => (
             <motion.div
               key={step.title}
               initial={{ opacity: shouldReduceMotion ? 1 : 0, x: shouldReduceMotion ? 0 : 42 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: false, amount: 0.38 }}
+              viewport={{ once: true, amount: 0.38 }}
               transition={{ duration: shouldReduceMotion ? 0 : 0.42, delay: index * 0.06, ease: "easeOut" }}
               className="min-w-0"
             >
-              <p className="text-xs uppercase tracking-[0.4em] text-accent">Step {index + 1}</p>
-              <h3 className="mt-3 text-lg font-semibold text-text">{step.title}</h3>
-              <p className="mt-3 text-sm text-text-muted">{step.description}</p>
+              <p className="text-xs uppercase tracking-[0.4em] text-accent/70 bg-accent/10 inline-block px-3 py-1 rounded-full border border-accent/20">Step {index + 1}</p>
+              <h3 className="mt-4 text-lg font-semibold text-text">{step.title}</h3>
+              <p className="mt-3 text-sm text-text-muted leading-relaxed">{step.description}</p>
             </motion.div>
           ))}
           </div>
@@ -299,14 +299,20 @@ export default function Pricing() {
         description="Foundation, Starter, and Growth with clear scope and starting prices."
       >
         <div id="panel-packages" role="tabpanel" aria-hidden={!showSelectedOrAll("packages")}>
-        <div className="grid items-stretch gap-8 md:grid-cols-2 lg:grid-cols-3">
-          <Card className="flex h-full flex-col no-scroll-glow pricing-card pricing-card-foundation !p-5 md:!p-7">
+        <div className="grid items-stretch gap-8 md:grid-cols-2 lg:grid-cols-3 pt-6">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="flex h-full flex-col rounded-3xl border border-white/10 bg-bg p-8 hover:border-white/20 transition-all"
+          >
             <h3 className="text-lg font-semibold text-accent-2">{foundationPackage.title}</h3>
-            <p className="pricing-price mt-4 text-2xl font-semibold text-accent">{foundationPackage.price}</p>
-            <div className="mt-3 text-sm text-text-muted md:min-h-[140px]">
+            <p className="mt-4 text-3xl font-semibold text-accent">{foundationPackage.price}</p>
+            <div className="mt-4 text-sm text-text-muted md:min-h-[140px]">
               <p>{foundationPackage.description}</p>
-              <p className="mt-3">Includes core build essentials.</p>
+              <p className="mt-3 font-medium text-text">Includes core build essentials.</p>
             </div>
+            
             <button
               type="button"
               onClick={() =>
@@ -325,19 +331,19 @@ export default function Pricing() {
               }`.trim()}
             >
               <div className="space-y-3 overflow-hidden text-sm text-text-muted md:overflow-visible">
-                <ul className="space-y-3 mb-8">
+                <ul className="space-y-3 mb-8 text-white/80">
                   {foundationPackage.includes.map((item) => (
-                    <li key={item} className="flex items-center gap-2">
-                      <span className="text-accent">✓</span>
+                    <li key={item} className="flex items-start gap-3">
+                      <span className="text-accent mt-0.5">✓</span>
                       {item}
                     </li>
                   ))}
                 </ul>
                 <p className="text-xs uppercase tracking-[0.3em] text-text-muted">Not included</p>
-                <ul className="mt-4 space-y-2 text-sm text-text-muted">
+                <ul className="mt-4 space-y-2 text-sm text-white/50">
                   {foundationPackage.exclusions.map((item) => (
-                    <li key={item} className="flex items-start gap-2">
-                      <span className="mt-1.5 h-2 w-2 rounded-full bg-accent" />
+                    <li key={item} className="flex items-start gap-3">
+                      <span className="mt-1.5 h-2 w-2 rounded-full bg-border shrink-0" />
                       {item}
                     </li>
                   ))}
@@ -349,16 +355,11 @@ export default function Pricing() {
                       <li key={term}>{term}</li>
                     ))}
                   </ul>
-                  <div className="mt-6">
-                    <Link to="/contact?budget=9500-15000">
-                      <ShimmerButton
-                        shimmerColor="#0b1212"
-                        shimmerDuration="4.2s"
-                        background="#2ca99b"
-                        className="!border-[#2ca99b] px-5 py-2 text-xs font-semibold tracking-[0.12em] text-white !shadow-none"
-                      >
-                        Discuss your project
-                      </ShimmerButton>
+                  <div className="mt-6 flex justify-center">
+                    <Link to="/contact?budget=9500-15000" className="w-full">
+                      <button className="w-full py-3 rounded-full border border-white/20 hover:bg-white/5 font-semibold text-sm transition-colors text-white">
+                        Discuss project
+                      </button>
                     </Link>
                   </div>
                 </div>
@@ -373,30 +374,33 @@ export default function Pricing() {
               </ul>
               <div className="mt-8">
                 <Link to="/contact?budget=9500-15000">
-                  <ShimmerButton
-                    shimmerColor="#0b1212"
-                    shimmerDuration="4.2s"
-                    background="#2ca99b"
-                    className="!border-[#2ca99b] px-5 py-2 text-xs font-semibold tracking-[0.12em] text-white !shadow-none"
-                  >
-                    Discuss your project
-                  </ShimmerButton>
+                   <button className="w-full py-3 rounded-full border border-white/20 hover:bg-white/5 font-semibold text-sm transition-colors text-white">
+                      Discuss project
+                   </button>
                 </Link>
               </div>
             </div>
-          </Card>
+          </motion.div>
 
-          <Card className="relative flex h-full flex-col overflow-visible pt-8 no-scroll-glow pricing-card pricing-card-featured pricing-card-featured-shine !p-5 md:!p-7">
-              <h3 className="text-lg font-semibold text-accent-2">{starterPackage.title}</h3>
-              <p className="pricing-price mt-4 text-2xl font-semibold text-accent">{starterPackage.price}</p>
-               <div className="mt-3 text-sm text-text-muted md:min-h-[140px]">
+          {/* Starter (Featured) */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="flex h-full flex-col rounded-3xl border border-accent/40 bg-gradient-to-b from-accent/10 to-bg p-8 shadow-[0_0_40px_rgba(70,198,232,0.1)] relative overflow-hidden"
+          >
+              <div className="absolute top-0 right-0 py-1 px-4 text-xs font-semibold bg-accent text-bg rounded-bl-xl tracking-wider uppercase">Most Popular</div>
+              <h3 className="text-lg font-semibold text-text">{starterPackage.title}</h3>
+              <p className="mt-4 text-3xl font-semibold text-text">{starterPackage.price}</p>
+               <div className="mt-4 text-sm text-text-muted md:min-h-[140px]">
                  <p>{starterPackage.description}</p>
-                 <p className="mt-3">Includes core build essentials.</p>
+                 <p className="mt-3 font-medium text-text">Includes core build essentials.</p>
                </div>
               <button
                 type="button"
                 onClick={() => setMobileOpen((prev) => ({ ...prev, starter: !prev.starter }))}
-                className="mt-4 inline-flex w-full items-center justify-between rounded-full border border-border px-4 py-2.5 text-[0.68rem] uppercase tracking-[0.16em] text-text-muted md:hidden"
+                className="mt-4 inline-flex w-full items-center justify-between rounded-full border border-accent/20 px-4 py-2.5 text-[0.68rem] uppercase tracking-[0.16em] text-text-muted md:hidden"
               >
                 <span>View included items</span>
                 <span aria-hidden="true" className="text-accent">
@@ -409,29 +413,29 @@ export default function Pricing() {
                 }`.trim()}
               >
                 <div className="space-y-3 overflow-hidden text-sm text-text-muted md:overflow-visible">
-                  <p className="text-sm font-medium text-text">Includes everything in Foundation, plus:</p>
-                  <ul className="space-y-3">
+                  <p className="text-sm font-semibold text-accent-2 mb-4">Includes everything in Foundation, plus:</p>
+                  <ul className="space-y-3 text-white/90">
                     {starterUniqueIncludes.map((item) => (
-                      <li key={item} className="flex items-center gap-2">
-                        <span className="text-accent">✓</span>
+                      <li key={item} className="flex items-start gap-3">
+                        <span className="text-accent mt-0.5">✓</span>
                         {item}
                       </li>
                     ))}
                   </ul>
-                  <div className="mt-6 md:hidden">
+                  <div className="mt-8 md:hidden">
                     <p className="text-xs uppercase tracking-[0.3em] text-text-muted">Payment terms</p>
                     <ul className="mt-4 space-y-2 text-sm text-text-muted">
                       {starterPackage.paymentTerms.map((term) => (
                         <li key={term}>{term}</li>
                       ))}
                     </ul>
-                    <div className="mt-6">
-                      <Link to="/contact?budget=15000-30000">
+                    <div className="mt-8">
+                      <Link to="/contact?budget=15000-30000" className="w-full">
                         <ShimmerButton
                           shimmerColor="#0b1212"
                           shimmerDuration="4.2s"
                           background="#46c6e8"
-                          className="px-5 py-2 text-xs font-semibold tracking-[0.12em] text-black"
+                          className="w-full px-5 py-3 text-sm font-semibold tracking-wide text-black"
                         >
                           Discuss your project
                         </ShimmerButton>
@@ -453,19 +457,25 @@ export default function Pricing() {
                       shimmerColor="#0b1212"
                       shimmerDuration="4.2s"
                       background="#46c6e8"
-                      className="px-5 py-2 text-xs font-semibold tracking-[0.12em] text-black"
+                      className="w-full px-5 py-3 text-sm font-semibold tracking-wide text-black"
                     >
-                      Discuss your project
+                      Discuss project
                     </ShimmerButton>
                   </Link>
                 </div>
               </div>
-          </Card>
+          </motion.div>
 
-          <Card className="flex h-full flex-col no-scroll-glow pricing-card pricing-card-growth !p-5 md:!p-7">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="flex h-full flex-col rounded-3xl border border-white/10 bg-bg p-8 hover:border-white/20 transition-all"
+          >
             <h3 className="text-lg font-semibold text-accent-2">{growthPackage.title}</h3>
-            <p className="pricing-price mt-4 text-2xl font-semibold text-accent">{growthPackage.price}</p>
-            <div className="mt-3 text-sm text-text-muted md:min-h-[140px]">
+            <p className="mt-4 text-3xl font-semibold text-accent">{growthPackage.price}</p>
+            <div className="mt-4 text-sm text-text-muted md:min-h-[140px]">
               <p>{growthPackage.description}</p>
             </div>
             <button
@@ -484,16 +494,16 @@ export default function Pricing() {
               }`.trim()}
             >
               <div className="space-y-3 overflow-hidden text-sm text-text-muted md:overflow-visible">
-                <p className="text-sm font-medium text-text">Includes everything in Starter, plus:</p>
-                <ul className="space-y-3">
+                <p className="text-sm font-semibold text-white mb-4">Includes everything in Starter, plus:</p>
+                <ul className="space-y-3 text-white/80">
                   {growthUniqueIncludes.map((item) => (
-                    <li key={item} className="flex items-center gap-2">
-                      <span className="text-accent">✓</span>
+                    <li key={item} className="flex items-start gap-3">
+                      <span className="text-accent mt-0.5">✓</span>
                       {item}
                     </li>
                   ))}
                 </ul>
-                <div className="mt-6 md:hidden">
+                <div className="mt-8 md:hidden">
                   <p className="text-xs uppercase tracking-[0.3em] text-text-muted">Payment terms</p>
                   <ul className="mt-4 space-y-2 text-sm text-text-muted">
                     {growthPackage.paymentTerms.map((term) => (
@@ -502,14 +512,9 @@ export default function Pricing() {
                   </ul>
                   <div className="mt-6">
                     <Link to="/contact?budget=30000%2B">
-                      <ShimmerButton
-                        shimmerColor="#0b1212"
-                        shimmerDuration="4.2s"
-                        background="#2ca99b"
-                        className="!border-[#2ca99b] px-5 py-2 text-xs font-semibold tracking-[0.12em] text-white !shadow-none"
-                      >
-                        Discuss your project
-                      </ShimmerButton>
+                      <button className="w-full py-3 rounded-full border border-white/20 hover:bg-white/5 font-semibold text-sm transition-colors text-white">
+                        Discuss project
+                      </button>
                     </Link>
                   </div>
                 </div>
@@ -524,44 +529,37 @@ export default function Pricing() {
               </ul>
               <div className="mt-8">
                 <Link to="/contact?budget=30000%2B">
-                  <ShimmerButton
-                    shimmerColor="#0b1212"
-                    shimmerDuration="4.2s"
-                    background="#2ca99b"
-                    className="!border-[#2ca99b] px-5 py-2 text-xs font-semibold tracking-[0.12em] text-white !shadow-none"
-                  >
-                    Discuss your project
-                  </ShimmerButton>
+                  <button className="w-full py-3 rounded-full border border-white/20 hover:bg-white/5 font-semibold text-sm transition-colors text-white">
+                     Discuss project
+                  </button>
                 </Link>
               </div>
             </div>
-          </Card>
+          </motion.div>
         </div>
-        <div className="mt-10 horizon-line" />
-        <Card className="relative mt-10 flex h-full flex-col no-scroll-glow pricing-card pricing-card-featured-shine pricing-card-featured-shine-muted">
-          <h3 className="text-lg font-semibold text-accent-2">{customPackage.title}</h3>
-          <p className="mt-4 text-2xl font-semibold text-accent">Let's chat</p>
-          <p className="mt-4 text-sm text-text-muted">{customPackage.description}</p>
-          <p className="mt-3 text-sm text-text-muted">
-            For larger businesses or advanced functionality. May include 15+ pages.
-          </p>
-          <p className="mt-4 text-sm text-text-muted">
-            Advanced builds are scoped per project. We will clarify your requirements, then
-            provide a clear proposal and timeline.
-          </p>
-          <div className="mt-8">
-            <Link to="/contact">
-              <ShimmerButton
-                shimmerColor="#0b1212"
-                shimmerDuration="4.2s"
-                background="#46c6e8"
-                className="px-5 py-2 text-xs font-semibold tracking-[0.12em] text-black"
-              >
-                Request a custom scope
-              </ShimmerButton>
-            </Link>
+
+        <div className="mt-16 text-center max-w-2xl mx-auto p-10 rounded-3xl bg-bg-panel/30 border border-white/5 backdrop-blur-sm relative overflow-hidden">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-accent/5 blur-[50px] z-0 pointer-events-none"/>
+          <div className="relative z-10">
+            <h3 className="text-xl font-semibold text-text">{customPackage.title}</h3>
+            <p className="mt-4 text-sm text-text-muted">{customPackage.description}</p>
+            <p className="mt-3 text-sm text-text-muted">
+              For larger businesses or advanced functionality. May include 15+ pages.
+            </p>
+            <div className="mt-8">
+              <Link to="/contact">
+                <ShimmerButton
+                  shimmerColor="#0b1212"
+                  shimmerDuration="4.2s"
+                  background="#46c6e8"
+                  className="px-6 py-3 text-sm font-semibold tracking-wide text-black mx-auto"
+                >
+                  Request a custom scope
+                </ShimmerButton>
+              </Link>
+            </div>
           </div>
-        </Card>
+        </div>
         </div>
       </Section>
 
@@ -577,33 +575,33 @@ export default function Pricing() {
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-2">What hosting means</p>
           <div className="mt-4 space-y-4">
             {hostingPlan.details.map((detail) => (
-              <p key={detail} className="text-sm text-text-muted">
+              <p key={detail} className="text-sm text-text-muted max-w-3xl">
                 {detail}
               </p>
             ))}
           </div>
         </div>
         <div className="mx-auto w-full max-w-5xl">
-          <Card className="!rounded-2xl no-scroll-glow pricing-card">
-            <div className="grid items-start gap-6 p-4 sm:p-7 md:grid-cols-2 md:gap-10 md:p-12">
-              <div className="flex flex-col items-center pb-10 text-center md:pb-0 md:px-10 md:border-r md:border-[color:var(--split-line)]">
-                <p className="mb-5 inline-flex items-center rounded-full border border-accent/45 bg-accent-soft px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.14em] text-accent">
+          <div className="rounded-3xl border border-accent/20 bg-gradient-to-r from-bg via-accent/5 to-bg overflow-hidden shadow-lg shadow-accent/5">
+            <div className="grid items-center gap-6 p-8 sm:p-12 md:grid-cols-2 md:gap-10">
+              <div className="flex flex-col items-center pb-10 text-center md:pb-0 md:px-10 md:border-r md:border-white/10">
+                <p className="mb-5 inline-flex items-center rounded-full border border-accent/45 bg-accent/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-accent">
                   Annual plan
                 </p>
-                <h3 className="text-3xl font-semibold text-accent-2">Hosting Plan</h3>
-                <p className="mt-3 text-lg text-text-muted">For Business Websites of any size</p>
-                <p className="mb-6 mt-10 flex w-full min-h-[4.1rem] items-end justify-center gap-2 text-[clamp(2.55rem,12vw,4.5rem)] font-bold tabular-nums text-accent sm:min-h-[5rem] md:min-h-[5.75rem] md:text-7xl">
-                  <span className="text-[clamp(1.45rem,6.5vw,2.25rem)]">SCR</span>
+                <h3 className="text-3xl font-semibold text-text">Hosting Plan</h3>
+                <p className="mt-3 text-base text-text-muted">For Business Websites of any size</p>
+                <p className="mb-4 mt-8 flex w-full justify-center items-end gap-2 text-5xl font-bold tabular-nums text-accent md:text-6xl">
+                  <span className="text-2xl pb-1">SCR</span>
                   <span className="inline-block leading-none">2,500</span>
                 </p>
                 <p className="min-h-[1.25rem] text-sm text-text-muted">{hostingPlan.billing}</p>
-                <div className="mt-8 flex justify-center">
+                <div className="mt-10">
                   <Link to="/contact">
                     <ShimmerButton
                       shimmerColor="#0b1212"
                       shimmerDuration="4.2s"
                       background="#46c6e8"
-                      className="px-6 py-2.5 text-sm font-semibold text-black"
+                      className="px-8 py-3.5 text-sm font-semibold text-black"
                     >
                       Get started
                     </ShimmerButton>
@@ -611,7 +609,7 @@ export default function Pricing() {
                 </div>
               </div>
               <div className="md:px-10">
-                <ul className="space-y-4 text-base text-text">
+                <ul className="space-y-4 text-base text-text-muted">
                   {hostingPlan.features.map((feature) => (
                     <li key={feature} className="flex items-start gap-3">
                       <span className="mt-0.5 text-accent">✓</span>
@@ -619,10 +617,10 @@ export default function Pricing() {
                     </li>
                   ))}
                 </ul>
-                <p className="mt-8 text-sm text-text-muted">{hostingPlan.note}</p>
+                <p className="mt-8 text-sm text-text-muted/60">{hostingPlan.note}</p>
               </div>
             </div>
-          </Card>
+          </div>
         </div>
         </div>
       </Section>
@@ -635,12 +633,12 @@ export default function Pricing() {
         description="All add-ons are clearly scoped before work begins, if not included in selected tier."
       >
         <div id="panel-addons" role="tabpanel" aria-hidden={!showSelectedOrAll("addons")}>
-        <div className="section-band section-band-soft relative left-1/2 right-1/2 -mx-[50vw] my-8 w-screen py-14 md:my-10 md:py-16">
-          <div className="mx-auto grid w-full max-w-7xl gap-x-10 gap-y-5 px-5 sm:px-8 md:grid-cols-2">
+        <div className="relative left-1/2 right-1/2 -mx-[50vw] my-8 w-screen py-14 md:my-10 md:py-16 bg-bg-panel/20 border-y border-white/5">
+          <div className="mx-auto grid w-full max-w-7xl gap-x-10 gap-y-8 px-5 sm:px-8 md:grid-cols-3">
           {addOnItems.map((item) => (
-            <div key={item.title}>
-              <h3 className="text-base font-semibold text-accent-2">{item.title}</h3>
-              <p className="mt-2 text-sm text-accent">{item.price}</p>
+            <div key={item.title} className="bg-bg border border-white/[0.03] p-6 rounded-2xl hover:border-accent/20 transition-colors">
+              <h3 className="text-base font-semibold text-text">{item.title}</h3>
+              <p className="mt-3 inline-block px-3 py-1 rounded border border-accent/20 bg-accent/5 text-sm font-medium text-accent">{item.price}</p>
             </div>
           ))}
           </div>
@@ -655,32 +653,32 @@ export default function Pricing() {
         description="Included with every website build."
         className={`${compactDesktopSection} ${showSelectedOrAll("overview") ? "lg:!block" : "lg:!hidden"}`}
       >
-        <Card>
-          <div className="grid gap-6 md:grid-cols-2">
-            <div>
-              <p className="text-xs uppercase tracking-[0.3em] text-text-muted">Covers</p>
-              <ul className="mt-4 space-y-3 text-sm text-text-muted">
+        <div className="p-8 md:p-12 rounded-3xl border border-white/10 bg-bg mt-6">
+          <div className="grid gap-10 md:grid-cols-2">
+            <div className="bg-bg-panel/30 p-8 rounded-2xl border border-white/5">
+              <p className="text-xs uppercase tracking-[0.3em] font-semibold text-accent mb-6 flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-accent inline-block"/> Covers</p>
+              <ul className="space-y-4 text-sm text-text-muted">
                 {stabilisationPlan.covers.map((item) => (
-                  <li key={item} className="flex items-center gap-2">
-                    <span className="h-2 w-2 rounded-full bg-accent" />
+                  <li key={item} className="flex items-start gap-3">
+                    <span className="text-accent mt-[1px]">✓</span>
                     {item}
                   </li>
                 ))}
               </ul>
             </div>
-            <div>
-              <p className="text-xs uppercase tracking-[0.3em] text-text-muted">Does not cover</p>
-              <ul className="mt-4 space-y-3 text-sm text-text-muted">
+            <div className="bg-bg-panel/30 p-8 rounded-2xl border border-white/5 opacity-80">
+              <p className="text-xs uppercase tracking-[0.3em] font-semibold text-text-muted mb-6 flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-border inline-block"/> Does not cover</p>
+              <ul className="space-y-4 text-sm text-text-muted">
                 {stabilisationPlan.excludes.map((item) => (
-                  <li key={item} className="flex items-center gap-2">
-                    <span className="h-2 w-2 rounded-full bg-border" />
+                  <li key={item} className="flex items-start gap-3">
+                    <span className="text-border mt-[1px]">✗</span>
                     {item}
                   </li>
                 ))}
               </ul>
             </div>
           </div>
-        </Card>
+        </div>
       </Section>
 
       <Section
@@ -690,19 +688,13 @@ export default function Pricing() {
         description="We focus on speed, clarity, and practical search setup so people can discover your business online."
         className={`${compactDesktopSection} ${showSelectedOrAll("overview") ? "lg:!block" : "lg:!hidden"}`}
       >
-        <div className="section-band section-band-medium relative left-1/2 right-1/2 -mx-[50vw] my-8 w-screen py-14 md:my-10 md:py-16">
-          <div className="mx-auto w-full max-w-7xl px-8">
-            <p className="max-w-4xl text-sm leading-7 text-text">
-              A beautiful website should also be easy to find. We set up each site with clean page
-              structure, clear headings, search-friendly page content, and technical signals that help
-              Google understand what your business offers. In simple terms, your website is built to
-              look professional, load quickly, and appear in front of the right people when they search.
-            </p>
-            <p className="mt-6 text-base font-medium text-accent-2">
-              If you want a website that feels truly yours and is easier for customers to find,
-              Horizon Digital can help you launch with confidence.
-            </p>
-          </div>
+        <div className="mt-8 p-10 md:p-14 rounded-3xl bg-gradient-to-br from-bg-panel/40 to-transparent border border-white/5 text-center">
+          <p className="max-w-4xl mx-auto text-base md:text-lg leading-relaxed text-text-muted">
+            A beautiful website should also be easy to find. We set up each site with clean semantic page structure, clear heading hierarchies, search-friendly page content, optimized Core Web Vitals, and technical signals that help Google seamlessly understand what your business offers. In simple terms, your website is built to perform brilliantly in lighthouse metrics, load instantly on mobile devices, and appear in front of the right local customers when they search.
+          </p>
+          <p className="mt-8 text-lg font-medium text-accent max-w-2xl mx-auto border-t border-accent/20 pt-8">
+            Start a project that feels truly yours and is radically easier for customers to discover.
+          </p>
         </div>
       </Section>
 
@@ -713,30 +705,28 @@ export default function Pricing() {
         description="Straight answers on timeline, redesigns, hosting, and project scope."
         className={`${compactDesktopSection} ${showSelectedOrAll("overview") ? "lg:!block" : "lg:!hidden"}`}
       >
-        <div className="grid gap-4">
+        <div className="grid gap-6 md:grid-cols-2 mt-8">
           {faqs.slice(0, 4).map((faq) => (
-            <Card key={faq.question} className="no-scroll-glow !p-5">
-              <h3 className="text-base font-semibold text-accent-2">{faq.question}</h3>
-              <p className="mt-3 text-sm text-text-muted">{faq.answer}</p>
-            </Card>
+            <div key={faq.question} className="p-8 rounded-2xl bg-bg-panel/10 border border-white/5 hover:bg-bg-panel/20 transition-colors">
+              <h3 className="text-lg font-semibold text-text mb-4">{faq.question}</h3>
+              <p className="text-sm text-text-muted leading-relaxed">{faq.answer}</p>
+            </div>
           ))}
         </div>
       </Section>
 
-      <section className="bg-bg-elev">
-        <div className="mx-auto flex w-full max-w-7xl flex-col items-start gap-10 px-8 py-28 md:flex-row md:items-center md:justify-between">
-          <div>
-            <p className="text-xs uppercase tracking-[0.4em] text-accent">Next step</p>
-            <h2 className="mt-3 text-3xl font-semibold text-text md:text-4xl">
+      <section className="bg-bg-elev border-t border-white/5 mt-16 text-center">
+        <div className="mx-auto w-full max-w-4xl px-8 py-28 md:py-32">
+           <p className="text-xs uppercase tracking-[0.4em] text-accent font-semibold mb-6">Next step</p>
+           <h2 className="text-3xl font-semibold text-text md:text-5xl tracking-tight mb-12">
               Ready to start? Let's define your scope.
-            </h2>
-          </div>
+           </h2>
           <Link to="/contact">
             <ShimmerButton
               shimmerColor="#0b1212"
               shimmerDuration="4.2s"
               background="#46c6e8"
-              className="px-7 py-3.5 text-base font-semibold tracking-[0.08em] text-black"
+              className="px-8 py-4 text-sm font-semibold tracking-widest text-black shadow-lg shadow-accent/20 inline-block"
             >
               Book a free consult
             </ShimmerButton>

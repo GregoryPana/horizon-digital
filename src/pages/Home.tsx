@@ -268,9 +268,9 @@ export default function Home() {
           ══════════════════════════════════════════════════════ */}
       <section id="services" className="services-split-banner overflow-hidden py-20 md:py-32">
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
-          <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
+          <div className="grid items-center gap-16 lg:grid-cols-12 lg:gap-24">
             <motion.div
-              className="lg:col-span-7 relative z-20"
+              className="lg:col-span-6 relative z-20"
               initial={{ opacity: shouldReduceMotion ? 1 : 0, x: shouldReduceMotion ? 0 : -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, amount: 0.3 }}
@@ -325,7 +325,7 @@ export default function Home() {
             </motion.div>
 
             <motion.div
-              className="lg:col-span-5 relative flex items-center justify-center lg:justify-end mt-12 lg:-ml-[25%] xl:-ml-[35%] lg:mt-0 pointer-events-none"
+              className="lg:col-span-6 relative flex items-center justify-center mt-12 lg:mt-0 pointer-events-none"
               initial={{ opacity: shouldReduceMotion ? 1 : 0, filter: "drop-shadow(0px 0px 0px rgba(70,198,232,0))" }}
               whileInView={{ opacity: 1, filter: "drop-shadow(0px 0px 40px rgba(70,198,232,0.3))" }}
               viewport={{ once: true, amount: 0.3 }}
@@ -335,8 +335,9 @@ export default function Home() {
               <img 
                 src="/services 2.png" 
                 alt="Custom Web Design Interfaces in Seychelles" 
-                className="relative z-10 w-full max-w-[500px] lg:max-w-none lg:w-[130%] xl:w-[140%] h-auto object-contain" 
+                className="relative z-10 w-full max-w-[500px] lg:max-w-none lg:w-[110%] xl:w-[120%] h-auto object-contain" 
                 loading="lazy" 
+                decoding="async"
               />
             </motion.div>
           </div>
@@ -622,7 +623,7 @@ export default function Home() {
             </p>
           </motion.div>
 
-          <div className="banner-row rounded-xl border border-border">
+          <div className="banner-row rounded-xl border border-border/80 overflow-hidden shadow-xl">
             {packageBanners.map((pkg, i) => (
               <motion.div
                 key={pkg.title}
@@ -630,35 +631,35 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.25 }}
                 transition={{ duration: 0.4, delay: i * 0.08, ease: "easeOut" }}
-                className={`pkg-banner px-6 py-8 md:px-10 md:py-10 transition-all duration-300 ${
+                className={`pkg-banner px-6 py-8 md:px-10 md:py-10 transition-all duration-300 border-b border-border/60 ${
                   pkg.featured
-                    ? "relative overflow-hidden pkg-banner-featured shadow-[0_0_40px_rgba(70,198,232,0.15)] bg-gradient-to-r from-accent/5 to-transparent border-t border-b border-accent/20 my-2 z-10 scale-[1.02] rounded-xl"
-                    : "last:border-b-0"
+                    ? "relative overflow-hidden pkg-banner-featured shadow-[0_0_50px_rgba(70,198,232,0.2)] bg-gradient-to-r from-accent/10 to-transparent border-t border-b border-accent/30 my-2 z-10 scale-[1.03] rounded-xl"
+                    : "bg-bg-panel/40 hover:bg-bg-panel/60 last:border-b-0"
                 }`}
               >
                 {pkg.featured && (
-                  <div className="absolute top-0 right-0 w-64 h-64 bg-accent/10 blur-[80px] rounded-full pointer-events-none" />
+                  <div className="absolute top-0 right-[-10%] w-[120%] h-full bg-accent/10 blur-[100px] rounded-full pointer-events-none" />
                 )}
                 <div className="relative z-10 grid items-center gap-6 lg:grid-cols-12 lg:gap-8">
                   <div className="lg:col-span-4">
                     <div className="flex items-baseline gap-3">
-                      <h3 className={`text-xl font-semibold md:text-2xl ${pkg.featured ? "text-accent" : "text-accent-2"}`}>{pkg.title}</h3>
+                      <h3 className={`text-xl font-semibold md:text-2xl ${pkg.featured ? "text-accent" : "text-text"}`}>{pkg.title}</h3>
                       {pkg.featured && (
-                        <span className="rounded-full bg-accent/20 border border-accent/30 px-3 py-0.5 text-[0.68rem] font-bold uppercase tracking-[0.16em] text-accent">
+                        <span className="rounded-full bg-accent/20 border border-accent/40 shadow-[0_0_15px_rgba(70,198,232,0.3)] px-3 py-0.5 text-[0.68rem] font-bold uppercase tracking-[0.16em] text-accent">
                           Best Value
                         </span>
                       )}
                     </div>
-                    <p className={`pricing-price mt-3 text-2xl font-bold ${pkg.featured ? "text-text" : "text-accent"}`}>{pkg.price}</p>
-                    <p className="mt-2 text-sm text-text-muted">{pkg.description}</p>
+                    <p className={`pricing-price mt-3 text-2xl font-bold ${pkg.featured ? "text-text" : "text-text/90"}`}>{pkg.price}</p>
+                    <p className={`mt-2 text-sm max-w-sm leading-relaxed ${pkg.featured ? "text-text/80" : "text-text-muted"}`}>{pkg.description}</p>
                   </div>
 
                   <div className="lg:col-span-5">
                     <div className="grid grid-cols-2 gap-3">
                       {pkg.highlights.map((item) => (
                         <div key={item} className="flex items-center gap-2">
-                          <CheckCircle2 className={`w-4 h-4 ${pkg.featured ? "text-accent" : "text-border"}`} />
-                          <span className={`text-[0.8rem] ${pkg.featured ? "text-text" : "text-text-muted"}`}>
+                          <CheckCircle2 className={`w-4 h-4 ${pkg.featured ? "text-accent shadow-accent drop-shadow-md" : "text-accent-2/80"}`} />
+                          <span className={`text-[0.85rem] font-medium ${pkg.featured ? "text-text" : "text-text/80"}`}>
                             {item}
                           </span>
                         </div>
@@ -810,35 +811,53 @@ export default function Home() {
               
               <div className="relative min-h-[350px] lg:col-span-5 lg:min-h-full flex items-center justify-center p-8 lg:p-12 overflow-visible">
                 <div className="absolute inset-0 bg-gradient-to-r from-bg-panel/30 to-transparent z-0 lg:hidden pointer-events-none" />
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full lg:w-[150%] lg:h-[120%] bg-accent/20 blur-[130px] rounded-full z-0 pointer-events-none" />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full lg:w-[150%] lg:h-[120%] bg-accent/25 blur-[140px] rounded-full z-0 pointer-events-none" />
 
                 <div className="relative z-10 flex h-full w-full max-w-[400px] lg:max-w-none lg:w-[160%] lg:absolute lg:top-1/2 lg:-translate-y-1/2 lg:-left-24 items-center justify-center pt-8 pr-12 lg:pr-0 pointer-events-none">
                   <motion.div
-                    className="absolute left-0 lg:left-0 top-1/2 w-52 lg:w-64 -translate-y-[45%] rounded-[1.25rem] shadow-[0_0_50px_rgba(70,198,232,0.25)] border-2 border-accent/20 z-10"
+                    className="absolute left-0 lg:left-0 top-1/2 w-52 lg:w-64 -translate-y-[45%] rounded-[1.25rem] shadow-[0_0_60px_rgba(70,198,232,0.3)] border-2 border-accent/30 z-10"
                     initial={{ opacity: 0, x: -30, rotate: -4 }}
                     whileInView={{ opacity: 1, x: 0, rotate: -4 }}
+                    animate={{ y: [-15, 5, -15], rotate: [-4, -2, -4] }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
+                    transition={{ 
+                      opacity: { duration: 0.6, delay: 0.2 },
+                      x: { duration: 0.6, delay: 0.2 },
+                      y: { duration: 5, repeat: Infinity, ease: "easeInOut" },
+                      rotate: { duration: 6, repeat: Infinity, ease: "easeInOut" }
+                    }}
                   >
                     <img src="/digital trends 1.png" alt="Digital trends affecting small businesses" className="w-full h-auto rounded-xl object-cover" />
                   </motion.div>
                   
                   <motion.div
-                    className="absolute left-[20%] lg:left-[22%] top-1/2 w-60 lg:w-[18rem] -translate-y-[48%] rounded-[1.25rem] shadow-[0_0_70px_rgba(70,198,232,0.35)] border-2 border-accent/30 z-20"
+                    className="absolute left-[20%] lg:left-[22%] top-1/2 w-60 lg:w-[18rem] -translate-y-[48%] rounded-[1.25rem] shadow-[0_0_80px_rgba(70,198,232,0.45)] border-2 border-accent/40 z-20"
                     initial={{ opacity: 0, x: -10 }}
                     whileInView={{ opacity: 1, x: 0 }}
+                    animate={{ y: [-10, 10, -10], scale: [1, 1.02, 1] }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.3 }}
+                    transition={{ 
+                      opacity: { duration: 0.6, delay: 0.3 },
+                      x: { duration: 0.6, delay: 0.3 },
+                      y: { duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 },
+                      scale: { duration: 5.5, repeat: Infinity, ease: "easeInOut" }
+                    }}
                   >
                     <img src="/digital trends 2.png" alt="Understanding AI chatbots" className="w-full h-auto rounded-xl object-cover" />
                   </motion.div>
 
                   <motion.div
-                    className="absolute left-[40%] lg:left-[45%] top-1/2 w-64 lg:w-[22rem] -translate-y-[52%] rounded-[1.25rem] shadow-[0_0_100px_rgba(70,198,232,0.5)] border-2 border-accent/40 z-30"
+                    className="absolute left-[40%] lg:left-[45%] top-1/2 w-64 lg:w-[22rem] -translate-y-[52%] rounded-[1.25rem] shadow-[0_0_120px_rgba(70,198,232,0.6)] border-2 border-accent/50 z-30"
                     initial={{ opacity: 0, x: 20, rotate: 3 }}
                     whileInView={{ opacity: 1, x: 0, rotate: 3 }}
+                    animate={{ y: [-5, 15, -5], rotate: [3, 5, 3] }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.4 }}
+                    transition={{ 
+                      opacity: { duration: 0.6, delay: 0.4 },
+                      x: { duration: 0.6, delay: 0.4 },
+                      y: { duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 },
+                      rotate: { duration: 7, repeat: Infinity, ease: "easeInOut" }
+                    }}
                   >
                     <img src="/digital trends 3.png" alt="Why data and analytics matter" className="w-full h-auto rounded-xl object-cover" />
                   </motion.div>
