@@ -649,10 +649,10 @@ export default function Home() {
                 )}
                 <div className="relative z-10 grid items-center gap-6 lg:grid-cols-12 lg:gap-8">
                   <div className="lg:col-span-4">
-                    <div className="flex items-baseline gap-3">
-                      <h3 className={`text-xl font-semibold md:text-2xl ${pkg.title === "Foundation" ? "text-accent-2" : "text-accent drop-shadow-[0_0_8px_rgba(70,198,232,0.4)]"}`}>{pkg.title}</h3>
+                    <div className="flex flex-wrap items-center gap-3">
+                      <h3 className="text-xl font-semibold md:text-2xl text-accent-2">{pkg.title}</h3>
                       {pkg.featured && (
-                        <span className="rounded-full bg-accent/20 border border-accent/40 shadow-[0_0_15px_rgba(70,198,232,0.3)] px-3 py-0.5 text-[0.68rem] font-bold uppercase tracking-[0.16em] text-accent">
+                        <span className="shrink-0 rounded-full bg-accent/20 border border-accent/40 shadow-[0_0_15px_rgba(70,198,232,0.3)] px-3 py-0.5 text-[0.68rem] font-bold uppercase tracking-[0.16em] text-accent">
                           Best Value
                         </span>
                       )}
