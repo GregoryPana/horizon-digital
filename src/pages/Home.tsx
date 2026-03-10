@@ -429,7 +429,7 @@ export default function Home() {
             </p>
           </motion.div>
 
-          <div className="mt-16 grid gap-0 md:grid-cols-2 lg:grid-cols-12">
+          <div className="mt-16 grid gap-6 lg:gap-8 md:grid-cols-2 lg:grid-cols-12">
             {[
               {
                 title: "Hospitality Businesses",
@@ -437,6 +437,7 @@ export default function Home() {
                 span: "lg:col-span-7",
                 bg: "bg-bg-panel/30",
                 img: "/hospitality.png",
+                slideDirection: -40, // slides from left
               },
               {
                 title: "Retail Businesses",
@@ -444,6 +445,7 @@ export default function Home() {
                 span: "lg:col-span-5",
                 bg: "bg-bg-panel/50",
                 img: "/retail.png",
+                slideDirection: 40, // slides from right
               },
               {
                 title: "Professional Services",
@@ -451,6 +453,7 @@ export default function Home() {
                 span: "lg:col-span-5",
                 bg: "bg-bg-panel/50",
                 img: "/professional services.png",
+                slideDirection: -40, // slides from left
               },
               {
                 title: "Growing Local Businesses",
@@ -458,15 +461,16 @@ export default function Home() {
                 span: "lg:col-span-7",
                 bg: "bg-bg-panel/30",
                 img: "/growing local business.png",
+                slideDirection: 40, // slides from right
               },
             ].map((industry, i) => (
               <motion.div
                 key={industry.title}
-                initial={{ opacity: shouldReduceMotion ? 1 : 0, scale: shouldReduceMotion ? 1 : 0.96 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.5, delay: i * 0.1, ease: "easeOut" }}
-                className={`${industry.span} ${industry.bg} group flex flex-col justify-between border border-border/40 p-10 transition-colors hover:bg-bg-panel/80 md:p-14`}
+                initial={{ opacity: shouldReduceMotion ? 1 : 0, x: shouldReduceMotion ? 0 : industry.slideDirection, y: shouldReduceMotion ? 0 : 30 }}
+                whileInView={{ opacity: 1, x: 0, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.7, delay: i * 0.1, ease: "easeOut" }}
+                className={`${industry.span} ${industry.bg} group flex flex-col justify-between rounded-3xl border border-border/40 p-10 transition-colors shadow-lg hover:border-accent/30 hover:bg-bg-panel/80 md:p-14`}
               >
                 <div>
                   <h3 className="text-xl font-semibold text-text md:text-3xl">
@@ -476,7 +480,7 @@ export default function Home() {
                     {industry.desc}
                   </p>
                 </div>
-                <div className="mt-12 h-64 md:h-80 w-full overflow-hidden rounded-xl border border-border/40 shadow-2xl relative isolate transition-transform duration-500 group-hover:scale-[1.02]">
+                <div className="mt-12 h-64 md:h-80 w-full overflow-hidden rounded-2xl border border-border/30 shadow-[0_0_50px_rgba(70,198,232,0.25)] dark:shadow-[0_0_40px_rgba(70,198,232,0.15)] relative isolate transition-transform duration-500 group-hover:scale-[1.02]">
                   <div className="absolute inset-0 z-10 bg-gradient-to-t from-bg-panel/90 md:from-bg-panel/70 to-transparent pointer-events-none" />
                   <img src={industry.img} alt={industry.title} className="w-full h-full object-cover object-top" loading="lazy" />
                 </div>
