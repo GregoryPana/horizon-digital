@@ -636,12 +636,12 @@ export default function Home() {
                 key={pkg.title}
                 initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false, amount: 0.25 }}
-                transition={{ duration: 0.4, delay: i * 0.08, ease: "easeOut" }}
+                viewport={{ once: false, amount: 0.5 }}
+                transition={{ duration: 0.7, delay: i * 0.15 + 0.2, ease: "easeOut" }}
                 className={`pkg-banner px-6 py-8 md:px-10 md:py-10 transition-all duration-300 border-b border-border/60 ${
                   pkg.featured
-                    ? "relative overflow-hidden pkg-banner-featured shadow-[0_0_50px_rgba(70,198,232,0.2)] bg-gradient-to-r from-accent/10 to-transparent border-t border-b border-accent/30 my-2 z-10 scale-[1.03] rounded-xl"
-                    : "bg-bg-panel/60 hover:bg-bg-panel/90 last:border-b-0"
+                    ? "relative overflow-hidden pkg-banner-featured shadow-[0_0_50px_rgba(70,198,232,0.2)] bg-[#eef4fb] dark:bg-[#0f1b2d] bg-gradient-to-r from-accent/10 via-accent/5 to-transparent border-t border-b border-accent/30 my-2 z-10 scale-[1.03] rounded-xl"
+                    : "bg-[#f2f8ff] dark:bg-[#152238] border-transparent last:border-b-0"
                 }`}
               >
                 {pkg.featured && (
@@ -650,23 +650,23 @@ export default function Home() {
                 <div className="relative z-10 grid items-center gap-6 lg:grid-cols-12 lg:gap-8">
                   <div className="lg:col-span-4">
                     <div className="flex items-baseline gap-3">
-                      <h3 className={`text-xl font-semibold md:text-2xl ${pkg.featured ? "text-accent" : "text-text"}`}>{pkg.title}</h3>
+                      <h3 className={`text-xl font-semibold md:text-2xl text-text`}>{pkg.title}</h3>
                       {pkg.featured && (
                         <span className="rounded-full bg-accent/20 border border-accent/40 shadow-[0_0_15px_rgba(70,198,232,0.3)] px-3 py-0.5 text-[0.68rem] font-bold uppercase tracking-[0.16em] text-accent">
                           Best Value
                         </span>
                       )}
                     </div>
-                    <p className={`pricing-price mt-3 text-2xl font-bold text-text ${pkg.featured ? "" : "opacity-90"}`}>{pkg.price}</p>
-                    <p className={`mt-2 text-sm max-w-sm leading-relaxed ${pkg.featured ? "text-text opacity-90" : "text-text-muted"}`}>{pkg.description}</p>
+                    <p className={`pricing-price mt-3 text-2xl font-bold text-text`}>{pkg.price}</p>
+                    <p className={`mt-2 text-sm max-w-sm leading-relaxed text-text`}>{pkg.description}</p>
                   </div>
 
                   <div className="lg:col-span-5">
                     <div className="grid grid-cols-2 gap-3">
                       {pkg.highlights.map((item) => (
                         <div key={item} className="flex items-center gap-2">
-                          <CheckCircle2 className={`w-4 h-4 ${pkg.featured ? "text-accent shadow-accent drop-shadow-md" : "text-accent-2 opacity-80"}`} />
-                          <span className={`text-[0.85rem] font-medium text-text ${pkg.featured ? "" : "opacity-80"}`}>
+                          <CheckCircle2 className={`w-4 h-4 text-accent ${pkg.featured ? "shadow-accent drop-shadow-md" : ""}`} />
+                          <span className={`text-[0.85rem] font-medium text-text`}>
                             {item}
                           </span>
                         </div>

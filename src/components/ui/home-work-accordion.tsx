@@ -20,7 +20,7 @@ export default function HomeWorkAccordion({ items, onPreview }: HomeWorkAccordio
   const [openIndex, setOpenIndex] = useState(items.length > 1 ? 1 : 0);
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-border bg-bg-elev/95">
+    <div className="overflow-hidden rounded-2xl border border-border bg-[#eef4fb] dark:bg-[#0f1b2d]">
       {items.map((item, index) => {
         const isOpen = index === openIndex;
         const itemId = `${String(index + 1).padStart(2, "0")}`;
@@ -33,11 +33,11 @@ export default function HomeWorkAccordion({ items, onPreview }: HomeWorkAccordio
             <button
               type="button"
               onClick={() => setOpenIndex(isOpen ? -1 : index)}
-              className="flex w-full items-center justify-between gap-4 px-4 py-4 text-left md:px-6 md:py-5"
+              className="flex w-full items-center justify-between gap-4 px-4 py-4 text-left hover:bg-black/5 dark:hover:bg-white/5 md:px-6 md:py-5 transition-colors"
               aria-expanded={isOpen}
             >
               <div className="flex min-w-0 items-start gap-3 md:gap-4">
-                <span className="mt-0.5 inline-flex h-6 min-w-8 items-center justify-center rounded-md border border-border bg-bg px-1.5 text-[0.62rem] font-semibold tracking-[0.18em] text-text-muted md:h-7 md:min-w-9 md:text-[0.65rem]">
+                <span className="mt-0.5 inline-flex h-6 min-w-8 items-center justify-center rounded-md border border-border bg-transparent px-1.5 text-[0.62rem] font-semibold tracking-[0.18em] text-accent-soft md:h-7 md:min-w-9 md:text-[0.65rem]">
                   {itemId}
                 </span>
                 <div className="min-w-0">
@@ -56,7 +56,7 @@ export default function HomeWorkAccordion({ items, onPreview }: HomeWorkAccordio
             </button>
 
             <div
-              className={`grid transition-[grid-template-rows,opacity] duration-300 ease-out ${
+              className={`grid transition-[grid-template-rows,opacity] duration-300 ease-out bg-black/5 dark:bg-white/5 ${
                 isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
               }`.trim()}
             >
