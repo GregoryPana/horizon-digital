@@ -129,6 +129,61 @@ export default function WhatYouNeed() {
         </div>
       </section>
 
+      {/* Educational Basics Section */}
+      <section className="py-24 md:py-32 relative bg-gradient-to-b from-transparent to-bg-panel/20">
+        <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 relative z-10">
+          <motion.div className="mb-16 max-w-3xl mx-auto text-center" {...fadeInUp}>
+            <p className="text-xs uppercase tracking-[0.3em] font-semibold text-accent mb-4">How it works</p>
+            <h2 className="text-3xl md:text-5xl font-semibold text-text mb-6 tracking-tight">The three pieces of a website</h2>
+            <p className="text-lg text-text-muted">
+              Whether you build with Horizon Digital or someone else, every website needs three fundamental pieces to exist on the internet.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <motion.div 
+              className="bg-bg-elev p-8 rounded-3xl border border-border shadow-lg flex flex-col items-center text-center hover:border-accent/40 transition-colors"
+              {...fadeInUp}
+            >
+              <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mb-6">
+                <span className="text-2xl">1</span>
+              </div>
+              <h3 className="text-xl font-semibold text-text mb-4">The Domain Name</h3>
+              <p className="text-sm text-text-muted leading-relaxed">
+                This is your address on the internet (like <span className="text-text font-medium">yourbusiness.sc</span>). You rent this name from a domain registrar annually. It is best practice to register this yourself so you always legally own your name.
+              </p>
+            </motion.div>
+
+            <motion.div 
+              className="bg-bg-elev p-8 rounded-3xl border border-border shadow-lg flex flex-col items-center text-center hover:border-accent/40 transition-colors relative overflow-hidden"
+              {...fadeInUp} transition={{ delay: 0.1 }}
+            >
+              <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-accent/50 to-transparent"></div>
+              <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mb-6">
+                <span className="text-2xl">2</span>
+              </div>
+              <h3 className="text-xl font-semibold text-text mb-4">Design & Build</h3>
+              <p className="text-sm text-text-muted leading-relaxed">
+                This is the actual work of creating the visual layouts, formatting your content, and writing the code. This is a one-off project that creates your website files (what we specialize in).
+              </p>
+            </motion.div>
+
+            <motion.div 
+              className="bg-bg-elev p-8 rounded-3xl border border-border shadow-lg flex flex-col items-center text-center hover:border-accent/40 transition-colors"
+              {...fadeInUp} transition={{ delay: 0.2 }}
+            >
+              <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mb-6">
+                <span className="text-2xl">3</span>
+              </div>
+              <h3 className="text-xl font-semibold text-text mb-4">The Hosting</h3>
+              <p className="text-sm text-text-muted leading-relaxed">
+                Once built, your website files need somewhere to "live" online 24/7. Hosting is the server space where your website runs. This can be securely managed by us, or a provider of your choice.
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* Package Fit / Scenario Banners */}
       <section className="py-24 md:py-32 relative">
          <div className="absolute top-0 right-0 w-1/2 h-full bg-[radial-gradient(circle_at_top_right,rgba(70,198,232,0.05)_0%,transparent_50%)] pointer-events-none"/>
