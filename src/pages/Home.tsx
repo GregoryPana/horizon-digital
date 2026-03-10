@@ -429,48 +429,57 @@ export default function Home() {
             </p>
           </motion.div>
 
-          <div className="mt-16 grid gap-6 lg:gap-8 md:grid-cols-2 lg:grid-cols-12">
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.15 }}
+            className="mt-16 grid gap-6 lg:gap-8 md:grid-cols-2 lg:grid-cols-12"
+          >
             {[
               {
                 title: "Hospitality Businesses",
                 desc: "Hotels, guesthouses, and tourism services benefit from clear information, strong visual presentation, and easy booking or enquiry paths.",
                 span: "lg:col-span-7",
-                bg: "bg-bg-panel/30",
+                bg: "bg-bg-panel/30 dark:bg-bg-panel/60",
                 img: "/hospitality.png",
-                slideDirection: -40, // slides from left
+                slideDirection: -50,
+                delay: 0,
               },
               {
                 title: "Retail Businesses",
                 desc: "Retail websites can showcase products, clarify what is available, and make it easy for customers to ask questions or place enquiries.",
                 span: "lg:col-span-5",
-                bg: "bg-bg-panel/50",
+                bg: "bg-bg-panel/50 dark:bg-bg-panel/80",
                 img: "/retail.png",
-                slideDirection: 40, // slides from right
+                slideDirection: 50,
+                delay: 0.4,
               },
               {
                 title: "Professional Services",
                 desc: "Consultants, agencies, and service providers need websites that explain value clearly and guide visitors toward confident contact decisions.",
                 span: "lg:col-span-5",
-                bg: "bg-bg-panel/50",
+                bg: "bg-bg-panel/50 dark:bg-bg-panel/80",
                 img: "/professional services.png",
-                slideDirection: -40, // slides from left
+                slideDirection: -50,
+                delay: 0.4,
               },
               {
                 title: "Growing Local Businesses",
                 desc: "Businesses expanding their online presence need a structure that communicates credibility and supports steady growth over time.",
                 span: "lg:col-span-7",
-                bg: "bg-bg-panel/30",
+                bg: "bg-bg-panel/30 dark:bg-bg-panel/60",
                 img: "/growing local business.png",
-                slideDirection: 40, // slides from right
+                slideDirection: 50,
+                delay: 0,
               },
-            ].map((industry, i) => (
+            ].map((industry) => (
               <motion.div
                 key={industry.title}
-                initial={{ opacity: shouldReduceMotion ? 1 : 0, x: shouldReduceMotion ? 0 : industry.slideDirection, y: shouldReduceMotion ? 0 : 30 }}
-                whileInView={{ opacity: 1, x: 0, y: 0 }}
-                viewport={{ once: false, amount: 0.2 }}
-                transition={{ duration: 0.7, delay: i * 0.1, ease: "easeOut" }}
-                className={`${industry.span} ${industry.bg} group flex flex-col justify-between rounded-3xl border border-border/40 p-10 transition-colors shadow-lg hover:border-accent/30 hover:bg-bg-panel/80 md:p-14`}
+                variants={{
+                  hidden: { opacity: shouldReduceMotion ? 1 : 0, x: shouldReduceMotion ? 0 : industry.slideDirection, y: shouldReduceMotion ? 0 : 30 },
+                  visible: { opacity: 1, x: 0, y: 0, transition: { duration: 0.75, delay: industry.delay, ease: [0.16, 1, 0.3, 1] } }
+                }}
+                className={`${industry.span} ${industry.bg} group flex flex-col justify-between rounded-3xl border border-border/40 p-10 transition-colors shadow-lg hover:border-accent/30 hover:bg-bg-panel/80 dark:hover:bg-bg-panel md:p-14`}
               >
                 <div>
                   <h3 className="text-xl font-semibold text-text md:text-3xl">
@@ -480,13 +489,13 @@ export default function Home() {
                     {industry.desc}
                   </p>
                 </div>
-                <div className="mt-12 h-64 md:h-80 w-full overflow-hidden rounded-2xl border border-border/30 shadow-[0_0_50px_rgba(70,198,232,0.25)] dark:shadow-[0_0_40px_rgba(70,198,232,0.15)] relative isolate transition-transform duration-500 group-hover:scale-[1.02]">
+                <div className="mt-12 h-64 md:h-80 w-full overflow-hidden rounded-2xl border border-border/30 shadow-[0_0_50px_rgba(70,198,232,0.25)] dark:shadow-[0_0_50px_rgba(70,198,232,0.18)] relative isolate transition-transform duration-500 group-hover:scale-[1.02]">
                   <div className="absolute inset-0 z-10 bg-gradient-to-t from-bg-panel/90 md:from-bg-panel/70 to-transparent pointer-events-none" />
                   <img src={industry.img} alt={industry.title} className="w-full h-full object-cover object-top" loading="lazy" />
                 </div>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
 
           <div className="mt-16 flex justify-center">
             <Link to="/contact">
