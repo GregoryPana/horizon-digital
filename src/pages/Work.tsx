@@ -131,7 +131,7 @@ export default function Work() {
                     />
                   </picture>
                   <div className="w-full flex justify-start -mt-16 sm:-mt-24 sm:-mr-12 relative z-20 pointer-events-none pl-8 sm:pl-0">
-                    <picture className="block rounded-xl overflow-hidden shadow-2xl border border-border w-2/3 md:w-1/2 bg-bg">
+                    <picture className="block rounded-xl overflow-hidden shadow-2xl border border-border w-2/3 md:w-1/2">
                       <img
                         src={seykelzAltOne}
                         alt="Beauty demo services detail interface"
@@ -139,7 +139,7 @@ export default function Work() {
                         height={400}
                         loading="lazy"
                         decoding="async"
-                        className="w-full h-auto mix-blend-lighten"
+                        className="w-full h-auto"
                       />
                     </picture>
                   </div>
