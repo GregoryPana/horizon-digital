@@ -332,7 +332,7 @@ export default function Home() {
             >
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-accent/30 blur-[120px] rounded-full z-0" />
               <img 
-                src="/services 2.png" 
+                src="/services-updated.png" 
                 alt="Custom Web Design Interfaces in Seychelles" 
                 className="relative z-10 w-full max-w-[500px] lg:max-w-none lg:w-[110%] xl:w-[120%] h-auto object-contain" 
                 loading="lazy" 
