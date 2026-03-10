@@ -326,11 +326,11 @@ export default function Home() {
             <motion.div
               className="lg:col-span-6 relative flex items-center justify-center mt-12 lg:mt-0 pointer-events-none"
               initial={{ opacity: shouldReduceMotion ? 1 : 0, filter: "drop-shadow(0px 0px 0px rgba(70,198,232,0))" }}
-              whileInView={{ opacity: 1, filter: "drop-shadow(0px 0px 40px rgba(70,198,232,0.3))" }}
+              whileInView={{ opacity: 1, filter: "drop-shadow(0px 0px 40px rgba(70,198,232,0.5))" }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
             >
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-accent/15 blur-[100px] rounded-full z-0" />
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-accent/30 blur-[120px] rounded-full z-0" />
               <img 
                 src="/services 2.png" 
                 alt="Custom Web Design Interfaces in Seychelles" 
