@@ -10,7 +10,7 @@ export default function About() {
   const fadeIn = {
     initial: { opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 20 },
     whileInView: { opacity: 1, y: 0 },
-    viewport: { once: false, amount: 0.2 },
+    viewport: { once: false, amount: 0.4 },
     transition: { duration: 0.7, ease: "easeOut" as const },
   };
 

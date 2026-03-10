@@ -30,7 +30,7 @@ export default function Section({
           <motion.div
             initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 24 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.35, margin: "0px 0px -12% 0px" }}
+            viewport={{ once: false, amount: 0.4, margin: "0px 0px -12% 0px" }}
             transition={{ duration: shouldReduceMotion ? 0 : 0.4, ease: "easeOut" }}
             className="mx-auto mb-10 max-w-3xl text-center md:mb-12"
           >
@@ -52,7 +52,7 @@ export default function Section({
         <motion.div
           initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.14, margin: "0px 0px -8% 0px" }}
+          viewport={{ once: false, amount: 0.4, margin: "0px 0px -8% 0px" }}
           transition={{ duration: shouldReduceMotion ? 0 : 0.36, ease: "easeOut" }}
         >
           {children}

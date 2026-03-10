@@ -272,7 +272,7 @@ export default function Home() {
               className="lg:col-span-6 relative z-20"
               initial={{ opacity: shouldReduceMotion ? 1 : 0, x: shouldReduceMotion ? 0 : -30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: false, amount: 0.3 }}
+              viewport={{ once: false, amount: 0.4 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
             >
               <p className="text-xs font-semibold uppercase tracking-[0.32em] text-accent section-eyebrow-glow">
@@ -327,7 +327,7 @@ export default function Home() {
               className="lg:col-span-6 relative flex items-center justify-center mt-12 lg:mt-0 pointer-events-none"
               initial={{ opacity: shouldReduceMotion ? 1 : 0, filter: "drop-shadow(0px 0px 0px rgba(70,198,232,0))" }}
               whileInView={{ opacity: 1, filter: "drop-shadow(0px 0px 40px rgba(70,198,232,0.5))" }}
-              viewport={{ once: false, amount: 0.3 }}
+              viewport={{ once: false, amount: 0.4 }}
               transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
             >
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-accent/30 blur-[120px] rounded-full z-0" />
@@ -353,7 +353,7 @@ export default function Home() {
               className="lg:col-span-5 lg:sticky lg:top-32"
               initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false, amount: 0.3 }}
+              viewport={{ once: false, amount: 0.4 }}
               transition={{ duration: 0.5, ease: "easeOut" }}
             >
               <p className="text-xs font-semibold uppercase tracking-[0.32em] text-accent section-eyebrow-glow">
@@ -380,7 +380,7 @@ export default function Home() {
                     key={service.title}
                     initial={{ opacity: shouldReduceMotion ? 1 : 0, x: shouldReduceMotion ? 0 : 30 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: false, amount: 0.3 }}
+                    viewport={{ once: false, amount: 0.4 }}
                     transition={{ duration: 0.5, delay: idx * 0.1, ease: "easeOut" }}
                     className="group border-b border-border/40 pb-8 last:border-0"
                   >
@@ -412,7 +412,7 @@ export default function Home() {
           <motion.div
             initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.3 }}
+            viewport={{ once: false, amount: 0.4 }}
             className="text-center"
           >
             <p className="text-xs font-semibold uppercase tracking-[0.32em] text-accent section-eyebrow-glow">
@@ -472,7 +472,7 @@ export default function Home() {
                 key={industry.title}
                 initial={{ opacity: shouldReduceMotion ? 1 : 0, x: shouldReduceMotion ? 0 : industry.slideDirection }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: false, amount: 0.15 }}
+                viewport={{ once: false, amount: 0.4 }}
                 transition={{ duration: 0.75, delay: industry.delay, ease: [0.16, 1, 0.3, 1] }}
                 className={`${industry.span} ${industry.bg} group flex flex-col justify-between rounded-3xl border border-border/40 p-10 transition-colors shadow-lg hover:border-accent/30 dark:hover:border-accent/40 md:p-14`}
               >
@@ -538,7 +538,7 @@ export default function Home() {
               className="lg:col-span-4 lg:sticky lg:top-32"
               initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false, amount: 0.3 }}
+              viewport={{ once: false, amount: 0.4 }}
               transition={{ duration: 0.5, ease: "easeOut" }}
             >
               <p className="text-xs font-semibold uppercase tracking-[0.32em] text-accent section-eyebrow-glow">
@@ -571,7 +571,7 @@ export default function Home() {
                   key={step.title}
                   initial={{ opacity: shouldReduceMotion ? 1 : 0, x: shouldReduceMotion ? 0 : 42 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: false, amount: 0.38 }}
+                  viewport={{ once: false, amount: 0.4 }}
                   transition={{ duration: shouldReduceMotion ? 0 : 0.42, delay: index * 0.06, ease: "easeOut" }}
                   className="group relative border-b border-border py-8 pl-16 first:pt-0 last:border-0 md:py-10 md:pl-20"
                 >
@@ -615,7 +615,7 @@ export default function Home() {
           <motion.div
             initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 24 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.35 }}
+            viewport={{ once: false, amount: 0.4 }}
             transition={{ duration: shouldReduceMotion ? 0 : 0.4, ease: "easeOut" }}
             className="mb-14 text-center"
           >
@@ -697,7 +697,7 @@ export default function Home() {
           <motion.div
             initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.3 }}
+            viewport={{ once: false, amount: 0.4 }}
             transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
             className="mt-10 rounded-2xl border border-accent/30 bg-bg-elev px-8 py-10 md:px-12"
           >
@@ -757,7 +757,7 @@ export default function Home() {
                 key={feature.title}
                 initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false, amount: 0.3 }}
+                viewport={{ once: false, amount: 0.4 }}
                 transition={{ duration: 0.5, delay: i * 0.1, ease: "easeOut" }}
                 className="relative flex flex-col border-t border-border pt-8"
               >
@@ -780,7 +780,7 @@ export default function Home() {
           <motion.div
             initial={{ opacity: shouldReduceMotion ? 1 : 0, scale: shouldReduceMotion ? 1 : 0.98 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: false, amount: 0.3 }}
+            viewport={{ once: false, amount: 0.4 }}
             className="group relative overflow-hidden rounded-3xl border border-border/50 bg-bg-panel/30"
           >
             <div className="grid lg:grid-cols-12">
@@ -911,7 +911,7 @@ export default function Home() {
               className="text-center lg:col-span-7 lg:text-left"
               initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false, amount: 0.3 }}
+              viewport={{ once: false, amount: 0.4 }}
               transition={{ duration: 0.5, ease: "easeOut" }}
             >
               <p className="text-xs uppercase tracking-[0.4em] text-accent">Ready to build</p>
@@ -929,7 +929,7 @@ export default function Home() {
               className="flex justify-center lg:col-span-5 lg:justify-end"
               initial={{ opacity: shouldReduceMotion ? 1 : 0, scale: shouldReduceMotion ? 1 : 0.92 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: false, amount: 0.3 }}
+              viewport={{ once: false, amount: 0.4 }}
               transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
             >
               <Link to="/contact">

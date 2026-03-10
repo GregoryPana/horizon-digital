@@ -277,7 +277,7 @@ export default function Pricing() {
               key={step.title}
               initial={{ opacity: shouldReduceMotion ? 1 : 0, x: shouldReduceMotion ? 0 : 42 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: false, amount: 0.38 }}
+              viewport={{ once: false, amount: 0.4 }}
               transition={{ duration: shouldReduceMotion ? 0 : 0.42, delay: index * 0.06, ease: "easeOut" }}
               className="min-w-0"
             >
