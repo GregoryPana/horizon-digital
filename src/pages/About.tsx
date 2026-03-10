@@ -134,8 +134,8 @@ export default function About() {
                 <ShimmerButton
                   shimmerColor="#0b1212"
                   shimmerDuration="4.2s"
-                  background="#1d2b33"
-                  className="px-6 py-3 text-sm font-semibold tracking-[0.1em] border border-border text-text"
+                  background="#46c6e8"
+                  className="px-6 py-3 text-sm font-semibold tracking-[0.1em] text-black shadow-lg shadow-accent/20"
                 >
                   Visit Digital Insights
                 </ShimmerButton>

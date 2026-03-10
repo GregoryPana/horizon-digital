@@ -85,8 +85,8 @@ export default function AIDigitalTools() {
             <ShimmerButton
               shimmerColor="rgba(70, 198, 232, 0.65)"
               shimmerDuration="4.2s"
-              background="var(--accent)"
-              className="px-6 py-2.5 text-sm font-semibold text-[#071523]"
+              background="#46c6e8"
+              className="px-6 py-2.5 text-sm font-semibold text-black"
             >
               Explore Digital Insights
             </ShimmerButton>
@@ -181,8 +181,8 @@ export default function AIDigitalTools() {
               <ShimmerButton
                 shimmerColor="rgba(70, 198, 232, 0.65)"
                 shimmerDuration="4.2s"
-                background="var(--accent)"
-                className="px-6 py-2.5 text-sm font-semibold text-[#071523]"
+                background="#46c6e8"
+                className="px-6 py-2.5 text-sm font-semibold text-black"
               >
                 Read Our Insights
               </ShimmerButton>
