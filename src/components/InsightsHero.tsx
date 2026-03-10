@@ -15,7 +15,7 @@ export default function InsightsHero({ eyebrow, title, description, actions }: I
       <motion.p
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
+        viewport={{ once: false, amount: 0.3 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
         className="text-center text-xs font-semibold uppercase tracking-[0.34em] text-accent-2"
       >
@@ -25,7 +25,7 @@ export default function InsightsHero({ eyebrow, title, description, actions }: I
       <motion.h1
         initial={{ opacity: 0, y: 28 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
+        viewport={{ once: false, amount: 0.3 }}
         transition={{ delay: 0.08, duration: 0.72, ease: "easeOut" }}
         className="mx-auto mt-6 max-w-4xl text-balance bg-gradient-to-br from-[#d6dee8] via-[#9fb6c8] to-[#7f96a7] bg-clip-text text-center text-4xl font-semibold tracking-[-0.02em] text-transparent md:text-6xl"
       >
@@ -35,7 +35,7 @@ export default function InsightsHero({ eyebrow, title, description, actions }: I
       <motion.p
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
+        viewport={{ once: false, amount: 0.3 }}
         transition={{ delay: 0.16, duration: 0.65, ease: "easeOut" }}
         className="mx-auto mt-6 max-w-3xl text-center text-sm leading-7 text-text-muted md:text-base"
       >

@@ -20,7 +20,7 @@ export function LampContainer({ children, className }: LampContainerProps) {
           initial={{ opacity: 0.35, width: "14rem" }}
           whileInView={{ opacity: 1, width: "36rem" }}
           transition={{ duration: 0.85, ease: "easeInOut" }}
-          viewport={{ once: true, amount: 0.35 }}
+          viewport={{ once: false, amount: 0.35 }}
           className="absolute right-1/2 top-8 h-64 [--conic-position:from_72deg_at_center_top]"
           style={{
             backgroundImage:
@@ -35,7 +35,7 @@ export function LampContainer({ children, className }: LampContainerProps) {
           initial={{ opacity: 0.35, width: "14rem" }}
           whileInView={{ opacity: 1, width: "36rem" }}
           transition={{ duration: 0.85, ease: "easeInOut" }}
-          viewport={{ once: true, amount: 0.35 }}
+          viewport={{ once: false, amount: 0.35 }}
           className="absolute left-1/2 top-8 h-64 [--conic-position:from_288deg_at_center_top]"
           style={{
             backgroundImage:

@@ -17,7 +17,7 @@ export default function Work() {
   const fadeIn = {
     initial: { opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 30 },
     whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true, amount: 0.15 },
+    viewport: { once: false, amount: 0.15 },
     transition: { duration: 0.7, ease: "easeOut" as const },
   };
 

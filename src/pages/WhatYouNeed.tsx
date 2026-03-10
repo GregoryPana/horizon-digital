@@ -20,7 +20,7 @@ export default function WhatYouNeed() {
   const fadeInUp = {
     initial: { opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 20 },
     whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true, amount: 0.2 },
+    viewport: { once: false, amount: 0.2 },
     transition: { duration: 0.6, ease: "easeOut" as const },
   };
 
@@ -118,7 +118,7 @@ export default function WhatYouNeed() {
                   key={feature} 
                   initial={{ opacity: 0, scale: 0.95 }}
                   whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
+                  viewport={{ once: false }}
                   transition={{ delay: i * 0.1, duration: 0.5 }}
                   className="rounded-xl border border-border bg-gradient-to-tr from-white/[0.02] to-transparent p-6 text-center shadow-lg hover:border-accent/40 transition-colors"
                 >
