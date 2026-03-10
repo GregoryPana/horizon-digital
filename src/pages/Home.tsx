@@ -429,18 +429,13 @@ export default function Home() {
             </p>
           </motion.div>
 
-          <motion.div 
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false, amount: 0.15 }}
-            className="mt-16 grid gap-6 lg:gap-8 md:grid-cols-2 lg:grid-cols-12"
-          >
+          <div className="mt-16 grid gap-6 lg:gap-8 md:grid-cols-2 lg:grid-cols-12">
             {[
               {
                 title: "Hospitality Businesses",
                 desc: "Hotels, guesthouses, and tourism services benefit from clear information, strong visual presentation, and easy booking or enquiry paths.",
                 span: "lg:col-span-7",
-                bg: "bg-bg-panel/30 dark:bg-bg-panel/60",
+                bg: "bg-[#eef4fb] dark:bg-[#0f1b2d]",
                 img: "/hospitality.png",
                 slideDirection: -50,
                 delay: 0,
@@ -449,25 +444,25 @@ export default function Home() {
                 title: "Retail Businesses",
                 desc: "Retail websites can showcase products, clarify what is available, and make it easy for customers to ask questions or place enquiries.",
                 span: "lg:col-span-5",
-                bg: "bg-bg-panel/50 dark:bg-bg-panel/80",
+                bg: "bg-[#e8f0f9] dark:bg-[#152238]",
                 img: "/retail.png",
                 slideDirection: 50,
-                delay: 0.4,
+                delay: 0.3,
               },
               {
                 title: "Professional Services",
                 desc: "Consultants, agencies, and service providers need websites that explain value clearly and guide visitors toward confident contact decisions.",
                 span: "lg:col-span-5",
-                bg: "bg-bg-panel/50 dark:bg-bg-panel/80",
+                bg: "bg-[#e8f0f9] dark:bg-[#152238]",
                 img: "/professional services.png",
                 slideDirection: -50,
-                delay: 0.4,
+                delay: 0.3,
               },
               {
                 title: "Growing Local Businesses",
                 desc: "Businesses expanding their online presence need a structure that communicates credibility and supports steady growth over time.",
                 span: "lg:col-span-7",
-                bg: "bg-bg-panel/30 dark:bg-bg-panel/60",
+                bg: "bg-[#eef4fb] dark:bg-[#0f1b2d]",
                 img: "/growing local business.png",
                 slideDirection: 50,
                 delay: 0,
@@ -475,11 +470,11 @@ export default function Home() {
             ].map((industry) => (
               <motion.div
                 key={industry.title}
-                variants={{
-                  hidden: { opacity: shouldReduceMotion ? 1 : 0, x: shouldReduceMotion ? 0 : industry.slideDirection, y: shouldReduceMotion ? 0 : 30 },
-                  visible: { opacity: 1, x: 0, y: 0, transition: { duration: 0.75, delay: industry.delay, ease: [0.16, 1, 0.3, 1] } }
-                }}
-                className={`${industry.span} ${industry.bg} group flex flex-col justify-between rounded-3xl border border-border/40 p-10 transition-colors shadow-lg hover:border-accent/30 hover:bg-bg-panel/80 dark:hover:bg-bg-panel md:p-14`}
+                initial={{ opacity: shouldReduceMotion ? 1 : 0, x: shouldReduceMotion ? 0 : industry.slideDirection }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: false, amount: 0.15 }}
+                transition={{ duration: 0.75, delay: industry.delay, ease: [0.16, 1, 0.3, 1] }}
+                className={`${industry.span} ${industry.bg} group flex flex-col justify-between rounded-3xl border border-border/40 p-10 transition-colors shadow-lg hover:border-accent/30 dark:hover:border-accent/40 md:p-14`}
               >
                 <div>
                   <h3 className="text-xl font-semibold text-text md:text-3xl">
@@ -495,7 +490,7 @@ export default function Home() {
                 </div>
               </motion.div>
             ))}
-          </motion.div>
+          </div>
 
           <div className="mt-16 flex justify-center">
             <Link to="/contact">
