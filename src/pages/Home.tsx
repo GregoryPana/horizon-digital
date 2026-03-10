@@ -637,7 +637,7 @@ export default function Home() {
                 className={`pkg-banner px-6 py-8 md:px-10 md:py-10 transition-all duration-300 border-b border-border/60 ${
                   pkg.featured
                     ? "relative overflow-hidden pkg-banner-featured shadow-[0_0_50px_rgba(70,198,232,0.2)] bg-gradient-to-r from-accent/10 to-transparent border-t border-b border-accent/30 my-2 z-10 scale-[1.03] rounded-xl"
-                    : "bg-bg-panel/40 hover:bg-bg-panel/60 last:border-b-0"
+                    : "bg-bg-panel/60 hover:bg-bg-panel/90 last:border-b-0"
                 }`}
               >
                 {pkg.featured && (
@@ -653,16 +653,16 @@ export default function Home() {
                         </span>
                       )}
                     </div>
-                    <p className={`pricing-price mt-3 text-2xl font-bold ${pkg.featured ? "text-text" : "text-text/90"}`}>{pkg.price}</p>
-                    <p className={`mt-2 text-sm max-w-sm leading-relaxed ${pkg.featured ? "text-text/80" : "text-text-muted"}`}>{pkg.description}</p>
+                    <p className={`pricing-price mt-3 text-2xl font-bold text-text ${pkg.featured ? "" : "opacity-90"}`}>{pkg.price}</p>
+                    <p className={`mt-2 text-sm max-w-sm leading-relaxed ${pkg.featured ? "text-text opacity-90" : "text-text-muted"}`}>{pkg.description}</p>
                   </div>
 
                   <div className="lg:col-span-5">
                     <div className="grid grid-cols-2 gap-3">
                       {pkg.highlights.map((item) => (
                         <div key={item} className="flex items-center gap-2">
-                          <CheckCircle2 className={`w-4 h-4 ${pkg.featured ? "text-accent shadow-accent drop-shadow-md" : "text-accent-2/80"}`} />
-                          <span className={`text-[0.85rem] font-medium ${pkg.featured ? "text-text" : "text-text/80"}`}>
+                          <CheckCircle2 className={`w-4 h-4 ${pkg.featured ? "text-accent shadow-accent drop-shadow-md" : "text-accent-2 opacity-80"}`} />
+                          <span className={`text-[0.85rem] font-medium text-text ${pkg.featured ? "" : "opacity-80"}`}>
                             {item}
                           </span>
                         </div>
