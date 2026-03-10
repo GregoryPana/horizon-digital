@@ -1446,7 +1446,6 @@ html:not([data-theme="dark"]) .contact-input {
 /* Package Banner Styling */
 .banner-row {
   background-color: var(--bg-panel);
-  opacity: 0.4;
   overflow: hidden;
   backdrop-filter: blur(4px);
   box-shadow: 0 12px 40px -12px rgba(0, 0, 0, 0.5);
