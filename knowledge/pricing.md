@@ -1,96 +1,22 @@
 # Pricing
 
-## Overview
-Pricing depends on scope, page count, and required integrations. We keep scope clear and pricing transparent.
+## Package Baselines
+Horizon Digital offers three main website packages to suit different business needs. The Foundation package starts at SCR 7,500. The Starter package starts at SCR 12,500. The Growth package starts at SCR 25,000. Custom builds are scoped and priced per project for advanced requirements.
 
-## What a website includes
-- Design and build: how the website looks and works for your customers.
-- Domain name: your web address, renewed yearly through a registrar.
-- Hosting: the service that keeps your website live online.
+## Foundation Package
+The Foundation package is the most affordable option, starting at SCR 7,500. It is designed for businesses that need a simple, professional online presence. This package uses a predefined, structured Horizon Digital layout rather than a custom design. It includes up to 3 pages, a mobile-friendly layout, a contact form, and Google Maps integration. Design customization is limited to brand colors, logos, and written content.
 
-Horizon Digital builds the website and can also help you with domain setup and hosting management.
+## Starter Package
+The Starter package starts at SCR 12,500. It is built for small businesses that want a unique, fully custom website design. It includes up to 5 custom-designed pages, a mobile-first layout, social media integration, and Google Analytics setup. This package allows for two structured revision rounds during the design phase.
 
-## Foundation
-**From SCR 7,500**
+## Growth Package
+The Growth package starts at SCR 25,000. It is suitable for established businesses that require a deeper website structure and stronger search visibility. It includes up to 12 pages, an expanded service structure, portfolio or gallery sections, and multi-step enquiry forms. This package also includes Google Business Profile setup assistance and three revision rounds.
 
-For businesses that need a simple, professional online presence using a structured Horizon Digital layout.
+## Managed Hosting Pricing
+Every website needs an online server to run 24/7. Horizon Digital offers Managed Hosting to keep the website secure and accessible. Managed hosting costs SCR 250 per month, or it can be paid annually at SCR 2,500. The client is responsible for registering and renewing their own domain name separately.
 
-Includes:
-- Choice of predefined Horizon Digital layout
-- Up to 3 pages
-- Mobile-friendly design
-- Contact form
-- WhatsApp integration (if required)
-- Google Maps embed
-- 1 structured revision round
-- 30-day post-launch stabilisation
+## Payment Terms
+Website projects require partial payments at different milestones. The Foundation and Starter packages require a 50% deposit to begin work, and the remaining 50% is due before the website launches. The Growth package requires a 40% deposit, 40% when the design is approved, and the final 20% on launch. 
 
-Not included:
-- Layout structure changes
-- Design customisation beyond colours, logo, and content
-
-Payment terms:
-- 50% deposit
-- 50% before launch
-
-## Starter
-**From SCR 12,500**
-
-For small businesses needing a professional online presence.
-Ideal for cafes, guesthouses, salons, small shops, consultants, and trades.
-Includes core build essentials.
-
-Includes:
-- Up to 5 pages
-- Custom design (not a template)
-- Mobile-first layout
-- Contact form
-- WhatsApp integration (if required)
-- Google Maps integration
-- Social media integration
-- Google Analytics setup
-- 2 revision rounds
-- 30-day stabilisation
-
-Payment terms:
-- 50% deposit
-- 50% on launch
-
-## Growth
-**From SCR 25,000**
-
-For established businesses needing more structure and flexibility.
-Ideal for law firms, construction companies, clinics, tour operators, and expanding hospitality businesses. 
-
-Includes:
-- Up to 10-12 pages
-- Expanded service structure
-- Testimonials
-- Team section (if required)
-- Blog capability
-- Portfolio/gallery
-- Multi-step enquiry form
-- Google Business setup assistance
-- Newsletter integration
-- Full search structure
-- Sitemap submission
-- 3 revision rounds
-- 60-day support
-
-Payment terms:
-- 40% deposit
-- 40% at design approval
-- 20% on launch
-
-## Custom
-Advanced builds are scoped per project. We clarify your requirements, then provide a clear proposal and timeline.
-
-## Ongoing care plans
-Ongoing care plans are no longer offered.
-
-## Add-ons
-- Additional page: SCR 2,000 per page
-- Content writing support: SCR 600 per page
-- Structured booking / enquiry form: SCR 1,500
-- Google Business Profile setup: SCR 2,200
-- Rush delivery: +40%, subject to availability
+## Optional Add-on Services
+Horizon Digital offers optional add-ons if a business needs features beyond their base package. Additional web pages cost SCR 2,500 per page. Content writing support costs SCR 600 per page. Adding a structured booking or enquiry form costs SCR 2,000. Full Google Business Profile setup costs SCR 2,200. Rush delivery is sometimes available for a 40% fee markup, subject to availability.
