@@ -57,7 +57,7 @@ export default function WhatYouNeed() {
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
             
             <motion.div 
-              className="md:col-span-4 rounded-2xl border border-border bg-[#eef4fb] dark:bg-[#0f1b2d] backdrop-blur pb-10 pt-12 px-8 text-center hover:border-accent/30 transition-all duration-500 group"
+              className="md:col-span-4 rounded-2xl border border-border bg-white dark:bg-[#0f1b2d] backdrop-blur pb-10 pt-12 px-8 text-center hover:border-accent/30 transition-all duration-500 group"
               {...fadeInUp} transition={{ delay: 0.1 }}
             >
               <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-accent/10 mb-6 group-hover:scale-110 transition-transform duration-500">
@@ -70,7 +70,7 @@ export default function WhatYouNeed() {
             </motion.div>
 
             <motion.div 
-              className="md:col-span-4 rounded-2xl border border-border bg-[#eef4fb] dark:bg-[#0f1b2d] backdrop-blur pb-10 pt-12 px-8 text-center hover:border-accent-2/30 transition-all duration-500 group"
+              className="md:col-span-4 rounded-2xl border border-border bg-white dark:bg-[#0f1b2d] backdrop-blur pb-10 pt-12 px-8 text-center hover:border-accent-2/30 transition-all duration-500 group"
               {...fadeInUp} transition={{ delay: 0.2 }}
             >
               <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-accent-2/10 mb-6 group-hover:scale-110 transition-transform duration-500">
@@ -83,7 +83,7 @@ export default function WhatYouNeed() {
             </motion.div>
 
             <motion.div 
-              className="md:col-span-4 rounded-2xl border border-border bg-[#eef4fb] dark:bg-[#0f1b2d] backdrop-blur pb-10 pt-12 px-8 text-center hover:border-accent/30 transition-all duration-500 group"
+              className="md:col-span-4 rounded-2xl border border-border bg-white dark:bg-[#0f1b2d] backdrop-blur pb-10 pt-12 px-8 text-center hover:border-accent/30 transition-all duration-500 group"
               {...fadeInUp} transition={{ delay: 0.3 }}
             >
               <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-accent/10 mb-6 group-hover:scale-110 transition-transform duration-500">
@@ -142,7 +142,7 @@ export default function WhatYouNeed() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <motion.div 
-              className="bg-[#eef4fb] dark:bg-[#0f1b2d] p-8 rounded-3xl border border-border shadow-lg flex flex-col items-center text-center hover:border-accent/40 transition-colors"
+              className="bg-white dark:bg-[#0f1b2d] p-8 rounded-3xl border border-border shadow-lg flex flex-col items-center text-center hover:border-accent/40 transition-colors"
               {...fadeInUp}
             >
               <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mb-6">
@@ -155,7 +155,7 @@ export default function WhatYouNeed() {
             </motion.div>
 
             <motion.div 
-              className="bg-[#eef4fb] dark:bg-[#0f1b2d] p-8 rounded-3xl border border-border shadow-lg flex flex-col items-center text-center hover:border-accent/40 transition-colors relative overflow-hidden"
+              className="bg-white dark:bg-[#0f1b2d] p-8 rounded-3xl border border-border shadow-lg flex flex-col items-center text-center hover:border-accent/40 transition-colors relative overflow-hidden"
               {...fadeInUp} transition={{ delay: 0.1 }}
             >
               <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-accent/50 to-transparent"></div>
@@ -169,7 +169,7 @@ export default function WhatYouNeed() {
             </motion.div>
 
             <motion.div 
-              className="bg-[#eef4fb] dark:bg-[#0f1b2d] p-8 rounded-3xl border border-border shadow-lg flex flex-col items-center text-center hover:border-accent/40 transition-colors"
+              className="bg-white dark:bg-[#0f1b2d] p-8 rounded-3xl border border-border shadow-lg flex flex-col items-center text-center hover:border-accent/40 transition-colors"
               {...fadeInUp} transition={{ delay: 0.2 }}
             >
               <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mb-6">
@@ -197,7 +197,7 @@ export default function WhatYouNeed() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
                {/* Option 1 */}
                <motion.div 
-                 className="group relative overflow-hidden rounded-3xl border border-border/40 bg-[#f2f8ff] dark:bg-[#152238] p-8 md:p-12 hover:border-border/80 transition-colors"
+                 className="group relative overflow-hidden rounded-3xl border border-border/40 bg-white/50 dark:bg-[#152238] p-8 md:p-12 hover:border-border/80 transition-colors"
                  {...fadeInUp}
                >
                  <div className="absolute top-0 right-0 p-8 opacity-20 group-hover:opacity-40 transition-opacity">
@@ -225,7 +225,7 @@ export default function WhatYouNeed() {
 
                {/* Option 2 */}
                <motion.div 
-                 className="group relative overflow-hidden rounded-3xl border border-accent/30 bg-[#eef4fb] dark:bg-[#0f1b2d] bg-gradient-to-b from-accent/5 to-transparent p-8 md:p-12 shadow-[0_0_40px_rgba(70,198,232,0.05)]"
+                 className="group relative overflow-hidden rounded-3xl border border-accent/30 bg-white dark:bg-[#0f1b2d] bg-gradient-to-b from-accent/5 to-transparent p-8 md:p-12 shadow-[0_0_40px_rgba(70,198,232,0.05)]"
                  {...fadeInUp} transition={{ delay: 0.2 }}
                >
                  <div className="absolute top-0 right-0 p-8 opacity-30 group-hover:opacity-60 transition-opacity">

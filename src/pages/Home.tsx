@@ -435,7 +435,7 @@ export default function Home() {
                 title: "Hospitality Businesses",
                 desc: "Hotels, guesthouses, and tourism services benefit from clear information, strong visual presentation, and easy booking or enquiry paths.",
                 span: "lg:col-span-7",
-                bg: "bg-[#eef4fb] dark:bg-[#0f1b2d]",
+                bg: "bg-white dark:bg-[#0f1b2d]",
                 img: "/hospitality.png",
                 slideDirection: -50,
                 delay: 0,
@@ -462,7 +462,7 @@ export default function Home() {
                 title: "Growing Local Businesses",
                 desc: "Businesses expanding their online presence need a structure that communicates credibility and supports steady growth over time.",
                 span: "lg:col-span-7",
-                bg: "bg-[#eef4fb] dark:bg-[#0f1b2d]",
+                bg: "bg-white dark:bg-[#0f1b2d]",
                 img: "/growing local business.png",
                 slideDirection: 50,
                 delay: 0,
@@ -640,8 +640,8 @@ export default function Home() {
                 transition={{ duration: 0.7, delay: i * 0.15 + 0.2, ease: "easeOut" }}
                 className={`pkg-banner px-6 py-8 md:px-10 md:py-10 transition-all duration-300 border-b border-border/60 ${
                   pkg.featured
-                    ? "relative overflow-hidden pkg-banner-featured shadow-[0_0_50px_rgba(70,198,232,0.2)] bg-[#eef4fb] dark:bg-[#0f1b2d] bg-gradient-to-r from-accent/10 via-accent/5 to-transparent border-t border-b border-accent/30 my-2 z-10 scale-[1.03] rounded-xl"
-                    : "bg-[#f2f8ff] dark:bg-[#152238] border-transparent last:border-b-0"
+                    ? "relative overflow-hidden pkg-banner-featured shadow-[0_0_50px_rgba(70,198,232,0.2)] bg-white dark:bg-[#0f1b2d] bg-gradient-to-r from-accent/10 via-accent/5 to-transparent border-t border-b border-accent/30 my-2 z-10 scale-[1.03] rounded-xl"
+                    : "bg-white/50 dark:bg-[#152238] border-transparent last:border-b-0"
                 }`}
               >
                 {pkg.featured && (

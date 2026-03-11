@@ -20,7 +20,7 @@ export default function HomeWorkAccordion({ items, onPreview }: HomeWorkAccordio
   const [openIndex, setOpenIndex] = useState(items.length > 1 ? 1 : 0);
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-border bg-[#eef4fb] dark:bg-[#0f1b2d]">
+    <div className="overflow-hidden rounded-2xl border border-border bg-white dark:bg-[#0f1b2d]">
       {items.map((item, index) => {
         const isOpen = index === openIndex;
         const itemId = `${String(index + 1).padStart(2, "0")}`;

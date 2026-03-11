@@ -3,42 +3,33 @@
 ## Overview
 Pricing depends on scope, page count, and required integrations. We keep scope clear and pricing transparent.
 
-## What a website includes
-- Design and build: how the website looks and works for your customers.
-- Domain name: your web address, renewed yearly through a registrar.
-- Hosting: the service that keeps your website live online.
+## Packages
 
-Horizon Digital builds the website and can also help you with domain setup and hosting management.
-
-## Foundation
+### Foundation
 **From SCR 7,500**
-
 For businesses that need a simple, professional online presence using a structured Horizon Digital layout.
 
 Includes:
-- Choice of predefined Horizon Digital layout
 - Up to 3 pages
+- Choice of predefined Horizon Digital layout
 - Mobile-friendly design
 - Contact form
 - WhatsApp integration (if required)
-- Google Maps embed
+- Google Maps
 - 1 structured revision round
-- 30-day post-launch stabilisation
-
-Not included:
-- Layout structure changes
-- Design customisation beyond colours, logo, and content
+- 30-day post-launch support
 
 Payment terms:
 - 50% deposit
 - 50% before launch
 
-## Starter
-**From SCR 12,500**
+Exclusions:
+- Layout structure cannot be modified
+- Design customisation is limited to colours, logo, and content
 
-For small businesses needing a professional online presence.
-Ideal for cafes, guesthouses, salons, small shops, consultants, and trades.
-Includes core build essentials.
+### Starter
+**From SCR 12,500**
+For small businesses that want a unique, custom website with clear messaging and better visibility in search.
 
 Includes:
 - Up to 5 pages
@@ -46,51 +37,43 @@ Includes:
 - Mobile-first layout
 - Contact form
 - WhatsApp integration (if required)
-- Google Maps integration
+- Google Maps
 - Social media integration
 - Google Analytics setup
 - 2 revision rounds
-- 30-day stabilisation
+- 30-day post-launch support
 
 Payment terms:
 - 50% deposit
 - 50% on launch
 
-## Growth
+### Growth
 **From SCR 25,000**
-
-For established businesses needing more structure and flexibility.
-Ideal for law firms, construction companies, clinics, tour operators, and expanding hospitality businesses. 
+For established businesses that need a fully tailored website, deeper structure, and stronger search visibility.
 
 Includes:
 - Up to 10-12 pages
 - Expanded service structure
 - Testimonials
 - Team section (if required)
-- Blog capability
 - Portfolio/gallery
 - Multi-step enquiry form
 - Google Business setup assistance
-- Newsletter integration
-- Full search structure
 - Sitemap submission
 - 3 revision rounds
-- 60-day support
+- 60-day post-launch support
 
 Payment terms:
 - 40% deposit
 - 40% at design approval
 - 20% on launch
 
-## Custom
-Advanced builds are scoped per project. We clarify your requirements, then provide a clear proposal and timeline.
-
-## Ongoing care plans
-Ongoing care plans are no longer offered.
+### Custom
+Scoped per project for advanced requirements and custom functionality.
 
 ## Add-ons
-- Additional page: SCR 2,000 per page
+- Additional page: SCR 2,500 per page
 - Content writing support: SCR 600 per page
-- Structured booking / enquiry form: SCR 1,500
+- Structured booking / enquiry form: SCR 2,000
 - Google Business Profile setup: SCR 2,200
-- Rush delivery: +40%, subject to availability
+- Rush delivery: +40% (subject to availability)
