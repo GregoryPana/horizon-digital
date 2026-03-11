@@ -1,0 +1,21 @@
+# Global settings
+{
+    email gregorypanagary@gmail.com
+}
+
+chat.horizon-digital.com {
+    # Caddy will automatically provision TLS certs
+    
+    # Optional but highly recommended: Rate limiting block
+    # Protects the server from aggressive bots or accidental spam that could exhaust the 1GB RAM
+    rate_limit /webhook/* {
+        zone zone_chat {
+            key {remote_host}
+            events 20
+            window 1m
+        }
+    }
+
+    # Hide n8n behind the proxy rather than exposing port 5678 directly to the internet
+    reverse_proxy localhost:5678
+}
