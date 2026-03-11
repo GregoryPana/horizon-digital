@@ -1,0 +1,123 @@
+I am building a website chatbot for my business. Before I build anything,
+I need to define the chatbot's purpose, persona, and behaviour.
+
+My business context:
+Horizon Digital designs and builds clear, fast, and professional websites for businesses in Seychelles. The focus is on creating websites that are easy for visitors to use and that help businesses receive enquiries, bookings, or customer messages.
+
+Horizon Digital primarily provides website design and related digital services:
+- Custom website design and development
+- Website redesign / design refresh
+- Mobile-friendly website layouts
+- Speed and performance optimisation
+- Basic search-ready setup (SEO foundations)
+- Contact forms and enquiry forms
+- WhatsApp integration
+- Google Maps integration
+- Google Analytics setup
+- Google Business Profile setup assistance
+- Blog, portfolio, and gallery features (depending on package)
+- Managed website hosting (optional)
+
+Websites are offered through structured packages:
+- Foundation – simple structured website using Horizon Digital layouts
+- Starter – fully custom small business website
+- Growth – larger structured websites with more features and pages
+- Custom builds for more complex requirements
+
+
+Typical visitors are small business owners or managers in Seychelles who want a professional website or want to improve an existing one.
+
+Common industries include:
+- Guesthouses and small hotels
+- Restaurants and cafés
+- Retail shops
+- Service businesses (salons, mechanics, consultants)
+- Tour operators
+- Professional firms (law, consulting, construction)
+
+These visitors usually want a simple, professional website that helps customers contact them easily.
+
+
+Ten most common questions visitors ask:
+
+1. How much does a website cost?
+2. What is included in each package?
+3. How long does it take to build a website?
+4. Do you provide hosting?
+5. Can you redesign my existing website?
+6. What information do you need from me to start?
+7. How do payments work?
+8. Can you add WhatsApp or contact forms?
+9. Will my website work on mobile phones?
+10. Can I update the website content later?
+
+
+The chatbot should encourage visitors to:
+
+- Send a message through the contact form, or
+- Start a WhatsApp conversation to discuss their project.
+
+The goal is to help the visitor start a website project discussion.
+
+
+What tone should the chatbot use?
+
+Professional, friendly, and calm.
+
+It should:
+- Explain things clearly
+- Avoid technical jargon
+- Help small business owners feel comfortable asking questions
+- Be helpful without sounding like a sales robot
+
+
+The chatbot should avoid or redirect the following topics:
+
+- Detailed technical implementation or development processes
+- Competitor comparisons or criticism
+- Negotiating prices or discounts
+- Custom pricing exceptions outside published packages
+- Legal or contractual disputes
+- Complaints or support issues for websites not built by Horizon Digital
+
+If asked about these, the chatbot should politely suggest contacting Horizon Digital directly.
+
+
+Existing FAQ page, services page, or sales script:
+
+
+The chatbot can rely on:
+
+- Services page explaining what Horizon Digital does and who it serves. 
+- Pricing page explaining packages, features, and payment terms. 
+- Hosting information explaining managed hosting options. 
+- FAQ sections on selected pages
+
+These pages effectively act as the knowledge base for the chatbot.
+
+
+
+
+Please help me produce:
+
+1. A chatbot persona — one paragraph covering: name, tone, role description,
+   what it can help with, and what it will politely decline.
+
+2. A full LLM system prompt I can use directly in my n8n workflow. The prompt
+   must instruct the model to:
+   - Stay within the knowledge base and not invent answers
+   - Use the provided context chunks to answer questions
+   - Know when to say it does not have enough information
+   - Drive toward the main call-to-action naturally, not aggressively
+   - Format responses clearly (short paragraphs, no excessive bullet points)
+   - Detect when a visitor is ready to become a lead (asking about price,
+     booking, availability, getting started)
+
+3. Three example conversations showing ideal chatbot behaviour:
+   - One standard Q&A exchange
+   - One where the chatbot cannot answer and handles it gracefully
+   - One where a visitor becomes a lead
+
+4. A list of in-scope topics (things it should answer confidently)
+
+5. A list of out-of-scope topics (things it should decline or redirect)
