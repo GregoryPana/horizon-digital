@@ -1,31 +1,19 @@
 # Services
 
-## What we do
-Horizon Digital builds tailored websites for Seychelles businesses, designed around how your business actually works to attract visitors and turn them into enquiries or bookings.
+## Horizon Digital Target Audience
+Horizon Digital designs and builds websites specifically for small businesses in Seychelles. The typical clients include guesthouses, restaurants, retail shops, tour operators, and professional service firms. The main goal of every Horizon Digital website is to help these businesses receive more enquiries, bookings, and customer messages.
 
-## Core services
-- **Website build**: Structured planning, custom design, and a clean launch.
-- **Design refresh**: Modernise your site without losing what already works.
-- **Mobile-friendly layout**: Clear and easy to use on every screen size.
-- **Speed and stability**: Fast load times and a smooth experience for visitors.
-- **Search-ready setup**: Basic on-page setup so people can find you in search.
-- **Clear customer paths**: Guides visitors to contact you without confusion.
+## Core Website Design Services
+Horizon Digital specializes in custom website design and development from start to finish. This includes structured planning, writing the underlying code, and a clean public launch. The team builds websites using modern practices, ensuring fast load times and logical paths that guide visitors to contact the business. All websites are built to be completely mobile-friendly so they work perfectly on smartphones and tablets.
 
-## How it works (The three pieces of a website)
-1. **The Domain Name**: Your address on the internet (e.g., yourbusiness.com) rented annually from a registrar. Best practice is to register this yourself.
-2. **Design & Build**: The actual work of creating the visual layouts, formatting your content, and writing the code. (This is what Horizon Digital specializes in).
-3. **The Hosting**: The server space where your website runs online 24/7. Horizon Digital offers Managed Hosting for this.
+## Website Redesign and Refresh
+If a business already has a website, Horizon Digital offers design refresh services. This service modernizes the look and feel of the existing website while keeping the content and branding that already works well. A website redesign improves the overall user experience, making it easier for customers to navigate and contact the business.
 
-## What "custom" means
-Your website is planned around your services, customers, and goals - not copied from a generic template. The `Starter` and `Growth` packages are fully custom designs. `Foundation` uses a structured Horizon Digital layout with simple colour, logo, and content customization.
+## Search-Ready Setup
+Every website built by Horizon Digital includes basic search-ready setup, often called SEO foundations. This ensures the website has clean, semantic page structures and clear heading hierarchies. The search-ready setup helps search engines like Google seamlessly understand what the business offers, making it easier for local customers to find the business online.
 
-## Add-ons
-We offer additional pages, content writing, structured booking/enquiry forms, Google Business Profile setups, and rush delivery options.
+## Included Website Features
+Horizon Digital websites come with essential features to help businesses connect with customers. Contact forms and enquiry forms are built into the design to capture leads securely. The websites also include direct WhatsApp integration so visitors can start a conversation instantly. Google Maps can be embedded to help customers find the physical location of the business.
 
-## Packages (Baseline)
-- **Foundation**: from SCR 7,500
-- **Starter**: from SCR 12,500
-- **Growth**: from SCR 25,000
-
-## Trust Values
-Fast, Mobile-ready, Easy to find, Clear calls-to-action.
+## What is a Custom Website?
+The Starter and Growth packages include fully custom websites. This means the website is planned specifically around the business's services, customers, and goals, rather than being copied from a generic online template. Every layout is uniquely designed for that specific client. The Foundation package is the only exception, as it uses a pre-built Horizon Digital layout structure to keep costs low.
