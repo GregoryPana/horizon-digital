@@ -1,0 +1,248 @@
+You are modifying the Horizon Digital website codebase.
+
+Your task is to add a new SEO-optimised educational section focused on Artificial Intelligence, Automation, and Digital Tools awareness for Seychelles businesses.
+
+IMPORTANT RULES:
+
+1. Horizon Digital DOES NOT currently sell AI solutions.
+2. The page must be educational and awareness-focused.
+3. The tone must be professional, calm, and clear.
+4. Content must target Seychelles-based businesses.
+5. The page must support SEO for keywords related to:
+
+   * AI Seychelles
+   * Artificial Intelligence Seychelles
+   * Digital transformation Seychelles
+   * AI for small businesses Seychelles
+   * Automation tools for businesses
+6. Do NOT market AI services as offerings.
+7. The purpose is positioning Horizon Digital as a forward-thinking digital partner.
+
+---
+
+CREATE A NEW PAGE
+
+Route:
+/ai-digital-tools
+
+Page title:
+
+AI & Digital Tools for Businesses in Seychelles
+
+Meta title:
+
+Artificial Intelligence & Digital Tools for Businesses in Seychelles | Horizon Digital
+
+Meta description:
+
+Learn how artificial intelligence, automation, and digital tools are beginning to shape businesses in Seychelles. Horizon Digital shares insights into emerging technologies and how they may benefit local companies.
+
+SEO KEYWORDS:
+
+AI Seychelles
+Artificial Intelligence Seychelles
+digital tools Seychelles
+automation for small businesses Seychelles
+future of technology Seychelles
+AI for small business
+
+---
+
+PAGE STRUCTURE
+
+Create the following sections.
+
+SECTION 1 — HERO
+
+Headline:
+
+Understanding Artificial Intelligence and Digital Tools for Businesses
+
+Subtext:
+
+Around the world, businesses are beginning to use artificial intelligence, automation, and digital tools to work more efficiently and better understand their customers. While many of these technologies are still emerging in Seychelles, they are likely to play an increasing role in the future of business.
+
+At Horizon Digital, we follow these developments closely and help businesses understand what these technologies are and how they may be used.
+
+CTA button:
+
+Explore Digital Insights
+
+---
+
+SECTION 2 — WHY THIS MATTERS FOR SEYCHELLES
+
+Heading:
+
+The Future of Digital Technology in Seychelles
+
+Content:
+
+Digital technology continues to evolve rapidly. Artificial intelligence, automation tools, and advanced data analysis are already transforming industries around the world.
+
+For businesses in Seychelles, these technologies may offer opportunities to improve efficiency, understand customers better, and simplify everyday operations.
+
+While many small businesses may not yet be using these tools, awareness and understanding are the first steps toward future adoption.
+
+Horizon Digital follows developments in artificial intelligence and digital tools to help Seychelles businesses stay informed about the future of digital technology.
+
+---
+
+SECTION 3 — KEY TECHNOLOGIES EXPLAINED
+
+Heading:
+
+Digital Technologies Businesses Should Know About
+
+Create four information cards.
+
+CARD 1 — AI Chatbots
+
+Title:
+
+AI Chatbots for Customer Communication
+
+Text:
+
+AI-powered chatbots are increasingly used by businesses to answer common questions, assist customers, and guide website visitors. These systems can help businesses respond to enquiries quickly and provide information even outside normal working hours.
+
+For example, chatbots may assist customers with booking enquiries, product questions, or basic support requests.
+
+CARD 2 — Business Automation
+
+Title:
+
+Automation Tools
+
+Text:
+
+Automation tools allow businesses to streamline repetitive tasks. These tools can automatically send confirmations, follow up with customers, or organise information without manual work.
+
+Automation can help businesses save time and reduce operational workload.
+
+CARD 3 — Data and Business Insights
+
+Title:
+
+Understanding Customers Through Data
+
+Text:
+
+Modern digital tools allow businesses to better understand customer behaviour through analytics and data insights.
+
+This information can help businesses understand what customers are searching for, which services are most popular, and how marketing efforts are performing.
+
+CARD 4 — AI-Assisted Content
+
+Title:
+
+AI Tools for Content and Communication
+
+Text:
+
+Artificial intelligence tools are increasingly used to support content writing, translation, marketing assistance, and idea generation.
+
+These tools do not replace human creativity but can assist businesses in producing content more efficiently.
+
+---
+
+SECTION 4 — IMPORTANT DISCLAIMER
+
+Heading:
+
+Our Current Focus
+
+Content:
+
+Horizon Digital currently focuses on building clear, fast, and professional websites for businesses in Seychelles.
+
+While we closely follow developments in artificial intelligence, automation, and emerging digital technologies, we do not currently offer AI development or automation services.
+
+Our goal is to help local businesses understand these technologies and stay informed as digital tools continue to evolve.
+
+---
+
+SECTION 5 — LINK TO INSIGHTS
+
+Heading:
+
+Digital Insights
+
+Text:
+
+We regularly share insights about websites, digital tools, and emerging technologies that may shape the future of businesses in Seychelles.
+
+CTA button:
+
+Read Our Insights
+
+Link to:
+
+/insights
+
+---
+
+BLOG / INSIGHTS SYSTEM
+
+Create a new blog route:
+
+/insights
+
+This section will contain articles discussing topics such as:
+
+* What AI means for small businesses in Seychelles
+* How automation may help businesses save time
+* Why data and analytics matter for modern businesses
+* Digital trends affecting small businesses
+* Understanding AI chatbots
+
+Each article must include:
+
+* SEO title
+* meta description
+* article header image
+* structured headings (H1, H2, H3)
+
+---
+
+SCHEMA MARKUP
+
+Add Article schema to blog posts.
+
+---
+
+INTERNAL LINKING
+
+Link the AI page from:
+
+Homepage footer
+About page
+Main navigation (optional)
+
+Label:
+
+Digital Insights
+
+---
+
+DESIGN
+
+Match existing Horizon Digital design language.
+
+Keep layout clean, modern, and readable.
+
+Use the Horizon Digital colour palette and typography.
+
+Cards should be responsive and stack vertically on mobile.
+
+---
+
+FINAL GOAL
+
+The goal of this page is to:
+
+* Build awareness of AI and digital tools
+* Position Horizon Digital as forward-thinking
+* Improve SEO for AI and digital topics in Seychelles
+* Educate business owners
+* Prepare the brand for future digital service expansion
