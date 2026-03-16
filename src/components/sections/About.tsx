@@ -55,19 +55,19 @@ export default function About() {
       <Container>
         <div className="relative z-10 grid grid-cols-12 gap-gutter">
           <div className="col-span-12 lg:col-span-10 lg:col-start-2">
-            <span className="text-teal font-syne text-sm uppercase tracking-[0.3em] mb-8 block">
+            <span className="text-teal font-display text-sm uppercase tracking-[0.3em] mb-8 block">
               {ABOUT.tag}
             </span>
 
-            <h2 className="font-syne text-display-hero text-black dark:text-white uppercase mb-16 leading-[0.85]">
+            <h2 className="font-display text-display-hero text-black dark:text-white uppercase mb-16 leading-[0.85]">
               {ABOUT.quoteWords[0]} <span className="text-teal">{ABOUT.quoteWords[1]}</span> {ABOUT.quoteWords[2]}
             </h2>
 
             <div ref={containerRef} className="space-y-12">
               {ABOUT.paragraphs.map((paragraph, i) => (
                 <div key={i} className="reveal-para grid grid-cols-12">
-                  <div className="hidden lg:block col-span-1 text-teal/20 font-syne text-4xl">0{i + 1}</div>
-                  <p className="col-span-12 lg:col-span-9 font-dm text-2xl md:text-3xl text-black/70 dark:text-white/60 leading-relaxed italic">
+                  <div className="hidden lg:block col-span-1 text-teal/20 font-display text-4xl">0{i + 1}</div>
+                  <p className="col-span-12 lg:col-span-9 font-sans text-2xl md:text-3xl text-black/70 dark:text-white/60 leading-relaxed italic">
                     {paragraph}
                   </p>
                 </div>
@@ -80,7 +80,7 @@ export default function About() {
             >
               <a 
                 href="#cta" 
-                className="group relative inline-flex items-center gap-4 text-black dark:text-white font-syne text-xl uppercase py-4"
+                className="group relative inline-flex items-center gap-4 text-black dark:text-white font-display text-xl uppercase py-4"
               >
                 <div className="absolute bottom-0 left-0 w-full h-[1px] bg-teal origin-left transition-transform scale-x-50 group-hover:scale-x-100" />
                 {ABOUT.cta}

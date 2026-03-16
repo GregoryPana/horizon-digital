@@ -36,7 +36,7 @@ export default function Services() {
       <Container>
         <div className="mb-20 text-center">
           <Eyebrow className="mb-4 text-teal">{SECTION_CONTENT.services.eyebrow}</Eyebrow>
-          <h2 className="font-syne text-display-hero text-black dark:text-white uppercase">
+          <h2 className="font-display text-display-hero text-black dark:text-white uppercase">
             {SECTION_CONTENT.services.titleStart} <span className="text-teal">{SECTION_CONTENT.services.titleEm}</span>
           </h2>
           <p className="mt-6 mx-auto max-w-[600px] text-lg text-muted-2 dark:text-muted">
@@ -61,8 +61,8 @@ export default function Services() {
                 </div>
                 
                 <div className="relative z-10 flex flex-col h-full">
-                  <span className="text-sm font-syne tracking-widest text-teal mb-4">{service.number}</span>
-                  <h3 className="font-syne text-3xl text-black dark:text-white uppercase mb-4">{service.name}</h3>
+                  <span className="text-sm font-display tracking-widest text-teal mb-4">{service.number}</span>
+                  <h3 className="font-display text-3xl text-black dark:text-white uppercase mb-4">{service.name}</h3>
                   <p className="text-muted-2 dark:text-muted mb-6 line-clamp-3">{service.description}</p>
                   
                   {isLarge && (
@@ -79,7 +79,7 @@ export default function Services() {
                   {!isLarge && (
                     <motion.div 
                       whileHover={{ x: 5 }}
-                      className="mt-auto flex items-center gap-2 text-teal font-syne text-sm uppercase cursor-pointer"
+                      className="mt-auto flex items-center gap-2 text-teal font-display text-sm uppercase cursor-pointer"
                     >
                       Explore Deeply
                       <div className="w-8 h-[1px] bg-teal" />
@@ -96,7 +96,7 @@ export default function Services() {
 
         <div className="mt-20 p-12 rounded-bento bg-teal text-white flex flex-col md:flex-row items-center justify-between gap-10">
           <div className="max-w-[600px]">
-            <h3 className="font-syne text-4xl uppercase mb-4">{REDESIGN_CTA.headline}</h3>
+            <h3 className="font-display text-4xl uppercase mb-4">{REDESIGN_CTA.headline}</h3>
             <p className="text-white/80">{REDESIGN_CTA.body}</p>
           </div>
           <Button 

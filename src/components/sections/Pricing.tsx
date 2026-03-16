@@ -34,7 +34,7 @@ export default function Pricing() {
       <Container>
         <div className="mb-24 text-center">
           <Eyebrow className="mb-6 text-teal">{SECTION_CONTENT.pricing.eyebrow}</Eyebrow>
-          <h2 id="pricing-title" className="font-syne text-display-hero text-black dark:text-white uppercase leading-[0.85]">
+          <h2 id="pricing-title" className="font-display text-display-hero text-black dark:text-white uppercase leading-[0.85]">
             {SECTION_CONTENT.pricing.titleStart} <span className="text-teal">{SECTION_CONTENT.pricing.titleEm}</span>
           </h2>
         </div>
@@ -52,12 +52,12 @@ export default function Pricing() {
                 <div className="absolute top-0 left-0 w-full h-1 bg-teal" />
               )}
 
-              <h3 className="font-syne text-3xl text-black dark:text-white uppercase mb-4">{item.name}</h3>
-              <p className="font-dm text-muted-2 dark:text-muted mb-8 italic">{item.tagline}</p>
+              <h3 className="font-display text-3xl text-black dark:text-white uppercase mb-4">{item.name}</h3>
+              <p className="font-sans text-muted-2 dark:text-muted mb-8 italic">{item.tagline}</p>
 
               <div className="flex items-baseline gap-2 mb-1">
-                <span className="text-teal font-syne text-sm">SCR</span>
-                <span className="text-6xl font-syne text-black dark:text-white">{item.priceFormatted}</span>
+                <span className="text-teal font-display text-sm">SCR</span>
+                <span className="text-6xl font-display text-black dark:text-white">{item.priceFormatted}</span>
               </div>
               <p className="text-[10px] uppercase tracking-widest text-teal mb-8">Starting Investment</p>
 
@@ -92,7 +92,7 @@ export default function Pricing() {
         <div className="mt-32">
           <div className="mb-12">
             <Eyebrow className="mb-4 text-teal">Optional Services</Eyebrow>
-            <h3 className="font-syne text-4xl text-black dark:text-white uppercase">Managed Hosting & Add-ons</h3>
+            <h3 className="font-display text-4xl text-black dark:text-white uppercase">Managed Hosting & Add-ons</h3>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -102,14 +102,14 @@ export default function Pricing() {
                 key={addon.name} 
                 className="p-8 border border-black/5 dark:border-white/5 bg-cream/10 dark:bg-card/50 flex flex-col justify-between"
               >
-                <p className="text-xs font-syne uppercase tracking-widest text-teal mb-4">{addon.name}</p>
-                <p className="text-2xl font-syne text-black dark:text-white">{addon.price}</p>
+                <p className="text-xs font-display uppercase tracking-widest text-teal mb-4">{addon.name}</p>
+                <p className="text-2xl font-display text-black dark:text-white">{addon.price}</p>
               </motion.div>
             ))}
           </div>
           
           <div className="mt-8 p-8 bg-teal/5 border border-teal/10 rounded-2xl">
-            <p className="font-dm text-sm italic text-muted-2 dark:text-muted leading-relaxed">
+            <p className="font-sans text-sm italic text-muted-2 dark:text-muted leading-relaxed">
               <span className="text-teal font-bold not-italic mr-2">Note:</span>
               {ADDONS_NOTE}
             </p>

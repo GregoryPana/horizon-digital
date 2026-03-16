@@ -51,11 +51,11 @@ export default function CTA() {
             {CTA_SECTION.eyebrow}
           </Eyebrow>
 
-          <h2 id="cta-title" className="cta-scramble font-syne text-display-hero text-black dark:text-white text-center uppercase leading-[0.85] mb-12">
+          <h2 id="cta-title" className="cta-scramble font-display text-display-hero text-black dark:text-white text-center uppercase leading-[0.85] mb-12">
             {CTA_SECTION.headline}
           </h2>
 
-          <p className="font-dm text-2xl text-muted-2 dark:text-muted text-center max-w-3xl mb-20 leading-relaxed italic">
+          <p className="font-sans text-2xl text-muted-2 dark:text-muted text-center max-w-3xl mb-20 leading-relaxed italic">
             {CTA_SECTION.body}
           </p>
 
@@ -63,20 +63,20 @@ export default function CTA() {
             <form className="space-y-8" onSubmit={onSubmit}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="space-y-2 group">
-                  <label className="text-xs font-syne uppercase tracking-widest text-teal transition-colors group-focus-within:text-black dark:group-focus-within:text-white" htmlFor="name">Full Name</label>
+                  <label className="text-xs font-display uppercase tracking-widest text-teal transition-colors group-focus-within:text-black dark:group-focus-within:text-white" htmlFor="name">Full Name</label>
                   <input 
                     id="name" 
-                    className="w-full bg-transparent border-b border-black/10 dark:border-white/10 py-4 font-dm text-xl focus:outline-none focus:border-teal transition-colors"
+                    className="w-full bg-transparent border-b border-black/10 dark:border-white/10 py-4 font-sans text-xl focus:outline-none focus:border-teal transition-colors"
                     type="text" 
                     placeholder="e.g. Marie Dupont" 
                     required 
                   />
                 </div>
                 <div className="space-y-2 group">
-                  <label className="text-xs font-syne uppercase tracking-widest text-teal transition-colors group-focus-within:text-black dark:group-focus-within:text-white" htmlFor="email">Email Address</label>
+                  <label className="text-xs font-display uppercase tracking-widest text-teal transition-colors group-focus-within:text-black dark:group-focus-within:text-white" htmlFor="email">Email Address</label>
                   <input 
                     id="email" 
-                    className="w-full bg-transparent border-b border-black/10 dark:border-white/10 py-4 font-dm text-xl focus:outline-none focus:border-teal transition-colors"
+                    className="w-full bg-transparent border-b border-black/10 dark:border-white/10 py-4 font-sans text-xl focus:outline-none focus:border-teal transition-colors"
                     type="email" 
                     placeholder="you@yourbusiness.sc" 
                     required 
@@ -85,11 +85,11 @@ export default function CTA() {
               </div>
 
               <div className="space-y-2 group">
-                <label className="text-xs font-syne uppercase tracking-widest text-teal transition-colors group-focus-within:text-black dark:group-focus-within:text-white" htmlFor="description">Tell us about your project</label>
+                <label className="text-xs font-display uppercase tracking-widest text-teal transition-colors group-focus-within:text-black dark:group-focus-within:text-white" htmlFor="description">Tell us about your project</label>
                 <textarea 
                   id="description" 
                   rows={4}
-                  className="w-full bg-transparent border-b border-black/10 dark:border-white/10 py-4 font-dm text-xl focus:outline-none focus:border-teal transition-colors resize-none"
+                  className="w-full bg-transparent border-b border-black/10 dark:border-white/10 py-4 font-sans text-xl focus:outline-none focus:border-teal transition-colors resize-none"
                   placeholder="Tell us what your website needs to do..."
                   required 
                 />
@@ -107,7 +107,7 @@ export default function CTA() {
                     </span>
                   )}
                 </ReactiveButton>
-                <p className="mt-6 text-sm font-dm text-muted-2 dark:text-muted italic">{CTA_SECTION.formNote}</p>
+                <p className="mt-6 text-sm font-sans text-muted-2 dark:text-muted italic">{CTA_SECTION.formNote}</p>
               </div>
             </form>
           </div>

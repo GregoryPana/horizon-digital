@@ -29,10 +29,10 @@ export default function KnowledgePage({ page }: KnowledgePageProps) {
               className="relative z-above max-w-content-lg"
             >
               <Eyebrow className="mb-4">{page.eyebrow}</Eyebrow>
-              <h1 className="font-cormorant text-display-xl text-white">
+              <h1 className="font-display text-display-xl text-white">
                 {page.title} <em>{page.titleEm}</em>
               </h1>
-              <p className="mt-5 max-w-copy font-dm text-body-lg text-muted">{page.lead}</p>
+              <p className="mt-5 max-w-copy font-sans text-body-lg text-muted">{page.lead}</p>
             </motion.div>
 
             <div className="relative z-above mt-8 grid gap-3" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))' }}>
@@ -44,8 +44,8 @@ export default function KnowledgePage({ page }: KnowledgePageProps) {
                   transition={{ duration: 0.42, delay: 0.12 + index * 0.06, ease: 'easeOut' }}
                   className="border border-border bg-card px-4 py-4"
                 >
-                  <p className="font-syne text-ui-label uppercase text-muted-2">Section {String(index + 1).padStart(2, '0')}</p>
-                  <p className="mt-1 font-cormorant text-title-sm text-white">{block.heading}</p>
+                  <p className="font-display text-ui-label uppercase text-muted-2">Section {String(index + 1).padStart(2, '0')}</p>
+                  <p className="mt-1 font-display text-title-sm text-white">{block.heading}</p>
                 </motion.div>
               ))}
             </div>
@@ -74,11 +74,11 @@ export default function KnowledgePage({ page }: KnowledgePageProps) {
 
                     <div className="relative grid grid-cols-1 gap-x-col-gap lg:grid-cols-12">
                       <div className={cn('px-5 py-6 sm:px-6 lg:px-8 lg:py-8', isEven ? 'lg:col-span-8' : 'lg:col-start-5 lg:col-span-8')}>
-                        <h2 className="font-cormorant text-display-md text-white">{block.heading}</h2>
+                        <h2 className="font-display text-display-md text-white">{block.heading}</h2>
 
                         <div className="mt-4 space-y-3">
                           {block.paragraphs.map((paragraph) => (
-                            <p key={paragraph} className="font-dm text-body-base text-muted">
+                            <p key={paragraph} className="font-sans text-body-base text-muted">
                               {paragraph}
                             </p>
                           ))}
@@ -87,7 +87,7 @@ export default function KnowledgePage({ page }: KnowledgePageProps) {
                         {block.bullets ? (
                           <ul className="mt-5 space-y-2.5">
                             {block.bullets.map((item) => (
-                              <li key={item} className="flex gap-2.5 font-dm text-body-base text-muted">
+                              <li key={item} className="flex gap-2.5 font-sans text-body-base text-muted">
                                 <span className="mt-2 h-1.5 w-1.5 rounded-full bg-teal" />
                                 <span>{item}</span>
                               </li>
@@ -97,7 +97,7 @@ export default function KnowledgePage({ page }: KnowledgePageProps) {
                       </div>
 
                       <div className={cn('hidden px-8 pb-8 lg:flex', isEven ? 'lg:col-span-4 items-end justify-end' : 'lg:col-span-4 items-end justify-start')}>
-                        <span className="font-cormorant text-num-md leading-none text-teal/15">{String(index + 1).padStart(2, '0')}</span>
+                        <span className="font-display text-num-md leading-none text-teal/15">{String(index + 1).padStart(2, '0')}</span>
                       </div>
                     </div>
                   </motion.article>

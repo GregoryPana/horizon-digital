@@ -15,7 +15,7 @@ type ButtonProps = {
 }
 
 const baseClass =
-  'inline-flex items-center gap-2 rounded-btn px-6 py-3 font-syne text-ui-btn transition duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal/20'
+  'inline-flex items-center gap-2 rounded-btn px-6 py-3 font-display text-ui-btn transition duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal/20'
 
 const variantClass: Record<ButtonVariant, string> = {
   primary:

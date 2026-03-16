@@ -98,11 +98,11 @@ export default function ChatbotWidget() {
           >
             <div className="flex items-center justify-between border-b border-border bg-dark px-4 py-3">
               <div>
-                <p className="font-syne text-ui-label uppercase text-teal">Horizon Assistant</p>
-                <p className="font-dm text-body-caption text-muted">AI chat support</p>
+                <p className="font-display text-ui-label uppercase text-teal">Horizon Assistant</p>
+                <p className="font-sans text-body-caption text-muted">AI chat support</p>
               </div>
 
-              <button type="button" className="font-syne text-ui-label text-muted hover:text-white" onClick={() => setOpen(false)}>
+              <button type="button" className="font-display text-ui-label text-muted hover:text-white" onClick={() => setOpen(false)}>
                 Close
               </button>
             </div>
@@ -110,13 +110,13 @@ export default function ChatbotWidget() {
             <div ref={scrollerRef} className="flex-1 space-y-3 overflow-y-auto bg-dark p-4">
               {messages.map((message, index) => (
                 <div key={`${message.role}-${index}`} className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                  <div className={`max-w-[86%] px-3 py-2 font-dm text-body-xs ${message.role === 'user' ? 'bg-teal text-black' : 'border border-border bg-card text-cream'}`}>
+                  <div className={`max-w-[86%] px-3 py-2 font-sans text-body-xs ${message.role === 'user' ? 'bg-teal text-black' : 'border border-border bg-card text-cream'}`}>
                     {message.content}
                   </div>
                 </div>
               ))}
 
-              {loading ? <p className="font-dm text-body-caption text-muted">Thinking...</p> : null}
+              {loading ? <p className="font-sans text-body-caption text-muted">Thinking...</p> : null}
             </div>
 
             <div className="border-t border-border bg-card p-3">
@@ -132,10 +132,10 @@ export default function ChatbotWidget() {
                     }
                   }}
                   placeholder="Ask about packages..."
-                  className="flex-1 border border-border-strong bg-surface px-3 py-2 font-dm text-base text-cream placeholder:text-muted-2 focus:border-teal-border focus:outline-none"
+                  className="flex-1 border border-border-strong bg-surface px-3 py-2 font-sans text-base text-cream placeholder:text-muted-2 focus:border-teal-border focus:outline-none"
                 />
 
-                <button type="button" onClick={() => void sendMessage()} className="bg-teal px-4 py-2 font-syne text-ui-btn font-bold text-black hover:opacity-90">
+                <button type="button" onClick={() => void sendMessage()} className="bg-teal px-4 py-2 font-display text-ui-btn font-bold text-black hover:opacity-90">
                   Send
                 </button>
               </div>
@@ -149,7 +149,7 @@ export default function ChatbotWidget() {
         whileTap={{ scale: 0.95 }}
         type="button"
         onClick={() => setOpen((prev) => !prev)}
-        className="mt-3 flex h-12 items-center gap-3 rounded-full bg-teal pl-4 pr-5 font-syne text-ui-btn font-bold text-black shadow-[0_8px_30px_rgb(0,201,167,0.3)] transition-shadow duration-300 hover:shadow-[0_12px_40px_rgb(0,201,167,0.4)]"
+        className="mt-3 flex h-12 items-center gap-3 rounded-full bg-teal pl-4 pr-5 font-display text-ui-btn font-bold text-black shadow-[0_8px_30px_rgb(0,201,167,0.3)] transition-shadow duration-300 hover:shadow-[0_12px_40px_rgb(0,201,167,0.4)]"
       >
         <div className="flex h-6 w-6 items-center justify-center rounded-full bg-black/10">
           <MessageSquare size={14} />

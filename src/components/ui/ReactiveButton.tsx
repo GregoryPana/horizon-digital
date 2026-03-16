@@ -14,7 +14,7 @@ export default function ReactiveButton({
   className = "", 
   variant = 'primary' 
 }: ReactiveButtonProps) {
-  const baseStyles = "relative overflow-hidden group font-syne uppercase tracking-widest rounded-full transition-all duration-300";
+  const baseStyles = "relative overflow-hidden group font-display uppercase tracking-widest rounded-full transition-all duration-300";
   const variants = {
     primary: "bg-teal text-black shadow-lg hover:shadow-teal/20",
     secondary: "bg-transparent border border-black/10 dark:border-white/10 text-black dark:text-white hover:bg-black/5 dark:hover:bg-white/5"

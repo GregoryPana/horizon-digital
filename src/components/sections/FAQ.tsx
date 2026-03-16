@@ -32,10 +32,10 @@ export default function FAQ() {
         <div className="grid grid-cols-12 gap-gutter">
           <div className="col-span-12 lg:col-span-5 mb-16 lg:mb-0">
              <Eyebrow className="mb-6 text-teal">{SECTION_CONTENT.faq.eyebrow}</Eyebrow>
-             <h2 id="faq-title" className="font-syne text-display-hero text-black dark:text-white uppercase leading-[0.85] mb-8">
+             <h2 id="faq-title" className="font-display text-display-hero text-black dark:text-white uppercase leading-[0.85] mb-8">
                {SECTION_CONTENT.faq.titleStart} <span className="text-teal">{SECTION_CONTENT.faq.titleEm}</span>
              </h2>
-             <p className="font-dm text-xl text-muted-2 dark:text-muted max-w-sm italic leading-relaxed">
+             <p className="font-sans text-xl text-muted-2 dark:text-muted max-w-sm italic leading-relaxed">
                Clarifying the unknowns. Simple, direct answers to common queries about our digital storytelling process.
              </p>
           </div>
@@ -54,7 +54,7 @@ export default function FAQ() {
                   onClick={() => setOpenIndex(openIndex === index ? null : index)}
                   aria-expanded={openIndex === index}
                 >
-                  <h3 className="font-syne text-xl text-black dark:text-white uppercase pr-8">{item.q}</h3>
+                  <h3 className="font-display text-xl text-black dark:text-white uppercase pr-8">{item.q}</h3>
                   <motion.div
                     animate={{ rotate: openIndex === index ? 45 : 0 }}
                     className="shrink-0 text-teal"
@@ -72,7 +72,7 @@ export default function FAQ() {
                       transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                       className="overflow-hidden"
                     >
-                      <div className="p-8 pt-0 font-dm text-lg text-muted-2 dark:text-muted leading-relaxed">
+                      <div className="p-8 pt-0 font-sans text-lg text-muted-2 dark:text-muted leading-relaxed">
                         {item.a}
                       </div>
                     </motion.div>

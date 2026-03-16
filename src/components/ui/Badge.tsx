@@ -13,7 +13,7 @@ export default function Badge({ children, variant = 'teal', className }: BadgePr
   return (
     <span
       className={cn(
-        'inline-flex rounded-badge bg-teal-bg px-2.5 py-0.5 font-syne text-ui-badge font-bold uppercase text-teal',
+        'inline-flex rounded-badge bg-teal-bg px-2.5 py-0.5 font-display text-ui-badge font-bold uppercase text-teal',
         variant === 'featured' && 'bg-teal-bg text-teal',
         className,
       )}

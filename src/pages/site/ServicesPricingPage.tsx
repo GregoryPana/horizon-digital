@@ -22,10 +22,10 @@ export default function ServicesPricingPage() {
           <Container>
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="relative z-above max-w-content-lg">
               <Eyebrow className="mb-4">{page.eyebrow}</Eyebrow>
-              <h1 className="font-cormorant text-display-xl text-white">
+              <h1 className="font-display text-display-xl text-white">
                 {page.title} <em>{page.titleEm}</em>
               </h1>
-              <p className="mt-5 max-w-copy font-dm text-body-lg text-muted">{page.lead}</p>
+              <p className="mt-5 max-w-copy font-sans text-body-lg text-muted">{page.lead}</p>
             </motion.div>
 
             <div className="relative z-above mt-12 space-y-3">
@@ -42,10 +42,10 @@ export default function ServicesPricingPage() {
 
                   <div className="relative grid grid-cols-1 lg:grid-cols-12">
                     <div className={`px-5 py-6 sm:px-6 lg:px-7 lg:py-7 ${index % 2 === 0 ? 'lg:col-span-8' : 'lg:col-start-5 lg:col-span-8'}`}>
-                      <h2 className="font-cormorant text-display-md text-white">{block.heading}</h2>
+                      <h2 className="font-display text-display-md text-white">{block.heading}</h2>
                       <div className="mt-3 space-y-2.5">
                         {block.paragraphs.map((paragraph) => (
-                          <p key={paragraph} className="font-dm text-body-sm text-muted">
+                          <p key={paragraph} className="font-sans text-body-sm text-muted">
                             {paragraph}
                           </p>
                         ))}
@@ -53,7 +53,7 @@ export default function ServicesPricingPage() {
                     </div>
 
                     <div className={`hidden lg:flex ${index % 2 === 0 ? 'lg:col-span-4 items-end justify-end pr-7 pb-7' : 'lg:col-span-4 items-end justify-start pl-7 pb-7'}`}>
-                      <span className="font-cormorant text-num-md leading-none text-teal/15">{String(index + 1).padStart(2, '0')}</span>
+                      <span className="font-display text-num-md leading-none text-teal/15">{String(index + 1).padStart(2, '0')}</span>
                     </div>
                   </div>
                 </motion.article>

@@ -87,7 +87,7 @@ export default function Process() {
       <Container>
         <div className="mb-header-gap">
           <Eyebrow className="mb-3">{SECTION_CONTENT.process.eyebrow}</Eyebrow>
-          <h2 id="process-title" className="font-cormorant text-display-lg text-white">
+          <h2 id="process-title" className="font-display text-display-lg text-white">
             {SECTION_CONTENT.process.titleStart}
             <br />
             <em>{SECTION_CONTENT.process.titleEm}</em>
@@ -98,15 +98,15 @@ export default function Process() {
           {PROCESS.map((step) => (
             <div key={step.number} className="process-step group border-b border-border py-7 first:border-t sm:py-8 lg:grid lg:grid-cols-12 lg:gap-x-col-gap lg:py-10">
               <div
-                className="process-step-num mb-2 font-cormorant text-5xl leading-none text-teal/10 transition-colors duration-300 group-hover:text-teal/30 sm:text-[58px] lg:col-span-2 lg:mb-0 lg:pt-1 lg:text-right lg:text-num-lg"
+                className="process-step-num mb-2 font-display text-5xl leading-none text-teal/10 transition-colors duration-300 group-hover:text-teal/30 sm:text-[58px] lg:col-span-2 lg:mb-0 lg:pt-1 lg:text-right lg:text-num-lg"
                 data-num={step.number}
               >
                 {step.number}
               </div>
 
               <div className="process-step-content lg:col-start-3 lg:col-span-10">
-                <h3 className="mb-2 font-cormorant text-title-sm text-white">{step.title}</h3>
-                <p className="max-w-process-desc font-dm text-body-base text-muted">{step.description}</p>
+                <h3 className="mb-2 font-display text-title-sm text-white">{step.title}</h3>
+                <p className="max-w-process-desc font-sans text-body-base text-muted">{step.description}</p>
                 <Eyebrow className="mt-3 text-ui-badge">{step.timeline}</Eyebrow>
               </div>
             </div>

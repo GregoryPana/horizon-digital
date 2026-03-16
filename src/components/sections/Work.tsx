@@ -40,13 +40,13 @@ function WorkCard({ item }: { item: typeof WORK[0] }) {
 
         <div className="relative z-20 flex h-full items-end p-10">
           <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-            <span className="text-teal font-syne text-[10px] uppercase tracking-[0.4em] mb-4 block">
+            <span className="text-teal font-display text-[10px] uppercase tracking-[0.4em] mb-4 block">
               {item.type}
             </span>
-            <h3 className="font-syne text-display-cinematic text-white leading-none mb-2">
+            <h3 className="font-display text-display-cinematic text-white leading-none mb-2">
               {item.client}
             </h3>
-            <p className="font-dm text-muted-2 text-lg max-w-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+            <p className="font-sans text-muted-2 text-lg max-w-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
               {item.description}
             </p>
           </div>
@@ -91,7 +91,7 @@ export default function Work() {
       <Container>
         <div className="relative mb-24 flex flex-col items-center text-center">
           <Eyebrow className="mb-6">{SECTION_CONTENT.work.eyebrow}</Eyebrow>
-          <h2 id="work-title" className="font-syne text-display-hero text-white uppercase leading-[0.85]">
+          <h2 id="work-title" className="font-display text-display-hero text-white uppercase leading-[0.85]">
             {SECTION_CONTENT.work.titleStart} <span className="text-teal">{SECTION_CONTENT.work.titleEm}</span>
           </h2>
           <div className="mt-8 h-[1px] w-24 bg-teal" />
@@ -109,7 +109,7 @@ export default function Work() {
           <motion.a
             href="/work"
             whileHover={{ scale: 1.05 }}
-            className="group px-12 py-5 rounded-full border border-teal text-teal font-syne uppercase tracking-widest hover:bg-teal hover:text-black transition-colors"
+            className="group px-12 py-5 rounded-full border border-teal text-teal font-display uppercase tracking-widest hover:bg-teal hover:text-black transition-colors"
           >
             Explore Portfolio
           </motion.a>

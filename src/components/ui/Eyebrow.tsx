@@ -11,7 +11,7 @@ export default function Eyebrow({ children, className, centered = false }: Eyebr
   return (
     <p
       className={cn(
-        'flex items-center gap-2 font-syne text-ui-eyebrow font-medium uppercase text-teal',
+        'flex items-center gap-2 font-display text-ui-eyebrow font-medium uppercase text-teal',
         centered && 'justify-center',
         className,
       )}

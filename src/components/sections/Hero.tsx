@@ -87,14 +87,14 @@ export default function Hero() {
           >
             <h1 
               ref={headlineRef}
-              className="h-h1 font-syne text-display-cinematic text-white uppercase tracking-tighter"
+              className="h-h1 font-display text-display-cinematic text-white uppercase tracking-tighter"
             >
               {HERO.h1Line1}
               <br />
               <span className="text-teal">{HERO.h1Em}</span>
             </h1>
 
-            <p className="h-body mt-8 max-w-[800px] font-dm text-2xl text-white/60 leading-relaxed md:text-3xl">
+            <p className="h-body mt-8 max-w-[800px] font-sans text-2xl text-white/60 leading-relaxed md:text-3xl">
               {HERO.body}
             </p>
 

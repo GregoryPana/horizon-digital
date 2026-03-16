@@ -22,10 +22,10 @@ export default function WorkPage() {
           <Container>
             <div className="max-w-4xl">
               <Eyebrow className="mb-6 text-teal">{page.eyebrow}</Eyebrow>
-              <h1 className="font-syne text-display-hero text-black dark:text-white uppercase leading-[0.85] mb-8">
+              <h1 className="font-display text-display-hero text-black dark:text-white uppercase leading-[0.85] mb-8">
                 {page.title} <span className="text-teal">{page.titleEm}</span>
               </h1>
-              <p className="font-dm text-2xl text-muted-2 dark:text-muted max-w-2xl leading-relaxed italic">
+              <p className="font-sans text-2xl text-muted-2 dark:text-muted max-w-2xl leading-relaxed italic">
                 {page.lead}
               </p>
             </div>
@@ -68,16 +68,16 @@ export default function WorkPage() {
                     )}>
                       <div className="space-y-6">
                         <div className="flex items-center gap-4">
-                          <span className="font-syne text-xs uppercase tracking-widest text-teal">0{index + 1}</span>
+                          <span className="font-display text-xs uppercase tracking-widest text-teal">0{index + 1}</span>
                           <span className="h-px w-8 bg-black/10 dark:bg-white/10" />
-                          <span className="font-syne text-xs uppercase tracking-widest text-muted-2 dark:text-muted">{item.type}</span>
+                          <span className="font-display text-xs uppercase tracking-widest text-muted-2 dark:text-muted">{item.type}</span>
                         </div>
                         
-                        <h2 className="font-syne text-5xl text-black dark:text-white uppercase leading-none tracking-tighter">
+                        <h2 className="font-display text-5xl text-black dark:text-white uppercase leading-none tracking-tighter">
                           {item.client}
                         </h2>
                         
-                        <p className="font-dm text-xl text-muted-2 dark:text-muted leading-relaxed italic">
+                        <p className="font-sans text-xl text-muted-2 dark:text-muted leading-relaxed italic">
                           {item.description}
                         </p>
 

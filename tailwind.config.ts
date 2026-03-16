@@ -35,9 +35,8 @@ export default {
         whatsapp: '#25D366',
       },
       fontFamily: {
-        cormorant: ['"Cormorant Garamond"', 'Georgia', 'serif'],
-        syne: ['Syne', 'system-ui', 'sans-serif'],
-        dm: ['"DM Sans"', 'system-ui', 'sans-serif'],
+        display: ['"Sora Variable"', 'system-ui', 'sans-serif'],
+        sans: ['"Inter Variable"', 'system-ui', 'sans-serif'],
       },
       fontSize: {
         'display-cinematic': ['clamp(64px, 8vw, 120px)', { lineHeight: '0.9', letterSpacing: '-0.04em', fontWeight: '800' }],
