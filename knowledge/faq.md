@@ -7,7 +7,7 @@ Horizon Digital offers packages to suit different business needs. The Foundation
 Every package includes a mobile-friendly design, contact forms, search-ready setup, and a set amount of post-launch support. The Foundation package includes a template layout with up to 3 pages. The Starter package includes a fully custom design with up to 5 pages. The Growth package includes an extensive custom design with up to 12 pages, galleries, and advanced forms.
 
 ## Do you provide website hosting?
-Yes, Horizon Digital provides Managed Hosting to keep the website securely online. Hosting costs SCR 250 per month or SCR 2,500 per year. Clients also have the option to host the website elsewhere if they prefer to manage their own servers. 
+Yes, Horizon Digital provides Managed Hosting to keep the website securely online. Hosting costs SCR 2,500 per year. Clients also have the option to host the website elsewhere if they prefer to manage their own servers. 
 
 ## How long does it take to build a website?
 Most website projects follow a structured sequence from planning to launch. A standard website project typically takes between 4 to 8 weeks to complete. The exact timeline depends on the size of the website package and how quickly the client can provide their content, photos, and feedback.

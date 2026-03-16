@@ -1,39 +1,68 @@
-import { Suspense, lazy } from "react";
-import { Route, Routes } from "react-router-dom";
-import Layout from "./components/Layout";
+import { AnimatePresence, motion } from 'framer-motion'
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
+import CustomCursor from '@/components/layout/CustomCursor'
+import ChatbotWidget from '@/components/layout/ChatbotWidget'
+import FloatingWA from '@/components/layout/FloatingWA'
+import Footer from '@/components/layout/Footer'
+import Navbar from '@/components/layout/Navbar'
+import RouteChangeTop from '@/components/layout/RouteChangeTop'
+import ScrollProgressBar from '@/components/layout/ScrollProgressBar'
+import AboutPage from '@/pages/site/AboutPage'
+import ContactPage from '@/pages/site/ContactPage'
+import DigitalInsightsPage from '@/pages/site/DigitalInsightsPage'
+import HomePage from '@/pages/site/HomePage'
+import WorkPage from '@/pages/site/WorkPage'
+import ServicesPricingPage from '@/pages/site/ServicesPricingPage'
+import WhatYouNeedPage from '@/pages/site/WhatYouNeedPage'
 
-const Home = lazy(() => import("./pages/Home"));
-const WhatYouNeed = lazy(() => import("./pages/WhatYouNeed"));
-const Pricing = lazy(() => import("./pages/Pricing"));
-const Work = lazy(() => import("./pages/Work"));
-const About = lazy(() => import("./pages/About"));
-const Contact = lazy(() => import("./pages/Contact"));
-const AIDigitalTools = lazy(() => import("./pages/AIDigitalTools"));
-const Insights = lazy(() => import("./pages/Insights"));
-const InsightArticle = lazy(() => import("./pages/InsightArticle"));
+function PageWrapper({ children }: { children: React.ReactNode }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.4, ease: 'easeInOut' }}
+    >
+      {children}
+    </motion.div>
+  )
+}
 
 export default function App() {
+  const location = useLocation()
+
   return (
-    <Layout>
-      <Suspense
-        fallback={
-          <div className="mx-auto flex min-h-[70svh] w-full max-w-7xl items-start px-8 py-24 text-sm text-text-muted">
-            Loading...
-          </div>
-        }
-      >
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/what-you-need" element={<WhatYouNeed />} />
-          <Route path="/work" element={<Work />} />
-          <Route path="/services-pricing" element={<Pricing />} />
-          <Route path="/ai-digital-tools" element={<AIDigitalTools />} />
-          <Route path="/insights" element={<Insights />} />
-          <Route path="/insights/:slug" element={<InsightArticle />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
+    <>
+      <ScrollProgressBar />
+      <RouteChangeTop />
+      <CustomCursor />
+      <FloatingWA />
+      <ChatbotWidget />
+
+      <header>
+        <Navbar />
+      </header>
+
+      <AnimatePresence mode="wait">
+        <Routes location={location} key={location.pathname}>
+          <Route path="/" element={<PageWrapper><HomePage /></PageWrapper>} />
+          <Route path="/services-pricing" element={<PageWrapper><ServicesPricingPage /></PageWrapper>} />
+          <Route path="/work" element={<PageWrapper><WorkPage /></PageWrapper>} />
+          <Route path="/what-you-need" element={<PageWrapper><WhatYouNeedPage /></PageWrapper>} />
+          <Route path="/ai-digital-tools" element={<PageWrapper><DigitalInsightsPage /></PageWrapper>} />
+          <Route path="/about" element={<PageWrapper><AboutPage /></PageWrapper>} />
+          <Route path="/contact" element={<PageWrapper><ContactPage /></PageWrapper>} />
+          <Route path="/services" element={<Navigate to="/services-pricing" replace />} />
+          <Route path="/pricing" element={<Navigate to="/services-pricing" replace />} />
+          <Route path="/process" element={<Navigate to="/services-pricing" replace />} />
+          <Route path="/faq" element={<Navigate to="/services-pricing" replace />} />
+          <Route path="/hosting" element={<Navigate to="/services-pricing" replace />} />
+          <Route path="/insights" element={<Navigate to="/ai-digital-tools" replace />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
-      </Suspense>
-    </Layout>
-  );
+      </AnimatePresence>
+
+      <Footer />
+    </>
+  )
 }
