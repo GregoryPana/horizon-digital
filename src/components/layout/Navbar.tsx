@@ -51,13 +51,16 @@ export default function Navbar() {
     <>
       <nav
         id="main-nav"
-        className="fixed left-0 right-0 top-0 z-nav h-24 bg-transparent transition-all duration-500"
+        className={cn(
+          "fixed left-0 right-0 top-0 z-nav h-24 transition-all duration-500",
+          "bg-transparent"
+        )}
       >
         <div className="mx-auto max-w-[1600px] px-8 h-full flex items-center justify-between">
           <Link 
             to="/" 
             onClick={scrollToTop} 
-            className="font-display text-2xl font-bold uppercase tracking-tighter text-black dark:text-white"
+            className="font-display text-2xl uppercase tracking-tight text-white mix-blend-difference"
           >
             Horizon <span className="text-teal">Digital</span>
           </Link>
@@ -69,9 +72,9 @@ export default function Navbar() {
                 to={link.href} 
                 end={link.href === '/'} 
                 onClick={scrollToTop} 
-                className="relative py-2 font-display text-xs uppercase tracking-widest text-black/60 dark:text-white/60 transition-colors duration-200 hover:text-black dark:hover:text-white"
+                className="relative py-2 font-display text-xs uppercase tracking-widest text-white mix-blend-difference transition-colors duration-200"
               >
-                <span className={cn(isDesktopLinkActive(link.href) ? 'text-black dark:text-white' : undefined)}>{link.label}</span>
+                <span>{link.label}</span>
                 {isDesktopLinkActive(link.href) ? (
                   <motion.span
                     layoutId="desktop-nav-active"

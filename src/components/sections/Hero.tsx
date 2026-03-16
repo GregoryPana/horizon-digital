@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import Container from '@/components/ui/Container'
 import Button from '@/components/ui/Button'
 import { HERO } from '@/lib/content'
-import { gsap, prefersReduced, ScrollTrigger, useGSAP } from '@/lib/gsap'
+import { gsap, prefersReduced, useGSAP } from '@/lib/gsap'
 import { motion } from 'framer-motion'
 
 export default function Hero() {
@@ -32,18 +32,6 @@ export default function Hero() {
         },
       })
 
-      // Variable Font Weight Shift on Scroll
-      ScrollTrigger.create({
-        trigger: '#hero',
-        start: 'top top',
-        end: 'bottom top',
-        onUpdate: (self) => {
-          const weight = 300 + self.progress * 400
-          const width = 100 + self.progress * 50
-          document.body.style.setProperty('--weight', weight.toString())
-          document.body.style.setProperty('--width', width.toString())
-        },
-      })
 
       // Kinetic Typography Reveal
       const tl = gsap.timeline({ delay: 0.1 })
@@ -67,7 +55,7 @@ export default function Hero() {
     >
       {/* Cinematic Background Layer */}
       <div className="absolute inset-0 z-0 overflow-hidden cinematic-bg">
-        <picture id="hero-bg-img" className="absolute inset-0 block h-full w-full grayscale opacity-40">
+        <picture id="hero-bg-img" className="absolute inset-0 block h-full w-full grayscale opacity-30">
           <source media="(max-width: 767px)" srcSet="/images/hero-mobile.png" />
           <img
             src="/images/hero-bg.jpg"
@@ -75,7 +63,8 @@ export default function Hero() {
             className="h-full w-full object-cover"
           />
         </picture>
-        <div className="absolute inset-0 bg-mesh-gradient" />
+        <div className="absolute inset-0 bg-black/40" />
+        <div className="absolute inset-0 bg-mesh-gradient opacity-60" />
       </div>
 
       <Container className="relative z-10">
@@ -87,14 +76,14 @@ export default function Hero() {
           >
             <h1 
               ref={headlineRef}
-              className="h-h1 font-display text-display-cinematic text-white uppercase tracking-tighter"
+              className="h-h1 font-display text-display-cinematic text-white uppercase tracking-tight"
             >
               {HERO.h1Line1}
               <br />
-              <span className="text-teal">{HERO.h1Em}</span>
+              <span className="text-teal italic">{HERO.h1Em}</span>
             </h1>
 
-            <p className="h-body mt-8 max-w-[800px] font-sans text-2xl text-white/60 leading-relaxed md:text-3xl">
+            <p className="h-body mt-8 max-w-[800px] font-sans text-xl text-white/70 leading-relaxed md:text-2xl">
               {HERO.body}
             </p>
 

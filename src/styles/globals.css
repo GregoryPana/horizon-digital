@@ -314,6 +314,22 @@ img {
   outline: none;
   transition: border-color 200ms ease;
   -webkit-appearance: none;
+  appearance: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Instrument Serif", serif;
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+.brand-name {
+  font-family: "Instrument Serif", serif;
 }
 
 .form-field textarea {

@@ -45,7 +45,7 @@ export default function Pricing() {
               key={item.name}
               className={cn(
                 'price-card relative p-12 flex flex-col border border-black/5 dark:border-white/5 transition-all duration-500 hover:border-teal/50',
-                item.isFeatured ? 'bg-cream/30 dark:bg-card shadow-2xl scale-105 z-10' : 'bg-transparent'
+                item.isFeatured ? 'bg-cream/50 dark:bg-card shadow-2xl scale-105 z-10' : 'bg-cream/10 dark:bg-card/40'
               )}
             >
               {item.isFeatured && (
