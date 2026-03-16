@@ -1,4 +1,3 @@
 name = "horizon-digital-redesign"
+pages_build_output_dir = "dist"
 compatibility_date = "2026-03-16"
-pages_build_output_dir = "./dist"
-main = "./src/worker.ts"
