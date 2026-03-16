@@ -2,12 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Variable Font Definitions */
+/* Display & Sans Font Definitions */
 @font-face {
-  font-family: "Sora Variable";
-  src: url("@fontsource-variable/sora/files/sora-latin-wght-normal.woff2") format("woff2-variations");
+  font-family: "Instrument Serif";
+  src: url("@fontsource/instrument-serif/files/instrument-serif-latin-400-normal.woff2") format("woff2");
   font-style: normal;
-  font-weight: 100 800;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Instrument Serif";
+  src: url("@fontsource/instrument-serif/files/instrument-serif-latin-400-italic.woff2") format("woff2");
+  font-style: italic;
+  font-weight: 400;
   font-display: swap;
 }
 

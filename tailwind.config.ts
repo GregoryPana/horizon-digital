@@ -35,7 +35,7 @@ export default {
         whatsapp: '#25D366',
       },
       fontFamily: {
-        display: ['"Sora Variable"', 'system-ui', 'sans-serif'],
+        display: ['"Instrument Serif"', 'serif'],
         sans: ['"Inter Variable"', 'system-ui', 'sans-serif'],
       },
       fontSize: {
