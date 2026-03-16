@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { Link, NavLink, useLocation } from 'react-router-dom'
-import Button from '@/components/ui/Button'
-import Container from '@/components/ui/Container'
 import { MOBILE_NAV_LINKS, NAV_LINKS } from '@/lib/content'
 import { ScrollTrigger, useGSAP } from '@/lib/gsap'
 import { cn } from '@/lib/utils'
+import ReactiveButton from '@/components/ui/ReactiveButton'
 
 export default function Navbar() {
   const [isMobileOpen, setIsMobileOpen] = useState(false)
@@ -19,7 +18,6 @@ export default function Navbar() {
     if (href === '/') {
       return location.pathname === '/'
     }
-
     return location.pathname.startsWith(href)
   }
 
@@ -29,7 +27,11 @@ export default function Navbar() {
       end: 99999,
       onUpdate: (self) => {
         const nav = document.getElementById('main-nav')
-        nav?.classList.toggle('nav-scrolled', self.progress > 0)
+        if (self.progress > 0) {
+          nav?.classList.add('nav-scrolled')
+        } else {
+          nav?.classList.remove('nav-scrolled')
+        }
       },
     })
   }, [])
@@ -49,97 +51,104 @@ export default function Navbar() {
     <>
       <nav
         id="main-nav"
-        className="fixed left-0 right-0 top-0 z-nav h-nav border-b border-transparent bg-transparent transition duration-300"
-        style={{ paddingTop: 'env(safe-area-inset-top)' }}
+        className="fixed left-0 right-0 top-0 z-nav h-24 bg-transparent transition-all duration-500"
       >
-        <Container className="!max-w-[1560px] flex h-full items-center justify-between">
-          <Link to="/" onClick={scrollToTop} className="font-syne text-ui-btn font-bold uppercase text-white">
-            Horizon Digital
+        <div className="mx-auto max-w-[1600px] px-8 h-full flex items-center justify-between">
+          <Link 
+            to="/" 
+            onClick={scrollToTop} 
+            className="font-syne text-2xl font-bold uppercase tracking-tighter text-black dark:text-white"
+          >
+            Horizon <span className="text-teal">Digital</span>
           </Link>
 
-          <div className="hidden items-center gap-6 lg:flex">
+          <div className="hidden items-center gap-10 lg:flex">
             {NAV_LINKS.map((link) => (
-              <NavLink key={link.href} to={link.href} end={link.href === '/'} onClick={scrollToTop} className="relative px-0.5 pb-1 font-syne text-ui-nav text-muted transition-colors duration-200 hover:text-white">
-                <span className={cn('relative z-[1]', isDesktopLinkActive(link.href) ? 'text-white' : undefined)}>{link.label}</span>
+              <NavLink 
+                key={link.href} 
+                to={link.href} 
+                end={link.href === '/'} 
+                onClick={scrollToTop} 
+                className="relative py-2 font-syne text-xs uppercase tracking-widest text-black/60 dark:text-white/60 transition-colors duration-200 hover:text-black dark:hover:text-white"
+              >
+                <span className={cn(isDesktopLinkActive(link.href) ? 'text-black dark:text-white' : undefined)}>{link.label}</span>
                 {isDesktopLinkActive(link.href) ? (
                   <motion.span
                     layoutId="desktop-nav-active"
-                    transition={{ type: 'spring', stiffness: 540, damping: 42, mass: 0.7 }}
-                    className="absolute inset-x-0 -bottom-1 h-[2px] rounded-full bg-teal"
+                    transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+                    className="absolute inset-x-0 bottom-0 h-[1px] bg-teal"
                   />
                 ) : null}
               </NavLink>
             ))}
 
-            <Button variant="primary" href="/contact" onClick={scrollToTop} className="px-5 py-2.5" showArrow>
-              Get a quote
-            </Button>
+            <Link to="/contact" onClick={scrollToTop}>
+              <ReactiveButton className="py-3 px-8 text-[10px]">
+                Enquire
+              </ReactiveButton>
+            </Link>
           </div>
 
           <button
             type="button"
-            className="relative group inline-flex h-11 w-11 items-center justify-center lg:hidden"
+            className="group flex flex-col gap-1.5 items-end lg:hidden"
             aria-label="Open menu"
-            aria-expanded={isMobileOpen}
             onClick={() => setIsMobileOpen(true)}
           >
-            <span className="sr-only">Open menu</span>
-            <span className="block h-px w-6 bg-cream transition duration-200 group-hover:bg-white" />
-            <span className="absolute block h-px w-6 -translate-y-2 bg-cream transition duration-200 group-hover:bg-white" />
-            <span className="absolute block h-px w-6 translate-y-2 bg-cream transition duration-200 group-hover:bg-white" />
+            <span className="block h-px w-8 bg-black dark:bg-white transition-all group-hover:w-6" />
+            <span className="block h-px w-5 bg-black dark:bg-white" />
+            <span className="block h-px w-8 bg-black dark:bg-white transition-all group-hover:w-10" />
           </button>
-        </Container>
+        </div>
       </nav>
 
+      {/* Mobile Nav Overlay */}
       <div
         className={cn(
-          'fixed inset-0 z-mob flex flex-col items-center justify-center gap-8 bg-dark px-gut-sm transition-transform duration-500 ease-mobile-nav lg:hidden',
+          'fixed inset-0 z-mob flex flex-col p-12 bg-white dark:bg-black transition-transform duration-700 ease-[0.16, 1, 0.3, 1] lg:hidden',
           isMobileOpen ? 'translate-x-0' : 'translate-x-full',
         )}
-        style={{ paddingTop: 'max(1.5rem, env(safe-area-inset-top))', paddingBottom: 'max(1.5rem, env(safe-area-inset-bottom))' }}
       >
-        <button type="button" onClick={() => setIsMobileOpen(false)} className="absolute right-6 top-6 font-syne text-ui-btn text-muted">
-          Close ×
+        <button 
+          type="button" 
+          onClick={() => setIsMobileOpen(false)} 
+          className="self-end font-syne text-sm uppercase tracking-widest text-black dark:text-white mb-20"
+        >
+          Close [×]
         </button>
 
-        {MOBILE_NAV_LINKS.map((link) => (
-          <NavLink
-            key={link.href}
-            to={link.href}
-            end={link.href === '/'}
-            onClick={() => {
-              setIsMobileOpen(false)
-              scrollToTop()
-            }}
-            className={({ isActive }) =>
-              cn('relative font-cormorant text-display-md text-white transition-colors duration-200 hover:text-teal', isActive && 'text-teal')
-            }
-          >
-            {({ isActive }) => (
-              <>
+        <div className="flex flex-col gap-8">
+          {MOBILE_NAV_LINKS.map((link, i) => (
+            <motion.div
+              key={link.href}
+              initial={{ x: 20, opacity: 0 }}
+              animate={isMobileOpen ? { x: 0, opacity: 1 } : { x: 20, opacity: 0 }}
+              transition={{ delay: 0.1 + i * 0.05 }}
+            >
+              <NavLink
+                to={link.href}
+                end={link.href === '/'}
+                onClick={() => {
+                  setIsMobileOpen(false)
+                  scrollToTop()
+                }}
+                className={({ isActive }) =>
+                  cn('font-syne text-5xl uppercase font-bold tracking-tighter text-black/20 dark:text-white/20 transition-colors', isActive && 'text-teal dark:text-teal')
+                }
+              >
                 {link.label}
-                {isActive && (
-                  <motion.span
-                    layoutId="mobile-nav-active"
-                    className="absolute -left-6 top-1/2 h-1.5 w-1.5 -translate-y-1/2 rounded-full bg-teal"
-                    transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-                  />
-                )}
-              </>
-            )}
-          </NavLink>
-        ))}
+              </NavLink>
+            </motion.div>
+          ))}
+        </div>
 
-        <NavLink
-          to="/contact"
-          onClick={() => {
-            setIsMobileOpen(false)
-            scrollToTop()
-          }}
-          className="font-cormorant text-display-md text-teal"
-        >
-          Start a project →
-        </NavLink>
+        <div className="mt-auto">
+          <Link to="/contact" onClick={() => setIsMobileOpen(false)}>
+            <ReactiveButton className="w-full h-20 text-xl">
+              Start Project
+            </ReactiveButton>
+          </Link>
+        </div>
       </div>
     </>
   )

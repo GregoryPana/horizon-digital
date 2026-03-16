@@ -1,99 +1,96 @@
 import { useRef } from 'react'
 import Container from '@/components/ui/Container'
-import Grid from '@/components/ui/Grid'
 import { ABOUT } from '@/lib/content'
-import { gsap, prefersReduced, useGSAP } from '@/lib/gsap'
-import { revealSectionTitle } from '@/lib/animations'
+import { gsap, useGSAP } from '@/lib/gsap'
+import { motion, useScroll, useTransform } from 'framer-motion'
 
 export default function About() {
   const sectionRef = useRef<HTMLElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"]
+  })
+
+  // Parallax for the background block
+  const y = useTransform(scrollYProgress, [0, 1], [0, -100])
 
   useGSAP(
     () => {
-      const section = sectionRef.current
-      if (!section) {
-        return
+      const paragraphs = sectionRef.current?.querySelectorAll('.reveal-para')
+      if (paragraphs) {
+        paragraphs.forEach((p) => {
+          gsap.fromTo(p, 
+            { opacity: 0, x: -20 },
+            { 
+              opacity: 1, 
+              x: 0, 
+              duration: 1, 
+              ease: 'cinematic',
+              scrollTrigger: {
+                trigger: p,
+                start: 'top 85%',
+                toggleActions: 'play none none none'
+              }
+            }
+          )
+        })
       }
-
-      const title = section.querySelector('h2')
-      if (title instanceof HTMLElement) {
-        revealSectionTitle(title)
-      }
-
-      if (prefersReduced()) {
-        gsap.set('.about-quote-mark, .about-body p', { opacity: 1, y: 0, scale: 1 })
-        return
-      }
-
-      gsap.fromTo(
-        '.about-quote-mark',
-        { opacity: 0, scale: 0.55, transformOrigin: 'bottom left' },
-        {
-          opacity: 1,
-          scale: 1,
-          duration: 1,
-          ease: 'back.out(1.15)',
-          scrollTrigger: {
-            trigger: '#about',
-            start: 'top 75%',
-            toggleActions: 'play none none none',
-          },
-        },
-      )
-
-      gsap.fromTo(
-        '.about-body p',
-        { opacity: 0, y: 18 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.7,
-          ease: 'power2.out',
-          stagger: 0.1,
-          scrollTrigger: {
-            trigger: '.about-body',
-            start: 'top 84%',
-            toggleActions: 'play none none none',
-          },
-        },
-      )
     },
-    { scope: sectionRef },
+    { scope: sectionRef }
   )
 
   return (
-    <section id="about" ref={sectionRef} className="bg-black py-sec-sm md:py-about" aria-labelledby="about-title">
-      <Container>
-        <Grid className="items-center gap-y-8 lg:gap-y-10">
-          <div className="col-span-12 lg:col-span-5">
-            <span className="about-quote-mark mb-2 block font-cormorant text-quote text-teal/15">“</span>
-            <h2 id="about-title" className="font-cormorant text-display-lg text-white">
-              {ABOUT.quoteWords[0]}
-              <br />
-              {ABOUT.quoteWords[1]}
-              <br />
-              <em>{ABOUT.quoteWords[2]}</em>
-            </h2>
-          </div>
+    <section 
+      id="about" 
+      ref={sectionRef} 
+      className="relative bg-white dark:bg-[#050505] py-cinematic overflow-hidden"
+    >
+      {/* Cinematic Bold Color Block */}
+      <motion.div 
+        style={{ y }}
+        className="absolute top-20 right-[-10%] w-[50%] h-[120%] bg-teal/5 dark:bg-teal/[0.02] transform rotate-3"
+      />
 
-          <div className="col-span-12 lg:col-start-7 lg:col-span-6">
-            <span className="mb-5 inline-block rounded-pill border border-border-strong px-3.5 py-1.5 font-syne text-ui-label text-muted">
+      <Container>
+        <div className="relative z-10 grid grid-cols-12 gap-gutter">
+          <div className="col-span-12 lg:col-span-10 lg:col-start-2">
+            <span className="text-teal font-syne text-sm uppercase tracking-[0.3em] mb-8 block">
               {ABOUT.tag}
             </span>
 
-            <div className="about-body">
-              {ABOUT.paragraphs.map((paragraph) => (
-                <p key={paragraph} className="mb-4 font-dm text-body-base text-muted last:mb-0">
-                  {paragraph}
-                </p>
+            <h2 className="font-syne text-display-hero text-black dark:text-white uppercase mb-16 leading-[0.85]">
+              {ABOUT.quoteWords[0]} <span className="text-teal">{ABOUT.quoteWords[1]}</span> {ABOUT.quoteWords[2]}
+            </h2>
+
+            <div ref={containerRef} className="space-y-12">
+              {ABOUT.paragraphs.map((paragraph, i) => (
+                <div key={i} className="reveal-para grid grid-cols-12">
+                  <div className="hidden lg:block col-span-1 text-teal/20 font-syne text-4xl">0{i + 1}</div>
+                  <p className="col-span-12 lg:col-span-9 font-dm text-2xl md:text-3xl text-black/70 dark:text-white/60 leading-relaxed italic">
+                    {paragraph}
+                  </p>
+                </div>
               ))}
             </div>
 
-            <a href="#cta" className="mt-5 inline-flex items-center gap-2 font-syne text-ui-nav text-teal transition-all duration-200 hover:gap-3.5">
-              {ABOUT.cta} →
-            </a>
+            <motion.div 
+              whileHover={{ scale: 1.02 }}
+              className="mt-20 inline-block"
+            >
+              <a 
+                href="#cta" 
+                className="group relative inline-flex items-center gap-4 text-black dark:text-white font-syne text-xl uppercase py-4"
+              >
+                <div className="absolute bottom-0 left-0 w-full h-[1px] bg-teal origin-left transition-transform scale-x-50 group-hover:scale-x-100" />
+                {ABOUT.cta}
+                <div className="w-12 h-12 rounded-full border border-teal flex items-center justify-center transition-colors group-hover:bg-teal group-hover:text-white">
+                  →
+                </div>
+              </a>
+            </motion.div>
           </div>
-        </Grid>
+        </div>
       </Container>
     </section>
   )

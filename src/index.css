@@ -778,6 +778,88 @@ html:not([data-theme="dark"]) .cta-shimmer:hover {
   border-color: rgba(222, 236, 235, 0.16) !important;
 }
 
+/* Variable Font Support */
+:root {
+  --weight: 400;
+  --width: 100;
+}
+
+body {
+  font-variation-settings: 'wght' var(--weight), 'wdth' var(--width);
+  transition: font-variation-settings 0.3s var(--cinematic);
+}
+
+/* Cinematic Utilities */
+.nav-scrolled {
+  @apply bg-white/80 dark:bg-black/80 backdrop-blur-xl border-b border-black/5 dark:border-white/5 h-20 !important;
+}
+
+/* Reactive Textures */
+.texture-noise {
+  position: relative;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  filter: contrast(150%) brightness(100%);
+}
+
+.texture-noise::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Organic Dividers */
+.organic-divider {
+  width: 100%;
+  height: clamp(60px, 10vw, 120px);
+  fill: currentColor;
+}
+
+/* Parallax Depth */
+.parallax-layer {
+  will-change: transform;
+}
+
+/* Cinematic Hero Background */
+.cinematic-bg {
+  mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+  filter: saturate(1.2) contrast(1.1);
+}
+
+/* Bento Grid Utilities */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--bento-gap);
+}
+
+.bento-item {
+  border-radius: var(--bento);
+  overflow: hidden;
+  transition: transform 0.6s var(--cinematic), box-shadow 0.6s var(--cinematic);
+}
+
+.bento-item:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+/* Kinetic Headlines */
+.kinetic-text {
+  display: inline-block;
+  white-space: pre;
+}
+
+/* Bold Color Blocks */
+.color-block {
+  background: var(--accent);
+  color: white;
+  padding: 4rem;
+  clip-path: polygon(0 5%, 100% 0, 95% 100%, 0 92%);
+}
+
 .insights-theme-shell {
   color-scheme: dark;
   --bg: #050608;

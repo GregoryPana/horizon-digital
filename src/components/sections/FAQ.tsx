@@ -2,160 +2,85 @@ import { useRef, useState } from 'react'
 import Container from '@/components/ui/Container'
 import Eyebrow from '@/components/ui/Eyebrow'
 import { FAQ as FAQ_ITEMS, SECTION_CONTENT } from '@/lib/content'
-import { revealSectionTitle } from '@/lib/animations'
-import { gsap, prefersReduced, useGSAP } from '@/lib/gsap'
+import { gsap, useGSAP } from '@/lib/gsap'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Plus } from 'lucide-react'
 
 export default function FAQ() {
   const sectionRef = useRef<HTMLElement>(null)
-  const answerRefs = useRef<Array<HTMLDivElement | null>>([])
-  const iconRefs = useRef<Array<HTMLSpanElement | null>>([])
   const [openIndex, setOpenIndex] = useState<number | null>(null)
-
-  const toggleFaq = (index: number) => {
-    const answer = answerRefs.current[index]
-    const icon = iconRefs.current[index]
-    if (!answer || !icon) {
-      return
-    }
-
-    if (prefersReduced()) {
-      const next = openIndex === index ? null : index
-      setOpenIndex(next)
-
-      answerRefs.current.forEach((item, itemIndex) => {
-        if (!item) {
-          return
-        }
-
-        const open = next === itemIndex
-        item.style.height = open ? 'auto' : '0px'
-        item.style.opacity = open ? '1' : '0'
-      })
-
-      iconRefs.current.forEach((item, itemIndex) => {
-        if (!item) {
-          return
-        }
-
-        item.style.transform = next === itemIndex ? 'rotate(45deg)' : 'rotate(0deg)'
-      })
-
-      return
-    }
-
-    if (openIndex === index) {
-      gsap.to(answer, {
-        height: 0,
-        opacity: 0,
-        duration: 0.32,
-        ease: 'power2.in',
-        onComplete: () => setOpenIndex(null),
-      })
-
-      gsap.to(icon, { rotation: 0, duration: 0.3, ease: 'power2.out' })
-      return
-    }
-
-    if (openIndex !== null) {
-      const previousAnswer = answerRefs.current[openIndex]
-      const previousIcon = iconRefs.current[openIndex]
-
-      if (previousAnswer) {
-        gsap.to(previousAnswer, { height: 0, opacity: 0, duration: 0.25, ease: 'power2.in' })
-      }
-
-      if (previousIcon) {
-        gsap.to(previousIcon, { rotation: 0, duration: 0.25, ease: 'power2.out' })
-      }
-    }
-
-    setOpenIndex(index)
-
-    gsap.fromTo(answer, { height: 0, opacity: 0 }, { height: 'auto', opacity: 1, duration: 0.4, ease: 'power2.out' })
-    gsap.to(icon, { rotation: 45, duration: 0.3, ease: 'power2.out' })
-  }
 
   useGSAP(
     () => {
-      const section = sectionRef.current
-      if (!section) {
-        return
-      }
-
-      const title = section.querySelector('h2')
-      if (title instanceof HTMLElement) {
-        revealSectionTitle(title)
-      }
-
-      if (prefersReduced()) {
-        gsap.set('.faq-item', { opacity: 1, y: 0 })
-        return
-      }
-
-      gsap.fromTo(
-        '.faq-item',
-        { opacity: 0, y: 18 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.58,
-          ease: 'power2.out',
-          stagger: { each: 0.055, from: 'start' },
-          scrollTrigger: {
-            trigger: '.faq-grid',
-            start: 'top 84%',
-            toggleActions: 'play none none none',
-          },
+      gsap.from('.faq-item', {
+        opacity: 0,
+        x: 30,
+        stagger: 0.1,
+        ease: 'cinematic',
+        scrollTrigger: {
+          trigger: '.faq-list',
+          start: 'top 80%',
         },
-      )
+      })
     },
     { scope: sectionRef },
   )
 
   return (
-    <section id="faq" ref={sectionRef} className="bg-dark py-sec-sm md:py-sec" aria-labelledby="faq-title">
+    <section id="faq" ref={sectionRef} className="relative bg-white dark:bg-black py-cinematic border-t border-black/5 dark:border-white/5" aria-labelledby="faq-title">
       <Container>
-        <div className="mb-header-gap">
-          <Eyebrow className="mb-3">{SECTION_CONTENT.faq.eyebrow}</Eyebrow>
-          <h2 id="faq-title" className="font-cormorant text-display-lg text-white">
-            {SECTION_CONTENT.faq.titleStart}
-            <br />
-            <em>{SECTION_CONTENT.faq.titleEm}</em>
-          </h2>
-        </div>
+        <div className="grid grid-cols-12 gap-gutter">
+          <div className="col-span-12 lg:col-span-5 mb-16 lg:mb-0">
+             <Eyebrow className="mb-6 text-teal">{SECTION_CONTENT.faq.eyebrow}</Eyebrow>
+             <h2 id="faq-title" className="font-syne text-display-hero text-black dark:text-white uppercase leading-[0.85] mb-8">
+               {SECTION_CONTENT.faq.titleStart} <span className="text-teal">{SECTION_CONTENT.faq.titleEm}</span>
+             </h2>
+             <p className="font-dm text-xl text-muted-2 dark:text-muted max-w-sm italic leading-relaxed">
+               Clarifying the unknowns. Simple, direct answers to common queries about our digital storytelling process.
+             </p>
+          </div>
 
-        <div className="faq-grid grid grid-cols-1 gap-card-gap bg-border lg:grid-cols-2">
-          {FAQ_ITEMS.map((item, index) => (
-            <article key={item.q} className="faq-item bg-dark px-5 py-faq-pad transition-colors duration-200 hover:bg-card sm:px-6 lg:px-8">
-              <button
-                type="button"
-                className="flex w-full items-start justify-between gap-3 text-left"
-                onClick={() => toggleFaq(index)}
-                aria-expanded={openIndex === index}
-                aria-controls={`faq-answer-${index}`}
+          <div className="faq-list col-span-12 lg:col-span-7 space-y-4">
+            {FAQ_ITEMS.map((item, index) => (
+              <article 
+                key={item.q} 
+                className={`faq-item group border border-black/5 dark:border-white/5 bg-cream/10 dark:bg-card/50 transition-all duration-500 rounded-2xl
+                  ${openIndex === index ? 'bg-cream/30 dark:bg-card' : ''}
+                `}
               >
-                <h3 className="font-syne text-body-sm font-semibold leading-relaxed text-white">{item.q}</h3>
-                <span
-                  ref={(element) => {
-                    iconRefs.current[index] = element
-                  }}
-                  className="-mt-0.5 shrink-0 text-icon-lg text-teal transition-transform duration-300"
+                <button
+                  type="button"
+                  className="flex w-full items-center justify-between p-8 text-left"
+                  onClick={() => setOpenIndex(openIndex === index ? null : index)}
+                  aria-expanded={openIndex === index}
                 >
-                  +
-                </span>
-              </button>
+                  <h3 className="font-syne text-xl text-black dark:text-white uppercase pr-8">{item.q}</h3>
+                  <motion.div
+                    animate={{ rotate: openIndex === index ? 45 : 0 }}
+                    className="shrink-0 text-teal"
+                  >
+                    <Plus size={24} />
+                  </motion.div>
+                </button>
 
-              <div
-                id={`faq-answer-${index}`}
-                ref={(element) => {
-                  answerRefs.current[index] = element
-                }}
-                style={{ height: 0, overflow: 'hidden', opacity: 0 }}
-              >
-                <p className="pt-3 font-dm text-body-sm text-muted">{item.a}</p>
-              </div>
-            </article>
-          ))}
+                <AnimatePresence>
+                  {openIndex === index && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                      className="overflow-hidden"
+                    >
+                      <div className="p-8 pt-0 font-dm text-lg text-muted-2 dark:text-muted leading-relaxed">
+                        {item.a}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </article>
+            ))}
+          </div>
         </div>
       </Container>
     </section>

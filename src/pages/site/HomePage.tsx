@@ -8,6 +8,7 @@ import Pricing from '@/components/sections/Pricing'
 import Process from '@/components/sections/Process'
 import Services from '@/components/sections/Services'
 import Work from '@/components/sections/Work'
+import OrganicDivider from '@/components/ui/OrganicDivider'
 import { HOME_SEO } from '@/lib/content'
 
 export default function HomePage() {
@@ -18,9 +19,16 @@ export default function HomePage() {
         <Hero />
         <Marquee />
         <Work />
-        <Services />
+        <div className="relative">
+          <OrganicDivider type="wave" className="absolute top-0 text-white dark:text-black -translate-y-full" />
+          <Services />
+          <OrganicDivider type="curve" className="text-white dark:text-[#050505]" flip />
+        </div>
         <About />
-        <Process />
+        <div className="bg-white dark:bg-[#050505]">
+          <OrganicDivider type="cliff" className="text-dark" />
+          <Process />
+        </div>
         <Pricing />
         <FAQ />
         <CTA />

@@ -1012,96 +1012,94 @@ export const KNOWLEDGE_PAGES: Record<
     eyebrow: 'Guidance',
     title: 'What website does your business',
     titleEm: 'actually need?',
-    lead: 'Many businesses know they need a website but are unsure which type is right. This guide helps you choose with clarity and confidence.',
-    seoTitle: 'What Website Does Your Business Need?',
-    seoDescription:
-      'A clear guide for Seychelles businesses choosing the right website type, features, and package. Learn about service, retail, and hospitality web design.',
+    lead: 'Choosing the right digital structure is the difference between a static page and a growth tool. This guide clarifies the essentials.',
+    seoTitle: 'What Website Does Your Business Need? | Horizon Digital',
+    seoDescription: 'A comprehensive guide for Seychelles businesses on choosing the right website type, preparing content, and understanding the digital essentials.',
     seoPath: '/what-you-need',
-    seoKeywords: 'what website do I need, business website types Seychelles, website package guidance, web design hosting',
+    seoKeywords: 'website preparation, client checklist web design, what do I need for a website Seychelles',
     blocks: [
       {
-        heading: 'Service business websites',
+        heading: 'The Client Checklist',
         paragraphs: [
-          'Service businesses usually need clear service pages, trust-building structure, and direct enquiry pathways that guide visitors from first impression to contact.',
+          'To ensure a smooth build and a high-quality launch, we need these core assets gathered before we start the development phase:'
         ],
+        bullets: [
+          'Brand Identity: High-resolution logo files (SVG or PNG) and any existing brand guidelines.',
+          'Core Content: Written text for each page (About, Services, Team, etc.) in a Word or Google Doc.',
+          'High-Quality Imagery: Professional photos of your business, team, products, or location.',
+          'Technical Access: Login details for your domain provider (e.g., GoDaddy, Namecheap) and any existing hosting.',
+          'Contact Details: Full business address, phone numbers, WhatsApp, and social media handles.',
+          'Structural Goals: A clear list of 3-5 things you want the website to achieve (e.g., "Get more guesthouse bookings").'
+        ]
       },
       {
-        heading: 'Retail showcase websites',
+        heading: 'Service-First Websites',
         paragraphs: [
-          'Retail-focused websites prioritize product presentation, clear availability, and simple message or order-request pathways.',
-        ],
+          'For professional services, consulting, or local trades, your website should lead with trust. You need clear service definitions and frictionless ways for customers to request a quote.'
+        ]
       },
       {
-        heading: 'Hospitality websites',
+        heading: 'Hospitality & Tourism',
         paragraphs: [
-          'Hospitality businesses benefit from clear room or service details, visual trust signals, location context, and frictionless booking enquiry flow.',
-        ],
+          'Guesthouses and tour operators depend on visual proof. Your site needs a prominent booking enquiry flow, high-impact galleries, and integrated location mapping.'
+        ]
       },
       {
-        heading: 'The three essentials every website needs',
+        heading: 'The Three Digital Pillars',
         paragraphs: [
-          'Every website depends on three core pieces: your domain name, your design/build implementation, and your hosting environment.',
-          'Understanding these parts early helps you make better investment decisions and avoid avoidable delays.',
+          'Every website on earth requires these three components. We handle the hard work, but it helps to know how they fit together:'
         ],
-      },
-      {
-        heading: 'Two practical setup options',
-        paragraphs: [
-          'Option one: Horizon builds the website and you host externally. Option two: Horizon handles both website build and hosting management while you keep domain ownership.',
-        ],
-      },
-    ],
+        bullets: [
+          'The Domain: Your business address (e.g. www.business.sc). You should always own this directly.',
+          'The Build: The custom code and design that makes your site fast and beautiful (Our core service).',
+          'The Hosting: The specialized server where your website files live 24/7 so the world can see them.'
+        ]
+      }
+    ]
   },
   digitalInsights: {
     eyebrow: 'Digital Insights',
-    title: 'Artificial intelligence and digital tools',
-    titleEm: 'for Seychelles businesses.',
-    lead: 'A practical guide to AI, automation, and analytics for business owners who want clarity without technical noise.',
-    seoTitle: 'Artificial Intelligence & Digital Tools for Businesses in Seychelles',
-    seoDescription:
-      'Learn how artificial intelligence, automation, and digital tools are shaping businesses in Seychelles and where they can be applied practically.',
+    title: 'Modern tools for the',
+    titleEm: 'modern Seychelles.',
+    lead: 'In a rapidly evolving digital landscape, staying informed is your greatest competitive advantage. We cut through the noise.',
+    seoTitle: 'Digital Insights - AI & Modern Business Tools Seychelles',
+    seoDescription: 'Explore the impact of AI, automation, and modern digital tools on Seychelles businesses. Strategic advice for modern entrepreneurs.',
     seoPath: '/ai-digital-tools',
-    seoKeywords:
-      'AI Seychelles, Artificial Intelligence Seychelles, digital tools Seychelles, automation for small businesses Seychelles, AI for small business',
+    seoKeywords: 'AI in Seychelles, digital transformation Seychelles, business automation Seychelles',
     blocks: [
       {
-        heading: 'Digital awareness',
+        heading: 'The AI Revolution',
         paragraphs: [
-          'Around the world, businesses are beginning to use artificial intelligence, automation, and digital tools to work more efficiently and better understand their customers.',
-          'While many of these technologies are still emerging in Seychelles, they are likely to play an increasing role in the future of business. Horizon Digital follows these developments closely to help local businesses stay informed.',
-        ],
+          'Artificial Intelligence is no longer science fiction. It is a practical toolset that is already helping businesses in Seychelles automate mundane tasks and provide 24/7 customer support.',
+          'From automated booking assistants to smart content generation, AI allows small teams to punch far above their weight.'
+        ]
       },
       {
-        heading: 'AI Chatbots for Customer Communication',
+        heading: 'Advanced Customer Communication',
         paragraphs: [
-          'AI-powered chatbots can answer common questions, guide visitors, and support customer communication outside normal working hours. They can help with booking enquiries, service questions, and basic support requests.',
-        ],
+          'We believe the future of customer service is hybrid. AI chatbots handle the initial enquiries and common questions at 2 AM, while your team jumps in for the high-value personal interactions.'
+        ]
       },
       {
-        heading: 'Automation Tools',
+        heading: 'Data-Driven Growth',
         paragraphs: [
-          'Automation tools can streamline repetitive tasks like confirmations, follow-ups, and information routing. This can reduce workload and help teams focus on customer-facing work.',
-        ],
+          'Modern analytics shouldn\'t be scary. We help you understand exactly where your visitors are coming from, what pages they love most, and why they might be leaving before contacting you.'
+        ]
       },
       {
-        heading: 'Understanding Customers Through Data',
+        heading: 'Workflow Automation',
         paragraphs: [
-          'Digital analytics can help businesses understand customer behaviour, popular services, and content performance. Better insights support better decisions.',
-        ],
+          'If you are doing the same task twice every day, it can likely be automated. Whether it\'s syncing enquiry forms to a spreadsheet or sending automated follow-up emails, digital tools free up your time for what matters: running your business.'
+        ]
       },
       {
-        heading: 'AI Tools for Content and Communication',
+        heading: 'Redesigning for the Future',
         paragraphs: [
-          'AI-assisted tools can support drafting, translation, and idea generation. They should support human judgement, not replace it.',
-        ],
-      },
-      {
-        heading: 'Current Horizon Digital focus',
-        paragraphs: [
-          'Horizon Digital currently focuses on clear, fast website engineering. AI and automation are tracked closely, but AI implementation services are not currently a core offering.',
-        ],
-      },
+          'A website in 2025 isn\'t just a digital brochure. It’s a dynamic platform that integrates with your social media, your WhatsApp, and your business workflows.',
+          'Horizon Digital stays at the cutting edge of these tools so you don\'t have to.'
+        ]
+      }
     ],
-    columns: 2,
+    columns: 1
   },
 }
