@@ -1,5 +1,5 @@
-import heroDesktop from "../assets/hero/hero-desktop-tech.png";
-import heroDesktopWebp from "../assets/hero/hero-desktop-tech.webp";
+import heroDesktop from "../assets/hero/hero-desktop-tech-v2.png";
+import heroDesktopWebp from "../assets/hero/hero-desktop-tech-v2.webp";
 import businessAutomationImage from "../assets/insights/business automation.png";
 import aiToolsImage from "../assets/insights/ai tools.png";
 import dataAnalysisImage from "../assets/insights/data analysis.png";
