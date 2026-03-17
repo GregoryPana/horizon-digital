@@ -683,6 +683,22 @@ html .hero-glow-text {
   --text: #EAF2FF;
   --text-muted: rgba(168, 240, 255, 0.65);
   --glow: rgba(0, 229, 255, 0.45);
+  background-color: transparent !important;
+  border-color: transparent !important;
+  backdrop-filter: none !important;
+  box-shadow: none;
+  transition:
+    background-color 280ms ease,
+    border-color 280ms ease,
+    backdrop-filter 280ms ease,
+    box-shadow 280ms ease;
+}
+
+.site-header-dark.is-scrolled {
+  background-color: rgba(6, 8, 24, 0.88) !important;
+  border-color: rgba(0, 229, 255, 0.14) !important;
+  backdrop-filter: blur(12px) !important;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.28);
 }
 
 
@@ -730,7 +746,7 @@ html .hero-glow-text {
     linear-gradient(180deg, rgba(3, 5, 8, 0.88), rgba(3, 5, 8, 0.98));
 }
 
-.insights-theme-shell .site-header-dark,
+.insights-theme-shell .site-header-dark.is-scrolled,
 .insights-theme-shell .site-footer-dark {
   background-color: rgba(8, 12, 18, 0.95) !important;
   border-color: rgba(151, 184, 214, 0.3) !important;
@@ -777,10 +793,10 @@ html .hero-glow-text {
 }
 
 @media (min-width: 768px) {
-  .site-header-dark {
+  .site-header-dark.is-scrolled {
     background-color: #060818 !important;
     border-color: rgba(0, 229, 255, 0.14) !important;
-    backdrop-filter: none !important;
+    backdrop-filter: blur(12px) !important;
   }
 }
 

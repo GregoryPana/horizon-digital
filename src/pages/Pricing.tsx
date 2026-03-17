@@ -254,7 +254,7 @@ export default function Pricing() {
           <p className="text-sm md:text-base text-text-muted max-w-4xl text-center mx-auto">{servicesPricingIntro.summary}</p>
           <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {services.slice(0, 5).map((service) => (
-              <div key={service.title} className="p-6 rounded-2xl border border-border bg-white dark:bg-[#0f1b2d] hover:border-accent/30 transition-colors">
+              <div key={service.title} className="p-6 rounded-2xl border border-border bg-bg-panel hover:border-accent/30 transition-colors">
                 <h3 className="text-base font-semibold text-accent-2">{service.title}</h3>
                 <p className="mt-3 text-sm text-text-muted">{service.description}</p>
               </div>
@@ -303,7 +303,7 @@ export default function Pricing() {
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: false }}
-            className="flex h-full flex-col rounded-3xl border border-border/40 bg-white/50 dark:bg-[#152238] p-8 hover:border-accent/30 transition-all"
+            className="flex h-full flex-col rounded-3xl border border-border/40 bg-bg-elev p-8 hover:border-accent/30 transition-all"
           >
             <h3 className="text-lg font-semibold text-accent-2">{foundationPackage.title}</h3>
             <p className="mt-4 text-3xl font-semibold text-accent">{foundationPackage.price}</p>
@@ -387,7 +387,7 @@ export default function Pricing() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: false }}
             transition={{ delay: 0.1 }}
-            className="flex h-full flex-col rounded-3xl border border-accent/40 bg-white dark:bg-[#0f1b2d] p-8 shadow-[0_0_40px_rgba(70,198,232,0.1)] relative overflow-hidden pricing-card-featured-shine"
+            className="flex h-full flex-col rounded-3xl border border-accent/40 bg-bg-panel p-8 shadow-[0_0_40px_rgba(0,229,255,0.1)] relative overflow-hidden pricing-card-featured-shine"
           >
               <div className="absolute top-0 right-0 py-1 px-4 text-xs font-semibold bg-accent text-bg rounded-bl-xl tracking-wider uppercase">Most Popular</div>
               <h3 className="text-lg font-semibold text-accent-2">{starterPackage.title}</h3>
@@ -431,9 +431,9 @@ export default function Pricing() {
                     <div className="mt-8">
                       <Link to="/contact?budget=15000-30000" className="w-full">
                         <ShimmerButton
-                          shimmerColor="#0b1212"
+                          shimmerColor="#060818"
                           shimmerDuration="4.2s"
-                          background="#46c6e8"
+                          background="#00E5FF"
                           className="w-full px-5 py-3 text-sm font-semibold tracking-wide text-black"
                         >
                           Discuss your project
@@ -453,9 +453,9 @@ export default function Pricing() {
                 <div className="mt-8">
                   <Link to="/contact?budget=15000-30000">
                     <ShimmerButton
-                      shimmerColor="#0b1212"
+                      shimmerColor="#060818"
                       shimmerDuration="4.2s"
-                      background="#46c6e8"
+                      background="#00E5FF"
                       className="w-full px-5 py-3 text-sm font-semibold tracking-wide text-black"
                     >
                       Discuss project
@@ -470,7 +470,7 @@ export default function Pricing() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: false }}
             transition={{ delay: 0.2 }}
-            className="flex h-full flex-col rounded-3xl border border-border/40 bg-white/50 dark:bg-[#152238] p-8 hover:border-accent/30 transition-all"
+            className="flex h-full flex-col rounded-3xl border border-border/40 bg-bg-elev p-8 hover:border-accent/30 transition-all"
           >
             <h3 className="text-lg font-semibold text-accent-2">{growthPackage.title}</h3>
             <p className="mt-4 text-3xl font-semibold text-accent">{growthPackage.price}</p>
@@ -548,9 +548,9 @@ export default function Pricing() {
             <div className="mt-8 flex justify-center">
               <Link to="/contact">
                 <ShimmerButton
-                  shimmerColor="#0b1212"
+                  shimmerColor="#060818"
                   shimmerDuration="4.2s"
-                  background="#46c6e8"
+                  background="#00E5FF"
                   className="px-6 py-3 text-sm font-semibold tracking-wide text-black mx-auto"
                 >
                   Request a custom scope
@@ -597,9 +597,9 @@ export default function Pricing() {
                 <div className="mt-10 flex justify-center">
                   <Link to="/contact">
                     <ShimmerButton
-                      shimmerColor="#0b1212"
+                      shimmerColor="#060818"
                       shimmerDuration="4.2s"
-                      background="#46c6e8"
+                      background="#00E5FF"
                       className="px-8 py-3.5 text-sm font-semibold text-black"
                     >
                       Get started
@@ -635,7 +635,7 @@ export default function Pricing() {
         <div className="relative left-1/2 right-1/2 -mx-[50vw] my-8 w-screen py-14 md:my-10 md:py-16 bg-bg-panel/20 border-y border-border/40">
           <div className="mx-auto grid w-full max-w-7xl gap-x-10 gap-y-8 px-5 sm:px-8 md:grid-cols-3">
           {addOnItems.map((item) => (
-            <div key={item.title} className="bg-white dark:bg-[#0f1b2d] border border-border/40 p-6 rounded-2xl hover:border-accent/40 transition-colors">
+            <div key={item.title} className="bg-bg-panel border border-border/40 p-6 rounded-2xl hover:border-accent/40 transition-colors">
               <h3 className="text-base font-semibold text-text">{item.title}</h3>
               <p className="mt-3 inline-block px-3 py-1 rounded border border-accent/20 bg-accent/5 text-sm font-medium text-accent">{item.price}</p>
             </div>
@@ -652,7 +652,7 @@ export default function Pricing() {
         description="Included with every website build."
         className={`${compactDesktopSection} ${showSelectedOrAll("overview") ? "lg:!block" : "lg:!hidden"}`}
       >
-        <div className="p-8 md:p-12 rounded-3xl border border-border bg-white/50 dark:bg-[#152238] mt-6">
+        <div className="p-8 md:p-12 rounded-3xl border border-border bg-bg-elev mt-6">
           <div className="grid gap-10 md:grid-cols-2">
             <div className="bg-bg-panel/30 p-8 rounded-2xl border border-border">
               <p className="text-xs uppercase tracking-[0.3em] font-semibold text-accent mb-6 flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-accent inline-block"/> Covers</p>
@@ -722,9 +722,9 @@ export default function Pricing() {
            </h2>
           <Link to="/contact">
             <ShimmerButton
-              shimmerColor="#0b1212"
+              shimmerColor="#060818"
               shimmerDuration="4.2s"
-              background="#46c6e8"
+              background="#00E5FF"
               className="px-8 py-4 text-sm font-semibold tracking-widest text-black shadow-lg shadow-accent/20 inline-block"
             >
               Book a free consult

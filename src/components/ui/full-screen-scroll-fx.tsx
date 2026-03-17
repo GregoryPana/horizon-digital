@@ -566,7 +566,7 @@ export const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
           .fx-right { justify-items: end; }
           .fx-track { will-change: transform; padding: 1rem 0; }
           .fx-item {
-            color: rgba(34, 241, 214, 0.68);
+            color: rgba(0, 229, 255, 0.68);
             font-weight: 800;
             letter-spacing: 0em;
             line-height: 1;
@@ -581,7 +581,7 @@ export const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
           }
           .fx-left-item.active, .fx-right-item.active {
             opacity: 1;
-            color: rgba(34, 241, 214, 0.98);
+            color: rgba(0, 229, 255, 0.98);
             text-shadow:
               0 0 0.5px rgba(6, 32, 32, 0.9),
               0 0 8px rgba(6, 32, 32, 0.65),

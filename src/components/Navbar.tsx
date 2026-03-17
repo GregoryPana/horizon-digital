@@ -1,13 +1,29 @@
-import { NavLink } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { NavLink, useLocation } from "react-router-dom";
 import Button from "./Button";
 import NavMenu from "./ui/menu-hover-effects";
 import Logo from "./Logo";
 
 export default function Navbar() {
+  const { pathname } = useLocation();
+  const [isScrolled, setIsScrolled] = useState(pathname !== "/");
+
+  useEffect(() => {
+    if (pathname !== "/") {
+      setIsScrolled(true);
+      return;
+    }
+
+    const handleScroll = () => setIsScrolled(window.scrollY > 14);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [pathname]);
+
   return (
     <header
       data-site-header
-      className="site-header-dark fixed top-0 left-0 right-0 z-50 border-b border-border bg-bg-elev backdrop-blur-lg"
+      className={`site-header-dark fixed top-0 left-0 right-0 z-50 border-b ${isScrolled ? "is-scrolled" : ""}`.trim()}
     >
       <div className="mx-auto flex w-full max-w-[1760px] items-center gap-4 px-5 py-4 md:gap-6 md:px-8 md:py-5 lg:px-12 xl:px-16 2xl:px-20">
         <NavLink

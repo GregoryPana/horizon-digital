@@ -132,9 +132,9 @@ export default function About() {
               
               <Link to="/ai-digital-tools" className="inline-block hover:scale-105 transition-transform duration-300">
                 <ShimmerButton
-                  shimmerColor="#0b1212"
+                  shimmerColor="#060818"
                   shimmerDuration="4.2s"
-                  background="#46c6e8"
+                  background="#00E5FF"
                   className="px-6 py-3 text-sm font-semibold tracking-[0.1em] text-black shadow-lg shadow-accent/20"
                 >
                   Visit Digital Insights
@@ -146,7 +146,7 @@ export default function About() {
 
       {/* Final Conversion Banner */}
       <section className="bg-bg-elev border-t border-accent/10 py-24 md:py-32 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(70,198,232,0.05)_0%,transparent_70%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,229,255,0.05)_0%,transparent_70%)]" />
         <div className="mx-auto w-full max-w-4xl px-5 sm:px-8 text-center relative z-10">
           <motion.div {...fadeIn}>
             <p className="text-xs uppercase tracking-[0.4em] text-accent font-semibold mb-6">Let's connect</p>
@@ -155,9 +155,9 @@ export default function About() {
             </h2>
             <Link to="/contact" className="inline-block hover:-translate-y-1 transition-transform duration-300">
               <ShimmerButton
-                shimmerColor="#0b1212"
+                shimmerColor="#060818"
                 shimmerDuration="4.2s"
-                background="#46c6e8"
+                background="#00E5FF"
                 className="px-8 py-4 text-base font-semibold tracking-[0.08em] text-black shadow-lg shadow-accent/20"
               >
                 Book a free consult

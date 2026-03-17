@@ -57,7 +57,7 @@ export default function WhatYouNeed() {
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
             
             <motion.div 
-              className="md:col-span-4 rounded-2xl border border-border bg-white dark:bg-[#0f1b2d] backdrop-blur pb-10 pt-12 px-8 text-center hover:border-accent/30 transition-all duration-500 group"
+              className="md:col-span-4 rounded-2xl border border-border bg-bg-panel backdrop-blur pb-10 pt-12 px-8 text-center hover:border-accent/30 transition-all duration-500 group"
               {...fadeInUp} transition={{ delay: 0.1 }}
             >
               <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-accent/10 mb-6 group-hover:scale-110 transition-transform duration-500">
@@ -70,7 +70,7 @@ export default function WhatYouNeed() {
             </motion.div>
 
             <motion.div 
-              className="md:col-span-4 rounded-2xl border border-border bg-white dark:bg-[#0f1b2d] backdrop-blur pb-10 pt-12 px-8 text-center hover:border-accent-2/30 transition-all duration-500 group"
+              className="md:col-span-4 rounded-2xl border border-border bg-bg-panel backdrop-blur pb-10 pt-12 px-8 text-center hover:border-accent-2/30 transition-all duration-500 group"
               {...fadeInUp} transition={{ delay: 0.2 }}
             >
               <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-accent-2/10 mb-6 group-hover:scale-110 transition-transform duration-500">
@@ -83,7 +83,7 @@ export default function WhatYouNeed() {
             </motion.div>
 
             <motion.div 
-              className="md:col-span-4 rounded-2xl border border-border bg-white dark:bg-[#0f1b2d] backdrop-blur pb-10 pt-12 px-8 text-center hover:border-accent/30 transition-all duration-500 group"
+              className="md:col-span-4 rounded-2xl border border-border bg-bg-panel backdrop-blur pb-10 pt-12 px-8 text-center hover:border-accent/30 transition-all duration-500 group"
               {...fadeInUp} transition={{ delay: 0.3 }}
             >
               <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-accent/10 mb-6 group-hover:scale-110 transition-transform duration-500">
@@ -142,7 +142,7 @@ export default function WhatYouNeed() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <motion.div 
-              className="bg-white dark:bg-[#0f1b2d] p-8 rounded-3xl border border-border shadow-lg flex flex-col items-center text-center hover:border-accent/40 transition-colors"
+              className="bg-bg-panel p-8 rounded-3xl border border-border shadow-lg flex flex-col items-center text-center hover:border-accent/40 transition-colors"
               {...fadeInUp}
             >
               <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mb-6">
@@ -155,7 +155,7 @@ export default function WhatYouNeed() {
             </motion.div>
 
             <motion.div 
-              className="bg-white dark:bg-[#0f1b2d] p-8 rounded-3xl border border-border shadow-lg flex flex-col items-center text-center hover:border-accent/40 transition-colors relative overflow-hidden"
+              className="bg-bg-panel p-8 rounded-3xl border border-border shadow-lg flex flex-col items-center text-center hover:border-accent/40 transition-colors relative overflow-hidden"
               {...fadeInUp} transition={{ delay: 0.1 }}
             >
               <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-accent/50 to-transparent"></div>
@@ -169,7 +169,7 @@ export default function WhatYouNeed() {
             </motion.div>
 
             <motion.div 
-              className="bg-white dark:bg-[#0f1b2d] p-8 rounded-3xl border border-border shadow-lg flex flex-col items-center text-center hover:border-accent/40 transition-colors"
+              className="bg-bg-panel p-8 rounded-3xl border border-border shadow-lg flex flex-col items-center text-center hover:border-accent/40 transition-colors"
               {...fadeInUp} transition={{ delay: 0.2 }}
             >
               <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mb-6">
@@ -186,7 +186,7 @@ export default function WhatYouNeed() {
 
       {/* Package Fit / Scenario Banners */}
       <section className="py-24 md:py-32 relative">
-         <div className="absolute top-0 right-0 w-1/2 h-full bg-[radial-gradient(circle_at_top_right,rgba(70,198,232,0.05)_0%,transparent_50%)] pointer-events-none"/>
+         <div className="absolute top-0 right-0 w-1/2 h-full bg-[radial-gradient(circle_at_top_right,rgba(0,229,255,0.05)_0%,transparent_50%)] pointer-events-none"/>
          <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 relative z-10">
             <motion.div className="mb-16 max-w-3xl mx-auto text-center" {...fadeInUp}>
                <p className="text-xs uppercase tracking-[0.3em] font-semibold text-accent mb-4">Package Fit</p>
@@ -197,7 +197,7 @@ export default function WhatYouNeed() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
                {/* Option 1 */}
                <motion.div 
-                 className="group relative overflow-hidden rounded-3xl border border-border/40 bg-white/50 dark:bg-[#152238] p-8 md:p-12 hover:border-border/80 transition-colors"
+                 className="group relative overflow-hidden rounded-3xl border border-border/40 bg-bg-elev p-8 md:p-12 hover:border-border/80 transition-colors"
                  {...fadeInUp}
                >
                  <div className="absolute top-0 right-0 p-8 opacity-20 group-hover:opacity-40 transition-opacity">
@@ -225,14 +225,14 @@ export default function WhatYouNeed() {
 
                {/* Option 2 */}
                <motion.div 
-                 className="group relative overflow-hidden rounded-3xl border border-accent/30 bg-white dark:bg-[#0f1b2d] bg-gradient-to-b from-accent/5 to-transparent p-8 md:p-12 shadow-[0_0_40px_rgba(70,198,232,0.05)]"
+                 className="group relative overflow-hidden rounded-3xl border border-accent/30 bg-bg-panel bg-gradient-to-b from-accent/5 to-transparent p-8 md:p-12 shadow-[0_0_40px_rgba(0,229,255,0.05)]"
                  {...fadeInUp} transition={{ delay: 0.2 }}
                >
                  <div className="absolute top-0 right-0 p-8 opacity-30 group-hover:opacity-60 transition-opacity">
                    <ScenarioIcon className="w-24 h-24 text-accent fill-accent/20"/>
                  </div>
                  <div className="relative z-10">
-                   <span className="inline-block px-3 py-1 text-xs uppercase tracking-widest font-semibold bg-accent border border-accent text-bg rounded-full mb-6 shadow-[0_0_15px_rgba(70,198,232,0.5)]">Option 2 (Recommended)</span>
+                   <span className="inline-block px-3 py-1 text-xs uppercase tracking-widest font-semibold bg-accent border border-accent text-bg rounded-full mb-6 shadow-[0_0_15px_rgba(0,229,255,0.5)]">Option 2 (Recommended)</span>
                    <h3 className="text-2xl font-semibold text-text mb-6 max-w-[80%]">Website and hosting by Horizon Digital</h3>
                    <ul className="space-y-4 text-sm md:text-base text-text-muted">
                       <li className="flex items-start gap-4">
@@ -265,9 +265,9 @@ export default function WhatYouNeed() {
              </p>
              <Link to="/contact" className="inline-block hover:scale-105 transition-transform duration-300">
                 <ShimmerButton
-                  shimmerColor="#0b1212"
+                  shimmerColor="#060818"
                   shimmerDuration="4.2s"
-                  background="#46c6e8"
+                  background="#00E5FF"
                   className="px-8 py-4 text-sm font-semibold tracking-[0.08em] text-black shadow-lg shadow-accent/20"
                 >
                   Start a conversation

@@ -59,9 +59,9 @@ export default function Process() {
           </div>
           <Link to="/contact">
             <ShimmerButton
-              shimmerColor="#0b1212"
+              shimmerColor="#060818"
               shimmerDuration="4.2s"
-              background="#46c6e8"
+              background="#00E5FF"
               className="px-7 py-3.5 text-base font-semibold tracking-[0.08em] text-black"
             >
               Book a free consult

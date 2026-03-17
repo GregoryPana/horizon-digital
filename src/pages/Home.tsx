@@ -312,9 +312,9 @@ export default function Home() {
               <div className="mt-10 flex justify-center lg:justify-start">
                 <Link to="/services-pricing">
                   <ShimmerButton
-                    shimmerColor="#0b1212"
+                    shimmerColor="#060818"
                     shimmerDuration="4.2s"
-                    background="#46c6e8"
+                    background="#00E5FF"
                     className="px-6 py-3 text-sm font-semibold tracking-[0.1em] text-black"
                   >
                     View services & pricing
@@ -325,8 +325,8 @@ export default function Home() {
 
             <motion.div
               className="lg:col-span-6 relative flex items-center justify-center mt-12 lg:mt-0 pointer-events-none"
-              initial={{ opacity: shouldReduceMotion ? 1 : 0, filter: "drop-shadow(0px 0px 0px rgba(70,198,232,0))" }}
-              whileInView={{ opacity: 1, filter: "drop-shadow(0px 0px 40px rgba(70,198,232,0.5))" }}
+              initial={{ opacity: shouldReduceMotion ? 1 : 0, filter: "drop-shadow(0px 0px 0px rgba(0,229,255,0))" }}
+              whileInView={{ opacity: 1, filter: "drop-shadow(0px 0px 40px rgba(0,229,255,0.5))" }}
               viewport={{ once: false, amount: 0.4 }}
               transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
             >
@@ -435,7 +435,7 @@ export default function Home() {
                 title: "Hospitality Businesses",
                 desc: "Hotels, guesthouses, and tourism services benefit from clear information, strong visual presentation, and easy booking or enquiry paths.",
                 span: "lg:col-span-7",
-                bg: "bg-white dark:bg-[#0f1b2d]",
+                bg: "bg-bg-panel",
                 img: "/hospitality.png",
                 slideDirection: -50,
                 delay: 0,
@@ -444,7 +444,7 @@ export default function Home() {
                 title: "Retail Businesses",
                 desc: "Retail websites can showcase products, clarify what is available, and make it easy for customers to ask questions or place enquiries.",
                 span: "lg:col-span-5",
-                bg: "bg-[#e8f0f9] dark:bg-[#152238]",
+                bg: "bg-bg-elev",
                 img: "/retail.png",
                 slideDirection: 50,
                 delay: 0.3,
@@ -453,7 +453,7 @@ export default function Home() {
                 title: "Professional Services",
                 desc: "Consultants, agencies, and service providers need websites that explain value clearly and guide visitors toward confident contact decisions.",
                 span: "lg:col-span-5",
-                bg: "bg-[#e8f0f9] dark:bg-[#152238]",
+                bg: "bg-bg-elev",
                 img: "/professional services.png",
                 slideDirection: -50,
                 delay: 0.3,
@@ -462,7 +462,7 @@ export default function Home() {
                 title: "Growing Local Businesses",
                 desc: "Businesses expanding their online presence need a structure that communicates credibility and supports steady growth over time.",
                 span: "lg:col-span-7",
-                bg: "bg-white dark:bg-[#0f1b2d]",
+                bg: "bg-bg-panel",
                 img: "/growing local business.png",
                 slideDirection: 50,
                 delay: 0,
@@ -484,7 +484,7 @@ export default function Home() {
                     {industry.desc}
                   </p>
                 </div>
-                <div className="mt-12 h-64 md:h-80 w-full overflow-hidden rounded-2xl border border-border/30 shadow-[0_0_50px_rgba(70,198,232,0.25)] dark:shadow-[0_0_50px_rgba(70,198,232,0.18)] relative isolate transition-transform duration-500 group-hover:scale-[1.02]">
+                <div className="mt-12 h-64 md:h-80 w-full overflow-hidden rounded-2xl border border-border/30 shadow-[0_0_50px_rgba(0,229,255,0.25)] dark:shadow-[0_0_50px_rgba(0,229,255,0.18)] relative isolate transition-transform duration-500 group-hover:scale-[1.02]">
                   <div className="absolute inset-0 z-10 bg-gradient-to-t from-bg-panel/90 md:from-bg-panel/70 to-transparent pointer-events-none" />
                   <img src={industry.img} alt={industry.title} className="w-full h-full object-cover object-top" loading="lazy" />
                 </div>
@@ -495,9 +495,9 @@ export default function Home() {
           <div className="mt-16 flex justify-center">
             <Link to="/contact">
               <ShimmerButton
-                shimmerColor="#0b1212"
+                shimmerColor="#060818"
                 shimmerDuration="4.2s"
-                background="#46c6e8"
+                background="#00E5FF"
                 className="px-6 py-3 text-sm font-semibold tracking-[0.1em] text-black"
               >
                 Discuss your industry
@@ -553,9 +553,9 @@ export default function Home() {
               <div className="mt-8 hidden lg:block">
                 <Link to="/services-pricing">
                   <ShimmerButton
-                    shimmerColor="#0b1212"
+                    shimmerColor="#060818"
                     shimmerDuration="4.2s"
-                    background="#46c6e8"
+                    background="#00E5FF"
                     className="px-5 py-2.5 text-xs font-semibold tracking-[0.12em] text-black"
                   >
                     See full process
@@ -594,9 +594,9 @@ export default function Home() {
             <div className="flex justify-center lg:hidden">
               <Link to="/services-pricing">
                 <ShimmerButton
-                  shimmerColor="#0b1212"
+                  shimmerColor="#060818"
                   shimmerDuration="4.2s"
-                  background="#46c6e8"
+                  background="#00E5FF"
                   className="px-5 py-2.5 text-xs font-semibold tracking-[0.12em] text-black"
                 >
                   See full process
@@ -640,8 +640,8 @@ export default function Home() {
                 transition={{ duration: 0.7, delay: i * 0.15 + 0.2, ease: "easeOut" }}
                 className={`pkg-banner px-6 py-8 md:px-10 md:py-10 transition-all duration-300 border-b border-border/60 ${
                   pkg.featured
-                    ? "relative overflow-hidden pkg-banner-featured shadow-[0_0_50px_rgba(70,198,232,0.2)] bg-white dark:bg-[#0f1b2d] bg-gradient-to-r from-accent/10 via-accent/5 to-transparent border-t border-b border-accent/30 my-2 z-10 scale-[1.03] rounded-xl"
-                    : "bg-white/50 dark:bg-[#152238] border-transparent last:border-b-0"
+                    ? "relative overflow-hidden pkg-banner-featured shadow-[0_0_50px_rgba(0,229,255,0.2)] bg-bg-panel bg-gradient-to-r from-accent/10 via-accent/5 to-transparent border-t border-b border-accent/30 my-2 z-10 scale-[1.03] rounded-xl"
+                    : "bg-bg-elev border-transparent last:border-b-0"
                 }`}
               >
                 {pkg.featured && (
@@ -652,12 +652,12 @@ export default function Home() {
                     <div className="flex flex-wrap items-center gap-3">
                       <h3 className="text-xl font-semibold md:text-2xl text-accent-2">{pkg.title}</h3>
                       {pkg.featured && (
-                        <span className="shrink-0 rounded-full bg-accent/20 border border-accent/40 shadow-[0_0_15px_rgba(70,198,232,0.3)] px-3 py-0.5 text-[0.68rem] font-bold uppercase tracking-[0.16em] text-accent">
+                        <span className="shrink-0 rounded-full bg-accent/20 border border-accent/40 shadow-[0_0_15px_rgba(0,229,255,0.3)] px-3 py-0.5 text-[0.68rem] font-bold uppercase tracking-[0.16em] text-accent">
                           Best Value
                         </span>
                       )}
                     </div>
-                    <p className={`pricing-price mt-3 text-2xl md:text-3xl font-bold ${pkg.title === "Foundation" ? "text-accent" : "text-accent drop-shadow-[0_0_12px_rgba(70,198,232,0.4)]"}`}>{pkg.price}</p>
+                    <p className={`pricing-price mt-3 text-2xl md:text-3xl font-bold ${pkg.title === "Foundation" ? "text-accent" : "text-accent drop-shadow-[0_0_12px_rgba(0,229,255,0.4)]"}`}>{pkg.price}</p>
                     <p className={`mt-2 text-sm max-w-sm leading-relaxed text-text`}>{pkg.description}</p>
                   </div>
 
@@ -677,11 +677,11 @@ export default function Home() {
                   <div className="flex justify-center lg:col-span-3 lg:justify-end">
                     <Link to="/services-pricing">
                       <ShimmerButton
-                        shimmerColor="#0b1212"
+                        shimmerColor="#060818"
                         shimmerDuration="4.2s"
-                        background={pkg.featured ? "#46c6e8" : "#2ca99b"}
+                        background="#00E5FF"
                         className={`px-6 py-3 text-sm font-semibold tracking-[0.12em] flex items-center gap-2 ${
-                          pkg.featured ? "text-black shadow-lg shadow-accent/20" : "text-text !border-[#2ca99b] !shadow-none"
+                          pkg.featured ? "text-black shadow-lg shadow-accent/20" : "text-text !border-accent !shadow-none"
                         }`}
                       >
                         See details
@@ -714,9 +714,9 @@ export default function Home() {
               <div className="flex justify-center lg:col-span-4 lg:justify-end">
                 <Link to="/contact">
                   <ShimmerButton
-                    shimmerColor="#0b1212"
+                    shimmerColor="#060818"
                     shimmerDuration="4.2s"
-                    background="#46c6e8"
+                    background="#00E5FF"
                     className="px-6 py-3 text-sm font-semibold tracking-[0.1em] text-black"
                   >
                     Request a custom scope
@@ -805,9 +805,9 @@ export default function Home() {
                 <div className="mt-10 flex justify-start">
                   <Link to="/insights">
                     <ShimmerButton
-                      shimmerColor="#0b1212"
+                      shimmerColor="#060818"
                       shimmerDuration="4.2s"
-                      background="#46c6e8"
+                      background="#00E5FF"
                       className="px-6 py-3 text-sm font-semibold tracking-[0.1em] text-black"
                     >
                       Read digital insights
@@ -822,7 +822,7 @@ export default function Home() {
 
                 <div className="relative z-10 flex h-full w-full max-w-[400px] lg:max-w-none lg:w-[160%] lg:absolute lg:top-1/2 lg:-translate-y-1/2 lg:-left-24 items-center justify-center pt-8 pr-12 lg:pr-0 pointer-events-none">
                   <motion.div
-                    className="absolute left-0 lg:left-0 top-1/2 w-52 lg:w-64 -translate-y-[45%] rounded-[1.25rem] shadow-[0_0_60px_rgba(70,198,232,0.3)] border-2 border-accent/30 z-10"
+                    className="absolute left-0 lg:left-0 top-1/2 w-52 lg:w-64 -translate-y-[45%] rounded-[1.25rem] shadow-[0_0_60px_rgba(0,229,255,0.3)] border-2 border-accent/30 z-10"
                     initial={{ opacity: 0, x: -30, rotate: -4 }}
                     whileInView={{ opacity: 1, x: 0, rotate: -4 }}
                     animate={{ y: [-15, 5, -15], rotate: [-4, -2, -4] }}
@@ -838,7 +838,7 @@ export default function Home() {
                   </motion.div>
                   
                   <motion.div
-                    className="absolute left-[20%] lg:left-[22%] top-1/2 w-60 lg:w-[18rem] -translate-y-[48%] rounded-[1.25rem] shadow-[0_0_80px_rgba(70,198,232,0.45)] border-2 border-accent/40 z-20"
+                    className="absolute left-[20%] lg:left-[22%] top-1/2 w-60 lg:w-[18rem] -translate-y-[48%] rounded-[1.25rem] shadow-[0_0_80px_rgba(0,229,255,0.45)] border-2 border-accent/40 z-20"
                     initial={{ opacity: 0, x: -10 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     animate={{ y: [-10, 10, -10], scale: [1, 1.02, 1] }}
@@ -854,7 +854,7 @@ export default function Home() {
                   </motion.div>
 
                   <motion.div
-                    className="absolute left-[40%] lg:left-[45%] top-1/2 w-64 lg:w-[22rem] -translate-y-[52%] rounded-[1.25rem] shadow-[0_0_120px_rgba(70,198,232,0.6)] border-2 border-accent/50 z-30"
+                    className="absolute left-[40%] lg:left-[45%] top-1/2 w-64 lg:w-[22rem] -translate-y-[52%] rounded-[1.25rem] shadow-[0_0_120px_rgba(0,229,255,0.6)] border-2 border-accent/50 z-30"
                     initial={{ opacity: 0, x: 20, rotate: 3 }}
                     whileInView={{ opacity: 1, x: 0, rotate: 3 }}
                     animate={{ y: [-5, 15, -5], rotate: [3, 5, 3] }}
@@ -890,9 +890,9 @@ export default function Home() {
           <p className="text-sm text-text-muted">Still have questions? We can walk you through it.</p>
           <Link to="/contact">
             <ShimmerButton
-              shimmerColor="#0b1212"
+              shimmerColor="#060818"
               shimmerDuration="4.2s"
-              background="#46c6e8"
+              background="#00E5FF"
               className="px-5 py-2 text-xs font-semibold tracking-[0.12em] text-black"
             >
               Book a free consult
@@ -934,9 +934,9 @@ export default function Home() {
             >
               <Link to="/contact">
                 <ShimmerButton
-                  shimmerColor="#0b1212"
+                  shimmerColor="#060818"
                   shimmerDuration="4.2s"
-                  background="#46c6e8"
+                  background="#00E5FF"
                   className="px-8 py-4 text-base font-semibold tracking-[0.08em] text-black md:text-lg"
                 >
                   Book a free consult

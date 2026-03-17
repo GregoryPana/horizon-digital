@@ -67,9 +67,9 @@ export default function Work() {
                      </a>
                      <Link to="/contact">
                        <ShimmerButton
-                          shimmerColor="#0b1212"
+                          shimmerColor="#060818"
                           shimmerDuration="4.2s"
-                          background="#46c6e8"
+                          background="#00E5FF"
                           className="px-6 py-3 text-sm font-semibold tracking-wide text-black"
                         >
                           Request similar site
@@ -79,7 +79,7 @@ export default function Work() {
               </motion.div>
 
               <motion.div className="lg:col-span-7 flex flex-col gap-6" {...fadeIn} transition={{ delay: 0.2 }}>
-                 <picture className="block rounded-2xl overflow-hidden shadow-[0_0_60px_rgba(70,198,232,0.3)] dark:shadow-[0_0_50px_rgba(70,198,232,0.15)] border border-border/30 group">
+                 <picture className="block rounded-2xl overflow-hidden shadow-[0_0_60px_rgba(0,229,255,0.3)] dark:shadow-[0_0_50px_rgba(0,229,255,0.15)] border border-border/30 group">
                     <source srcSet={drakeMainWebp} type="image/webp" />
                     <img
                       src={drakeMain}
@@ -93,7 +93,7 @@ export default function Work() {
                     />
                   </picture>
                   <div className="w-full flex justify-end -mt-16 sm:-mt-24 sm:-ml-12 relative z-20 pointer-events-none pr-8 sm:pr-0">
-                    <picture className="block rounded-xl overflow-hidden shadow-[0_0_50px_rgba(70,198,232,0.25)] dark:shadow-2xl border border-border/30 w-2/3 md:w-1/2">
+                    <picture className="block rounded-xl overflow-hidden shadow-[0_0_50px_rgba(0,229,255,0.25)] dark:shadow-2xl border border-border/30 w-2/3 md:w-1/2">
                       <source srcSet={drakeAltOneWebp} type="image/webp" />
                       <img
                         src={drakeAltOne}
@@ -118,7 +118,7 @@ export default function Work() {
            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
               
               <motion.div className="lg:col-span-7 flex flex-col gap-6 order-2 lg:order-1" {...fadeIn}>
-                 <picture className="block rounded-2xl overflow-hidden shadow-[0_0_60px_rgba(70,198,232,0.3)] dark:shadow-[0_0_50px_rgba(70,198,232,0.15)] border border-border/30 group">
+                 <picture className="block rounded-2xl overflow-hidden shadow-[0_0_60px_rgba(0,229,255,0.3)] dark:shadow-[0_0_50px_rgba(0,229,255,0.15)] border border-border/30 group">
                     {seykelzMainWebp && <source srcSet={seykelzMainWebp} type="image/webp" />}
                     <img
                       src={seykelzMain}
@@ -131,7 +131,7 @@ export default function Work() {
                     />
                   </picture>
                   <div className="w-full flex justify-start -mt-16 sm:-mt-24 sm:-mr-12 relative z-20 pointer-events-none pl-8 sm:pl-0">
-                    <picture className="block rounded-xl overflow-hidden shadow-[0_0_50px_rgba(70,198,232,0.25)] dark:shadow-2xl border border-border/30 w-2/3 md:w-1/2">
+                    <picture className="block rounded-xl overflow-hidden shadow-[0_0_50px_rgba(0,229,255,0.25)] dark:shadow-2xl border border-border/30 w-2/3 md:w-1/2">
                       <img
                         src={seykelzAltOne}
                         alt="Beauty demo services detail interface"
@@ -161,7 +161,7 @@ export default function Work() {
                      </a>
                      <Link to="/contact">
                        <ShimmerButton
-                          shimmerColor="#0b1212"
+                          shimmerColor="#060818"
                           shimmerDuration="4.2s"
                           background="#ffffff"
                           className="px-6 py-3 text-sm font-semibold tracking-wide text-black"
@@ -178,7 +178,7 @@ export default function Work() {
 
       {/* Philosophy Banner */}
       <section className="bg-bg-elev border-t border-accent/10 py-24 md:py-32 relative overflow-hidden text-center">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(70,198,232,0.05)_0%,transparent_70%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(0,229,255,0.05)_0%,transparent_70%)]" />
         <div className="mx-auto w-full max-w-4xl px-5 sm:px-8 relative z-10">
           <motion.div {...fadeIn}>
             <p className="text-xs uppercase tracking-[0.4em] text-accent font-semibold mb-6">Our Philosophy</p>
@@ -190,10 +190,10 @@ export default function Work() {
             </p>
             <Link to="/contact" className="inline-block hover:-translate-y-1 transition-transform duration-300">
               <ShimmerButton
-                shimmerColor="#0b1212"
+                shimmerColor="#060818"
                 shimmerDuration="4.2s"
-                background="#46c6e8"
-                className="px-8 py-4 text-base font-semibold tracking-[0.08em] text-black shadow-[0_0_30px_rgba(70,198,232,0.3)]"
+                background="#00E5FF"
+                className="px-8 py-4 text-base font-semibold tracking-[0.08em] text-black shadow-[0_0_30px_rgba(0,229,255,0.3)]"
               >
                 Start your project
               </ShimmerButton>
