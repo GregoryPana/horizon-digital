@@ -2,12 +2,12 @@ import { Link } from "react-router-dom";
 import Button from "../Button";
 import { scrollToTopSmooth } from "../../lib/utils";
 import { ShimmerButton } from "./shimmer-button";
-import desktopSplash from "../../assets/hero/hero-desktop-tech.png";
-import desktopSplashWebp from "../../assets/hero/hero-desktop-tech.webp";
-import desktopSplashWebp1600 from "../../assets/hero/hero-desktop-tech-1600.webp";
-import mobileSplash from "../../assets/hero/hero-mobile-tech.png";
-import mobileSplashWebp from "../../assets/hero/hero-mobile-tech.webp";
-import mobileSplashWebp720 from "../../assets/hero/hero-mobile-tech-720.webp";
+import desktopSplash from "../../assets/hero/hero-desktop-tech-v2.png";
+import desktopSplashWebp from "../../assets/hero/hero-desktop-tech-v2.webp";
+import desktopSplashWebp1600 from "../../assets/hero/hero-desktop-tech-v2-1600.webp";
+import mobileSplash from "../../assets/hero/hero-mobile-tech-v2.png";
+import mobileSplashWebp from "../../assets/hero/hero-mobile-tech-v2.webp";
+import mobileSplashWebp720 from "../../assets/hero/hero-mobile-tech-v2-720.webp";
 
 export default function HomeHero() {
   const handleWorkScrollTop = () => scrollToTopSmooth();
