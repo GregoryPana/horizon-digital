@@ -1,16 +1,18 @@
 # Process and Timelines
 
-## Getting Started
-The process begins when a business reaches out to Horizon Digital through the website contact form or WhatsApp. The team will start a conversation to understand the business's goals, target audience, and website requirements. Following this discussion, Horizon Digital recommends the appropriate website package and defines a clear project scope.
+## How It Works (5 Steps)
 
-## What the Client Needs to Provide
-Before building the website, the client needs to gather a few essential items. The client must provide their logo, brand guidelines, and contact details. Importantly, the client is responsible for supplying the written text and high-quality photos that will appear on the web pages. Gathering this content early helps the project move faster and launch cleaner.
+### 1) Discovery & Scope (Day 1-7)
+Reach out via the contact form or WhatsApp. We discuss your goals, target audience, and what the website needs to achieve. Horizon Digital recommends the right package and defines a clear project scope - no jargon, no pressure.
 
-## The Build Timeline
-A typical website project takes between 4 to 8 weeks from the project start date to the final public launch. The Foundation package is usually the fastest to deploy, while Growth or Custom builds take longer due to their complexity. Timelines heavily depend on prompt feedback from the client during review stages and having all necessary text and photos ready.
+### 2) Content Gathering (Week 1-2)
+Before building begins, the client provides logo, brand guidelines, and contact details - plus written text and high-quality photos for each page. Gathering this early keeps the project moving and the launch clean.
 
-## Design Phase and Revisions
-For Starter and Growth packages, the first major step is the custom design phase. Horizon Digital creates visual layouts showing exactly how the website will look. The client reviews these designs and provides feedback. The process includes structured revision rounds where the team adjusts the design based on the client's requests before writing any actual code. 
+### 3) Design Phase (Week 2-4)
+For Starter and Growth packages, full visual layouts are created before a single line of code is written. You review designs through structured revision rounds until the result looks exactly right.
 
-## Development and Handover
-Once the visual designs are approved, Horizon Digital engineers the website into functional code. The team optimizes the site for mobile devices, fast loading speeds, and search-engine visibility. Before the final launch, the website is thoroughly tested. After launch, Horizon Digital provides a 30 to 60-day support period to ensure everything runs smoothly.
+### 4) Build & Test (Week 4-7)
+Approved designs become fast, mobile-optimised code. Tested across devices and browsers to ensure every contact form, WhatsApp button, and page load performs flawlessly before going live.
+
+### 5) Launch & Support (Week 7-8)
+The site goes live. Domain connected, settings verified, and Horizon Digital stays on hand for 30 to 60 days post-launch to resolve any issues. Your investment is protected from day one.

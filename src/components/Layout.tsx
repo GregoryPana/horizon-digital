@@ -11,6 +11,9 @@ type LayoutProps = {
 
 export default function Layout({ children }: LayoutProps) {
   const location = useLocation();
+  const normalizedPath = location.pathname.replace(/\/+$/, "") || "/";
+  const isHomeRoute = normalizedPath === "/";
+  const isShowcaseRoute = normalizedPath.startsWith("/showcase/");
   const isInsightsThemeRoute =
     location.pathname === "/ai-digital-tools" || location.pathname.startsWith("/insights");
   const mainRef = useRef<HTMLElement | null>(null);
@@ -184,28 +187,30 @@ export default function Layout({ children }: LayoutProps) {
       >
         Skip to main content
       </a>
-      <Navbar />
+      {isShowcaseRoute ? null : <Navbar />}
       <main
         id="main-content"
         tabIndex={-1}
         ref={mainRef}
         className="flex-1 pb-[env(safe-area-inset-bottom)]"
-        style={{ paddingTop: `${headerHeight}px` }}
+        style={{ paddingTop: isHomeRoute || isShowcaseRoute ? "0px" : `${headerHeight}px` }}
       >
         {children}
       </main>
-      <Footer />
-      <button
-        type="button"
-        onClick={scrollToTopSmooth}
-        className={`focus-ring fixed bottom-24 right-6 z-[70] inline-flex h-10 w-10 items-center justify-center rounded-full border border-accent/45 bg-bg-elev text-accent shadow-[0_0_12px_var(--glow)] transition duration-300 hover:bg-accent-soft ${
-          showTopButton ? "opacity-100" : "pointer-events-none opacity-0"
-        }`.trim()}
-        aria-label="Back to top"
-      >
-        ↑
-      </button>
-      <ChatWidget />
+      {isShowcaseRoute ? null : <Footer />}
+      {isShowcaseRoute ? null : (
+        <button
+          type="button"
+          onClick={scrollToTopSmooth}
+          className={`focus-ring fixed bottom-24 right-6 z-[70] inline-flex h-10 w-10 items-center justify-center rounded-full border border-accent/45 bg-bg-elev text-accent shadow-[0_0_12px_var(--glow)] transition duration-300 hover:bg-accent-soft ${
+            showTopButton ? "opacity-100" : "pointer-events-none opacity-0"
+          }`.trim()}
+          aria-label="Back to top"
+        >
+          ↑
+        </button>
+      )}
+      {isShowcaseRoute ? null : <ChatWidget />}
     </div>
   );
 }

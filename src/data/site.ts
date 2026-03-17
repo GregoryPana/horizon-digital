@@ -2,9 +2,8 @@ import guesthousePreview from "../assets/work/drake-seaside/drake-seaside.jpg";
 import guesthousePreviewWebp from "../assets/work/drake-seaside/drake-seaside.webp";
 import guesthousePreviewWebp800 from "../assets/work/drake-seaside/drake-seaside-600.webp";
 import ogImage from "../assets/logo/svg logo (1).png";
-import seykelzPreview from "../assets/work/demo-beauty/demo-beauty.jpg";
-import seykelzPreviewWebp from "../assets/work/demo-beauty/demo-beauty.webp";
-import seykelzPreviewWebp800 from "../assets/work/demo-beauty/demo-beauty 600.webp";
+import formaStudioPreview from "../assets/work/forma studio/forma studio.png";
+import takamakaHousePreview from "../assets/work/takamaka-house/takamaka house.png";
 
 export const siteConfig = {
   name: "Horizon Digital",
@@ -93,29 +92,34 @@ export const addOns = [
 
 export const projectSteps = [
   {
-    title: "Discovery",
+    title: "Discovery & Scope",
+    timeline: "Day 1-7",
     description:
-      "We start with a focused call to understand your business, your audience, and what success should look like. This helps us define clear priorities before any design work begins.",
+      "Reach out via the contact form or WhatsApp. We discuss your goals, target audience, and what the website needs to achieve. Horizon Digital recommends the right package and defines a clear project scope - no jargon, no pressure.",
   },
   {
-    title: "Proposal & Deposit",
+    title: "Content Gathering",
+    timeline: "Week 1-2",
     description:
-      "You receive a clear proposal with scope, timeline, and milestone breakdown so expectations are aligned from day one. Once approved, the deposit confirms your project slot and we begin production.",
+      "Before building begins, the client provides logo, brand guidelines, and contact details - plus written text and high-quality photos for each page. Gathering this early keeps the project moving and the launch clean.",
   },
   {
-    title: "Design & Build",
+    title: "Design Phase",
+    timeline: "Week 2-4",
     description:
-      "We design the visual direction and build the full site with responsive layouts, structured content flow, and technical setup in parallel. You get staged progress updates so decisions stay quick and practical.",
+      "For Starter and Growth packages, full visual layouts are created before a single line of code is written. You review designs through structured revision rounds until the result looks exactly right.",
   },
   {
-    title: "Review & Launch",
+    title: "Build & Test",
+    timeline: "Week 4-7",
     description:
-      "You review the near-final site and we complete agreed revisions to polish content, layout, and usability. After sign-off, we launch with checks in place for forms, speed, and SEO essentials.",
+      "Approved designs become fast, mobile-optimised code. Tested across devices and browsers to ensure every contact form, WhatsApp button, and page load performs flawlessly before going live.",
   },
   {
-    title: "30-Day Stabilisation",
+    title: "Launch & Support",
+    timeline: "Week 7-8",
     description:
-      "After launch, we monitor performance and handle small fixes, adjustments, and guidance while your team starts using the new site. This gives you a smoother handover with support during the first month.",
+      "The site goes live. Domain connected, settings verified, and Horizon Digital stays on hand for 30 to 60 days post-launch to resolve any issues. Your investment is protected from day one.",
   },
 ];
 
@@ -281,14 +285,24 @@ export const workItems = [
     url: "https://thedrake-seaside.com/",
   },
   {
-    label: "Retail · Foundation Tier",
-    title: "Beauty Demo",
+    label: "Creative Studio · Foundation Tier",
+    title: "Forma Studio",
     outcome:
-      "Foundation-tier website demo for a beauty business with clear services, trust cues, and conversion-focused contact flow.",
-    image: seykelzPreview,
-    imageWebp: seykelzPreviewWebp,
-    imageWebp800: seykelzPreviewWebp800,
-    url: "https://demo-beauty.horizondigitalsey.com/",
+      "Portfolio-led website concept with a modern editorial layout, strong visual hierarchy, and a conversion-friendly enquiry path.",
+    image: formaStudioPreview,
+    imageWebp: formaStudioPreview,
+    imageWebp800: formaStudioPreview,
+    url: "/showcase/forma-studio",
+  },
+  {
+    label: "Hospitality · Foundation Tier",
+    title: "Takamaka House",
+    outcome:
+      "Hospitality-focused showcase concept designed for immersive storytelling, clear accommodation details, and direct booking intent.",
+    image: takamakaHousePreview,
+    imageWebp: takamakaHousePreview,
+    imageWebp800: takamakaHousePreview,
+    url: "/showcase/takamaka-house",
   },
 ];
 

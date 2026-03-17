@@ -13,7 +13,7 @@ The Starter package starts at SCR 12,500. It is built for small businesses that 
 The Growth package starts at SCR 25,000. It is suitable for established businesses that require a deeper website structure and stronger search visibility. It includes up to 12 pages, an expanded service structure, portfolio or gallery sections, and multi-step enquiry forms. This package also includes Google Business Profile setup assistance and three revision rounds.
 
 ## Managed Hosting Pricing
-Every website needs an online server to run 24/7. Horizon Digital offers Managed Hosting to keep the website secure and accessible. Managed hosting costs SCR 250 per month, or it can be paid annually at SCR 2,500. The client is responsible for registering and renewing their own domain name separately.
+Every website needs an online server to run 24/7. Horizon Digital offers Managed Hosting to keep the website secure and accessible. Managed hosting is priced at SCR 2,500 per year (billed annually). The client is responsible for registering and renewing their own domain name separately.
 
 ## Payment Terms
 Website projects require partial payments at different milestones. The Foundation and Starter packages require a 50% deposit to begin work, and the remaining 50% is due before the website launches. The Growth package requires a 40% deposit, 40% when the design is approved, and the final 20% on launch. 

@@ -515,6 +515,7 @@ export default function Home() {
         eyebrow="Selected Website Projects"
         title="Examples of websites Horizon Digital builds"
         description="Retail, service, and hospitality website examples with clear business outcomes."
+        containerClassName="max-w-[92rem]"
       >
         <HomeWorkAccordion items={workItems} onPreview={setActiveWork} />
         <div className="mt-10 flex justify-center">
@@ -576,13 +577,19 @@ export default function Home() {
                   className="group relative border-b border-border py-8 pl-16 first:pt-0 last:border-0 md:py-10 md:pl-20"
                 >
                   {/* Step number — positioned absolutely left */}
-                  <span className="absolute left-0 top-8 font-display text-[2.5rem] font-bold leading-none text-accent/20 transition-colors group-hover:text-accent/50 md:top-10 md:text-[3rem]">
+                  <span
+                    className={`absolute left-0 font-display text-[2.5rem] font-bold leading-none text-accent/20 transition-colors group-hover:text-accent/50 md:text-[3rem] ${
+                      index === 0 ? "top-0 md:top-0" : "top-8 md:top-10"
+                    }`.trim()}
+                  >
                     {String(index + 1).padStart(2, "0")}
                   </span>
-                  <p className="text-[0.68rem] uppercase tracking-[0.4em] text-accent">
-                    Step {index + 1}
-                  </p>
-                  <h3 className="mt-2 text-lg font-semibold text-text md:text-xl">{step.title}</h3>
+                  {step.timeline ? (
+                    <p className="inline-block rounded-full border border-border/40 bg-bg-panel/40 px-3 py-1 text-[0.62rem] uppercase tracking-[0.2em] text-text-muted">
+                      {step.timeline}
+                    </p>
+                  ) : null}
+                  <h3 className="mt-3 text-lg font-semibold text-text md:text-xl">{step.title}</h3>
                   <p className="mt-2.5 text-sm leading-relaxed text-text-muted md:text-base">
                     {step.description}
                   </p>

@@ -8,6 +8,7 @@ type SectionProps = {
   description?: string;
   children?: ReactNode;
   className?: string;
+  containerClassName?: string;
 };
 
 export default function Section({
@@ -17,6 +18,7 @@ export default function Section({
   description,
   children,
   className,
+  containerClassName,
 }: SectionProps) {
   const shouldReduceMotion = useReducedMotion();
 
@@ -25,7 +27,7 @@ export default function Section({
       id={id}
       className={`pt-12 pb-16 md:pt-20 md:pb-28 ${className ?? ""}`.trim()}
     >
-      <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
+      <div className={`mx-auto w-full px-5 sm:px-8 ${containerClassName ?? "max-w-7xl"}`.trim()}>
         {(eyebrow || title || description) && (
           <motion.div
             initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 24 }}

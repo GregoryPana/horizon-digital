@@ -57,15 +57,18 @@ export default function HomeHero() {
         </div>
       </div>
 
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/10 via-black/20 to-[#060818]/95 md:from-black/8 md:via-black/18 md:to-[#060818]/90" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/10 via-black/34 to-[#060818] md:from-black/8 md:via-black/28 md:to-[#060818]" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[42svh] bg-gradient-to-t from-[#060818] via-[#060818]/92 to-transparent md:h-[34svh]" />
 
       <div className="relative z-10 hidden h-svh w-full items-center px-3.5 pb-14 sm:px-5 md:flex md:px-10 md:pb-32 lg:px-14">
-        <div className="w-full max-w-[52rem] md:pl-2 lg:pl-6">
+        <div className="w-full md:ml-[5vw] md:pl-2 lg:ml-[8vw] lg:pl-6">
           <p className="section-eyebrow-glow text-xs font-semibold uppercase tracking-[0.24em] text-accent">
             Horizon Digital • Web Design Studio • Seychelles
           </p>
-          <h1 className="hero-glow-text mt-4 max-w-[22ch] font-display text-[2.9rem] font-semibold leading-[1.05] text-text lg:text-[3.35rem]">
-            Custom, Beautiful websites that work as hard as you do
+          <h1 className="hero-glow-text mt-4 font-display text-[clamp(2.9rem,3.6vw,4rem)] font-semibold leading-[0.92] uppercase text-text">
+            Custom, Beautiful websites that
+            <br />
+            work as hard as you do
           </h1>
           <p className="hero-main-subtext mt-5 max-w-[58ch] text-base leading-7 text-text-muted">
             We design beautiful, one-of-a-kind websites for Seychelles businesses that turn visitors into real customers. Clear, mobile-ready, and built to help you grow.
@@ -84,21 +87,21 @@ export default function HomeHero() {
 
       </div>
 
-      <div className="relative z-10 flex h-svh w-full flex-col justify-start px-3.5 pt-[calc(env(safe-area-inset-top)+3.3rem)] pb-[calc(env(safe-area-inset-bottom)+1.6rem)] sm:px-5 md:hidden">
-        <aside className="hero-bento-fixed -translate-y-3 w-full max-w-[22rem] self-center rounded-2xl p-3 sm:max-w-[24rem] sm:p-3.5">
-          <p className="section-eyebrow-glow text-[0.56rem] font-semibold uppercase tracking-[0.17em] text-accent sm:text-[0.6rem]">
-            Horizon Digital • Web Design Studio • Seychelles
+      <div className="relative z-10 flex h-svh w-full flex-col justify-between px-3.5 pt-[calc(env(safe-area-inset-top)+4.5rem)] pb-[calc(env(safe-area-inset-bottom)+2.2rem)] sm:px-5 md:hidden">
+        <aside className="hero-bento-fixed mt-5 w-full max-w-[20rem] self-center rounded-xl p-2.5 sm:max-w-[22rem] sm:p-3">
+          <p className="section-eyebrow-glow text-[0.52rem] font-semibold uppercase tracking-[0.16em] text-accent sm:text-[0.56rem]">
+            Web Design Studio • Seychelles
           </p>
-          <h1 className="hero-glow-text mt-2.5 font-display text-[1.45rem] font-semibold leading-[1.12] text-text sm:text-[1.65rem]">
+          <h1 className="hero-glow-text mt-2 font-display text-[1.28rem] font-semibold leading-[1.1] text-text sm:text-[1.46rem]">
             Custom, Beautiful websites that work as hard as you do
           </h1>
-          <p className="hero-main-subtext mt-2.5 text-[0.8rem] leading-5 text-text-muted sm:text-[0.86rem] sm:leading-6">
+          <p className="hero-main-subtext mt-2 text-[0.74rem] leading-[1.28rem] text-text-muted sm:text-[0.8rem] sm:leading-5">
             We design beautiful, one-of-a-kind websites for Seychelles businesses that turn visitors into real customers. Clear, mobile-ready, and built to help you grow.
           </p>
-          <div className="mt-2.5 grid grid-cols-2 gap-1.5 sm:gap-2">
+          <div className="mt-2 grid grid-cols-2 gap-1.5 sm:gap-2">
             {["Custom Design", "Mobile Ready", "Fast Loading", "SEO Ready"].map((item) => (
-              <div key={item} className="rounded-lg border border-[#00E5FF]/25 bg-[#060818]/72 px-2 py-1.5 sm:px-2.5 sm:py-2">
-                <p className="text-[0.52rem] font-semibold uppercase tracking-[0.11em] text-[#A8F0FF] sm:text-[0.56rem]">
+              <div key={item} className="rounded-md border border-[#00E5FF]/25 bg-[#060818]/72 px-2 py-1 sm:px-2.5 sm:py-1.5">
+                <p className="text-[0.48rem] font-semibold uppercase tracking-[0.1em] text-[#A8F0FF] sm:text-[0.52rem]">
                   {item}
                 </p>
               </div>
@@ -106,7 +109,7 @@ export default function HomeHero() {
           </div>
         </aside>
 
-        <div className="mt-10 flex w-full max-w-[31rem] self-center flex-col items-stretch gap-3">
+        <div className="mt-4 flex w-full max-w-[31rem] self-center flex-col items-stretch gap-3">
           <Link to="/contact" className="w-full">
             <ShimmerButton
               shimmerColor="#060818"

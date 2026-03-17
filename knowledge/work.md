@@ -5,9 +5,12 @@ Redesign with new pages, updated content, faster load times, and higher click-th
 
 Live site: https://thedrake-seaside.com/
 
-## Concept demos
-These are layout previews that show section order, button placement, and structure. Each live project is built around your content and goals.
+## Forma Studio (Creative Studio)
+Portfolio-led website concept with a modern editorial layout, strong visual hierarchy, and a conversion-friendly enquiry path.
 
-- Restaurant concept demo: Menu-first layout with clear contact buttons
-- Cafe concept demo: Mobile-first story with location details
-- Consulting concept demo: Clear contact flow for new enquiries
+Showcase page: /showcase/forma-studio
+
+## Takamaka House (Hospitality)
+Hospitality-focused showcase concept designed for immersive storytelling, clear accommodation details, and direct booking intent.
+
+Showcase page: /showcase/takamaka-house

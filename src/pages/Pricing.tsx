@@ -282,6 +282,11 @@ export default function Pricing() {
               className="min-w-0"
             >
               <p className="text-xs uppercase tracking-[0.4em] text-accent/70 bg-accent/10 inline-block px-3 py-1 rounded-full border border-accent/20">Step {index + 1}</p>
+              {step.timeline ? (
+                <p className="mt-2 inline-block rounded-full border border-border/40 bg-bg-panel/40 px-3 py-1 text-[0.62rem] uppercase tracking-[0.2em] text-text-muted">
+                  {step.timeline}
+                </p>
+              ) : null}
               <h3 className="mt-4 text-lg font-semibold text-text">{step.title}</h3>
               <p className="mt-3 text-sm text-text-muted leading-relaxed">{step.description}</p>
             </motion.div>

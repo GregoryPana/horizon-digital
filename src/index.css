@@ -76,6 +76,14 @@
   --split-line: rgba(168, 240, 255, 0.28);
 }
 
+@layer base {
+  *,
+  ::before,
+  ::after {
+    border-color: var(--border);
+  }
+}
+
 * {
   box-sizing: border-box;
 }
@@ -640,8 +648,7 @@ option {
 
 html :is(h1, h2, h3, h4, h5, h6).text-accent,
 html :is(h1, h2, h3, h4, h5, h6) .text-accent,
-html .section-eyebrow-glow,
-html .hero-glow-text {
+html .section-eyebrow-glow {
   font-size: 1.06em;
 }
 
@@ -679,7 +686,7 @@ html .hero-glow-text {
 
 .site-header-dark {
   --bg-elev: rgba(6, 8, 24, 0.88);
-  --border: rgba(0, 229, 255, 0.14);
+  --border: rgba(0, 229, 255, 0.08);
   --text: #EAF2FF;
   --text-muted: rgba(168, 240, 255, 0.65);
   --glow: rgba(0, 229, 255, 0.45);
@@ -696,7 +703,7 @@ html .hero-glow-text {
 
 .site-header-dark.is-scrolled {
   background-color: rgba(6, 8, 24, 0.88) !important;
-  border-color: rgba(0, 229, 255, 0.14) !important;
+  border-color: rgba(0, 229, 255, 0.08) !important;
   backdrop-filter: blur(12px) !important;
   box-shadow: 0 14px 32px rgba(0, 0, 0, 0.28);
 }
@@ -704,12 +711,12 @@ html .hero-glow-text {
 
 .site-footer-dark {
   --bg-elev: #060818;
-  --border: rgba(0, 229, 255, 0.12);
+  --border: rgba(0, 229, 255, 0.08);
   --text: #EAF2FF;
   --text-muted: rgba(168, 240, 255, 0.55);
   --glow: rgba(0, 229, 255, 0.45);
   background-color: #060818 !important;
-  border-color: rgba(0, 229, 255, 0.12) !important;
+  border-color: rgba(0, 229, 255, 0.08) !important;
 }
 
 
@@ -724,7 +731,7 @@ html .hero-glow-text {
   --accent-2: #FFD97A;
   --accent-soft: rgba(255, 143, 90, 0.22);
   --accent-2-soft: rgba(0, 229, 255, 0.22);
-  --border: rgba(151, 184, 214, 0.28);
+  --border: rgba(151, 184, 214, 0.14);
   --glow: rgba(0, 229, 255, 0.45);
   --band-strong: #0d1521;
   --band-medium: #0a121d;
@@ -749,7 +756,7 @@ html .hero-glow-text {
 .insights-theme-shell .site-header-dark.is-scrolled,
 .insights-theme-shell .site-footer-dark {
   background-color: rgba(8, 12, 18, 0.95) !important;
-  border-color: rgba(151, 184, 214, 0.3) !important;
+  border-color: rgba(151, 184, 214, 0.16) !important;
 }
 
 .insights-theme-shell .site-header-dark .header-control-dark {
@@ -778,7 +785,7 @@ html .hero-glow-text {
     rgba(18, 25, 38, 0.88),
     rgba(11, 17, 28, 0.9)
   );
-  border-color: rgba(151, 184, 214, 0.24);
+  border-color: rgba(151, 184, 214, 0.14);
   box-shadow: 0 16px 32px rgba(0, 0, 0, 0.32);
 }
 
@@ -1077,7 +1084,7 @@ html .hero-glow-text {
 .lift:hover {
   transform: translateY(-6px);
   box-shadow: 0 16px 32px rgba(0, 0, 0, 0.22);
-  border-color: var(--accent);
+  border-color: color-mix(in srgb, var(--border) 80%, var(--accent) 20%);
 }
 
 .focus-ring:focus-visible {

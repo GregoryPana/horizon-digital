@@ -6,10 +6,12 @@ import Logo from "./Logo";
 
 export default function Navbar() {
   const { pathname } = useLocation();
-  const [isScrolled, setIsScrolled] = useState(pathname !== "/");
+  const normalizedPath = pathname.replace(/\/+$/, "") || "/";
+  const isHomeRoute = normalizedPath === "/";
+  const [isScrolled, setIsScrolled] = useState(!isHomeRoute);
 
   useEffect(() => {
-    if (pathname !== "/") {
+    if (!isHomeRoute) {
       setIsScrolled(true);
       return;
     }
@@ -18,7 +20,7 @@ export default function Navbar() {
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [pathname]);
+  }, [isHomeRoute]);
 
   return (
     <header
