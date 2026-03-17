@@ -18,7 +18,7 @@ export default function HomeHero() {
         <div className="absolute inset-0 hidden md:block">
           <picture>
             <source
-              srcSet={`${desktopSplashWebp1600} 1600w, ${desktopSplashWebp} 2400w`}
+              srcSet={`${desktopSplashWebp1600} 1024w, ${desktopSplashWebp} 1536w`}
               sizes="100vw"
               type="image/webp"
             />
@@ -38,7 +38,7 @@ export default function HomeHero() {
         <div className="absolute inset-0 md:hidden">
           <picture>
             <source
-              srcSet={`${mobileSplashWebp720} 720w, ${mobileSplashWebp} 1080w`}
+              srcSet={`${mobileSplashWebp720} 720w, ${mobileSplashWebp} 1024w`}
               sizes="100vw"
               type="image/webp"
             />
