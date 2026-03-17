@@ -1,7 +1,6 @@
 import { NavLink } from "react-router-dom";
 import Button from "./Button";
 import NavMenu from "./ui/menu-hover-effects";
-import ThemeToggle from "./ThemeToggle";
 import Logo from "./Logo";
 
 export default function Navbar() {
@@ -25,7 +24,6 @@ export default function Navbar() {
           </span>
         </NavLink>
         <div className="ml-auto flex items-center gap-3">
-          <ThemeToggle />
           <div className="hidden lg:block">
             <NavMenu />
           </div>

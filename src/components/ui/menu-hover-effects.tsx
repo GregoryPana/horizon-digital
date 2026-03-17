@@ -214,7 +214,7 @@ export default function NavMenu() {
                         }}
                         className={({ isActive }) =>
                           `focus-ring text-sm font-semibold uppercase tracking-[0.14em] transition ${
-                            isActive ? "text-[#46c6e8]" : "text-[#e8edf5]"
+                            isActive ? "text-[#00E5FF]" : "text-[#e8edf5]"
                           }`
                         }
                       >
@@ -270,7 +270,7 @@ export default function NavMenu() {
                               onClick={closeMenu}
                               className={({ isActive }) =>
                                 `focus-ring text-xs uppercase tracking-[0.13em] transition ${
-                                  isActive ? "text-[#ff8f5a]" : "text-[#bfd0de] hover:text-[#46c6e8]"
+                                  isActive ? "text-[#ff8f5a]" : "text-[#bfd0de] hover:text-[#00E5FF]"
                                 }`
                               }
                             >

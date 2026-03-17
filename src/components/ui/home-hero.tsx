@@ -13,8 +13,8 @@ export default function HomeHero() {
   const handleWorkScrollTop = () => scrollToTopSmooth();
 
   return (
-    <section id="top" className="relative h-[90svh] w-full overflow-hidden bg-bg text-text md:h-svh">
-      <div className="absolute inset-0 brightness-110 md:brightness-100">
+    <section id="top" className="relative h-svh w-full overflow-hidden bg-bg text-text">
+      <div className="absolute inset-0 md:brightness-100">
         <div className="absolute inset-0 hidden md:block">
           <picture>
             <source
@@ -57,11 +57,11 @@ export default function HomeHero() {
         </div>
       </div>
 
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/20 via-black/25 to-black/40 md:from-black/18 md:via-black/22 md:to-black/36" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/10 via-black/20 to-[#060818]/95 md:from-black/8 md:via-black/18 md:to-[#060818]/90" />
 
-      <div className="relative z-10 flex h-[90svh] w-full items-center justify-center px-3 md:h-svh md:justify-end md:px-8">
+      <div className="relative z-10 flex h-svh w-full items-center justify-center px-3 md:justify-end md:px-8">
         <aside className="hero-bento-fixed w-full max-w-[18.5rem] rounded-2xl p-3.5 sm:max-w-[21rem] sm:p-4 md:hidden">
-          <p className="hero-main-subtext text-[0.8rem] leading-5 text-[#dbe7f2] sm:text-[0.85rem] sm:leading-6 md:text-[0.92rem] md:leading-7">
+          <p className="hero-main-subtext text-[0.8rem] leading-5 text-[#A8F0FF] sm:text-[0.85rem] sm:leading-6 md:text-[0.92rem] md:leading-7">
             Custom websites for Seychelles businesses, designed to be clear, mobile-ready, and easy
             for customers to use.
           </p>
@@ -73,8 +73,8 @@ export default function HomeHero() {
               "Fast Loading",
               "SEO Ready",
             ].map((item) => (
-              <div key={item} className="rounded-lg border border-[#6f93ac]/55 bg-[#0e202f]/66 px-2 py-1.5 md:px-2.5 md:py-2">
-                <p className="text-[0.52rem] font-semibold uppercase tracking-[0.11em] text-[#a6c3d8] md:text-[0.56rem]">
+              <div key={item} className="rounded-lg border border-[#00E5FF]/25 bg-[#060818]/72 px-2 py-1.5 md:px-2.5 md:py-2">
+                <p className="text-[0.52rem] font-semibold uppercase tracking-[0.11em] text-[#A8F0FF] md:text-[0.56rem]">
                   {item}
                 </p>
               </div>
@@ -87,9 +87,9 @@ export default function HomeHero() {
         <div className="flex w-full max-w-[28rem] flex-col items-stretch gap-3.5 sm:max-w-none sm:flex-row sm:items-center sm:justify-center sm:gap-6">
           <Link to="/contact" className="pointer-events-auto w-full sm:w-auto">
             <ShimmerButton
-              shimmerColor="#0b1212"
+              shimmerColor="#060818"
               shimmerDuration="4.2s"
-              background="#46c6e8"
+              background="#00E5FF"
               className="hero-consult-cta w-full px-6 py-3 text-[0.95rem] font-semibold tracking-[0.08em] text-black sm:px-7 sm:py-3.5 sm:text-base"
             >
               Book a free consult
@@ -101,7 +101,7 @@ export default function HomeHero() {
             variant="primary"
             size="lg"
             onClick={handleWorkScrollTop}
-            className="pointer-events-auto gold-cta hero-view-work-cta self-center !text-[#e9c764] hover:!text-[#f0d27a] sm:w-auto md:!text-black"
+            className="pointer-events-auto gold-cta hero-view-work-cta self-center !text-[#FFD97A] hover:!text-[#FFE89A] sm:w-auto md:!text-black"
           />
         </div>
       </div>
