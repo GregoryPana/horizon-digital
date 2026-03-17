@@ -237,9 +237,9 @@ Looking forward to your reply.`;
             </div>
             <div className="mt-8">
               <ShimmerButton
-                shimmerColor="#0b1212"
+                shimmerColor="#060818"
                 shimmerDuration="4.2s"
-                background="#46c6e8"
+                background="#00E5FF"
                 className="w-full px-6 py-3 text-sm font-semibold tracking-[0.08em] text-black sm:w-auto"
                 type="button"
                 onClick={() => {

@@ -1,6 +1,5 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: ['selector', '[data-theme="dark"]'],
   content: ["./index.html", "./src/**/*.{ts,tsx}"],
   theme: {
     extend: {
@@ -30,7 +29,7 @@ module.exports = {
       },
       backgroundImage: {
         "horizon": "linear-gradient(90deg, transparent, var(--accent), var(--accent-2), transparent)",
-        "hero-glow": "radial-gradient(60% 60% at 20% 20%, rgba(13, 221, 199, 0.25), transparent 60%)",
+        "hero-glow": "radial-gradient(60% 60% at 20% 20%, rgba(0, 229, 255, 0.22), transparent 60%)",
       },
       animation: {
         "shimmer-slide": "shimmer-slide var(--speed) ease-in-out infinite alternate",

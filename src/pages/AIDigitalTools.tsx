@@ -83,9 +83,9 @@ export default function AIDigitalTools() {
         actions={
           <Link to="/insights">
             <ShimmerButton
-              shimmerColor="rgba(70, 198, 232, 0.65)"
+              shimmerColor="rgba(0, 229, 255, 0.65)"
               shimmerDuration="4.2s"
-              background="#46c6e8"
+              background="#00E5FF"
               className="px-6 py-2.5 text-sm font-semibold text-black"
             >
               Explore Digital Insights
@@ -179,9 +179,9 @@ export default function AIDigitalTools() {
           <div className="mt-6 flex justify-center">
             <Link to="/insights">
               <ShimmerButton
-                shimmerColor="rgba(70, 198, 232, 0.65)"
+                shimmerColor="rgba(0, 229, 255, 0.65)"
                 shimmerDuration="4.2s"
-                background="#46c6e8"
+                background="#00E5FF"
                 className="px-6 py-2.5 text-sm font-semibold text-black"
               >
                 Read Our Insights
