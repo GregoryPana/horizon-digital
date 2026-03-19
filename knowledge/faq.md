@@ -1,37 +1,28 @@
-# Frequently Asked Questions
+# Questions We Get Often
 
 ## How much does a website cost?
-Horizon Digital offers packages to suit different business needs. The Foundation package starts at SCR 7,500, the Starter package starts at SCR 12,500, and the Growth package starts at SCR 25,000. The final cost depends on the number of pages, custom features, and the specific package chosen.
+We offer clear packages so you know exactly what you're getting. Our Foundation package starts at SCR 7,500, Starter at SCR 12,500, and Growth at SCR 25,000. We can also chat about a purely custom build if you have unique needs.
 
-## What is included in each package?
-Every package includes a mobile-friendly design, contact forms, search-ready setup, and a set amount of post-launch support. The Foundation package includes a template layout with up to 3 pages. The Starter package includes a fully custom design with up to 5 pages. The Growth package includes an extensive custom design with up to 12 pages, galleries, and advanced forms.
+## What comes included?
+Every site we build is mobile-ready, search-optimized from day one, and includes integrated contact paths like WhatsApp and secure forms. The main difference between packages is the level of design customisation and the number of pages.
 
-## Do you provide website hosting?
-Yes, Horizon Digital provides Managed Hosting to keep the website securely online. Hosting costs SCR 250 per month or SCR 2,500 per year. Clients also have the option to host the website elsewhere if they prefer to manage their own servers. 
+## Do I own the website?
+Absolutely. Once the project is complete and closed, the final codebase and all approved assets are yours. Always.
 
-## How long does it take to build a website?
-Most website projects follow a structured sequence from planning to launch. A standard website project typically takes between 4 to 8 weeks to complete. The exact timeline depends on the size of the website package and how quickly the client can provide their content, photos, and feedback.
+## How long does it take?
+Most projects launch within 3 to 6 weeks. This depends on the size of the project and how quickly you can provide your content and feedback. We'll give you a clear estimate before we start.
 
-## Can you redesign my existing website?
-Yes, Horizon Digital offers design refresh and complete redesign services. The team can take an outdated website and rebuild it with modern, mobile-friendly layouts. The new design will be optimized for speed and clearer customer paths while keeping the core messaging intact.
+## Will it work on mobile?
+Yes. We build "mobile-first," meaning your site will look beautiful and be easy to use on a smartphone, tablet, or desktop.
 
-## What information do you need from me to start?
-To begin building the website, Horizon Digital needs the business's logo, branding colors, and contact details. The client must also provide the written text and high-quality photos for the website pages. If the client does not have written content, Horizon Digital offers content writing support as an optional add-on.
+## Can I edit the content myself?
+Because we code our sites for high performance and security, we don't use platforms like WordPress or Wix that can slow things down. We handle the technical updates for you so your site stays fast, secure, and looking exactly as intended.
 
-## How do payments work?
-Payments are split into milestones based on the chosen package. Smaller packages typically require a 50% deposit to begin work, with the remaining 50% due right before the website goes live. Larger packages are split into 40% upfront, 40% at design approval, and 20% on launch. 
+## What if I already have a domain?
+Not a problem. We can connect your new website to any domain you already own. We believe you should always own your domain name directly, and we can help you set it up if you don't have one yet.
 
-## Can you add WhatsApp or contact forms?
-Yes, WhatsApp integration and secure contact forms are standard features included in all Horizon Digital website packages. These tools are placed strategically on the website to encourage visitors to send messages and easily connect with the business.
+## What about hosting?
+Every website needs hosting to stay live. You can host with us — where we handle the security, backups, and updates for you — or use your own provider if you prefer. 
 
-## Will my website work on mobile phones?
-Yes, every website built by Horizon Digital is completely mobile-friendly. The layouts are specifically engineered to load quickly and display perfectly across all screen sizes, including smartphones and tablets.
-
-## If I already have a domain, can you still build my website?
-Yes, Horizon Digital can build the website and connect it to an existing domain name. In fact, it is considered best practice for the business to register and own their domain name directly. The team will guide the client through the process of linking the domain to the new website hosting.
-
-## Will I have access to edit my website after it is launched?
-Horizon Digital builds websites using modern code architecture. Because these are custom-coded rather than built on platforms like WordPress or Wix, direct content editing by the client is generally not available out-of-the-box. Horizon Digital handles future updates to ensure the website stays fast and secure.
-
-## Do you offer maintenance if something breaks later?
-All website packages include a period of post-launch support, ranging from 30 to 60 days, to fix any immediate issues. Ongoing care plans are not actively offered, but clients on Horizon Digital's Managed Hosting benefit from a secure, stabilized server environment that rarely encounters breaking issues.
+## Is support included?
+Yes. Every package includes a dedicated support period after launch (ranging from 45 to 90 days for our higher tiers) to ensure everything is running perfectly as you start using your new site.

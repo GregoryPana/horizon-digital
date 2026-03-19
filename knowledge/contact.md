@@ -1,10 +1,14 @@
-# Contact Information
+# Contacting Us
 
-## Primary Contact Methods
-Businesses interested in a new website or a design refresh can easily reach Horizon Digital online. The best way to start a conversation is by filling out the secure contact form on the Horizon Digital website. Visitors can also start a direct chat via the WhatsApp integration located on the website for a faster, more casual discussion.
+## How to get started
+The best way to start a conversation is by using the secure contact form on our website or starting a chat via WhatsApp. We're here for a friendly, no-pressure discussion about what your business needs.
 
-## Lead Capture Expectations
-When a visitor uses the contact form or WhatsApp to inquire about a project, they should provide basic details about their business. Helpful details include their business name, the type of service they offer, their budget expectations, and any goals they have for the website. Providing this information upfront allows the Horizon Digital team to recommend the most suitable package from the start.
+## What helps us help you
+When you reach out, it's helpful if you can share a few basics:
+- Your business name and industry
+- What you'd like your website to achieve (more bookings, clearer branding, etc.)
+- Any current website you have
+- Your ideal timeline
 
-## Response Times
-The Horizon Digital team monitors inquiries closely during standard business hours. Messages sent via the contact form or WhatsApp are typically reviewed and replied to within one to two business days. The team strives to answer all project questions clearly and professionally without any aggressive sales tactics.
+## What to expect
+We monitor enquiries closely and typically reply within 24 hours. We don't use aggressive sales tactics; we just listen to your goals and recommend the package that fits your stage of business right now.

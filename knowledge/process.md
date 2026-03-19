@@ -1,18 +1,20 @@
-# Process and Timelines
+# A Process You'll Actually Enjoy
 
-## How It Works (5 Steps)
+## Four steps to your new website
 
-### 1) Discovery & Scope (Day 1-7)
-Reach out via the contact form or WhatsApp. We discuss your goals, target audience, and what the website needs to achieve. Horizon Digital recommends the right package and defines a clear project scope - no jargon, no pressure.
+### 1) Discovery & goals
+We start by learning about your business, your customers, and what you actually need the website to do. No jargon, just a clear plan that fits your goals.
 
-### 2) Content Gathering (Week 1-2)
-Before building begins, the client provides logo, brand guidelines, and contact details - plus written text and high-quality photos for each page. Gathering this early keeps the project moving and the launch clean.
+### 2) Design & prototype
+We shape the layout, look, and structure of your new site. You'll review these designs before we write a single line of code, ensuring the result is exactly what you envision.
 
-### 3) Design Phase (Week 2-4)
-For Starter and Growth packages, full visual layouts are created before a single line of code is written. You review designs through structured revision rounds until the result looks exactly right.
+### 3) Build & launch
+Once you're happy with the designs, we build your site fast, test it across all devices, and launch when every detail looks right.
 
-### 4) Build & Test (Week 4-7)
-Approved designs become fast, mobile-optimised code. Tested across devices and browsers to ensure every contact form, WhatsApp button, and page load performs flawlessly before going live.
+### 4) Support & improvement
+We don't just disappear after launch. We stick around to fix any issues and keep things running smoothly as your business grows.
 
-### 5) Launch & Support (Week 7-8)
-The site goes live. Domain connected, settings verified, and Horizon Digital stays on hand for 30 to 60 days post-launch to resolve any issues. Your investment is protected from day one.
+---
+
+### Timelines
+Most projects launch in **3 to 6 weeks**. This timeline depends on the scale of your project and how quickly we can gather your content and feedback.

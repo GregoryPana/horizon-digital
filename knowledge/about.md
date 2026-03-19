@@ -1,10 +1,10 @@
 # About Horizon Digital
 
-## A studio built on clarity
-Horizon Digital is a focused studio that partners directly with local businesses. Every site is designed to attract visitors and turn them into enquiries or bookings — not just look modern.
+## A partnership built on clarity
+We are a focused digital studio that partners directly with business owners in Seychelles. Every website we build is designed to do one thing: turn visitors into customers. We don't just build sites that look modern; we build tools that help your business grow.
 
-## Reliable partnership
-You work directly with the builder, not a rotating team. The approach is clear, transparent, and designed to support you over time.
+## You work with the builder
+When you work with us, you work directly with the person building your site. No rotating teams, no middle-men. This means communication is fast, transparent, and your vision doesn't get lost in translation.
 
-## Why Horizon Digital exists
-After seeing businesses struggle with unclear websites and complex agency processes, Horizon Digital was built to offer something simpler — direct communication, practical solutions, and websites designed for measurable growth.
+## Why we're here
+We saw too many businesses struggling with complex agency processes and websites that didn't actually help them. We started Horizon Digital to offer something simpler: direct talk, practical solutions, and websites that deliver measurable results.
