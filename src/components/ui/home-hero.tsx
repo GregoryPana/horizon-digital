@@ -57,21 +57,27 @@ export default function HomeHero() {
         </div>
       </div>
 
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/10 via-black/34 to-[#060818] md:from-black/8 md:via-black/28 md:to-[#060818]" />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[42svh] bg-gradient-to-t from-[#060818] via-[#060818]/92 to-transparent md:h-[34svh]" />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-[#060818] md:from-transparent md:via-black/16 md:to-[#060818]" />
+      <div className="pointer-events-none absolute inset-0 hidden md:block bg-[radial-gradient(circle_at_15%_50%,rgba(0,0,0,0.32),transparent_55%)]" />
+      <div className="pointer-events-none absolute inset-0 md:hidden bg-[radial-gradient(circle_at_50%_25%,rgba(0,0,0,0.52),transparent_65%)]" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[38svh] bg-gradient-to-t from-[#060818] via-[#060818]/82 to-transparent md:h-[30svh]" />
 
-      <div className="relative z-10 hidden h-svh w-full items-center px-3.5 pb-14 sm:px-5 md:flex md:px-10 md:pb-32 lg:px-14">
+      <div className="relative z-10 hidden h-svh w-full items-center px-3.5 pb-24 sm:px-5 md:flex md:px-10 md:pb-32 lg:px-14 lg:pb-40">
         <div className="w-full md:ml-[5vw] md:pl-2 lg:ml-[8vw] lg:pl-6">
           <p className="section-eyebrow-glow text-xs font-semibold uppercase tracking-[0.24em] text-accent">
             Horizon Digital • Web Design Studio • Seychelles
           </p>
-          <h1 className="hero-glow-text mt-4 font-display text-[clamp(2.9rem,3.6vw,4rem)] font-semibold leading-[0.92] uppercase text-text">
-            Custom, Beautiful websites that
+          <h1 className="hero-glow-text mt-4 font-display text-[clamp(3.5rem,4.5vw,5.5rem)] font-semibold leading-[0.92] uppercase tracking-[0.05em] text-text">
+            Your Website
             <br />
-            work as hard as you do
+            should bring you
+            <br />
+            customers
+            <br />
+            <span className="text-accent normal-case">and</span> look good
           </h1>
           <p className="hero-main-subtext mt-5 max-w-[58ch] text-base leading-7 text-text-muted">
-            We design beautiful, one-of-a-kind websites for Seychelles businesses that turn visitors into real customers. Clear, mobile-ready, and built to help you grow.
+             Your business deserves a website that works as hard as you do — beautifully designed, easy to find, and built to turn visitors into customers you're proud to serve.
           </p>
           <div className="mt-6 flex flex-wrap gap-2.5">
             {["Custom Design", "Mobile Ready", "Fast Loading", "SEO Ready"].map((item) => (
@@ -87,20 +93,26 @@ export default function HomeHero() {
 
       </div>
 
-      <div className="relative z-10 flex h-svh w-full flex-col justify-between px-3.5 pt-[calc(env(safe-area-inset-top)+4.5rem)] pb-[calc(env(safe-area-inset-bottom)+2.2rem)] sm:px-5 md:hidden">
-        <aside className="hero-bento-fixed mt-5 w-full max-w-[20rem] self-center rounded-xl p-2.5 sm:max-w-[22rem] sm:p-3">
+      <div className="relative z-10 flex h-svh w-full flex-col px-3.5 pt-[4.6rem] pb-[calc(env(safe-area-inset-bottom)+3.5rem)] sm:px-5 md:hidden">
+        <aside className="hero-bento-fixed bg-white/5 backdrop-blur-xl border border-white/10 mt-0 w-full max-w-[20rem] self-center rounded-xl p-4 sm:max-w-[22rem] sm:p-5">
           <p className="section-eyebrow-glow text-[0.52rem] font-semibold uppercase tracking-[0.16em] text-accent sm:text-[0.56rem]">
             Web Design Studio • Seychelles
           </p>
-          <h1 className="hero-glow-text mt-2 font-display text-[1.28rem] font-semibold leading-[1.1] text-text sm:text-[1.46rem]">
-            Custom, Beautiful websites that work as hard as you do
+          <h1 className="hero-glow-text mt-2 font-display text-[1.44rem] font-semibold leading-[1.1] tracking-[0.04em] text-text sm:text-[1.68rem]">
+            Your Website
+            <br />
+            should bring you
+            <br />
+            customers
+            <br />
+            <span className="text-accent normal-case">and</span> look good
           </h1>
           <p className="hero-main-subtext mt-2 text-[0.74rem] leading-[1.28rem] text-text-muted sm:text-[0.8rem] sm:leading-5">
-            We design beautiful, one-of-a-kind websites for Seychelles businesses that turn visitors into real customers. Clear, mobile-ready, and built to help you grow.
+             Your business deserves a website that works as hard as you do — beautifully designed, easy to find, and built to turn visitors into customers you're proud to serve.
           </p>
-          <div className="mt-2 grid grid-cols-2 gap-1.5 sm:gap-2">
+          <div className="mt-4 grid grid-cols-2 gap-1.5 sm:gap-2">
             {["Custom Design", "Mobile Ready", "Fast Loading", "SEO Ready"].map((item) => (
-              <div key={item} className="rounded-md border border-[#00E5FF]/25 bg-[#060818]/72 px-2 py-1 sm:px-2.5 sm:py-1.5">
+              <div key={item} className="rounded-md border border-white/10 bg-white/5 px-2 py-1 sm:px-2.5 sm:py-1.5 backdrop-blur-sm">
                 <p className="text-[0.48rem] font-semibold uppercase tracking-[0.1em] text-[#A8F0FF] sm:text-[0.52rem]">
                   {item}
                 </p>
@@ -109,7 +121,9 @@ export default function HomeHero() {
           </div>
         </aside>
 
-        <div className="mt-4 flex w-full max-w-[31rem] self-center flex-col items-stretch gap-3">
+        <div className="flex-1" />
+
+        <div className="flex w-full max-w-[20rem] self-center flex-col items-stretch gap-3">
           <Link to="/contact" className="w-full">
             <ShimmerButton
               shimmerColor="#060818"
@@ -126,7 +140,7 @@ export default function HomeHero() {
             variant="primary"
             size="lg"
             onClick={handleWorkScrollTop}
-            className="gold-cta hero-view-work-cta self-center !text-[#FFD97A] hover:!text-[#FFE89A]"
+            className="gold-cta hero-view-work-cta w-full !text-[#FFD97A] hover:!text-[#FFE89A]"
           />
         </div>
       </div>

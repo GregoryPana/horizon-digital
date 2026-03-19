@@ -39,13 +39,13 @@ export default function WhatYouNeed() {
       <section className="pt-32 pb-20 md:pt-40 md:pb-32 text-center px-5 sm:px-8 max-w-5xl mx-auto">
         <motion.div {...fadeInUp}>
           <p className="text-xs font-semibold uppercase tracking-[0.32em] text-accent section-eyebrow-glow mb-6">
-            Guidance
+            Not sure where to start?
           </p>
           <h2 className="text-4xl md:text-6xl font-semibold tracking-tight text-text mb-8">
-            <WordReveal staggerDelay={0.06}>What website does your business actually need?</WordReveal>
+            <WordReveal staggerDelay={0.06}>Let's find the right website for where you are right now</WordReveal>
           </h2>
           <p className="text-lg md:text-xl text-text-muted max-w-2xl mx-auto leading-relaxed">
-            Many businesses know they need a website but are unsure which type is right. This guide helps you choose with clarity and confidence.
+            You don't need to know the answers yet. This guide will help you figure it out in minutes.
           </p>
         </motion.div>
       </section>
@@ -65,7 +65,7 @@ export default function WhatYouNeed() {
               </div>
               <h3 className="text-xl font-semibold text-text mb-4">Service Business</h3>
               <p className="text-sm text-text-muted leading-relaxed">
-                Best for consultants, agencies, and service providers that need clear service pages, high authority, and a strong enquiry flow.
+                Perfect if you offer a service and want customers to understand what you do, feel confident, and reach out easily.
               </p>
             </motion.div>
 
@@ -78,7 +78,7 @@ export default function WhatYouNeed() {
               </div>
               <h3 className="text-xl font-semibold text-text mb-4">Retail Showcase</h3>
               <p className="text-sm text-text-muted leading-relaxed">
-                Useful for product-based businesses that need to display items clearly and guide customers toward contact or order requests.
+                Great for product-based businesses that want to display items clearly and guide customers toward contact or a purchase request.
               </p>
             </motion.div>
 
@@ -91,7 +91,7 @@ export default function WhatYouNeed() {
               </div>
               <h3 className="text-xl font-semibold text-text mb-4">Hospitality</h3>
               <p className="text-sm text-text-muted leading-relaxed">
-                Designed to highlight accommodation, facilities, local trust signals, and simplified booking enquiries.
+                Designed to highlight accommodation, facilities, and local trust, with a simple booking enquiry path that makes guests want to say yes.
               </p>
             </motion.div>
 
@@ -103,8 +103,8 @@ export default function WhatYouNeed() {
       <section className="py-24 border-y border-border">
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
            <motion.div className="text-center mb-16" {...fadeInUp}>
-             <h2 className="text-3xl md:text-5xl font-semibold text-text tracking-tight mb-4">Built-in Features</h2>
-             <p className="text-text-muted max-w-2xl mx-auto">Most business websites rely on a clear core feature set before adding complex tools.</p>
+             <h2 className="text-3xl md:text-5xl font-semibold text-text tracking-tight mb-4">What comes included</h2>
+             <p className="text-text-muted max-w-2xl mx-auto">Every business website starts with the same core building blocks — here's what those look like.</p>
            </motion.div>
 
            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
@@ -134,9 +134,9 @@ export default function WhatYouNeed() {
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 relative z-10">
           <motion.div className="mb-16 max-w-3xl mx-auto text-center" {...fadeInUp}>
             <p className="text-xs uppercase tracking-[0.3em] font-semibold text-accent mb-4">How it works</p>
-            <h2 className="text-3xl md:text-5xl font-semibold text-text mb-6 tracking-tight">The three pieces of a website</h2>
+            <h2 className="text-3xl md:text-5xl font-semibold text-text mb-6 tracking-tight">Three things every website needs</h2>
             <p className="text-lg text-text-muted">
-              Whether you build with Horizon Digital or someone else, every website needs three fundamental pieces to exist on the internet.
+              Whether you build with us or someone else, every website needs three things to exist on the internet. Here's what they are.
             </p>
           </motion.div>
 
@@ -188,11 +188,11 @@ export default function WhatYouNeed() {
       <section className="py-24 md:py-32 relative">
          <div className="absolute top-0 right-0 w-1/2 h-full bg-[radial-gradient(circle_at_top_right,rgba(0,229,255,0.05)_0%,transparent_50%)] pointer-events-none"/>
          <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 relative z-10">
-            <motion.div className="mb-16 max-w-3xl mx-auto text-center" {...fadeInUp}>
-               <p className="text-xs uppercase tracking-[0.3em] font-semibold text-accent mb-4">Package Fit</p>
-               <h2 className="text-3xl md:text-5xl font-semibold text-text mb-6 tracking-tight">Choosing the right approach</h2>
-               <p className="text-lg text-text-muted">Simple needs usually fit Foundation, while businesses needing flexibility often prefer Starter or Growth.</p>
-            </motion.div>
+             <motion.div className="mb-16 max-w-3xl mx-auto text-center" {...fadeInUp}>
+               <p className="text-xs uppercase tracking-[0.3em] font-semibold text-accent mb-4">Find your fit</p>
+               <h2 className="text-3xl md:text-5xl font-semibold text-text mb-6 tracking-tight">How would you like to work with us?</h2>
+               <p className="text-lg text-text-muted">Both options give you a great result. The difference is just who handles the hosting side.</p>
+             </motion.div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
                {/* Option 1 */}
@@ -258,10 +258,10 @@ export default function WhatYouNeed() {
       <section className="bg-bg-panel/40 py-24 md:py-32">
         <div className="mx-auto flex w-full max-w-5xl flex-col items-center text-center px-5 sm:px-8">
            <motion.div {...fadeInUp}>
-             <p className="text-xs uppercase tracking-[0.4em] text-accent mb-4">Project Prep</p>
-             <h2 className="text-3xl md:text-5xl font-semibold text-text mb-8">Preparing for your website build</h2>
+             <p className="text-xs uppercase tracking-[0.4em] text-accent mb-4">Before we start</p>
+             <h2 className="text-3xl md:text-5xl font-semibold text-text mb-8">A few things that help us hit the ground running</h2>
              <p className="text-lg text-text-muted mb-12 max-w-2xl mx-auto">
-               A few basics help your project move faster and launch cleaner. Gather your service list, contact details, any branding/logos, and existing social links. If you are not sure where to start, we guide you through each item.
+               Gathering a few basics before we start keeps things moving and the launch clean. Think: your service list, contact details, any logos or branding, and your social links. Not sure what you have? We'll walk you through it.
              </p>
              <Link to="/contact" className="inline-block hover:scale-105 transition-transform duration-300">
                 <ShimmerButton

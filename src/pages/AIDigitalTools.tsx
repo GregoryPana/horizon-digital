@@ -77,9 +77,9 @@ export default function AIDigitalTools() {
       />
 
       <InsightsHero
-        eyebrow="Digital Insights"
-        title="Artificial Intelligence and Digital Tools for Seychelles Businesses"
-        description="A practical, friendly guide to emerging digital tools, with local use cases that help business owners understand what is useful now and what to watch next."
+        eyebrow="Staying informed"
+        title="Plain talk about AI and digital tools"
+        description="We cut through the noise so you can understand what's worth paying attention to — and what can wait."
         actions={
           <Link to="/insights">
             <ShimmerButton
@@ -107,9 +107,9 @@ export default function AIDigitalTools() {
 
       <Section
         id="awareness"
-        eyebrow="Digital Awareness"
-        title="Understanding Artificial Intelligence and Digital Tools for Businesses"
-        description="Around the world, businesses are beginning to use artificial intelligence, automation, and digital tools to work more efficiently and better understand their customers."
+        eyebrow="What's changing"
+        title="A simple introduction to the tools everyone's talking about"
+        description="Around the world, businesses are beginning to use AI and digital tools to work more efficiently and better understand their customers."
       >
         <p className="mx-auto max-w-4xl text-center text-sm text-text-muted">
           While many of these technologies are still emerging in Seychelles, they are likely to play
@@ -121,8 +121,8 @@ export default function AIDigitalTools() {
 
       <Section
         id="future-trends"
-        eyebrow="Why this matters"
-        title="The Future of Digital Technology in Seychelles"
+        eyebrow="Worth keeping an eye on"
+        title="The changes coming — and what they might mean for you"
         description="Awareness and understanding are practical first steps toward future adoption."
       >
         <div className="section-band section-band-medium relative left-1/2 right-1/2 -mx-[50vw] my-8 w-screen py-14 md:my-10 md:py-16">
@@ -140,9 +140,9 @@ export default function AIDigitalTools() {
 
       <Section
         id="key-technologies"
-        eyebrow="Key technologies"
-        title="Digital Technologies Businesses Should Know About"
-        description="Practical explanations for non-technical business owners."
+        eyebrow="The tools in plain English"
+        title="What these tools actually do"
+        description="No degree required. Just honest, useful context."
       >
         <div className="grid gap-6 md:grid-cols-2">
           {technologyCards.map((card) => (
@@ -154,7 +154,7 @@ export default function AIDigitalTools() {
         </div>
       </Section>
 
-      <Section id="current-focus" eyebrow="Important" title="Our Current Focus" description="Clear scope and transparency.">
+      <Section id="current-focus" eyebrow="Honest about what we do" title="What we focus on right now" description="Clear scope and transparency.">
         <Card>
           <p className="text-sm text-text-muted">
             Horizon Digital currently focuses on building clear, fast, and professional websites for
@@ -168,8 +168,8 @@ export default function AIDigitalTools() {
       <Section
         id="insights-hub"
         eyebrow="Digital Insights"
-        title="Stay informed"
-        description="Read practical updates about emerging digital tools."
+        title="Keep up with us"
+        description="We share what we're learning — so you don't have to figure it out alone."
       >
         <Card className="flex flex-col items-center text-center">
           <p className="text-sm text-text-muted">

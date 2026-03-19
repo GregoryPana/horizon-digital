@@ -2,13 +2,23 @@ import { motion, useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
 import Seo from "../components/Seo";
 import { ShimmerButton } from "../components/ui/shimmer-button";
+
+// Image Imports
 import drakeMain from "../assets/work/drake-seaside/drake-seaside.png";
 import drakeAltOne from "../assets/work/drake-seaside/drake-seaside 2.png";
 import drakeMainWebp from "../assets/work/drake-seaside/drake-seaside.webp";
 import drakeAltOneWebp from "../assets/work/drake-seaside/drake-seaside 2.webp";
+
 import seykelzMain from "../assets/work/demo-beauty/demo-beauty.jpg";
 import seykelzMainWebp from "../assets/work/demo-beauty/demo-beauty.webp";
 import seykelzAltOne from "../assets/work/demo-beauty/demo-beauty 2.png";
+
+import formaMain from "../assets/work/forma studio/forma studio.png";
+import formaAltOne from "../assets/work/forma studio/forma studio 2.png";
+
+import takamakaMain from "../assets/work/takamaka-house/takamaka house.png";
+import takamakaAltOne from "../assets/work/takamaka-house/takamaka house 2.png";
+
 import { WordReveal } from "../components/ui/animated-text";
 
 export default function Work() {
@@ -35,33 +45,33 @@ export default function Work() {
       <section className="pt-32 pb-20 md:pt-48 md:pb-32 text-center px-5 sm:px-8 max-w-5xl mx-auto">
         <motion.div {...fadeIn}>
           <p className="text-xs font-semibold uppercase tracking-[0.32em] text-accent section-eyebrow-glow mb-6">
-            Featured Projects
+            Real work, real businesses
           </p>
           <h2 className="text-4xl md:text-7xl font-semibold tracking-tight text-text mb-8">
-            <WordReveal staggerDelay={0.06}>Design engineered for conversion</WordReveal>
+            <WordReveal staggerDelay={0.06}>Websites we've built with care</WordReveal>
           </h2>
           <p className="text-lg md:text-2xl font-light text-text-muted max-w-3xl mx-auto leading-relaxed">
-            Each project is structurally designed and optimized around the core business goals it needs to support.
+            Every site you see here was built for a real business, with real goals. Take a look and imagine what we could do for yours.
           </p>
         </motion.div>
       </section>
 
-      {/* Portfolio Item 1: Drake Seaside (Split Banner layout) */}
+      {/* Portfolio Item 1: Drake Seaside (Text Left, Image Right) */}
       <section className="py-20 md:py-32 border-t border-border bg-gradient-to-b from-transparent to-bg-panel/20">
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
               
-              <motion.div className="lg:col-span-5 relative z-10" {...fadeIn}>
-                 <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent-2 mb-4 bg-accent-2/10 inline-block px-3 py-1 rounded-full border border-accent-2/20">
+              <motion.div className="lg:col-span-12 xl:col-span-5 relative z-10 flex flex-col items-start text-left" {...fadeIn}>
+                 <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent-2 mb-4 bg-accent-2/10 inline-block px-3 py-1 rounded-[9px] border border-accent-2/20">
                     Growth Tier
                   </p>
                   <h3 className="text-3xl md:text-5xl font-semibold text-text mb-6">Drake Seaside</h3>
-                  <p className="text-base md:text-lg text-text-muted mb-8 leading-relaxed">
+                  <p className="text-base md:text-lg text-text-muted mb-8 leading-relaxed lg:max-w-xl">
                     A complete redesign with new pages, updated SEO-focused content, significantly faster load times, and a structure engineered for higher click-through conversions and bookings.
                   </p>
-                  <div className="flex flex-wrap gap-4">
+                  <div className="flex flex-wrap gap-4 justify-start">
                      <a href="https://thedrake-seaside.com/" target="_blank" rel="noreferrer" className="inline-block hover:opacity-80 transition-opacity">
-                       <button className="px-6 py-3 border border-border text-sm font-semibold rounded-full hover:bg-text/5 transition-colors">
+                       <button className="px-6 py-3 border border-accent/30 bg-[#0D102D] text-sm font-semibold rounded-[9px] hover:bg-accent/10 transition-colors shadow-[0_0_15px_rgba(0,229,255,0.08)]">
                          View live site
                        </button>
                      </a>
@@ -78,22 +88,23 @@ export default function Work() {
                   </div>
               </motion.div>
 
-              <motion.div className="lg:col-span-7 flex flex-col gap-6" {...fadeIn} transition={{ delay: 0.2 }}>
-                 <picture className="block rounded-2xl overflow-hidden shadow-[0_0_60px_rgba(0,229,255,0.3)] dark:shadow-[0_0_50px_rgba(0,229,255,0.15)] border border-border/30 group">
-                    <source srcSet={drakeMainWebp} type="image/webp" />
-                    <img
-                      src={drakeMain}
-                      alt="Drake Seaside main homepage layout"
-                      width={800}
-                      height={520}
-                      loading="eager"
-                      fetchPriority="high"
-                      decoding="sync"
-                      className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                  </picture>
-                  <div className="w-full flex justify-end -mt-16 sm:-mt-24 sm:-ml-12 relative z-20 pointer-events-none pr-8 sm:pr-0">
-                    <picture className="block rounded-xl overflow-hidden shadow-[0_0_50px_rgba(0,229,255,0.25)] dark:shadow-2xl border border-border/30 w-2/3 md:w-1/2">
+              <motion.div className="lg:col-span-12 xl:col-span-7 flex flex-col gap-6" {...fadeIn} transition={{ delay: 0.2 }}>
+                 <div className="relative group">
+                   <picture className="block rounded-2xl overflow-hidden shadow-[0_0_60px_rgba(0,229,255,0.3)] dark:shadow-[0_0_50px_rgba(0,229,255,0.15)] border border-border/30">
+                      <source srcSet={drakeMainWebp} type="image/webp" />
+                      <img
+                        src={drakeMain}
+                        alt="Drake Seaside main homepage layout"
+                        width={800}
+                        height={520}
+                        loading="eager"
+                        fetchPriority="high"
+                        className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                    </picture>
+                 </div>
+                  <div className="w-full flex justify-center xl:justify-end -mt-16 sm:-mt-24 xl:-ml-12 relative z-20 pointer-events-none px-8 xl:pr-0">
+                    <picture className="block rounded-xl overflow-hidden shadow-[0_0_50px_rgba(0,229,255,0.25)] dark:shadow-2xl border border-border/30 w-3/4 md:w-[62%]">
                       <source srcSet={drakeAltOneWebp} type="image/webp" />
                       <img
                         src={drakeAltOne}
@@ -101,7 +112,6 @@ export default function Work() {
                         width={600}
                         height={400}
                         loading="lazy"
-                        decoding="async"
                         className="w-full h-auto"
                       />
                     </picture>
@@ -112,50 +122,49 @@ export default function Work() {
         </div>
       </section>
 
-      {/* Portfolio Item 2: Beauty Demo (Alternated layout) */}
+      {/* Portfolio Item 2: Takamaka House (Text Right, Image Left) */}
       <section className="py-20 md:py-32 border-t border-border">
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
               
-              <motion.div className="lg:col-span-7 flex flex-col gap-6 order-2 lg:order-1" {...fadeIn}>
-                 <picture className="block rounded-2xl overflow-hidden shadow-[0_0_60px_rgba(0,229,255,0.3)] dark:shadow-[0_0_50px_rgba(0,229,255,0.15)] border border-border/30 group">
-                    {seykelzMainWebp && <source srcSet={seykelzMainWebp} type="image/webp" />}
-                    <img
-                      src={seykelzMain}
-                      alt="Beauty demo website preview layout"
-                      width={800}
-                      height={520}
-                      loading="lazy"
-                      decoding="async"
-                      className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                  </picture>
-                  <div className="w-full flex justify-start -mt-16 sm:-mt-24 sm:-mr-12 relative z-20 pointer-events-none pl-8 sm:pl-0">
-                    <picture className="block rounded-xl overflow-hidden shadow-[0_0_50px_rgba(0,229,255,0.25)] dark:shadow-2xl border border-border/30 w-2/3 md:w-1/2">
+              <motion.div className="lg:col-span-12 xl:col-span-7 flex flex-col gap-6 order-2 lg:order-1" {...fadeIn}>
+                 <div className="relative group">
+                   <picture className="block rounded-2xl overflow-hidden shadow-[0_0_60px_rgba(0,229,255,0.3)] dark:shadow-[0_0_50px_rgba(0,229,255,0.15)] border border-border/30">
                       <img
-                        src={seykelzAltOne}
-                        alt="Beauty demo services detail interface"
+                        src={takamakaMain}
+                        alt="Takamaka House showcase layout"
+                        width={800}
+                        height={520}
+                        loading="lazy"
+                        className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                    </picture>
+                 </div>
+                  <div className="w-full flex justify-center xl:justify-start -mt-16 sm:-mt-24 xl:ml-12 relative z-20 pointer-events-none px-8 xl:pl-0">
+                    <picture className="block rounded-xl overflow-hidden shadow-[0_0_50px_rgba(0,229,255,0.25)] dark:shadow-2xl border border-border/30 w-3/4 md:w-[62%]">
+                      <img
+                        src={takamakaAltOne}
+                        alt="Takamaka House detail interface"
                         width={600}
                         height={400}
                         loading="lazy"
-                        decoding="async"
                         className="w-full h-auto"
                       />
                     </picture>
                   </div>
               </motion.div>
 
-              <motion.div className="lg:col-span-5 relative z-10 order-1 lg:order-2" {...fadeIn} transition={{ delay: 0.2 }}>
-                 <p className="text-xs font-semibold uppercase tracking-[0.3em] text-text mb-4 bg-text/5 inline-block px-3 py-1 rounded-full border border-border">
+              <motion.div className="lg:col-span-12 xl:col-span-5 relative z-10 order-1 lg:order-2 flex flex-col items-start text-left" {...fadeIn} transition={{ delay: 0.2 }}>
+                 <p className="text-xs font-semibold uppercase tracking-[0.3em] text-text mb-4 bg-text/5 inline-block px-3 py-1 rounded-[9px] border border-border">
                     Foundation Tier
                   </p>
-                  <h3 className="text-3xl md:text-5xl font-semibold text-text mb-6">Beauty Demo</h3>
-                  <p className="text-base md:text-lg text-text-muted mb-8 leading-relaxed">
-                    A streamlined foundation-tier website demo built for service-based businesses. It showcases a crystal-clear service layout and a frictionless contact path mapped to high-conversion Web Vitals UX standards.
+                  <h3 className="text-3xl md:text-5xl font-semibold text-text mb-6">Takamaka House</h3>
+                  <p className="text-base md:text-lg text-text-muted mb-8 leading-relaxed lg:max-w-xl">
+                    A calm, immersive site designed to let the beauty of Takamaka House do the talking — and make guests excited to book before they even arrive.
                   </p>
-                  <div className="flex flex-wrap gap-4">
-                     <a href="https://demo-beauty.horizondigitalsey.com/" target="_blank" rel="noreferrer" className="inline-block hover:opacity-80 transition-opacity">
-                       <button className="px-6 py-3 border border-border text-sm font-semibold rounded-full hover:bg-text/5 transition-colors">
+                  <div className="flex flex-wrap gap-4 justify-start">
+                     <a href="https://takamaka.horizondigitalsey.com/" target="_blank" rel="noreferrer" className="inline-block hover:opacity-80 transition-opacity">
+                       <button className="px-6 py-3 border border-accent/30 bg-[#0D102D] text-sm font-semibold rounded-[9px] hover:bg-accent/10 transition-colors shadow-[0_0_15px_rgba(0,229,255,0.08)]">
                          View live site
                        </button>
                      </a>
@@ -163,7 +172,134 @@ export default function Work() {
                        <ShimmerButton
                           shimmerColor="#060818"
                           shimmerDuration="4.2s"
-                          background="#ffffff"
+                          background="#00E5FF"
+                          className="px-6 py-3 text-sm font-semibold tracking-wide text-black"
+                        >
+                          Request similar site
+                        </ShimmerButton>
+                     </Link>
+                  </div>
+              </motion.div>
+
+           </div>
+        </div>
+      </section>
+
+      {/* Portfolio Item 3: Forma Studio (Text Left, Image Right) */}
+      <section className="py-20 md:py-32 border-t border-border bg-gradient-to-b from-transparent to-bg-panel/20">
+        <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
+           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+              
+              <motion.div className="lg:col-span-12 xl:col-span-5 relative z-10 flex flex-col items-start text-left" {...fadeIn}>
+                 <p className="text-xs font-semibold uppercase tracking-[0.3em] text-text mb-4 bg-text/5 inline-block px-3 py-1 rounded-[9px] border border-border">
+                    Foundation Tier
+                  </p>
+                  <h3 className="text-3xl md:text-5xl font-semibold text-text mb-6">Forma Studio</h3>
+                  <p className="text-base md:text-lg text-text-muted mb-8 leading-relaxed lg:max-w-xl">
+                    A clean, editorial showcase for a creative studio — designed to let their work breathe and make enquiries feel natural.
+                  </p>
+                  <div className="flex flex-wrap gap-4 justify-start">
+                     <a href="https://forma.horizondigitalsey.com/" target="_blank" rel="noreferrer" className="inline-block hover:opacity-80 transition-opacity">
+                       <button className="px-6 py-3 border border-accent/30 bg-[#0D102D] text-sm font-semibold rounded-[9px] hover:bg-accent/10 transition-colors shadow-[0_0_15px_rgba(0,229,255,0.08)]">
+                         View live site
+                       </button>
+                     </a>
+                     <Link to="/contact">
+                       <ShimmerButton
+                          shimmerColor="#060818"
+                          shimmerDuration="4.2s"
+                          background="#00E5FF"
+                          className="px-6 py-3 text-sm font-semibold tracking-wide text-black"
+                        >
+                          Request similar site
+                        </ShimmerButton>
+                     </Link>
+                  </div>
+              </motion.div>
+
+              <motion.div className="lg:col-span-12 xl:col-span-7 flex flex-col gap-6" {...fadeIn} transition={{ delay: 0.2 }}>
+                 <div className="relative group">
+                   <picture className="block rounded-2xl overflow-hidden shadow-[0_0_60px_rgba(0,229,255,0.3)] dark:shadow-[0_0_50px_rgba(0,229,255,0.15)] border border-border/30">
+                      <img
+                        src={formaMain}
+                        alt="Forma Studio showcase preview"
+                        width={800}
+                        height={520}
+                        loading="lazy"
+                        className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                    </picture>
+                 </div>
+                  <div className="w-full flex justify-center xl:justify-end -mt-16 sm:-mt-24 xl:-ml-12 relative z-20 pointer-events-none px-8 xl:pr-0">
+                    <picture className="block rounded-xl overflow-hidden shadow-[0_0_50px_rgba(0,229,255,0.25)] dark:shadow-2xl border border-border/30 w-3/4 md:w-[62%]">
+                      <img
+                        src={formaAltOne}
+                        alt="Forma Studio detail interface"
+                        width={600}
+                        height={400}
+                        loading="lazy"
+                        className="w-full h-auto"
+                      />
+                    </picture>
+                  </div>
+              </motion.div>
+
+           </div>
+        </div>
+      </section>
+
+      {/* Portfolio Item 4: Beauty Demo (Text Right, Image Left) */}
+      <section className="py-20 md:py-32 border-t border-border">
+        <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
+           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+              
+              <motion.div className="lg:col-span-12 xl:col-span-7 flex flex-col gap-6 order-2 lg:order-1" {...fadeIn}>
+                 <div className="relative group">
+                   <picture className="block rounded-2xl overflow-hidden shadow-[0_0_60px_rgba(0,229,255,0.3)] dark:shadow-[0_0_50px_rgba(0,229,255,0.15)] border border-border/30">
+                      <source srcSet={seykelzMainWebp} type="image/webp" />
+                      <img
+                        src={seykelzMain ?? ""}
+                        alt="Beauty demo website preview layout"
+                        width={800}
+                        height={520}
+                        loading="lazy"
+                        className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                    </picture>
+                 </div>
+                  <div className="w-full flex justify-center xl:justify-start -mt-16 sm:-mt-24 xl:ml-12 relative z-20 pointer-events-none px-8 xl:pl-0">
+                    <picture className="block rounded-xl overflow-hidden shadow-[0_0_50px_rgba(0,229,255,0.25)] dark:shadow-2xl border border-border/30 w-3/4 md:w-[62%]">
+                      <img
+                        src={seykelzAltOne ?? ""}
+                        alt="Beauty demo services detail interface"
+                        width={600}
+                        height={400}
+                        loading="lazy"
+                        className="w-full h-auto"
+                      />
+                    </picture>
+                  </div>
+              </motion.div>
+
+              <motion.div className="lg:col-span-12 xl:col-span-5 relative z-10 order-1 lg:order-2 flex flex-col items-start text-left" {...fadeIn} transition={{ delay: 0.2 }}>
+                 <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent mb-4 bg-accent/5 inline-block px-3 py-1 rounded-[9px] border border-accent/20">
+                    Foundation Tier
+                  </p>
+                  <h3 className="text-3xl md:text-5xl font-semibold text-text mb-6">Beauty Demo</h3>
+                  <p className="text-base md:text-lg text-text-muted mb-8 leading-relaxed lg:max-w-xl">
+                    A fast, focused site for a service business — clear pricing, easy contact, and a layout that turns curious visitors into real clients.
+                  </p>
+                  <div className="flex flex-wrap gap-4 justify-start">
+                     <a href="https://demo-beauty.horizondigitalsey.com/" target="_blank" rel="noreferrer" className="inline-block hover:opacity-80 transition-opacity">
+                       <button className="px-6 py-3 border border-accent/30 bg-[#0D102D] text-sm font-semibold rounded-[9px] hover:bg-accent/10 transition-colors shadow-[0_0_15px_rgba(0,229,255,0.08)]">
+                         View live site
+                       </button>
+                     </a>
+                     <Link to="/contact">
+                       <ShimmerButton
+                          shimmerColor="#060818"
+                          shimmerDuration="4.2s"
+                          background="#00E5FF"
                           className="px-6 py-3 text-sm font-semibold tracking-wide text-black"
                         >
                           Request similar site
@@ -181,19 +317,19 @@ export default function Work() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(0,229,255,0.05)_0%,transparent_70%)]" />
         <div className="mx-auto w-full max-w-4xl px-5 sm:px-8 relative z-10">
           <motion.div {...fadeIn}>
-            <p className="text-xs uppercase tracking-[0.4em] text-accent font-semibold mb-6">Our Philosophy</p>
+            <p className="text-xs uppercase tracking-[0.4em] text-accent font-semibold mb-6">What we believe</p>
             <h2 className="text-3xl font-semibold text-text md:text-5xl md:leading-[1.2] tracking-tight mb-8">
-              Clear structure, intuitive flows, reliable performance.
+              Great websites feel effortless â€” for you and your customers
             </h2>
             <p className="text-lg md:text-xl text-text-muted mb-12 font-light">
-              Good websites balance stunning bespoke aesthetics, immediate usability, and lightning fast speeds to support real business outcomes. Layouts are comprehensively tested for mobile-first speed and readability.
+              We build every site to look great, load fast, and feel natural to use â€” on any device, at any time.
             </p>
             <Link to="/contact" className="inline-block hover:-translate-y-1 transition-transform duration-300">
               <ShimmerButton
                 shimmerColor="#060818"
                 shimmerDuration="4.2s"
                 background="#00E5FF"
-                className="px-8 py-4 text-base font-semibold tracking-[0.08em] text-black shadow-[0_0_30px_rgba(0,229,255,0.3)]"
+                className="px-8 py-4 text-base font-semibold tracking-[0.08em] text-black shadow-[0_0_30_rgba(0,229,255,0.3)]"
               >
                 Start your project
               </ShimmerButton>
@@ -205,3 +341,4 @@ export default function Work() {
     </div>
   );
 }
+

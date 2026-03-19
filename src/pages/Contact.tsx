@@ -87,13 +87,13 @@ Looking forward to your reply.`;
         keywords="contact web designer Seychelles, start website project Seychelles"
       />
       <Section
-        eyebrow="Contact"
-        title="Start your website project"
-        description="Tell us about your business and goals and we will guide you to the right website package."
+        eyebrow="Get in touch"
+        title="Tell us about your business"
+        description="We'll take it from here — no pressure, just a friendly conversation about what you need."
         className="!pt-16 !pb-24 md:!pt-32 md:!pb-32"
       >
         <p className="-mt-6 text-sm text-text-muted">
-          Clear process, tailored work, and no template look.
+          We reply within 24 hours.
         </p>
         <div className="mx-auto mt-6 grid w-full max-w-2xl min-w-0 items-start gap-10 lg:max-w-none lg:grid-cols-[1.2fr_0.8fr]">
           <Card className="min-w-0">
@@ -228,11 +228,11 @@ Looking forward to your reply.`;
               </span>
             </a>
             <div className="mt-6 rounded-2xl border border-border bg-bg-panel p-4">
-              <p className="text-xs uppercase tracking-[0.2em] text-accent-2">What happens next</p>
+              <p className="text-xs uppercase tracking-[0.2em] text-accent-2">Here's what to expect</p>
               <ul className="mt-3 space-y-2 text-sm text-text-muted">
-                <li>Your enquiry is reviewed</li>
-                <li>We recommend a suitable package</li>
-                <li>We align scope, timeline, and next steps</li>
+                <li>We read your message carefully</li>
+                <li>We suggest the best fit for your stage</li>
+                <li>We agree on a plan that works for you</li>
               </ul>
             </div>
             <div className="mt-8">

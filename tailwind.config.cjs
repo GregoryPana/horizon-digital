@@ -24,8 +24,8 @@ module.exports = {
         glass: "10px",
       },
       fontFamily: {
-        sans: ["Inter Variable", "Inter", "Segoe UI", "Helvetica Neue", "Arial", "sans-serif"],
-        display: ["Sora Variable", "Sora", "Segoe UI", "Helvetica Neue", "Arial", "sans-serif"],
+        sans: ["Switzer", "Inter Variable", "Inter Fallback", "Inter", "Segoe UI", "Helvetica Neue", "Arial", "sans-serif"],
+        display: ["Gambarino", "Sora Variable", "Sora", "Segoe UI", "Helvetica Neue", "Arial", "sans-serif"],
       },
       backgroundImage: {
         "horizon": "linear-gradient(90deg, transparent, var(--accent), var(--accent-2), transparent)",

@@ -246,9 +246,9 @@ export default function Pricing() {
       <Section
         id="overview"
         className={`${compactDesktopSection} ${showSelectedOrAll("overview") ? "lg:!block" : "lg:!hidden"}`}
-        eyebrow="Services & Pricing"
-        title="Website Design Services and Packages"
-        description="Website design services built to help businesses communicate clearly online and convert interest into enquiries." 
+        eyebrow="What we do"
+        title="Websites that work for your business"
+        description="Every project is built around your goals — not a template. Here's what that looks like."
       >
         <div id="panel-overview" role="tabpanel" aria-hidden={!showSelectedOrAll("overview")} className="bg-bg-panel/20 p-8 rounded-2xl border border-border">
           <p className="text-sm md:text-base text-text-muted max-w-4xl text-center mx-auto">{servicesPricingIntro.summary}</p>
@@ -265,9 +265,9 @@ export default function Pricing() {
 
       <Section
         id="process"
-        eyebrow="How it works"
-        title="Website project timeline"
-        description="Most projects follow a structured sequence from planning to launch."
+        eyebrow="How we get there"
+        title="What happens from start to launch"
+        description="A clear sequence. No guesswork. You know exactly what's happening at every step."
         className={`${compactDesktopSection} ${showSelectedOrAll("overview") ? "lg:!block" : "lg:!hidden"}`}
       >
         <div className="relative left-1/2 right-1/2 -mx-[50vw] my-8 w-screen py-16 md:my-10 md:py-20 bg-gradient-to-r from-bg-panel/10 via-accent/5 to-bg-panel/10 border-y border-border">
@@ -298,9 +298,9 @@ export default function Pricing() {
       <Section
         id="packages"
         className={`${compactDesktopSection} ${showSelectedOrAll("packages") ? "lg:!block" : "lg:!hidden"}`}
-        eyebrow="Packages"
-        title="Website packages"
-        description="Foundation, Starter, and Growth with clear scope and starting prices."
+        eyebrow="Find your fit"
+        title="Pick the package that's right for right now"
+        description="Foundation, Starter, and Growth — each one built around a different stage of business."
       >
         <div id="panel-packages" role="tabpanel" aria-hidden={!showSelectedOrAll("packages")}>
         <div className="grid items-stretch gap-8 md:grid-cols-2 lg:grid-cols-3 pt-6">
@@ -725,16 +725,18 @@ export default function Pricing() {
            <h2 className="text-3xl font-semibold text-text md:text-5xl tracking-tight mb-12">
               Ready to start? Let's define your scope.
            </h2>
-          <Link to="/contact">
-            <ShimmerButton
-              shimmerColor="#060818"
-              shimmerDuration="4.2s"
-              background="#00E5FF"
-              className="px-8 py-4 text-sm font-semibold tracking-widest text-black shadow-lg shadow-accent/20 inline-block"
-            >
-              Book a free consult
-            </ShimmerButton>
-          </Link>
+          <div className="flex justify-center">
+            <Link to="/contact">
+              <ShimmerButton
+                shimmerColor="#060818"
+                shimmerDuration="4.2s"
+                background="#00E5FF"
+                className="px-8 py-4 text-sm font-semibold tracking-widest text-black shadow-lg shadow-accent/20 inline-block"
+              >
+                Book a free consult
+              </ShimmerButton>
+            </Link>
+          </div>
         </div>
       </section>
     </div>

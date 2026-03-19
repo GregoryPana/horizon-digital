@@ -4,11 +4,14 @@ import guesthousePreviewWebp800 from "../assets/work/drake-seaside/drake-seaside
 import ogImage from "../assets/logo/svg logo (1).png";
 import formaStudioPreview from "../assets/work/forma studio/forma studio.png";
 import takamakaHousePreview from "../assets/work/takamaka-house/takamaka house.png";
+import beautyPreview from "../assets/work/demo-beauty/demo-beauty.jpg";
+import beautyPreviewWebp from "../assets/work/demo-beauty/demo-beauty.webp";
+import beautyPreviewWebp800 from "../assets/work/demo-beauty/demo-beauty 600.webp";
 
 export const siteConfig = {
   name: "Horizon Digital",
-  tagline: "Empowering Your Digital Horizon",
-  taglineLong: "Empowering Your Digital Horizon - one website at a time",
+  tagline: "Your business, beautifully online",
+  taglineLong: "Your business, beautifully online — built for Seychelles",
   email: "horizondigital.sey@gmail.com",
   phone: "+248 2604525",
   whatsappUrl: "https://wa.me/2482604525",
@@ -125,25 +128,25 @@ export const projectSteps = [
 
 export const servicesPricingIntro = {
   title: "Services & Pricing",
-  subtitle: "Tailored websites for Seychelles businesses, built around how your business actually works.",
+  subtitle: "Websites built around how your business actually works — not copied from a template.",
   summary:
-    "Every website is planned around your services, your customers, and your goals - not copied from a generic template. We combine clear design with strong search setup so people can find you more easily, trust what they see, and contact you faster.",
+    "Every website we build is planned around your services, your customers, and your goals. We combine clear design with a solid search foundation so people can find you more easily, feel good about what they see, and reach out with confidence.",
 };
 
 export const foundationPackage = {
   title: "Foundation",
   price: "From SCR 7,500",
   description:
-    "For businesses that need a simple, professional online presence using a structured Horizon Digital layout.",
+    "Perfect for businesses looking for a simple, professional home online. We'll set you up with a beautiful, structured space that works perfectly from day one.",
   includes: [
-    "Up to 3 pages",
-    "Choice of predefined Horizon Digital layout",
-    "Mobile-friendly design",
-    "Contact form",
-    "WhatsApp integration (if required)",
-    "Google Maps",
-    "1 structured revision round",
-    "30-day post-launch support",
+    "Up to 3 clear pages",
+    "Choice of professional Horizon layouts",
+    "Works beautifully on mobile phones",
+    "Easy-to-use contact form",
+    "WhatsApp chat integration",
+    "Google Maps setup",
+    "1 Revision Round",
+    "Support after your launch",
   ],
   paymentTerms: ["50% deposit", "50% before launch"],
   exclusions: [
@@ -156,18 +159,16 @@ export const starterPackage = {
   title: "Starter",
   price: "From SCR 12,500",
   description:
-    "For small businesses that want a unique, custom website with clear messaging and better visibility in search.",
+    "Ideal for growing businesses that want to stand out. We'll create a unique, custom-made site with warm, clear messaging that helps new customers find and trust you.",
   includes: [
-    "Up to 5 pages",
-    "Custom design (not a template)",
-    "Mobile-first layout",
-    "Contact form",
-    "WhatsApp integration (if required)",
-    "Google Maps",
+    "Up to 5 unique pages",
+    "A custom design made just for you",
+    "Mobile-first layout for easy browsing",
     "Social media integration",
     "Google Analytics setup",
-    "2 revision rounds",
-    "30-day post-launch support",
+    "Google Business directions",
+    "2 Revision Rounds",
+    "45 day Support after launch",
   ],
   paymentTerms: ["50% deposit", "50% on launch"],
 };
@@ -176,26 +177,34 @@ export const growthPackage = {
   title: "Growth",
   price: "From SCR 25,000",
   description:
-    "For established businesses that need a fully tailored website, deeper structure, and stronger search visibility.",
+    "Designed for established businesses ready to reach the next level. We'll build a fully tailored space for your brand, with a deeper focus on telling your story.",
   includes: [
-    "Up to 10-12 pages",
-    "Expanded service structure",
-    "Testimonials",
-    "Team section (if required)",
-    "Portfolio/gallery",
-    "Multi-step enquiry form",
-    "Google Business setup assistance",
-    "Sitemap submission",
-    "3 revision rounds",
-    "60-day post-launch support",
+    "Up to 10-12 tailored pages",
+    "Full service showcase structure",
+    "Customer testimonials to build trust",
+    "Professional team showcase section",
+    "Gallery of your best work",
+    "Multi-step enquiry forms",
+    "Google Business setup (to help you grow)",
+    "Sitemap submission (for search visibility)",
+    "3 Revision Rounds",
+    "90 day Support after launch",
   ],
   paymentTerms: ["40% deposit", "40% at design approval", "20% on launch"],
 };
 
 export const customPackage = {
-  title: "Custom",
+  title: "Custom Build",
+  price: "Scoped per project",
   description:
-    "Scoped per project for advanced requirements and custom functionality.",
+    "For truly unique projects that need something purely one-of-a-kind. We'll work closely with you to bring your vision to life, building a digital home that fits your business perfectly.",
+  highlights: [
+    "A custom plan that fits your goals",
+    "Work directly with your builder",
+    "A thoughtful plan for your project",
+    "Everything you need to succeed",
+    "Our priority support after you launch",
+  ],
 };
 
 export const addOnItems = [
@@ -304,24 +313,34 @@ export const workItems = [
     imageWebp800: takamakaHousePreview,
     url: "/showcase/takamaka-house",
   },
+  {
+    label: "Wellness & Beauty · Foundation Tier",
+    title: "Beauty Demo",
+    outcome:
+      "A streamlined foundation-tier website demo built for service-based businesses with clear service layouts and frictionless contact paths.",
+    image: beautyPreview,
+    imageWebp: beautyPreviewWebp,
+    imageWebp800: beautyPreviewWebp800,
+    url: "https://demo-beauty.horizondigitalsey.com/",
+  },
 ];
 
 export const processSteps = [
   {
     title: "Discovery & goals",
-    description: "Clarify your goals, audience, and measurable outcomes.",
+    description: "We learn about your business, your customers, and what you need the website to actually do.",
   },
   {
     title: "Design & prototype",
-    description: "Design structure, visual direction, and conversion flow.",
+    description: "We shape the layout, look, and structure — and you review it before a single line of code is written.",
   },
   {
     title: "Build & launch",
-    description: "Develop, optimize, and launch with confidence.",
+    description: "Once approved, we build it fast, test it thoroughly, and launch when everything looks right.",
   },
   {
     title: "Support & improvement",
-    description: "Continuous improvements and reliable long-term support.",
+    description: "We stick around after launch — to fix any issues and keep things running smoothly as you grow.",
   },
 ];
 
@@ -330,16 +349,16 @@ export const pricingTiers = [
     title: "Foundation",
     price: "From SCR 7,500",
     description:
-      "For businesses that need a simple, professional online presence using a structured layout.",
+      "Perfect for businesses looking for a simple, professional home online. A beautiful, structured space that works from day one.",
     features: [
-      "Up to 3 pages",
-      "Choice of predefined Horizon Digital layout",
-      "Mobile-friendly design",
-      "Contact form",
-      "WhatsApp integration (if required)",
-      "Google Maps",
-      "1 structured revision round",
-      "30-day post-launch support",
+      "Up to 3 clear pages",
+      "Choice of professional Horizon layouts",
+      "Works beautifully on mobile phones",
+      "Easy-to-use contact form",
+      "WhatsApp chat integration",
+      "Google Maps setup",
+      "1 revision round",
+      "Support after your launch",
     ],
     exclusions: [
       "Layout structure cannot be modified",
@@ -349,52 +368,50 @@ export const pricingTiers = [
   {
     title: "Starter",
     price: "From SCR 12,500",
-    description: "For small businesses needing a professional online presence.",
+    description: "Ideal for growing businesses that want to stand out with a unique, custom-made site that helps new customers find and trust you.",
     badge: "Most popular",
     features: [
-      "Up to 5 pages",
-      "Custom design (not a template)",
-      "Mobile-first layout",
-      "Contact form",
-      "WhatsApp integration (if required)",
-      "Google Maps",
+      "Up to 5 unique pages",
+      "A custom design made just for you",
+      "Mobile-first layout for easy browsing",
       "Social media integration",
       "Google Analytics setup",
+      "Google Business directions",
       "2 revision rounds",
-      "30-day post-launch support",
+      "45 day support after launch",
     ],
     exclusions: ["Hosting", "Ongoing updates beyond support period", "Advanced integrations"],
   },
   {
     title: "Growth",
     price: "From SCR 25,000",
-    description: "For established businesses needing more structure and flexibility.",
+    description: "Designed for established businesses ready to reach the next level — a fully tailored space with a deeper focus on telling your story.",
     features: [
-      "Up to 10-12 pages",
-      "Expanded service structure",
-      "Testimonials",
-      "Team section (if required)",
-      "Portfolio/gallery",
-      "Multi-step enquiry form",
-      "Google Business setup assistance",
-      "Sitemap submission",
+      "Up to 10-12 tailored pages",
+      "Full service showcase structure",
+      "Customer testimonials to build trust",
+      "Professional team showcase section",
+      "Gallery of your best work",
+      "Multi-step enquiry forms",
+      "Google Business setup (to help you grow)",
+      "Sitemap submission (for search visibility)",
       "3 revision rounds",
-      "60-day post-launch support",
+      "90 day support after launch",
     ],
     exclusions: ["Hosting", "Ongoing feature development", "Complex integrations"],
   },
   {
     title: "Custom",
     price: "Let's chat",
-    priceNote: "Final pricing depends on agreed scope and project requirements.",
-    description: "Scoped per project for advanced requirements.",
+    priceNote: "Final pricing is agreed based on your project scope and goals.",
+    description: "For truly unique projects that need something purely one-of-a-kind. We work closely with you to bring your vision to life.",
     features: [
       "Custom page count",
       "Advanced layouts",
       "Custom functionality",
-      "Booking systems or integrations",
       "Structured content planning",
       "Expanded search configuration",
+      "Our priority support after you launch",
     ],
     exclusions: ["Hosting", "Ongoing feature development", "Large system integrations"],
   },
@@ -403,28 +420,26 @@ export const pricingTiers = [
 export const faqs = [
   {
     question: "What is a typical timeline?",
-    answer: "Most projects launch in 3-6 weeks, depending on scope and content readiness.",
+    answer: "Most projects launch in 3–6 weeks, depending on scope and how quickly content is ready. We'll give you a clear estimate before anything starts.",
   },
   {
     question: "Is pricing flexible?",
-    answer: "Yes. We adjust pricing based on the size and needs of your site.",
+    answer: "Yes. Package pricing gives a clear starting range, and we adjust based on your page count, content needs, and any extras. No surprises.",
   },
   {
     question: "Do I own the website?",
-    answer: "Absolutely. You own the final codebase and assets once the project closes.",
+    answer: "Absolutely. Once the project closes, the final codebase and all approved assets are yours. Always.",
   },
   {
     question: "Who controls my domain name?",
-    answer:
-      "Your domain name is managed through a domain registrar and renewed yearly. It is not controlled by Horizon Digital, but we can help you set it up and manage renewals.",
+    answer: "You do. Your domain lives in your registrar account and renews yearly. We can help with setup and renewals, but ownership always stays with you.",
   },
   {
     question: "What is hosting and who provides it?",
-    answer:
-      "Hosting keeps your website live on the internet. You can host with Horizon Digital or use another hosting provider if you prefer.",
+    answer: "Hosting is what keeps your website live online. You can host with us — we handle everything — or use another provider if you prefer. Either works.",
   },
   {
     question: "How many revisions are included?",
-    answer: "Each project includes clear revision rounds tied to milestones.",
+    answer: "Every package includes structured revision rounds tied to project milestones, so feedback stays focused and the process stays smooth.",
   },
 ];

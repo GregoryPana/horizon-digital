@@ -18,10 +18,10 @@ export default function About() {
     <div className="overflow-hidden">
       <h1 className="sr-only">About Horizon Digital</h1>
       <Seo
-        title="About Horizon Digital | Seychelles Web Design"
-        description="Horizon Digital helps Seychelles businesses create custom websites built for clearance, fast performance, and customer conversions."
+        title="About Horizon Digital | Web Design Studio in Seychelles"
+        description="Horizon Digital is a Seychelles web design studio helping local businesses build beautiful, fast websites that attract customers and grow online."
         path="/about"
-        keywords="about Horizon Digital, web design studio Seychelles, SEO optimization, performance"
+        keywords="about Horizon Digital, web design studio Seychelles, website designer Seychelles, local web design"
       />
 
       {/* Hero Banner */}
@@ -30,16 +30,16 @@ export default function About() {
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 relative z-10 text-center">
           <motion.div {...fadeIn}>
             <p className="text-xs font-semibold uppercase tracking-[0.32em] text-accent section-eyebrow-glow inline-block">
-              Our Vision
+              Who we are
             </p>
             <h2 className="mt-6 text-4xl font-semibold tracking-tight text-text md:text-6xl max-w-4xl mx-auto">
               <WordReveal staggerDelay={0.06}>
-                Helping businesses build better, more effective websites
-              </WordReveal>
+                We care about your business
+              </WordReveal>{" "}<span className="text-accent">doing well online</span>
             </h2>
             <AccentLine className="mt-8 mx-auto w-32" direction="right" />
             <p className="mt-8 text-lg text-text-muted md:text-xl max-w-2xl mx-auto leading-relaxed">
-              We focus on removing friction—designing practical solutions for websites that are clearer, faster, and remarkably easy to use.
+              We build websites that make it easy for customers to find you, trust you, and reach out.
             </p>
           </motion.div>
         </div>
@@ -53,9 +53,9 @@ export default function About() {
             <motion.div className="lg:col-span-6 relative" {...fadeIn}>
               <div className="absolute -inset-4 bg-accent/5 blur-[80px] rounded-full z-0" />
               <div className="relative z-10 p-8 rounded-2xl border border-border bg-gradient-to-br from-white/[0.03] to-transparent backdrop-blur-sm">
-                 <h3 className="text-2xl font-semibold text-text">Built with intention</h3>
+                 <h3 className="text-2xl font-semibold text-text">We think before we build</h3>
                   <p className="mt-4 text-base text-text-muted leading-relaxed">
-                    Many businesses struggle with websites that are slow, unclear, or difficult to update. Horizon Digital focuses on fixing those friction points with clearer structure, logical design, and engineering focused on performance and WCAG accessibility standards.
+                    A lot of websites are slow, confusing, or hard to update. We fix that — with clear structure, sensible design, and pages built to actually work.
                   </p>
               </div>
             </motion.div>
@@ -63,9 +63,9 @@ export default function About() {
             <motion.div className="lg:col-span-6 relative" {...fadeIn} transition={{ delay: 0.2 }}>
                <div className="absolute -inset-4 bg-accent-2/5 blur-[80px] rounded-full z-0" />
                <div className="relative z-10 p-8 rounded-2xl border border-border bg-gradient-to-bl from-white/[0.03] to-transparent backdrop-blur-sm">
-                 <h3 className="text-2xl font-semibold text-text">Customer-journey focus</h3>
+                 <h3 className="text-2xl font-semibold text-text">We think about your customer, not just the design</h3>
                   <p className="mt-4 text-base text-text-muted leading-relaxed">
-                    Pages are planned to guide visitors from first impression to enquiry. The goal is a website that helps people understand your services and act confidently.
+                    Every page is planned to take your visitor from curiosity to confidence. We want them to understand what you do and feel good about reaching out.
                   </p>
                   <ul className="mt-6 space-y-3 text-sm font-medium text-text-muted">
                     <li className="flex items-center gap-3">
@@ -93,10 +93,10 @@ export default function About() {
         <div className="mx-auto w-full max-w-5xl px-5 sm:px-8 text-center text-balance">
           <motion.div {...fadeIn}>
             <h2 className="text-3xl font-semibold text-text md:text-5xl tracking-tight">
-              Our Collaborative Approach
+              How we work with you
             </h2>
             <p className="mt-6 text-base md:text-lg text-text-muted max-w-2xl mx-auto">
-              Consultation, design, development, launch - with practical communication at each step. We make the technical details simple.
+              We keep things simple. You share what you need, we handle the rest — and we talk through every step together.
             </p>
             
             <div className="mt-16 grid grid-cols-2 lg:grid-cols-4 gap-6">
@@ -125,9 +125,9 @@ export default function About() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                  </svg>
               </div>
-              <h2 className="text-3xl md:text-4xl font-semibold text-text mb-6">Looking ahead at digital tools</h2>
+              <h2 className="text-3xl md:text-4xl font-semibold text-text mb-6"><span className="text-accent-2">Staying ahead,</span> together</h2>
               <p className="text-lg text-text-muted mb-10 leading-relaxed">
-                We share practical insights on artificial intelligence, automation, and tech trends in a clear way for non-technical owners. This helps local businesses stay informed as technology evolves.
+                We share simple, honest reads on the digital tools that could matter for your business — no jargon, just useful context.
               </p>
               
               <Link to="/ai-digital-tools" className="inline-block hover:scale-105 transition-transform duration-300">
@@ -151,7 +151,7 @@ export default function About() {
           <motion.div {...fadeIn}>
             <p className="text-xs uppercase tracking-[0.4em] text-accent font-semibold mb-6">Let's connect</p>
             <h2 className="text-3xl font-semibold text-text md:text-5xl md:leading-[1.2] tracking-tight mb-12">
-              Let's build a site that supports where your business is going next.
+              <span className="text-accent">Ready</span> when you are
             </h2>
             <Link to="/contact" className="inline-block hover:-translate-y-1 transition-transform duration-300">
               <ShimmerButton

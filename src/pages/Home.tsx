@@ -1,17 +1,16 @@
 import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import Button from "../components/Button";
-import Modal from "../components/Modal";
 import Section from "../components/Section";
 import Seo from "../components/Seo";
 import HomeHero from "../components/ui/home-hero";
 import HomeFaq, { type HomeFaqCategory } from "../components/ui/home-faq";
 import HomeWorkAccordion from "../components/ui/home-work-accordion";
 import { ShimmerButton } from "../components/ui/shimmer-button";
-import { WordReveal, AccentLine, GlowUnderline } from "../components/ui/animated-text";
+import { WordReveal, GlowUnderline } from "../components/ui/animated-text";
 import { Link } from "react-router-dom";
 import { scrollToTopSmooth } from "../lib/utils";
-import { CheckCircle2, ArrowRight } from "lucide-react";
+import MarqueeBanner from "../components/ui/MarqueeBanner";
 import {
   customPackage,
   foundationPackage,
@@ -133,28 +132,9 @@ const homeFaqCategories: HomeFaqCategory[] = [
   },
 ];
 
-/* ── Package banner data ──────────────────────────────────── */
-const packageBanners = [
-  {
-    ...foundationPackage,
-    highlights: ["Up to 3 pages", "Mobile-friendly", "Contact form", "30-day support"],
-    featured: false,
-  },
-  {
-    ...starterPackage,
-    highlights: ["Custom design", "SEO setup", "5 pages", "Analytics"],
-    featured: true,
-  },
-  {
-    ...growthPackage,
-    highlights: ["10-12 pages", "Portfolio", "Multi-step form", "60-day support"],
-    featured: false,
-  },
-];
-
 export default function Home() {
   const shouldReduceMotion = useReducedMotion();
-  const [activeWork, setActiveWork] = useState<WorkPreviewItem | null>(null);
+  const [, setActiveWork] = useState<WorkPreviewItem | null>(null);
   const [passedSectionIds, setPassedSectionIds] = useState<string[]>([]);
   const [isRailOpen, setIsRailOpen] = useState(false);
   const handleWorkScrollTop = () => scrollToTopSmooth();
@@ -210,6 +190,9 @@ export default function Home() {
         structuredData={faqSchema}
       />
       <HomeHero />
+      <MarqueeBanner 
+        items={["Hospitality", "Retail", "Real Estate", "Professional Services", "Wellness", "E-commerce"]}
+      />
 
       {/* ── Mobile jump rail ── */}
       {passedSectionIds.length > 0 && (
@@ -262,9 +245,7 @@ export default function Home() {
         </div>
       )}
 
-      {/* ══════════════════════════════════════════════════════
-          SERVICES — Split banner with 12-col grid
-          ══════════════════════════════════════════════════════ */}
+      {/* ── SERVICES ── */}
       <section id="services" className="services-split-banner overflow-hidden py-20 md:py-32">
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
           <div className="grid items-center gap-16 lg:grid-cols-12 lg:gap-24">
@@ -279,15 +260,11 @@ export default function Home() {
                 Services
               </p>
               <h2 className="section-title mt-4 text-[2rem] font-semibold tracking-[-0.01em] text-text md:text-[3.5rem] md:leading-[1.1]">
-                <WordReveal staggerDelay={0.06}>
-                  Custom website building in Seychelles, designed to convert
-                </WordReveal>
+                  Your business deserves to be <span className="text-accent">found</span>
               </h2>
-              <AccentLine className="mt-5 w-24 md:w-36" direction="left" />
+              <div className="mt-5 w-24 h-1 bg-accent/40 rounded-full" />
               <p className="mt-6 max-w-xl text-base leading-relaxed text-text-muted md:text-lg">
-                Whether you are launching a new business or improving an existing site, the goal is
-                the same: a website that helps customers understand what you do and how to contact
-                you quickly.
+                Whether you're just starting out or ready for something better — a great website changes everything.
               </p>
 
               <div className="mt-10 grid gap-6 sm:grid-cols-2">
@@ -343,9 +320,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════════════════
-          WHAT WE BUILD 
-          ══════════════════════════════════════════════════════ */}
+      {/* ── WHAT WE BUILD ── */}
       <section id="what-we-build" className="py-20 md:py-32">
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
           <div className="grid items-start gap-12 lg:grid-cols-12 lg:gap-16">
@@ -357,14 +332,14 @@ export default function Home() {
               transition={{ duration: 0.5, ease: "easeOut" }}
             >
               <p className="text-xs font-semibold uppercase tracking-[0.32em] text-accent section-eyebrow-glow">
-                What Horizon Digital Builds
+                What we bring to life for you
               </p>
               <h2 className="section-title mt-4 text-[2rem] font-semibold tracking-[-0.01em] text-text md:text-[3.2rem] md:leading-[1.1]">
-                <WordReveal staggerDelay={0.05}>Core website services</WordReveal>
+                <WordReveal staggerDelay={0.05}>Everything your website needs to</WordReveal>{" "}<GlowUnderline>work hard for you</GlowUnderline>
               </h2>
-              <AccentLine className="mt-6 w-16" direction="left" />
+              <div className="mt-6 w-16 h-1 bg-accent/40 rounded-full" />
               <p className="mt-6 text-base leading-relaxed text-text-muted md:text-lg">
-                Built around clarity, speed, and customer journey structure.
+                Clear to understand. Fast to load. Beautiful to use.
               </p>
               <div className="mt-10 mb-8 aspect-[4/3] w-full max-w-sm overflow-hidden rounded-2xl bg-bg-panel lg:mb-0 relative border border-border/50 shadow-2xl">
                 <img src="/services.png" alt="Custom website in Seychelles for local business" className="w-full h-full object-cover" loading="lazy" />
@@ -385,7 +360,7 @@ export default function Home() {
                     className="group border-b border-border/40 pb-8 last:border-0"
                   >
                     <div className="flex items-start gap-5">
-                      <span className="mt-1 text-sm font-bold text-accent-2/40 transition-colors group-hover:text-accent-2">
+                       <span className="mt-1 text-sm font-bold text-accent-2/40 transition-colors group-hover:text-accent-2">
                         / 0{idx + 1}
                       </span>
                       <div>
@@ -403,118 +378,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════════════════
-          INDUSTRIES — Banner style list
-          ══════════════════════════════════════════════════════ */}
-      <section id="industries" className="relative py-20 md:py-32">
-        <div className="absolute inset-0 z-0 bg-gradient-to-b from-transparent via-bg-panel/20 to-transparent" />
-        <div className="relative z-10 mx-auto w-full max-w-7xl px-5 sm:px-8">
-          <motion.div
-            initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.4 }}
-            className="text-center"
-          >
-            <p className="text-xs font-semibold uppercase tracking-[0.32em] text-accent section-eyebrow-glow">
-              Built for Seychelles Businesses
-            </p>
-            <h2 className="section-title mx-auto mt-4 max-w-3xl text-[2rem] font-semibold tracking-[-0.01em] text-text md:text-[3.2rem] md:leading-[1.1]">
-              Shaped for real local business needs
-            </h2>
-            <div className="mt-6 flex justify-center">
-              <AccentLine className="w-24" direction="center" />
-            </div>
-            <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-text-muted md:text-lg">
-              From hospitality to professional services, structure changes based on how your customers decide.
-            </p>
-          </motion.div>
-
-          <div className="mt-16 grid gap-6 lg:gap-8 md:grid-cols-2 lg:grid-cols-12">
-            {[
-              {
-                title: "Hospitality Businesses",
-                desc: "Hotels, guesthouses, and tourism services benefit from clear information, strong visual presentation, and easy booking or enquiry paths.",
-                span: "lg:col-span-7",
-                bg: "bg-bg-panel",
-                img: "/hospitality.png",
-                slideDirection: -50,
-                delay: 0,
-              },
-              {
-                title: "Retail Businesses",
-                desc: "Retail websites can showcase products, clarify what is available, and make it easy for customers to ask questions or place enquiries.",
-                span: "lg:col-span-5",
-                bg: "bg-bg-elev",
-                img: "/retail.png",
-                slideDirection: 50,
-                delay: 0.3,
-              },
-              {
-                title: "Professional Services",
-                desc: "Consultants, agencies, and service providers need websites that explain value clearly and guide visitors toward confident contact decisions.",
-                span: "lg:col-span-5",
-                bg: "bg-bg-elev",
-                img: "/professional services.png",
-                slideDirection: -50,
-                delay: 0.3,
-              },
-              {
-                title: "Growing Local Businesses",
-                desc: "Businesses expanding their online presence need a structure that communicates credibility and supports steady growth over time.",
-                span: "lg:col-span-7",
-                bg: "bg-bg-panel",
-                img: "/growing local business.png",
-                slideDirection: 50,
-                delay: 0,
-              },
-            ].map((industry) => (
-              <motion.div
-                key={industry.title}
-                initial={{ opacity: shouldReduceMotion ? 1 : 0, x: shouldReduceMotion ? 0 : industry.slideDirection }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: false, amount: 0.4 }}
-                transition={{ duration: 0.75, delay: industry.delay, ease: [0.16, 1, 0.3, 1] }}
-                className={`${industry.span} ${industry.bg} group flex flex-col justify-between rounded-3xl border border-border/40 p-10 transition-colors shadow-lg hover:border-accent/30 dark:hover:border-accent/40 md:p-14`}
-              >
-                <div>
-                  <h3 className="text-xl font-semibold text-text md:text-3xl">
-                    <GlowUnderline>{industry.title}</GlowUnderline>
-                  </h3>
-                  <p className="mt-5 max-w-sm text-sm leading-relaxed text-text-muted md:text-base">
-                    {industry.desc}
-                  </p>
-                </div>
-                <div className="mt-12 h-64 md:h-80 w-full overflow-hidden rounded-2xl border border-border/30 shadow-[0_0_50px_rgba(0,229,255,0.25)] dark:shadow-[0_0_50px_rgba(0,229,255,0.18)] relative isolate transition-transform duration-500 group-hover:scale-[1.02]">
-                  <div className="absolute inset-0 z-10 bg-gradient-to-t from-bg-panel/90 md:from-bg-panel/70 to-transparent pointer-events-none" />
-                  <img src={industry.img} alt={industry.title} className="w-full h-full object-cover object-top" loading="lazy" />
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-          <div className="mt-16 flex justify-center">
-            <Link to="/contact">
-              <ShimmerButton
-                shimmerColor="#060818"
-                shimmerDuration="4.2s"
-                background="#00E5FF"
-                className="px-6 py-3 text-sm font-semibold tracking-[0.1em] text-black"
-              >
-                Discuss your industry
-              </ShimmerButton>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════
-          FEATURED WORK 
-          ══════════════════════════════════════════════════════ */}
+      {/* ── FEATURED WORK ── */}
       <Section
         id="featured-work"
-        eyebrow="Selected Website Projects"
-        title="Examples of websites Horizon Digital builds"
-        description="Retail, service, and hospitality website examples with clear business outcomes."
+        eyebrow="Real results, real businesses"
+        title="See what's possible for your business"
+        description="Businesses just like yours — built with care, launched with confidence."
         containerClassName="max-w-[92rem]"
       >
         <HomeWorkAccordion items={workItems} onPreview={setActiveWork} />
@@ -528,13 +397,10 @@ export default function Home() {
         </div>
       </Section>
 
-      {/* ══════════════════════════════════════════════════════
-          PROCESS — Asymmetric 12-col layout
-          ══════════════════════════════════════════════════════ */}
+      {/* ── PROCESS ── */}
       <section id="process" className="py-20 md:py-32">
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
           <div className="grid items-start gap-12 lg:grid-cols-12 lg:gap-20">
-            {/* Left column — title area (4 cols) */}
             <motion.div
               className="lg:col-span-4 lg:sticky lg:top-32"
               initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 24 }}
@@ -543,13 +409,13 @@ export default function Home() {
               transition={{ duration: 0.5, ease: "easeOut" }}
             >
               <p className="text-xs font-semibold uppercase tracking-[0.32em] text-accent section-eyebrow-glow">
-                How the website process works
+                How it works — simply
               </p>
               <h2 className="section-title mt-3 text-[1.95rem] font-semibold tracking-[-0.01em] text-text md:text-[2.8rem] md:leading-[1.1]">
-                <GlowUnderline>A clear</GlowUnderline> five-step workflow
+                From your first call to a site <GlowUnderline>you're proud of</GlowUnderline>
               </h2>
               <p className="mt-4 text-base text-text-muted">
-                Simple milestones from discovery to launch and post-launch support.
+                We guide you through every step, so there are no surprises.
               </p>
               <div className="mt-8 hidden lg:block">
                 <Link to="/services-pricing">
@@ -565,7 +431,6 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* Right column — steps (8 cols) */}
             <div className="space-y-0 lg:col-span-8">
               {projectSteps.map((step, index) => (
                 <motion.div
@@ -576,7 +441,6 @@ export default function Home() {
                   transition={{ duration: shouldReduceMotion ? 0 : 0.42, delay: index * 0.06, ease: "easeOut" }}
                   className="group relative border-b border-border py-8 pl-16 first:pt-0 last:border-0 md:py-10 md:pl-20"
                 >
-                  {/* Step number — positioned absolutely left */}
                   <span
                     className={`absolute left-0 font-display text-[2.5rem] font-bold leading-none text-accent/20 transition-colors group-hover:text-accent/50 md:text-[3rem] ${
                       index === 0 ? "top-0 md:top-0" : "top-8 md:top-10"
@@ -597,7 +461,6 @@ export default function Home() {
               ))}
             </div>
 
-            {/* Mobile CTA */}
             <div className="flex justify-center lg:hidden">
               <Link to="/services-pricing">
                 <ShimmerButton
@@ -614,85 +477,101 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════════════════
-          PACKAGES — Horizontal banner rows
-          ══════════════════════════════════════════════════════ */}
-      <section id="packages" className="py-20 md:py-32">
+      {/* ── PACKAGES ── */}
+      <section id="packages" className="py-20 md:py-32 border-t border-border bg-[#030611]">
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
           <motion.div
             initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.4 }}
-            transition={{ duration: shouldReduceMotion ? 0 : 0.4, ease: "easeOut" }}
             className="mb-14 text-center"
           >
             <p className="text-xs font-semibold uppercase tracking-[0.32em] text-accent section-eyebrow-glow">
-              Website Packages
+              Find your fit
             </p>
             <h2 className="section-title mt-3 text-[1.95rem] font-semibold tracking-[-0.01em] text-text md:text-[3.15rem]">
-              Website packages for local businesses
+              A home online, built <span className="text-accent-2">for where you are right now</span>
             </h2>
             <p className="section-description mt-4 text-[1.05rem] leading-[1.65] text-text-muted max-w-2xl mx-auto">
-              Choose from Foundation, Starter, and Growth packages with clear scope and pricing for your custom website in Seychelles. 
+              Every business is different. Pick the package that fits, and we'll build around it.
             </p>
           </motion.div>
 
-          <div className="banner-row rounded-xl border border-border/80 overflow-hidden shadow-xl">
-            {packageBanners.map((pkg, i) => (
+          <div className="mx-auto max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-4 relative z-10">
+            {[
+              { ...foundationPackage, id: "01", featured: false },
+              { ...starterPackage, id: "02", featured: true },
+              { ...growthPackage, id: "03", featured: false },
+              { ...customPackage, id: "04", featured: false }
+            ].map((pkg, i) => (
               <motion.div
                 key={pkg.title}
-                initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 20 }}
+                initial={{ opacity: shouldReduceMotion ? 1 : 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false, amount: 0.5 }}
-                transition={{ duration: 0.7, delay: i * 0.15 + 0.2, ease: "easeOut" }}
-                className={`pkg-banner px-6 py-8 md:px-10 md:py-10 transition-all duration-300 border-b border-border/60 ${
-                  pkg.featured
-                    ? "relative overflow-hidden pkg-banner-featured shadow-[0_0_50px_rgba(0,229,255,0.2)] bg-bg-panel bg-gradient-to-r from-accent/10 via-accent/5 to-transparent border-t border-b border-accent/30 my-2 z-10 scale-[1.03] rounded-xl"
-                    : "bg-bg-elev border-transparent last:border-b-0"
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.08 }}
+                className={`flex flex-col relative group p-6 md:p-8 rounded-2xl border transition-all duration-300 min-h-[480px] md:min-h-[520px] ${
+                  pkg.featured 
+                    ? "z-20 md:scale-[1.025] bg-bg-panel/75 shadow-[0_0_50px_rgba(0,229,255,0.15)] border-accent/60" 
+                    : "z-10 bg-bg-elev/40 border-white/10 hover:border-white/20"
                 }`}
               >
-                {pkg.featured && (
-                  <div className="absolute top-0 right-[-10%] w-[120%] h-full bg-accent/10 blur-[100px] rounded-full pointer-events-none" />
-                )}
-                <div className="relative z-10 grid items-center gap-6 lg:grid-cols-12 lg:gap-8">
-                  <div className="lg:col-span-4">
-                    <div className="flex flex-wrap items-center gap-3">
-                      <h3 className="text-xl font-semibold md:text-2xl text-accent-2">{pkg.title}</h3>
-                      {pkg.featured && (
-                        <span className="shrink-0 rounded-full bg-accent/20 border border-accent/40 shadow-[0_0_15px_rgba(0,229,255,0.3)] px-3 py-0.5 text-[0.68rem] font-bold uppercase tracking-[0.16em] text-accent">
-                          Best Value
-                        </span>
-                      )}
-                    </div>
-                    <p className={`pricing-price mt-3 text-2xl md:text-3xl font-bold ${pkg.title === "Foundation" ? "text-accent" : "text-accent drop-shadow-[0_0_12px_rgba(0,229,255,0.4)]"}`}>{pkg.price}</p>
-                    <p className={`mt-2 text-sm max-w-sm leading-relaxed text-text`}>{pkg.description}</p>
-                  </div>
+                {/* Subtle Number */}
+                <div className="absolute top-6 right-6 text-4xl md:text-5xl font-bold text-accent-2/10 pointer-events-none select-none tracking-tighter">
+                  {pkg.id}
+                </div>
 
-                  <div className="lg:col-span-5">
-                    <div className="grid grid-cols-2 gap-3">
-                      {pkg.highlights.map((item) => (
-                        <div key={item} className="flex items-center gap-2">
-                          <CheckCircle2 className={`w-4 h-4 text-accent ${pkg.featured ? "shadow-accent drop-shadow-md" : ""}`} />
-                          <span className={`text-[0.85rem] font-medium text-text`}>
-                            {item}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
+                <div className="relative z-10 flex flex-col h-full">
+                  <div className="flex items-center gap-3 mb-2.5">
+                    <span className="text-[0.6rem] font-bold tracking-[0.25em] text-accent/50 uppercase">/ {pkg.id}</span>
+                    {pkg.featured && (
+                      <motion.span 
+                        animate={{ opacity: [0.8, 1, 0.8] }} 
+                        transition={{ duration: 3, repeat: Infinity }}
+                        className="px-2 py-0.5 bg-accent/20 border border-accent/40 rounded-full text-[0.55rem] font-bold text-accent tracking-[0.1em] uppercase"
+                      >
+                        Recommended
+                      </motion.span>
+                    )}
                   </div>
+                  
+                  <h3 className="text-xl md:text-3xl font-semibold text-accent-2 mb-1.5 pr-14 leading-tight tracking-tight">{pkg.title}</h3>
+                  <p className="text-base md:text-lg font-bold text-accent mb-4">
+                    {pkg.price}
+                  </p>
+                  
+                  <p className="text-text-muted text-[0.75rem] md:text-[0.88rem] mb-6 leading-relaxed max-w-md">
+                    {pkg.description}
+                  </p>
 
-                  <div className="flex justify-center lg:col-span-3 lg:justify-end">
-                    <Link to="/services-pricing">
+                  <ul className="space-y-3 mb-8 flex-grow">
+                    {((pkg as any).includes || (pkg as any).highlights)?.slice(0, 7).map((item: string, idx: number) => (
+                      <li key={`${item}-${idx}`} className="flex items-start gap-3">
+                        <span className="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent-2 shadow-[0_0_10px_rgba(255,191,0,0.5)] shrink-0" />
+                        <span className="text-[0.72rem] md:text-[0.84rem] text-text-muted/90 transition-colors group-hover:text-text">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="mt-auto pt-4 flex flex-col sm:flex-row items-center justify-end gap-3 md:gap-4">
+                    <Link 
+                      to="/services-pricing" 
+                      className="text-[0.68rem] font-bold tracking-[0.1em] uppercase text-text-muted hover:text-accent transition-colors py-1.5"
+                    >
+                      See full details
+                    </Link>
+                    <Link to={`/contact?package=${encodeURIComponent(pkg.title)}`} className="w-full sm:w-auto">
                       <ShimmerButton
-                        shimmerColor="#060818"
-                        shimmerDuration="4.2s"
-                        background="#00E5FF"
-                        className={`px-6 py-3 text-sm font-semibold tracking-[0.12em] flex items-center gap-2 ${
-                          pkg.featured ? "text-black shadow-lg shadow-accent/20" : "text-text !border-accent !shadow-none"
+                        shimmerColor={pkg.featured ? "#00E5FF" : "#ffffff15"}
+                        shimmerDuration="3.5s"
+                        background={pkg.featured ? "#00E5FF" : "#0D102D"}
+                        className={`w-full sm:px-5 py-2.5 text-[0.66rem] font-bold tracking-[0.14em] uppercase transition-all hover:scale-105 active:scale-95 ${
+                          pkg.featured 
+                            ? "text-black shadow-[0_0_15px_rgba(0,229,255,0.3)]" 
+                            : "text-white border border-white/20 hover:border-accent/40 shadow-lg"
                         }`}
                       >
-                        See details
-                        <ArrowRight className="w-4 h-4" />
+                       Start my project
                       </ShimmerButton>
                     </Link>
                   </div>
@@ -701,64 +580,33 @@ export default function Home() {
             ))}
           </div>
 
-          <motion.div
-            initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.4 }}
-            transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
-            className="mt-10 rounded-2xl border border-accent/30 bg-bg-elev px-8 py-10 md:px-12"
-          >
-            <div className="grid items-center gap-6 lg:grid-cols-12">
-              <div className="lg:col-span-8">
-                <h3 className="text-xl font-semibold text-accent-2">{customPackage.title}</h3>
-                <p className="mt-1 text-2xl font-semibold text-accent">Let's chat</p>
-                <p className="mt-3 max-w-2xl text-sm text-text-muted">{customPackage.description}</p>
-                <p className="mt-2 text-sm text-text-muted">
-                  Advanced builds are scoped per project. We will clarify your requirements, then provide
-                  a clear proposal and timeline.
-                </p>
-              </div>
-              <div className="flex justify-center lg:col-span-4 lg:justify-end">
-                <Link to="/contact">
-                  <ShimmerButton
-                    shimmerColor="#060818"
-                    shimmerDuration="4.2s"
-                    background="#00E5FF"
-                    className="px-6 py-3 text-sm font-semibold tracking-[0.1em] text-black"
-                  >
-                    Request a custom scope
-                  </ShimmerButton>
-                </Link>
-              </div>
-            </div>
-          </motion.div>
-          <p className="mt-6 text-center text-sm text-text-muted">Final pricing depends on scope.</p>
+          <p className="mt-12 text-center text-sm tracking-wide text-text-muted/60 font-light italic">
+             * Scoped per project. Final pricing depends on page count, technical complexity, and agreed deliverables.
+          </p>
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════════════════
-          WHY US 
-          ══════════════════════════════════════════════════════ */}
+      {/* ── WHY US ── */}
       <section id="why-us" className="py-20 md:py-32">
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
           <div className="mb-16 text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.32em] text-accent section-eyebrow-glow">
-              Why businesses choose Horizon Digital
+              Why clients come back
             </p>
             <h2 className="section-title mx-auto mt-4 max-w-4xl text-[2rem] font-semibold tracking-[-0.01em] text-text md:text-[3.2rem] md:leading-[1.1]">
-              <WordReveal>Clear process, practical design, modern performance</WordReveal>
+              We make it <span className="text-accent">easy</span> to trust the process
             </h2>
             <div className="mt-6 flex justify-center">
-              <AccentLine className="w-20" direction="center" />
+              <div className="w-20 h-1 bg-accent/40 rounded-full" />
             </div>
           </div>
 
           <div className="grid gap-12 lg:grid-cols-4 lg:gap-8">
             {[
-              { title: "Clear Communication", text: "The project process stays straightforward from scope to launch, so you always know what is happening next." },
-              { title: "Practical Website Design", text: "Layout and content decisions are made to help visitors understand your offer quickly and take clear action." },
-              { title: "Modern Performance", text: "Fast loading, mobile responsiveness, and clean technical setup improve trust and usability from first visit." },
-              { title: "Structured Projects", text: "A defined milestone flow helps the project move efficiently with fewer delays and better delivery confidence." },
+              { title: "You'll always know what's next", text: "We keep things straightforward from your first message to launch day. No guessing, no radio silence." },
+              { title: "Built to help people say yes", text: "Every layout and word is chosen to help your visitors understand your offer and reach out with confidence." },
+              { title: "Fast, smooth, and ready on any device", text: "Your site will load quickly and look great everywhere — from a desktop in an office to a phone on the beach." },
+              { title: "Delivered without the chaos", text: "A clear milestone structure keeps the project moving — so your website arrives on time and without drama." },
             ].map((feature, i) => (
               <motion.div
                 key={feature.title}
@@ -779,9 +627,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════════════════
-          INSIGHTS 
-          ══════════════════════════════════════════════════════ */}
+      {/* ── INSIGHTS ── */}
       <section id="insights" className="py-20 md:py-32">
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
           <motion.div
@@ -793,13 +639,13 @@ export default function Home() {
             <div className="grid lg:grid-cols-12">
               <div className="relative z-20 flex flex-col justify-center p-10 md:p-16 lg:col-span-7">
                 <p className="text-xs font-semibold uppercase tracking-[0.32em] text-accent section-eyebrow-glow">
-                  Digital Insights
+                  Stay in the know
                 </p>
                 <h2 className="mt-4 text-3xl font-semibold text-text md:text-5xl">
-                  Digital insights for <GlowUnderline>business owners</GlowUnderline>
+                  The digital world, <GlowUnderline>explained simply</GlowUnderline>
                 </h2>
                 <p className="mt-5 text-base leading-relaxed text-text-muted md:text-lg">
-                  Simple, practical reads on AI, automation, analytics, and modern digital decisions.
+                  No jargon. No fluff. Just the things worth knowing for your business.
                 </p>
                 
                 <ul className="mt-8 space-y-4 text-sm text-text-muted md:text-base">
@@ -882,92 +728,59 @@ export default function Home() {
         </div>
       </section>
 
-
-      {/* ══════════════════════════════════════════════════════
-          FAQ
-          ══════════════════════════════════════════════════════ */}
+      {/* ── FAQ ── */}
       <Section
         id="faq"
-        eyebrow="FAQ"
-        title="Clarity before we start"
-        description="Straight answers to help you plan with confidence."
+        eyebrow="You probably have questions"
+        title="We've answered the ones we hear most"
+        description="Honest, plain-language answers — so you feel confident before we begin."
       >
         <HomeFaq categories={homeFaqCategories} />
         <div className="mt-10 flex flex-col items-center gap-6 rounded-3xl border border-border bg-bg-elev px-6 py-8 text-center md:flex-row md:justify-between md:text-left">
           <p className="text-sm text-text-muted">Still have questions? We can walk you through it.</p>
           <Link to="/contact">
-            <ShimmerButton
+             <ShimmerButton
               shimmerColor="#060818"
               shimmerDuration="4.2s"
               background="#00E5FF"
-              className="px-5 py-2 text-xs font-semibold tracking-[0.12em] text-black"
+              className="px-6 py-3 text-sm font-semibold tracking-[0.1em] text-black"
             >
-              Book a free consult
+              Contact us
             </ShimmerButton>
           </Link>
         </div>
       </Section>
 
-      {/* ══════════════════════════════════════════════════════
-          READY — Full-width CTA banner with 12-col asymmetry
-          ══════════════════════════════════════════════════════ */}
-      <section id="ready" className="ready-banner bg-bg-elev">
-        <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
-          <div className="grid items-center gap-10 py-24 md:py-32 lg:grid-cols-12">
-            <motion.div
-              className="text-center lg:col-span-7 lg:text-left"
-              initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false, amount: 0.4 }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
-            >
-              <p className="text-xs uppercase tracking-[0.4em] text-accent">Ready to build</p>
-              <h2 className="mt-3 text-3xl font-semibold text-text md:text-5xl md:leading-[1.1]">
-                Empowering Your{" "}
-                <GlowUnderline>
-                  <span className="text-accent-2">Digital Horizon</span>
-                </GlowUnderline>
-              </h2>
-              <p className="mx-auto mt-5 max-w-lg text-base text-text-muted lg:mx-0">
-                Start your website project with confidence. Tell us about your business and we will guide you through the next steps.
-              </p>
-            </motion.div>
-            <motion.div
-              className="flex justify-center lg:col-span-5 lg:justify-end"
-              initial={{ opacity: shouldReduceMotion ? 1 : 0, scale: shouldReduceMotion ? 1 : 0.92 }}
+      {/* ── READY ── */}
+      <section id="ready" className="py-24 md:py-40 bg-gradient-to-b from-transparent to-bg-elev/20">
+        <div className="mx-auto w-full max-w-4xl px-5 sm:px-8 text-center">
+           <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: false, amount: 0.4 }}
-              transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
-            >
-              <Link to="/contact">
-                <ShimmerButton
-                  shimmerColor="#060818"
-                  shimmerDuration="4.2s"
-                  background="#00E5FF"
-                  className="px-8 py-4 text-base font-semibold tracking-[0.08em] text-black md:text-lg"
-                >
-                  Book a free consult
-                </ShimmerButton>
-              </Link>
-            </motion.div>
-          </div>
+              viewport={{ once: false }}
+           >
+              <h2 className="text-4xl md:text-7xl font-semibold text-text mb-8">
+                Let's build something <br /><span className="text-accent underline decoration-accent/20">you're proud of</span>
+              </h2>
+              <p className="text-lg md:text-2xl text-text-muted mb-12 max-w-2xl mx-auto font-light leading-relaxed">
+                A short, free call is all it takes to get started. No pressure. Just a conversation.
+              </p>
+              <div className="flex justify-center">
+                <Link to="/contact">
+                  <ShimmerButton
+                    shimmerColor="#060818"
+                    shimmerDuration="4.2s"
+                    background="#00E5FF"
+                    className="px-8 py-5 text-lg font-bold tracking-[0.1em] text-black"
+                  >
+                    Book a discovery call
+                  </ShimmerButton>
+                </Link>
+              </div>
+           </motion.div>
         </div>
       </section>
 
-      {/* ── Work preview modal ── */}
-      <Modal
-        open={Boolean(activeWork)}
-        title={activeWork ? `${activeWork.title} - ${activeWork.label}` : ""}
-        onClose={() => setActiveWork(null)}
-      >
-        <p>
-          This preview shows layout direction and flow. Each project is built around your goals,
-          content, and customer journey.
-        </p>
-        <div className="mt-6">
-          <Button label="Request similar site" to="/contact" size="sm" />
-        </div>
-      </Modal>
     </div>
   );
 }

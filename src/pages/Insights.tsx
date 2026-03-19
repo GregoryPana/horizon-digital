@@ -16,15 +16,15 @@ export default function Insights() {
       />
 
       <InsightsHero
-        eyebrow="Digital Insights"
-        title="Practical AI, Automation, and Analytics Insights"
-        description="Clear and educational reads for Seychelles business owners who want to understand emerging digital tools without technical noise."
+        eyebrow="Fresh reads for curious minds"
+        title="The digital world, made simple for you"
+        description="No jargon. No fluff. Just honest, useful context for running a modern business."
       />
 
       <Section
-        eyebrow="Insights"
-        title="Digital Insights for Seychelles Businesses"
-        description="Educational articles on AI, automation, analytics, and practical digital trends."
+        eyebrow="Worth reading"
+        title="Things we think you'll find useful"
+        description="Short reads on the digital topics that actually matter for your business."
       >
         <div className="grid gap-6 md:grid-cols-2">
           <Card className="no-scroll-glow border-dashed text-center flex flex-col justify-center items-center">

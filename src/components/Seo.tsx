@@ -11,8 +11,10 @@ type SeoProps = {
 
 export default function Seo({ title, description, path, keywords, structuredData }: SeoProps) {
   const canonical = new URL(path, siteConfig.url).toString();
-  const fullTitle = `${title} | ${siteConfig.name}`;
-  const ogImageUrl = new URL(siteConfig.ogImage, siteConfig.url).toString();
+  const fullTitle = title.includes(siteConfig.name)
+    ? title
+    : `${title} | ${siteConfig.name}`;
+  const ogImageUrl = new URL("/og-image.png", siteConfig.url).toString();
   const schemas: Array<Record<string, unknown>> = [];
 
   const organizationSchema = {
@@ -65,8 +67,11 @@ export default function Seo({ title, description, path, keywords, structuredData
       <meta property="og:url" content={canonical} />
       <meta property="og:type" content="website" />
       <meta property="og:site_name" content={siteConfig.name} />
-      <meta property="og:locale" content="en_US" />
+      <meta property="og:locale" content="en_GB" />
       <meta property="og:image" content={ogImageUrl} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:image:alt" content={`${siteConfig.name} — ${siteConfig.tagline}`} />
 
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={fullTitle} />
