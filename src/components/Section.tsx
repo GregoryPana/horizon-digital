@@ -25,7 +25,7 @@ export default function Section({
   return (
     <section
       id={id}
-      className={`pt-10 pb-12 md:pt-20 md:pb-28 ${className ?? ""}`.trim()}
+      className={`pt-8 pb-10 md:pt-20 md:pb-28 ${className ?? ""}`.trim()}
     >
       <div className={`mx-auto w-full px-5 sm:px-8 ${containerClassName ?? "max-w-7xl"}`.trim()}>
         {(eyebrow || title || description) && (

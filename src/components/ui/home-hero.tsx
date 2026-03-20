@@ -8,7 +8,7 @@ export default function HomeHero() {
   const handleWorkScrollTop = () => scrollToTopSmooth();
 
   return (
-    <section id="top" className="relative h-screen min-h-[700px] w-full overflow-hidden bg-black text-white">
+    <section id="top" className="relative h-[82vh] md:h-screen min-h-[600px] md:min-h-[700px] w-full overflow-hidden bg-black text-white">
       {/* Background Tech Image with Mask */}
       <div className="absolute inset-0 z-0">
          <picture>
@@ -22,24 +22,35 @@ export default function HomeHero() {
          {/* Bottom Fade Mask */}
          <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black via-black/40 to-transparent z-[1]" />
          {/* Top Overlay for Contrast */}
-         <div className="absolute inset-0 bg-black/25 z-[1]" />
+         <div className="absolute inset-0 bg-black/5 z-[1]" />
+          <div className="absolute inset-y-0 left-0 w-full md:w-[75%] bg-gradient-to-r from-black/95 via-black/45 to-transparent z-[2]" />
       </div>
 
-      <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col items-center justify-center px-6 pt-20 md:flex-row md:items-center md:px-10 md:pt-0 lg:px-14">
+      <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col items-center justify-center px-6 pt-12 md:items-start md:px-10 lg:px-14">
         {/* Left Side: Content */}
-        <div className="w-full text-center md:items-start md:text-left z-20">
+        <div className="w-full text-center md:items-start md:text-left z-20 md:max-w-4xl">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-accent mb-6 font-display italic">Seychelles Web Design Studio</p>
-            <h1 className="font-display text-4xl font-medium leading-[1.15] tracking-tight text-white md:text-7xl lg:text-8xl xl:text-9xl md:leading-[1.05] md:tracking-tighter">
-              Your Website should bring you customers <span className="text-accent italic">&</span> <br />look good.
+            <p className="text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.45em] text-accent mb-6 font-display italic">Horizon Digital • Web Design Studio • Seychelles</p>
+            <h1 className="font-display text-4xl sm:text-5xl font-medium leading-[1.08] tracking-tight text-white md:text-7xl lg:text-8xl xl:text-9xl md:leading-[0.98] uppercase md:tracking-normal">
+              YOUR WEBSITE <br />
+              SHOULD BRING YOU <br />
+              CUSTOMERS <br />
+              <span className="text-accent italic lowercase font-normal">and</span> LOOK GOOD.
             </h1>
-            <p className="mt-6 md:mt-8 max-w-[44ch] text-base leading-[1.58] text-text-muted md:text-xl lg:text-2xl font-light mx-auto md:mx-0 md:leading-relaxed">
+            <p className="mt-6 md:mt-8 max-w-[46ch] text-sm md:text-lg leading-relaxed text-white/70 font-light mx-auto md:mx-0">
               Your business deserves a website that works as hard as you do — beautifully designed, easy to find, and built to turn visitors into customers you're proud to serve.
             </p>
+            
+            {/* Feature Tags List */}
+            <div className="mt-8 flex flex-wrap justify-center md:justify-start gap-x-6 gap-y-3 opacity-60">
+              {['CUSTOM DESIGN', 'MOBILE READY', 'FAST LOADING', 'SEO READY'].map((tag) => (
+                <span key={tag} className="text-[9px] font-bold tracking-[0.25em] text-accent uppercase border-b border-accent/20 pb-0.5">{tag}</span>
+              ))}
+            </div>
             
             <div className="mt-12 flex flex-col items-center gap-6 sm:flex-row sm:justify-center md:justify-start">
               <Link to="/contact">
