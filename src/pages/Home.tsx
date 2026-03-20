@@ -258,7 +258,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {services.map((service, idx) => {
               const Icons = [
                 () => (
@@ -275,9 +275,14 @@ export default function Home() {
                   <svg className="w-6 h-6 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
                   </svg>
+                ),
+                () => (
+                  <svg className="w-6 h-6 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                  </svg>
                 )
               ];
-              const Icon = Icons[idx];
+              const Icon = Icons[idx] || Icons[0];
               
               return (
                 <div key={service.title} className="p-10 rounded-2xl bg-[#121214] border border-white/[0.08] hover:border-cyan-400/30 transition-all group">
@@ -396,9 +401,9 @@ export default function Home() {
                   <button className={`w-full py-4 rounded-lg text-xs font-black uppercase tracking-[0.2em] transition-all transform active:scale-95 ${
                     pkg.featured 
                       ? "bg-cyan-400 text-black hover:bg-cyan-300 shadow-[0_0_30px_rgba(34,211,238,0.4)]" 
-                      : "bg-white/[0.02] border border-white/20 text-white hover:bg-white/[0.05]"
+                      : "bg-white/[0.02] border border-cyan-400/20 text-white hover:bg-white/[0.05] hover:border-cyan-400/40"
                   }`}>
-                    {pkg.featured ? "Get Started" : "Select Tier"}
+                    Get Started
                   </button>
                 </Link>
               </div>
@@ -440,7 +445,7 @@ export default function Home() {
                 <span className="absolute -top-6 left-0 bg-bg px-2 font-display text-4xl font-bold text-accent/20">
                   [{i + 1}]
                 </span>
-                <h3 className="text-xl font-semibold text-accent-2">{feature.title}</h3>
+                <h3 className="text-xl font-semibold text-accent-2 mb-4 h-[3.5rem] flex items-end">{feature.title}</h3>
                 <p className="mt-4 text-sm leading-relaxed text-text-muted">{feature.text}</p>
               </motion.div>
             ))}

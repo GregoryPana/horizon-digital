@@ -70,6 +70,10 @@ export const services = [
     title: "SEO & Performance",
     description: "Built-in speed and search visibility so customers can actually find you.",
   },
+  {
+    title: "Mobile-friendly layout",
+    description: "Clear and easy to use on every screen size.",
+  },
 ];
 
 export const addOns = [

@@ -673,11 +673,11 @@ html .section-eyebrow-glow {
 }
 
 .site-header-dark {
-  --bg-elev: #0D0F16;
-  --border: rgba(94, 209, 222, 0.12);
-  --text: #F2F4F7;
-  --text-muted: #8E9196;
-  --glow: rgba(94, 209, 222, 0.3);
+  --bg-elev: #1A2228;
+  --border: rgba(94, 209, 222, 0.1);
+  --text: #EAF2FF;
+  --text-muted: #9BA3AF;
+  --glow: rgba(94, 209, 222, 0.25);
   background-color: transparent !important;
   border-color: transparent !important;
   backdrop-filter: none !important;
@@ -690,7 +690,7 @@ html .section-eyebrow-glow {
 }
 
 .site-header-dark.is-scrolled {
-  background-color: rgba(13, 15, 22, 0.92) !important;
+  background-color: rgba(26, 34, 40, 0.94) !important;
   border-color: rgba(94, 209, 222, 0.12) !important;
   backdrop-filter: blur(12px) !important;
   box-shadow: 0 14px 32px rgba(0, 0, 0, 0.28);
@@ -698,12 +698,12 @@ html .section-eyebrow-glow {
 
 
 .site-footer-dark {
-  --bg-elev: #0D0F16;
+  --bg-elev: #1A2228;
   --border: rgba(94, 209, 222, 0.1);
-  --text: #F2F4F7;
-  --text-muted: #8E9196;
-  --glow: rgba(94, 209, 222, 0.3);
-  background-color: #0D0F16 !important;
+  --text: #EAF2FF;
+  --text-muted: #9BA3AF;
+  --glow: rgba(94, 209, 222, 0.25);
+  background-color: #1A2228 !important;
   border-color: rgba(94, 209, 222, 0.1) !important;
 }
 
