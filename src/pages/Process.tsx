@@ -1,6 +1,6 @@
 import Section from "../components/Section";
 import Seo from "../components/Seo";
-import { processSteps } from "../data/site";
+import { projectSteps } from "../data/site";
 import { ShimmerButton } from "../components/ui/shimmer-button";
 import { Link } from "react-router-dom";
 
@@ -22,7 +22,7 @@ export default function Process() {
         <p className="text-sm text-text-muted">No surprises. <span className="text-accent">Clear timelines.</span> Defined milestones.</p>
         <div className="section-band section-band-medium relative left-1/2 right-1/2 mt-14 -mx-[50vw] mb-8 w-screen py-16 md:mt-16 md:mb-10 md:py-20">
           <div className="mx-auto grid w-full max-w-7xl gap-8 px-8 md:grid-cols-2 lg:grid-cols-4">
-          {processSteps.map((step, index) => (
+          {projectSteps.map((step: { title: string; description: string }, index: number) => (
             <div key={step.title} className="min-w-0">
               <p className="text-xs uppercase tracking-[0.4em] text-accent">Step {index + 1}</p>
               <h3 className="mt-3 text-lg font-semibold text-text">{step.title}</h3>
