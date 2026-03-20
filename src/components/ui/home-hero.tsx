@@ -1,174 +1,90 @@
 import { Link } from "react-router-dom";
-import Button from "../Button";
 import { scrollToTopSmooth } from "../../lib/utils";
-import { ShimmerButton } from "./shimmer-button";
-import desktopSplash from "../../assets/hero/hero-desktop-tech-v2.png";
-import desktopSplashWebp from "../../assets/hero/hero-desktop-tech-v2.webp";
-import desktopSplashWebp1600 from "../../assets/hero/hero-desktop-tech-v2-1600.webp";
-import mobileSplash from "../../assets/hero/hero-mobile-tech-v2.png";
-import mobileSplashWebp from "../../assets/hero/hero-mobile-tech-v2.webp";
-import mobileSplashWebp720 from "../../assets/hero/hero-mobile-tech-v2-720.webp";
+import { motion } from "framer-motion";
+import drakeMain from "../../assets/work/drake-seaside/drake-seaside.jpg";
 
 export default function HomeHero() {
   const handleWorkScrollTop = () => scrollToTopSmooth();
 
   return (
-    <section id="top" className="relative min-h-screen h-svh w-full overflow-hidden bg-bg text-text">
-      <div className="absolute inset-0 md:brightness-100">
-        <div className="absolute inset-0 hidden md:block">
-          <picture>
-            <source
-              srcSet={`${desktopSplashWebp1600} 1024w, ${desktopSplashWebp} 1536w`}
-              sizes="100vw"
-              type="image/webp"
-            />
-            <img
-              src={desktopSplash}
-              alt=""
-              aria-hidden="true"
-              width={1920}
-              height={1080}
-              fetchPriority="high"
-              loading="eager"
-              decoding="async"
-              className="h-full w-full object-cover object-center md:object-[50%_45%]"
-            />
-          </picture>
-        </div>
-        <div className="absolute inset-0 md:hidden">
-          <picture>
-            <source
-              srcSet={`${mobileSplashWebp720} 720w, ${mobileSplashWebp} 1024w`}
-              sizes="100vw"
-              type="image/webp"
-            />
-            <img
-              src={mobileSplash}
-              alt=""
-              aria-hidden="true"
-              width={1080}
-              height={1920}
-              fetchPriority="high"
-              loading="eager"
-              decoding="async"
-              className="h-full w-full object-cover object-[50%_42%]"
-            />
-          </picture>
+    <section id="top" className="relative h-screen min-h-[850px] w-full overflow-hidden bg-black text-white">
+      {/* Background Decor */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(0,255,255,0.05),transparent_70%)]" />
+        <div className="absolute top-0 left-0 w-full h-full opacity-30 select-none pointer-events-none">
+           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/10 blur-[120px] rounded-full" />
+           <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-cyan-600/5 blur-[150px] rounded-full" />
         </div>
       </div>
 
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-[#060818] md:from-transparent md:via-black/16 md:to-[#060818]" />
-      <div className="pointer-events-none absolute inset-0 hidden md:block bg-[radial-gradient(circle_at_15%_50%,rgba(0,0,0,0.32),transparent_55%)]" />
-      <div className="pointer-events-none absolute inset-0 md:hidden bg-[radial-gradient(circle_at_50%_25%,rgba(0,0,0,0.52),transparent_65%)]" />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[38svh] bg-gradient-to-t from-[#060818] via-[#060818]/82 to-transparent md:h-[30svh]" />
-
-      <div className="relative z-10 hidden h-svh w-full items-center px-3.5 pb-24 sm:px-5 md:flex md:px-10 md:pb-32 lg:px-14 lg:pb-40">
-        <div className="w-full md:ml-[5vw] md:pl-2 lg:ml-[8vw] lg:pl-6">
-          <p className="section-eyebrow-glow text-xs font-semibold uppercase tracking-[0.24em] text-accent">
-            Horizon Digital • Web Design Studio • Seychelles
-          </p>
-          <h1 className="hero-glow-text mt-4 font-display text-[clamp(3.5rem,4.5vw,5.5rem)] font-semibold leading-[0.92] uppercase tracking-[0.05em] text-text">
-            Your Website
-            <br />
-            should bring you
-            <br />
-            customers
-            <br />
-            <span className="text-accent normal-case">and</span> look good
-          </h1>
-          <p className="hero-main-subtext mt-5 max-w-[58ch] text-base leading-7 text-text-muted">
-             Your business deserves a website that works as hard as you do — beautifully designed, easy to find, and built to turn visitors into customers you're proud to serve.
-          </p>
-          <div className="mt-6 flex flex-wrap gap-2.5">
-            {["Custom Design", "Mobile Ready", "Fast Loading", "SEO Ready"].map((item) => (
-              <span
-                key={item}
-                className="rounded-full border border-accent/30 bg-bg-elev/80 px-3 py-1.5 text-[0.64rem] font-semibold uppercase tracking-[0.12em] text-[#A8F0FF]"
-              >
-                {item}
-              </span>
-            ))}
-          </div>
+      <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col items-center px-6 pt-32 md:flex-row md:items-center md:px-10 md:pt-10 lg:px-14">
+        {/* Left Side: Content */}
+        <div className="w-full text-center md:w-1/2 md:text-left z-20">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-cyan-400 mb-6 font-display italic">Premium Seychelles Digital</p>
+            <h1 className="font-display text-5xl font-medium leading-[1.05] tracking-tight text-white md:text-7xl lg:text-8xl xl:text-9xl">
+              Your business,
+              <br />
+              <span className="text-cyan-400">beautifully</span> online.
+            </h1>
+            <p className="mt-8 max-w-[38ch] text-lg leading-relaxed text-gray-400 md:text-xl lg:text-2xl font-light">
+              Websites built for where you are right now — tailored for Seychelles, engineered for performance, and designed to move your business forward.
+            </p>
+            
+            <div className="mt-12 flex flex-col items-center gap-6 sm:flex-row sm:justify-center md:justify-start">
+              <Link to="/contact">
+                <button className="rounded-lg bg-cyan-400 px-10 py-4 text-sm font-black uppercase tracking-[0.2em] text-black transition-all hover:bg-cyan-300 hover:scale-[1.02] active:scale-95 shadow-[0_0_30px_rgba(34,211,238,0.4)]">
+                  Get Started
+                </button>
+              </Link>
+              <Link to="/work">
+                <button onClick={handleWorkScrollTop} className="group rounded-lg border border-white/10 bg-white/[0.03] px-10 py-4 text-sm font-black uppercase tracking-[0.2em] text-white backdrop-blur-md transition-all hover:bg-white/[0.1] hover:border-white/30">
+                  Our Work <span className="inline-block transition-transform group-hover:translate-x-1 ml-2">→</span>
+                </button>
+              </Link>
+            </div>
+          </motion.div>
         </div>
 
-      </div>
-
-      <div className="relative z-10 flex h-svh w-full flex-col px-3.5 pt-[4.6rem] pb-[calc(env(safe-area-inset-bottom)+3.5rem)] sm:px-5 md:hidden">
-        <aside className="hero-bento-fixed bg-white/5 backdrop-blur-xl border border-white/10 mt-0 w-full max-w-[20rem] self-center rounded-xl p-4 sm:max-w-[22rem] sm:p-5">
-          <p className="section-eyebrow-glow text-[0.52rem] font-semibold uppercase tracking-[0.16em] text-accent sm:text-[0.56rem]">
-            Web Design Studio • Seychelles
-          </p>
-          <h1 className="hero-glow-text mt-2 font-display text-[1.44rem] font-semibold leading-[1.1] tracking-[0.04em] text-text sm:text-[1.68rem]">
-            Your Website
-            <br />
-            should bring you
-            <br />
-            customers
-            <br />
-            <span className="text-accent normal-case">and</span> look good
-          </h1>
-          <p className="hero-main-subtext mt-2 text-[0.74rem] leading-[1.28rem] text-text-muted sm:text-[0.8rem] sm:leading-5">
-             Your business deserves a website that works as hard as you do — beautifully designed, easy to find, and built to turn visitors into customers you're proud to serve.
-          </p>
-          <div className="mt-4 grid grid-cols-2 gap-1.5 sm:gap-2">
-            {["Custom Design", "Mobile Ready", "Fast Loading", "SEO Ready"].map((item) => (
-              <div key={item} className="rounded-md border border-white/10 bg-white/5 px-2 py-1 sm:px-2.5 sm:py-1.5 backdrop-blur-sm">
-                <p className="text-[0.48rem] font-semibold uppercase tracking-[0.1em] text-[#A8F0FF] sm:text-[0.52rem]">
-                  {item}
-                </p>
+        {/* Right Side: Bento / Image Showcase */}
+        <div className="mt-20 w-full md:mt-0 md:w-1/2 md:pl-12 lg:pl-16 relative perspective-1000 hidden md:block">
+           <motion.div 
+             initial={{ opacity: 0, rotateY: 5, rotateX: 2 }}
+             animate={{ opacity: 1, rotateY: 0, rotateX: 0 }}
+             transition={{ duration: 1.2, ease: "easeOut" }}
+             className="relative"
+           >
+              <div className="relative z-10 hero-bento-fixed rounded-2xl overflow-hidden border border-white/[0.1] shadow-2xl">
+                 <img src={drakeMain} alt="Horizon Digital work sample" className="w-full h-auto grayscale-[0.2] hover:grayscale-0 transition-all duration-700" />
+                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                 <div className="absolute bottom-6 left-6">
+                    <p className="text-[10px] font-bold uppercase tracking-widest text-cyan-400 mb-1">Featured Project</p>
+                    <p className="text-white font-display text-xl">Drake Seaside Apartments</p>
+                 </div>
               </div>
-            ))}
-          </div>
-        </aside>
-
-        <div className="flex-1" />
-
-        <div className="flex w-full max-w-[20rem] self-center flex-col items-stretch gap-3">
-          <Link to="/contact" className="w-full">
-            <ShimmerButton
-              shimmerColor="#060818"
-              shimmerDuration="4.2s"
-              background="#00E5FF"
-              className="hero-consult-cta w-full px-6 py-3 text-[0.95rem] font-semibold tracking-[0.08em] text-black"
-            >
-              Book a free consult
-            </ShimmerButton>
-          </Link>
-          <Button
-            label="View work"
-            to="/work"
-            variant="primary"
-            size="lg"
-            onClick={handleWorkScrollTop}
-            className="gold-cta hero-view-work-cta w-full !text-[#FFD97A] hover:!text-[#FFE89A]"
-          />
+              
+              {/* Decorative elements */}
+              <div className="absolute -top-10 -right-10 w-40 h-40 bg-cyan-400/20 rounded-full blur-3xl z-0" />
+              <div className="absolute -bottom-10 -left-10 w-60 h-60 bg-cyan-500/10 rounded-full blur-3xl z-0" />
+           </motion.div>
         </div>
       </div>
 
-      <div className="pointer-events-none absolute bottom-[10%] left-1/2 z-10 hidden w-full -translate-x-1/2 justify-center px-3.5 md:flex md:bottom-[10%]">
-        <div className="pointer-events-auto flex w-full max-w-[31rem] flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:justify-center sm:gap-5">
-          <Link to="/contact" className="w-full sm:w-auto">
-            <ShimmerButton
-              shimmerColor="#060818"
-              shimmerDuration="4.2s"
-              background="#00E5FF"
-              className="hero-consult-cta w-full px-6 py-3 text-[0.95rem] font-semibold tracking-[0.08em] text-black sm:px-7 sm:py-3.5 sm:text-base"
-            >
-              Book a free consult
-            </ShimmerButton>
-          </Link>
-          <Button
-            label="View work"
-            to="/work"
-            variant="primary"
-            size="lg"
-            onClick={handleWorkScrollTop}
-            className="gold-cta hero-view-work-cta self-center !text-[#FFD97A] hover:!text-[#FFE89A] md:!text-black"
-          />
+      {/* Trust Bar (Trusted by Visionary Enterprises) */}
+      <div className="absolute bottom-12 w-full text-center">
+        <p className="text-[10px] uppercase tracking-[0.4em] text-gray-500 font-bold mb-8">Trusted by Visionary Enterprises</p>
+        <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-6 px-4 opacity-50 contrast-125 brightness-150">
+           <span className="font-display text-xl tracking-widest">VOLTAIRE</span>
+           <span className="font-display text-xl tracking-widest">AETHER</span>
+           <span className="font-display text-xl tracking-widest">LUMINA</span>
+           <span className="font-display text-xl tracking-widest">QUANTUM</span>
+           <span className="font-display text-xl tracking-widest">NEXUS</span>
         </div>
       </div>
-
-      <div className="hero-edge-line absolute bottom-0 left-0 right-0 h-[2px]" />
     </section>
   );
 }

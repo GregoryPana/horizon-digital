@@ -4,7 +4,6 @@ import Seo from "../components/Seo";
 import { ShimmerButton } from "../components/ui/shimmer-button";
 import { BuildIcon, DomainIcon, HostingIcon, ScenarioIcon } from "../components/ui/symbol-icons";
 import { siteConfig } from "../data/site";
-import { WordReveal } from "../components/ui/animated-text";
 
 export default function WhatYouNeed() {
   const shouldReduceMotion = useReducedMotion();
@@ -42,7 +41,7 @@ export default function WhatYouNeed() {
             Not sure where to start?
           </p>
           <h2 className="text-4xl md:text-6xl font-semibold tracking-tight text-text mb-8">
-            <WordReveal staggerDelay={0.06}>Let's find the right website for where you are right now</WordReveal>
+            Let's find the right website for where you are right now
           </h2>
           <p className="text-lg md:text-xl text-text-muted max-w-2xl mx-auto leading-relaxed">
             You don't need to know the answers yet. This guide will help you figure it out in minutes.
@@ -265,7 +264,7 @@ export default function WhatYouNeed() {
              </p>
              <Link to="/contact" className="inline-block hover:scale-105 transition-transform duration-300">
                 <ShimmerButton
-                  shimmerColor="#060818"
+                  shimmerColor="#0A0A0C"
                   shimmerDuration="4.2s"
                   background="#00E5FF"
                   className="px-8 py-4 text-sm font-semibold tracking-[0.08em] text-black shadow-lg shadow-accent/20"

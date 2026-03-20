@@ -2,7 +2,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
 import Seo from "../components/Seo";
 import { ShimmerButton } from "../components/ui/shimmer-button";
-import { WordReveal, AccentLine } from "../components/ui/animated-text";
+import { AccentLine } from "../components/ui/animated-text";
 
 export default function About() {
   const shouldReduceMotion = useReducedMotion();
@@ -32,10 +32,8 @@ export default function About() {
             <p className="text-xs font-semibold uppercase tracking-[0.32em] text-accent section-eyebrow-glow inline-block">
               Who we are
             </p>
-            <h2 className="mt-6 text-4xl font-semibold tracking-tight text-text md:text-6xl max-w-4xl mx-auto">
-              <WordReveal staggerDelay={0.06}>
-                We care about your business
-              </WordReveal>{" "}<span className="text-accent">doing well online</span>
+            <h2 className="mt-6 text-4xl font-semibold tracking-tight text-white md:text-6xl max-w-4xl mx-auto">
+              We care about your business <span className="text-accent">doing well online</span>
             </h2>
             <AccentLine className="mt-8 mx-auto w-32" direction="right" />
             <p className="mt-8 text-lg text-text-muted md:text-xl max-w-2xl mx-auto leading-relaxed">
@@ -132,7 +130,7 @@ export default function About() {
               
               <Link to="/ai-digital-tools" className="inline-block hover:scale-105 transition-transform duration-300">
                 <ShimmerButton
-                  shimmerColor="#060818"
+                  shimmerColor="#0A0A0C"
                   shimmerDuration="4.2s"
                   background="#00E5FF"
                   className="px-6 py-3 text-sm font-semibold tracking-[0.1em] text-black shadow-lg shadow-accent/20"
@@ -155,7 +153,7 @@ export default function About() {
             </h2>
             <Link to="/contact" className="inline-block hover:-translate-y-1 transition-transform duration-300">
               <ShimmerButton
-                shimmerColor="#060818"
+                shimmerColor="#0A0A0C"
                 shimmerDuration="4.2s"
                 background="#00E5FF"
                 className="px-8 py-4 text-base font-semibold tracking-[0.08em] text-black shadow-lg shadow-accent/20"

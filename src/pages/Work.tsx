@@ -1,4 +1,4 @@
-import { motion, useReducedMotion } from "framer-motion";
+ï»¿import { motion, useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
 import Seo from "../components/Seo";
 import { ShimmerButton } from "../components/ui/shimmer-button";
@@ -19,7 +19,7 @@ import formaAltOne from "../assets/work/forma studio/forma studio 2.png";
 import takamakaMain from "../assets/work/takamaka-house/takamaka house.png";
 import takamakaAltOne from "../assets/work/takamaka-house/takamaka house 2.png";
 
-import { WordReveal } from "../components/ui/animated-text";
+
 
 export default function Work() {
   const shouldReduceMotion = useReducedMotion();
@@ -48,7 +48,7 @@ export default function Work() {
             Real work, real businesses
           </p>
           <h2 className="text-4xl md:text-7xl font-semibold tracking-tight text-text mb-8">
-            <WordReveal staggerDelay={0.06}>Websites we've built with care</WordReveal>
+            Websites we've built with care
           </h2>
           <p className="text-lg md:text-2xl font-light text-text-muted max-w-3xl mx-auto leading-relaxed">
             Every site you see here was built for a real business, with real goals. Take a look and imagine what we could do for yours.
@@ -160,7 +160,7 @@ export default function Work() {
                   </p>
                   <h3 className="text-3xl md:text-5xl font-semibold text-text mb-6">Takamaka House</h3>
                   <p className="text-base md:text-lg text-text-muted mb-8 leading-relaxed lg:max-w-xl">
-                    A calm, immersive site designed to let the beauty of Takamaka House do the talking — and make guests excited to book before they even arrive.
+                    A calm, immersive site designed to let the beauty of Takamaka House do the talking ï¿½ and make guests excited to book before they even arrive.
                   </p>
                   <div className="flex flex-wrap gap-4 justify-start">
                      <a href="https://takamaka.horizondigitalsey.com/" target="_blank" rel="noreferrer" className="inline-block hover:opacity-80 transition-opacity">
@@ -196,7 +196,7 @@ export default function Work() {
                   </p>
                   <h3 className="text-3xl md:text-5xl font-semibold text-text mb-6">Forma Studio</h3>
                   <p className="text-base md:text-lg text-text-muted mb-8 leading-relaxed lg:max-w-xl">
-                    A clean, editorial showcase for a creative studio — designed to let their work breathe and make enquiries feel natural.
+                    A clean, editorial showcase for a creative studio ï¿½ designed to let their work breathe and make enquiries feel natural.
                   </p>
                   <div className="flex flex-wrap gap-4 justify-start">
                      <a href="https://forma.horizondigitalsey.com/" target="_blank" rel="noreferrer" className="inline-block hover:opacity-80 transition-opacity">
@@ -287,7 +287,7 @@ export default function Work() {
                   </p>
                   <h3 className="text-3xl md:text-5xl font-semibold text-text mb-6">Beauty Demo</h3>
                   <p className="text-base md:text-lg text-text-muted mb-8 leading-relaxed lg:max-w-xl">
-                    A fast, focused site for a service business — clear pricing, easy contact, and a layout that turns curious visitors into real clients.
+                    A fast, focused site for a service business ï¿½ clear pricing, easy contact, and a layout that turns curious visitors into real clients.
                   </p>
                   <div className="flex flex-wrap gap-4 justify-start">
                      <a href="https://demo-beauty.horizondigitalsey.com/" target="_blank" rel="noreferrer" className="inline-block hover:opacity-80 transition-opacity">
@@ -341,4 +341,5 @@ export default function Work() {
     </div>
   );
 }
+
 

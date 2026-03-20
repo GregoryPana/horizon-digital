@@ -7,12 +7,10 @@ import HomeHero from "../components/ui/home-hero";
 import HomeFaq, { type HomeFaqCategory } from "../components/ui/home-faq";
 import HomeWorkAccordion from "../components/ui/home-work-accordion";
 import { ShimmerButton } from "../components/ui/shimmer-button";
-import { WordReveal, GlowUnderline } from "../components/ui/animated-text";
 import { Link } from "react-router-dom";
 import { scrollToTopSmooth } from "../lib/utils";
 import MarqueeBanner from "../components/ui/MarqueeBanner";
 import {
-  customPackage,
   foundationPackage,
   growthPackage,
   projectSteps,
@@ -245,135 +243,83 @@ export default function Home() {
         </div>
       )}
 
-      {/* ── SERVICES ── */}
-      <section id="services" className="services-split-banner overflow-hidden py-20 md:py-32">
-        <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
-          <div className="grid items-center gap-16 lg:grid-cols-12 lg:gap-24">
-            <motion.div
-              className="lg:col-span-6 relative z-20"
-              initial={{ opacity: shouldReduceMotion ? 1 : 0, x: shouldReduceMotion ? 0 : -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: false, amount: 0.4 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-            >
-              <p className="text-xs font-semibold uppercase tracking-[0.32em] text-accent section-eyebrow-glow">
-                Services
-              </p>
-              <h2 className="section-title mt-4 text-[2rem] font-semibold tracking-[-0.01em] text-text md:text-[3.5rem] md:leading-[1.1]">
-                  Your business deserves to be <span className="text-accent">found</span>
-              </h2>
-              <div className="mt-5 w-24 h-1 bg-accent/40 rounded-full" />
-              <p className="mt-6 max-w-xl text-base leading-relaxed text-text-muted md:text-lg">
-                Whether you're just starting out or ready for something better — a great website changes everything.
-              </p>
+      {/* ── OUR SERVICES ── */}
+      <section id="services" className="py-24 md:py-32 bg-black border-t border-white/[0.05]">
+        <div className="mx-auto w-full max-w-7xl px-6 md:px-10 lg:px-14">
+          <div className="mb-16 text-left relative">
+            <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-cyan-400 mb-6">Our Services</p>
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+            <h2 className="font-display text-4xl font-medium tracking-tight text-white md:text-6xl lg:text-7xl max-w-3xl leading-[1.05]">
+              Websites built around how your business actually works.
+            </h2>
+              <Link to="/work" className="text-sm font-bold uppercase tracking-widest text-cyan-400 flex items-center gap-2 group whitespace-nowrap mb-2">
+                View Full Spectrum <span className="transition-transform group-hover:translate-x-1">→</span>
+              </Link>
+            </div>
+          </div>
 
-              <div className="mt-10 grid gap-6 sm:grid-cols-2">
-                <motion.div className="group">
-                  <h3 className="text-sm font-semibold text-text transition-colors group-hover:text-accent">Present professionally</h3>
-                  <p className="mt-1.5 text-sm text-text-muted">Clear imagery and branding that builds trust.</p>
-                </motion.div>
-                <motion.div className="group">
-                  <h3 className="text-sm font-semibold text-text transition-colors group-hover:text-accent">Guide customers</h3>
-                  <p className="mt-1.5 text-sm text-text-muted">Structured flows that lead to enquiries.</p>
-                </motion.div>
-                <motion.div className="group">
-                  <h3 className="text-sm font-semibold text-text transition-colors group-hover:text-accent">Mobile-first</h3>
-                  <p className="mt-1.5 text-sm text-text-muted">Work seamlessly on every device size.</p>
-                </motion.div>
-                <motion.div className="group">
-                  <h3 className="text-sm font-semibold text-text transition-colors group-hover:text-accent">Fast & visible</h3>
-                  <p className="mt-1.5 text-sm text-text-muted">Load quickly and support search engine discovery.</p>
-                </motion.div>
-              </div>
-
-              <div className="mt-10 flex justify-center lg:justify-start">
-                <Link to="/services-pricing">
-                  <ShimmerButton
-                    shimmerColor="#060818"
-                    shimmerDuration="4.2s"
-                    background="#00E5FF"
-                    className="px-6 py-3 text-sm font-semibold tracking-[0.1em] text-black"
-                  >
-                    View services & pricing
-                  </ShimmerButton>
-                </Link>
-              </div>
-            </motion.div>
-
-            <motion.div
-              className="lg:col-span-6 relative flex items-center justify-center mt-12 lg:mt-0 pointer-events-none"
-              initial={{ opacity: shouldReduceMotion ? 1 : 0, filter: "drop-shadow(0px 0px 0px rgba(0,229,255,0))" }}
-              whileInView={{ opacity: 1, filter: "drop-shadow(0px 0px 40px rgba(0,229,255,0.5))" }}
-              viewport={{ once: false, amount: 0.4 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            >
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-accent/30 blur-[120px] rounded-full z-0" />
-              <img 
-                src="/services-updated.png" 
-                alt="Custom Web Design Interfaces in Seychelles" 
-                className="relative z-10 w-full max-w-[500px] lg:max-w-none lg:w-[110%] xl:w-[120%] h-auto object-contain" 
-                loading="lazy" 
-                decoding="async"
-              />
-            </motion.div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {services.map((service, idx) => {
+              const Icons = [
+                () => (
+                  <svg className="w-6 h-6 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                ),
+                () => (
+                  <svg className="w-6 h-6 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-3" />
+                  </svg>
+                ),
+                () => (
+                  <svg className="w-6 h-6 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
+                  </svg>
+                )
+              ];
+              const Icon = Icons[idx];
+              
+              return (
+                <div key={service.title} className="p-10 rounded-2xl bg-white/[0.03] border border-white/[0.08] hover:border-cyan-400/30 transition-all group">
+                  <div className="w-12 h-12 rounded-lg bg-cyan-400/10 flex items-center justify-center mb-10 group-hover:scale-110 transition-transform">
+                    <Icon />
+                  </div>
+                  <h3 className="text-2xl font-semibold text-white mb-4 pr-4">{service.title}</h3>
+                  <p className="text-gray-400 leading-relaxed">
+                    {service.description}
+                  </p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* ── WHAT WE BUILD ── */}
-      <section id="what-we-build" className="py-20 md:py-32">
-        <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
-          <div className="grid items-start gap-12 lg:grid-cols-12 lg:gap-16">
-            <motion.div
-              className="lg:col-span-5 lg:sticky lg:top-32"
-              initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false, amount: 0.4 }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
-            >
-              <p className="text-xs font-semibold uppercase tracking-[0.32em] text-accent section-eyebrow-glow">
-                What we bring to life for you
-              </p>
-              <h2 className="section-title mt-4 text-[2rem] font-semibold tracking-[-0.01em] text-text md:text-[3.2rem] md:leading-[1.1]">
-                <WordReveal staggerDelay={0.05}>Everything your website needs to</WordReveal>{" "}<GlowUnderline>work hard for you</GlowUnderline>
-              </h2>
-              <div className="mt-6 w-16 h-1 bg-accent/40 rounded-full" />
-              <p className="mt-6 text-base leading-relaxed text-text-muted md:text-lg">
-                Clear to understand. Fast to load. Beautiful to use.
-              </p>
-              <div className="mt-10 mb-8 aspect-[4/3] w-full max-w-sm overflow-hidden rounded-2xl bg-bg-panel lg:mb-0 relative border border-border/50 shadow-2xl">
-                <img src="/services.png" alt="Custom website in Seychelles for local business" className="w-full h-full object-cover" loading="lazy" />
-                <div className="absolute inset-0 bg-gradient-to-t from-bg-panel/80 to-transparent pointer-events-none" />
-                <span className="absolute bottom-4 left-4 text-sm font-medium text-text-muted">Builds showcase</span>
-              </div>
-            </motion.div>
-            
-            <div className="lg:col-span-7">
-              <div className="flex flex-col gap-8">
-                {services.slice(0, 5).map((service, idx) => (
-                  <motion.div
-                    key={service.title}
-                    initial={{ opacity: shouldReduceMotion ? 1 : 0, x: shouldReduceMotion ? 0 : 30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: false, amount: 0.4 }}
-                    transition={{ duration: 0.5, delay: idx * 0.1, ease: "easeOut" }}
-                    className="group border-b border-border/40 pb-8 last:border-0"
-                  >
-                    <div className="flex items-start gap-5">
-                       <span className="mt-1 text-sm font-bold text-accent-2/40 transition-colors group-hover:text-accent-2">
-                        / 0{idx + 1}
-                      </span>
-                      <div>
-                        <h3 className="text-xl font-semibold text-text md:text-2xl">{service.title}</h3>
-                        <p className="mt-3 text-sm leading-relaxed text-text-muted md:text-base">
-                          {service.description}
-                        </p>
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
+      {/* ── THE METHODOLOGY ── */}
+      <section id="methodology" className="py-24 md:py-32 bg-black border-t border-white/[0.05]">
+        <div className="mx-auto w-full max-w-7xl px-6 md:px-10 lg:px-14">
+          <div className="mb-20 text-center">
+            <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-cyan-400 mb-6">The Methodology</p>
+            <h2 className="font-display text-4xl font-medium tracking-tight text-white md:text-6xl lg:text-7xl">
+              A clear path from vision to launch.
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-10 md:gap-4 relative text-center">
+             {/* Subtle line behind */}
+             <div className="absolute top-10 left-0 right-0 h-px bg-white/10 hidden md:block" />
+             
+             {projectSteps.map((step, idx) => (
+                <div key={step.title} className="flex flex-col items-center relative z-10">
+                  <div className="w-20 h-20 rounded-full border-2 border-cyan-400 flex items-center justify-center text-xl font-bold text-cyan-400 bg-black mb-6 shadow-[0_0_20px_rgba(34,211,238,0.2)]">
+                    {String(idx + 1).padStart(2, "0")}
+                  </div>
+                  <h3 className="text-xl font-semibold text-white mb-3">{step.title}</h3>
+                  <p className="text-[10px] font-bold uppercase tracking-[0.1em] text-gray-500 leading-relaxed px-2">
+                    {step.description}
+                  </p>
+                </div>
+             ))}
           </div>
         </div>
       </section>
@@ -397,192 +343,67 @@ export default function Home() {
         </div>
       </Section>
 
-      {/* ── PROCESS ── */}
-      <section id="process" className="py-20 md:py-32">
-        <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
-          <div className="grid items-start gap-12 lg:grid-cols-12 lg:gap-20">
-            <motion.div
-              className="lg:col-span-4 lg:sticky lg:top-32"
-              initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false, amount: 0.4 }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
-            >
-              <p className="text-xs font-semibold uppercase tracking-[0.32em] text-accent section-eyebrow-glow">
-                How it works — simply
-              </p>
-              <h2 className="section-title mt-3 text-[1.95rem] font-semibold tracking-[-0.01em] text-text md:text-[2.8rem] md:leading-[1.1]">
-                From your first call to a site <GlowUnderline>you're proud of</GlowUnderline>
-              </h2>
-              <p className="mt-4 text-base text-text-muted">
-                We guide you through every step, so there are no surprises.
-              </p>
-              <div className="mt-8 hidden lg:block">
-                <Link to="/services-pricing">
-                  <ShimmerButton
-                    shimmerColor="#060818"
-                    shimmerDuration="4.2s"
-                    background="#00E5FF"
-                    className="px-5 py-2.5 text-xs font-semibold tracking-[0.12em] text-black"
-                  >
-                    See full process
-                  </ShimmerButton>
-                </Link>
-              </div>
-            </motion.div>
-
-            <div className="space-y-0 lg:col-span-8">
-              {projectSteps.map((step, index) => (
-                <motion.div
-                  key={step.title}
-                  initial={{ opacity: shouldReduceMotion ? 1 : 0, x: shouldReduceMotion ? 0 : 42 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: false, amount: 0.4 }}
-                  transition={{ duration: shouldReduceMotion ? 0 : 0.42, delay: index * 0.06, ease: "easeOut" }}
-                  className="group relative border-b border-border py-8 pl-16 first:pt-0 last:border-0 md:py-10 md:pl-20"
-                >
-                  <span
-                    className={`absolute left-0 font-display text-[2.5rem] font-bold leading-none text-accent/20 transition-colors group-hover:text-accent/50 md:text-[3rem] ${
-                      index === 0 ? "top-0 md:top-0" : "top-8 md:top-10"
-                    }`.trim()}
-                  >
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  {step.timeline ? (
-                    <p className="inline-block rounded-full border border-border/40 bg-bg-panel/40 px-3 py-1 text-[0.62rem] uppercase tracking-[0.2em] text-text-muted">
-                      {step.timeline}
-                    </p>
-                  ) : null}
-                  <h3 className="mt-3 text-lg font-semibold text-text md:text-xl">{step.title}</h3>
-                  <p className="mt-2.5 text-sm leading-relaxed text-text-muted md:text-base">
-                    {step.description}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-
-            <div className="flex justify-center lg:hidden">
-              <Link to="/services-pricing">
-                <ShimmerButton
-                  shimmerColor="#060818"
-                  shimmerDuration="4.2s"
-                  background="#00E5FF"
-                  className="px-5 py-2.5 text-xs font-semibold tracking-[0.12em] text-black"
-                >
-                  See full process
-                </ShimmerButton>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── PACKAGES ── */}
-      <section id="packages" className="py-20 md:py-32 border-t border-border bg-[#030611]">
-        <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
-          <motion.div
-            initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.4 }}
-            className="mb-14 text-center"
-          >
-            <p className="text-xs font-semibold uppercase tracking-[0.32em] text-accent section-eyebrow-glow">
-              Find your fit
-            </p>
-            <h2 className="section-title mt-3 text-[1.95rem] font-semibold tracking-[-0.01em] text-text md:text-[3.15rem]">
-              A home online, built <span className="text-accent-2">for where you are right now</span>
+      {/* ── INVESTMENT TIERS ── */}
+      <section id="packages" className="py-24 md:py-40 bg-black border-t border-white/[0.05]">
+        <div className="mx-auto w-full max-w-7xl px-6 md:px-10 lg:px-14">
+          <div className="mb-20 text-center">
+            <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-cyan-400 mb-6 font-display italic">Investment Tiers</p>
+            <h2 className="font-display text-4xl font-medium tracking-tight text-white md:text-6xl lg:text-7xl">
+              Which package works for you?
             </h2>
-            <p className="section-description mt-4 text-[1.05rem] leading-[1.65] text-text-muted max-w-2xl mx-auto">
-              Every business is different. Pick the package that fits, and we'll build around it.
-            </p>
-          </motion.div>
+          </div>
 
-          <div className="mx-auto max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-4 relative z-10">
+          <div className="mx-auto max-w-6xl grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
             {[
-              { ...foundationPackage, id: "01", featured: false },
-              { ...starterPackage, id: "02", featured: true },
-              { ...growthPackage, id: "03", featured: false },
-              { ...customPackage, id: "04", featured: false }
-            ].map((pkg, i) => (
-              <motion.div
+              { ...foundationPackage, featured: false },
+              { ...starterPackage, featured: true },
+              { ...growthPackage, featured: false }
+            ].map((pkg) => (
+              <div 
                 key={pkg.title}
-                initial={{ opacity: shouldReduceMotion ? 1 : 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.08 }}
-                className={`flex flex-col relative group p-6 md:p-8 rounded-2xl border transition-all duration-300 min-h-[480px] md:min-h-[520px] ${
+                className={`flex flex-col relative p-10 rounded-2xl border transition-all duration-500 ${
                   pkg.featured 
-                    ? "z-20 md:scale-[1.025] bg-bg-panel/75 shadow-[0_0_50px_rgba(0,229,255,0.15)] border-accent/60" 
-                    : "z-10 bg-bg-elev/40 border-white/10 hover:border-white/20"
+                    ? "bg-black border-cyan-400/60 shadow-[0_0_80px_rgba(34,211,238,0.1)] scale-105 z-20" 
+                    : "bg-white/[0.02] border-white/[0.1] z-10 hover:border-white/[0.2]"
                 }`}
               >
-                {/* Subtle Number */}
-                <div className="absolute top-6 right-6 text-4xl md:text-5xl font-bold text-accent-2/10 pointer-events-none select-none tracking-tighter">
-                  {pkg.id}
+                {pkg.featured && (
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-cyan-400 px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-[0.2em] text-black">
+                    Most Popular
+                  </div>
+                )}
+                
+                <div className="mb-8">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500 mb-2">{pkg.title === "Foundation" ? "Essentials" : pkg.title === "Starter" ? "Scalable" : "Full Scale"}</p>
+                  <h3 className="text-3xl font-semibold text-white mb-6 pr-4 leading-tight tracking-tight font-display">{pkg.title}</h3>
+                  <p className="text-4xl font-light text-cyan-400 font-display mb-6">
+                    {pkg.price.replace("From ", "").replace("SCR ", "SCR ")}
+                  </p>
                 </div>
 
-                <div className="relative z-10 flex flex-col h-full">
-                  <div className="flex items-center gap-3 mb-2.5">
-                    <span className="text-[0.6rem] font-bold tracking-[0.25em] text-accent/50 uppercase">/ {pkg.id}</span>
-                    {pkg.featured && (
-                      <motion.span 
-                        animate={{ opacity: [0.8, 1, 0.8] }} 
-                        transition={{ duration: 3, repeat: Infinity }}
-                        className="px-2 py-0.5 bg-accent/20 border border-accent/40 rounded-full text-[0.55rem] font-bold text-accent tracking-[0.1em] uppercase"
-                      >
-                        Recommended
-                      </motion.span>
-                    )}
-                  </div>
-                  
-                  <h3 className="text-xl md:text-3xl font-semibold text-accent-2 mb-1.5 pr-14 leading-tight tracking-tight">{pkg.title}</h3>
-                  <p className="text-base md:text-lg font-bold text-accent mb-4">
-                    {pkg.price}
-                  </p>
-                  
-                  <p className="text-text-muted text-[0.75rem] md:text-[0.88rem] mb-6 leading-relaxed max-w-md">
-                    {pkg.description}
-                  </p>
+                <ul className="space-y-4 mb-10 flex-grow">
+                  {pkg.includes.slice(0, 6).map((item, idx) => (
+                    <li key={`${item}-${idx}`} className="flex items-start gap-3">
+                      <svg className="h-4 w-4 text-cyan-400 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span className="text-sm text-gray-400">{item}</span>
+                    </li>
+                  ))}
+                </ul>
 
-                  <ul className="space-y-3 mb-8 flex-grow">
-                    {((pkg as any).includes || (pkg as any).highlights)?.slice(0, 7).map((item: string, idx: number) => (
-                      <li key={`${item}-${idx}`} className="flex items-start gap-3">
-                        <span className="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent-2 shadow-[0_0_10px_rgba(255,191,0,0.5)] shrink-0" />
-                        <span className="text-[0.72rem] md:text-[0.84rem] text-text-muted/90 transition-colors group-hover:text-text">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <div className="mt-auto pt-4 flex flex-col sm:flex-row items-center justify-end gap-3 md:gap-4">
-                    <Link 
-                      to="/services-pricing" 
-                      className="text-[0.68rem] font-bold tracking-[0.1em] uppercase text-text-muted hover:text-accent transition-colors py-1.5"
-                    >
-                      See full details
-                    </Link>
-                    <Link to={`/contact?package=${encodeURIComponent(pkg.title)}`} className="w-full sm:w-auto">
-                      <ShimmerButton
-                        shimmerColor={pkg.featured ? "#00E5FF" : "#ffffff15"}
-                        shimmerDuration="3.5s"
-                        background={pkg.featured ? "#00E5FF" : "#0D102D"}
-                        className={`w-full sm:px-5 py-2.5 text-[0.66rem] font-bold tracking-[0.14em] uppercase transition-all hover:scale-105 active:scale-95 ${
-                          pkg.featured 
-                            ? "text-black shadow-[0_0_15px_rgba(0,229,255,0.3)]" 
-                            : "text-white border border-white/20 hover:border-accent/40 shadow-lg"
-                        }`}
-                      >
-                       Start my project
-                      </ShimmerButton>
-                    </Link>
-                  </div>
-                </div>
-              </motion.div>
+                <Link to="/contact" className="mt-auto">
+                  <button className={`w-full py-4 rounded-lg text-xs font-black uppercase tracking-[0.2em] transition-all transform active:scale-95 ${
+                    pkg.featured 
+                      ? "bg-cyan-400 text-black hover:bg-cyan-300 shadow-[0_0_30px_rgba(34,211,238,0.4)]" 
+                      : "bg-white/[0.02] border border-white/20 text-white hover:bg-white/[0.05]"
+                  }`}>
+                    {pkg.featured ? "Get Started" : "Select Tier"}
+                  </button>
+                </Link>
+              </div>
             ))}
           </div>
-
-          <p className="mt-12 text-center text-sm tracking-wide text-text-muted/60 font-light italic">
-             * Scoped per project. Final pricing depends on page count, technical complexity, and agreed deliverables.
-          </p>
         </div>
       </section>
 
@@ -641,8 +462,8 @@ export default function Home() {
                 <p className="text-xs font-semibold uppercase tracking-[0.32em] text-accent section-eyebrow-glow">
                   Stay in the know
                 </p>
-                <h2 className="mt-4 text-3xl font-semibold text-text md:text-5xl">
-                  The digital world, <GlowUnderline>explained simply</GlowUnderline>
+                <h2 className="mt-4 text-3xl font-semibold text-white md:text-5xl">
+                  The digital world, explained simply.
                 </h2>
                 <p className="mt-5 text-base leading-relaxed text-text-muted md:text-lg">
                   No jargon. No fluff. Just the things worth knowing for your business.
@@ -658,7 +479,7 @@ export default function Home() {
                 <div className="mt-10 flex justify-start">
                   <Link to="/insights">
                     <ShimmerButton
-                      shimmerColor="#060818"
+                      shimmerColor="#0A0A0C"
                       shimmerDuration="4.2s"
                       background="#00E5FF"
                       className="px-6 py-3 text-sm font-semibold tracking-[0.1em] text-black"
@@ -740,7 +561,7 @@ export default function Home() {
           <p className="text-sm text-text-muted">Still have questions? We can walk you through it.</p>
           <Link to="/contact">
              <ShimmerButton
-              shimmerColor="#060818"
+              shimmerColor="#0A0A0C"
               shimmerDuration="4.2s"
               background="#00E5FF"
               className="px-6 py-3 text-sm font-semibold tracking-[0.1em] text-black"
@@ -768,7 +589,7 @@ export default function Home() {
               <div className="flex justify-center">
                 <Link to="/contact">
                   <ShimmerButton
-                    shimmerColor="#060818"
+                    shimmerColor="#0A0A0C"
                     shimmerDuration="4.2s"
                     background="#00E5FF"
                     className="px-8 py-5 text-lg font-bold tracking-[0.1em] text-black"

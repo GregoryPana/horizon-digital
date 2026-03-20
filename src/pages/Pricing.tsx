@@ -272,25 +272,20 @@ export default function Pricing() {
       >
         <div className="relative left-1/2 right-1/2 -mx-[50vw] my-8 w-screen py-16 md:my-10 md:py-20 bg-gradient-to-r from-bg-panel/10 via-accent/5 to-bg-panel/10 border-y border-border">
           <div className="mx-auto grid w-full max-w-7xl gap-8 px-5 sm:px-8 md:grid-cols-2 lg:grid-cols-5">
-          {projectSteps.map((step, index) => (
-            <motion.div
-              key={step.title}
-              initial={{ opacity: shouldReduceMotion ? 1 : 0, x: shouldReduceMotion ? 0 : 42 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: false, amount: 0.4 }}
-              transition={{ duration: shouldReduceMotion ? 0 : 0.42, delay: index * 0.06, ease: "easeOut" }}
-              className="min-w-0"
-            >
-              <p className="text-xs uppercase tracking-[0.4em] text-accent/70 bg-accent/10 inline-block px-3 py-1 rounded-full border border-accent/20">Step {index + 1}</p>
-              {step.timeline ? (
-                <p className="mt-2 inline-block rounded-full border border-border/40 bg-bg-panel/40 px-3 py-1 text-[0.62rem] uppercase tracking-[0.2em] text-text-muted">
-                  {step.timeline}
-                </p>
-              ) : null}
-              <h3 className="mt-4 text-lg font-semibold text-text">{step.title}</h3>
-              <p className="mt-3 text-sm text-text-muted leading-relaxed">{step.description}</p>
-            </motion.div>
-          ))}
+            {projectSteps.map((step, index) => (
+              <motion.div
+                key={step.title}
+                initial={{ opacity: shouldReduceMotion ? 1 : 0, x: shouldReduceMotion ? 0 : 42 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: false, amount: 0.4 }}
+                transition={{ duration: shouldReduceMotion ? 0 : 0.42, delay: index * 0.06, ease: "easeOut" }}
+                className="min-w-0"
+              >
+                <p className="text-xs uppercase tracking-[0.4em] text-cyan-400 bg-cyan-400/10 inline-block px-3 py-1 rounded-full border border-cyan-400/20">Step {index + 1}</p>
+                <h3 className="mt-4 text-lg font-semibold text-white">{step.title}</h3>
+                <p className="mt-3 text-sm text-gray-400 leading-relaxed">{step.description}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </Section>
@@ -436,7 +431,7 @@ export default function Pricing() {
                     <div className="mt-8">
                       <Link to="/contact?budget=15000-30000" className="w-full">
                         <ShimmerButton
-                          shimmerColor="#060818"
+                          shimmerColor="#0A0A0C"
                           shimmerDuration="4.2s"
                           background="#00E5FF"
                           className="w-full px-5 py-3 text-sm font-semibold tracking-wide text-black"
@@ -553,7 +548,7 @@ export default function Pricing() {
             <div className="mt-8 flex justify-center">
               <Link to="/contact">
                 <ShimmerButton
-                  shimmerColor="#060818"
+                  shimmerColor="#0A0A0C"
                   shimmerDuration="4.2s"
                   background="#00E5FF"
                   className="px-6 py-3 text-sm font-semibold tracking-wide text-black mx-auto"
@@ -602,7 +597,7 @@ export default function Pricing() {
                 <div className="mt-10 flex justify-center">
                   <Link to="/contact">
                     <ShimmerButton
-                      shimmerColor="#060818"
+                      shimmerColor="#0A0A0C"
                       shimmerDuration="4.2s"
                       background="#00E5FF"
                       className="px-8 py-3.5 text-sm font-semibold text-black"
@@ -728,7 +723,7 @@ export default function Pricing() {
           <div className="flex justify-center">
             <Link to="/contact">
               <ShimmerButton
-                shimmerColor="#060818"
+                shimmerColor="#0A0A0C"
                 shimmerDuration="4.2s"
                 background="#00E5FF"
                 className="px-8 py-4 text-sm font-semibold tracking-widest text-black shadow-lg shadow-accent/20 inline-block"

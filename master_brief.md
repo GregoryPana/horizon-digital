@@ -16,10 +16,6 @@ _(React + TypeScript + Tailwind Implementation Target)_
 
 **Empowering Your Digital Horizon**
 
-## Extended Supporting Line (Optional Usage)
-
-**Empowering Your Digital Horizon — one website at a time.**
-
 ---
 
 ## Brand Essence
@@ -52,7 +48,7 @@ It must NOT feel:
 
 ## Positioning Statement
 
-Horizon Digital builds modern, high-performance websites that help growing businesses establish credibility, convert visitors, and scale confidently.
+Horizon Digital builds modern, beautiful, high-performance websites that help growing businesses establish credibility, attract customers, and scale confidently.
 
 ---
 
@@ -105,10 +101,10 @@ This brand is about **infrastructure and growth**, not just aesthetics.
 ## Core Services
 
 - Custom website design & development
-- Website redesign / modernization
-- Mobile-first responsive builds
-- Performance optimization
-- SEO-ready foundational setup
+- Design refresh
+- Mobile-friendly layout
+- Speed and stability
+- Search-ready setup
 - Conversion-focused layout strategy
 
 ## Add-On / Optional Services
@@ -153,7 +149,7 @@ The horizon line represents:
 - Dark-first premium UI
 - Teal glow accents
 - Minimalist structure
-- Strong typography hierarchy
+- Strong typography and visual hierarchy
 - Subtle glassmorphism for cards only
 - Clean geometric layouts
 - Generous whitespace
@@ -174,10 +170,10 @@ The horizon line represents:
 
 # 6. Color System
 
-## Primary Dark Theme (Default)
+## Dark Theme
 
 **Background:**  
-Deep teal / near-black gradient
+Deep Grey with slight teal tint / near-black gradient
 
 **Surface:**  
 Glass panels with subtle blur
@@ -194,26 +190,10 @@ Muted light gray for body
 
 ---
 
-## Light Theme (Optional Toggle)
-
-**Background:**  
-Off-white
-
-**Surface:**  
-Frosted white glass
-
-**Accent:**  
-Same teal for consistency
-
-**Text:**  
-Deep navy / charcoal
-
----
-
 # 7. Typography
 
-- Modern sans-serif only
-- No serif fonts
+- Modern serif for Headings
+- Modern sans-serif for Body text
 - Strong bold headings
 - Clean readable body text
 - Tight letter spacing on headings
@@ -233,10 +213,10 @@ Tone must feel:
 ## Navigation
 
 - Home
-- Services
-- Work
-- Process
-- Pricing
+- Services & Pricing
+- Our Work
+- What You Need
+- Digital Insights
 - About
 - Contact
 
@@ -247,10 +227,13 @@ Tone must feel:
 ## 1. Hero Section
 
 **Headline:**  
-Empowering Your Digital Horizon
+Your Website
+should bring you
+customers
+and look good
 
 **Subtext:**  
-Modern, high-performance websites built for growing businesses.
+Your business deserves a website that works as hard as you do — beautifully designed, easy to find, and built to turn visitors into customers you're proud to serve.
 
 **CTAs:**
 
@@ -263,16 +246,17 @@ Modern, high-performance websites built for growing businesses.
 
 Short value statements:
 
-- Fast
-- Mobile-First
-- SEO-Ready
+- Fast Loading
+- Mobile Ready
+- SEO Ready
 - Conversion-Focused
+- Custom Builds
 
 ---
 
 ## 3. Services Grid
 
-Clear cards:
+Clear cards / Geometric sections:
 
 - Custom Website Build
 - Website Redesign
@@ -283,37 +267,74 @@ Clear cards:
 
 ## 4. Featured Work
 
-6 demo concept cards:
+4 Cards:
 
-- Clearly labeled “Concept Demo”
+- Assymetric layout
 - Industry tags
+- Build Package Tags
 - Short outcome statements
 - Hover reveal interactions
 
 ---
 
-## 5. Process Section (4 Steps)
+## 5. Process Section (5 Steps)
 
-1. Discovery & Goals
-2. Design & Prototype
-3. Build & Launch
-4. Support & Improve
+1. Discovery & Scope
+2. Content Gathering
+3. Design Phase
+4. Build & Test
+5. Launch & Support
 
 ---
 
 ## 6. Pricing Preview
 
-Three tiers:
+Four tiers:
 
-- Starter
-- Growth
-- Pro
+- Foundation - SCR 7,500
+- Starter - SCR 12,500
+- Growth - SCR 25,000
 
 Include:
 
 - “From” pricing placeholders
 - Clear bullet features
 - Scope-based disclaimer
+
+Foundation Tier:
+
+- 3 Page Website
+- Mobile Optimized
+- Complete SEO Setup
+- Contact Form
+- 30 day support
+- 1 Revision Round
+
+Starter Tier:
+
+Everything in Foundation Tier plus:
+
+- 5-6 Page Website
+- Mobile Optimized
+- Advanced SEO Setup
+- 45 day support
+- 2 Revision Rounds
+
+Growth Tier:
+
+- 10-12 Pages
+- Mobile Optimized
+- Advanced SEO Setup
+- 60 day support
+- 3 Revision Rounds
+
+Custom Tier:
+
+- Custom Pages
+- Custom Design
+- Custom Features
+- Custom Support
+- Custom Revisions
 
 ---
 
@@ -343,11 +364,13 @@ Include:
 - Logo
 - Navigation
 - Contact email
+- Social media links
+- Copyright notice
 
 Reusable credit line snippet:
 
 Website designed by Horizon Digital.  
-Need a tailored web solution? hello@horizondigital.com
+Need a tailored web solution? horizondigitalsey@gmail.com
 
 ---
 
@@ -358,6 +381,9 @@ Need a tailored web solution? hello@horizondigital.com
 - React
 - TypeScript
 - TailwindCSS
+- Shadcn UI
+- Framer Motion
+- GSAP
 - Responsive design
 - Component-based structure
 

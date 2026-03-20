@@ -57,7 +57,6 @@ export const navLinks = [
 ];
 
 export const trustItems = ["Fast", "Mobile-ready", "Easy to find", "Clear calls-to-action"];
-
 export const services = [
   {
     title: "Website build",
@@ -65,23 +64,11 @@ export const services = [
   },
   {
     title: "Design refresh",
-    description: "Modernise your site without losing what already works.",
+    description: "Modernise your site without losing what already works for you.",
   },
   {
-    title: "Mobile-friendly layout",
-    description: "Clear and easy to use on every screen size.",
-  },
-  {
-    title: "Speed and stability",
-    description: "Fast load times and a smooth experience for visitors.",
-  },
-  {
-    title: "Search-ready setup",
-    description: "Basic on-page setup so people can find you in search.",
-  },
-  {
-    title: "Clear customer paths",
-    description: "Guides visitors to contact you without confusion.",
+    title: "SEO & Performance",
+    description: "Built-in speed and search visibility so customers can actually find you.",
   },
 ];
 
@@ -95,36 +82,27 @@ export const addOns = [
 
 export const projectSteps = [
   {
-    title: "Discovery & Scope",
-    timeline: "Day 1-7",
-    description:
-      "Reach out via the contact form or WhatsApp. We discuss your goals, target audience, and what the website needs to achieve. Horizon Digital recommends the right package and defines a clear project scope - no jargon, no pressure.",
+    title: "Discovery",
+    description: "We dive deep into your brand, audience, and goals.",
   },
   {
-    title: "Content Gathering",
-    timeline: "Week 1-2",
-    description:
-      "Before building begins, the client provides logo, brand guidelines, and contact details - plus written text and high-quality photos for each page. Gathering this early keeps the project moving and the launch clean.",
+    title: "Strategy",
+    description: "Crafting the digital blueprint for your success.",
   },
   {
-    title: "Design Phase",
-    timeline: "Week 2-4",
-    description:
-      "For Starter and Growth packages, full visual layouts are created before a single line of code is written. You review designs through structured revision rounds until the result looks exactly right.",
+    title: "Design",
+    description: "Visual storytelling that captivates and converts.",
   },
   {
-    title: "Build & Test",
-    timeline: "Week 4-7",
-    description:
-      "Approved designs become fast, mobile-optimised code. Tested across devices and browsers to ensure every contact form, WhatsApp button, and page load performs flawlessly before going live.",
+    title: "Build",
+    description: "Clean, efficient code that powers performance.",
   },
   {
-    title: "Launch & Support",
-    timeline: "Week 7-8",
-    description:
-      "The site goes live. Domain connected, settings verified, and Horizon Digital stays on hand for 30 to 60 days post-launch to resolve any issues. Your investment is protected from day one.",
+    title: "Launch",
+    description: "Optimized deployment and continuous growth.",
   },
 ];
+
 
 export const servicesPricingIntro = {
   title: "Services & Pricing",

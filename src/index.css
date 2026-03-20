@@ -38,32 +38,34 @@
   color-scheme: dark;
 
   /* -- Backgrounds -- */
-  --bg: #060818;
-  --bg-elev: rgba(13, 16, 53, 0.88);
-  --bg-panel: rgba(19, 13, 64, 0.86);
+  --bg: #000000;
+  --bg-elev: #0D0D0E;
+  --bg-panel: #161618;
 
   /* -- Text -- */
-  --text: #EAF2FF;
-  --text-muted: rgba(168, 240, 255, 0.62);
+  --text: #FFFFFF;
+  --text-muted: #9BA3AF;
+  --text-dim: #6B7280;
 
   /* -- Accents -- */
-  --accent: #00E5FF;
-  --accent-2: #FFD97A;
-  --accent-soft: rgba(0, 229, 255, 0.16);
-  --accent-2-soft: rgba(255, 217, 122, 0.16);
+  --accent: #00FFFF;
+  --accent-soft: rgba(0, 255, 255, 0.08); /* Soft cyan glow */
+  --accent-2: #00E5FF;
+  --accent-2-soft: rgba(0, 229, 255, 0.08);
 
   /* -- Borders & Glow -- */
-  --border: rgba(0, 229, 255, 0.14);
-  --glow: rgba(0, 229, 255, 0.45);
+  --border: rgba(255, 255, 255, 0.08);
+  --border-glow: rgba(0, 255, 255, 0.15);
+  --glow: rgba(0, 255, 255, 0.40);
 
   /* -- Section band backgrounds -- */
-  --band-strong: #0D1035;
-  --band-medium: #0A0C2E;
-  --band-soft: #060818;
-  --band-border: rgba(0, 229, 255, 0.16);
+  --band-strong: #0D0D0E;
+  --band-medium: #0A0A0C;
+  --band-soft: #080809;
+  --band-border: rgba(255, 255, 255, 0.06);
 
   /* -- Decorative -- */
-  --split-line: rgba(168, 240, 255, 0.28);
+  --split-line: rgba(255, 255, 255, 0.12);
 }
 
 @layer base {
@@ -101,15 +103,15 @@ body {
   background-image:
     radial-gradient(
       70% 50% at 10% 10%,
-      rgba(0, 229, 255, 0.10),
+      rgba(0, 255, 255, 0.05),
       transparent 55%
     ),
     radial-gradient(
       55% 45% at 80% 0%,
-      rgba(245, 130, 10, 0.12),
+      rgba(0, 255, 255, 0.03),
       transparent 60%
     ),
-    linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,0.15));
+    linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,0.5));
   min-height: 100vh;
 }
 
@@ -154,9 +156,9 @@ body::after {
   pointer-events: none;
   z-index: -1;
   background:
-    radial-gradient(45% 45% at 20% 20%, rgba(0, 229, 255, 0.18), transparent 60%),
-    radial-gradient(40% 40% at 80% 30%, rgba(30, 18, 82, 0.55), transparent 65%),
-    radial-gradient(40% 40% at 70% 10%, rgba(245, 130, 10, 0.14), transparent 65%);
+    radial-gradient(45% 45% at 20% 20%, rgba(0, 255, 255, 0.08), transparent 60%),
+    radial-gradient(40% 40% at 80% 30%, rgba(0, 0, 0, 0.5), transparent 65%),
+    radial-gradient(40% 40% at 70% 10%, rgba(0, 255, 255, 0.03), transparent 65%);
   animation: horizon-drift 18s ease-in-out infinite;
 }
 
@@ -166,17 +168,17 @@ body::after {
   background:
     radial-gradient(
       45% 45% at 70% 60%,
-      rgba(0, 229, 255, 0.14),
+      rgba(0, 255, 255, 0.06),
       transparent 60%
     ),
     radial-gradient(
       40% 40% at 30% 70%,
-      rgba(30, 18, 82, 0.45),
+      rgba(0, 0, 0, 0.4),
       transparent 65%
     ),
     radial-gradient(
       40% 40% at 15% 20%,
-      rgba(245, 130, 10, 0.12),
+      rgba(0, 255, 255, 0.02),
       transparent 65%
     );
   animation: horizon-drift 22s ease-in-out infinite reverse;
@@ -215,13 +217,13 @@ body::after {
     linear-gradient(
       135deg,
       transparent 47%,
-      rgba(245, 130, 10, 0.14) 50%,
+      rgba(255, 255, 255, 0.03) 50%,
       transparent 53%
     ),
     linear-gradient(
       225deg,
       transparent 47%,
-      rgba(0, 229, 255, 0.16) 50%,
+      rgba(0, 255, 255, 0.12) 50%,
       transparent 53%
     );
   background-size:
@@ -249,8 +251,8 @@ body::after {
 
 .starfield {
   background-image:
-    radial-gradient(rgba(255, 217, 122, 0.52) 1px, transparent 1px),
-    radial-gradient(rgba(0, 229, 255, 0.48) 1px, transparent 1px);
+    radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+    radial-gradient(rgba(0, 255, 255, 0.2) 1px, transparent 1px);
   background-size:
     160px 160px,
     220px 220px;
@@ -293,9 +295,7 @@ body::after {
   font-weight: 400;
 }
 
-.hero-glow-text {
-  /* removed glow */
-}
+
 
 .section-eyebrow-glow {
   text-shadow:
@@ -641,43 +641,43 @@ html .section-eyebrow-glow {
 }
 
 .hero-bento-fixed {
-  border: 1px solid rgba(0, 229, 255, 0.28);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   background: linear-gradient(
     140deg,
-    rgba(6, 8, 24, 0.86),
-    rgba(13, 16, 53, 0.80)
+    rgba(255, 255, 255, 0.05),
+    rgba(255, 255, 255, 0.02)
   );
   box-shadow:
-    0 14px 30px rgba(0, 0, 0, 0.28),
-    0 0 20px rgba(0, 229, 255, 0.08);
-  backdrop-filter: blur(10px);
+    0 8px 32px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.02) inset;
+  backdrop-filter: blur(16px);
 }
 
 @media (max-width: 767px) {
   .hero-view-work-cta {
     background-color: transparent !important;
-    border: 1px solid rgba(255, 217, 122, 0.82);
-    color: #FFD97A !important;
+    border: 1px solid rgba(0, 255, 255, 0.8);
+    color: #00FFFF !important;
     box-shadow:
-      0 0 20px rgba(255, 178, 40, 0.40),
-      0 0 34px rgba(255, 178, 40, 0.18) !important;
+      0 0 20px rgba(0, 255, 255, 0.3),
+      0 0 34px rgba(0, 255, 255, 0.1) !important;
   }
 
   .hero-view-work-cta:hover {
-    background-color: rgba(255, 178, 40, 0.12) !important;
-    color: #FFE89A !important;
+    background-color: rgba(0, 255, 255, 0.08) !important;
+    color: #00FFFF !important;
     box-shadow:
-      0 0 26px rgba(255, 178, 40, 0.52),
-      0 0 44px rgba(255, 178, 40, 0.28) !important;
+      0 0 26px rgba(0, 255, 255, 0.4),
+      0 0 44px rgba(0, 255, 255, 0.2) !important;
   }
 }
 
 .site-header-dark {
-  --bg-elev: rgba(6, 8, 24, 0.88);
-  --border: rgba(0, 229, 255, 0.08);
-  --text: #EAF2FF;
-  --text-muted: rgba(168, 240, 255, 0.65);
-  --glow: rgba(0, 229, 255, 0.45);
+  --bg-elev: #000000;
+  --border: rgba(0, 255, 255, 0.08);
+  --text: #FFFFFF;
+  --text-muted: rgba(0, 255, 255, 0.6);
+  --glow: rgba(0, 255, 255, 0.4);
   background-color: transparent !important;
   border-color: transparent !important;
   backdrop-filter: none !important;
@@ -709,23 +709,28 @@ html .section-eyebrow-glow {
 
 
 .insights-theme-shell {
-  color-scheme: dark;
-  --bg: #050608;
-  --bg-elev: rgba(10, 13, 18, 0.94);
-  --bg-panel: rgba(15, 21, 31, 0.86);
-  --text: #e8edf5;
-  --text-muted: rgba(217, 226, 238, 0.76);
-  --accent: #00E5FF;
-  --accent-2: #FFD97A;
-  --accent-soft: rgba(255, 143, 90, 0.22);
-  --accent-2-soft: rgba(0, 229, 255, 0.22);
-  --border: rgba(151, 184, 214, 0.14);
-  --glow: rgba(0, 229, 255, 0.45);
-  --band-strong: #0d1521;
-  --band-medium: #0a121d;
-  --band-soft: #080f19;
-  --band-border: rgba(90, 162, 209, 0.4);
-  --split-line: rgba(217, 226, 238, 0.34);
+  /* Core Brand Colors */
+  --bg: #000000;
+  --bg-elev: #0D0D0E;
+  --bg-panel: #161618;
+  --accent: #00FFFF;
+  --accent-soft: rgba(0, 255, 255, 0.08); /* Soft cyan glow */
+  --accent-2: #00E5FF;
+  --accent-2-soft: rgba(0, 229, 255, 0.08);
+
+  --text: #FFFFFF;
+  --text-muted: #9BA3AF;
+  --text-dim: #6B7280;
+
+  --border: rgba(255, 255, 255, 0.08);
+  --border-glow: rgba(0, 255, 255, 0.15);
+
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.5);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.6);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.7);
+
+  --glow-cyan: 0 0 20px rgba(0, 255, 255, 0.15);
+  --glow-cyan-strong: 0 0 40px rgba(0, 255, 255, 0.25);
   background-color: var(--bg);
   background-image:
     radial-gradient(
@@ -808,8 +813,8 @@ html .section-eyebrow-glow {
 }
 
 .site-header-dark .mobile-nav-dropdown {
-  background-color: rgba(6, 8, 24, 0.96);
-  border-color: rgba(0, 229, 255, 0.2);
+  background-color: rgba(10, 10, 12, 0.96);
+  border-color: rgba(255, 255, 255, 0.1);
 }
 
 .nav-active-page {
@@ -846,8 +851,8 @@ html .section-eyebrow-glow {
 }
 
 .nav-dropdown-insights {
-  border-color: rgba(0, 229, 255, 0.2) !important;
-  background: #060818 !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  background: var(--bg) !important;
   color: var(--text) !important;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45) !important;
 }
@@ -1199,7 +1204,7 @@ html .section-eyebrow-glow {
 .ready-banner {
   background:
     radial-gradient(circle at left center, rgba(0,229,255,0.04) 0%, transparent 50%),
-    linear-gradient(to top, rgba(6,8,24,0.5), transparent);
+    linear-gradient(to top, rgba(10,10,12,0.5), transparent);
 }
 
 
