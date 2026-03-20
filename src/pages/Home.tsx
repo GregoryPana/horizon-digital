@@ -12,11 +12,12 @@ import { scrollToTopSmooth } from "../lib/utils";
 import MarqueeBanner from "../components/ui/MarqueeBanner";
 import {
   foundationPackage,
+  starterPackage,
   growthPackage,
-  projectSteps,
+  customPackage,
   services,
   siteConfig,
-  starterPackage,
+  projectSteps,
   workItems,
 } from "../data/site";
 
@@ -358,15 +359,16 @@ export default function Home() {
             </h2>
           </div>
 
-          <div className="mx-auto max-w-6xl grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+          <div className="mx-auto max-w-[88rem] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
             {[
               { ...foundationPackage, featured: false },
               { ...starterPackage, featured: true },
-              { ...growthPackage, featured: false }
+              { ...growthPackage, featured: false },
+              { ...customPackage, featured: false }
             ].map((pkg) => (
               <div 
                 key={pkg.title}
-                className={`flex flex-col relative p-10 rounded-2xl border transition-all duration-500 ${
+                className={`flex flex-col relative p-8 rounded-2xl border transition-all duration-500 ${
                   pkg.featured 
                     ? "bg-[#121214] border-cyan-400/60 shadow-[0_0_80px_rgba(34,211,238,0.1)] scale-105 z-20" 
                     : "bg-[#121214] border-white/[0.1] z-10 hover:border-white/[0.2]"
@@ -379,26 +381,28 @@ export default function Home() {
                 )}
                 
                 <div className="mb-8">
-                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500 mb-2">{pkg.title === "Foundation" ? "Essentials" : pkg.title === "Starter" ? "Scalable" : "Full Scale"}</p>
-                  <h3 className="text-3xl font-semibold text-white mb-6 pr-4 leading-tight tracking-tight font-display">{pkg.title}</h3>
-                  <p className="text-4xl font-light text-cyan-400 font-display mb-6">
-                    {pkg.price.replace("From ", "").replace("SCR ", "SCR ")}
+                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500 mb-2">
+                    {pkg.title === "Foundation" ? "Essentials" : pkg.title === "Starter" ? "Scalable" : pkg.title === "Growth" ? "Full Scale" : "One-of-a-kind"}
+                  </p>
+                  <h3 className="text-2xl font-semibold text-white mb-6 pr-4 leading-tight tracking-tight font-display">{pkg.title}</h3>
+                  <p className="text-2xl sm:text-3xl font-light text-cyan-400 font-display mb-6 whitespace-nowrap">
+                    {pkg.price}
                   </p>
                 </div>
 
                 <ul className="space-y-4 mb-10 flex-grow">
-                  {pkg.includes.slice(0, 6).map((item, idx) => (
+                  {pkg.includes.map((item, idx) => (
                     <li key={`${item}-${idx}`} className="flex items-start gap-3">
                       <svg className="h-4 w-4 text-cyan-400 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                       </svg>
-                      <span className="text-sm text-gray-400">{item}</span>
+                      <span className="text-xs text-gray-400 leading-relaxed">{item}</span>
                     </li>
                   ))}
                 </ul>
 
                 <Link to="/contact" className="mt-auto">
-                  <button className={`w-full py-4 rounded-lg text-xs font-black uppercase tracking-[0.2em] transition-all transform active:scale-95 ${
+                  <button className={`w-full py-4 rounded-lg text-[10px] font-black uppercase tracking-[0.2em] transition-all transform active:scale-95 ${
                     pkg.featured 
                       ? "bg-cyan-400 text-black hover:bg-cyan-300 shadow-[0_0_30px_rgba(34,211,238,0.4)]" 
                       : "bg-white/[0.02] border border-cyan-400/20 text-white hover:bg-white/[0.05] hover:border-cyan-400/40"

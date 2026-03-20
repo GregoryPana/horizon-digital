@@ -47,23 +47,6 @@ export default function Pricing() {
   const [pricingViewMode, setPricingViewMode] = useState<"all" | "tab">("all");
   const [passedSectionIds, setPassedSectionIds] = useState<string[]>([]);
   const [isRailOpen, setIsRailOpen] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState({
-    foundation: false,
-    starter: false,
-    growth: false,
-  });
-
-  const normalizeFeature = (value: string) => value.trim().toLowerCase();
-  const foundationFeatureSet = new Set(foundationPackage.includes.map(normalizeFeature));
-  const starterFeatureSet = new Set(starterPackage.includes.map(normalizeFeature));
-
-  const starterUniqueIncludes = starterPackage.includes.filter(
-    (item) => !foundationFeatureSet.has(normalizeFeature(item))
-  );
-
-  const growthUniqueIncludes = growthPackage.includes.filter(
-    (item) => !starterFeatureSet.has(normalizeFeature(item))
-  );
 
   const scrollToSectionTop = (sectionId: "overview" | "packages" | "hosting" | "addons") => {
     window.requestAnimationFrame(() => {
@@ -124,7 +107,7 @@ export default function Pricing() {
     setPricingViewMode("all");
   }, [location.hash]);
 
-  const packageOffers = [foundationPackage, starterPackage, growthPackage]
+  const packageOffers = [foundationPackage, starterPackage, growthPackage, customPackage]
     .map((pkg) => {
       const priceValue = pkg.price.replace(/[^\d]/g, "");
       if (!priceValue) return null;
@@ -298,267 +281,129 @@ export default function Pricing() {
         description="Foundation, Starter, and Growth — each one built around a different stage of business."
       >
         <div id="panel-packages" role="tabpanel" aria-hidden={!showSelectedOrAll("packages")}>
-        <div className="grid items-stretch gap-8 md:grid-cols-2 lg:grid-cols-3 pt-6">
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: false }}
-            className="flex h-full flex-col rounded-3xl border border-border/40 bg-bg-elev p-8 hover:border-accent/30 transition-all"
-          >
-            <h3 className="text-lg font-semibold text-accent-2">{foundationPackage.title}</h3>
-            <p className="mt-4 text-3xl font-semibold text-accent">{foundationPackage.price}</p>
-            <div className="mt-4 text-sm text-text-muted md:min-h-[140px]">
-              <p>{foundationPackage.description}</p>
-              <p className="mt-3 font-medium text-text">Includes core build essentials.</p>
-            </div>
-            
-            <button
-              type="button"
-              onClick={() =>
-                setMobileOpen((prev) => ({ ...prev, foundation: !prev.foundation }))
-              }
-              className="mt-4 inline-flex w-full items-center justify-between rounded-full border border-border px-4 py-2.5 text-[0.68rem] uppercase tracking-[0.16em] text-text-muted md:hidden"
+          <div className="grid items-stretch gap-8 md:grid-cols-2 lg:grid-cols-3 pt-6">
+            {/* Foundation */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: false }}
+              className="flex h-full flex-col rounded-3xl border border-border/40 bg-bg-elev p-8 hover:border-accent/30 transition-all"
             >
-              <span>View included items</span>
-              <span aria-hidden="true" className="text-accent">
-                {mobileOpen.foundation ? "-" : "+"}
-              </span>
-            </button>
-            <div
-              className={`grid transition-[grid-template-rows,opacity,margin] duration-300 md:mt-6 md:block md:opacity-100 ${
-                mobileOpen.foundation ? "mt-6 grid-rows-[1fr] opacity-100" : "mt-0 grid-rows-[0fr] opacity-0"
-              }`.trim()}
-            >
-              <div className="space-y-3 overflow-hidden text-sm text-text-muted md:overflow-visible">
-                <ul className="space-y-3 mb-8 text-text">
-                  {foundationPackage.includes.map((item) => (
-                    <li key={item} className="flex items-start gap-3">
-                      <span className="text-accent mt-0.5">✓</span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-                <p className="text-xs uppercase tracking-[0.3em] text-text-muted">Not included</p>
-                <ul className="mt-4 space-y-2 text-sm text-text">
-                  {foundationPackage.exclusions.map((item) => (
-                    <li key={item} className="flex items-start gap-3">
-                      <span className="mt-1.5 h-2 w-2 rounded-full bg-border shrink-0" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-                <div className="mt-6 md:hidden">
-                  <p className="text-xs uppercase tracking-[0.3em] text-text-muted">Payment terms</p>
-                  <ul className="mt-4 space-y-2 text-sm text-text-muted">
-                    {foundationPackage.paymentTerms.map((term) => (
-                      <li key={term}>{term}</li>
-                    ))}
-                  </ul>
-                  <div className="mt-6 flex justify-center">
-                    <Link to="/contact?budget=9500-15000" className="w-full">
-                      <button className="w-full py-3 rounded-full border border-border hover:bg-text/5 font-semibold text-sm transition-colors text-text">
-                        Discuss project
-                      </button>
-                    </Link>
-                  </div>
-                </div>
+              <h3 className="text-lg font-semibold text-accent-2">{foundationPackage.title}</h3>
+              <p className="mt-4 text-3xl font-semibold text-accent whitespace-nowrap">{foundationPackage.price}</p>
+              <div className="mt-4 text-sm text-text-muted mb-8">
+                <p>{foundationPackage.description}</p>
               </div>
-            </div>
-            <div className="mt-auto hidden pt-10 md:block">
-              <p className="text-xs uppercase tracking-[0.3em] text-text-muted">Payment terms</p>
-              <ul className="mt-4 space-y-2 text-sm text-text-muted">
-                {foundationPackage.paymentTerms.map((term) => (
-                  <li key={term}>{term}</li>
+              
+              <ul className="space-y-3 mb-8 text-text text-sm flex-grow">
+                {foundationPackage.includes.map((item) => (
+                  <li key={item} className="flex items-start gap-3">
+                    <span className="text-accent mt-0.5">✓</span>
+                    {item}
+                  </li>
                 ))}
               </ul>
-              <div className="mt-8">
-                <Link to="/contact?budget=9500-15000">
-                   <button className="w-full py-3 rounded-full border border-border hover:bg-text/5 font-semibold text-sm transition-colors text-text">
-                      Discuss project
-                   </button>
-                </Link>
-              </div>
-            </div>
-          </motion.div>
 
-          {/* Starter (Featured) */}
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: false }}
-            transition={{ delay: 0.1 }}
-            className="flex h-full flex-col rounded-3xl border border-accent/40 bg-[#121214] p-8 shadow-[0_0_40px_rgba(0,229,255,0.1)] relative overflow-hidden pricing-card-featured-shine"
-          >
-              <div className="absolute top-0 right-0 py-1 px-4 text-xs font-semibold bg-accent text-bg rounded-bl-xl tracking-wider uppercase">Most Popular</div>
-              <h3 className="text-lg font-semibold text-accent-2">{starterPackage.title}</h3>
-              <p className="mt-4 text-3xl font-semibold text-accent">{starterPackage.price}</p>
-               <div className="mt-4 text-sm text-text-muted md:min-h-[140px]">
-                 <p>{starterPackage.description}</p>
-                 <p className="mt-3 font-medium text-text">Includes core build essentials.</p>
-               </div>
-              <button
-                type="button"
-                onClick={() => setMobileOpen((prev) => ({ ...prev, starter: !prev.starter }))}
-                className="mt-4 inline-flex w-full items-center justify-between rounded-full border border-accent/20 px-4 py-2.5 text-[0.68rem] uppercase tracking-[0.16em] text-text-muted md:hidden"
-              >
-                <span>View included items</span>
-                <span aria-hidden="true" className="text-accent">
-                  {mobileOpen.starter ? "-" : "+"}
-                </span>
-              </button>
-              <div
-                className={`grid transition-[grid-template-rows,opacity,margin] duration-300 md:mt-6 md:block md:opacity-100 ${
-                  mobileOpen.starter ? "mt-6 grid-rows-[1fr] opacity-100" : "mt-0 grid-rows-[0fr] opacity-0"
-                }`.trim()}
-              >
-                <div className="space-y-3 overflow-hidden text-sm text-text-muted md:overflow-visible">
-                  <p className="text-sm font-semibold text-accent-2 mb-4">Includes everything in Foundation, plus:</p>
-                  <ul className="space-y-3 text-text">
-                    {starterUniqueIncludes.map((item) => (
-                      <li key={item} className="flex items-start gap-3">
-                        <span className="text-accent mt-0.5">✓</span>
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="mt-8 md:hidden">
-                    <p className="text-xs uppercase tracking-[0.3em] text-text-muted">Payment terms</p>
-                    <ul className="mt-4 space-y-2 text-sm text-text-muted">
-                      {starterPackage.paymentTerms.map((term) => (
-                        <li key={term}>{term}</li>
-                      ))}
-                    </ul>
-                    <div className="mt-8">
-                      <Link to="/contact?budget=15000-30000" className="w-full">
-                        <ShimmerButton
-                          shimmerColor="#0A0A0C"
-                          shimmerDuration="4.2s"
-                          background="#00E5FF"
-                          className="w-full px-5 py-3 text-sm font-semibold tracking-wide text-black"
-                        >
-                          Discuss your project
-                        </ShimmerButton>
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="mt-auto hidden pt-10 md:block">
-                <p className="text-xs uppercase tracking-[0.3em] text-text-muted">Payment terms</p>
-                <ul className="mt-4 space-y-2 text-sm text-text-muted">
-                  {starterPackage.paymentTerms.map((term) => (
-                    <li key={term}>{term}</li>
-                  ))}
-                </ul>
-                <div className="mt-8">
-                  <Link to="/contact?budget=15000-30000">
-                    <ShimmerButton
-                      shimmerColor="#060818"
-                      shimmerDuration="4.2s"
-                      background="#00E5FF"
-                      className="w-full px-5 py-3 text-sm font-semibold tracking-wide text-black"
-                    >
-                      Discuss project
-                    </ShimmerButton>
-                  </Link>
-                </div>
-              </div>
-          </motion.div>
-
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: false }}
-            transition={{ delay: 0.2 }}
-            className="flex h-full flex-col rounded-3xl border border-border/40 bg-bg-elev p-8 hover:border-accent/30 transition-all"
-          >
-            <h3 className="text-lg font-semibold text-accent-2">{growthPackage.title}</h3>
-            <p className="mt-4 text-3xl font-semibold text-accent">{growthPackage.price}</p>
-            <div className="mt-4 text-sm text-text-muted md:min-h-[140px]">
-              <p>{growthPackage.description}</p>
-            </div>
-            <button
-              type="button"
-              onClick={() => setMobileOpen((prev) => ({ ...prev, growth: !prev.growth }))}
-              className="mt-4 inline-flex w-full items-center justify-between rounded-full border border-border px-4 py-2.5 text-[0.68rem] uppercase tracking-[0.16em] text-text-muted md:hidden"
-            >
-              <span>View included items</span>
-              <span aria-hidden="true" className="text-accent">
-                {mobileOpen.growth ? "-" : "+"}
-              </span>
-            </button>
-            <div
-              className={`grid transition-[grid-template-rows,opacity,margin] duration-300 md:mt-6 md:block md:opacity-100 ${
-                mobileOpen.growth ? "mt-6 grid-rows-[1fr] opacity-100" : "mt-0 grid-rows-[0fr] opacity-0"
-              }`.trim()}
-            >
-              <div className="space-y-3 overflow-hidden text-sm text-text-muted md:overflow-visible">
-                <p className="text-sm font-semibold text-text mb-4">Includes everything in Starter, plus:</p>
-                <ul className="space-y-3 text-text">
-                  {growthUniqueIncludes.map((item) => (
-                    <li key={item} className="flex items-start gap-3">
-                      <span className="text-accent mt-0.5">✓</span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-                <div className="mt-8 md:hidden">
-                  <p className="text-xs uppercase tracking-[0.3em] text-text-muted">Payment terms</p>
-                  <ul className="mt-4 space-y-2 text-sm text-text-muted">
-                    {growthPackage.paymentTerms.map((term) => (
-                      <li key={term}>{term}</li>
-                    ))}
-                  </ul>
-                  <div className="mt-6">
-                    <Link to="/contact?budget=30000%2B">
-                      <button className="w-full py-3 rounded-full border border-border hover:bg-text/5 font-semibold text-sm transition-colors text-text">
-                        Discuss project
-                      </button>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="mt-auto hidden pt-10 md:block">
-              <p className="text-xs uppercase tracking-[0.3em] text-text-muted">Payment terms</p>
-              <ul className="mt-4 space-y-2 text-sm text-text-muted">
-                {growthPackage.paymentTerms.map((term) => (
-                  <li key={term}>{term}</li>
-                ))}
-              </ul>
-              <div className="mt-8">
-                <Link to="/contact?budget=30000%2B">
+              <div className="mt-auto pt-6">
+                <Link to="/contact?budget=7500-12500" className="w-full">
                   <button className="w-full py-3 rounded-full border border-border hover:bg-text/5 font-semibold text-sm transition-colors text-text">
-                     Discuss project
+                    Discuss project
                   </button>
                 </Link>
               </div>
-            </div>
-          </motion.div>
-        </div>
+            </motion.div>
 
-        <div className="mt-16 text-center max-w-2xl mx-auto p-10 rounded-3xl bg-bg-panel/30 border border-border backdrop-blur-sm relative overflow-hidden">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-accent/5 blur-[50px] z-0 pointer-events-none"/>
-          <div className="relative z-10">
-            <h3 className="text-xl font-semibold text-text">{customPackage.title}</h3>
-            <p className="mt-4 text-sm text-text-muted">{customPackage.description}</p>
-            <p className="mt-3 text-sm text-text-muted">
-              For larger businesses or advanced functionality. May include 15+ pages.
-            </p>
-            <div className="mt-8 flex justify-center">
-              <Link to="/contact">
-                <ShimmerButton
-                  shimmerColor="#0A0A0C"
-                  shimmerDuration="4.2s"
-                  background="#00E5FF"
-                  className="px-6 py-3 text-sm font-semibold tracking-wide text-black mx-auto"
-                >
-                  Request a custom scope
-                </ShimmerButton>
-              </Link>
+            {/* Starter (Featured) */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: false }}
+              transition={{ delay: 0.1 }}
+              className="flex h-full flex-col rounded-3xl border border-accent/40 bg-[#121214] p-8 shadow-[0_0_40px_rgba(0,229,255,0.1)] relative overflow-hidden pricing-card-featured-shine"
+            >
+              <div className="absolute top-0 right-0 py-1 px-4 text-xs font-semibold bg-accent text-bg rounded-bl-xl tracking-wider uppercase">Most Popular</div>
+              <h3 className="text-lg font-semibold text-accent-2">{starterPackage.title}</h3>
+              <p className="mt-4 text-3xl font-semibold text-accent whitespace-nowrap">{starterPackage.price}</p>
+              <div className="mt-4 text-sm text-text-muted mb-8">
+                <p>{starterPackage.description}</p>
+              </div>
+
+              <ul className="space-y-3 mb-8 text-text text-sm flex-grow">
+                {starterPackage.includes.map((item) => (
+                  <li key={item} className="flex items-start gap-3">
+                    <span className="text-accent mt-0.5">✓</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-auto pt-6">
+                <Link to="/contact?budget=12500-25000" className="w-full">
+                  <ShimmerButton
+                    shimmerColor="#0A0A0C"
+                    shimmerDuration="4.2s"
+                    background="#00E5FF"
+                    className="w-full px-5 py-3 text-sm font-semibold tracking-wide text-black"
+                  >
+                    Discuss project
+                  </ShimmerButton>
+                </Link>
+              </div>
+            </motion.div>
+
+            {/* Growth */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: false }}
+              transition={{ delay: 0.2 }}
+              className="flex h-full flex-col rounded-3xl border border-border/40 bg-bg-elev p-8 hover:border-accent/30 transition-all"
+            >
+              <h3 className="text-lg font-semibold text-accent-2">{growthPackage.title}</h3>
+              <p className="mt-4 text-3xl font-semibold text-accent whitespace-nowrap">{growthPackage.price}</p>
+              <div className="mt-4 text-sm text-text-muted mb-8">
+                <p>{growthPackage.description}</p>
+              </div>
+
+              <ul className="space-y-3 mb-8 text-text text-sm flex-grow">
+                {growthPackage.includes.map((item) => (
+                  <li key={item} className="flex items-start gap-3">
+                    <span className="text-accent mt-0.5">✓</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-auto pt-6">
+                <Link to="/contact?budget=25000-plus" className="w-full">
+                  <button className="w-full py-3 rounded-full border border-border hover:bg-text/5 font-semibold text-sm transition-colors text-text">
+                    Discuss project
+                  </button>
+                </Link>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Custom Banner */}
+          <div className="mt-16 text-center max-w-2xl mx-auto p-10 rounded-3xl bg-bg-panel/30 border border-border backdrop-blur-sm relative overflow-hidden">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-accent/5 blur-[50px] z-0 pointer-events-none"/>
+            <div className="relative z-10">
+              <h3 className="text-xl font-semibold text-text">{customPackage.title}</h3>
+              <p className="mt-4 text-sm text-text-muted">{customPackage.description}</p>
+              <div className="mt-8 flex justify-center">
+                <Link to="/contact">
+                  <ShimmerButton
+                    shimmerColor="#0A0A0C"
+                    shimmerDuration="4.2s"
+                    background="#00E5FF"
+                    className="px-6 py-3 text-sm font-semibold tracking-wide text-black mx-auto"
+                  >
+                    Request a custom scope
+                  </ShimmerButton>
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
         </div>
       </Section>
 

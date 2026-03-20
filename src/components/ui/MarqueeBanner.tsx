@@ -16,7 +16,7 @@ const MarqueeBanner: React.FC<MarqueeBannerProps> = ({
 
   React.useEffect(() => {
     const updateDuration = () => {
-      setDuration(window.innerWidth < 768 ? 32 : 45);
+      setDuration(window.innerWidth < 768 ? 18 : 28);
     };
     updateDuration();
     window.addEventListener("resize", updateDuration);

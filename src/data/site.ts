@@ -126,14 +126,9 @@ export const foundationPackage = {
     "Works beautifully on mobile phones",
     "Easy-to-use contact form",
     "WhatsApp chat integration",
-    "Google Maps setup",
+    "30 Days Support after launch",
+    "Professional Search and Visibility",
     "1 Revision Round",
-    "Support after your launch",
-  ],
-  paymentTerms: ["50% deposit", "50% before launch"],
-  exclusions: [
-    "Layout structure cannot be modified",
-    "Design customisation is limited to colours, logo, and content",
   ],
 };
 
@@ -143,16 +138,15 @@ export const starterPackage = {
   description:
     "Ideal for growing businesses that want to stand out. We'll create a unique, custom-made site with warm, clear messaging that helps new customers find and trust you.",
   includes: [
-    "Up to 5 unique pages",
+    "Up to 5-6 unique pages",
     "A custom design made just for you",
     "Mobile-first layout for easy browsing",
     "Social media integration",
+    "45 Days Support after launch",
     "Google Analytics setup",
-    "Google Business directions",
+    "Advanced Search and Visibility",
     "2 Revision Rounds",
-    "45 day Support after launch",
   ],
-  paymentTerms: ["50% deposit", "50% on launch"],
 };
 
 export const growthPackage = {
@@ -162,25 +156,22 @@ export const growthPackage = {
     "Designed for established businesses ready to reach the next level. We'll build a fully tailored space for your brand, with a deeper focus on telling your story.",
   includes: [
     "Up to 10-12 tailored pages",
-    "Full service showcase structure",
     "Customer testimonials to build trust",
     "Professional team showcase section",
     "Gallery of your best work",
     "Multi-step enquiry forms",
     "Google Business setup (to help you grow)",
-    "Sitemap submission (for search visibility)",
-    "3 Revision Rounds",
-    "90 day Support after launch",
+    "60 Days Support after launch",
+    "2 Revision Rounds",
   ],
-  paymentTerms: ["40% deposit", "40% at design approval", "20% on launch"],
 };
 
 export const customPackage = {
-  title: "Custom Build",
+  title: "Custom",
   price: "Scoped per project",
   description:
     "For truly unique projects that need something purely one-of-a-kind. We'll work closely with you to bring your vision to life, building a digital home that fits your business perfectly.",
-  highlights: [
+  includes: [
     "A custom plan that fits your goals",
     "Work directly with your builder",
     "A thoughtful plan for your project",
@@ -222,40 +213,6 @@ export const stabilisationPlan = {
   covers: ["Bug fixes", "Minor corrections", "Small adjustments"],
   excludes: ["New features", "Redesigns"],
 };
-
-export const carePlans = [
-  {
-    title: "Basic Care",
-    price: "SCR 1,200 - 2,000 per month",
-    features: ["Security check", "Backup monitoring", "Minor updates", "Email support"],
-    note: "Does not include structural changes or search optimisation.",
-  },
-  {
-    title: "Growth Care",
-    price: "SCR 3,000 - 4,500 per month",
-    features: [
-      "Up to 2 hours of structured updates",
-      "Search visibility improvements",
-      "Google presence review",
-      "Performance optimisation",
-      "Simple monthly summary",
-    ],
-  },
-  {
-    title: "Full Care",
-    price: "SCR 6,000 - 10,000 per month",
-    features: [
-      "Up to 4 hours of improvements",
-      "Ongoing search optimisation",
-      "Content expansion support",
-      "Monthly reporting",
-      "Conversion improvement suggestions",
-      "Priority scheduling",
-    ],
-  },
-];
-
-export const carePlanNotes = ["3-month minimum commitment", "Unused time does not roll over"];
 
 export const trustStatement = [
   "Clear scope",
@@ -304,98 +261,6 @@ export const workItems = [
     imageWebp: beautyPreviewWebp,
     imageWebp800: beautyPreviewWebp800,
     url: "https://demo-beauty.horizondigitalsey.com/",
-  },
-];
-
-export const processSteps = [
-  {
-    title: "Discovery & goals",
-    description: "We learn about your business, your customers, and what you need the website to actually do.",
-  },
-  {
-    title: "Design & prototype",
-    description: "We shape the layout, look, and structure — and you review it before a single line of code is written.",
-  },
-  {
-    title: "Build & launch",
-    description: "Once approved, we build it fast, test it thoroughly, and launch when everything looks right.",
-  },
-  {
-    title: "Support & improvement",
-    description: "We stick around after launch — to fix any issues and keep things running smoothly as you grow.",
-  },
-];
-
-export const pricingTiers = [
-  {
-    title: "Foundation",
-    price: "From SCR 7,500",
-    description:
-      "Perfect for businesses looking for a simple, professional home online. A beautiful, structured space that works from day one.",
-    features: [
-      "Up to 3 clear pages",
-      "Choice of professional Horizon layouts",
-      "Works beautifully on mobile phones",
-      "Easy-to-use contact form",
-      "WhatsApp chat integration",
-      "Google Maps setup",
-      "1 revision round",
-      "Support after your launch",
-    ],
-    exclusions: [
-      "Layout structure cannot be modified",
-      "Design customisation is limited to colours, logo, and content",
-    ],
-  },
-  {
-    title: "Starter",
-    price: "From SCR 12,500",
-    description: "Ideal for growing businesses that want to stand out with a unique, custom-made site that helps new customers find and trust you.",
-    badge: "Most popular",
-    features: [
-      "Up to 5 unique pages",
-      "A custom design made just for you",
-      "Mobile-first layout for easy browsing",
-      "Social media integration",
-      "Google Analytics setup",
-      "Google Business directions",
-      "2 revision rounds",
-      "45 day support after launch",
-    ],
-    exclusions: ["Hosting", "Ongoing updates beyond support period", "Advanced integrations"],
-  },
-  {
-    title: "Growth",
-    price: "From SCR 25,000",
-    description: "Designed for established businesses ready to reach the next level — a fully tailored space with a deeper focus on telling your story.",
-    features: [
-      "Up to 10-12 tailored pages",
-      "Full service showcase structure",
-      "Customer testimonials to build trust",
-      "Professional team showcase section",
-      "Gallery of your best work",
-      "Multi-step enquiry forms",
-      "Google Business setup (to help you grow)",
-      "Sitemap submission (for search visibility)",
-      "3 revision rounds",
-      "90 day support after launch",
-    ],
-    exclusions: ["Hosting", "Ongoing feature development", "Complex integrations"],
-  },
-  {
-    title: "Custom",
-    price: "Let's chat",
-    priceNote: "Final pricing is agreed based on your project scope and goals.",
-    description: "For truly unique projects that need something purely one-of-a-kind. We work closely with you to bring your vision to life.",
-    features: [
-      "Custom page count",
-      "Advanced layouts",
-      "Custom functionality",
-      "Structured content planning",
-      "Expanded search configuration",
-      "Our priority support after you launch",
-    ],
-    exclusions: ["Hosting", "Ongoing feature development", "Large system integrations"],
   },
 ];
 

@@ -794,8 +794,8 @@ html .section-eyebrow-glow {
 
 @media (min-width: 768px) {
   .site-header-dark.is-scrolled {
-    background-color: #060818 !important;
-    border-color: rgba(0, 229, 255, 0.14) !important;
+    background-color: #0F141A !important;
+    border-color: rgba(94, 209, 222, 0.14) !important;
     backdrop-filter: blur(12px) !important;
   }
 }
