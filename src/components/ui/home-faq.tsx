@@ -22,7 +22,7 @@ function FaqAccordionItem({ item }: { item: HomeFaqItem }) {
   return (
     <motion.div
       animate={isOpen ? "open" : "closed"}
-      className={`rounded-xl border border-border bg-bg transition-colors ${isOpen ? "bg-bg-elev" : ""}`.trim()}
+      className={`rounded-xl border border-border bg-[#1A1A1C] transition-colors ${isOpen ? "bg-[#252528]" : ""}`.trim()}
     >
       <button
         type="button"

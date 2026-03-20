@@ -60,7 +60,7 @@ export default function About() {
 
             <motion.div className="lg:col-span-6 relative" {...fadeIn} transition={{ delay: 0.2 }}>
                <div className="absolute -inset-4 bg-accent-2/5 blur-[80px] rounded-full z-0" />
-               <div className="relative z-10 p-8 rounded-2xl border border-border bg-gradient-to-bl from-white/[0.03] to-transparent backdrop-blur-sm">
+               <div className="relative z-10 p-8 rounded-2xl border border-border bg-[#121214] backdrop-blur-sm">
                  <h3 className="text-2xl font-semibold text-text">We think about your customer, not just the design</h3>
                   <p className="mt-4 text-base text-text-muted leading-relaxed">
                     Every page is planned to take your visitor from curiosity to confidence. We want them to understand what you do and feel good about reaching out.

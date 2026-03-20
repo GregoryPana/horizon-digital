@@ -38,20 +38,20 @@
   color-scheme: dark;
 
   /* -- Backgrounds -- */
-  --bg: #000000;
-  --bg-elev: #0D0D0E;
-  --bg-panel: #161618;
-
-  /* -- Text -- */
-  --text: #FFFFFF;
-  --text-muted: #9BA3AF;
-  --text-dim: #6B7280;
+  --bg: #0D0D0F;
+  --bg-elev: #121214;
+  --bg-panel: #1A1A1C;
 
   /* -- Accents -- */
-  --accent: #00FFFF;
-  --accent-soft: rgba(0, 255, 255, 0.08); /* Soft cyan glow */
-  --accent-2: #00E5FF;
-  --accent-2-soft: rgba(0, 229, 255, 0.08);
+  --accent: #5ED1DE; /* Muted Cyan-Blue */
+  --accent-soft: rgba(94, 209, 222, 0.08); 
+  --accent-2: #38BDF8; /* Sky Blue */
+  --accent-2-soft: rgba(56, 189, 248, 0.08);
+
+  /* -- Text -- */
+  --text: #F2F4F7;
+  --text-muted: #8E9196; /* Muted Gray */
+  --text-dim: #667085;
 
   /* -- Borders & Glow -- */
   --border: rgba(255, 255, 255, 0.08);
@@ -673,11 +673,11 @@ html .section-eyebrow-glow {
 }
 
 .site-header-dark {
-  --bg-elev: #000000;
-  --border: rgba(0, 255, 255, 0.08);
-  --text: #FFFFFF;
-  --text-muted: rgba(0, 255, 255, 0.6);
-  --glow: rgba(0, 255, 255, 0.4);
+  --bg-elev: #0D0F16;
+  --border: rgba(94, 209, 222, 0.12);
+  --text: #F2F4F7;
+  --text-muted: #8E9196;
+  --glow: rgba(94, 209, 222, 0.3);
   background-color: transparent !important;
   border-color: transparent !important;
   backdrop-filter: none !important;
@@ -690,21 +690,21 @@ html .section-eyebrow-glow {
 }
 
 .site-header-dark.is-scrolled {
-  background-color: rgba(6, 8, 24, 0.88) !important;
-  border-color: rgba(0, 229, 255, 0.08) !important;
+  background-color: rgba(13, 15, 22, 0.92) !important;
+  border-color: rgba(94, 209, 222, 0.12) !important;
   backdrop-filter: blur(12px) !important;
   box-shadow: 0 14px 32px rgba(0, 0, 0, 0.28);
 }
 
 
 .site-footer-dark {
-  --bg-elev: #060818;
-  --border: rgba(0, 229, 255, 0.08);
-  --text: #EAF2FF;
-  --text-muted: rgba(168, 240, 255, 0.55);
-  --glow: rgba(0, 229, 255, 0.45);
-  background-color: #060818 !important;
-  border-color: rgba(0, 229, 255, 0.08) !important;
+  --bg-elev: #0D0F16;
+  --border: rgba(94, 209, 222, 0.1);
+  --text: #F2F4F7;
+  --text-muted: #8E9196;
+  --glow: rgba(94, 209, 222, 0.3);
+  background-color: #0D0F16 !important;
+  border-color: rgba(94, 209, 222, 0.1) !important;
 }
 
 

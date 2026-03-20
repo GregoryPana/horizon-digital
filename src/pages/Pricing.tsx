@@ -250,11 +250,11 @@ export default function Pricing() {
         title="Websites that work for your business"
         description="Every project is built around your goals — not a template. Here's what that looks like."
       >
-        <div id="panel-overview" role="tabpanel" aria-hidden={!showSelectedOrAll("overview")} className="bg-bg-panel/20 p-8 rounded-2xl border border-border">
+        <div id="panel-overview" role="tabpanel" aria-hidden={!showSelectedOrAll("overview")} className="bg-[#121214]/20 p-8 rounded-2xl border border-border">
           <p className="text-sm md:text-base text-text-muted max-w-4xl text-center mx-auto">{servicesPricingIntro.summary}</p>
           <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {services.slice(0, 5).map((service) => (
-              <div key={service.title} className="p-6 rounded-2xl border border-border bg-bg-panel hover:border-accent/30 transition-colors">
+              <div key={service.title} className="p-6 rounded-2xl border border-border bg-[#121214] hover:border-accent/30 transition-colors">
                 <h3 className="text-base font-semibold text-accent-2">{service.title}</h3>
                 <p className="mt-3 text-sm text-text-muted">{service.description}</p>
               </div>
@@ -387,7 +387,7 @@ export default function Pricing() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: false }}
             transition={{ delay: 0.1 }}
-            className="flex h-full flex-col rounded-3xl border border-accent/40 bg-bg-panel p-8 shadow-[0_0_40px_rgba(0,229,255,0.1)] relative overflow-hidden pricing-card-featured-shine"
+            className="flex h-full flex-col rounded-3xl border border-accent/40 bg-[#121214] p-8 shadow-[0_0_40px_rgba(0,229,255,0.1)] relative overflow-hidden pricing-card-featured-shine"
           >
               <div className="absolute top-0 right-0 py-1 px-4 text-xs font-semibold bg-accent text-bg rounded-bl-xl tracking-wider uppercase">Most Popular</div>
               <h3 className="text-lg font-semibold text-accent-2">{starterPackage.title}</h3>

@@ -56,7 +56,7 @@ export default function WhatYouNeed() {
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
             
             <motion.div 
-              className="md:col-span-4 rounded-2xl border border-border bg-bg-panel backdrop-blur pb-10 pt-12 px-8 text-center hover:border-accent/30 transition-all duration-500 group"
+              className="md:col-span-4 rounded-2xl border border-border bg-[#121214] backdrop-blur pb-10 pt-12 px-8 text-center hover:border-accent/30 transition-all duration-500 group"
               {...fadeInUp} transition={{ delay: 0.1 }}
             >
               <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-accent/10 mb-6 group-hover:scale-110 transition-transform duration-500">
@@ -69,7 +69,7 @@ export default function WhatYouNeed() {
             </motion.div>
 
             <motion.div 
-              className="md:col-span-4 rounded-2xl border border-border bg-bg-panel backdrop-blur pb-10 pt-12 px-8 text-center hover:border-accent-2/30 transition-all duration-500 group"
+              className="md:col-span-4 rounded-2xl border border-border bg-[#121214] backdrop-blur pb-10 pt-12 px-8 text-center hover:border-accent-2/30 transition-all duration-500 group"
               {...fadeInUp} transition={{ delay: 0.2 }}
             >
               <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-accent-2/10 mb-6 group-hover:scale-110 transition-transform duration-500">
@@ -82,7 +82,7 @@ export default function WhatYouNeed() {
             </motion.div>
 
             <motion.div 
-              className="md:col-span-4 rounded-2xl border border-border bg-bg-panel backdrop-blur pb-10 pt-12 px-8 text-center hover:border-accent/30 transition-all duration-500 group"
+              className="md:col-span-4 rounded-2xl border border-border bg-[#121214] backdrop-blur pb-10 pt-12 px-8 text-center hover:border-accent/30 transition-all duration-500 group"
               {...fadeInUp} transition={{ delay: 0.3 }}
             >
               <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-accent/10 mb-6 group-hover:scale-110 transition-transform duration-500">

@@ -280,7 +280,7 @@ export default function Home() {
               const Icon = Icons[idx];
               
               return (
-                <div key={service.title} className="p-10 rounded-2xl bg-white/[0.03] border border-white/[0.08] hover:border-cyan-400/30 transition-all group">
+                <div key={service.title} className="p-10 rounded-2xl bg-[#121214] border border-white/[0.08] hover:border-cyan-400/30 transition-all group">
                   <div className="w-12 h-12 rounded-lg bg-cyan-400/10 flex items-center justify-center mb-10 group-hover:scale-110 transition-transform">
                     <Icon />
                   </div>
@@ -363,8 +363,8 @@ export default function Home() {
                 key={pkg.title}
                 className={`flex flex-col relative p-10 rounded-2xl border transition-all duration-500 ${
                   pkg.featured 
-                    ? "bg-black border-cyan-400/60 shadow-[0_0_80px_rgba(34,211,238,0.1)] scale-105 z-20" 
-                    : "bg-white/[0.02] border-white/[0.1] z-10 hover:border-white/[0.2]"
+                    ? "bg-[#121214] border-cyan-400/60 shadow-[0_0_80px_rgba(34,211,238,0.1)] scale-105 z-20" 
+                    : "bg-[#121214] border-white/[0.1] z-10 hover:border-white/[0.2]"
                 }`}
               >
                 {pkg.featured && (
@@ -455,7 +455,7 @@ export default function Home() {
             initial={{ opacity: shouldReduceMotion ? 1 : 0, scale: shouldReduceMotion ? 1 : 0.98 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: false, amount: 0.4 }}
-            className="group relative overflow-hidden rounded-3xl border border-border/50 bg-bg-panel/30"
+            className="group relative overflow-hidden rounded-3xl border border-border/50 bg-[#1A1A1C]"
           >
             <div className="grid lg:grid-cols-12">
               <div className="relative z-20 flex flex-col justify-center p-10 md:p-16 lg:col-span-7">
@@ -557,7 +557,7 @@ export default function Home() {
         description="Honest, plain-language answers — so you feel confident before we begin."
       >
         <HomeFaq categories={homeFaqCategories} />
-        <div className="mt-10 flex flex-col items-center gap-6 rounded-3xl border border-border bg-bg-elev px-6 py-8 text-center md:flex-row md:justify-between md:text-left">
+        <div className="mt-10 flex flex-col items-center gap-6 rounded-3xl border border-border bg-[#1A1A1C] px-6 py-8 text-center md:flex-row md:justify-between md:text-left">
           <p className="text-sm text-text-muted">Still have questions? We can walk you through it.</p>
           <Link to="/contact">
              <ShimmerButton
