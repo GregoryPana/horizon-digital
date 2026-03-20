@@ -26,7 +26,7 @@ export default function HomeHero() {
           <div className="absolute inset-y-0 left-0 w-full md:w-[75%] bg-gradient-to-r from-black/95 via-black/45 to-transparent z-[2]" />
       </div>
 
-      <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col items-center justify-center px-6 pt-12 md:items-start md:px-10 lg:px-14">
+      <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col items-center justify-center px-6 pt-12 md:items-start md:px-6 lg:px-8">
         {/* Left Side: Content */}
         <div className="w-full text-center md:items-start md:text-left z-20 md:max-w-4xl">
           <motion.div
@@ -35,7 +35,7 @@ export default function HomeHero() {
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <p className="text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.45em] text-accent mb-6 font-display italic">Horizon Digital • Web Design Studio • Seychelles</p>
-            <h1 className="font-display text-4xl sm:text-5xl font-medium leading-[1.08] tracking-tight text-white md:text-7xl lg:text-8xl xl:text-9xl md:leading-[0.98] uppercase md:tracking-normal">
+            <h1 className="font-display text-3xl sm:text-4xl font-medium leading-[1.05] tracking-tight text-white md:text-5xl lg:text-6xl uppercase md:leading-[0.92] md:tracking-normal">
               YOUR WEBSITE <br />
               SHOULD BRING YOU <br />
               CUSTOMERS <br />
