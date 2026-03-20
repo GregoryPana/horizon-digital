@@ -8,7 +8,7 @@ export default function HomeHero() {
   const handleWorkScrollTop = () => scrollToTopSmooth();
 
   return (
-    <section id="top" className="relative h-[82vh] md:h-screen min-h-[600px] md:min-h-[700px] w-full overflow-hidden bg-black text-white">
+    <section id="top" className="relative h-[75vh] md:h-screen min-h-[550px] md:min-h-[700px] w-full overflow-hidden bg-black text-white">
       {/* Background Tech Image with Mask */}
       <div className="absolute inset-0 z-0">
          <picture>
@@ -39,20 +39,20 @@ export default function HomeHero() {
               YOUR WEBSITE <br />
               SHOULD BRING YOU <br />
               CUSTOMERS <br />
-              <span className="text-accent italic lowercase font-normal">and</span> LOOK GOOD.
+              <span className="text-accent italic font-normal">&</span> LOOK GOOD.
             </h1>
-            <p className="mt-6 md:mt-8 max-w-[46ch] text-sm md:text-lg leading-relaxed text-white/70 font-light mx-auto md:mx-0">
+            <p className="mt-8 max-w-[46ch] text-sm md:text-lg leading-relaxed text-white/70 font-light mx-auto md:mx-0 hidden md:block">
               Your business deserves a website that works as hard as you do — beautifully designed, easy to find, and built to turn visitors into customers you're proud to serve.
             </p>
             
             {/* Feature Tags List */}
-            <div className="mt-8 flex flex-wrap justify-center md:justify-start gap-x-6 gap-y-3 opacity-60">
+            <div className="mt-6 md:mt-8 flex flex-wrap justify-center md:justify-start gap-x-6 gap-y-3 opacity-60">
               {['CUSTOM DESIGN', 'MOBILE READY', 'FAST LOADING', 'SEO READY'].map((tag) => (
                 <span key={tag} className="text-[9px] font-bold tracking-[0.25em] text-accent uppercase border-b border-accent/20 pb-0.5">{tag}</span>
               ))}
             </div>
             
-            <div className="mt-12 flex flex-col items-center gap-6 sm:flex-row sm:justify-center md:justify-start">
+            <div className="mt-8 md:mt-12 flex flex-col items-center gap-6 sm:flex-row sm:justify-center md:justify-start">
               <Link to="/contact">
                 <button className="rounded-lg bg-accent px-10 py-4 text-sm font-black uppercase tracking-[0.2em] text-black transition-all hover:opacity-90 hover:scale-[1.02] active:scale-95 shadow-[0_0_30px_var(--glow)]">
                   Get Started
