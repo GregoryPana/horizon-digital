@@ -17,74 +17,122 @@ export default function HomeHero() {
               src={heroDesktop} 
               alt="Tech interface background" 
               className="w-full h-full object-cover object-center opacity-85" 
+              fetchPriority="high"
+              loading="eager"
             />
          </picture>
          {/* Bottom Fade Mask */}
          <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black via-black/40 to-transparent z-[1]" />
          {/* Top Overlay for Contrast */}
-         <div className="absolute inset-0 bg-black/5 z-[1]" />
-          <div className="absolute inset-y-0 left-0 w-full md:w-[75%] bg-gradient-to-r from-black/95 via-black/45 to-transparent z-[2]" />
+         <div className="absolute inset-0 z-[2]">
+          <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-transparent md:hidden" />
+          <div className="absolute inset-y-0 left-0 hidden w-[75%] bg-gradient-to-r from-black/95 via-black/45 to-transparent md:block" />
+        </div>
       </div>
 
-      <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col items-center justify-between px-6 pt-24 pb-[4svh] md:justify-center md:items-start md:pb-0 md:px-6 lg:px-8">
-        {/* Top/Center: Header Content */}
-        <div className="w-full text-center md:items-start md:text-left z-20 md:max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="flex flex-col"
-          >
-            <div className="mb-auto md:mb-0">
-              <p className="text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.45em] text-accent mb-6 font-display italic">Horizon Digital • Web Design Studio • Seychelles</p>
-              <h1 className="font-display text-3xl sm:text-4xl font-medium leading-[1.05] tracking-tight text-white md:text-5xl lg:text-6xl uppercase md:leading-[0.92] md:tracking-normal">
-                YOUR WEBSITE <br />
-                SHOULD BRING YOU <br />
-                CUSTOMERS <br />
-                <span className="text-accent italic font-normal">&</span> LOOK GOOD.
-              </h1>
-            </div>
+      <div className="relative mx-auto flex min-h-[100svh] w-full max-w-[1760px] flex-col justify-between px-6 pb-[4svh] pt-32 md:min-h-screen md:px-10 md:pt-48 lg:px-14 xl:px-20">
+        {/* Main Content Area */}
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between z-20">
+          <div className="max-w-4xl">
+            {/* Eyebrow - Slide from Left */}
+            <motion.p 
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              className="text-[10px] sm:text-[11px] font-black uppercase tracking-[0.45em] text-accent section-eyebrow-glow mb-6 italic motion-safe-gpu"
+            >
+              Web Design Studio • Seychelles
+            </motion.p>
             
-            <p className="mt-8 max-w-[46ch] text-sm md:text-lg leading-relaxed text-white/70 font-light mx-auto md:mx-0 hidden md:block">
+            {/* Heading - Letter Reveal + Blur-In */}
+            <motion.h1 
+              initial={{ opacity: 0, filter: "blur(10px)", scale: 0.95 }}
+              animate={{ opacity: 1, filter: "blur(0px)", scale: 1 }}
+              transition={{ duration: 1.5, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              className="font-display text-[2.2rem] sm:text-[3.2rem] md:text-[5rem] lg:text-[6.2rem] font-medium leading-[1.05] tracking-[0.02em] text-white mb-6 uppercase md:leading-[0.92] motion-safe-gpu"
+            >
+              YOUR WEBSITE <br className="hidden sm:block" />
+              SHOULD BRING YOU <br className="hidden sm:block" />
+              CUSTOMERS <br className="hidden sm:block" />
+              <span className="text-accent italic font-normal">&</span> LOOK GOOD.
+            </motion.h1>
+
+            {/* Subheading - Fade & Gentle Rise (Desktop Only) */}
+            <motion.p 
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.2, delay: 0.9, ease: "easeOut" }}
+              className="hidden md:block max-w-[46ch] text-sm sm:text-base md:text-lg leading-relaxed text-gray-400 font-light motion-safe-gpu"
+            >
               Your business deserves a website that works as hard as you do — beautifully designed, easy to find, and built to turn visitors into customers you're proud to serve.
-            </p>
+            </motion.p>
             
-            {/* Mobile Trust Pills - Now below header */}
+            {/* Mobile Trust Pills - Staggered Scale-In */}
             <div className="mt-8 flex flex-wrap justify-center gap-x-3 gap-y-2 opacity-100 md:hidden">
-              {['CUSTOM DESIGN', 'MOBILE FIRST', 'SEO READY'].map((tag) => (
-                <span key={tag} className="text-[9px] font-bold tracking-[0.16em] text-accent uppercase border border-accent/60 px-3 py-1.5 rounded-full bg-accent/15 whitespace-nowrap">{tag}</span>
+              {['CUSTOM DESIGN', 'MOBILE FIRST', 'SEO READY'].map((tag, idx) => (
+                <motion.span 
+                  key={tag} 
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 1.2 + (idx * 0.15), ease: "backOut" }}
+                  className="text-[9px] font-bold tracking-[0.16em] text-accent uppercase border border-accent/60 px-3 py-1.5 rounded-full bg-accent/15 whitespace-nowrap motion-safe-gpu"
+                >
+                  {tag}
+                </motion.span>
               ))}
             </div>
 
-            {/* Desktop-Only Feature Tags */}
+            {/* Desktop-Only Feature Tags - Staggered Slide */}
             <div className="mt-10 hidden md:flex flex-wrap justify-start gap-x-4 gap-y-3 opacity-100">
-              {['CUSTOM DESIGN', 'MOBILE READY', 'FAST LOADING', 'SEO READY'].map((tag) => (
-                <span key={tag} className="text-[11px] font-bold tracking-[0.2em] text-accent uppercase border border-accent/50 px-4 py-1.5 rounded-full bg-accent/10 whitespace-nowrap">{tag}</span>
+              {['CUSTOM DESIGN', 'MOBILE READY', 'FAST LOADING', 'SEO READY'].map((tag, idx) => (
+                <motion.span 
+                  key={tag} 
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8, delay: 1.4 + (idx * 0.15) }}
+                  className="text-[11px] font-bold tracking-[0.2em] text-accent uppercase border border-accent/50 px-4 py-1.5 rounded-full bg-accent/10 whitespace-nowrap motion-safe-gpu"
+                >
+                  {tag}
+                </motion.span>
               ))}
             </div>
 
-            {/* Desktop CTAs */}
+            {/* Desktop CTAs - Subtle Float-In */}
             <div className="mt-8 md:mt-12 hidden md:flex flex-col items-center gap-6 sm:flex-row sm:justify-center md:justify-start">
-              <Link to="/contact">
-                <button className="rounded-lg bg-accent px-10 py-4 text-sm font-black uppercase tracking-[0.2em] text-black transition-all hover:opacity-90 hover:scale-[1.02] active:scale-95 shadow-[0_0_30px_var(--glow)]">
-                  Get Started
-                </button>
-              </Link>
-              <Link to="/work">
-                <button onClick={handleWorkScrollTop} className="group rounded-lg border border-accent/30 bg-white/[0.05] px-10 py-4 text-sm font-black uppercase tracking-[0.2em] text-white backdrop-blur-md transition-all hover:bg-white/[0.1] hover:border-accent/50">
-                  Our Work <span className="inline-block transition-transform group-hover:translate-x-1 ml-2">→</span>
-                </button>
-              </Link>
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 1.8 }}
+                className="motion-safe-gpu"
+              >
+                <Link to="/contact">
+                  <button className="rounded-lg bg-accent px-10 py-4 text-sm font-black uppercase tracking-[0.2em] text-black transition-all hover:opacity-90 hover:scale-[1.02] active:scale-95 shadow-[0_0_30px_var(--glow)]">
+                    Get Started
+                  </button>
+                </Link>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 2.0 }}
+                className="motion-safe-gpu"
+              >
+                <Link to="/work">
+                  <button onClick={handleWorkScrollTop} className="group rounded-lg border border-accent/30 bg-white/[0.05] px-10 py-4 text-sm font-black uppercase tracking-[0.2em] text-white backdrop-blur-md transition-all hover:bg-white/[0.1] hover:border-accent/50">
+                    Our Work <span className="inline-block transition-transform group-hover:translate-x-1 ml-2">→</span>
+                  </button>
+                </Link>
+              </motion.div>
             </div>
-          </motion.div>
+          </div>
         </div>
 
         {/* Mobile-Only Bottom Block */}
         <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          className="w-full flex flex-col items-center md:hidden z-20"
+          initial={{ opacity: 0, scale: 0.95, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 1.2, delay: 2.3, ease: [0.16, 1, 0.3, 1] }}
+          className="w-full flex flex-col items-center md:hidden z-20 motion-safe-gpu"
         >
           <div className="flex flex-col w-full gap-4 px-4 pb-2">
             <Link to="/contact" className="w-full">
@@ -100,7 +148,6 @@ export default function HomeHero() {
           </div>
         </motion.div>
       </div>
-
     </section>
   );
 }

@@ -375,6 +375,14 @@ option {
   will-change: opacity, transform;
 }
 
+/* Performance Optimizations for Framer Motion */
+.motion-safe-gpu {
+  transform: translate3d(0, 0, 0);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  perspective: 1000;
+}
+
 .reveal-on-scroll.is-revealed {
   opacity: 1;
   transform: translate3d(0, 0, 0);

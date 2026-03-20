@@ -35,7 +35,7 @@ function WorkShowcaseCard({ item, index, shouldReduceMotion, onPreview, layoutCl
   const imageY = useTransform(
     scrollYProgress,
     [0, 1],
-    shouldReduceMotion ? [0, 0] : [-34, 34]
+    shouldReduceMotion ? [0, 0] : [-60, 60]
   );
   const actionButtonClassName =
     "focus-ring inline-flex h-12 w-12 items-center justify-center border border-white/16 bg-black/46 text-white transition hover:border-accent/70 hover:bg-accent hover:text-black active:scale-95";
@@ -46,6 +46,7 @@ function WorkShowcaseCard({ item, index, shouldReduceMotion, onPreview, layoutCl
       initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 28 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: false, amount: 0.25 }}
+      whileTap={{ scale: 0.98 }}
       transition={{
         duration: shouldReduceMotion ? 0 : 0.55,
         delay: shouldReduceMotion ? 0 : index * 0.08,
@@ -55,7 +56,7 @@ function WorkShowcaseCard({ item, index, shouldReduceMotion, onPreview, layoutCl
     >
       <div className="grid h-full grid-rows-[1fr_auto]">
         <div className="relative min-h-[17.5rem] overflow-hidden md:min-h-0">
-          <motion.div style={{ y: imageY }} className="absolute inset-0 h-[116%]">
+          <motion.div style={{ y: imageY }} className="absolute inset-0 h-[125%]">
             <picture>
               <source
                 srcSet={`${item.imageWebp800} 800w, ${item.imageWebp} 1200w`}

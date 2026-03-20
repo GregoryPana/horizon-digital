@@ -286,7 +286,15 @@ export default function Home() {
               const Icon = Icons[idx] || Icons[0];
               
               return (
-                <div key={service.title} className="p-10 rounded-2xl bg-[#121214] border border-white/[0.08] hover:border-cyan-400/30 transition-all group">
+                <motion.div 
+                  key={service.title}
+                  initial={{ opacity: 0, x: idx % 2 === 0 ? -40 : 40, filter: "blur(5px)" }}
+                  whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+                  viewport={{ once: false, amount: 0.2 }}
+                  transition={{ duration: 0.8, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                  whileHover={{ y: -5, borderColor: "rgba(34, 211, 238, 0.4)" }}
+                  className="p-10 rounded-2xl bg-[#121214] border border-white/[0.08] transition-all group motion-safe-gpu"
+                >
                   <div className="w-12 h-12 rounded-lg bg-cyan-400/10 flex items-center justify-center mb-10 group-hover:scale-110 transition-transform">
                     <Icon />
                   </div>
@@ -294,7 +302,7 @@ export default function Home() {
                   <p className="text-gray-400 leading-relaxed">
                     {service.description}
                   </p>
-                </div>
+                </motion.div>
               );
             })}
           </div>
@@ -311,12 +319,19 @@ export default function Home() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-10 md:gap-4 relative text-center">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-10 md:gap-4 relative text-center">
              {/* Subtle line behind */}
              <div className="absolute top-10 left-0 right-0 h-px bg-white/10 hidden md:block" />
              
              {projectSteps.map((step, idx) => (
-                <div key={step.title} className="flex flex-col items-center relative z-10">
+                <motion.div 
+                  key={step.title} 
+                  initial={{ opacity: 0, scale: 0.85, rotate: idx % 2 === 0 ? -2 : 2 }}
+                  whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+                  viewport={{ once: false, amount: 0.3 }}
+                  transition={{ type: "spring", stiffness: 100, damping: 20, delay: idx * 0.12 }}
+                  className="flex flex-col items-center relative z-10 motion-safe-gpu"
+                >
                   <div className="w-20 h-20 rounded-full border-2 border-cyan-400 flex items-center justify-center text-xl font-bold text-cyan-400 bg-black mb-6 shadow-[0_0_20px_rgba(34,211,238,0.2)]">
                     {String(idx + 1).padStart(2, "0")}
                   </div>
@@ -324,7 +339,7 @@ export default function Home() {
                   <p className="text-[10px] font-bold uppercase tracking-[0.1em] text-gray-500 leading-relaxed px-2">
                     {step.description}
                   </p>
-                </div>
+                </motion.div>
              ))}
           </div>
         </div>
@@ -338,7 +353,15 @@ export default function Home() {
         description="Businesses just like yours — built with care, launched with confidence."
         containerClassName="max-w-[92rem]"
       >
-        <HomeWorkAccordion items={workItems} onPreview={setActiveWork} />
+        <motion.div
+           initial={{ opacity: 0, y: 40 }}
+           whileInView={{ opacity: 1, y: 0 }}
+           viewport={{ once: false, amount: 0.2 }}
+           transition={{ duration: 0.8, ease: "easeOut" }}
+           className="motion-safe-gpu"
+        >
+          <HomeWorkAccordion items={workItems} onPreview={setActiveWork} />
+        </motion.div>
         <div className="mt-10 flex justify-center">
           <Button
             label="View all work"
@@ -365,10 +388,14 @@ export default function Home() {
               { ...starterPackage, featured: true },
               { ...growthPackage, featured: false },
               { ...customPackage, featured: false }
-            ].map((pkg) => (
-              <div 
+            ].map((pkg, idx) => (
+              <motion.div 
                 key={pkg.title}
-                className={`flex flex-col relative p-8 rounded-2xl border transition-all duration-500 ${
+                initial={{ opacity: 0, x: idx < 2 ? -25 : 25, filter: "blur(10px)" }}
+                whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+                viewport={{ once: false, amount: 0.15 }}
+                transition={{ duration: 1, delay: idx * 0.12, ease: [0.16, 1, 0.3, 1] }}
+                className={`flex flex-col relative p-8 rounded-2xl border transition-all duration-500 motion-safe-gpu ${
                   pkg.featured 
                     ? "bg-[#121214] border-cyan-400/60 shadow-[0_0_80px_rgba(34,211,238,0.1)] scale-105 z-20" 
                     : "bg-[#121214] border-white/[0.1] z-10 hover:border-white/[0.2]"
@@ -410,7 +437,7 @@ export default function Home() {
                     Get Started
                   </button>
                 </Link>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>

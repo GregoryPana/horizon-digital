@@ -73,9 +73,10 @@ export default function HomeFaq({ categories }: HomeFaqProps) {
           const isActive = category.key === selectedCategory?.key;
 
           return (
-            <button
+            <motion.button
               key={category.key}
               type="button"
+              whileTap={{ scale: 0.95 }}
               onClick={() => setSelectedKey(category.key)}
               className={`relative overflow-hidden rounded-full border px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.12em] transition-colors md:px-4 md:py-2 ${
                 isActive
@@ -95,7 +96,7 @@ export default function HomeFaq({ categories }: HomeFaqProps) {
                   />
                 )}
               </AnimatePresence>
-            </button>
+            </motion.button>
           );
         })}
       </div>
@@ -110,7 +111,16 @@ export default function HomeFaq({ categories }: HomeFaqProps) {
             transition={{ duration: 0.24, ease: "easeOut" }}
             className="space-y-3"
           >
-            {selectedCategory?.items.map((item) => <FaqAccordionItem key={item.question} item={item} />)}
+            {selectedCategory?.items.map((item, idx) => (
+               <motion.div
+                 key={item.question}
+                 initial={{ opacity: 0, x: -10 }}
+                 animate={{ opacity: 1, x: 0 }}
+                 transition={{ duration: 0.3, delay: idx * 0.05 }}
+               >
+                 <FaqAccordionItem item={item} />
+               </motion.div>
+            ))}
           </motion.div>
         </AnimatePresence>
       </div>
