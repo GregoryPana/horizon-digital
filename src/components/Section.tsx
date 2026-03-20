@@ -25,7 +25,7 @@ export default function Section({
   return (
     <section
       id={id}
-      className={`pt-12 pb-16 md:pt-20 md:pb-28 ${className ?? ""}`.trim()}
+      className={`pt-10 pb-12 md:pt-20 md:pb-28 ${className ?? ""}`.trim()}
     >
       <div className={`mx-auto w-full px-5 sm:px-8 ${containerClassName ?? "max-w-7xl"}`.trim()}>
         {(eyebrow || title || description) && (
@@ -34,7 +34,7 @@ export default function Section({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.1, margin: "0px 0px -12% 0px" }}
             transition={{ duration: shouldReduceMotion ? 0 : 0.4, ease: "easeOut" }}
-            className="mx-auto mb-10 max-w-3xl text-center md:mb-12"
+            className="mx-auto mb-8 max-w-3xl text-center md:mb-12"
           >
             {eyebrow && (
               <p className="text-xs font-semibold uppercase tracking-[0.32em] text-accent section-eyebrow-glow">

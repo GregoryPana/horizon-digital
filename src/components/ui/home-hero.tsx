@@ -16,13 +16,13 @@ export default function HomeHero() {
             <img 
               src={heroDesktop} 
               alt="Tech interface background" 
-              className="w-full h-full object-cover object-center opacity-70" 
+              className="w-full h-full object-cover object-center opacity-85" 
             />
          </picture>
          {/* Bottom Fade Mask */}
-         <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black via-black/60 to-transparent z-[1]" />
+         <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black via-black/40 to-transparent z-[1]" />
          {/* Top Overlay for Contrast */}
-         <div className="absolute inset-0 bg-black/40 z-[1]" />
+         <div className="absolute inset-0 bg-black/25 z-[1]" />
       </div>
 
       <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col items-center justify-center px-6 pt-20 md:flex-row md:items-center md:px-10 md:pt-0 lg:px-14">
@@ -34,10 +34,10 @@ export default function HomeHero() {
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-accent mb-6 font-display italic">Seychelles Web Design Studio</p>
-            <h1 className="font-display text-5xl font-medium leading-[1.05] tracking-tight text-white md:text-7xl lg:text-8xl xl:text-9xl">
+            <h1 className="font-display text-4xl font-medium leading-[1.15] tracking-tight text-white md:text-7xl lg:text-8xl xl:text-9xl md:leading-[1.05] md:tracking-tighter">
               Your Website should bring you customers <span className="text-accent italic">&</span> <br />look good.
             </h1>
-            <p className="mt-8 max-w-[44ch] text-lg leading-relaxed text-text-muted md:text-xl lg:text-2xl font-light mx-auto md:mx-0">
+            <p className="mt-6 md:mt-8 max-w-[44ch] text-base leading-[1.58] text-text-muted md:text-xl lg:text-2xl font-light mx-auto md:mx-0 md:leading-relaxed">
               Your business deserves a website that works as hard as you do — beautifully designed, easy to find, and built to turn visitors into customers you're proud to serve.
             </p>
             
