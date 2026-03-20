@@ -19,6 +19,8 @@ export default function HomeHero() {
               className="w-full h-full object-cover object-center opacity-85" 
               fetchPriority="high"
               loading="eager"
+              width={1600}
+              height={900}
             />
          </picture>
          {/* Bottom Fade Mask */}
@@ -49,7 +51,7 @@ export default function HomeHero() {
               initial={{ opacity: 0, filter: "blur(10px)", scale: 0.95 }}
               animate={{ opacity: 1, filter: "blur(0px)", scale: 1 }}
               transition={{ duration: 1.5, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              className="font-display text-[2.2rem] sm:text-[3.2rem] md:text-[5rem] lg:text-[6.2rem] font-medium leading-[1.05] tracking-[0.02em] text-white mb-6 uppercase md:leading-[0.92] motion-safe-gpu"
+              className="font-display text-[2.2rem] sm:text-[3.2rem] md:text-[5rem] lg:text-[6.2rem] font-medium leading-[1.05] tracking-[0.02em] text-white mb-6 uppercase md:leading-[0.92] motion-safe-gpu min-h-[4.4em] sm:min-h-[3.3em] md:min-h-0"
             >
               YOUR WEBSITE <br className="hidden sm:block" />
               SHOULD BRING YOU <br className="hidden sm:block" />
