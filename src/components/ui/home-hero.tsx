@@ -26,14 +26,16 @@ export default function HomeHero() {
           <div className="absolute inset-y-0 left-0 w-full md:w-[75%] bg-gradient-to-r from-black/95 via-black/45 to-transparent z-[2]" />
       </div>
 
-      <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col items-center justify-end px-6 pb-16 md:justify-center md:items-start md:pb-0 md:px-6 lg:px-8">
+      <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col items-center justify-between px-6 pt-24 pb-16 md:justify-center md:items-start md:pb-0 md:px-6 lg:px-8">
         {/* Left Side: Content */}
         <div className="w-full text-center md:items-start md:text-left z-20 md:max-w-4xl">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
+            className="flex h-full w-full flex-col md:h-auto"
           >
+            <div className="mb-auto md:mb-0">
             <p className="text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.45em] text-accent mb-6 font-display italic">Horizon Digital • Web Design Studio • Seychelles</p>
             <h1 className="font-display text-3xl sm:text-4xl font-medium leading-[1.05] tracking-tight text-white md:text-5xl lg:text-6xl uppercase md:leading-[0.92] md:tracking-normal">
               YOUR WEBSITE <br />
@@ -41,14 +43,15 @@ export default function HomeHero() {
               CUSTOMERS <br />
               <span className="text-accent italic font-normal">&</span> LOOK GOOD.
             </h1>
+            </div>
             <p className="mt-8 max-w-[46ch] text-sm md:text-lg leading-relaxed text-white/70 font-light mx-auto md:mx-0 hidden md:block">
               Your business deserves a website that works as hard as you do — beautifully designed, easy to find, and built to turn visitors into customers you're proud to serve.
             </p>
             
-            {/* Feature Tags List */}
-            <div className="mt-6 md:mt-8 flex flex-wrap justify-center md:justify-start gap-x-6 gap-y-3 opacity-60">
+            {/* Feature Tags List - Upgraded Visibility */}
+            <div className="mt-6 md:mt-10 flex flex-wrap justify-center md:justify-start gap-x-4 gap-y-3 opacity-90">
               {['CUSTOM DESIGN', 'MOBILE READY', 'FAST LOADING', 'SEO READY'].map((tag) => (
-                <span key={tag} className="text-[9px] font-bold tracking-[0.25em] text-accent uppercase border-b border-accent/20 pb-0.5">{tag}</span>
+                <span key={tag} className="text-[10px] font-bold tracking-[0.2em] text-accent uppercase border border-accent/30 px-3 py-1 rounded-full bg-accent/[0.03] whitespace-nowrap">{tag}</span>
               ))}
             </div>
             
