@@ -678,7 +678,7 @@ html .section-eyebrow-glow {
   --text: #EAF2FF;
   --text-muted: #9BA3AF;
   --glow: rgba(94, 209, 222, 0.25);
-  background-color: transparent !important;
+  background-color: transparent;
   border-color: transparent !important;
   backdrop-filter: none !important;
   box-shadow: none;

@@ -51,7 +51,7 @@ function WorkShowcaseCard({ item, index, shouldReduceMotion, onPreview, layoutCl
         delay: shouldReduceMotion ? 0 : index * 0.08,
         ease: "easeOut",
       }}
-      className={`group relative h-full overflow-hidden rounded-lg border border-border/20 bg-[#050a16] ${layoutClassName}`.trim()}
+      className={`group relative h-full overflow-hidden rounded-lg border border-border/20 bg-[#121214] ${layoutClassName}`.trim()}
     >
       <div className="grid h-full grid-rows-[1fr_auto]">
         <div className="relative min-h-[17.5rem] overflow-hidden md:min-h-0">

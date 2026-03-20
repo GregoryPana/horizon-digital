@@ -8,7 +8,7 @@ export default function HomeHero() {
   const handleWorkScrollTop = () => scrollToTopSmooth();
 
   return (
-    <section id="top" className="relative h-[75vh] md:h-screen min-h-[550px] md:min-h-[700px] w-full overflow-hidden bg-black text-white">
+    <section id="top" className="relative h-[100svh] md:h-screen min-h-[660px] md:min-h-[700px] w-full overflow-hidden bg-black text-white">
       {/* Background Tech Image with Mask */}
       <div className="absolute inset-0 z-0">
          <picture>
@@ -26,7 +26,7 @@ export default function HomeHero() {
           <div className="absolute inset-y-0 left-0 w-full md:w-[75%] bg-gradient-to-r from-black/95 via-black/45 to-transparent z-[2]" />
       </div>
 
-      <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col items-center justify-center px-6 pt-12 md:items-start md:px-6 lg:px-8">
+      <div className="relative z-10 mx-auto flex h-full max-w-7xl flex-col items-center justify-end px-6 pb-16 md:justify-center md:items-start md:pb-0 md:px-6 lg:px-8">
         {/* Left Side: Content */}
         <div className="w-full text-center md:items-start md:text-left z-20 md:max-w-4xl">
           <motion.div
