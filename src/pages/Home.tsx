@@ -248,7 +248,7 @@ export default function Home() {
       <section id="services" className="py-24 md:py-32 bg-black border-t border-white/[0.05]">
         <div className="mx-auto w-full max-w-7xl px-6 md:px-10 lg:px-14">
           <div className="mb-16 text-left relative">
-            <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-cyan-400 mb-6">Our Services</p>
+            <p className="text-[10px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow mb-6">Our Services</p>
             <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
             <h2 className="font-display text-4xl font-semibold tracking-tight text-white md:text-6xl lg:text-7xl max-w-3xl leading-[1.05]">
               Websites built around how your business actually works.
@@ -290,7 +290,7 @@ export default function Home() {
                   key={service.title}
                   initial={{ opacity: 0, x: idx % 2 === 0 ? -40 : 40, filter: "blur(5px)" }}
                   whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-                  viewport={{ once: false, amount: 0.2 }}
+                  viewport={{ once: true, amount: 0.2 }}
                   transition={{ duration: 0.8, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
                   whileHover={{ y: -5, borderColor: "rgba(34, 211, 238, 0.4)" }}
                   className="p-10 rounded-2xl bg-[#121214] border border-white/[0.08] transition-all group motion-safe-gpu"
@@ -313,7 +313,9 @@ export default function Home() {
       <section id="methodology" className="py-24 md:py-32 bg-black border-t border-white/[0.05]">
         <div className="mx-auto w-full max-w-7xl px-6 md:px-10 lg:px-14">
           <div className="mb-20 text-center">
-            <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-cyan-400 mb-6">The Methodology</p>
+            <p className="text-[10px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow mb-6">
+              The Methodology
+            </p>
             <h2 className="font-display text-4xl font-semibold tracking-tight text-white md:text-6xl lg:text-7xl">
               A clear path from vision to launch.
             </h2>
@@ -328,7 +330,7 @@ export default function Home() {
                   key={step.title} 
                   initial={{ opacity: 0, scale: 0.85, rotate: idx % 2 === 0 ? -2 : 2 }}
                   whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
-                  viewport={{ once: false, amount: 0.3 }}
+                  viewport={{ once: true, amount: 0.3 }}
                   transition={{ type: "spring", stiffness: 100, damping: 20, delay: idx * 0.12 }}
                   className="flex flex-col items-center relative z-10 motion-safe-gpu"
                 >
@@ -356,7 +358,7 @@ export default function Home() {
         <motion.div
            initial={{ opacity: 0, y: 40 }}
            whileInView={{ opacity: 1, y: 0 }}
-           viewport={{ once: false, amount: 0.2 }}
+           viewport={{ once: true, amount: 0.2 }}
            transition={{ duration: 0.8, ease: "easeOut" }}
            className="motion-safe-gpu"
         >
@@ -372,17 +374,19 @@ export default function Home() {
         </div>
       </Section>
 
-      {/* ── INVESTMENT TIERS ── */}
+      {/* ── Find your fit ── */}
       <section id="packages" className="py-24 md:py-40 bg-black border-t border-white/[0.05]">
-        <div className="mx-auto w-full max-w-7xl px-6 md:px-10 lg:px-14">
+        <div className="mx-auto w-full max-w-[92rem] px-6 md:px-10 lg:px-14">
           <div className="mb-20 text-center">
-            <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-cyan-400 mb-6 font-display italic">Investment Tiers</p>
+            <p className="text-[10px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow mb-6">
+              Find your fit
+            </p>
             <h2 className="font-display text-4xl font-semibold tracking-tight text-white md:text-6xl lg:text-7xl">
               A home online, built for where you are right now
             </h2>
           </div>
 
-          <div className="mx-auto max-w-[88rem] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
+          <div className="mx-auto max-w-[92rem] grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 lg:gap-10 items-stretch px-4">
             {[
               { ...foundationPackage, featured: false },
               { ...starterPackage, featured: true },
@@ -391,52 +395,54 @@ export default function Home() {
             ].map((pkg, idx) => (
               <motion.div 
                 key={pkg.title}
-                initial={{ opacity: 0, x: idx < 2 ? -25 : 25, filter: "blur(10px)" }}
-                whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-                viewport={{ once: false, amount: 0.15 }}
-                transition={{ duration: 1, delay: idx * 0.12, ease: [0.16, 1, 0.3, 1] }}
-                className={`flex flex-col relative p-8 rounded-2xl border transition-all duration-500 motion-safe-gpu ${
+                initial={{ opacity: 1, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ duration: 0.8, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                className={`flex flex-col relative p-8 sm:p-10 rounded-[2rem] border transition-all duration-500 motion-safe-gpu ${
                   pkg.featured 
-                    ? "bg-[#121214] border-cyan-400/60 shadow-[0_0_80px_rgba(34,211,238,0.1)] scale-105 z-20" 
+                    ? "bg-[#121214] border-cyan-400/60 shadow-[0_0_80px_rgba(34,211,238,0.1)] xl:scale-[1.025] z-20" 
                     : "bg-[#121214] border-white/[0.1] z-10 hover:border-white/[0.2]"
                 }`}
               >
                 {pkg.featured && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-cyan-400 px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-[0.2em] text-black">
+                  <div className="absolute -top-3 inset-0 mx-auto w-fit h-fit bg-cyan-400 px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] text-black whitespace-nowrap z-30 shadow-[0_0_20px_rgba(34,211,238,0.3)]">
                     Most Popular
                   </div>
                 )}
                 
-                <div className="mb-8">
-                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500 mb-2">
+                <div className="mb-10">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-500 mb-3 ml-0.5">
                     {pkg.title === "Foundation" ? "Essentials" : pkg.title === "Starter" ? "Scalable" : pkg.title === "Growth" ? "Full Scale" : "One-of-a-kind"}
                   </p>
-                  <h3 className="text-2xl font-semibold text-white mb-6 pr-4 leading-tight tracking-tight font-display">{pkg.title}</h3>
-                  <p className="text-2xl sm:text-3xl font-light text-cyan-400 font-display mb-6 whitespace-nowrap">
+                  <h3 className="text-3xl font-semibold text-white mb-6 pr-4 leading-tight tracking-tight font-display">{pkg.title}</h3>
+                  <p className="text-3xl sm:text-4xl font-light text-cyan-400 font-display mb-8 leading-tight">
                     {pkg.price}
                   </p>
                 </div>
-
-                <ul className="space-y-4 mb-10 flex-grow">
+ 
+                <ul className="space-y-5 mb-12 flex-grow">
                   {pkg.includes.map((item, idx) => (
-                    <li key={`${item}-${idx}`} className="flex items-start gap-3">
-                      <svg className="h-4 w-4 text-cyan-400 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <li key={`${item}-${idx}`} className="flex items-start gap-4">
+                      <svg className="h-4 w-4 text-cyan-400 mt-1 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                       </svg>
-                      <span className="text-xs text-gray-400 leading-relaxed">{item}</span>
+                      <span className="text-sm text-gray-400 leading-relaxed">{item}</span>
                     </li>
                   ))}
                 </ul>
-
-                <Link to="/contact" className="mt-auto">
-                  <button className={`w-full py-4 rounded-lg text-[10px] font-black uppercase tracking-[0.2em] transition-all transform active:scale-95 ${
-                    pkg.featured 
-                      ? "bg-cyan-400 text-black hover:bg-cyan-300 shadow-[0_0_30px_rgba(34,211,238,0.4)]" 
-                      : "bg-white/[0.02] border border-cyan-400/20 text-white hover:bg-white/[0.05] hover:border-cyan-400/40"
-                  }`}>
-                    Get Started
-                  </button>
-                </Link>
+ 
+                <div className="mt-auto pt-6 border-t border-white/[0.05]">
+                  <Link to="/contact">
+                    <button className={`w-full py-5 rounded-xl text-[11px] font-black uppercase tracking-[0.2em] transition-all transform active:scale-95 ${
+                      pkg.featured 
+                        ? "bg-cyan-400 text-black hover:bg-cyan-300 shadow-[0_0_30px_rgba(34,211,238,0.4)]" 
+                        : "bg-white/[0.04] border border-cyan-400/20 text-white hover:bg-white/[0.08] hover:border-cyan-400/40"
+                    }`}>
+                      Get Started
+                    </button>
+                  </Link>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -469,14 +475,14 @@ export default function Home() {
                 key={feature.title}
                 initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false, amount: 0.4 }}
-                transition={{ duration: 0.5, delay: i * 0.1, ease: "easeOut" }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.6, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
                 className="relative flex flex-col border-t border-border pt-8"
               >
                 <span className="absolute -top-6 left-0 bg-bg px-2 font-display text-4xl font-bold text-accent/20">
                   [{i + 1}]
                 </span>
-                <h3 className="text-xl font-semibold text-accent-2 mb-4 h-[3.5rem] flex items-end">{feature.title}</h3>
+                <h3 className="text-xl font-semibold text-accent-2 min-h-[3.5rem] flex items-end">{feature.title}</h3>
                 <p className="mt-4 text-sm leading-relaxed text-text-muted">{feature.text}</p>
               </motion.div>
             ))}
@@ -490,7 +496,7 @@ export default function Home() {
           <motion.div
             initial={{ opacity: shouldReduceMotion ? 1 : 0, scale: shouldReduceMotion ? 1 : 0.98 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: false, amount: 0.4 }}
+            viewport={{ once: true, amount: 0.3 }}
             className="group relative overflow-hidden rounded-3xl border border-border/50 bg-[#1A1A1C]"
           >
             <div className="grid lg:grid-cols-12">
@@ -536,7 +542,7 @@ export default function Home() {
                     initial={{ opacity: 0, x: -20, rotate: -3 }}
                     whileInView={{ opacity: 1, x: 0, rotate: -3 }}
                     animate={{ y: [0, -15, 0], rotate: [-3, -5, -3] }}
-                    viewport={{ once: false }}
+                    viewport={{ once: true }}
                     transition={{ 
                       opacity: { duration: 0.6, delay: 0.2 },
                       x: { duration: 0.6, delay: 0.2 },
@@ -552,7 +558,7 @@ export default function Home() {
                     initial={{ opacity: 0, x: -10 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     animate={{ y: [-10, 10, -10], scale: [1, 1.02, 1] }}
-                    viewport={{ once: false }}
+                    viewport={{ once: true }}
                     transition={{ 
                       opacity: { duration: 0.6, delay: 0.3 },
                       x: { duration: 0.6, delay: 0.3 },
@@ -568,7 +574,7 @@ export default function Home() {
                     initial={{ opacity: 0, x: 20, rotate: 3 }}
                     whileInView={{ opacity: 1, x: 0, rotate: 3 }}
                     animate={{ y: [-5, 15, -5], rotate: [3, 5, 3] }}
-                    viewport={{ once: false }}
+                    viewport={{ once: true }}
                     transition={{ 
                       opacity: { duration: 0.6, delay: 0.4 },
                       x: { duration: 0.6, delay: 0.4 },
@@ -614,7 +620,7 @@ export default function Home() {
            <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: false }}
+              viewport={{ once: true }}
            >
               <h2 className="font-display text-4xl md:text-7xl font-semibold text-text mb-8 tracking-tight">
                 Let's build something <br /><span className="text-accent underline decoration-accent/20">you're proud of</span>
