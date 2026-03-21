@@ -250,7 +250,7 @@ export default function Home() {
           <div className="mb-16 text-left relative">
             <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-cyan-400 mb-6">Our Services</p>
             <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-            <h2 className="font-display text-4xl font-medium tracking-tight text-white md:text-6xl lg:text-7xl max-w-3xl leading-[1.05]">
+            <h2 className="font-display text-4xl font-semibold tracking-tight text-white md:text-6xl lg:text-7xl max-w-3xl leading-[1.05]">
               Websites built around how your business actually works.
             </h2>
               <Link to="/work" className="text-sm font-bold uppercase tracking-widest text-cyan-400 flex items-center gap-2 group whitespace-nowrap mb-2">
@@ -314,7 +314,7 @@ export default function Home() {
         <div className="mx-auto w-full max-w-7xl px-6 md:px-10 lg:px-14">
           <div className="mb-20 text-center">
             <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-cyan-400 mb-6">The Methodology</p>
-            <h2 className="font-display text-4xl font-medium tracking-tight text-white md:text-6xl lg:text-7xl">
+            <h2 className="font-display text-4xl font-semibold tracking-tight text-white md:text-6xl lg:text-7xl">
               A clear path from vision to launch.
             </h2>
           </div>
@@ -377,7 +377,7 @@ export default function Home() {
         <div className="mx-auto w-full max-w-7xl px-6 md:px-10 lg:px-14">
           <div className="mb-20 text-center">
             <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-cyan-400 mb-6 font-display italic">Investment Tiers</p>
-            <h2 className="font-display text-4xl font-medium tracking-tight text-white md:text-6xl lg:text-7xl">
+            <h2 className="font-display text-4xl font-semibold tracking-tight text-white md:text-6xl lg:text-7xl">
               Which package works for you?
             </h2>
           </div>

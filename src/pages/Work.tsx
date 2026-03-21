@@ -52,7 +52,7 @@ export default function Work() {
           <p className="text-xs font-semibold uppercase tracking-[0.32em] text-accent section-eyebrow-glow mb-6">
             Real work, real businesses
           </p>
-          <h2 className="text-4xl md:text-7xl font-semibold tracking-tight text-text mb-8">
+          <h2 className="font-display text-4xl md:text-7xl font-semibold tracking-tight text-text mb-8">
             Websites we've built with care
           </h2>
           <p className="text-lg md:text-2xl font-light text-text-muted max-w-3xl mx-auto leading-relaxed">
@@ -70,7 +70,7 @@ export default function Work() {
                  <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent-2 mb-4 bg-accent-2/10 inline-block px-3 py-1 rounded-[9px] border border-accent-2/20">
                     Growth Tier
                   </p>
-                  <h3 className="text-3xl md:text-5xl font-semibold text-text mb-6">Drake Seaside</h3>
+                  <h3 className="font-display text-3xl md:text-5xl font-semibold text-text mb-6">Drake Seaside</h3>
                   <p className="text-base md:text-lg text-text-muted mb-8 leading-relaxed lg:max-w-xl">
                     A complete redesign with new pages, updated SEO-focused content, significantly faster load times, and a structure engineered for higher click-through conversions and bookings.
                   </p>
@@ -165,7 +165,7 @@ export default function Work() {
                  <p className="text-xs font-semibold uppercase tracking-[0.3em] text-text mb-4 bg-text/5 inline-block px-3 py-1 rounded-[9px] border border-border">
                     Foundation Tier
                   </p>
-                  <h3 className="text-3xl md:text-5xl font-semibold text-text mb-6">Takamaka House</h3>
+                  <h3 className="font-display text-3xl md:text-5xl font-semibold text-text mb-6">Takamaka House</h3>
                   <p className="text-base md:text-lg text-text-muted mb-8 leading-relaxed lg:max-w-xl">
                     A calm, immersive site designed to let the beauty of Takamaka House do the talking – and make guests excited to book before they even arrive.
                   </p>
@@ -201,7 +201,7 @@ export default function Work() {
                  <p className="text-xs font-semibold uppercase tracking-[0.3em] text-text mb-4 bg-text/5 inline-block px-3 py-1 rounded-[9px] border border-border">
                     Foundation Tier
                   </p>
-                  <h3 className="text-3xl md:text-5xl font-semibold text-text mb-6">Forma Studio</h3>
+                  <h3 className="font-display text-3xl md:text-5xl font-semibold text-text mb-6">Forma Studio</h3>
                   <p className="text-base md:text-lg text-text-muted mb-8 leading-relaxed lg:max-w-xl">
                     A clean, editorial showcase for a creative studio – designed to let their work breathe and make enquiries feel natural.
                   </p>
@@ -295,7 +295,7 @@ export default function Work() {
                  <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent mb-4 bg-accent/5 inline-block px-3 py-1 rounded-[9px] border border-accent/20">
                     Foundation Tier
                   </p>
-                  <h3 className="text-3xl md:text-5xl font-semibold text-text mb-6">Beauty Demo</h3>
+                  <h3 className="font-display text-3xl md:text-5xl font-semibold text-text mb-6">Beauty Demo</h3>
                   <p className="text-base md:text-lg text-text-muted mb-8 leading-relaxed lg:max-w-xl">
                     A fast, focused site for a service business - clear pricing, easy contact, and a layout that turns curious visitors into real clients.
                   </p>

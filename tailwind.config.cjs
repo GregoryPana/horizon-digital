@@ -25,7 +25,7 @@ module.exports = {
       },
       fontFamily: {
         sans: ["Switzer", "Inter Variable", "Inter Fallback", "Inter", "Segoe UI", "Helvetica Neue", "Arial", "sans-serif"],
-        display: ["Gambarino", "Sora Variable", "Sora", "Segoe UI", "Helvetica Neue", "Arial", "sans-serif"],
+        display: ["Poppins", "Gambarino", "Sora Variable", "Sora", "Segoe UI", "Helvetica Neue", "Arial", "sans-serif"],
       },
       backgroundImage: {
         "horizon": "linear-gradient(90deg, transparent, var(--accent), var(--accent-2), transparent)",
