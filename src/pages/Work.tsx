@@ -297,7 +297,7 @@ export default function Work() {
                   </p>
                   <h3 className="text-3xl md:text-5xl font-semibold text-text mb-6">Beauty Demo</h3>
                   <p className="text-base md:text-lg text-text-muted mb-8 leading-relaxed lg:max-w-xl">
-                    A fast, focused site for a service business � clear pricing, easy contact, and a layout that turns curious visitors into real clients.
+                    A fast, focused site for a service business - clear pricing, easy contact, and a layout that turns curious visitors into real clients.
                   </p>
                   <div className="flex flex-wrap gap-4 justify-start">
                      <a href="https://demo-beauty.horizondigitalsey.com/" target="_blank" rel="noreferrer" className="inline-block hover:opacity-80 transition-opacity">
