@@ -41,7 +41,7 @@ export default function HomeHero() {
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.18em] leading-[1.1] text-accent section-eyebrow-glow mb-6 italic motion-safe-gpu"
+              className="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.12em] leading-[1.0] text-accent section-eyebrow-glow mb-6 italic motion-safe-gpu"
             >
               Web Design Studio • Seychelles
             </motion.p>
@@ -51,7 +51,7 @@ export default function HomeHero() {
               initial={{ opacity: 0, filter: "blur(10px)", scale: 0.95 }}
               animate={{ opacity: 1, filter: "blur(0px)", scale: 1 }}
               transition={{ duration: 1.5, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              className="font-display text-[2.2rem] sm:text-[3.2rem] md:text-[5rem] lg:text-[6.2rem] font-medium leading-[0.95] tracking-[0.02em] text-white mb-6 uppercase md:leading-[0.92] motion-safe-gpu min-h-[4.4em] sm:min-h-[3.3em] md:min-h-0"
+              className="font-display text-[2.2rem] sm:text-[3.2rem] md:text-[5rem] lg:text-[6.2rem] font-medium leading-[0.9] tracking-[0.02em] text-white mb-6 uppercase md:leading-[0.92] motion-safe-gpu min-h-[4.4em] sm:min-h-[3.3em] md:min-h-0"
             >
               YOUR WEBSITE <br className="hidden sm:block" />
               SHOULD BRING YOU <br className="hidden sm:block" />
@@ -70,7 +70,7 @@ export default function HomeHero() {
             </motion.p>
             
             {/* Mobile Trust Pills - Staggered Scale-In */}
-            <div className="mt-14 flex flex-wrap justify-center gap-x-3 gap-y-2 opacity-100 md:hidden">
+            <div className="mt-16 flex flex-wrap justify-center gap-x-3 gap-y-2 opacity-100 md:hidden">
               {['CUSTOM DESIGN', 'MOBILE FIRST', 'SEO READY'].map((tag, idx) => (
                 <motion.span 
                   key={tag} 

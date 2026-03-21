@@ -240,7 +240,7 @@ export const workItems = [
     image: formaStudioPreview,
     imageWebp: formaStudioPreview,
     imageWebp800: formaStudioPreview,
-    url: "/showcase/forma-studio",
+    url: "https://horizondigitalsey.com/showcase/forma-studio",
   },
   {
     label: "Hospitality · Foundation Tier",
@@ -250,7 +250,7 @@ export const workItems = [
     image: takamakaHousePreview,
     imageWebp: takamakaHousePreview,
     imageWebp800: takamakaHousePreview,
-    url: "/showcase/takamaka-house",
+    url: "https://horizondigitalsey.com/showcase/takamaka-house",
   },
   {
     label: "Wellness & Beauty · Foundation Tier",

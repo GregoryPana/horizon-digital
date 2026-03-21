@@ -4,7 +4,7 @@ import { buildMailtoLink, scrollToTopSmooth } from "../lib/utils";
 
 export default function Footer() {
   return (
-    <footer className="site-footer-dark border-t border-border bg-bg-elev">
+    <footer className="site-footer-dark border-t border-border bg-bg-elev min-h-[440px]">
       <div className="mx-auto w-full max-w-[1760px] px-5 py-24 md:px-8 lg:px-12 xl:px-16 2xl:px-20">
         <div className="footer-content grid gap-16 md:grid-cols-2 lg:grid-cols-3">
           <div className="flex flex-col gap-6">

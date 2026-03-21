@@ -532,19 +532,19 @@ export default function Home() {
 
                 <div className="relative z-10 flex h-full w-full max-w-[400px] lg:max-w-none lg:w-[160%] lg:absolute lg:top-1/2 lg:-translate-y-1/2 lg:-left-24 items-center justify-center pt-8 pr-12 lg:pr-0 pointer-events-none">
                   <motion.div
-                    className="absolute left-0 lg:left-0 top-1/2 w-52 lg:w-64 -translate-y-[45%] rounded-[1.25rem] shadow-[0_0_60px_rgba(0,229,255,0.3)] border-2 border-accent/30 z-10"
-                    initial={{ opacity: 0, x: -30, rotate: -4 }}
-                    whileInView={{ opacity: 1, x: 0, rotate: -4 }}
-                    animate={{ y: [-15, 5, -15], rotate: [-4, -2, -4] }}
+                    className="absolute left-[0%] lg:left-[0%] top-1/2 w-52 lg:w-[15rem] -translate-y-[45%] rounded-[1.25rem] shadow-[0_0_60px_rgba(0,229,255,0.3)] border-2 border-accent/30 z-10"
+                    initial={{ opacity: 0, x: -20, rotate: -3 }}
+                    whileInView={{ opacity: 1, x: 0, rotate: -3 }}
+                    animate={{ y: [0, -15, 0], rotate: [-3, -5, -3] }}
                     viewport={{ once: false }}
                     transition={{ 
                       opacity: { duration: 0.6, delay: 0.2 },
                       x: { duration: 0.6, delay: 0.2 },
                       y: { duration: 5, repeat: Infinity, ease: "easeInOut" },
-                      rotate: { duration: 6, repeat: Infinity, ease: "easeInOut" }
+                      rotate: { duration: 8, repeat: Infinity, ease: "easeInOut" }
                     }}
                   >
-                    <img src="/digital trends 1.png" alt="Digital trends affecting small businesses" className="w-full h-auto rounded-xl object-cover" />
+                    <img src="/digital_trends_1.webp" alt="Digital trends for small business" width={640} height={480} className="w-full h-auto rounded-xl object-cover" />
                   </motion.div>
                   
                   <motion.div
@@ -560,7 +560,7 @@ export default function Home() {
                       scale: { duration: 5.5, repeat: Infinity, ease: "easeInOut" }
                     }}
                   >
-                    <img src="/digital trends 2.png" alt="Understanding AI chatbots" className="w-full h-auto rounded-xl object-cover" />
+                    <img src="/digital_trends_2.webp" alt="Understanding AI chatbots" width={640} height={480} className="w-full h-auto rounded-xl object-cover" />
                   </motion.div>
 
                   <motion.div
@@ -576,7 +576,7 @@ export default function Home() {
                       rotate: { duration: 7, repeat: Infinity, ease: "easeInOut" }
                     }}
                   >
-                    <img src="/digital trends 3.png" alt="Why data and analytics matter" className="w-full h-auto rounded-xl object-cover" />
+                    <img src="/digital_trends_3.webp" alt="Why data and analytics matter" width={640} height={480} className="w-full h-auto rounded-xl object-cover" />
                   </motion.div>
                 </div>
               </div>

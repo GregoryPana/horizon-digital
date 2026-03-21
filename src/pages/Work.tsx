@@ -1,4 +1,4 @@
-﻿import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
 import Seo from "../components/Seo";
 import { ShimmerButton } from "../components/ui/shimmer-button";
@@ -12,12 +12,17 @@ import drakeAltOneWebp from "../assets/work/drake-seaside/drake-seaside 2.webp";
 import seykelzMain from "../assets/work/demo-beauty/demo-beauty.jpg";
 import seykelzMainWebp from "../assets/work/demo-beauty/demo-beauty.webp";
 import seykelzAltOne from "../assets/work/demo-beauty/demo-beauty 2.png";
+import seykelzAltOneWebp from "../assets/work/demo-beauty/demo-beauty 2.webp";
 
 import formaMain from "../assets/work/forma studio/forma studio.png";
+import formaMainWebp from "../assets/work/forma studio/forma studio.webp";
 import formaAltOne from "../assets/work/forma studio/forma studio 2.png";
+import formaAltOneWebp from "../assets/work/forma studio/forma studio 2.webp";
 
 import takamakaMain from "../assets/work/takamaka-house/takamaka house.png";
+import takamakaMainWebp from "../assets/work/takamaka-house/takamaka house.webp";
 import takamakaAltOne from "../assets/work/takamaka-house/takamaka house 2.png";
+import takamakaAltOneWebp from "../assets/work/takamaka-house/takamaka house 2.webp";
 
 
 
@@ -130,9 +135,10 @@ export default function Work() {
               <motion.div className="lg:col-span-12 xl:col-span-7 flex flex-col gap-6 order-2 lg:order-1" {...fadeIn}>
                  <div className="relative group">
                    <picture className="block rounded-2xl overflow-hidden shadow-[0_0_60px_rgba(0,229,255,0.3)] dark:shadow-[0_0_50px_rgba(0,229,255,0.15)] border border-border/30">
+                      <source srcSet={takamakaMainWebp} type="image/webp" />
                       <img
                         src={takamakaMain}
-                        alt="Takamaka House showcase layout"
+                        alt="Takamaka House official layout"
                         width={800}
                         height={520}
                         loading="lazy"
@@ -142,6 +148,7 @@ export default function Work() {
                  </div>
                   <div className="w-full flex justify-center xl:justify-start -mt-16 sm:-mt-24 xl:ml-12 relative z-20 pointer-events-none px-8 xl:pl-0">
                     <picture className="block rounded-xl overflow-hidden shadow-[0_0_50px_rgba(0,229,255,0.25)] dark:shadow-2xl border border-border/30 w-3/4 md:w-[62%]">
+                      <source srcSet={takamakaAltOneWebp} type="image/webp" />
                       <img
                         src={takamakaAltOne}
                         alt="Takamaka House detail interface"
@@ -160,10 +167,10 @@ export default function Work() {
                   </p>
                   <h3 className="text-3xl md:text-5xl font-semibold text-text mb-6">Takamaka House</h3>
                   <p className="text-base md:text-lg text-text-muted mb-8 leading-relaxed lg:max-w-xl">
-                    A calm, immersive site designed to let the beauty of Takamaka House do the talking � and make guests excited to book before they even arrive.
+                    A calm, immersive site designed to let the beauty of Takamaka House do the talking – and make guests excited to book before they even arrive.
                   </p>
                   <div className="flex flex-wrap gap-4 justify-start">
-                     <a href="https://takamaka.horizondigitalsey.com/" target="_blank" rel="noreferrer" className="inline-block hover:opacity-80 transition-opacity">
+                     <a href="https://horizondigitalsey.com/showcase/takamaka-house" target="_blank" rel="noreferrer" className="inline-block hover:opacity-80 transition-opacity">
                        <button className="px-6 py-3 border border-accent/30 bg-[#0D102D] text-sm font-semibold rounded-[9px] hover:bg-accent/10 transition-colors shadow-[0_0_15px_rgba(0,229,255,0.08)]">
                          View live site
                        </button>
@@ -196,10 +203,10 @@ export default function Work() {
                   </p>
                   <h3 className="text-3xl md:text-5xl font-semibold text-text mb-6">Forma Studio</h3>
                   <p className="text-base md:text-lg text-text-muted mb-8 leading-relaxed lg:max-w-xl">
-                    A clean, editorial showcase for a creative studio � designed to let their work breathe and make enquiries feel natural.
+                    A clean, editorial showcase for a creative studio – designed to let their work breathe and make enquiries feel natural.
                   </p>
                   <div className="flex flex-wrap gap-4 justify-start">
-                     <a href="https://forma.horizondigitalsey.com/" target="_blank" rel="noreferrer" className="inline-block hover:opacity-80 transition-opacity">
+                     <a href="https://horizondigitalsey.com/showcase/forma-studio" target="_blank" rel="noreferrer" className="inline-block hover:opacity-80 transition-opacity">
                        <button className="px-6 py-3 border border-accent/30 bg-[#0D102D] text-sm font-semibold rounded-[9px] hover:bg-accent/10 transition-colors shadow-[0_0_15px_rgba(0,229,255,0.08)]">
                          View live site
                        </button>
@@ -220,9 +227,10 @@ export default function Work() {
               <motion.div className="lg:col-span-12 xl:col-span-7 flex flex-col gap-6" {...fadeIn} transition={{ delay: 0.2 }}>
                  <div className="relative group">
                    <picture className="block rounded-2xl overflow-hidden shadow-[0_0_60px_rgba(0,229,255,0.3)] dark:shadow-[0_0_50px_rgba(0,229,255,0.15)] border border-border/30">
+                      <source srcSet={formaMainWebp} type="image/webp" />
                       <img
                         src={formaMain}
-                        alt="Forma Studio showcase preview"
+                        alt="Forma Studio portal concept"
                         width={800}
                         height={520}
                         loading="lazy"
@@ -232,9 +240,10 @@ export default function Work() {
                  </div>
                   <div className="w-full flex justify-center xl:justify-end -mt-16 sm:-mt-24 xl:-ml-12 relative z-20 pointer-events-none px-8 xl:pr-0">
                     <picture className="block rounded-xl overflow-hidden shadow-[0_0_50px_rgba(0,229,255,0.25)] dark:shadow-2xl border border-border/30 w-3/4 md:w-[62%]">
+                      <source srcSet={formaAltOneWebp} type="image/webp" />
                       <img
                         src={formaAltOne}
-                        alt="Forma Studio detail interface"
+                        alt="Forma Studio gallery interface"
                         width={600}
                         height={400}
                         loading="lazy"
@@ -269,14 +278,15 @@ export default function Work() {
                  </div>
                   <div className="w-full flex justify-center xl:justify-start -mt-16 sm:-mt-24 xl:ml-12 relative z-20 pointer-events-none px-8 xl:pl-0">
                     <picture className="block rounded-xl overflow-hidden shadow-[0_0_50px_rgba(0,229,255,0.25)] dark:shadow-2xl border border-border/30 w-3/4 md:w-[62%]">
-                      <img
-                        src={seykelzAltOne ?? ""}
-                        alt="Beauty demo services detail interface"
-                        width={600}
-                        height={400}
-                        loading="lazy"
-                        className="w-full h-auto"
-                      />
+                       <source srcSet={seykelzAltOneWebp} type="image/webp" />
+                       <img
+                         src={seykelzAltOne ?? ""}
+                         alt="Beauty demo services detail interface"
+                         width={600}
+                         height={400}
+                         loading="lazy"
+                         className="w-full h-auto"
+                       />
                     </picture>
                   </div>
               </motion.div>
