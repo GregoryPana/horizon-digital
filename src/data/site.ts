@@ -126,8 +126,8 @@ export const foundationPackage = {
     "Works beautifully on mobile phones",
     "Easy-to-use contact form",
     "WhatsApp chat integration",
-    "30 Days Support after launch",
     "Professional Search and Visibility",
+    "30 Days Support after launch",
     "1 Revision Round",
   ],
 };
@@ -138,13 +138,11 @@ export const starterPackage = {
   description:
     "Ideal for growing businesses that want to stand out. We'll create a unique, custom-made site with warm, clear messaging that helps new customers find and trust you.",
   includes: [
-    "Up to 5-6 unique pages",
-    "A custom design made just for you",
+    "Up to 5-6 custom pages",
     "Mobile-first layout for easy browsing",
-    "Social media integration",
-    "45 Days Support after launch",
     "Google Analytics setup",
     "Advanced Search and Visibility",
+    "45 Days Support after launch",
     "2 Revision Rounds",
   ],
 };
@@ -155,12 +153,10 @@ export const growthPackage = {
   description:
     "Designed for established businesses ready to reach the next level. We'll build a fully tailored space for your brand, with a deeper focus on telling your story.",
   includes: [
-    "Up to 10-12 tailored pages",
-    "Customer testimonials to build trust",
-    "Professional team showcase section",
-    "Gallery of your best work",
-    "Multi-step enquiry forms",
+    "Up to 10-12 custom tailored pages",
+    "Mobile-first layout for easy browsing",
     "Google Business setup (to help you grow)",
+    "Advanced Search and Visibility",
     "60 Days Support after launch",
     "2 Revision Rounds",
   ],

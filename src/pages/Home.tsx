@@ -298,7 +298,7 @@ export default function Home() {
                   <div className="w-12 h-12 rounded-lg bg-cyan-400/10 flex items-center justify-center mb-10 group-hover:scale-110 transition-transform">
                     <Icon />
                   </div>
-                  <h3 className="text-2xl font-semibold text-white mb-4 pr-4">{service.title}</h3>
+                  <h3 className="text-2xl font-semibold text-white mb-4 pr-4 min-h-[4.5rem] flex items-start">{service.title}</h3>
                   <p className="text-gray-400 leading-relaxed">
                     {service.description}
                   </p>
@@ -355,15 +355,7 @@ export default function Home() {
         description="Businesses just like yours — built with care, launched with confidence."
         containerClassName="max-w-[92rem]"
       >
-        <motion.div
-           initial={{ opacity: 0, y: 40 }}
-           whileInView={{ opacity: 1, y: 0 }}
-           viewport={{ once: true, amount: 0.2 }}
-           transition={{ duration: 0.8, ease: "easeOut" }}
-           className="motion-safe-gpu"
-        >
-          <HomeWorkAccordion items={workItems} onPreview={setActiveWork} />
-        </motion.div>
+        <HomeWorkAccordion items={workItems} onPreview={setActiveWork} />
         <div className="mt-10 flex justify-center">
           <Button
             label="View all work"
@@ -482,7 +474,7 @@ export default function Home() {
                 <span className="absolute -top-6 left-0 bg-bg px-2 font-display text-4xl font-bold text-accent/20">
                   [{i + 1}]
                 </span>
-                <h3 className="text-xl font-semibold text-accent-2 min-h-[3.5rem] flex items-end">{feature.title}</h3>
+                <h3 className="text-xl font-semibold text-accent-2 min-h-[4.5rem] flex items-start">{feature.title}</h3>
                 <p className="mt-4 text-sm leading-relaxed text-text-muted">{feature.text}</p>
               </motion.div>
             ))}

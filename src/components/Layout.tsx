@@ -175,6 +175,16 @@ export default function Layout({ children }: LayoutProps) {
     return () => window.clearTimeout(timer);
   }, [location.pathname, location.hash, headerHeight]);
 
+  const [isTopButtonExpanded, setIsTopButtonExpanded] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsTopButtonExpanded(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsTopButtonExpanded(false);
+  };
+
   return (
     <div
       className={`flex min-h-screen flex-col bg-bg text-text ${
@@ -202,12 +212,21 @@ export default function Layout({ children }: LayoutProps) {
         <button
           type="button"
           onClick={scrollToTopSmooth}
-          className={`focus-ring fixed bottom-24 right-6 z-[70] inline-flex h-10 w-10 items-center justify-center rounded-full border border-accent/45 bg-bg-elev text-accent shadow-[0_0_12px_var(--glow)] transition duration-300 hover:bg-accent-soft ${
-            showTopButton ? "opacity-100" : "pointer-events-none opacity-0"
-          }`.trim()}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          className={`focus-ring fixed bottom-28 right-6 z-[70] inline-flex items-center justify-center rounded-full border border-accent/40 bg-bg-elev/95 backdrop-blur-xl text-accent shadow-[0_0_15px_var(--glow)] transition-all duration-500 ease-out hover:bg-accent-soft md:bottom-10 md:left-1/2 md:right-auto md:-translate-x-1/2 ${
+            showTopButton ? "opacity-100 translate-y-0" : "pointer-events-none opacity-0 translate-y-4"
+          } ${isTopButtonExpanded ? "md:w-52 md:h-12 md:px-6" : "h-11 w-11"}`.trim()}
           aria-label="Back to top"
         >
-          ↑
+          <span className="flex items-center gap-3">
+            <span className="text-xl leading-none">↑</span>
+            {isTopButtonExpanded && (
+              <span className="hidden md:inline-block text-[11px] font-black uppercase tracking-[0.25em] whitespace-nowrap animate-in fade-in zoom-in-95 duration-300 fill-mode-forwards">
+                Scroll To Top
+              </span>
+            )}
+          </span>
         </button>
       )}
       {isShowcaseRoute ? null : <ChatWidget />}

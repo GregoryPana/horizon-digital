@@ -174,12 +174,12 @@ export default function ChatWidget() {
                   className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
                 >
                   <div className={`flex max-w-[85%] items-start gap-2.5 ${msg.role === "user" ? "flex-row-reverse" : "flex-row"}`}>
-                    <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/10 ${msg.role === "user" ? "bg-accent text-white" : "bg-bg-elev text-accent"}`}>
+                    <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/10 ${msg.role === "user" ? "bg-accent text-[#080C11]" : "bg-bg-elev text-accent"}`}>
                       {msg.role === "user" ? <User size={14} /> : <Bot size={14} />}
                     </div>
                     <div className={`rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${
                       msg.role === "user" 
-                      ? "bg-accent text-white rounded-tr-none shadow-lg shadow-accent/20" 
+                      ? "bg-accent text-[#080C11] font-medium rounded-tr-none shadow-lg shadow-accent/20" 
                       : "bg-white/5 text-text rounded-tl-none border border-white/5"
                     }`}>
                       {msg.content.split('\n').map((line, i) => (
@@ -321,9 +321,9 @@ export default function ChatWidget() {
             setIsOpen(!isOpen);
             setShouldPrompt(false);
           }}
-          className="relative flex h-14 w-14 items-center justify-center rounded-full bg-accent text-white shadow-[0_0_20px_rgba(56,189,248,0.4)] shadow-accent/30 transition-shadow hover:shadow-[0_0_25px_rgba(56,189,248,0.6)]"
+          className="relative flex h-14 w-14 md:h-[4.5rem] md:w-[4.5rem] items-center justify-center rounded-full bg-accent text-[#080C11] shadow-[0_0_20px_rgba(56,189,248,0.4)] shadow-accent/30 transition-shadow hover:shadow-[0_0_25px_rgba(56,189,248,0.6)]"
         >
-          {isOpen ? <X size={24} /> : <MessageSquare size={24} />}
+          {isOpen ? <X className="w-6 h-6 md:w-7 md:h-7" /> : <MessageSquare className="w-6 h-6 md:w-7 md:h-7" />}
           {!isOpen && (
             <span className="absolute -right-1 -top-1 flex h-4 w-4">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75"></span>
