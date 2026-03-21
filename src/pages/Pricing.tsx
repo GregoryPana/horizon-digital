@@ -260,7 +260,7 @@ export default function Pricing() {
                 key={step.title}
                 initial={{ opacity: shouldReduceMotion ? 1 : 0, x: shouldReduceMotion ? 0 : 42 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: false, amount: 0.4 }}
+                viewport={{ once: true, amount: 0.4 }}
                 transition={{ duration: shouldReduceMotion ? 0 : 0.42, delay: index * 0.06, ease: "easeOut" }}
                 className="min-w-0"
               >
@@ -286,7 +286,7 @@ export default function Pricing() {
             <motion.div 
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: false }}
+              viewport={{ once: true }}
               className="flex h-full flex-col rounded-3xl border border-border/40 bg-bg-elev p-8 hover:border-accent/30 transition-all"
             >
               <h3 className="text-lg font-semibold text-accent-2">{foundationPackage.title}</h3>
@@ -317,7 +317,7 @@ export default function Pricing() {
             <motion.div 
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: false }}
+              viewport={{ once: true }}
               transition={{ delay: 0.1 }}
               className="flex h-full flex-col rounded-3xl border border-accent/40 bg-[#121214] p-8 shadow-[0_0_40px_rgba(0,229,255,0.1)] relative overflow-hidden pricing-card-featured-shine"
             >
@@ -355,7 +355,7 @@ export default function Pricing() {
             <motion.div 
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: false }}
+              viewport={{ once: true }}
               transition={{ delay: 0.2 }}
               className="flex h-full flex-col rounded-3xl border border-border/40 bg-bg-elev p-8 hover:border-accent/30 transition-all"
             >

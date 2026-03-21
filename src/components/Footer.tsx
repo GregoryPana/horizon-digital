@@ -45,6 +45,7 @@ export default function Footer() {
               <a
                 className="flex w-fit items-center gap-3 text-sm text-text-muted transition hover:text-accent"
                 href={buildMailtoLink(siteConfig.email, emailTemplate.subject, emailTemplate.body)}
+                aria-label={`Send an email to ${siteConfig.email}`}
               >
                 <div className="p-1.5 rounded-md bg-white/5 border border-white/10">
                   <svg viewBox="0 0 24 24" aria-hidden="true" className="h-3.5 w-3.5 text-accent">
@@ -57,6 +58,7 @@ export default function Footer() {
               <a
                 className="flex w-fit items-center gap-3 text-sm text-text-muted transition hover:text-accent"
                 href={`tel:${siteConfig.phone.replace(/\s+/g, "")}`}
+                aria-label={`Call us at ${siteConfig.phone}`}
               >
                 <div className="p-1.5 rounded-md bg-white/5 border border-white/10">
                   <svg viewBox="0 0 24 24" aria-hidden="true" className="h-3.5 w-3.5 text-accent">
@@ -70,6 +72,7 @@ export default function Footer() {
                 href={siteConfig.whatsappUrl}
                 target="_blank"
                 rel="noreferrer"
+                aria-label="Chat with us on WhatsApp"
               >
                 <div className="p-1.5 rounded-md bg-white/5 border border-white/10 group-hover:border-accent/40 transition">
                   <svg viewBox="0 0 24 24" aria-hidden="true" className="h-3.5 w-3.5 text-accent">
@@ -85,11 +88,11 @@ export default function Footer() {
         
         <div className="mt-20 horizon-line opacity-20" />
         <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-[0.7rem] uppercase tracking-[0.22em] text-text-muted/60">
+          <p className="text-[0.7rem] uppercase tracking-[0.22em] text-text-muted/80">
             © {new Date().getFullYear()} <span className="brand-name font-semibold text-accent/80">{siteConfig.name}</span> — All rights reserved.
           </p>
           <div className="flex items-center gap-6">
-            <span className="text-[0.65rem] uppercase tracking-[0.3em] text-text-muted/30">Seychelles Built</span>
+            <span className="text-[0.65rem] uppercase tracking-[0.3em] text-text-muted/60">Seychelles Built</span>
           </div>
         </div>
       </div>

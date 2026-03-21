@@ -198,7 +198,7 @@ Looking forward to your reply.`;
             </p>
           </Card>
           <Card className="min-w-0">
-            <p className="text-[10px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow">Contact Horizon Digital</p>
+            <p className="text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow">Contact Horizon Digital</p>
             <p className="mt-4 text-sm text-text-muted">We typically respond within 24 hours.</p>
             <p className="mt-3 text-sm text-text-muted">
               Email or call us for a simple conversation about what makes your business different,
@@ -228,7 +228,7 @@ Looking forward to your reply.`;
               </span>
             </a>
             <div className="mt-6 rounded-2xl border border-border bg-bg-panel p-4">
-              <p className="text-[10px] font-bold uppercase tracking-[0.3em] leading-none text-accent-2">Here's what to expect</p>
+              <p className="text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent-2">Here's what to expect</p>
               <ul className="mt-3 space-y-2 text-sm text-text-muted">
                 <li>We read your message carefully</li>
                 <li>We suggest the best fit for your stage</li>

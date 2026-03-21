@@ -38,19 +38,19 @@ export default function HomeHero() {
           <div className="max-w-4xl">
             {/* Eyebrow - Slide from Left */}
             <motion.p 
-              initial={{ opacity: 0, x: -30 }}
+              initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="text-[10px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow mb-6 motion-safe-gpu"
+              transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow mb-6 motion-safe-gpu"
             >
               Web Design Studio • Seychelles
             </motion.p>
             
             {/* Heading - Letter Reveal + Blur-In */}
             <motion.h1 
-              initial={{ opacity: 0, filter: "blur(10px)", scale: 0.95 }}
-              animate={{ opacity: 1, filter: "blur(0px)", scale: 1 }}
-              transition={{ duration: 1.5, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              initial={{ opacity: 0, y: 10, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
               className="font-display text-[2.2rem] sm:text-[3.2rem] md:text-[5rem] lg:text-[6.2rem] font-semibold leading-[0.9] tracking-[0.02em] text-white mb-6 uppercase md:leading-[0.92] motion-safe-gpu min-h-[4.4em] sm:min-h-[3.3em] md:min-h-0"
             >
               YOUR WEBSITE <br className="hidden sm:block" />
@@ -61,9 +61,9 @@ export default function HomeHero() {
 
             {/* Subheading - Fade & Gentle Rise (Desktop Only) */}
             <motion.p 
-              initial={{ opacity: 0, y: 15 }}
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.2, delay: 0.9, ease: "easeOut" }}
+              transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
               className="hidden md:block max-w-[46ch] text-sm sm:text-base md:text-lg leading-relaxed text-gray-400 font-light motion-safe-gpu"
             >
               Your business deserves a website that works as hard as you do — beautifully designed, easy to find, and built to turn visitors into customers you're proud to serve.
@@ -74,9 +74,9 @@ export default function HomeHero() {
               {['CUSTOM DESIGN', 'MOBILE FIRST', 'SEO READY'].map((tag, idx) => (
                 <motion.span 
                   key={tag} 
-                  initial={{ opacity: 0, scale: 0.8 }}
+                  initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6, delay: 1.2 + (idx * 0.15), ease: "backOut" }}
+                  transition={{ duration: 0.4, delay: 0.6 + (idx * 0.1), ease: "backOut" }}
                   className="text-[9px] font-bold tracking-[0.16em] text-accent uppercase border border-accent/60 px-3 py-1.5 rounded-full bg-accent/15 whitespace-nowrap motion-safe-gpu"
                 >
                   {tag}
@@ -89,9 +89,9 @@ export default function HomeHero() {
               {['CUSTOM DESIGN', 'MOBILE READY', 'FAST LOADING', 'SEO READY'].map((tag, idx) => (
                 <motion.span 
                   key={tag} 
-                  initial={{ opacity: 0, x: -10 }}
+                  initial={{ opacity: 0, x: -5 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8, delay: 1.4 + (idx * 0.15) }}
+                  transition={{ duration: 0.5, delay: 0.7 + (idx * 0.1) }}
                   className="text-[11px] font-bold tracking-[0.2em] text-accent uppercase border border-accent/50 px-4 py-1.5 rounded-full bg-accent/10 whitespace-nowrap motion-safe-gpu"
                 >
                   {tag}
@@ -102,25 +102,32 @@ export default function HomeHero() {
             {/* Desktop CTAs - Subtle Float-In */}
             <div className="mt-8 md:mt-12 hidden md:flex flex-col items-center gap-6 sm:flex-row sm:justify-center md:justify-start">
               <motion.div
-                initial={{ opacity: 0, y: 10 }}
+                initial={{ opacity: 0, y: 5 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, delay: 1.8 }}
+                transition={{ duration: 0.6, delay: 1.0 }}
                 className="motion-safe-gpu"
               >
                 <Link to="/contact">
-                  <button className="rounded-lg bg-accent px-10 py-4 text-sm font-black uppercase tracking-[0.2em] text-black transition-all hover:opacity-90 hover:scale-[1.02] active:scale-95 shadow-[0_0_30px_var(--glow)]">
+                  <button 
+                    aria-label="Contact us to get started with your project"
+                    className="rounded-lg bg-accent px-10 py-4 text-sm font-black uppercase tracking-[0.2em] text-black transition-all hover:opacity-90 hover:scale-[1.02] active:scale-95 shadow-[0_0_30px_var(--glow)]"
+                  >
                     Get Started
                   </button>
                 </Link>
               </motion.div>
               <motion.div
-                initial={{ opacity: 0, y: 10 }}
+                initial={{ opacity: 0, y: 5 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, delay: 2.0 }}
+                transition={{ duration: 0.6, delay: 1.1 }}
                 className="motion-safe-gpu"
               >
                 <Link to="/work">
-                  <button onClick={handleWorkScrollTop} className="group rounded-lg border border-accent/30 bg-white/[0.05] px-10 py-4 text-sm font-black uppercase tracking-[0.2em] text-white backdrop-blur-md transition-all hover:bg-white/[0.1] hover:border-accent/50">
+                  <button 
+                    onClick={handleWorkScrollTop} 
+                    aria-label="View our portfolio of web design work"
+                    className="group rounded-lg border border-accent/30 bg-white/[0.05] px-10 py-4 text-sm font-black uppercase tracking-[0.2em] text-white backdrop-blur-md transition-all hover:bg-white/[0.1] hover:border-accent/50"
+                  >
                     Our Work <span className="inline-block transition-transform group-hover:translate-x-1 ml-2">→</span>
                   </button>
                 </Link>
@@ -131,19 +138,26 @@ export default function HomeHero() {
 
         {/* Mobile-Only Bottom Block */}
         <motion.div 
-          initial={{ opacity: 0, scale: 0.95, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 1.2, delay: 2.3, ease: [0.16, 1, 0.3, 1] }}
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.3, ease: [0.16, 1, 0.3, 1] }}
           className="w-full flex flex-col items-center md:hidden z-20 motion-safe-gpu"
         >
           <div className="flex flex-col w-full gap-4 px-4 pb-2">
             <Link to="/contact" className="w-full">
-              <button className="w-full rounded-lg bg-accent py-4 text-[11px] font-black uppercase tracking-[0.2em] text-black active:scale-95 transition-transform shadow-[0_0_30px_rgba(0,229,255,0.3)]">
+              <button 
+                aria-label="Contact us to discuss your project"
+                className="w-full rounded-lg bg-accent py-4 text-[11px] font-black uppercase tracking-[0.2em] text-black active:scale-95 transition-transform shadow-[0_0_30px_rgba(0,229,255,0.3)]"
+              >
                 Discuss project
               </button>
             </Link>
             <Link to="/work" className="w-full">
-              <button onClick={handleWorkScrollTop} className="w-full rounded-lg border border-accent/30 bg-white/[0.05] py-4 text-[11px] font-black uppercase tracking-[0.2em] text-white active:scale-95 transition-transform backdrop-blur-sm">
+              <button 
+                onClick={handleWorkScrollTop} 
+                aria-label="View our showcase projects"
+                className="w-full rounded-lg border border-accent/30 bg-white/[0.05] py-4 text-[11px] font-black uppercase tracking-[0.2em] text-white active:scale-95 transition-transform backdrop-blur-sm"
+              >
                 View Our Work
               </button>
             </Link>

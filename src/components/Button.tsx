@@ -11,6 +11,7 @@ type ButtonProps = {
   size?: "sm" | "md" | "lg";
   className?: string;
   type?: "button" | "submit" | "reset";
+  ariaLabel?: string;
 };
 
 const sizeClasses = {
@@ -38,6 +39,7 @@ export default function Button({
   size = "md",
   className,
   type = "button",
+  ariaLabel,
 }: ButtonProps) {
   const classes = [
     "btn inline-flex items-center justify-center gap-2 rounded-[9px] text-center font-medium transition",
@@ -50,7 +52,7 @@ export default function Button({
 
   if (to) {
     return (
-      <Link to={to} className={classes} onClick={onClick}>
+      <Link to={to} className={classes} onClick={onClick} aria-label={ariaLabel}>
         {label}
       </Link>
     );
@@ -58,14 +60,14 @@ export default function Button({
 
   if (href) {
     return (
-      <a href={href} className={classes} target={target} rel={rel} onClick={onClick}>
+      <a href={href} className={classes} target={target} rel={rel} onClick={onClick} aria-label={ariaLabel}>
         {label}
       </a>
     );
   }
 
   return (
-    <button type={type} onClick={onClick} className={classes}>
+    <button type={type} onClick={onClick} className={classes} aria-label={ariaLabel}>
       {label}
     </button>
   );

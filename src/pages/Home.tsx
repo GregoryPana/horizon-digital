@@ -248,7 +248,7 @@ export default function Home() {
       <section id="services" className="py-24 md:py-32 bg-black border-t border-white/[0.05]">
         <div className="mx-auto w-full max-w-7xl px-6 md:px-10 lg:px-14">
           <div className="mb-16 text-left relative">
-            <p className="text-[10px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow mb-6">Our Services</p>
+            <p className="text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow mb-6">Our Services</p>
             <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
             <h2 className="font-display text-4xl font-semibold tracking-tight text-white md:text-6xl lg:text-7xl max-w-3xl leading-[1.05]">
               Websites built around how your business actually works.
@@ -288,8 +288,8 @@ export default function Home() {
               return (
                 <motion.div 
                   key={service.title}
-                  initial={{ opacity: 0, x: idx % 2 === 0 ? -40 : 40, filter: "blur(5px)" }}
-                  whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+                  initial={{ opacity: 0, x: idx % 2 === 0 ? -20 : 20, scale: 0.98 }}
+                  whileInView={{ opacity: 1, x: 0, scale: 1 }}
                   viewport={{ once: true, amount: 0.2 }}
                   transition={{ duration: 0.8, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
                   whileHover={{ y: -5, borderColor: "rgba(34, 211, 238, 0.4)" }}
@@ -313,7 +313,7 @@ export default function Home() {
       <section id="methodology" className="py-24 md:py-32 bg-black border-t border-white/[0.05]">
         <div className="mx-auto w-full max-w-7xl px-6 md:px-10 lg:px-14">
           <div className="mb-20 text-center">
-            <p className="text-[10px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow mb-6">
+            <p className="text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow mb-6">
               The Methodology
             </p>
             <h2 className="font-display text-4xl font-semibold tracking-tight text-white md:text-6xl lg:text-7xl">
@@ -378,7 +378,7 @@ export default function Home() {
       <section id="packages" className="py-24 md:py-40 bg-black border-t border-white/[0.05]">
         <div className="mx-auto w-full max-w-[92rem] px-6 md:px-10 lg:px-14">
           <div className="mb-20 text-center">
-            <p className="text-[10px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow mb-6">
+            <p className="text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow mb-6">
               Find your fit
             </p>
             <h2 className="font-display text-4xl font-semibold tracking-tight text-white md:text-6xl lg:text-7xl">
@@ -412,7 +412,7 @@ export default function Home() {
                 )}
                 
                 <div className="mb-10">
-                  <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-500 mb-3 ml-0.5">
+                  <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-gray-500 mb-3 ml-0.5">
                     {pkg.title === "Foundation" ? "Essentials" : pkg.title === "Starter" ? "Scalable" : pkg.title === "Growth" ? "Full Scale" : "One-of-a-kind"}
                   </p>
                   <h3 className="text-3xl font-semibold text-white mb-6 pr-4 leading-tight tracking-tight font-display">{pkg.title}</h3>
@@ -453,7 +453,7 @@ export default function Home() {
       <section id="why-us" className="py-20 md:py-32">
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
           <div className="mb-16 text-center">
-            <p className="text-[10px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow mb-4">
+            <p className="text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow mb-4">
               Why clients come back
             </p>
             <h2 className="font-display section-title mx-auto mt-4 max-w-4xl text-[2rem] font-semibold tracking-tight text-text md:text-[3.2rem] md:leading-[1.1]">
@@ -501,7 +501,7 @@ export default function Home() {
           >
             <div className="grid lg:grid-cols-12">
               <div className="relative z-20 flex flex-col justify-center p-10 md:p-16 lg:col-span-7">
-                <p className="text-[10px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow mb-4">
+                <p className="text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow mb-4">
                   Stay in the know
                 </p>
                 <h2 className="font-display mt-4 text-3xl font-semibold text-white md:text-5xl tracking-tight">

@@ -10,7 +10,7 @@ export default function About() {
   const fadeIn = {
     initial: { opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 20 },
     whileInView: { opacity: 1, y: 0 },
-    viewport: { once: false, amount: 0.4 },
+    viewport: { once: true, amount: 0.4 },
     transition: { duration: 0.7, ease: "easeOut" as const },
   };
 
@@ -29,7 +29,7 @@ export default function About() {
         <div className="absolute inset-0 z-0 bg-gradient-to-b from-bg-panel/20 to-bg pointer-events-none" />
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 relative z-10 text-center">
           <motion.div {...fadeIn}>
-            <p className="text-[10px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow mb-4 inline-block">
+            <p className="text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow mb-4 inline-block">
               Who we are
             </p>
             <h2 className="font-display mt-6 text-4xl font-semibold tracking-tight text-white md:text-6xl max-w-4xl mx-auto">
@@ -147,7 +147,7 @@ export default function About() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,229,255,0.05)_0%,transparent_70%)]" />
         <div className="mx-auto w-full max-w-4xl px-5 sm:px-8 text-center relative z-10">
           <motion.div {...fadeIn}>
-            <p className="text-[10px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow mb-4">Let's connect</p>
+            <p className="text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow mb-4">Let's connect</p>
             <h2 className="font-display text-3xl font-semibold text-text md:text-5xl md:leading-[1.2] tracking-tight mb-12">
               <span className="text-accent">Ready</span> when you are
             </h2>

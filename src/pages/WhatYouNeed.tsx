@@ -19,7 +19,7 @@ export default function WhatYouNeed() {
   const fadeInUp = {
     initial: { opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 20 },
     whileInView: { opacity: 1, y: 0 },
-    viewport: { once: false, amount: 0.4 },
+    viewport: { once: true, amount: 0.4 },
     transition: { duration: 0.6, ease: "easeOut" as const },
   };
 
@@ -37,7 +37,7 @@ export default function WhatYouNeed() {
       {/* Hero Intro */}
       <section className="pt-32 pb-20 md:pt-40 md:pb-32 text-center px-5 sm:px-8 max-w-5xl mx-auto">
         <motion.div {...fadeInUp}>
-          <p className="text-[10px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow mb-6">
+          <p className="text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow mb-6">
             Not sure where to start?
           </p>
           <h2 className="font-display text-4xl md:text-6xl font-semibold tracking-tight text-text mb-8">
@@ -117,7 +117,7 @@ export default function WhatYouNeed() {
                   key={feature} 
                   initial={{ opacity: 0, scale: 0.95 }}
                   whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: false }}
+                  viewport={{ once: true }}
                   transition={{ delay: i * 0.1, duration: 0.5 }}
                   className="rounded-xl border border-border bg-gradient-to-tr from-white/[0.02] to-transparent p-6 text-center shadow-lg hover:border-accent/40 transition-colors"
                 >
@@ -132,7 +132,7 @@ export default function WhatYouNeed() {
       <section className="py-24 md:py-32 relative bg-gradient-to-b from-transparent to-bg-panel/20">
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 relative z-10">
           <motion.div className="mb-16 max-w-3xl mx-auto text-center" {...fadeInUp}>
-            <p className="text-[10px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow mb-4">How it works</p>
+            <p className="text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow mb-4">How it works</p>
             <h2 className="font-display text-3xl md:text-5xl font-semibold text-text mb-6 tracking-tight">Three things every website needs</h2>
             <p className="text-lg text-text-muted">
               Whether you build with us or someone else, every website needs three things to exist on the internet. Here's what they are.
@@ -188,7 +188,7 @@ export default function WhatYouNeed() {
          <div className="absolute top-0 right-0 w-1/2 h-full bg-[radial-gradient(circle_at_top_right,rgba(0,229,255,0.05)_0%,transparent_50%)] pointer-events-none"/>
          <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 relative z-10">
              <motion.div className="mb-16 max-w-3xl mx-auto text-center" {...fadeInUp}>
-               <p className="text-[10px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow mb-4">Find your fit</p>
+               <p className="text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow mb-4">Find your fit</p>
                <h2 className="font-display text-3xl md:text-5xl font-semibold text-text mb-6 tracking-tight">How would you like to work with us?</h2>
                <p className="text-lg text-text-muted">Both options give you a great result. The difference is just who handles the hosting side.</p>
              </motion.div>
@@ -257,7 +257,7 @@ export default function WhatYouNeed() {
       <section className="bg-bg-panel/40 py-24 md:py-32">
         <div className="mx-auto flex w-full max-w-5xl flex-col items-center text-center px-5 sm:px-8">
            <motion.div {...fadeInUp}>
-             <p className="text-[10px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow mb-4">Before we start</p>
+             <p className="text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow mb-4">Before we start</p>
              <h2 className="font-display text-3xl md:text-5xl font-semibold text-text mb-8 tracking-tight">A few things that help us hit the ground running</h2>
              <p className="text-lg text-text-muted mb-12 max-w-2xl mx-auto">
                Gathering a few basics before we start keeps things moving and the launch clean. Think: your service list, contact details, any logos or branding, and your social links. Not sure what you have? We'll walk you through it.

@@ -37,7 +37,7 @@ export default function Section({
             className="mx-auto mb-8 max-w-3xl text-center md:mb-12"
           >
             {eyebrow && (
-              <p className="text-[10px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow mb-4">
+              <p className="text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow mb-4">
                 {eyebrow}
               </p>
             )}

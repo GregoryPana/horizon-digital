@@ -32,7 +32,7 @@ export default function Work() {
   const fadeIn = {
     initial: { opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 30 },
     whileInView: { opacity: 1, y: 0 },
-    viewport: { once: false, amount: 0.4 },
+    viewport: { once: true, amount: 0.4 },
     transition: { duration: 0.7, ease: "easeOut" as const },
   };
 
@@ -49,7 +49,7 @@ export default function Work() {
       {/* Hero Header */}
       <section className="pt-32 pb-20 md:pt-48 md:pb-32 text-center px-5 sm:px-8 max-w-5xl mx-auto">
         <motion.div {...fadeIn}>
-          <p className="text-[10px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow mb-6">
+          <p className="text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow mb-6">
             Real work, real businesses
           </p>
           <h2 className="font-display text-4xl md:text-7xl font-semibold tracking-tight text-text mb-8">
