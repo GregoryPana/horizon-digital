@@ -378,7 +378,7 @@ export default function Home() {
           <div className="mb-20 text-center">
             <p className="text-[10px] font-bold uppercase tracking-[0.4em] text-cyan-400 mb-6 font-display italic">Investment Tiers</p>
             <h2 className="font-display text-4xl font-semibold tracking-tight text-white md:text-6xl lg:text-7xl">
-              Which package works for you?
+              A home online, built for where you are right now
             </h2>
           </div>
 
@@ -447,10 +447,10 @@ export default function Home() {
       <section id="why-us" className="py-20 md:py-32">
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
           <div className="mb-16 text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.32em] text-accent section-eyebrow-glow">
+            <p className="text-[10px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow mb-4">
               Why clients come back
             </p>
-            <h2 className="section-title mx-auto mt-4 max-w-4xl text-[2rem] font-semibold tracking-[-0.01em] text-text md:text-[3.2rem] md:leading-[1.1]">
+            <h2 className="font-display section-title mx-auto mt-4 max-w-4xl text-[2rem] font-semibold tracking-tight text-text md:text-[3.2rem] md:leading-[1.1]">
               We make it <span className="text-accent">easy</span> to trust the process
             </h2>
             <div className="mt-6 flex justify-center">
@@ -495,10 +495,10 @@ export default function Home() {
           >
             <div className="grid lg:grid-cols-12">
               <div className="relative z-20 flex flex-col justify-center p-10 md:p-16 lg:col-span-7">
-                <p className="text-xs font-semibold uppercase tracking-[0.32em] text-accent section-eyebrow-glow">
+                <p className="text-[10px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow mb-4">
                   Stay in the know
                 </p>
-                <h2 className="mt-4 text-3xl font-semibold text-white md:text-5xl">
+                <h2 className="font-display mt-4 text-3xl font-semibold text-white md:text-5xl tracking-tight">
                   The digital world, explained simply.
                 </h2>
                 <p className="mt-5 text-base leading-relaxed text-text-muted md:text-lg">
@@ -616,7 +616,7 @@ export default function Home() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: false }}
            >
-              <h2 className="text-4xl md:text-7xl font-semibold text-text mb-8">
+              <h2 className="font-display text-4xl md:text-7xl font-semibold text-text mb-8 tracking-tight">
                 Let's build something <br /><span className="text-accent underline decoration-accent/20">you're proud of</span>
               </h2>
               <p className="text-lg md:text-2xl text-text-muted mb-12 max-w-2xl mx-auto font-light leading-relaxed">

@@ -49,7 +49,7 @@ export default function Work() {
       {/* Hero Header */}
       <section className="pt-32 pb-20 md:pt-48 md:pb-32 text-center px-5 sm:px-8 max-w-5xl mx-auto">
         <motion.div {...fadeIn}>
-          <p className="text-xs font-semibold uppercase tracking-[0.32em] text-accent section-eyebrow-glow mb-6">
+          <p className="text-[10px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow mb-6">
             Real work, real businesses
           </p>
           <h2 className="font-display text-4xl md:text-7xl font-semibold tracking-tight text-text mb-8">

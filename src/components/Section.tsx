@@ -37,17 +37,17 @@ export default function Section({
             className="mx-auto mb-8 max-w-3xl text-center md:mb-12"
           >
             {eyebrow && (
-              <p className="text-xs font-semibold uppercase tracking-[0.32em] text-accent section-eyebrow-glow">
+              <p className="text-[10px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow mb-4">
                 {eyebrow}
               </p>
             )}
             {title && (
-              <h2 className="section-title mt-3 text-[1.95rem] font-medium tracking-[-0.01em] text-text md:text-[3.15rem]">
+              <h2 className="font-display section-title mt-3 text-[1.95rem] font-semibold tracking-tight text-text md:text-[3.15rem] leading-[1.1]">
                 {title}
               </h2>
             )}
             {description && (
-              <p className="section-description mt-4 text-[1.05rem] leading-[1.65] text-text-muted md:text-[1.1rem] md:leading-[1.62]">{description}</p>
+              <p className="section-description mt-5 text-[1.05rem] leading-[1.65] text-text-muted md:text-[1.1rem] md:leading-[1.62]">{description}</p>
             )}
           </motion.div>
         )}
