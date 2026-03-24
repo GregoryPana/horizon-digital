@@ -11,7 +11,7 @@ export default {
     const canonicalOrigin = "https://horizondigitalsey.com";
 
     if (url.pathname === "/robots.txt") {
-      const body = `User-agent: *\nAllow: /\nHost: ${canonicalOrigin}\n\nSitemap: ${canonicalOrigin}/sitemap.xml`;
+      const body = `User-agent: *\nAllow: /\nHost: horizondigitalsey.com\n\nSitemap: ${canonicalOrigin}/sitemap.xml`;
       return new Response(body, {
         headers: { "content-type": "text/plain; charset=utf-8" },
       });
@@ -28,6 +28,8 @@ export default {
         { path: "/insights", priority: "0.8", changefreq: "weekly" },
         { path: "/about", priority: "0.7", changefreq: "monthly" },
         { path: "/contact", priority: "0.7", changefreq: "monthly" },
+        { path: "/showcase/forma-studio", priority: "0.7", changefreq: "monthly" },
+        { path: "/showcase/takamaka-house", priority: "0.7", changefreq: "monthly" },
       ];
 
       const insightRoutes = insightArticles.map((article) => ({

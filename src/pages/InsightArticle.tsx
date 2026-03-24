@@ -13,7 +13,12 @@ export default function InsightArticle() {
   if (!article) {
     return (
       <div>
-        <Seo title="Insight Not Found" description="The requested insight article could not be found." path="/insights" />
+        <Seo
+          title="Insight Not Found"
+          description="The requested insight article could not be found."
+          path="/insights"
+          robots="noindex,follow"
+        />
         <Section eyebrow="Insights" title="Article not found" description="Please return to the insights list.">
           <Link to="/insights" className="text-sm font-semibold uppercase tracking-[0.12em] text-accent">
             Back to insights
@@ -54,6 +59,7 @@ export default function InsightArticle() {
         description={article.metaDescription}
         path={canonicalPath}
         keywords={article.keywords}
+        ogType="article"
         structuredData={articleSchema}
       />
 

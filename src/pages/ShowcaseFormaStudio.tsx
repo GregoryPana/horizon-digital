@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import formaStudioHtml from "../../forma-studio.html?raw";
+import Seo from "../components/Seo";
 
 export default function ShowcaseFormaStudio() {
   const frameRef = useRef<HTMLIFrameElement | null>(null);
@@ -17,15 +18,22 @@ export default function ShowcaseFormaStudio() {
   };
 
   return (
-    <section className="h-[100svh] w-full bg-black">
-      <iframe
-        ref={frameRef}
+    <>
+      <Seo
         title="Forma Studio Showcase"
-        srcDoc={formaStudioHtml}
-        className="h-full w-full border-0"
-        sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
-        onLoad={handleFrameLoad}
+        description="View the Forma Studio website showcase by Horizon Digital, including layout, storytelling flow, and visual direction."
+        path="/showcase/forma-studio"
       />
-    </section>
+      <section className="h-[100svh] w-full bg-black">
+        <iframe
+          ref={frameRef}
+          title="Forma Studio Showcase"
+          srcDoc={formaStudioHtml}
+          className="h-full w-full border-0"
+          sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+          onLoad={handleFrameLoad}
+        />
+      </section>
+    </>
   );
 }

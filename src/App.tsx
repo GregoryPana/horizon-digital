@@ -13,6 +13,7 @@ const Insights = lazy(() => import("./pages/Insights"));
 const InsightArticle = lazy(() => import("./pages/InsightArticle"));
 const ShowcaseFormaStudio = lazy(() => import("./pages/ShowcaseFormaStudio"));
 const ShowcaseTakamakaHouse = lazy(() => import("./pages/ShowcaseTakamakaHouse"));
+const NotFound = lazy(() => import("./pages/NotFound"));
 
 export default function App() {
   return (
@@ -36,6 +37,7 @@ export default function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/showcase/forma-studio" element={<ShowcaseFormaStudio />} />
           <Route path="/showcase/takamaka-house" element={<ShowcaseTakamakaHouse />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
     </Layout>

@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import takamakaHouseHtml from "../../takamaka-house.html?raw";
+import Seo from "../components/Seo";
 
 export default function ShowcaseTakamakaHouse() {
   const frameRef = useRef<HTMLIFrameElement | null>(null);
@@ -17,15 +18,22 @@ export default function ShowcaseTakamakaHouse() {
   };
 
   return (
-    <section className="h-[100svh] w-full bg-black">
-      <iframe
-        ref={frameRef}
+    <>
+      <Seo
         title="Takamaka House Showcase"
-        srcDoc={takamakaHouseHtml}
-        className="h-full w-full border-0"
-        sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
-        onLoad={handleFrameLoad}
+        description="Explore the Takamaka House showcase by Horizon Digital, focused on hospitality storytelling and clear booking intent."
+        path="/showcase/takamaka-house"
       />
-    </section>
+      <section className="h-[100svh] w-full bg-black">
+        <iframe
+          ref={frameRef}
+          title="Takamaka House Showcase"
+          srcDoc={takamakaHouseHtml}
+          className="h-full w-full border-0"
+          sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+          onLoad={handleFrameLoad}
+        />
+      </section>
+    </>
   );
 }

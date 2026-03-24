@@ -6,10 +6,20 @@ type SeoProps = {
   description: string;
   path: string;
   keywords?: string;
+  robots?: string;
+  ogType?: "website" | "article";
   structuredData?: Record<string, unknown> | Array<Record<string, unknown>>;
 };
 
-export default function Seo({ title, description, path, keywords, structuredData }: SeoProps) {
+export default function Seo({
+  title,
+  description,
+  path,
+  keywords,
+  robots = "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1",
+  ogType = "website",
+  structuredData,
+}: SeoProps) {
   const canonical = new URL(path, siteConfig.url).toString();
   const fullTitle = title.includes(siteConfig.name)
     ? title
@@ -60,12 +70,13 @@ export default function Seo({ title, description, path, keywords, structuredData
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
       {keywords ? <meta name="keywords" content={keywords} /> : null}
+      <meta name="robots" content={robots} />
       <link rel="canonical" href={canonical} />
 
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description} />
       <meta property="og:url" content={canonical} />
-      <meta property="og:type" content="website" />
+      <meta property="og:type" content={ogType} />
       <meta property="og:site_name" content={siteConfig.name} />
       <meta property="og:locale" content="en_GB" />
       <meta property="og:image" content={ogImageUrl} />
