@@ -212,36 +212,36 @@ function WorkShowcase() {
 
             <div className="relative z-20 mx-auto grid w-full max-w-7xl items-center gap-12 px-6 lg:grid-cols-2">
               <div className={idx % 2 === 1 ? "lg:order-2" : ""}>
-                <div className="relative rounded-[2.5rem] border border-white/[0.05] bg-black/10 p-8 backdrop-blur-[1px] md:p-12 lg:-ml-12 xl:-ml-16">
-                  <div className="mb-7 inline-flex items-center gap-3 rounded-full border border-cyan/35 bg-cyan/10 px-4 py-2">
+                <div className="relative rounded-[2.5rem] border border-white/[0.05] bg-black/10 p-8 text-center backdrop-blur-[1px] md:p-12 md:text-left lg:-ml-12 xl:-ml-16">
+                  <div className="mx-auto mb-7 inline-flex items-center gap-3 rounded-full border border-cyan/35 bg-cyan/10 px-4 py-2 md:mx-0">
                     <span className="h-2 w-2 rounded-full bg-cyan animate-pulse shadow-[0_0_10px_#00E5FF]" />
-                    <span className="text-xs font-bold uppercase tracking-[0.2em] text-cyan">{project.tier}</span>
+                    <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-cyan md:text-xs">{project.tier}</span>
                   </div>
-                  <h3 className="font-display text-5xl font-bold uppercase tracking-[-0.04em] text-white md:text-7xl">
+                  <h3 className="font-display text-4xl font-bold uppercase tracking-[-0.04em] text-white md:text-7xl">
                     {project.title}
                   </h3>
-                  <p className="mt-6 max-w-xl text-lg text-gray-300 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] md:text-2xl">{project.outcome}</p>
+                  <p className="mx-auto mt-6 max-w-xl text-lg text-gray-300 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] md:mx-0 md:text-2xl">{project.outcome}</p>
 
-                  <div className="mt-10 flex flex-wrap gap-x-8 gap-y-6">
+                  <div className="mt-10 flex flex-col items-stretch gap-4 sm:flex-row sm:items-center sm:gap-x-10 md:justify-start">
+                    <Link
+                      to="/services-pricing"
+                      className="group flex flex-1 items-center justify-center rounded-lg border border-cyan/40 bg-transparent px-8 py-3.5 text-[10px] font-black uppercase tracking-[0.2em] text-cyan transition-all hover:border-cyan hover:bg-cyan/5 md:flex-none md:text-[11px]"
+                    >
+                      <span className="whitespace-nowrap">Get Started</span>
+                      <span className="ml-2 inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
+                    </Link>
+
                     {project.url ? (
                       <a
                         href={project.url}
                         target="_blank"
                         rel="noreferrer"
-                        className="group inline-flex items-center gap-4 text-[11px] font-extrabold uppercase tracking-[0.2em] text-cyan transition-all duration-300 hover:scale-[1.05] hover:text-[#00e5ff]"
+                        className="group flex flex-1 items-center justify-center rounded-lg border border-cyan/40 bg-transparent px-8 py-3.5 text-[10px] font-black uppercase tracking-[0.2em] text-cyan transition-all hover:border-cyan hover:bg-cyan/5 md:flex-none md:text-[11px]"
                       >
-                        <span>Explore Project</span>
-                        <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-cyan/50 text-cyan transition-transform duration-300 group-hover:scale-110 group-hover:border-[#00e5ff] group-hover:text-[#00e5ff]">→</span>
+                        <span className="whitespace-nowrap">Explore Project</span>
+                        <span className="ml-2 inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
                       </a>
                     ) : null}
-                    
-                    <Link
-                      to="/services-pricing"
-                      className="group inline-flex items-center gap-4 text-[11px] font-extrabold uppercase tracking-[0.2em] text-cyan transition-all duration-300 hover:scale-[1.05] hover:text-[#00e5ff]"
-                    >
-                      <span>See Packages & Pricing</span>
-                      <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-cyan/50 text-cyan transition-transform duration-300 group-hover:scale-110 group-hover:border-[#00e5ff] group-hover:text-[#00e5ff]">→</span>
-                    </Link>
                   </div>
                 </div>
               </div>
@@ -537,7 +537,7 @@ export default function Home() {
 
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
             <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/5 bg-transparent transition-colors duration-500 hover:!border-[#00E5FF] hover:shadow-[0_0_12px_rgba(0,229,255,0.3)]">
-              <div className="relative flex h-64 items-center justify-center overflow-hidden border-b border-white/5 bg-[#111113] p-8">
+              <div className="relative flex h-72 items-center justify-center overflow-hidden bg-[#1A1A1C]/60 p-8">
                 <div className="relative h-full w-full max-w-sm">
                   <div className="hd-anim-before absolute inset-0 flex flex-col gap-3 rounded-lg border-2 border-dashed border-red-400/50 p-4">
                     <div className="-mt-8 mb-2 w-full text-center"><span className="text-xs font-bold uppercase tracking-widest text-red-400/70">Before</span></div>
@@ -563,7 +563,7 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <div className="flex flex-1 flex-col p-8 bg-gradient-to-t from-[#121214] via-[#121214]/95 to-transparent -mt-12 pt-16 relative z-10">
+              <div className="flex flex-1 flex-col p-8 bg-gradient-to-t from-[#0A0A0C] via-[#0A0A0C]/95 via-[#0A0A0C]/80 to-transparent -mt-20 pt-24 relative z-10">
                 <h3 className="font-display mb-4 text-2xl font-bold uppercase text-white">Custom Design</h3>
                 <p className="mb-6 leading-relaxed text-gray-400">Every page designed around your specific services, your customers, and how you want to be found. No common Templates</p>
                 <Link to="/services-pricing" className="mt-auto inline-flex items-center text-sm font-bold uppercase tracking-[0.16em] text-cyan hover:text-[#00e5ff] transition-colors group/link">
@@ -573,7 +573,7 @@ export default function Home() {
             </article>
 
             <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/5 bg-transparent transition-colors duration-500 hover:!border-[#00E5FF] hover:shadow-[0_0_12px_rgba(0,229,255,0.3)]">
-              <div className="relative flex h-64 items-center justify-center overflow-hidden border-b border-white/5 bg-[#111113] p-8">
+              <div className="relative flex h-72 items-center justify-center overflow-hidden bg-[#1A1A1C]/60 p-8">
                 <div className="translate-y-6 overflow-hidden rounded-[2rem] border-4 border-gray-800 bg-black shadow-2xl transition-transform duration-500 group-hover:translate-y-2">
                   <div className="flex h-6 justify-center rounded-t-[1.7rem] bg-black">
                     <div className="h-3 w-12 rounded-b-xl bg-gray-900" />
@@ -589,7 +589,7 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <div className="flex flex-1 flex-col p-8 bg-gradient-to-t from-[#121214] via-[#121214]/95 to-transparent -mt-12 pt-16 relative z-10">
+              <div className="flex flex-1 flex-col p-8 bg-gradient-to-t from-[#0A0A0C] via-[#0A0A0C]/95 via-[#0A0A0C]/80 to-transparent -mt-20 pt-24 relative z-10">
                 <h3 className="font-display mb-4 text-2xl font-bold uppercase text-white">Perfect on Mobile</h3>
                 <p className="mb-6 leading-relaxed text-gray-400">Over 70% of customers browse on phones. Your site works beautifully on the phones your customers use — no pinching, no squinting.</p>
                 <Link to="/services-pricing" className="mt-auto inline-flex items-center text-sm font-bold uppercase tracking-[0.16em] text-cyan hover:text-[#00e5ff] transition-colors group/link">
@@ -615,7 +615,7 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <div className="flex flex-1 flex-col p-8 bg-gradient-to-t from-[#121214] via-[#121214]/95 to-transparent -mt-12 pt-16 relative z-10">
+              <div className="flex flex-1 flex-col p-8 bg-gradient-to-t from-[#0A0A0C] via-[#0A0A0C]/95 via-[#0A0A0C]/80 to-transparent -mt-20 pt-24 relative z-10">
                 <h3 className="font-display mb-4 text-2xl font-bold uppercase text-white">Found on Google</h3>
                 <p className="mb-6 leading-relaxed text-gray-400">We build every page so Google understands your business and shows you when locals are searching.</p>
                 <Link to="/services-pricing" className="mt-auto inline-flex items-center text-sm font-bold uppercase tracking-[0.16em] text-cyan hover:text-[#00e5ff] transition-colors group/link">
@@ -625,7 +625,7 @@ export default function Home() {
             </article>
 
             <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/5 bg-transparent transition-colors duration-500 hover:!border-[#00E5FF] hover:shadow-[0_0_12px_rgba(0,229,255,0.3)]">
-              <div className="relative flex h-64 items-center justify-center overflow-hidden border-b border-white/5 bg-[#111113] p-8">
+              <div className="relative flex h-72 items-center justify-center overflow-hidden bg-[#1A1A1C]/60 p-8">
                 <div className="relative flex h-32 w-32 items-center justify-center">
                   <svg className="h-full w-full -rotate-90" viewBox="0 0 100 100">
                     <circle cx="50" cy="50" r="45" fill="none" stroke="#222" strokeWidth="8" />
@@ -640,7 +640,7 @@ export default function Home() {
                   <div className="flex items-center gap-3"><span className="h-2 w-2 rounded-full bg-cyan shadow-[0_0_8px_#00E5FF]" /><span className="text-sm text-gray-300">UPTIME <b className="text-white">99.9%</b></span></div>
                 </div>
               </div>
-              <div className="flex flex-1 flex-col p-8 bg-gradient-to-t from-[#121214] via-[#121214]/95 to-transparent -mt-12 pt-16 relative z-10">
+              <div className="flex flex-1 flex-col p-8 bg-gradient-to-t from-[#0A0A0C] via-[#0A0A0C]/95 via-[#0A0A0C]/80 to-transparent -mt-20 pt-24 relative z-10">
                 <h3 className="font-display mb-4 text-2xl font-bold uppercase text-white">Fast & Reliable</h3>
                 <p className="mb-6 leading-relaxed text-gray-400">Fast-loading pages keep visitors on your site — and slow sites send them straight to your competitors.</p>
                 <Link to="/services-pricing" className="mt-auto inline-flex items-center text-sm font-bold uppercase tracking-[0.16em] text-cyan hover:text-[#00e5ff] transition-colors group/link">
@@ -748,7 +748,7 @@ export default function Home() {
                 <ul className="space-y-5 mb-12 flex-grow">
                   {pkg.includes.map((item, includeIdx) => (
                     <li key={`${item}-${includeIdx}`} className="flex items-start gap-4">
-                      <svg className="h-4 w-4 text-cyan-400 mt-1 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <svg className="h-4 w-4 text-cyan mt-1 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                       </svg>
                       <span className="text-sm text-gray-400 leading-relaxed">{item}</span>
