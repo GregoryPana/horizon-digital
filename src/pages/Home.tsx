@@ -516,12 +516,12 @@ export default function Home() {
       </section>
 
       <section className="relative z-20 overflow-hidden border-y border-[#1a2c33] bg-[#0d1a1f] py-6">
-        <div className="hd-marquee-track flex items-center gap-20 whitespace-nowrap text-[11px] font-medium uppercase tracking-[0.3em] text-[#5c757d]">
+        <div className="hd-marquee-track flex w-max whitespace-nowrap text-[11px] font-medium uppercase tracking-[0.3em] text-[#5c757d]">
           {[...marqueeItems, ...marqueeItems].map((item, i) => (
-            <span key={`${item}-${i}`} className="inline-flex items-center gap-20">
+            <div key={`${item}-${i}`} className="flex flex-shrink-0 items-center">
               <span>{item}</span>
-              <span className="h-2 w-2 rounded-full bg-[#6f8891]" />
-            </span>
+              <span className="mx-12 h-1.5 w-1.5 shrink-0 rounded-full bg-[#6f8891]/40" />
+            </div>
           ))}
         </div>
       </section>
