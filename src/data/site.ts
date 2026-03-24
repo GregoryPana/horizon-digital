@@ -2,8 +2,8 @@ import guesthousePreview from "../assets/work/drake-seaside/drake-seaside.jpg";
 import guesthousePreviewWebp from "../assets/work/drake-seaside/drake-seaside.webp";
 import guesthousePreviewWebp800 from "../assets/work/drake-seaside/drake-seaside-600.webp";
 import ogImage from "../assets/logo/svg logo (1).png";
-import formaStudioPreview from "../assets/work/forma studio/forma studio.png";
-import takamakaHousePreview from "../assets/work/takamaka-house/takamaka house.png";
+import formaStudioPreview from "../assets/work/forma studio/forma.png";
+import takamakaHousePreview from "../assets/work/takamaka-house/takamaka.png";
 import beautyPreview from "../assets/work/demo-beauty/demo-beauty.jpg";
 import beautyPreviewWebp from "../assets/work/demo-beauty/demo-beauty.webp";
 import beautyPreviewWebp800 from "../assets/work/demo-beauty/demo-beauty 600.webp";
@@ -87,23 +87,23 @@ export const addOns = [
 export const projectSteps = [
   {
     title: "Discovery",
-    description: "We dive deep into your brand, audience, and goals.",
-  },
-  {
-    title: "Strategy",
-    description: "Crafting the digital blueprint for your success.",
+    description: "We listen to your goals and get to know your business and your customers.",
   },
   {
     title: "Design",
-    description: "Visual storytelling that captivates and converts.",
+    description: "We create the visual layout and page structure for your review and approval.",
   },
   {
     title: "Build",
-    description: "Clean, efficient code that powers performance.",
+    description: "We engineer the full site, optimised for speed, mobile, and search.",
   },
   {
     title: "Launch",
-    description: "Optimized deployment and continuous growth.",
+    description: "We go live — and stay close to make sure everything runs perfectly.",
+  },
+  {
+    title: "Grow",
+    description: "We keep your site healthy, fast, and supported whenever you need us.",
   },
 ];
 
@@ -236,6 +236,7 @@ export const workItems = [
     image: formaStudioPreview,
     imageWebp: formaStudioPreview,
     imageWebp800: formaStudioPreview,
+    imagePosition: "center 40%",
     url: "https://horizondigitalsey.com/showcase/forma-studio",
   },
   {
@@ -246,6 +247,7 @@ export const workItems = [
     image: takamakaHousePreview,
     imageWebp: takamakaHousePreview,
     imageWebp800: takamakaHousePreview,
+    imagePosition: "center 55%",
     url: "https://horizondigitalsey.com/showcase/takamaka-house",
   },
   {

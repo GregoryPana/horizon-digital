@@ -1,12 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: "Gambarino";
-  src: url("/fonts/Gambarino-Regular.woff2") format("woff2");
-  font-weight: 400; font-style: normal; font-display: swap;
-}
 @font-face {
   font-family: "Switzer";
   src: url("/fonts/Switzer-Light.woff2") format("woff2");
@@ -21,16 +18,6 @@
   font-family: "Switzer";
   src: url("/fonts/Switzer-Bold.woff2") format("woff2");
   font-weight: 700; font-style: normal; font-display: swap;
-}
-@font-face {
-  font-family: "Sora Variable";
-  src: url("/fonts/Gambarino-Regular.woff2") format("woff2");
-  font-weight: 100 900;
-}
-@font-face {
-  font-family: "Inter Variable";
-  src: url("/fonts/Switzer-Light.woff2") format("woff2");
-  font-weight: 100 900;
 }
 
 
@@ -93,9 +80,7 @@ body,
 
 body {
   margin: 0;
-  font-family:
-    "Inter Variable", "Inter Fallback", "Inter", "Segoe UI", "Helvetica Neue",
-    Arial, sans-serif;
+  font-family: "Switzer", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   font-weight: 300;
   font-size: 1.02rem;
   line-height: 1.6;
@@ -127,9 +112,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family:
-    "Poppins", "Sora Variable", "Sora", "Segoe UI", "Helvetica Neue",
-    Arial, sans-serif;
+  font-family: "Poppins", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   font-weight: 600;
   line-height: 1.2;
 }
@@ -257,6 +240,216 @@ body::after {
   background-position:
     0 0,
     80px 120px;
+}
+
+.hd-text-glow {
+  text-shadow: 0 0 20px rgba(0, 229, 255, 0.5);
+}
+
+.hd-box-glow {
+  box-shadow: 0 0 30px rgba(0, 229, 255, 0.15);
+}
+
+.hd-text-gradient {
+  background: linear-gradient(135deg, #ffffff 0%, #9ca3af 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hd-grid-plane {
+  transform: rotateX(75deg) translateY(50px) translateZ(-200px);
+  transform-origin: bottom center;
+  background-image:
+    linear-gradient(to right, rgba(0, 229, 255, 0.2) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 229, 255, 0.2) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: hd-move-grid 10s linear infinite;
+}
+
+.hd-marquee-track {
+  animation: hd-marquee-scroll 30s linear infinite;
+}
+
+.hd-animate-beam {
+  animation: hd-beam-pulse 3s ease-in-out infinite;
+}
+
+.hd-float {
+  animation: hd-float 6s ease-in-out infinite;
+}
+
+.hd-float-reverse {
+  animation: hd-float-reverse 7s ease-in-out infinite;
+}
+
+.hd-anim-before {
+  animation: hd-before-to-after 6s ease-in-out infinite;
+}
+
+.hd-anim-after {
+  animation: hd-after-appear 6s ease-in-out infinite;
+}
+
+.hd-phone-scroll {
+  animation: hd-phone-scroll 8s ease-in-out infinite;
+}
+
+.hd-typing {
+  animation: hd-type-text 6s steps(20, end) infinite;
+}
+
+.hd-search-result {
+  animation: hd-show-result 6s infinite;
+}
+
+.hd-ring {
+  stroke-dasharray: 283;
+  stroke-dashoffset: 283;
+  animation: hd-fill-ring 4s ease-out infinite;
+  transform-origin: center;
+}
+
+@keyframes hd-move-grid {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 40px;
+  }
+}
+
+@keyframes hd-marquee-scroll {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes hd-beam-pulse {
+  0%,
+  100% {
+    opacity: 0.8;
+    box-shadow: 0 0 15px #00e5ff, 0 0 30px #00e5ff;
+    transform: translateY(-50%) scaleX(1);
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 25px #00e5ff, 0 0 50px #00e5ff, 0 0 70px #00e5ff;
+    transform: translateY(-50%) scaleX(1.08);
+  }
+}
+
+@keyframes hd-float {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(-12deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(-10deg);
+  }
+}
+
+@keyframes hd-float-reverse {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(12deg);
+  }
+  50% {
+    transform: translateY(-15px) rotate(14deg);
+  }
+}
+
+@keyframes hd-before-to-after {
+  0%,
+  40% {
+    opacity: 1;
+  }
+  50%,
+  90% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes hd-after-appear {
+  0%,
+  40% {
+    opacity: 0;
+  }
+  50%,
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes hd-phone-scroll {
+  0%,
+  10% {
+    transform: translateY(0);
+  }
+  40%,
+  60% {
+    transform: translateY(-60%);
+  }
+  90%,
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes hd-type-text {
+  0%,
+  10% {
+    width: 0;
+  }
+  30%,
+  60% {
+    width: 100%;
+  }
+  80%,
+  100% {
+    width: 0;
+  }
+}
+
+@keyframes hd-show-result {
+  0%,
+  35% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  40%,
+  60% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  65%,
+  100% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+@keyframes hd-fill-ring {
+  0%,
+  10% {
+    stroke-dashoffset: 283;
+  }
+  40%,
+  80% {
+    stroke-dashoffset: 0;
+  }
+  90%,
+  100% {
+    stroke-dashoffset: 283;
+  }
 }
 
 .hero-glow-text {
@@ -406,6 +599,13 @@ option {
     rgba(0 229 255 / calc(0.03 + 0.11 * var(--glow-strength)));
 }
 
+.scroll-glow:hover {
+  border-color: rgba(0, 229, 255, 0.9) !important;
+  box-shadow:
+    0 0 26px rgba(0, 229, 255, 0.2),
+    0 16px 32px rgba(0, 0, 0, 0.22) !important;
+}
+
 .pricing-pop.is-inview {
   border-color: rgba(0 229 255 / calc(0.06 + 0.4 * var(--glow-strength)));
   box-shadow: 0 0 calc(12px * var(--glow-strength))
@@ -439,6 +639,10 @@ option {
 
   .shimmer-button .animate-spin-around {
     opacity: 0.6;
+  }
+
+  .hd-marquee-track {
+    animation-duration: 18s !important;
   }
 
   .scroll-glow.is-inview {
@@ -1083,8 +1287,10 @@ html .section-eyebrow-glow {
 
 .lift:hover {
   transform: translateY(-6px);
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.22);
-  border-color: color-mix(in srgb, var(--border) 80%, var(--accent) 20%);
+  box-shadow:
+    0 16px 32px rgba(0, 0, 0, 0.22),
+    0 0 24px rgba(0, 229, 255, 0.18);
+  border-color: rgba(0, 229, 255, 0.82);
 }
 
 .focus-ring:focus-visible {

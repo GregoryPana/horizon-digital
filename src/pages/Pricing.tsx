@@ -237,7 +237,7 @@ export default function Pricing() {
           <p className="text-sm md:text-base text-text-muted max-w-4xl text-center mx-auto">{servicesPricingIntro.summary}</p>
           <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {services.slice(0, 5).map((service) => (
-              <div key={service.title} className="p-6 rounded-2xl border border-border bg-[#121214] hover:border-accent/30 transition-colors">
+              <div key={service.title} className="p-6 rounded-2xl border border-border bg-[#121214] hover:!border-[#00E5FF] hover:shadow-[0_0_12px_rgba(0,229,255,0.3)] transition-colors">
                 <h3 className="text-base font-semibold text-accent-2">{service.title}</h3>
                 <p className="mt-3 text-sm text-text-muted">{service.description}</p>
               </div>
@@ -280,14 +280,14 @@ export default function Pricing() {
         title="Pick the package that's right for right now"
         description="Foundation, Starter, and Growth — each one built around a different stage of business."
       >
-        <div id="panel-packages" role="tabpanel" aria-hidden={!showSelectedOrAll("packages")}>
-          <div className="grid items-stretch gap-8 md:grid-cols-2 lg:grid-cols-3 pt-6">
+        <div id="panel-packages" role="tabpanel" aria-hidden={!showSelectedOrAll("packages")} className="max-w-[88rem] mx-auto">
+          <div className="grid items-stretch gap-6 xl:gap-8 md:grid-cols-2 lg:grid-cols-3 pt-6 lg:pt-10 pb-8">
             {/* Foundation */}
             <motion.div 
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="flex h-full flex-col rounded-3xl border border-border/40 bg-bg-elev p-8 hover:border-accent/30 transition-all"
+              className="flex h-full flex-col rounded-3xl border border-border/40 bg-bg-elev p-8 hover:!border-[#00E5FF] hover:shadow-[0_0_12px_rgba(0,229,255,0.3)] transition-all"
             >
               <h3 className="text-lg font-semibold text-accent-2">{foundationPackage.title}</h3>
               <p className="mt-4 text-3xl font-semibold text-accent whitespace-nowrap">{foundationPackage.price}</p>
@@ -298,7 +298,7 @@ export default function Pricing() {
               <ul className="space-y-3 mb-8 text-text text-sm flex-grow">
                 {foundationPackage.includes.map((item) => (
                   <li key={item} className="flex items-start gap-3">
-                    <span className="text-accent mt-0.5">✓</span>
+                    <span className="text-cyan mt-0.5">✓</span>
                     {item}
                   </li>
                 ))}
@@ -307,7 +307,7 @@ export default function Pricing() {
               <div className="mt-auto pt-6">
                 <Link to="/contact?budget=7500-12500" className="w-full">
                   <button className="w-full py-3 rounded-full border border-border hover:bg-text/5 font-semibold text-sm transition-colors text-text">
-                    Discuss project
+                    Get Started →
                   </button>
                 </Link>
               </div>
@@ -319,9 +319,9 @@ export default function Pricing() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="flex h-full flex-col rounded-3xl border border-accent/40 bg-[#121214] p-8 shadow-[0_0_40px_rgba(0,229,255,0.1)] relative overflow-hidden pricing-card-featured-shine"
+              className="flex h-full flex-col rounded-3xl border border-cyan shadow-[0_0_30px_rgba(0,229,255,0.15)] bg-[#121214] p-8 relative overflow-hidden pricing-card-featured-shine xl:-translate-y-4 z-20"
             >
-              <div className="absolute top-0 right-0 py-1 px-4 text-xs font-semibold bg-accent text-bg rounded-bl-xl tracking-wider uppercase">Most Popular</div>
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-cyan px-6 py-[6px] rounded-full text-[10px] font-black uppercase tracking-[0.2em] text-[#0A0A0C] whitespace-nowrap shadow-[0_0_20px_rgba(0,229,255,0.5)]">Most Popular</div>
               <h3 className="text-lg font-semibold text-accent-2">{starterPackage.title}</h3>
               <p className="mt-4 text-3xl font-semibold text-accent whitespace-nowrap">{starterPackage.price}</p>
               <div className="mt-4 text-sm text-text-muted mb-8">
@@ -331,7 +331,7 @@ export default function Pricing() {
               <ul className="space-y-3 mb-8 text-text text-sm flex-grow">
                 {starterPackage.includes.map((item) => (
                   <li key={item} className="flex items-start gap-3">
-                    <span className="text-accent mt-0.5">✓</span>
+                    <span className="text-cyan mt-0.5">✓</span>
                     {item}
                   </li>
                 ))}
@@ -345,7 +345,7 @@ export default function Pricing() {
                     background="#00E5FF"
                     className="w-full px-5 py-3 text-sm font-semibold tracking-wide text-black"
                   >
-                    Discuss project
+                    Get Started →
                   </ShimmerButton>
                 </Link>
               </div>
@@ -357,7 +357,7 @@ export default function Pricing() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="flex h-full flex-col rounded-3xl border border-border/40 bg-bg-elev p-8 hover:border-accent/30 transition-all"
+              className="flex h-full flex-col rounded-3xl border border-border/40 bg-bg-elev p-8 hover:!border-[#00E5FF] hover:shadow-[0_0_12px_rgba(0,229,255,0.3)] transition-all"
             >
               <h3 className="text-lg font-semibold text-accent-2">{growthPackage.title}</h3>
               <p className="mt-4 text-3xl font-semibold text-accent whitespace-nowrap">{growthPackage.price}</p>
@@ -368,7 +368,7 @@ export default function Pricing() {
               <ul className="space-y-3 mb-8 text-text text-sm flex-grow">
                 {growthPackage.includes.map((item) => (
                   <li key={item} className="flex items-start gap-3">
-                    <span className="text-accent mt-0.5">✓</span>
+                    <span className="text-cyan mt-0.5">✓</span>
                     {item}
                   </li>
                 ))}
@@ -377,7 +377,7 @@ export default function Pricing() {
               <div className="mt-auto pt-6">
                 <Link to="/contact?budget=25000-plus" className="w-full">
                   <button className="w-full py-3 rounded-full border border-border hover:bg-text/5 font-semibold text-sm transition-colors text-text">
-                    Discuss project
+                    Get Started →
                   </button>
                 </Link>
               </div>
@@ -480,7 +480,7 @@ export default function Pricing() {
         <div className="relative left-1/2 right-1/2 -mx-[50vw] my-8 w-screen py-14 md:my-10 md:py-16 bg-bg-panel/20 border-y border-border/40">
           <div className="mx-auto grid w-full max-w-7xl gap-x-10 gap-y-8 px-5 sm:px-8 md:grid-cols-3">
           {addOnItems.map((item) => (
-            <div key={item.title} className="bg-bg-panel border border-border/40 p-6 rounded-2xl hover:border-accent/40 transition-colors">
+            <div key={item.title} className="bg-bg-panel border border-border/40 p-6 rounded-2xl hover:!border-[#00E5FF] hover:shadow-[0_0_12px_rgba(0,229,255,0.3)] transition-colors">
               <h3 className="text-base font-semibold text-text">{item.title}</h3>
               <p className="mt-3 inline-block px-3 py-1 rounded border border-accent/20 bg-accent/5 text-sm font-medium text-accent">{item.price}</p>
             </div>

@@ -15,6 +15,7 @@ module.exports = {
         "accent-2-soft": "var(--accent-2-soft)",
         border: "var(--border)",
         "glow": "var(--glow)",
+        cyan: "#00E5FF",
       },
       boxShadow: {
         glow: "0 0 24px var(--glow)",

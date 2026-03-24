@@ -34,15 +34,15 @@ export default function Section({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.1, margin: "0px 0px -12% 0px" }}
             transition={{ duration: shouldReduceMotion ? 0 : 0.4, ease: "easeOut" }}
-            className="mx-auto mb-8 max-w-3xl text-center md:mb-12"
+            className="mb-20 text-center"
           >
             {eyebrow && (
-              <p className="text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow mb-4">
+              <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow">
                 {eyebrow}
-              </p>
+              </span>
             )}
             {title && (
-              <h2 className="font-display section-title mt-3 text-[1.95rem] font-semibold tracking-tight text-text md:text-[3.15rem] leading-[1.1]">
+              <h2 className="font-display mx-auto max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl">
                 {title}
               </h2>
             )}

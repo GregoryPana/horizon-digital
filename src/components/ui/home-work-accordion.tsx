@@ -9,6 +9,7 @@ type WorkItem = {
   image: string;
   imageWebp: string;
   imageWebp800: string;
+  imagePosition?: string;
   url?: string;
 };
 
@@ -71,7 +72,8 @@ function WorkShowcaseCard({ item, index, shouldReduceMotion, onPreview, layoutCl
               height={1200}
               loading="lazy"
               decoding="async"
-              className={`absolute inset-0 h-full w-full object-cover object-top grayscale-[15%] transition duration-1000 md:group-hover:scale-[1.08] md:group-hover:grayscale-0 ${isExpanded ? "scale-[1.08] grayscale-0" : ""}`}
+              style={{ objectPosition: item.imagePosition ?? "center top" }}
+              className={`absolute inset-0 h-full w-full object-cover grayscale-[15%] transition duration-1000 md:group-hover:scale-[1.08] md:group-hover:grayscale-0 ${isExpanded ? "scale-[1.08] grayscale-0" : ""}`}
             />
           </picture>
         </motion.div>

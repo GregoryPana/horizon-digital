@@ -28,12 +28,10 @@ export default function About() {
       <section className="relative flex min-h-[60vh] items-center py-24 md:py-32">
         <div className="absolute inset-0 z-0 bg-gradient-to-b from-bg-panel/20 to-bg pointer-events-none" />
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 relative z-10 text-center">
-          <motion.div {...fadeIn}>
-            <p className="text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow mb-4 inline-block">
-              Who we are
-            </p>
-            <h2 className="font-display mt-6 text-4xl font-semibold tracking-tight text-white md:text-6xl max-w-4xl mx-auto">
-              We care about your business <span className="text-accent">doing well online</span>
+          <motion.div {...fadeIn} className="mb-20 text-center">
+            <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow">Who we are</span>
+            <h2 className="font-display mx-auto max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl">
+              We care about your business <span className="text-cyan">doing well online</span>
             </h2>
             <AccentLine className="mt-8 mx-auto w-32" direction="right" />
             <p className="mt-8 text-lg text-text-muted md:text-xl max-w-2xl mx-auto leading-relaxed">
@@ -89,8 +87,8 @@ export default function About() {
       {/* Feature Banner: Approach */}
       <section className="py-24 bg-bg-panel/30 border-y border-border">
         <div className="mx-auto w-full max-w-5xl px-5 sm:px-8 text-center text-balance">
-          <motion.div {...fadeIn}>
-            <h2 className="font-display text-3xl font-semibold text-text md:text-5xl tracking-tight">
+          <motion.div {...fadeIn} className="mb-20 text-center">
+            <h2 className="font-display mx-auto max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl">
               How we work with you
             </h2>
             <p className="mt-6 text-base md:text-lg text-text-muted max-w-2xl mx-auto">
@@ -117,13 +115,13 @@ export default function About() {
       {/* Digital Insights CTA */}
       <section className="py-20 md:py-32 relative">
          <div className="mx-auto w-full max-w-4xl px-5 sm:px-8 text-center">
-            <motion.div {...fadeIn}>
+            <motion.div {...fadeIn} className="text-center">
               <div className="inline-flex items-center justify-center p-4 rounded-full bg-accent/10 mb-8 border border-accent/20">
                  <svg className="w-8 h-8 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                  </svg>
               </div>
-              <h2 className="font-display text-3xl md:text-4xl font-semibold text-text mb-6 tracking-tight"><span className="text-accent-2">Staying ahead,</span> together</h2>
+              <h2 className="font-display mx-auto max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl mb-6"><span className="text-accent-2">Staying ahead,</span> together</h2>
               <p className="text-lg text-text-muted mb-10 leading-relaxed">
                 We share simple, honest reads on the digital tools that could matter for your business — no jargon, just useful context.
               </p>
@@ -146,9 +144,9 @@ export default function About() {
       <section className="bg-bg-elev border-t border-accent/10 py-24 md:py-32 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,229,255,0.05)_0%,transparent_70%)]" />
         <div className="mx-auto w-full max-w-4xl px-5 sm:px-8 text-center relative z-10">
-          <motion.div {...fadeIn}>
-            <p className="text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow mb-4">Let's connect</p>
-            <h2 className="font-display text-3xl font-semibold text-text md:text-5xl md:leading-[1.2] tracking-tight mb-12">
+          <motion.div {...fadeIn} className="mb-20 text-center">
+            <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow">Let's connect</span>
+            <h2 className="font-display mx-auto max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl mb-12">
               <span className="text-accent">Ready</span> when you are
             </h2>
             <Link to="/contact" className="inline-block hover:-translate-y-1 transition-transform duration-300">

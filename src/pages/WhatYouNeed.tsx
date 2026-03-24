@@ -36,11 +36,9 @@ export default function WhatYouNeed() {
 
       {/* Hero Intro */}
       <section className="pt-32 pb-20 md:pt-40 md:pb-32 text-center px-5 sm:px-8 max-w-5xl mx-auto">
-        <motion.div {...fadeInUp}>
-          <p className="text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow mb-6">
-            Not sure where to start?
-          </p>
-          <h2 className="font-display text-4xl md:text-6xl font-semibold tracking-tight text-text mb-8">
+        <motion.div {...fadeInUp} className="mb-20 text-center">
+          <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow">Not sure where to start?</span>
+          <h2 className="font-display mx-auto max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl mb-8">
             Let's find the right website for where you are right now
           </h2>
           <p className="text-lg md:text-xl text-text-muted max-w-2xl mx-auto leading-relaxed">
@@ -56,7 +54,7 @@ export default function WhatYouNeed() {
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
             
             <motion.div 
-              className="md:col-span-4 rounded-2xl border border-border bg-[#121214] backdrop-blur pb-10 pt-12 px-8 text-center hover:border-accent/30 transition-all duration-500 group"
+              className="md:col-span-4 rounded-2xl border border-border bg-[#121214] backdrop-blur pb-10 pt-12 px-8 text-center hover:!border-[#00E5FF] hover:shadow-[0_0_12px_rgba(0,229,255,0.3)] transition-all duration-500 group"
               {...fadeInUp} transition={{ delay: 0.1 }}
             >
               <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-accent/10 mb-6 group-hover:scale-110 transition-transform duration-500">
@@ -69,7 +67,7 @@ export default function WhatYouNeed() {
             </motion.div>
 
             <motion.div 
-              className="md:col-span-4 rounded-2xl border border-border bg-[#121214] backdrop-blur pb-10 pt-12 px-8 text-center hover:border-accent-2/30 transition-all duration-500 group"
+              className="md:col-span-4 rounded-2xl border border-border bg-[#121214] backdrop-blur pb-10 pt-12 px-8 text-center hover:!border-[#00E5FF] hover:shadow-[0_0_12px_rgba(0,229,255,0.3)] transition-all duration-500 group"
               {...fadeInUp} transition={{ delay: 0.2 }}
             >
               <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-accent-2/10 mb-6 group-hover:scale-110 transition-transform duration-500">
@@ -82,7 +80,7 @@ export default function WhatYouNeed() {
             </motion.div>
 
             <motion.div 
-              className="md:col-span-4 rounded-2xl border border-border bg-[#121214] backdrop-blur pb-10 pt-12 px-8 text-center hover:border-accent/30 transition-all duration-500 group"
+              className="md:col-span-4 rounded-2xl border border-border bg-[#121214] backdrop-blur pb-10 pt-12 px-8 text-center hover:!border-[#00E5FF] hover:shadow-[0_0_12px_rgba(0,229,255,0.3)] transition-all duration-500 group"
               {...fadeInUp} transition={{ delay: 0.3 }}
             >
               <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-accent/10 mb-6 group-hover:scale-110 transition-transform duration-500">
@@ -101,8 +99,8 @@ export default function WhatYouNeed() {
       {/* Features Banner */}
       <section className="py-24 border-y border-border">
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
-           <motion.div className="text-center mb-16" {...fadeInUp}>
-             <h2 className="font-display text-3xl md:text-5xl font-semibold text-text tracking-tight mb-4">What comes included</h2>
+           <motion.div className="mb-20 text-center" {...fadeInUp}>
+             <h2 className="font-display mx-auto max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl mb-4">What comes included</h2>
              <p className="text-text-muted max-w-2xl mx-auto">Every business website starts with the same core building blocks — here's what those look like.</p>
            </motion.div>
 
@@ -119,7 +117,7 @@ export default function WhatYouNeed() {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1, duration: 0.5 }}
-                  className="rounded-xl border border-border bg-gradient-to-tr from-white/[0.02] to-transparent p-6 text-center shadow-lg hover:border-accent/40 transition-colors"
+                  className="rounded-xl border border-border bg-gradient-to-tr from-white/[0.02] to-transparent p-6 text-center shadow-lg hover:!border-[#00E5FF] hover:shadow-[0_0_12px_rgba(0,229,255,0.3)] transition-colors"
                 >
                   <span className="font-semibold text-text text-sm md:text-base">{feature}</span>
                 </motion.div>
@@ -131,9 +129,9 @@ export default function WhatYouNeed() {
       {/* Educational Basics Section */}
       <section className="py-24 md:py-32 relative bg-gradient-to-b from-transparent to-bg-panel/20">
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 relative z-10">
-          <motion.div className="mb-16 max-w-3xl mx-auto text-center" {...fadeInUp}>
-            <p className="text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow mb-4">How it works</p>
-            <h2 className="font-display text-3xl md:text-5xl font-semibold text-text mb-6 tracking-tight">Three things every website needs</h2>
+          <motion.div className="mb-20 text-center" {...fadeInUp}>
+            <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow">How it works</span>
+            <h2 className="font-display mx-auto max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl mb-6">Three things every website needs</h2>
             <p className="text-lg text-text-muted">
               Whether you build with us or someone else, every website needs three things to exist on the internet. Here's what they are.
             </p>
@@ -141,7 +139,7 @@ export default function WhatYouNeed() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <motion.div 
-              className="bg-bg-panel p-8 rounded-3xl border border-border shadow-lg flex flex-col items-center text-center hover:border-accent/40 transition-colors"
+              className="bg-bg-panel p-8 rounded-3xl border border-border shadow-lg flex flex-col items-center text-center hover:!border-[#00E5FF] hover:shadow-[0_0_12px_rgba(0,229,255,0.3)] transition-colors"
               {...fadeInUp}
             >
               <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mb-6">
@@ -154,7 +152,7 @@ export default function WhatYouNeed() {
             </motion.div>
 
             <motion.div 
-              className="bg-bg-panel p-8 rounded-3xl border border-border shadow-lg flex flex-col items-center text-center hover:border-accent/40 transition-colors relative overflow-hidden"
+              className="bg-bg-panel p-8 rounded-3xl border border-border shadow-lg flex flex-col items-center text-center hover:!border-[#00E5FF] hover:shadow-[0_0_12px_rgba(0,229,255,0.3)] transition-colors relative overflow-hidden"
               {...fadeInUp} transition={{ delay: 0.1 }}
             >
               <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-accent/50 to-transparent"></div>
@@ -168,7 +166,7 @@ export default function WhatYouNeed() {
             </motion.div>
 
             <motion.div 
-              className="bg-bg-panel p-8 rounded-3xl border border-border shadow-lg flex flex-col items-center text-center hover:border-accent/40 transition-colors"
+              className="bg-bg-panel p-8 rounded-3xl border border-border shadow-lg flex flex-col items-center text-center hover:!border-[#00E5FF] hover:shadow-[0_0_12px_rgba(0,229,255,0.3)] transition-colors"
               {...fadeInUp} transition={{ delay: 0.2 }}
             >
               <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mb-6">
@@ -187,16 +185,16 @@ export default function WhatYouNeed() {
       <section className="py-24 md:py-32 relative">
          <div className="absolute top-0 right-0 w-1/2 h-full bg-[radial-gradient(circle_at_top_right,rgba(0,229,255,0.05)_0%,transparent_50%)] pointer-events-none"/>
          <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 relative z-10">
-             <motion.div className="mb-16 max-w-3xl mx-auto text-center" {...fadeInUp}>
-               <p className="text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow mb-4">Find your fit</p>
-               <h2 className="font-display text-3xl md:text-5xl font-semibold text-text mb-6 tracking-tight">How would you like to work with us?</h2>
+             <motion.div className="mb-20 text-center" {...fadeInUp}>
+               <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow">Find your fit</span>
+               <h2 className="font-display mx-auto max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl mb-6">How would you like to work with us?</h2>
                <p className="text-lg text-text-muted">Both options give you a great result. The difference is just who handles the hosting side.</p>
              </motion.div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
                {/* Option 1 */}
                <motion.div 
-                 className="group relative overflow-hidden rounded-3xl border border-border/40 bg-bg-elev p-8 md:p-12 hover:border-border/80 transition-colors"
+                 className="group relative overflow-hidden rounded-3xl border border-border/40 bg-bg-elev p-8 md:p-12 hover:!border-[#00E5FF] hover:shadow-[0_0_12px_rgba(0,229,255,0.3)] transition-colors"
                  {...fadeInUp}
                >
                  <div className="absolute top-0 right-0 p-8 opacity-20 group-hover:opacity-40 transition-opacity">
@@ -224,7 +222,7 @@ export default function WhatYouNeed() {
 
                {/* Option 2 */}
                <motion.div 
-                 className="group relative overflow-hidden rounded-3xl border border-accent/30 bg-bg-panel bg-gradient-to-b from-accent/5 to-transparent p-8 md:p-12 shadow-[0_0_40px_rgba(0,229,255,0.05)]"
+                 className="group relative overflow-hidden rounded-3xl border border-accent/30 bg-bg-panel bg-gradient-to-b from-accent/5 to-transparent p-8 md:p-12 hover:!border-[#00E5FF] hover:shadow-[0_0_12px_rgba(0,229,255,0.3)] transition-colors"
                  {...fadeInUp} transition={{ delay: 0.2 }}
                >
                  <div className="absolute top-0 right-0 p-8 opacity-30 group-hover:opacity-60 transition-opacity">
@@ -256,9 +254,9 @@ export default function WhatYouNeed() {
       {/* Prepare CTA */}
       <section className="bg-bg-panel/40 py-24 md:py-32">
         <div className="mx-auto flex w-full max-w-5xl flex-col items-center text-center px-5 sm:px-8">
-           <motion.div {...fadeInUp}>
-             <p className="text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow mb-4">Before we start</p>
-             <h2 className="font-display text-3xl md:text-5xl font-semibold text-text mb-8 tracking-tight">A few things that help us hit the ground running</h2>
+           <motion.div {...fadeInUp} className="mb-20 text-center">
+             <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow">Before we start</span>
+             <h2 className="font-display mx-auto max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl mb-8">A few things that help us hit the ground running</h2>
              <p className="text-lg text-text-muted mb-12 max-w-2xl mx-auto">
                Gathering a few basics before we start keeps things moving and the launch clean. Think: your service list, contact details, any logos or branding, and your social links. Not sure what you have? We'll walk you through it.
              </p>

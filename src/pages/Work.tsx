@@ -48,14 +48,12 @@ export default function Work() {
 
       {/* Hero Header */}
       <section className="pt-32 pb-20 md:pt-48 md:pb-32 text-center px-5 sm:px-8 max-w-5xl mx-auto">
-        <motion.div {...fadeIn}>
-          <p className="text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow mb-6">
-            Real work, real businesses
-          </p>
-          <h2 className="font-display text-4xl md:text-7xl font-semibold tracking-tight text-text mb-8">
+        <motion.div {...fadeIn} className="mb-20 text-center">
+          <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow">Real work, real businesses</span>
+          <h2 className="font-display mx-auto max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl">
             Websites we've built with care
           </h2>
-          <p className="text-lg md:text-2xl font-light text-text-muted max-w-3xl mx-auto leading-relaxed">
+          <p className="mx-auto mt-4 max-w-3xl text-lg text-text-muted md:text-2xl font-light leading-relaxed">
             Every site you see here was built for a real business, with real goals. Take a look and imagine what we could do for yours.
           </p>
         </motion.div>
@@ -326,9 +324,9 @@ export default function Work() {
       <section className="bg-bg-elev border-t border-accent/10 py-24 md:py-32 relative overflow-hidden text-center">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(0,229,255,0.05)_0%,transparent_70%)]" />
         <div className="mx-auto w-full max-w-4xl px-5 sm:px-8 relative z-10">
-          <motion.div {...fadeIn}>
-            <p className="text-xs uppercase tracking-[0.4em] text-accent font-semibold mb-6">What we believe</p>
-            <h2 className="text-3xl font-semibold text-text md:text-5xl md:leading-[1.2] tracking-tight mb-8">
+          <motion.div {...fadeIn} className="mb-20 text-center">
+            <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow">What we believe</span>
+            <h2 className="font-display mx-auto max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl">
               Great websites feel effortless — for you and your customers
             </h2>
             <p className="text-lg md:text-xl text-text-muted mb-12 font-light">

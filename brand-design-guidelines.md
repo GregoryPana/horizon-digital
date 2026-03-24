@@ -44,7 +44,7 @@ This document defines the visual system for Horizon Digital across marketing pag
 ## Font Families
 
 - **Display / Headings:** `Poppins` (600/700)
-- **Body / UI text:** `Switzer` or `Inter` (400/500)
+- **Body / UI text:** `Switzer` (400/500)
 - **Mono / utility labels:** optional `ui-monospace` for tiny uppercase metadata only
 
 ## Type Scale (Desktop)
@@ -177,17 +177,17 @@ Glows should feel premium and intentional, not neon-heavy.
 
 ```css
 :root {
-  --bg: #0A0A0C;
+  --bg: #0a0a0c;
   --bg-elev: #121214;
-  --bg-panel: #1A1A1C;
-  --accent: #00E5FF;
-  --accent-2: #22F1D6;
-  --text: #F2F4F7;
-  --text-muted: #8E9196;
-  --border: rgba(255,255,255,0.08);
-  --glow-soft: 0 0 12px rgba(0,229,255,0.15);
-  --glow-medium: 0 0 20px rgba(0,229,255,0.28);
-  --glow-strong: 0 0 30px rgba(0,229,255,0.45);
+  --bg-panel: #1a1a1c;
+  --accent: #00e5ff;
+  --accent-2: #22f1d6;
+  --text: #f2f4f7;
+  --text-muted: #8e9196;
+  --border: rgba(255, 255, 255, 0.08);
+  --glow-soft: 0 0 12px rgba(0, 229, 255, 0.15);
+  --glow-medium: 0 0 20px rgba(0, 229, 255, 0.28);
+  --glow-strong: 0 0 30px rgba(0, 229, 255, 0.45);
 }
 ```
 

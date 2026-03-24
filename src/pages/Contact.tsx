@@ -198,7 +198,7 @@ Looking forward to your reply.`;
             </p>
           </Card>
           <Card className="min-w-0">
-            <p className="text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow">Contact Horizon Digital</p>
+            <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow">Contact Horizon Digital</span>
             <p className="mt-4 text-sm text-text-muted">We typically respond within 24 hours.</p>
             <p className="mt-3 text-sm text-text-muted">
               Email or call us for a simple conversation about what makes your business different,
