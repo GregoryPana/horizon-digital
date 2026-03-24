@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-import formaStudioHtml from "../../forma-studio.html?raw";
 
 export default function ShowcaseFormaStudio() {
   const frameRef = useRef<HTMLIFrameElement | null>(null);
@@ -21,9 +20,9 @@ export default function ShowcaseFormaStudio() {
       <iframe
         ref={frameRef}
         title="Forma Studio Showcase"
-        srcDoc={formaStudioHtml}
+        src="/forma-studio.html"
         className="h-full w-full border-0"
-        sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+        sandbox="allow-scripts allow-forms allow-popups"
         onLoad={handleFrameLoad}
       />
     </section>

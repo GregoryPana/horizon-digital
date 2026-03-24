@@ -9,6 +9,7 @@ type WorkItem = {
   image: string;
   imageWebp: string;
   imageWebp800: string;
+  imagePosition?: string;
   url?: string;
 };
 
@@ -71,7 +72,8 @@ function WorkShowcaseCard({ item, index, shouldReduceMotion, onPreview, layoutCl
               height={1200}
               loading="lazy"
               decoding="async"
-              className={`absolute inset-0 h-full w-full object-cover object-top grayscale-[15%] transition duration-1000 md:group-hover:scale-[1.08] md:group-hover:grayscale-0 ${isExpanded ? "scale-[1.08] grayscale-0" : ""}`}
+              style={{ objectPosition: item.imagePosition ?? "center top" }}
+              className={`absolute inset-0 h-full w-full object-cover grayscale-[15%] transition duration-1000 md:group-hover:scale-[1.08] md:group-hover:grayscale-0 ${isExpanded ? "scale-[1.08] grayscale-0" : ""}`}
             />
           </picture>
         </motion.div>
@@ -118,9 +120,37 @@ function WorkShowcaseCard({ item, index, shouldReduceMotion, onPreview, layoutCl
             {item.outcome}
           </p>
           
-          <div className={`mt-8 flex items-center gap-2 text-[10.5px] font-black uppercase tracking-[0.25em] text-accent transition-all duration-700 delay-75 ${isExpanded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 md:opacity-0 md:translate-y-4 md:group-hover:opacity-100 md:group-hover:translate-y-0"}`}>
-            <span className="border-b border-accent/30 pb-0.5">View Project</span>
-            <span className="text-xl leading-none">→</span>
+          <div
+            className={`mt-8 transition-all duration-700 delay-75 ${
+              isExpanded
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-4 md:opacity-0 md:translate-y-4 md:group-hover:opacity-100 md:group-hover:translate-y-0"
+            }`}
+          >
+            {item.url ? (
+              <a
+                href={item.url}
+                target="_blank"
+                rel="noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                className="inline-flex items-center gap-2 text-[10.5px] font-black uppercase tracking-[0.25em] text-accent transition-colors hover:text-white"
+              >
+                <span className="border-b border-accent/30 pb-0.5">View Project</span>
+                <span className="text-xl leading-none">→</span>
+              </a>
+            ) : (
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onPreview(item);
+                }}
+                className="inline-flex items-center gap-2 text-[10.5px] font-black uppercase tracking-[0.25em] text-accent transition-colors hover:text-white"
+              >
+                <span className="border-b border-accent/30 pb-0.5">View Project</span>
+                <span className="text-xl leading-none">→</span>
+              </button>
+            )}
           </div>
         </div>
       </div>

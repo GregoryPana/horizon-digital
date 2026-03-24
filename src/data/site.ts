@@ -2,8 +2,8 @@ import guesthousePreview from "../assets/work/drake-seaside/drake-seaside.jpg";
 import guesthousePreviewWebp from "../assets/work/drake-seaside/drake-seaside.webp";
 import guesthousePreviewWebp800 from "../assets/work/drake-seaside/drake-seaside-600.webp";
 import ogImage from "../assets/logo/svg logo (1).png";
-import formaStudioPreview from "../assets/work/forma studio/forma studio.png";
-import takamakaHousePreview from "../assets/work/takamaka-house/takamaka house.png";
+import formaStudioPreview from "../assets/work/forma studio/forma.png";
+import takamakaHousePreview from "../assets/work/takamaka-house/takamaka.png";
 import beautyPreview from "../assets/work/demo-beauty/demo-beauty.jpg";
 import beautyPreviewWebp from "../assets/work/demo-beauty/demo-beauty.webp";
 import beautyPreviewWebp800 from "../assets/work/demo-beauty/demo-beauty 600.webp";
@@ -236,6 +236,7 @@ export const workItems = [
     image: formaStudioPreview,
     imageWebp: formaStudioPreview,
     imageWebp800: formaStudioPreview,
+    imagePosition: "center 40%",
     url: "https://horizondigitalsey.com/showcase/forma-studio",
   },
   {
@@ -246,6 +247,7 @@ export const workItems = [
     image: takamakaHousePreview,
     imageWebp: takamakaHousePreview,
     imageWebp800: takamakaHousePreview,
+    imagePosition: "center 55%",
     url: "https://horizondigitalsey.com/showcase/takamaka-house",
   },
   {
