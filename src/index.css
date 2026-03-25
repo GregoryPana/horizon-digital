@@ -37,8 +37,8 @@
 
   /* -- Text -- */
   --text: #F2F4F7;
-  --text-muted: #B0B7BF; /* Muted Gray (brighter for readability) */
-  --text-dim: #667085;
+  --text-muted: #D0D6DE; /* Muted Gray (high readability) */
+  --text-dim: #AAB3BE;
 
   /* -- Borders & Glow -- */
   --border: rgba(255, 255, 255, 0.08);
@@ -82,8 +82,8 @@ body {
   margin: 0;
   font-family: "Switzer", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   font-weight: 350;
-  font-size: 1.02rem;
-  line-height: 1.6;
+  font-size: 1.1rem;
+  line-height: 1.72;
   background-color: var(--bg);
   background-image:
     radial-gradient(
@@ -118,7 +118,21 @@ h6 {
 }
 
 .text-gray-400 {
-  color: #B6BEC7;
+  color: #D4DBE4 !important;
+}
+
+.text-gray-500,
+.text-gray-600 {
+  color: #C7CFD8 !important;
+}
+
+.text-text-muted {
+  color: var(--text-muted) !important;
+}
+
+.text-sm {
+  font-size: 0.96rem;
+  line-height: 1.62;
 }
 
 .brand-name {
@@ -619,8 +633,8 @@ option {
 
 @media (max-width: 767px) {
   body {
-    font-size: 15.5px;
-    line-height: 1.65;
+    font-size: 16.5px;
+    line-height: 1.72;
   }
 
   .section-band {
@@ -891,7 +905,7 @@ html .section-eyebrow-glow {
   --bg-elev: #0F141A;
   --border: rgba(94, 209, 222, 0.1);
   --text: #EAF2FF;
-  --text-muted: #B6BEC8;
+  --text-muted: #D4DBE4;
   --glow: rgba(94, 209, 222, 0.25);
   background-color: transparent;
   border-color: transparent !important;
@@ -916,7 +930,7 @@ html .section-eyebrow-glow {
   --bg-elev: #0F141A;
   --border: rgba(94, 209, 222, 0.1);
   --text: #EAF2FF;
-  --text-muted: #B6BEC8;
+  --text-muted: #D4DBE4;
   --glow: rgba(94, 209, 222, 0.25);
   background-color: #0F141A !important;
   border-color: rgba(94, 209, 222, 0.1) !important;
@@ -934,8 +948,8 @@ html .section-eyebrow-glow {
   --accent-2-soft: rgba(0, 229, 255, 0.08);
 
   --text: #FFFFFF;
-  --text-muted: #B6BEC8;
-  --text-dim: #6B7280;
+  --text-muted: #D4DBE4;
+  --text-dim: #AAB3BE;
 
   --border: rgba(255, 255, 255, 0.08);
   --border-glow: rgba(0, 255, 255, 0.15);
