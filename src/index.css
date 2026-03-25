@@ -37,7 +37,7 @@
 
   /* -- Text -- */
   --text: #F2F4F7;
-  --text-muted: #8E9196; /* Muted Gray */
+  --text-muted: #B0B7BF; /* Muted Gray (brighter for readability) */
   --text-dim: #667085;
 
   /* -- Borders & Glow -- */
@@ -81,7 +81,7 @@ body,
 body {
   margin: 0;
   font-family: "Switzer", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-  font-weight: 300;
+  font-weight: 350;
   font-size: 1.02rem;
   line-height: 1.6;
   background-color: var(--bg);
@@ -115,6 +115,10 @@ h6 {
   font-family: "Poppins", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   font-weight: 600;
   line-height: 1.2;
+}
+
+.text-gray-400 {
+  color: #B6BEC7;
 }
 
 .brand-name {
@@ -887,7 +891,7 @@ html .section-eyebrow-glow {
   --bg-elev: #0F141A;
   --border: rgba(94, 209, 222, 0.1);
   --text: #EAF2FF;
-  --text-muted: #9BA3AF;
+  --text-muted: #B6BEC8;
   --glow: rgba(94, 209, 222, 0.25);
   background-color: transparent;
   border-color: transparent !important;
@@ -912,7 +916,7 @@ html .section-eyebrow-glow {
   --bg-elev: #0F141A;
   --border: rgba(94, 209, 222, 0.1);
   --text: #EAF2FF;
-  --text-muted: #9BA3AF;
+  --text-muted: #B6BEC8;
   --glow: rgba(94, 209, 222, 0.25);
   background-color: #0F141A !important;
   border-color: rgba(94, 209, 222, 0.1) !important;
@@ -930,7 +934,7 @@ html .section-eyebrow-glow {
   --accent-2-soft: rgba(0, 229, 255, 0.08);
 
   --text: #FFFFFF;
-  --text-muted: #9BA3AF;
+  --text-muted: #B6BEC8;
   --text-dim: #6B7280;
 
   --border: rgba(255, 255, 255, 0.08);
