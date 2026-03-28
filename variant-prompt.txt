@@ -1,0 +1,1369 @@
+The code below contains a design. This design should be used to edit the existing Horizon Digtial website design for the whole Home Page.
+
+Look at C:\Users\Gregory\antigravity_projects\horizon-digital-variant\react-app.js to see the generated react app from variant. Use this as a reference for how to implement the design in our react webpage, adapting to out framework and determine the points to keep and not keep. Before any implementation you should look at the design and ask me what we are keeping and what we will change from the full desigbn.
+We want pureply the visual design, layout, animations etc however our assets will remain and replace what is used such as the correct logo or images of the our work sections.
+
+Ensure the visual characteristics, layout, and interactions in the design are preserved with perfect fidelity.
+Use the Horizon Digital brand guidelines found in brand-design-guidelines.md such as the colour palette, typography etc.
+
+Run the dev command so the user can see the app once finished. Below is the design.
+
+
+```
+<html lang="en" class="scroll-smooth bg-[#0A0A0C] text-white" vid="0"><head vid="1">
+    <meta charset="UTF-8" vid="2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
+    <title vid="4">Horizon Digital | Web Design Studio Seychelles</title>
+    <script src="https://cdn.tailwindcss.com/3.4.17" vid="5"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" vid="6">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" vid="7">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet" vid="8">
+    <script vid="9">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ['Space Grotesk', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        cyan: {
+                            DEFAULT: '#00E5FF',
+                            glow: 'rgba(0, 229, 255, 0.5)',
+                        },
+                        teal: '#22F1D6',
+                        dark: {
+                            100: '#1A1A1C',
+                            200: '#0A0A0C',
+                        }
+                    },
+                    letterSpacing: {
+                        tightest: '-.05em',
+                    }
+                }
+            }
+        }
+    </script>
+    <style vid="10">
+        
+        .text-glow { text-shadow: 0 0 20px rgba(0, 229, 255, 0.5); }
+        .box-glow { box-shadow: 0 0 30px rgba(0, 229, 255, 0.15); }
+        .border-glow { box-shadow: inset 0 0 20px rgba(0, 229, 255, 0.1); }
+        
+        
+        .perspective-container {
+            perspective: 1000px;
+            transform-style: preserve-3d;
+        }
+        .grid-plane {
+            transform: rotateX(75deg) translateY(50px) translateZ(-200px);
+            transform-origin: bottom center;
+            background-image: 
+                linear-gradient(to right, rgba(0, 229, 255, 0.2) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 229, 255, 0.2) 1px, transparent 1px);
+            background-size: 40px 40px;
+            animation: moveGrid 10s linear infinite;
+        }
+        @keyframes moveGrid {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 40px; }
+        }
+
+        
+        .marquee-wrapper {
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+        }
+        .marquee-content {
+            display: inline-flex;
+            animation: marqueeScroll 30s linear infinite;
+        }
+        @keyframes marqueeScroll {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+
+        
+        @keyframes beamPulse {
+            0%, 100% { opacity: 0.8; box-shadow: 0 0 15px #00E5FF, 0 0 30px #00E5FF; transform: scaleX(1); }
+            50% { opacity: 1; box-shadow: 0 0 25px #00E5FF, 0 0 50px #00E5FF, 0 0 70px #00E5FF; transform: scaleX(1.1); }
+        }
+        .animate-beam { animation: beamPulse 3s ease-in-out infinite; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(-12deg); }
+            50% { transform: translateY(-20px) rotate(-10deg); }
+        }
+        @keyframes floatReverse {
+            0%, 100% { transform: translateY(0px) rotate(12deg); }
+            50% { transform: translateY(-15px) rotate(14deg); }
+        }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        .animate-float-reverse { animation: floatReverse 7s ease-in-out infinite; }
+
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-up.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        
+        @keyframes beforeToAfter {
+            0%, 40% { opacity: 1; }
+            50%, 90% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        @keyframes afterAppear {
+            0%, 40% { opacity: 0; }
+            50%, 90% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+        .anim-before-state { 
+            animation: beforeToAfter 6s ease-in-out infinite;
+        }
+        .anim-after-state { 
+            animation: afterAppear 6s ease-in-out infinite;
+        }
+
+        @keyframes phoneScroll {
+            0%, 10% { transform: translateY(0); }
+            40%, 60% { transform: translateY(-60%); }
+            90%, 100% { transform: translateY(0); }
+        }
+        .anim-phone-scroll { animation: phoneScroll 8s ease-in-out infinite; }
+
+        @keyframes typeText {
+            0%, 10% { width: 0; }
+            30%, 60% { width: 100%; }
+            80%, 100% { width: 0; }
+        }
+        @keyframes showResult {
+            0%, 35% { opacity: 0; transform: translateY(10px); }
+            40%, 60% { opacity: 1; transform: translateY(0); }
+            65%, 100% { opacity: 0; transform: translateY(10px); }
+        }
+        .anim-type { 
+            display: inline-block; 
+            overflow: hidden; 
+            white-space: nowrap; 
+            animation: typeText 6s steps(20, end) infinite; 
+        }
+        .anim-result { animation: showResult 6s infinite; }
+
+        @keyframes fillRing {
+            0%, 10% { stroke-dashoffset: 283; }
+            40%, 80% { stroke-dashoffset: 0; }
+            90%, 100% { stroke-dashoffset: 283; }
+        }
+        .anim-ring {
+            stroke-dasharray: 283;
+            stroke-dashoffset: 283;
+            animation: fillRing 4s ease-out infinite;
+            transform-origin: center;
+            transform: rotate(-90deg);
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #FFFFFF 0%, #9CA3AF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="font-body antialiased overflow-x-hidden selection:bg-cyan selection:text-black" vid="11">
+
+    
+    <nav class="fixed top-0 w-full z-50 transition-all duration-500 bg-[#0A0A0C]/60 backdrop-blur-xl border-b border-white/5" vid="12">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between" vid="13">
+            <a href="#" class="flex items-center gap-3 group" vid="14">
+                <div class="relative w-8 h-8 flex items-center justify-center" vid="15">
+                    <div class="absolute left-1.5 top-0 w-1.5 h-3.5 bg-gradient-to-br from-white to-teal/80 transform -skew-y-[20deg] transition-transform duration-300 group-hover:-translate-x-0.5" vid="16"></div>
+                    <div class="absolute left-1.5 bottom-0 w-1.5 h-3.5 bg-gradient-to-tr from-cyan to-teal/40 transform skew-y-[20deg] transition-transform duration-300 group-hover:-translate-x-0.5" vid="17"></div>
+                    <div class="absolute right-1.5 top-0 w-1.5 h-3.5 bg-gradient-to-bl from-white to-teal/80 transform skew-y-[20deg] transition-transform duration-300 group-hover:translate-x-0.5" vid="18"></div>
+                    <div class="absolute right-1.5 bottom-0 w-1.5 h-3.5 bg-gradient-to-tl from-cyan to-teal/40 transform -skew-y-[20deg] transition-transform duration-300 group-hover:translate-x-0.5" vid="19"></div>
+                    <div class="absolute w-12 h-0.5 bg-cyan shadow-[0_0_15px_#00E5FF] z-10 animate-pulse" vid="20"></div>
+                </div>
+                <span class="font-display font-bold uppercase tracking-widest text-sm hidden sm:block text-white" vid="21">Horizon<span class="text-cyan" vid="22">.</span></span>
+            </a>
+            <div class="hidden lg:flex items-center gap-8" vid="23">
+                <a href="#" class="nav-link text-sm font-medium text-gray-300 hover:text-cyan transition-colors uppercase tracking-wider relative group" vid="24">
+                    Home
+                    <span class="absolute -bottom-1 left-0 w-0 h-px bg-cyan transition-all duration-300 group-hover:w-full shadow-[0_0_8px_#00E5FF]" vid="25"></span>
+                </a>
+                <a href="#services-pricing" class="nav-link text-sm font-medium text-gray-300 hover:text-cyan transition-colors uppercase tracking-wider relative group" vid="26">
+                    Services &amp; Pricing
+                    <span class="absolute -bottom-1 left-0 w-0 h-px bg-cyan transition-all duration-300 group-hover:w-full shadow-[0_0_8px_#00E5FF]" vid="27"></span>
+                </a>
+                <a href="#work" class="nav-link text-sm font-medium text-gray-300 hover:text-cyan transition-colors uppercase tracking-wider relative group" vid="28">
+                    Our Work
+                    <span class="absolute -bottom-1 left-0 w-0 h-px bg-cyan transition-all duration-300 group-hover:w-full shadow-[0_0_8px_#00E5FF]" vid="29"></span>
+                </a>
+                <a href="#what-you-need" class="nav-link text-sm font-medium text-gray-300 hover:text-cyan transition-colors uppercase tracking-wider relative group" vid="30">
+                    What You Need
+                    <span class="absolute -bottom-1 left-0 w-0 h-px bg-cyan transition-all duration-300 group-hover:w-full shadow-[0_0_8px_#00E5FF]" vid="31"></span>
+                </a>
+                <a href="#insights" class="nav-link text-sm font-medium text-gray-300 hover:text-cyan transition-colors uppercase tracking-wider relative group" vid="32">
+                    Digital Insights
+                    <span class="absolute -bottom-1 left-0 w-0 h-px bg-cyan transition-all duration-300 group-hover:w-full shadow-[0_0_8px_#00E5FF]" vid="33"></span>
+                </a>
+                <a href="#about" class="nav-link text-sm font-medium text-gray-300 hover:text-cyan transition-colors uppercase tracking-wider relative group" vid="34">
+                    About
+                    <span class="absolute -bottom-1 left-0 w-0 h-px bg-cyan transition-all duration-300 group-hover:w-full shadow-[0_0_8px_#00E5FF]" vid="35"></span>
+                </a>
+            </div>
+            <a href="#contact" class="px-6 py-2.5 bg-cyan/10 hover:bg-cyan text-cyan hover:text-black border border-cyan/50 hover:border-cyan text-xs font-bold uppercase tracking-widest rounded-full transition-all duration-300 shadow-[0_0_20px_rgba(0,229,255,0.15)] hover:shadow-[0_0_30px_#00E5FF]" vid="36">Contact</a>
+        </div>
+    </nav>
+
+    
+    <section class="relative min-h-[100vh] w-full flex items-center justify-center pt-20 overflow-hidden" vid="37">
+        
+        <div class="absolute inset-0 z-0" vid="38">
+            <img src="https://images.unsplash.com/photo-1505228395891-9a51e7e86bf6?q=80&amp;w=3433&amp;auto=format&amp;fit=crop" alt="Tropical Twilight" class="w-full h-full object-cover" vid="39">
+        </div>
+        
+        
+        <div class="absolute inset-0 z-0 bg-gradient-to-b from-[#0A0A0C]/95 via-[#0A0A0C]/80 to-[#0A0A0C] mix-blend-multiply" vid="40"></div>
+        <div class="absolute inset-0 z-0 bg-[radial-gradient(circle_at_center,transparent_0%,#0A0A0C_70%)] opacity-90" vid="41"></div>
+        
+        
+        <div class="absolute bottom-0 w-full h-[60%] perspective-container z-0 pointer-events-none opacity-60 mix-blend-screen" vid="42">
+            <div class="grid-plane absolute top-0 left-[-50%] w-[200%] h-[200%]" vid="43"></div>
+        </div>
+
+        
+        <div class="absolute top-1/3 left-[15%] w-64 h-48 border border-cyan/20 bg-cyan/5 backdrop-blur-md rounded-xl z-0 animate-float hidden lg:flex flex-col p-4 box-glow" vid="44">
+            <div class="flex items-center gap-2 mb-4 border-b border-cyan/20 pb-2" vid="45">
+                <div class="w-3 h-3 rounded-full bg-cyan/60 shadow-[0_0_10px_#00E5FF]" vid="46"></div>
+                <div class="w-3 h-3 rounded-full bg-white/20" vid="47"></div>
+                <div class="w-3 h-3 rounded-full bg-white/20" vid="48"></div>
+            </div>
+            <div class="space-y-3 flex-1" vid="49">
+                <div class="h-4 w-3/4 bg-white/10 rounded" vid="50"></div>
+                <div class="h-4 w-1/2 bg-white/10 rounded" vid="51"></div>
+                <div class="mt-auto h-16 w-full bg-gradient-to-t from-cyan/20 to-transparent rounded border border-cyan/10" vid="52"></div>
+            </div>
+        </div>
+
+        <div class="absolute bottom-1/4 right-[15%] w-48 h-56 border border-teal/20 bg-teal/5 backdrop-blur-md rounded-xl z-0 animate-float-reverse hidden lg:flex flex-col p-4" vid="53">
+            <div class="grid grid-cols-2 gap-2 mb-auto" vid="54">
+                <div class="h-12 bg-white/5 rounded" vid="55"></div>
+                <div class="h-12 bg-white/5 rounded" vid="56"></div>
+                <div class="h-12 bg-white/5 rounded col-span-2" vid="57"></div>
+            </div>
+            <div class="w-full h-1 bg-teal/30 rounded mt-4 overflow-hidden" vid="58">
+                <div class="w-2/3 h-full bg-teal shadow-[0_0_10px_#22F1D6]" vid="59"></div>
+            </div>
+        </div>
+
+        
+        <div class="relative z-10 max-w-5xl mx-auto px-6 flex flex-col items-center text-center mt-12 mb-20 reveal-up" vid="60">
+            
+            
+            <div class="relative w-24 h-28 mb-10 group" vid="61">
+                <div class="absolute left-2 top-0 w-5 h-[48%] bg-gradient-to-br from-white to-[#1c9285] transform -skew-y-[25deg] rounded-sm transition-transform duration-500 group-hover:-translate-x-1" vid="62"></div>
+                <div class="absolute left-2 bottom-0 w-5 h-[48%] bg-gradient-to-tr from-[#00E5FF] to-[#0A0A0C] transform skew-y-[25deg] rounded-sm transition-transform duration-500 group-hover:-translate-x-1" vid="63"></div>
+                <div class="absolute right-2 top-0 w-5 h-[48%] bg-gradient-to-bl from-white to-[#1c9285] transform skew-y-[25deg] rounded-sm transition-transform duration-500 group-hover:translate-x-1" vid="64"></div>
+                <div class="absolute right-2 bottom-0 w-5 h-[48%] bg-gradient-to-tl from-[#00E5FF] to-[#0A0A0C] transform -skew-y-[25deg] rounded-sm transition-transform duration-500 group-hover:translate-x-1" vid="65"></div>
+                <div class="absolute top-1/2 -translate-y-1/2 -left-8 -right-8 h-2 bg-cyan z-20 animate-beam" vid="66"></div>
+            </div>
+
+            
+            <div class="mb-6 inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-cyan/30 bg-cyan/5 backdrop-blur-sm" vid="67">
+                <span class="w-2 h-2 rounded-full bg-cyan shadow-[0_0_8px_#00E5FF] animate-pulse" vid="68"></span>
+                <span class="text-xs font-bold uppercase tracking-[0.2em] text-cyan" vid="69">Web Design Studio • Seychelles</span>
+            </div>
+
+            
+            <h1 class="font-display text-5xl md:text-6xl lg:text-[5.5rem] leading-[1.05] font-bold uppercase tracking-tightest mb-8 max-w-4xl text-gradient text-glow" vid="70">
+                Your website should bring you customers <span class="text-cyan block mt-2" vid="71">&amp; look good.</span>
+            </h1>
+
+            
+            <p class="text-lg md:text-xl text-gray-400 font-medium max-w-2xl mb-12 leading-relaxed" vid="72">
+                Your business deserves a website that works as hard as you do — beautifully designed, easy to find, and built to turn visitors into customers you're proud to serve.
+            </p>
+
+            
+            <div class="flex flex-wrap justify-center gap-3 mb-12 max-w-3xl" vid="73">
+                <span class="px-4 py-2 rounded-full border border-white/10 bg-[#1A1A1C]/80 backdrop-blur text-xs font-semibold tracking-wide text-gray-300 flex items-center gap-2" vid="74">
+                    <svg class="w-4 h-4 text-cyan" fill="none" viewBox="0 0 24 24" stroke="currentColor" vid="75"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" vid="76"></path></svg>
+                    BUILT JUST FOR YOUR BUSINESS
+                </span>
+                <span class="px-4 py-2 rounded-full border border-white/10 bg-[#1A1A1C]/80 backdrop-blur text-xs font-semibold tracking-wide text-gray-300 flex items-center gap-2" vid="77">
+                    <svg class="w-4 h-4 text-cyan" fill="none" viewBox="0 0 24 24" stroke="currentColor" vid="78"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" vid="79"></path></svg>
+                    PERFECT ON EVERY PHONE
+                </span>
+                <span class="px-4 py-2 rounded-full border border-white/10 bg-[#1A1A1C]/80 backdrop-blur text-xs font-semibold tracking-wide text-gray-300 flex items-center gap-2" vid="80">
+                    <svg class="w-4 h-4 text-cyan" fill="none" viewBox="0 0 24 24" stroke="currentColor" vid="81"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" vid="82"></path></svg>
+                    OPENS IN UNDER 2 SECONDS
+                </span>
+                <span class="px-4 py-2 rounded-full border border-white/10 bg-[#1A1A1C]/80 backdrop-blur text-xs font-semibold tracking-wide text-gray-300 flex items-center gap-2" vid="83">
+                    <svg class="w-4 h-4 text-cyan" fill="none" viewBox="0 0 24 24" stroke="currentColor" vid="84"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" vid="85"></path></svg>
+                    CUSTOMERS FIND YOU ON GOOGLE
+                </span>
+            </div>
+
+            
+            <div class="flex flex-col sm:flex-row items-center gap-6" vid="86">
+                <button class="px-8 py-4 bg-cyan text-black font-display font-bold uppercase tracking-widest text-sm rounded transition-all duration-300 hover:bg-white hover:shadow-[0_0_30px_#00E5FF] group flex items-center gap-2" vid="87">
+                    Get Started
+                    <svg class="w-4 h-4 transform transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" vid="88"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" vid="89"></path></svg>
+                </button>
+                <button class="px-8 py-4 text-white font-display font-bold uppercase tracking-widest text-sm transition-all duration-300 hover:text-cyan group flex items-center gap-2" vid="90">
+                    Our Work
+                    <span class="transform transition-transform group-hover:translate-x-2" vid="91">→</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="py-32 bg-[#0A0A0C] relative z-20 border-t border-white/5" vid="92">
+        <div class="max-w-7xl mx-auto px-6" vid="93">
+            
+            <div class="text-center mb-20 reveal-up" vid="94">
+                <span class="text-cyan text-sm font-bold uppercase tracking-widest mb-4 block" vid="95">Sound Familiar?</span>
+                <h2 class="font-display text-4xl md:text-5xl font-bold uppercase tracking-tightest max-w-3xl mx-auto" vid="96">
+                    Most businesses in Seychelles face the same three problems online.
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16" vid="97">
+                
+                <div class="group bg-dark-100 border border-white/5 rounded-2xl p-8 hover:border-cyan/50 hover:box-glow transition-all duration-500 reveal-up relative overflow-hidden" vid="98">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-cyan to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" vid="99"></div>
+                    <div class="w-16 h-16 rounded-xl bg-[#0A0A0C] border border-white/10 flex items-center justify-center mb-6 group-hover:border-cyan/30 transition-colors" vid="100">
+                        <svg class="w-8 h-8 text-gray-400 group-hover:text-cyan transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" vid="101">
+                            <circle cx="12" cy="12" r="10" vid="102"></circle>
+                            <path d="M16 16s-1.5-2-4-2-4 2-4 2" vid="103"></path>
+                            <line x1="9" y1="9" x2="9.01" y2="9" vid="104"></line>
+                            <line x1="15" y1="9" x2="15.01" y2="9" vid="105"></line>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-xl font-bold uppercase mb-3 text-white" vid="106">My website looks outdated</h3>
+                    <p class="text-gray-400 leading-relaxed font-body" vid="107">"I'm embarrassed to share it with customers. It doesn't reflect the quality of service we actually provide in person."</p>
+                </div>
+
+                <div class="group bg-dark-100 border border-white/5 rounded-2xl p-8 hover:border-teal/50 hover:shadow-[0_0_30px_rgba(34,241,214,0.15)] transition-all duration-500 reveal-up relative overflow-hidden" style="transition-delay: 100ms;" vid="108">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-teal to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" vid="109"></div>
+                    <div class="w-16 h-16 rounded-xl bg-[#0A0A0C] border border-white/10 flex items-center justify-center mb-6 group-hover:border-teal/30 transition-colors relative" vid="110">
+                        <svg class="w-8 h-8 text-gray-400 group-hover:text-teal transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" vid="111">
+                            <circle cx="11" cy="11" r="8" vid="112"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65" vid="113"></line>
+                        </svg>
+                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity" vid="114">
+                            <span class="text-[10px] font-bold text-teal rotate-45 translate-x-3 -translate-y-3" vid="115">?</span>
+                        </div>
+                    </div>
+                    <h3 class="font-display text-xl font-bold uppercase mb-3 text-white" vid="116">Customers can't find me</h3>
+                    <p class="text-gray-400 leading-relaxed font-body" vid="117">"I've told people to just Google us — but we don't come up. My competitors are taking all the search traffic."</p>
+                </div>
+
+                <div class="group bg-dark-100 border border-white/5 rounded-2xl p-8 hover:border-cyan/50 hover:box-glow transition-all duration-500 reveal-up relative overflow-hidden" style="transition-delay: 200ms;" vid="118">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-cyan to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" vid="119"></div>
+                    <div class="w-16 h-16 rounded-xl bg-[#0A0A0C] border border-white/10 flex items-center justify-center mb-6 group-hover:border-cyan/30 transition-colors" vid="120">
+                        <svg class="w-8 h-8 text-gray-400 group-hover:text-cyan transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" vid="121">
+                            <path d="M22 12h-4l-3 9L9 3l-3 9H2" vid="122"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-xl font-bold uppercase mb-3 text-white" vid="123">Zero Enquiries</h3>
+                    <p class="text-gray-400 leading-relaxed font-body" vid="124">"Someone built it years ago. It's online but it has never once brought me a new customer. It's just an expense."</p>
+                </div>
+            </div>
+
+            <div class="text-center reveal-up" vid="125">
+                <p class="font-display text-2xl font-bold uppercase tracking-widest text-cyan inline-flex items-center gap-4" vid="126">
+                    <span class="w-12 h-px bg-cyan/50" vid="127"></span>
+                    We fix this. Every time.
+                    <span class="w-12 h-px bg-cyan/50" vid="128"></span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="py-6 border-y border-white/10 bg-cyan overflow-hidden relative z-20" vid="129">
+        <div class="marquee-wrapper" vid="130">
+            <div class="marquee-content flex items-center gap-8 text-black font-display font-bold uppercase tracking-widest text-sm" vid="131">
+                
+                <span vid="132">The Drake Seaside — more enquiries since launch</span>
+                <span class="w-2 h-2 rounded-full bg-black" vid="133"></span>
+                <span vid="134">Takamaka House — guests now book directly</span>
+                <span class="w-2 h-2 rounded-full bg-black" vid="135"></span>
+                <span vid="136">Visible on Google within weeks of launch</span>
+                <span class="w-2 h-2 rounded-full bg-black" vid="137"></span>
+                <span vid="138">Average project: 3–5 weeks</span>
+                <span class="w-2 h-2 rounded-full bg-black" vid="139"></span>
+                <span vid="140">Your site, owned by you forever</span>
+                <span class="w-2 h-2 rounded-full bg-black" vid="141"></span>
+                <span vid="142">Launched in under 4 weeks</span>
+                <span class="w-2 h-2 rounded-full bg-black" vid="143"></span>
+                <span vid="144">Zero enquiries to consistent bookings</span>
+                <span class="w-2 h-2 rounded-full bg-black" vid="145"></span>
+                
+                
+                <span vid="146">The Drake Seaside — more enquiries since launch</span>
+                <span class="w-2 h-2 rounded-full bg-black" vid="147"></span>
+                <span vid="148">Takamaka House — guests now book directly</span>
+                <span class="w-2 h-2 rounded-full bg-black" vid="149"></span>
+                <span vid="150">Visible on Google within weeks of launch</span>
+                <span class="w-2 h-2 rounded-full bg-black" vid="151"></span>
+                <span vid="152">Average project: 3–5 weeks</span>
+                <span class="w-2 h-2 rounded-full bg-black" vid="153"></span>
+                <span vid="154">Your site, owned by you forever</span>
+                <span class="w-2 h-2 rounded-full bg-black" vid="155"></span>
+                <span vid="156">Launched in under 4 weeks</span>
+                <span class="w-2 h-2 rounded-full bg-black" vid="157"></span>
+                <span vid="158">Zero enquiries to consistent bookings</span>
+                <span class="w-2 h-2 rounded-full bg-black" vid="159"></span>
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="py-32 bg-[#0A0A0C] relative z-20" id="services" vid="160">
+        <div class="max-w-7xl mx-auto px-6" vid="161">
+            
+            <div class="text-center mb-20 reveal-up" vid="162">
+                <span class="text-cyan text-sm font-bold uppercase tracking-widest mb-4 block" vid="163">Our Services</span>
+                <h2 class="font-display text-4xl md:text-5xl font-bold uppercase tracking-tightest max-w-3xl mx-auto" vid="164">
+                    Websites built around how your business actually works.
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8" vid="165">
+                
+                
+                <div class="bg-dark-100 rounded-2xl border border-white/5 overflow-hidden group hover:border-white/20 transition-colors reveal-up flex flex-col h-full" vid="166">
+                    <div class="h-64 bg-[#111113] relative overflow-hidden flex items-center justify-center p-8 border-b border-white/5" vid="167">
+                        
+                        
+                        <div class="w-full max-w-sm h-full relative" vid="168">
+                            
+                            <div class="absolute inset-0 border-2 border-dashed border-red-500/50 rounded-lg p-4 flex flex-col gap-3 anim-before-state" vid="169">
+                                <div class="w-full text-center -mt-8 mb-2" vid="170">
+                                    <span class="text-xs font-bold uppercase tracking-widest text-red-400/70" vid="171">Before</span>
+                                </div>
+                                <div class="w-2/3 h-5 border-2 border-dashed border-red-400/50 rounded transform rotate-1" vid="172"></div>
+                                <div class="w-1/2 h-4 border-2 border-dashed border-red-400/50 rounded transform -rotate-2 ml-4" vid="173"></div>
+                                <div class="w-full flex-1 border-2 border-dashed border-red-400/50 rounded transform rotate-[-1deg]" vid="174"></div>
+                                <div class="flex gap-3 h-10 transform rotate-2" vid="175">
+                                    <div class="w-1/3 border-2 border-dashed border-red-400/50 rounded h-8" vid="176"></div>
+                                    <div class="w-1/2 border-2 border-dashed border-red-400/50 rounded h-6 mt-2" vid="177"></div>
+                                </div>
+                                <div class="w-3/4 h-3 border-2 border-dashed border-red-400/50 rounded transform rotate-[-2deg]" vid="178"></div>
+                            </div>
+                            
+                            
+                            <div class="absolute inset-0 bg-[#1A1A1C] border border-cyan/30 rounded-lg p-4 flex flex-col gap-4 anim-after-state shadow-[0_0_20px_rgba(0,229,255,0.1)]" vid="179">
+                                <div class="w-full text-center -mt-8 mb-2" vid="180">
+                                    <span class="text-xs font-bold uppercase tracking-widest text-cyan" vid="181">After</span>
+                                </div>
+                                <div class="w-1/3 h-6 bg-cyan/20 rounded flex items-center px-2 mt-2" vid="182"><div class="w-2 h-2 bg-cyan rounded-full" vid="183"></div></div>
+                                <div class="w-full flex-1 bg-gradient-to-br from-dark-200 to-dark-100 rounded border border-white/5 relative overflow-hidden" vid="184">
+                                    <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1544644181-1484b3fdfc62?q=80&amp;w=600&amp;auto=format&amp;fit=crop')] bg-cover opacity-50" vid="185"></div>
+                                </div>
+                                <div class="flex gap-4 h-12" vid="186">
+                                    <div class="w-1/2 bg-white/5 rounded" vid="187"></div>
+                                    <div class="w-1/2 bg-cyan rounded" vid="188"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="p-8 flex-1 flex flex-col" vid="189">
+                        <h3 class="font-display text-2xl font-bold uppercase mb-4 text-white" vid="190">Custom Design</h3>
+                        <p class="text-gray-400 leading-relaxed font-body mb-6" vid="191">No templates. We design unique interfaces tailored specifically to your brand identity and the specific goals of your Seychellois business.</p>
+                        <div class="mt-auto inline-flex items-center text-cyan text-sm font-bold uppercase tracking-widest group-hover:gap-2 transition-all" vid="192">
+                            Learn More <span class="opacity-0 group-hover:opacity-100 transition-opacity" vid="193">→</span>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="bg-dark-100 rounded-2xl border border-white/5 overflow-hidden group hover:border-white/20 transition-colors reveal-up flex flex-col h-full" style="transition-delay: 100ms;" vid="194">
+                    <div class="h-64 bg-[#111113] relative overflow-hidden flex items-center justify-center p-8 border-b border-white/5" vid="195">
+                        <div class="w-[140px] h-[280px] bg-black border-4 border-gray-800 rounded-[2rem] relative shadow-2xl overflow-hidden translate-y-8 group-hover:translate-y-4 transition-transform duration-500" vid="196">
+                            <div class="absolute top-0 inset-x-0 h-6 bg-black z-10 rounded-t-[1.7rem] flex justify-center" vid="197">
+                                <div class="w-12 h-3 bg-gray-900 rounded-b-xl" vid="198"></div>
+                            </div>
+                            <div class="w-full bg-[#1A1A1C] anim-phone-scroll pt-8 px-3 pb-20 space-y-3" vid="199">
+                                <div class="w-full h-24 bg-gradient-to-b from-teal/20 to-transparent rounded-lg border border-teal/10" vid="200"></div>
+                                <div class="w-3/4 h-4 bg-white/10 rounded" vid="201"></div>
+                                <div class="w-1/2 h-4 bg-white/10 rounded" vid="202"></div>
+                                <div class="w-full h-16 bg-white/5 rounded-lg mt-4" vid="203"></div>
+                                <div class="w-full h-16 bg-white/5 rounded-lg" vid="204"></div>
+                                <div class="w-full h-16 bg-white/5 rounded-lg" vid="205"></div>
+                                <div class="w-full h-32 bg-cyan/10 rounded-lg" vid="206"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-8 flex-1 flex flex-col" vid="207">
+                        <h3 class="font-display text-2xl font-bold uppercase mb-4 text-white" vid="208">Perfect on Mobile</h3>
+                        <p class="text-gray-400 leading-relaxed font-body mb-6" vid="209">Over 70% of your customers will visit on their phones. We build mobile-first to ensure a flawless experience on every device size.</p>
+                        <div class="mt-auto inline-flex items-center text-cyan text-sm font-bold uppercase tracking-widest group-hover:gap-2 transition-all" vid="210">
+                            Learn More <span class="opacity-0 group-hover:opacity-100 transition-opacity" vid="211">→</span>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="bg-dark-100 rounded-2xl border border-white/5 overflow-hidden group hover:border-white/20 transition-colors reveal-up flex flex-col h-full" style="transition-delay: 200ms;" vid="212">
+                    <div class="h-64 bg-[#111113] relative overflow-hidden flex flex-col items-center justify-center p-8 border-b border-white/5" vid="213">
+                        <div class="w-full max-w-sm relative" vid="214">
+                            <div class="w-full h-12 bg-[#202124] rounded-full border border-gray-700 flex items-center px-4 shadow-lg mb-4" vid="215">
+                                <svg class="w-5 h-5 text-gray-400 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" vid="216"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" vid="217"></path></svg>
+                                <div class="h-5 flex items-center text-gray-300 font-body" vid="218">
+                                    <span class="anim-type" vid="219">guesthouse mahé seychelles</span>
+                                    <span class="w-[2px] h-4 bg-blue-400 animate-pulse ml-1" vid="220"></span>
+                                </div>
+                            </div>
+                            <div class="w-full bg-[#202124] rounded-lg border border-gray-700 p-4 anim-result shadow-2xl relative overflow-hidden" vid="221">
+                                <div class="absolute inset-0 bg-cyan/5" vid="222"></div>
+                                <div class="absolute left-0 top-0 bottom-0 w-1 bg-cyan" vid="223"></div>
+                                <h4 class="text-blue-400 font-medium text-lg pl-3 hover:underline cursor-pointer" vid="224">Best Guesthouse in Mahé | Book Direct</h4>
+                                <p class="text-sm text-gray-300 mt-1 pl-3 line-clamp-2" vid="225">Experience authentic Creole hospitality. Top rated location on the beach. Free cancellation available.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-8 flex-1 flex flex-col" vid="226">
+                        <h3 class="font-display text-2xl font-bold uppercase mb-4 text-white" vid="227">Found on Google</h3>
+                        <p class="text-gray-400 leading-relaxed font-body mb-6" vid="228">We implement technical SEO best practices from day one, ensuring your business actually shows up when locals and tourists search for your services.</p>
+                        <div class="mt-auto inline-flex items-center text-cyan text-sm font-bold uppercase tracking-widest group-hover:gap-2 transition-all" vid="229">
+                            Learn More <span class="opacity-0 group-hover:opacity-100 transition-opacity" vid="230">→</span>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="bg-dark-100 rounded-2xl border border-white/5 overflow-hidden group hover:border-white/20 transition-colors reveal-up flex flex-col h-full" style="transition-delay: 300ms;" vid="231">
+                    <div class="h-64 bg-[#111113] relative overflow-hidden flex items-center justify-center p-8 border-b border-white/5" vid="232">
+                        <div class="relative w-32 h-32 flex items-center justify-center" vid="233">
+                            <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100" vid="234">
+                                <circle cx="50" cy="50" r="45" fill="none" stroke="#222" stroke-width="8" vid="235"></circle>
+                                <circle cx="50" cy="50" r="45" fill="none" stroke="#22F1D6" stroke-width="8" stroke-linecap="round" class="anim-ring" vid="236"></circle>
+                            </svg>
+                            <div class="absolute inset-0 flex flex-col items-center justify-center" vid="237">
+                                <span class="font-display font-bold text-3xl text-white" vid="238">100<span class="text-sm" vid="239">%</span></span>
+                            </div>
+                        </div>
+                        <div class="ml-8 space-y-4" vid="240">
+                            <div class="flex items-center gap-3" vid="241">
+                                <div class="w-2 h-2 rounded-full bg-teal shadow-[0_0_8px_#22F1D6]" vid="242"></div>
+                                <span class="text-sm font-bold tracking-wider text-gray-300" vid="243">LOAD TIME <span class="text-white" vid="244">1.2s</span></span>
+                            </div>
+                            <div class="flex items-center gap-3" vid="245">
+                                <div class="w-2 h-2 rounded-full bg-cyan shadow-[0_0_8px_#00E5FF]" vid="246"></div>
+                                <span class="text-sm font-bold tracking-wider text-gray-300" vid="247">UPTIME <span class="text-white" vid="248">99.9%</span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-8 flex-1 flex flex-col" vid="249">
+                        <h3 class="font-display text-2xl font-bold uppercase mb-4 text-white" vid="250">Fast &amp; Reliable</h3>
+                        <p class="text-gray-400 leading-relaxed font-body mb-6" vid="251">Slow websites lose customers. We build on modern, lightning-fast infrastructure that keeps your site running smoothly 24/7 without fail.</p>
+                        <div class="mt-auto inline-flex items-center text-cyan text-sm font-bold uppercase tracking-widest group-hover:gap-2 transition-all" vid="252">
+                            Learn More <span class="opacity-0 group-hover:opacity-100 transition-opacity" vid="253">→</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="py-32 bg-[#0A0A0C] relative z-20 border-t border-white/5" id="process" vid="254">
+        <div class="max-w-7xl mx-auto px-6" vid="255">
+            
+            <div class="text-center mb-20 reveal-up" vid="256">
+                <span class="text-cyan text-sm font-bold uppercase tracking-widest mb-4 block" vid="257">What Actually Happens</span>
+                <h2 class="font-display text-4xl md:text-5xl font-bold uppercase tracking-tightest max-w-4xl mx-auto" vid="258">
+                    Here's exactly what we do together — step by step.
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-4 md:gap-6" vid="259">
+                
+                <div class="group bg-dark-100 border border-white/5 rounded-2xl p-6 hover:border-cyan/30 transition-all duration-500 reveal-up relative overflow-hidden" vid="260">
+                    <div class="absolute top-0 right-0 w-20 h-20 bg-cyan/5 rounded-bl-full" vid="261"></div>
+                    <div class="relative z-10" vid="262">
+                        <div class="flex items-center gap-3 mb-4" vid="263">
+                            <span class="w-10 h-10 rounded-full bg-cyan/10 border border-cyan/30 flex items-center justify-center text-cyan font-display font-bold text-lg" vid="264">1</span>
+                            <h3 class="font-display text-lg font-bold uppercase text-white" vid="265">Discovery</h3>
+                        </div>
+                        <p class="text-gray-400 text-sm leading-relaxed" vid="266">We listen to your goals and get to know your business and your customers.</p>
+                    </div>
+                </div>
+
+                <div class="group bg-dark-100 border border-white/5 rounded-2xl p-6 hover:border-teal/30 transition-all duration-500 reveal-up relative overflow-hidden" style="transition-delay: 100ms;" vid="267">
+                    <div class="absolute top-0 right-0 w-20 h-20 bg-teal/5 rounded-bl-full" vid="268"></div>
+                    <div class="relative z-10" vid="269">
+                        <div class="flex items-center gap-3 mb-4" vid="270">
+                            <span class="w-10 h-10 rounded-full bg-teal/10 border border-teal/30 flex items-center justify-center text-teal font-display font-bold text-lg" vid="271">2</span>
+                            <h3 class="font-display text-lg font-bold uppercase text-white" vid="272">Design</h3>
+                        </div>
+                        <p class="text-gray-400 text-sm leading-relaxed" vid="273">We create the visual layout and page structure for your review and approval.</p>
+                    </div>
+                </div>
+
+                <div class="group bg-dark-100 border border-white/5 rounded-2xl p-6 hover:border-cyan/30 transition-all duration-500 reveal-up relative overflow-hidden" style="transition-delay: 200ms;" vid="274">
+                    <div class="absolute top-0 right-0 w-20 h-20 bg-cyan/5 rounded-bl-full" vid="275"></div>
+                    <div class="relative z-10" vid="276">
+                        <div class="flex items-center gap-3 mb-4" vid="277">
+                            <span class="w-10 h-10 rounded-full bg-cyan/10 border border-cyan/30 flex items-center justify-center text-cyan font-display font-bold text-lg" vid="278">3</span>
+                            <h3 class="font-display text-lg font-bold uppercase text-white" vid="279">Build</h3>
+                        </div>
+                        <p class="text-gray-400 text-sm leading-relaxed" vid="280">We engineer the full site, optimised for speed, mobile, and search.</p>
+                    </div>
+                </div>
+
+                <div class="group bg-dark-100 border border-white/5 rounded-2xl p-6 hover:border-teal/30 transition-all duration-500 reveal-up relative overflow-hidden" style="transition-delay: 300ms;" vid="281">
+                    <div class="absolute top-0 right-0 w-20 h-20 bg-teal/5 rounded-bl-full" vid="282"></div>
+                    <div class="relative z-10" vid="283">
+                        <div class="flex items-center gap-3 mb-4" vid="284">
+                            <span class="w-10 h-10 rounded-full bg-teal/10 border border-teal/30 flex items-center justify-center text-teal font-display font-bold text-lg" vid="285">4</span>
+                            <h3 class="font-display text-lg font-bold uppercase text-white" vid="286">Launch</h3>
+                        </div>
+                        <p class="text-gray-400 text-sm leading-relaxed" vid="287">We go live — and stay close for the first 30 days to make sure everything runs perfectly.</p>
+                    </div>
+                </div>
+
+                <div class="group bg-dark-100 border border-white/5 rounded-2xl p-6 hover:border-cyan/30 transition-all duration-500 reveal-up relative overflow-hidden" style="transition-delay: 400ms;" vid="288">
+                    <div class="absolute top-0 right-0 w-20 h-20 bg-cyan/5 rounded-bl-full" vid="289"></div>
+                    <div class="relative z-10" vid="290">
+                        <div class="flex items-center gap-3 mb-4" vid="291">
+                            <span class="w-10 h-10 rounded-full bg-cyan/10 border border-cyan/30 flex items-center justify-center text-cyan font-display font-bold text-lg" vid="292">5</span>
+                            <h3 class="font-display text-lg font-bold uppercase text-white" vid="293">Grow</h3>
+                        </div>
+                        <p class="text-gray-400 text-sm leading-relaxed" vid="294">We keep your site healthy, fast, and supported whenever you need us.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hidden md:flex items-center justify-center mt-12 gap-2" vid="295">
+                <div class="h-px flex-1 bg-gradient-to-r from-transparent via-cyan/30 to-cyan/30 max-w-[100px]" vid="296"></div>
+                <div class="w-2 h-2 rounded-full bg-cyan animate-pulse" vid="297"></div>
+                <div class="h-px flex-1 bg-gradient-to-l from-transparent via-cyan/30 to-cyan/30 max-w-[100px]" vid="298"></div>
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="relative z-20 bg-[#0A0A0C] overflow-hidden" id="work" vid="299">
+        
+        <div class="sticky top-20 pt-32 pb-12 px-6 max-w-7xl mx-auto" vid="300">
+            <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-8 reveal-up" vid="301">
+                <div vid="302">
+                    <span class="text-cyan text-sm font-bold uppercase tracking-[0.3em] mb-4 block" vid="303">Real Results, Real Businesses</span>
+                    <h2 class="font-display text-5xl md:text-7xl font-bold uppercase tracking-tightest max-w-3xl leading-[0.9]" vid="304">
+                        See what's<br vid="305"><span class="text-cyan text-glow" vid="306">possible</span>
+                    </h2>
+                </div>
+                <p class="mt-6 md:mt-0 text-gray-400 max-w-sm text-lg" vid="307">Three businesses. Three transformations. One studio that cares.</p>
+            </div>
+        </div>
+
+        <div class="relative" vid="308">
+            
+            <article class="min-h-[150vh] relative" vid="309">
+                <div class="sticky top-0 h-screen flex items-center overflow-hidden" vid="310">
+                    <div class="absolute inset-0 z-0" vid="311">
+                        <div class="absolute inset-0 bg-gradient-to-b from-[#0A0A0C] via-transparent to-[#0A0A0C] z-10" vid="312"></div>
+                        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_0%,_#0A0A0C_70%)] z-10" vid="313"></div>
+                        <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&amp;w=2400&amp;auto=format&amp;fit=crop" alt="Drake Seaside" class="w-full h-full object-cover scale-[1.2] opacity-60" vid="314">
+                    </div>
+
+                    <div class="relative z-20 w-full max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center" vid="315">
+                        <div vid="316">
+                            <div class="inline-flex items-center gap-3 mb-8 px-4 py-2 rounded-full border border-cyan/30 bg-cyan/5 backdrop-blur-sm" vid="317">
+                                <span class="w-2 h-2 rounded-full bg-cyan animate-pulse shadow-[0_0_10px_#00E5FF]" vid="318"></span>
+                                <span class="text-cyan text-xs font-bold uppercase tracking-widest" vid="319">Growth Tier</span>
+                            </div>
+                            
+                            <h3 class="font-display text-6xl md:text-8xl font-bold uppercase tracking-tightest mb-6 text-white" vid="320">
+                                Drake<br vid="321">Seaside
+                            </h3>
+                            
+                            <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-md leading-relaxed font-light" vid="322">
+                                A boutique guesthouse that went from invisible to fully booked.
+                            </p>
+                            
+                            <div class="flex flex-wrap gap-4 mb-10" vid="323">
+                                <div class="px-4 py-2 bg-white/5 backdrop-blur rounded-lg border border-white/10" vid="324">
+                                    <span class="text-cyan font-display font-bold text-2xl" vid="325">340%</span>
+                                    <p class="text-xs text-gray-400 uppercase tracking-wider mt-1" vid="326">Enquiry Increase</p>
+                                </div>
+                                <div class="px-4 py-2 bg-white/5 backdrop-blur rounded-lg border border-white/10" vid="327">
+                                    <span class="text-teal font-display font-bold text-2xl" vid="328">3 weeks</span>
+                                    <p class="text-xs text-gray-400 uppercase tracking-wider mt-1" vid="329">To First Booking</p>
+                                </div>
+                            </div>
+
+                            <a href="#" class="group inline-flex items-center gap-4 text-cyan hover:text-white transition-colors" vid="330">
+                                <span class="font-display font-bold uppercase tracking-widest text-sm" vid="331">Explore Project</span>
+                                <div class="w-12 h-12 rounded-full border border-cyan/50 flex items-center justify-center group-hover:bg-cyan group-hover:border-cyan transition-all duration-300" vid="332">
+                                    <svg class="w-5 h-5 transform group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" vid="333">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" vid="334"></path>
+                                    </svg>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="hidden lg:block relative" vid="335">
+                            <div class="absolute -top-20 -right-20 w-96 h-96 bg-cyan/20 rounded-full blur-[100px]" vid="336"></div>
+                            <div class="relative" vid="337">
+                                <div class="bg-dark-100 border border-white/10 rounded-2xl p-2 shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-700" vid="338">
+                                    <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="Drake Seaside Preview" class="w-full h-80 object-cover rounded-xl" vid="339">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            
+            <article class="min-h-[150vh] relative" vid="340">
+                <div class="sticky top-0 h-screen flex items-center overflow-hidden" vid="341">
+                    <div class="absolute inset-0 z-0" vid="342">
+                        <div class="absolute inset-0 bg-gradient-to-b from-[#0A0A0C] via-transparent to-[#0A0A0C] z-10" vid="343"></div>
+                        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_0%,_#0A0A0C_70%)] z-10" vid="344"></div>
+                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&amp;w=2400&amp;auto=format&amp;fit=crop" alt="Takamaka House" class="w-full h-full object-cover scale-[1.2] opacity-60" vid="345">
+                    </div>
+
+                    <div class="relative z-20 w-full max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center" vid="346">
+                        <div class="hidden lg:block relative order-2" vid="347">
+                            <div class="absolute -top-20 -left-20 w-96 h-96 bg-teal/20 rounded-full blur-[100px]" vid="348"></div>
+                            <div class="relative" vid="349">
+                                <div class="bg-dark-100 border border-white/10 rounded-2xl p-2 shadow-2xl transform -rotate-3 hover:rotate-0 transition-transform duration-700" vid="350">
+                                    <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="Takamaka House Preview" class="w-full h-80 object-cover rounded-xl" vid="351">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="order-1 lg:order-2" vid="352">
+                            <div class="inline-flex items-center gap-3 mb-8 px-4 py-2 rounded-full border border-teal/30 bg-teal/5 backdrop-blur-sm" vid="353">
+                                <span class="w-2 h-2 rounded-full bg-teal animate-pulse shadow-[0_0_10px_#22F1D6]" vid="354"></span>
+                                <span class="text-teal text-xs font-bold uppercase tracking-widest" vid="355">Foundation Tier</span>
+                            </div>
+                            
+                            <h3 class="font-display text-6xl md:text-8xl font-bold uppercase tracking-tightest mb-6 text-white" vid="356">
+                                Takamaka<br vid="357">House
+                            </h3>
+                            
+                            <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-md leading-relaxed font-light" vid="358">
+                                Direct bookings transformed their entire business model.
+                            </p>
+                            
+                            <div class="flex flex-wrap gap-4 mb-10" vid="359">
+                                <div class="px-4 py-2 bg-white/5 backdrop-blur rounded-lg border border-white/10" vid="360">
+                                    <span class="text-teal font-display font-bold text-2xl" vid="361">85%</span>
+                                    <p class="text-xs text-gray-400 uppercase tracking-wider mt-1" vid="362">Direct Bookings</p>
+                                </div>
+                                <div class="px-4 py-2 bg-white/5 backdrop-blur rounded-lg border border-white/10" vid="363">
+                                    <span class="text-cyan font-display font-bold text-2xl" vid="364">4.9★</span>
+                                    <p class="text-xs text-gray-400 uppercase tracking-wider mt-1" vid="365">Guest Rating</p>
+                                </div>
+                            </div>
+
+                            <a href="#" class="group inline-flex items-center gap-4 text-teal hover:text-white transition-colors" vid="366">
+                                <span class="font-display font-bold uppercase tracking-widest text-sm" vid="367">Explore Project</span>
+                                <div class="w-12 h-12 rounded-full border border-teal/50 flex items-center justify-center group-hover:bg-teal group-hover:border-teal transition-all duration-300" vid="368">
+                                    <svg class="w-5 h-5 transform group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" vid="369">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" vid="370"></path>
+                                    </svg>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            
+            <article class="min-h-[150vh] relative" vid="371">
+                <div class="sticky top-0 h-screen flex items-center overflow-hidden" vid="372">
+                    <div class="absolute inset-0 z-0" vid="373">
+                        <div class="absolute inset-0 bg-gradient-to-b from-[#0A0A0C] via-transparent to-[#0A0A0C] z-10" vid="374"></div>
+                        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_0%,_#0A0A0C_70%)] z-10" vid="375"></div>
+                        <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&amp;w=2400&amp;auto=format&amp;fit=crop" alt="Forma Studio" class="w-full h-full object-cover scale-[1.2] opacity-60" vid="376">
+                    </div>
+
+                    <div class="relative z-20 w-full max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center" vid="377">
+                        <div vid="378">
+                            <div class="inline-flex items-center gap-3 mb-8 px-4 py-2 rounded-full border border-cyan/30 bg-cyan/5 backdrop-blur-sm" vid="379">
+                                <span class="w-2 h-2 rounded-full bg-cyan animate-pulse shadow-[0_0_10px_#00E5FF]" vid="380"></span>
+                                <span class="text-cyan text-xs font-bold uppercase tracking-widest" vid="381">Foundation Tier</span>
+                            </div>
+                            
+                            <h3 class="font-display text-6xl md:text-8xl font-bold uppercase tracking-tightest mb-6 text-white" vid="382">
+                                Forma<br vid="383">Studio
+                            </h3>
+                            
+                            <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-md leading-relaxed font-light" vid="384">
+                                Editorial elegance that speaks before words do.
+                            </p>
+                            
+                            <div class="flex flex-wrap gap-4 mb-10" vid="385">
+                                <div class="px-4 py-2 bg-white/5 backdrop-blur rounded-lg border border-white/10" vid="386">
+                                    <span class="text-cyan font-display font-bold text-2xl" vid="387">12x</span>
+                                    <p class="text-xs text-gray-400 uppercase tracking-wider mt-1" vid="388">Portfolio Views</p>
+                                </div>
+                                <div class="px-4 py-2 bg-white/5 backdrop-blur rounded-lg border border-white/10" vid="389">
+                                    <span class="text-teal font-display font-bold text-2xl" vid="390">Featured</span>
+                                    <p class="text-xs text-gray-400 uppercase tracking-wider mt-1" vid="391">Design Awards</p>
+                                </div>
+                            </div>
+
+                            <a href="#" class="group inline-flex items-center gap-4 text-cyan hover:text-white transition-colors" vid="392">
+                                <span class="font-display font-bold uppercase tracking-widest text-sm" vid="393">Explore Project</span>
+                                <div class="w-12 h-12 rounded-full border border-cyan/50 flex items-center justify-center group-hover:bg-cyan group-hover:border-cyan transition-all duration-300" vid="394">
+                                    <svg class="w-5 h-5 transform group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" vid="395">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" vid="396"></path>
+                                    </svg>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="hidden lg:block relative" vid="397">
+                            <div class="absolute -top-20 -right-20 w-96 h-96 bg-cyan/20 rounded-full blur-[100px]" vid="398"></div>
+                            <div class="relative" vid="399">
+                                <div class="bg-dark-100 border border-white/10 rounded-2xl p-2 shadow-2xl transform rotate-6 hover:rotate-0 transition-transform duration-700" vid="400">
+                                    <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&amp;w=800&amp;auto=format&amp;fit=crop" alt="Forma Studio Preview" class="w-full h-80 object-cover rounded-xl" vid="401">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <div class="py-32 px-6 max-w-7xl mx-auto" vid="402">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-8 p-12 bg-gradient-to-r from-cyan/10 via-transparent to-teal/10 rounded-3xl border border-white/10 backdrop-blur-sm reveal-up" vid="403">
+                <div vid="404">
+                    <h3 class="font-display text-3xl font-bold uppercase mb-2" vid="405">Ready for your transformation?</h3>
+                    <p class="text-gray-400" vid="406">Let's discuss what success looks like for your business.</p>
+                </div>
+                <a href="#contact" class="px-8 py-4 bg-cyan text-black font-display font-bold uppercase tracking-widest text-sm rounded-full transition-all duration-300 hover:bg-white hover:shadow-[0_0_40px_#00E5FF] whitespace-nowrap" vid="407">
+                    Start Your Project
+                </a>
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="py-32 bg-[#0A0A0C] relative z-20 border-t border-white/5" vid="408">
+        <div class="max-w-7xl mx-auto px-6" vid="409">
+            
+            <div class="text-center mb-20 reveal-up" vid="410">
+                <span class="text-cyan text-sm font-bold uppercase tracking-widest mb-4 block" vid="411">Find Your Fit</span>
+                <h2 class="font-display text-4xl md:text-5xl font-bold uppercase tracking-tightest max-w-4xl mx-auto" vid="412">
+                    A home online, built for where you are right now
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" vid="413">
+                
+                <div class="group bg-dark-100 border border-white/10 rounded-2xl p-8 hover:border-cyan/30 transition-all duration-500 reveal-up" vid="414">
+                    <div class="flex items-center justify-between mb-6" vid="415">
+                        <span class="px-3 py-1 bg-white/5 rounded-full text-xs font-bold uppercase tracking-wider text-gray-400" vid="416">Essentials</span>
+                    </div>
+                    <h3 class="font-display text-2xl font-bold uppercase mb-2 text-white" vid="417">Foundation</h3>
+                    <div class="mb-6" vid="418">
+                        <span class="text-3xl font-display font-bold text-cyan" vid="419">SCR 9,500</span>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-6 leading-relaxed" vid="420">For businesses that need a clean, professional presence online.</p>
+                    <ul class="space-y-3 mb-8 text-sm text-gray-300" vid="421">
+                        <li class="flex items-center gap-2" vid="422"><span class="w-1.5 h-1.5 rounded-full bg-teal" vid="423"></span>Up to 5 pages</li>
+                        <li class="flex items-center gap-2" vid="424"><span class="w-1.5 h-1.5 rounded-full bg-teal" vid="425"></span>Mobile-first design</li>
+                        <li class="flex items-center gap-2" vid="426"><span class="w-1.5 h-1.5 rounded-full bg-teal" vid="427"></span>Contact form</li>
+                        <li class="flex items-center gap-2" vid="428"><span class="w-1.5 h-1.5 rounded-full bg-teal" vid="429"></span>Basic SEO setup</li>
+                        <li class="flex items-center gap-2" vid="430"><span class="w-1.5 h-1.5 rounded-full bg-teal" vid="431"></span>30-day support</li>
+                    </ul>
+                    <button class="w-full py-3 border border-white/20 hover:border-cyan hover:bg-cyan hover:text-black rounded-lg font-display font-bold uppercase tracking-widest text-xs transition-all duration-300" vid="432">Discuss Project</button>
+                </div>
+
+                <div class="group bg-dark-100 border-2 border-cyan rounded-2xl p-8 relative overflow-hidden reveal-up" style="transition-delay: 100ms;" vid="433">
+                    <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan via-teal to-cyan" vid="434"></div>
+                    <div class="absolute -top-1 right-6 px-4 py-1 bg-cyan text-black text-xs font-bold uppercase tracking-wider rounded-b-lg" vid="435">Most Popular</div>
+                    <div class="flex items-center justify-between mb-6 mt-2" vid="436">
+                        <span class="px-3 py-1 bg-cyan/10 rounded-full text-xs font-bold uppercase tracking-wider text-cyan" vid="437">Scalable</span>
+                    </div>
+                    <h3 class="font-display text-2xl font-bold uppercase mb-2 text-white" vid="438">Starter</h3>
+                    <div class="mb-6" vid="439">
+                        <span class="text-3xl font-display font-bold text-cyan" vid="440">SCR 15,000</span>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-6 leading-relaxed" vid="441">For businesses ready to stand out and convert visitors into enquiries.</p>
+                    <ul class="space-y-3 mb-8 text-sm text-gray-300" vid="442">
+                        <li class="flex items-center gap-2" vid="443"><span class="w-1.5 h-1.5 rounded-full bg-cyan" vid="444"></span>Up to 8 pages</li>
+                        <li class="flex items-center gap-2" vid="445"><span class="w-1.5 h-1.5 rounded-full bg-cyan" vid="446"></span>Custom visual design</li>
+                        <li class="flex items-center gap-2" vid="447"><span class="w-1.5 h-1.5 rounded-full bg-cyan" vid="448"></span>WhatsApp &amp; enquiry forms</li>
+                        <li class="flex items-center gap-2" vid="449"><span class="w-1.5 h-1.5 rounded-full bg-cyan" vid="450"></span>Full SEO structure</li>
+                        <li class="flex items-center gap-2" vid="451"><span class="w-1.5 h-1.5 rounded-full bg-cyan" vid="452"></span>Google Business setup</li>
+                        <li class="flex items-center gap-2" vid="453"><span class="w-1.5 h-1.5 rounded-full bg-cyan" vid="454"></span>60-day support</li>
+                    </ul>
+                    <button class="w-full py-3 bg-cyan text-black hover:bg-white rounded-lg font-display font-bold uppercase tracking-widest text-xs transition-all duration-300 shadow-[0_0_20px_rgba(0,229,255,0.3)]" vid="455">Discuss Project</button>
+                </div>
+
+                <div class="group bg-dark-100 border border-white/10 rounded-2xl p-8 hover:border-teal/30 transition-all duration-500 reveal-up" style="transition-delay: 200ms;" vid="456">
+                    <div class="flex items-center justify-between mb-6" vid="457">
+                        <span class="px-3 py-1 bg-white/5 rounded-full text-xs font-bold uppercase tracking-wider text-gray-400" vid="458">Full Scale</span>
+                    </div>
+                    <h3 class="font-display text-2xl font-bold uppercase mb-2 text-white" vid="459">Growth</h3>
+                    <div class="mb-6" vid="460">
+                        <span class="text-3xl font-display font-bold text-teal" vid="461">SCR 30,000</span>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-6 leading-relaxed" vid="462">For established businesses whose website should reflect how far they've come.</p>
+                    <ul class="space-y-3 mb-8 text-sm text-gray-300" vid="463">
+                        <li class="flex items-center gap-2" vid="464"><span class="w-1.5 h-1.5 rounded-full bg-teal" vid="465"></span>Unlimited pages</li>
+                        <li class="flex items-center gap-2" vid="466"><span class="w-1.5 h-1.5 rounded-full bg-teal" vid="467"></span>Advanced animations</li>
+                        <li class="flex items-center gap-2" vid="468"><span class="w-1.5 h-1.5 rounded-full bg-teal" vid="469"></span>E-commerce or booking</li>
+                        <li class="flex items-center gap-2" vid="470"><span class="w-1.5 h-1.5 rounded-full bg-teal" vid="471"></span>Content strategy</li>
+                        <li class="flex items-center gap-2" vid="472"><span class="w-1.5 h-1.5 rounded-full bg-teal" vid="473"></span>Advanced SEO</li>
+                        <li class="flex items-center gap-2" vid="474"><span class="w-1.5 h-1.5 rounded-full bg-teal" vid="475"></span>90-day support</li>
+                    </ul>
+                    <button class="w-full py-3 border border-white/20 hover:border-teal hover:bg-teal hover:text-black rounded-lg font-display font-bold uppercase tracking-widest text-xs transition-all duration-300" vid="476">Discuss Project</button>
+                </div>
+
+                <div class="group bg-dark-100 border border-white/10 rounded-2xl p-8 hover:border-cyan/30 transition-all duration-500 reveal-up relative overflow-hidden" style="transition-delay: 300ms;" vid="477">
+                    <div class="absolute top-0 left-0 w-32 h-32 bg-cyan/5 rounded-full blur-3xl" vid="478"></div>
+                    <div class="flex items-center justify-between mb-6 relative z-10" vid="479">
+                        <span class="px-3 py-1 bg-white/5 rounded-full text-xs font-bold uppercase tracking-wider text-gray-400" vid="480">One-of-a-Kind</span>
+                    </div>
+                    <h3 class="font-display text-2xl font-bold uppercase mb-2 text-white relative z-10" vid="481">Custom</h3>
+                    <div class="mb-6 relative z-10" vid="482">
+                        <span class="text-3xl font-display font-bold text-cyan" vid="483">Let's Talk</span>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-6 leading-relaxed relative z-10" vid="484">For businesses that need something beyond a standard build — a unique scope designed entirely around you.</p>
+                    <div class="mb-8 p-4 bg-white/5 rounded-lg border border-white/10 relative z-10" vid="485">
+                        <p class="text-sm text-gray-300 italic" vid="486">"Perfect for complex requirements, unique functionality, or enterprise-level builds."</p>
+                    </div>
+                    <button class="w-full py-3 border border-cyan/30 hover:border-cyan hover:bg-cyan hover:text-black rounded-lg font-display font-bold uppercase tracking-widest text-xs transition-all duration-300" vid="487">Request Custom Scope</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="py-32 bg-[#0A0A0C] relative z-20" vid="488">
+        <div class="max-w-7xl mx-auto px-6" vid="489">
+            
+            <div class="text-center mb-20 reveal-up" vid="490">
+                <span class="text-cyan text-sm font-bold uppercase tracking-widest mb-4 block" vid="491">Why Clients Come Back</span>
+                <h2 class="font-display text-4xl md:text-5xl font-bold uppercase tracking-tightest max-w-4xl mx-auto" vid="492">
+                    We make it easy to trust the process
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8" vid="493">
+                
+                <div class="group reveal-up" vid="494">
+                    <div class="mb-6" vid="495">
+                        <div class="w-14 h-14 rounded-2xl bg-cyan/10 border border-cyan/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-500" vid="496">
+                            <svg class="w-7 h-7 text-cyan" fill="none" viewBox="0 0 24 24" stroke="currentColor" vid="497">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" vid="498"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="font-display text-lg font-bold uppercase mb-3 text-white" vid="499">You'll always know what's next</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-4" vid="500">Clear milestones, no radio silence. We keep things straightforward from your first message to launch day.</p>
+                    <div class="flex items-center gap-2 text-xs" vid="501">
+                        <span class="w-1.5 h-1.5 rounded-full bg-teal" vid="502"></span>
+                        <span class="text-gray-500" vid="503">We send a short update after every milestone. No chasing required.</span>
+                    </div>
+                </div>
+
+                <div class="group reveal-up" style="transition-delay: 100ms;" vid="504">
+                    <div class="mb-6" vid="505">
+                        <div class="w-14 h-14 rounded-2xl bg-teal/10 border border-teal/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-500" vid="506">
+                            <svg class="w-7 h-7 text-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" vid="507">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" vid="508"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="font-display text-lg font-bold uppercase mb-3 text-white" vid="509">Built to help people say yes</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-4" vid="510">Every layout and word is chosen to help your visitors understand your offer and reach out with confidence.</p>
+                    <div class="flex items-center gap-2 text-xs" vid="511">
+                        <span class="w-1.5 h-1.5 rounded-full bg-cyan" vid="512"></span>
+                        <span class="text-gray-500" vid="513">Every page reviewed for clarity before anything goes live.</span>
+                    </div>
+                </div>
+
+                <div class="group reveal-up" style="transition-delay: 200ms;" vid="514">
+                    <div class="mb-6" vid="515">
+                        <div class="w-14 h-14 rounded-2xl bg-cyan/10 border border-cyan/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-500" vid="516">
+                            <svg class="w-7 h-7 text-cyan" fill="none" viewBox="0 0 24 24" stroke="currentColor" vid="517">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" vid="518"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="font-display text-lg font-bold uppercase mb-3 text-white" vid="519">Fast, smooth, and ready on any device</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-4" vid="520">Your site will load quickly and look great everywhere — from a desktop in an office to a phone on the beach.</p>
+                    <div class="flex items-center gap-2 text-xs" vid="521">
+                        <span class="w-1.5 h-1.5 rounded-full bg-teal" vid="522"></span>
+                        <span class="text-gray-500" vid="523">Tested on the phones Seychellois customers actually use.</span>
+                    </div>
+                </div>
+
+                <div class="group reveal-up" style="transition-delay: 300ms;" vid="524">
+                    <div class="mb-6" vid="525">
+                        <div class="w-14 h-14 rounded-2xl bg-teal/10 border border-teal/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-500" vid="526">
+                            <svg class="w-7 h-7 text-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor" vid="527">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" vid="528"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="font-display text-lg font-bold uppercase mb-3 text-white" vid="529">Delivered without the chaos</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-4" vid="530">A clear milestone structure keeps the project moving — so your website arrives on time and without drama.</p>
+                    <div class="flex items-center gap-2 text-xs" vid="531">
+                        <span class="w-1.5 h-1.5 rounded-full bg-cyan" vid="532"></span>
+                        <span class="text-gray-500" vid="533">Average project completion: 3–5 weeks.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="py-32 bg-[#0A0A0C] relative z-20 border-t border-white/5" id="faq" vid="534">
+        <div class="max-w-4xl mx-auto px-6" vid="535">
+            <div class="text-center mb-16 reveal-up" vid="536">
+                <span class="text-cyan text-sm font-bold uppercase tracking-widest mb-4 block" vid="537">Got Questions?</span>
+                <h2 class="font-display text-4xl md:text-5xl font-bold uppercase tracking-tightest" vid="538">Everything you need to know</h2>
+            </div>
+
+            
+            <div class="flex flex-wrap justify-center gap-4 mb-12 reveal-up" style="transition-delay: 100ms;" vid="539">
+                <button class="faq-tab active px-6 py-2.5 rounded-full border border-cyan/50 bg-cyan/10 text-cyan text-xs font-bold uppercase tracking-widest transition-all" data-target="general" vid="540">General</button>
+                <button class="faq-tab px-6 py-2.5 rounded-full border border-white/10 bg-transparent text-gray-400 hover:text-white text-xs font-bold uppercase tracking-widest transition-all" data-target="process" vid="541">Process</button>
+                <button class="faq-tab px-6 py-2.5 rounded-full border border-white/10 bg-transparent text-gray-400 hover:text-white text-xs font-bold uppercase tracking-widest transition-all" data-target="pricing" vid="542">Pricing</button>
+                <button class="faq-tab px-6 py-2.5 rounded-full border border-white/10 bg-transparent text-gray-400 hover:text-white text-xs font-bold uppercase tracking-widest transition-all" data-target="technical" vid="543">Technical</button>
+            </div>
+
+            
+            <div class="faq-content-container reveal-up" style="transition-delay: 200ms;" vid="544">
+                
+                
+                <div class="faq-pane block space-y-4" id="faq-general" vid="545">
+                    <div class="bg-dark-100 border border-white/5 rounded-2xl overflow-hidden transition-all duration-300" vid="546">
+                        <button class="faq-accordion-btn w-full px-8 py-6 flex items-center justify-between text-left group" vid="547">
+                            <span class="font-display text-lg font-bold text-white group-hover:text-cyan transition-colors" vid="548">Do I really need a website if I have a Facebook page?</span>
+                            <svg class="w-5 h-5 text-gray-400 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" vid="549"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" vid="550"></path></svg>
+                        </button>
+                        <div class="faq-accordion-content max-h-0 overflow-hidden transition-all duration-300" vid="551">
+                            <div class="px-8 pb-6 text-gray-400 text-sm leading-relaxed" vid="552">
+                                While social media is great for updates, a website is your digital storefront. It's the only place online you fully own, where you control the entire customer experience without algorithmic interference. It also establishes credibility and is essential for appearing in Google search results when locals or tourists look for your services.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-dark-100 border border-white/5 rounded-2xl overflow-hidden transition-all duration-300" vid="553">
+                        <button class="faq-accordion-btn w-full px-8 py-6 flex items-center justify-between text-left group" vid="554">
+                            <span class="font-display text-lg font-bold text-white group-hover:text-cyan transition-colors" vid="555">How long does a website project usually take?</span>
+                            <svg class="w-5 h-5 text-gray-400 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" vid="556"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" vid="557"></path></svg>
+                        </button>
+                        <div class="faq-accordion-content max-h-0 overflow-hidden transition-all duration-300" vid="558">
+                            <div class="px-8 pb-6 text-gray-400 text-sm leading-relaxed" vid="559">
+                                On average, our standard projects take between 3 to 5 weeks from the kickoff call to the launch date. This depends heavily on how quickly we receive content and feedback from your end. Custom builds may take longer depending on scope.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-dark-100 border border-white/5 rounded-2xl overflow-hidden transition-all duration-300" vid="560">
+                        <button class="faq-accordion-btn w-full px-8 py-6 flex items-center justify-between text-left group" vid="561">
+                            <span class="font-display text-lg font-bold text-white group-hover:text-cyan transition-colors" vid="562">Do you write the content for my website?</span>
+                            <svg class="w-5 h-5 text-gray-400 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" vid="563"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" vid="564"></path></svg>
+                        </button>
+                        <div class="faq-accordion-content max-h-0 overflow-hidden transition-all duration-300" vid="565">
+                            <div class="px-8 pb-6 text-gray-400 text-sm leading-relaxed" vid="566">
+                                We typically ask you to provide the raw information about your business. We then structure and refine this copy to ensure it reads well online and includes relevant keywords for SEO. We do offer full copywriting services as an add-on if needed.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-dark-100 border border-white/5 rounded-2xl overflow-hidden transition-all duration-300" vid="567">
+                        <button class="faq-accordion-btn w-full px-8 py-6 flex items-center justify-between text-left group" vid="568">
+                            <span class="font-display text-lg font-bold text-white group-hover:text-cyan transition-colors" vid="569">What happens after the website is launched?</span>
+                            <svg class="w-5 h-5 text-gray-400 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" vid="570"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" vid="571"></path></svg>
+                        </button>
+                        <div class="faq-accordion-content max-h-0 overflow-hidden transition-all duration-300" vid="572">
+                            <div class="px-8 pb-6 text-gray-400 text-sm leading-relaxed" vid="573">
+                                Depending on your package, we provide 30 to 90 days of post-launch support to iron out any wrinkles. After that, we offer optional monthly care plans to keep your site updated, secure, and running smoothly.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="faq-pane hidden space-y-4" id="faq-process" vid="574">
+                    <div class="bg-dark-100 border border-white/5 rounded-2xl overflow-hidden transition-all duration-300" vid="575">
+                        <button class="faq-accordion-btn w-full px-8 py-6 flex items-center justify-between text-left group" vid="576">
+                            <span class="font-display text-lg font-bold text-white group-hover:text-cyan transition-colors" vid="577">What is the discovery phase?</span>
+                            <svg class="w-5 h-5 text-gray-400 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" vid="578"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" vid="579"></path></svg>
+                        </button>
+                        <div class="faq-accordion-content max-h-0 overflow-hidden transition-all duration-300" vid="580">
+                            <div class="px-8 pb-6 text-gray-400 text-sm leading-relaxed" vid="581">
+                                Discovery is our initial deep dive into your business. We learn about your goals, target audience, competitors, and what makes your brand unique. This forms the strategic foundation for everything we design and build.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-dark-100 border border-white/5 rounded-2xl overflow-hidden transition-all duration-300" vid="582">
+                        <button class="faq-accordion-btn w-full px-8 py-6 flex items-center justify-between text-left group" vid="583">
+                            <span class="font-display text-lg font-bold text-white group-hover:text-cyan transition-colors" vid="584">How many revisions do I get?</span>
+                            <svg class="w-5 h-5 text-gray-400 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" vid="585"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" vid="586"></path></svg>
+                        </button>
+                        <div class="faq-accordion-content max-h-0 overflow-hidden transition-all duration-300" vid="587">
+                            <div class="px-8 pb-6 text-gray-400 text-sm leading-relaxed" vid="588">
+                                Most of our packages include two dedicated revision rounds during the design phase. We want you to be absolutely thrilled with the final product, and we build in clear milestones to ensure we're aligned before moving forward.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-dark-100 border border-white/5 rounded-2xl overflow-hidden transition-all duration-300" vid="589">
+                        <button class="faq-accordion-btn w-full px-8 py-6 flex items-center justify-between text-left group" vid="590">
+                            <span class="font-display text-lg font-bold text-white group-hover:text-cyan transition-colors" vid="591">Do I need to provide the images?</span>
+                            <svg class="w-5 h-5 text-gray-400 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" vid="592"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" vid="593"></path></svg>
+                        </button>
+                        <div class="faq-accordion-content max-h-0 overflow-hidden transition-all duration-300" vid="594">
+                            <div class="px-8 pb-6 text-gray-400 text-sm leading-relaxed" vid="595">
+                                If you have professional photography, that's excellent and we highly encourage using it. If not, we can source high-quality premium stock imagery that fits your brand aesthetic perfectly.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-dark-100 border border-white/5 rounded-2xl overflow-hidden transition-all duration-300" vid="596">
+                        <button class="faq-accordion-btn w-full px-8 py-6 flex items-center justify-between text-left group" vid="597">
+                            <span class="font-display text-lg font-bold text-white group-hover:text-cyan transition-colors" vid="598">Will I see the design before it's built?</span>
+                            <svg class="w-5 h-5 text-gray-400 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" vid="599"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" vid="600"></path></svg>
+                        </button>
+                        <div class="faq-accordion-content max-h-0 overflow-hidden transition-all duration-300" vid="601">
+                            <div class="px-8 pb-6 text-gray-400 text-sm leading-relaxed" vid="602">
+                                Yes. We present high-fidelity design mockups for your review. We never start coding until you've fully approved the visual direction of the site.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="faq-pane hidden space-y-4" id="faq-pricing" vid="603">
+                    <div class="bg-dark-100 border border-white/5 rounded-2xl overflow-hidden transition-all duration-300" vid="604">
+                        <button class="faq-accordion-btn w-full px-8 py-6 flex items-center justify-between text-left group" vid="605">
+                            <span class="font-display text-lg font-bold text-white group-hover:text-cyan transition-colors" vid="606">Are there any hidden fees?</span>
+                            <svg class="w-5 h-5 text-gray-400 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" vid="607"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" vid="608"></path></svg>
+                        </button>
+                        <div class="faq-accordion-content max-h-0 overflow-hidden transition-all duration-300" vid="609">
+                            <div class="px-8 pb-6 text-gray-400 text-sm leading-relaxed" vid="610">
+                                Never. Our proposals clearly outline exactly what is included in the project price. Any out-of-scope requests during the project will be estimated and approved by you before any work begins.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-dark-100 border border-white/5 rounded-2xl overflow-hidden transition-all duration-300" vid="611">
+                        <button class="faq-accordion-btn w-full px-8 py-6 flex items-center justify-between text-left group" vid="612">
+                            <span class="font-display text-lg font-bold text-white group-hover:text-cyan transition-colors" vid="613">Do I pay all at once or monthly?</span>
+                            <svg class="w-5 h-5 text-gray-400 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" vid="614"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" vid="615"></path></svg>
+                        </button>
+                        <div class="faq-accordion-content max-h-0 overflow-hidden transition-all duration-300" vid="616">
+                            <div class="px-8 pb-6 text-gray-400 text-sm leading-relaxed" vid="617">
+                                The website build is a one-time project fee. We typically require a 50% deposit to secure your booking and begin work, with the remaining 50% due prior to launch.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-dark-100 border border-white/5 rounded-2xl overflow-hidden transition-all duration-300" vid="618">
+                        <button class="faq-accordion-btn w-full px-8 py-6 flex items-center justify-between text-left group" vid="619">
+                            <span class="font-display text-lg font-bold text-white group-hover:text-cyan transition-colors" vid="620">Do you offer payment plans?</span>
+                            <svg class="w-5 h-5 text-gray-400 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" vid="621"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" vid="622"></path></svg>
+                        </button>
+                        <div class="faq-accordion-content max-h-0 overflow-hidden transition-all duration-300" vid="623">
+                            <div class="px-8 pb-6 text-gray-400 text-sm leading-relaxed" vid="624">
+                                For our larger Growth and Custom packages, we can discuss splitting the payments into milestones (e.g., 40/30/30) across the duration of the project timeline.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-dark-100 border border-white/5 rounded-2xl overflow-hidden transition-all duration-300" vid="625">
+                        <button class="faq-accordion-btn w-full px-8 py-6 flex items-center justify-between text-left group" vid="626">
+                            <span class="font-display text-lg font-bold text-white group-hover:text-cyan transition-colors" vid="627">What about hosting and domain costs?</span>
+                            <svg class="w-5 h-5 text-gray-400 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" vid="628"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" vid="629"></path></svg>
+                        </button>
+                        <div class="faq-accordion-content max-h-0 overflow-hidden transition-all duration-300" vid="630">
+                            <div class="px-8 pb-6 text-gray-400 text-sm leading-relaxed" vid="631">
+                                You own your domain and hosting. We will guide you on the best platforms to purchase these (usually around SCR 300-500 per year for a domain, and starting from SCR 200/month for reliable hosting) and help you set everything up.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="faq-pane hidden space-y-4" id="faq-technical" vid="632">
+                    <div class="bg-dark-100 border border-white/5 rounded-2xl overflow-hidden transition-all duration-300" vid="633">
+                        <button class="faq-accordion-btn w-full px-8 py-6 flex items-center justify-between text-left group" vid="634">
+                            <span class="font-display text-lg font-bold text-white group-hover:text-cyan transition-colors" vid="635">Can I update the website myself?</span>
+                            <svg class="w-5 h-5 text-gray-400 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" vid="636"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" vid="637"></path></svg>
+                        </button>
+                        <div class="faq-accordion-content max-h-0 overflow-hidden transition-all duration-300" vid="638">
+                            <div class="px-8 pb-6 text-gray-400 text-sm leading-relaxed" vid="639">
+                                Yes. We build your site on an easy-to-use Content Management System (CMS). We provide training videos before launch so you can confidently update text, swap images, or add new blog posts without touching any code.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-dark-100 border border-white/5 rounded-2xl overflow-hidden transition-all duration-300" vid="640">
+                        <button class="faq-accordion-btn w-full px-8 py-6 flex items-center justify-between text-left group" vid="641">
+                            <span class="font-display text-lg font-bold text-white group-hover:text-cyan transition-colors" vid="642">Will my website work on mobile phones?</span>
+                            <svg class="w-5 h-5 text-gray-400 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" vid="643"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" vid="644"></path></svg>
+                        </button>
+                        <div class="faq-accordion-content max-h-0 overflow-hidden transition-all duration-300" vid="645">
+                            <div class="px-8 pb-6 text-gray-400 text-sm leading-relaxed" vid="646">
+                                Absolutely. We design with a mobile-first philosophy, ensuring your site looks and functions perfectly across all devices, from large desktop monitors to smartphones and tablets.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-dark-100 border border-white/5 rounded-2xl overflow-hidden transition-all duration-300" vid="647">
+                        <button class="faq-accordion-btn w-full px-8 py-6 flex items-center justify-between text-left group" vid="648">
+                            <span class="font-display text-lg font-bold text-white group-hover:text-cyan transition-colors" vid="649">Is SEO included?</span>
+                            <svg class="w-5 h-5 text-gray-400 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" vid="650"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" vid="651"></path></svg>
+                        </button>
+                        <div class="faq-accordion-content max-h-0 overflow-hidden transition-all duration-300" vid="652">
+                            <div class="px-8 pb-6 text-gray-400 text-sm leading-relaxed" vid="653">
+                                Yes, foundational on-page SEO is included in all our builds. This covers optimal site structure, fast loading speeds, meta descriptions, and proper tag hierarchy to give you the best start on Google.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-dark-100 border border-white/5 rounded-2xl overflow-hidden transition-all duration-300" vid="654">
+                        <button class="faq-accordion-btn w-full px-8 py-6 flex items-center justify-between text-left group" vid="655">
+                            <span class="font-display text-lg font-bold text-white group-hover:text-cyan transition-colors" vid="656">What platform do you build on?</span>
+                            <svg class="w-5 h-5 text-gray-400 transform transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" vid="657"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" vid="658"></path></svg>
+                        </button>
+                        <div class="faq-accordion-content max-h-0 overflow-hidden transition-all duration-300" vid="659">
+                            <div class="px-8 pb-6 text-gray-400 text-sm leading-relaxed" vid="660">
+                                We primarily develop custom sites using modern frameworks like Webflow or WordPress, depending on the specific functionality you need. We will recommend the best tool for your goals during discovery.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="mt-16 text-center reveal-up" style="transition-delay: 300ms;" vid="661">
+                <p class="text-gray-400 mb-6" vid="662">Still have questions?</p>
+                <a href="#contact" class="inline-flex items-center gap-2 text-cyan font-bold uppercase tracking-widest text-sm hover:text-white transition-colors group" vid="663">
+                    Get in Touch
+                    <span class="transform group-hover:translate-x-1 transition-transform" vid="664">→</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="py-32 bg-[#0A0A0C] relative z-20 border-t border-white/5" vid="665">
+        <div class="max-w-4xl mx-auto px-6 text-center" vid="666">
+            
+            <div class="relative mb-12 reveal-up" vid="667">
+                <div class="absolute -top-20 left-1/2 -translate-x-1/2 w-64 h-64 bg-cyan/10 rounded-full blur-3xl" vid="668"></div>
+                <h2 class="font-display text-5xl md:text-6xl lg:text-7xl font-bold uppercase tracking-tightest relative z-10 leading-[1.1]" vid="669">
+                    Let's build something<br vid="670"><span class="text-cyan" vid="671">you're proud of</span>
+                </h2>
+            </div>
+
+            <p class="text-xl text-gray-400 mb-12 max-w-2xl mx-auto reveal-up" style="transition-delay: 100ms;" vid="672">
+                A short, free call is all it takes to get started. No pressure. Just a conversation.
+            </p>
+
+            <div class="reveal-up" style="transition-delay: 200ms;" vid="673">
+                <button class="px-12 py-5 bg-cyan text-black font-display font-bold uppercase tracking-widest text-sm rounded-lg transition-all duration-300 hover:bg-white hover:shadow-[0_0_40px_#00E5FF] flex items-center gap-3 mx-auto group" vid="674">
+                    <span vid="675">Book a Discovery Call</span>
+                    <svg class="w-5 h-5 transform transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" vid="676">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" vid="677"></path>
+                    </svg>
+                </button>
+                <p class="mt-6 text-sm text-gray-500" vid="678">Usually 30 minutes. We'll learn about your business and share ideas.</p>
+            </div>
+        </div>
+    </section>
+
+    
+    <footer class="bg-dark-200 py-12 border-t border-white/5 text-center relative z-20" vid="679">
+        <div class="max-w-7xl mx-auto px-6" vid="680">
+            <div class="flex flex-col items-center gap-6" vid="681">
+                <div class="relative w-6 h-6 flex items-center justify-center opacity-50" vid="682">
+                    <div class="absolute left-1 top-0 w-1 h-2.5 bg-white transform -skew-y-[20deg]" vid="683"></div>
+                    <div class="absolute left-1 bottom-0 w-1 h-2.5 bg-cyan transform skew-y-[20deg]" vid="684"></div>
+                    <div class="absolute right-1 top-0 w-1 h-2.5 bg-white transform skew-y-[20deg]" vid="685"></div>
+                    <div class="absolute right-1 bottom-0 w-1 h-2.5 bg-cyan transform -skew-y-[20deg]" vid="686"></div>
+                    <div class="absolute w-8 h-0.5 bg-cyan z-10" vid="687"></div>
+                </div>
+                <p class="text-sm text-gray-500 font-display uppercase tracking-widest" vid="688">© 2026 Horizon Digital Seychelles. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    
+    <script vid="689">
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal-up').forEach((el) => {
+                observer.observe(el);
+            });
+
+            
+            const tabs = document.querySelectorAll('.faq-tab');
+            const panes = document.querySelectorAll('.faq-pane');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    
+                    tabs.forEach(t => {
+                        t.classList.remove('active', 'border-cyan/50', 'bg-cyan/10', 'text-cyan');
+                        t.classList.add('border-white/10', 'bg-transparent', 'text-gray-400');
+                    });
+                    tab.classList.add('active', 'border-cyan/50', 'bg-cyan/10', 'text-cyan');
+                    tab.classList.remove('border-white/10', 'bg-transparent', 'text-gray-400');
+
+                    
+                    panes.forEach(p => p.classList.add('hidden', 'block'));
+                    panes.forEach(p => p.classList.remove('block'));
+                    panes.forEach(p => p.classList.add('hidden'));
+                    
+                    const targetPane = document.getElementById('faq-' + tab.dataset.target);
+                    if(targetPane) {
+                        targetPane.classList.remove('hidden');
+                        targetPane.classList.add('block');
+                    }
+                });
+            });
+
+            
+            const accordions = document.querySelectorAll('.faq-accordion-btn');
+            accordions.forEach(acc => {
+                acc.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    const icon = this.querySelector('svg');
+                    const content = this.nextElementSibling;
+                    
+                    if (content.style.maxHeight) {
+                        content.style.maxHeight = null;
+                        icon.classList.remove('rotate-180');
+                    } else {
+                        
+                        content.style.maxHeight = content.scrollHeight + "px";
+                        icon.classList.add('rotate-180');
+                    }
+                });
+            });
+        });
+    </script>
+
+</body></html>
+```

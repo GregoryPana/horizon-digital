@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -36,9 +34,9 @@
   --accent-2-soft: rgba(56, 189, 248, 0.08);
 
   /* -- Text -- */
-  --text: #F2F4F7;
-  --text-muted: #8E9196; /* Muted Gray */
-  --text-dim: #667085;
+  --text: #FFFFFF;
+  --text-muted: #D1D5DB; /* Muted Gray */
+  --text-dim: #9CA3AF;
 
   /* -- Borders & Glow -- */
   --border: rgba(255, 255, 255, 0.08);

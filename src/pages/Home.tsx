@@ -14,8 +14,7 @@ import {
   projectSteps,
   workItems,
 } from "../data/site";
-import heroDesktop from "../assets/hero/hero-desktop-tech-v2.webp";
-import heroMobile from "../assets/hero/hero-mobile-tech-v2.webp";
+import Hero from "../components/ui/animated-shader-hero";
 import drakeHeroBg from "../assets/work/drake-seaside/hero-bg.jpg";
 
 const homeFaqCategories: HomeFaqCategory[] = [
@@ -288,174 +287,53 @@ export default function Home() {
         structuredData={faqSchema}
       />
 
-      <section id="top" className="relative h-[100svh] min-h-[660px] w-full overflow-hidden bg-[#0A0A0C] text-white md:h-screen md:min-h-[700px]">
-        <picture className="absolute inset-0 z-0">
-          <source media="(max-width: 768px)" srcSet={heroMobile} />
-          <img
-            src={heroDesktop}
-            alt="Horizon Digital hero"
-            className="h-full w-full object-cover object-center"
-            fetchPriority="high"
-            loading="eager"
-            width={1600}
-            height={900}
-          />
-        </picture>
-        <div className="absolute inset-0 z-[1] bg-[#0A0A0C]/20" />
-        <div className="absolute inset-x-0 bottom-0 z-[1] h-[60%] bg-gradient-to-t from-[#0A0A0C] via-[#0A0A0C]/80 via-[#0A0A0C]/40 to-transparent" />
-        <div className="absolute inset-0 z-[2]">
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0C]/88 via-[#0A0A0C]/48 to-transparent md:hidden" />
-          <div className="absolute inset-y-0 left-0 hidden w-[75%] bg-gradient-to-r from-[#0A0A0C]/86 via-[#0A0A0C]/38 to-transparent md:block" />
-        </div>
-
-        <div className="absolute bottom-0 z-0 h-[60%] w-full opacity-60 mix-blend-screen pointer-events-none" style={{ perspective: "1000px" }}>
-          <div className="hd-grid-plane absolute left-[-50%] top-0 h-[200%] w-[200%]" />
-        </div>
-
-        <div className="hd-float absolute right-[28%] top-[58%] z-0 hidden h-48 w-64 -translate-y-1/2 flex-col rounded-xl border border-cyan/55 bg-cyan/15 p-4 shadow-[0_0_0_1.5px_rgba(0,229,255,0.72),0_0_66px_rgba(0,229,255,0.68)] backdrop-blur-md lg:flex hd-box-glow">
-          <div className="mb-4 flex items-center gap-2 border-b border-cyan/20 pb-2">
-            <div className="h-3 w-3 rounded-full bg-cyan/60 shadow-[0_0_10px_#00E5FF]" />
-            <div className="h-3 w-3 rounded-full bg-white/20" />
-            <div className="h-3 w-3 rounded-full bg-white/20" />
-          </div>
-          <div className="flex-1 space-y-3">
-            <div className="h-4 w-3/4 rounded bg-white/10" />
-            <div className="h-4 w-1/2 rounded bg-white/10" />
-            <div className="mt-auto h-16 w-full rounded border border-cyan/10 bg-gradient-to-t from-cyan/20 to-transparent" />
-          </div>
-        </div>
-
-        <div className="hd-float-reverse absolute right-[15%] top-[44%] z-0 hidden h-56 w-48 -translate-y-1/2 flex-col rounded-xl border border-cyan/40 bg-cyan/12 p-4 shadow-[0_0_42px_rgba(0,229,255,0.4)] backdrop-blur-md lg:flex">
-          <div className="mb-auto grid grid-cols-2 gap-2">
-            <div className="h-12 rounded bg-white/5" />
-            <div className="h-12 rounded bg-white/5" />
-            <div className="col-span-2 h-12 rounded bg-white/5" />
-          </div>
-          <div className="mt-4 h-1 w-full overflow-hidden rounded bg-cyan/30">
-            <div className="h-full w-2/3 bg-cyan shadow-[0_0_16px_#00E5FF]" />
-          </div>
-        </div>
-
-        <div className="relative mx-auto flex min-h-[100svh] w-full max-w-[1760px] flex-col justify-between px-6 pb-[4svh] pt-20 md:min-h-screen md:px-10 md:pt-48 lg:px-14 xl:px-20">
-          <div className="z-20 flex flex-col md:flex-row md:items-end md:justify-between">
-            <div className="max-w-4xl">
-              <motion.p
-                initial={shouldReduceMotion ? undefined : { opacity: 0, x: -20 }}
-                animate={shouldReduceMotion ? undefined : { opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="mb-6 text-[11px] font-bold uppercase leading-none tracking-[0.3em] text-accent section-eyebrow-glow"
-              >
-                Web Design Studio • Seychelles
-              </motion.p>
-
-              <motion.h1
-                initial={shouldReduceMotion ? undefined : { opacity: 0, y: 10, scale: 0.98 }}
-                animate={shouldReduceMotion ? undefined : { opacity: 1, y: 0, scale: 1 }}
-                transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                className="font-display mb-3 min-h-[4em] text-[1.8rem] font-semibold uppercase leading-[0.95] tracking-[0.02em] text-white sm:min-h-[3.3em] sm:text-[3.2rem] md:mb-6 md:min-h-0 md:text-[5rem] md:leading-[0.92] lg:text-[6.2rem]"
-              >
-                YOUR WEBSITE <br className="hidden sm:block" />
-                SHOULD BRING YOU <br className="hidden sm:block" />
-                CUSTOMERS <br className="hidden sm:block" />
-                <span className="font-normal italic text-accent">&</span> LOOK GOOD.
-              </motion.h1>
-
-              <motion.p
-                initial={shouldReduceMotion ? undefined : { opacity: 0, y: 10 }}
-                animate={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-                className="max-w-[46ch] text-sm font-light leading-relaxed text-gray-300 sm:text-base md:text-lg md:text-white/80"
-              >
-                Your business deserves a website that works as hard as you do — beautifully designed, easy to find, and built to turn visitors into customers you are proud to serve.
-              </motion.p>
-
-              <div className="mt-4 flex flex-wrap justify-center gap-x-3 gap-y-1.5 md:mt-20 md:justify-start md:gap-x-4">
-                {[
-                  { text: "BUILT JUST FOR YOUR BUSINESS", icon: (
-                    <svg className="h-3 w-3 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                      <polyline points="20 6 9 17 4 12" />
-                    </svg>
-                  )},
-                  { text: "PERFECT ON EVERY PHONE", icon: (
-                    <svg className="h-3 w-3 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                      <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
-                      <line x1="12" y1="18" x2="12.01" y2="18" />
-                    </svg>
-                  )},
-                  { text: "OPENS IN UNDER 2 SECONDS", icon: (
-                    <svg className="h-3 w-3 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                      <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
-                    </svg>
-                  )},
-                  { text: "CUSTOMERS FIND YOU ON GOOGLE", icon: (
-                    <svg className="h-3 w-3 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                      <circle cx="11" cy="11" r="8" />
-                      <line x1="21" y1="21" x2="16.65" y2="16.65" />
-                    </svg>
-                  )},
-                ].map((tag, idx) => (
-                  <motion.span
-                    key={tag.text}
-                    initial={shouldReduceMotion ? undefined : { opacity: 0, scale: 0.9 }}
-                    animate={shouldReduceMotion ? undefined : { opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.4, delay: 0.6 + idx * 0.1 }}
-                    className="flex items-center gap-2 whitespace-nowrap rounded-full border-[1.5px] border-cyan/60 bg-cyan/10 px-3.5 py-1.5 text-[9px] font-bold uppercase tracking-[0.16em] text-accent md:border-accent/50 md:bg-accent/10 md:px-4 md:py-1.5 md:text-[11px] md:tracking-[0.2em]"
-                  >
-                    <span className="text-cyan">{tag.icon}</span>
-                    {tag.text}
-                  </motion.span>
-                ))}
-              </div>
-
-              <div className="mt-8 hidden flex-col items-center gap-6 sm:flex-row sm:justify-center md:mt-12 md:flex md:justify-start">
-                <motion.div
-                  initial={shouldReduceMotion ? undefined : { opacity: 0, y: 5 }}
-                  animate={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 1.0 }}
-                >
-                  <Link to="/contact">
-                    <button className="rounded-lg bg-accent px-10 py-4 text-sm font-black uppercase tracking-[0.2em] text-black shadow-[0_0_30px_var(--glow)] transition-all hover:scale-[1.02] hover:opacity-90 active:scale-95">
-                      Get Started
-                    </button>
-                  </Link>
-                </motion.div>
-
-                <motion.div
-                  initial={shouldReduceMotion ? undefined : { opacity: 0, y: 5 }}
-                  animate={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 1.1 }}
-                >
-                  <Link to="/work" onClick={handleWorkScrollTop}>
-                    <button className="group rounded-lg border border-cyan/40 bg-white/[0.05] px-10 py-4 text-sm font-black uppercase tracking-[0.2em] text-white backdrop-blur-md transition-all hover:border-cyan hover:bg-white/[0.1]">
-                      Our Work <span className="ml-2 inline-block transition-transform group-hover:translate-x-1">→</span>
-                    </button>
-                  </Link>
-                </motion.div>
-              </div>
-            </div>
-          </div>
-
-          <motion.div
-            initial={shouldReduceMotion ? undefined : { opacity: 0, y: 15 }}
-            animate={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.3, ease: [0.16, 1, 0.3, 1] }}
-            className="z-20 flex w-full flex-col items-center md:hidden"
-          >
-            <div className="flex w-full flex-col gap-4 px-4 pb-2">
-              <Link to="/contact" className="w-full">
-                <button className="group w-full rounded-lg bg-accent py-4 text-[11px] font-black uppercase tracking-[0.2em] text-black shadow-[0_0_30px_rgba(0,229,255,0.3)] transition-transform active:scale-95">
-                  Get Started <span className="ml-1 inline-block transition-transform group-hover:translate-x-1">→</span>
-                </button>
-              </Link>
-              <Link to="/work" className="w-full" onClick={handleWorkScrollTop}>
-                <button className="group w-full rounded-lg border border-cyan/40 bg-white/[0.05] py-4 text-[11px] font-black uppercase tracking-[0.2em] text-white backdrop-blur-sm transition-transform active:scale-95">
-                  View Our Work <span className="ml-1 inline-block transition-transform group-hover:translate-x-1">→</span>
-                </button>
-              </Link>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      <Hero
+        trustBadge={{ text: "Web Design Studio • Seychelles" }}
+        headline={{
+          lines: [
+            "STUNNING WEBSITES",
+            "TO BRING YOU",
+            "CUSTOMERS"
+          ],
+          rotatingWords: ["STUNNING", "BEAUTIFUL", "CUSTOM"]
+        }}
+        subtitle="Your business deserves a website that works as hard as you do — beautifully designed, easy to find, and built to turn visitors into customers you are proud to serve."
+        tags={[
+          { text: "For Your Business", icon: (
+            <svg className="h-3 w-3 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+          )},
+          { text: "Perfect on Mobile", icon: (
+            <svg className="h-3 w-3 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
+              <line x1="12" y1="18" x2="12.01" y2="18" />
+            </svg>
+          )},
+          { text: "Loads Fast", icon: (
+            <svg className="h-3 w-3 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+            </svg>
+          )},
+          { text: "Find you on Google", icon: (
+            <svg className="h-3 w-3 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+          )},
+        ]}
+        buttons={{
+          primary: {
+            text: "Get Started",
+            link: "/contact"
+          },
+          secondary: {
+            text: "View Our Work",
+            link: "/work",
+            onClick: handleWorkScrollTop
+          }
+        }}
+      />
 
       <section className="relative z-20 bg-[#0A0A0C] py-28 md:py-32">
         <div className="mx-auto max-w-7xl px-6">

@@ -35,27 +35,56 @@ export default function Seo({
     email: siteConfig.email,
     telephone: siteConfig.phone,
     logo: ogImageUrl,
+    sameAs: [
+      siteConfig.whatsappUrl,
+    ],
   };
 
   const localBusinessSchema = {
     "@context": "https://schema.org",
-    "@type": "ServiceAreaBusiness",
+    "@type": "ProfessionalService",
     name: siteConfig.name,
     url: siteConfig.url,
     email: siteConfig.email,
     telephone: siteConfig.phone,
+    image: ogImageUrl,
+    description: "Custom website design and development for businesses in Seychelles. Fast, mobile-friendly, and SEO-optimised websites.",
+    priceRange: "SCR 7,500 - SCR 25,000+",
     address: {
       "@type": "PostalAddress",
       addressLocality: siteConfig.location,
       addressCountry: "SC",
     },
     areaServed: {
-      "@type": "AdministrativeArea",
-      name: siteConfig.location,
+      "@type": "Country",
+      name: "Seychelles",
+    },
+    serviceType: [
+      "Web Design",
+      "Web Development",
+      "SEO",
+      "Digital Marketing",
+    ],
+    knowsLanguage: ["en", "fr"],
+  };
+
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: siteConfig.name,
+    url: siteConfig.url,
+    description: siteConfig.tagline,
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${siteConfig.url}/insights/{search_term_string}`,
+      },
+      "query-input": "required name=search_term_string",
     },
   };
 
-  schemas.push(organizationSchema, localBusinessSchema);
+  schemas.push(organizationSchema, localBusinessSchema, websiteSchema);
 
   if (structuredData) {
     if (Array.isArray(structuredData)) {
