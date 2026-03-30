@@ -265,6 +265,7 @@ export default function ChatWidget() {
                 <button
                   onClick={handleSendMessage}
                   disabled={!inputValue.trim() || isLoading}
+                  aria-label="Send message"
                   className="absolute right-2 flex h-10 w-10 items-center justify-center rounded-lg bg-accent text-white transition-all hover:opacity-90 active:scale-90 disabled:opacity-40 sm:h-8 sm:w-8"
                 >
                   <Send size={16} />

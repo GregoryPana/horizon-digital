@@ -21,8 +21,11 @@
     <link rel="preload" href="/fonts/Switzer-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
     <link rel="preload" href="/fonts/Switzer-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
 
-    <!-- Google Fonts: Poppins for display headings (single consolidated request) -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <!-- Google Fonts: Poppins for display headings (Non-blocking async request) -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" />
+    </noscript>
 
     <title>Website Design Seychelles - Fast Business Websites | Horizon Digital</title>
     <meta

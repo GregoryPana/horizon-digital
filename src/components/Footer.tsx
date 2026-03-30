@@ -45,7 +45,6 @@ export default function Footer() {
               <a
                 className="flex w-fit items-center gap-3 text-sm text-text-muted transition hover:text-accent"
                 href={buildMailtoLink(siteConfig.email, emailTemplate.subject, emailTemplate.body)}
-                aria-label={`Send an email to ${siteConfig.email}`}
               >
                 <div className="p-1.5 rounded-md bg-white/5 border border-white/10">
                   <svg viewBox="0 0 24 24" aria-hidden="true" className="h-3.5 w-3.5 text-accent">
@@ -58,7 +57,6 @@ export default function Footer() {
               <a
                 className="flex w-fit items-center gap-3 text-sm text-text-muted transition hover:text-accent"
                 href={`tel:${siteConfig.phone.replace(/\s+/g, "")}`}
-                aria-label={`Call us at ${siteConfig.phone}`}
               >
                 <div className="p-1.5 rounded-md bg-white/5 border border-white/10">
                   <svg viewBox="0 0 24 24" aria-hidden="true" className="h-3.5 w-3.5 text-accent">
@@ -72,7 +70,6 @@ export default function Footer() {
                 href={siteConfig.whatsappUrl}
                 target="_blank"
                 rel="noreferrer"
-                aria-label="Chat with us on WhatsApp"
               >
                 <div className="p-1.5 rounded-md bg-white/5 border border-white/10 group-hover:border-accent/40 transition">
                   <svg viewBox="0 0 24 24" aria-hidden="true" className="h-3.5 w-3.5 text-accent">

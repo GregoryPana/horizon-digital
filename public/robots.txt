@@ -1,5 +1,3 @@
 User-agent: *
 Allow: /
-Host: horizondigitalsey.com
-
 Sitemap: https://horizondigitalsey.com/sitemap.xml

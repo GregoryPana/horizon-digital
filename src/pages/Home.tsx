@@ -239,7 +239,7 @@ function WorkShowcase() {
 
               <div className={`hidden lg:block ${idx % 2 === 1 ? "lg:order-1" : ""}`}>
                 <div className={`relative ${idx % 2 === 0 ? "rotate-3" : "-rotate-3"} rounded-2xl border border-white/10 bg-[#1A1A1C] p-2 shadow-2xl transition-transform duration-700 hover:rotate-0`}>
-                  <img src={project.image} alt={project.title} className="h-80 w-full rounded-xl object-cover" loading="lazy" decoding="async" />
+                  <img src={project.image} alt={project.title} width="600" height="320" className="h-80 w-full rounded-xl object-cover" loading="lazy" decoding="async" />
                 </div>
               </div>
             </div>
@@ -451,7 +451,7 @@ export default function Home() {
       </section>
 
       <section className="relative z-20 overflow-hidden border-y border-[#1a2c33] bg-[#0d1a1f] py-6">
-        <div className="hd-marquee-track flex items-center gap-20 whitespace-nowrap text-[11px] font-medium uppercase tracking-[0.3em] text-[#5c757d]">
+        <div className="hd-marquee-track flex items-center gap-20 whitespace-nowrap text-[11px] font-medium uppercase tracking-[0.3em] text-[#8fa7b4]">
           {[...marqueeItems, ...marqueeItems].map((item, i) => (
             <span key={`${item}-${i}`} className="inline-flex items-center gap-20">
               <span>{item}</span>
@@ -493,7 +493,7 @@ export default function Home() {
                     <div className="-mt-8 mb-2 w-full text-center"><span className="text-xs font-bold uppercase tracking-widest text-cyan">After</span></div>
                     <div className="mt-2 flex h-6 w-1/3 items-center rounded bg-cyan/20 px-2"><div className="h-2 w-2 rounded-full bg-cyan" /></div>
                     <div className="relative flex-1 overflow-hidden rounded border border-white/5 bg-gradient-to-br from-[#0A0A0C] to-[#1A1A1C]">
-                      <img src={workItems[0]?.imageWebp} alt="Service visual" className="absolute inset-0 h-full w-full object-cover opacity-50" />
+                      <img src={workItems[0]?.imageWebp} alt="Service visual" width="600" height="400" className="absolute inset-0 h-full w-full object-cover opacity-50" />
                     </div>
                     <div className="flex h-12 gap-4">
                       <div className="w-1/2 rounded bg-white/5" />
@@ -543,7 +543,7 @@ export default function Home() {
                   <div className="hd-search-result relative overflow-hidden rounded-lg border border-gray-700 bg-[#202124] p-4 shadow-2xl">
                     <div className="absolute inset-0 bg-cyan/5" />
                     <div className="absolute bottom-0 left-0 top-0 w-1 bg-cyan" />
-                    <h4 className="relative pl-3 text-lg font-medium text-blue-400">Best Guesthouse in Mahe | Book Direct</h4>
+                    <h4 className="relative pl-3 text-lg font-medium text-blue-300">Best Guesthouse in Mahe | Book Direct</h4>
                     <p className="relative mt-1 line-clamp-2 pl-3 text-sm text-gray-300">Experience authentic Creole hospitality with direct booking flow and clear value.</p>
                   </div>
                 </div>
@@ -763,15 +763,15 @@ export default function Home() {
 
                 <div className="relative z-10 flex h-full w-full max-w-[400px] items-center justify-center pt-8 pr-12 lg:absolute lg:-left-24 lg:top-1/2 lg:w-[160%] lg:max-w-none lg:-translate-y-1/2 lg:pr-0 pointer-events-none">
                   <motion.div className="absolute left-[0%] top-1/2 z-10 w-52 -translate-y-[45%] rounded-[1.25rem] border-2 border-cyan/30 shadow-[0_0_60px_rgba(0,229,255,0.3)] lg:w-[15rem]" animate={shouldReduceMotion ? undefined : { y: [0, -15, 0], rotate: [-3, -5, -3] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}>
-                    <img src="/digital_trends_1.webp" alt="Digital trends for small business" className="h-auto w-full rounded-xl object-cover" loading="lazy" decoding="async" />
+                    <img src="/digital_trends_1.webp" alt="Digital trends for small business" width="400" height="300" className="h-auto w-full rounded-xl object-cover" loading="lazy" decoding="async" />
                   </motion.div>
 
                   <motion.div className="absolute left-[20%] top-1/2 z-20 w-60 -translate-y-[48%] rounded-[1.25rem] border-2 border-cyan/40 shadow-[0_0_80px_rgba(0,229,255,0.45)] lg:left-[22%] lg:w-[18rem]" animate={shouldReduceMotion ? undefined : { y: [-10, 10, -10], scale: [1, 1.02, 1] }} transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut" }}>
-                    <img src="/digital_trends_2.webp" alt="Understanding AI chatbots" className="h-auto w-full rounded-xl object-cover" loading="lazy" decoding="async" />
+                    <img src="/digital_trends_2.webp" alt="Understanding AI chatbots" width="400" height="300" className="h-auto w-full rounded-xl object-cover" loading="lazy" decoding="async" />
                   </motion.div>
 
                   <motion.div className="absolute left-[40%] top-1/2 z-30 w-64 -translate-y-[52%] rounded-[1.25rem] border-2 border-cyan/50 shadow-[0_0_120px_rgba(0,229,255,0.6)] lg:left-[45%] lg:w-[22rem]" animate={shouldReduceMotion ? undefined : { y: [-5, 15, -5], rotate: [3, 5, 3] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}>
-                    <img src="/digital_trends_3.webp" alt="Why data and analytics matter" className="h-auto w-full rounded-xl object-cover" loading="lazy" decoding="async" />
+                    <img src="/digital_trends_3.webp" alt="Why data and analytics matter" width="400" height="300" className="h-auto w-full rounded-xl object-cover" loading="lazy" decoding="async" />
                   </motion.div>
                 </div>
               </div>

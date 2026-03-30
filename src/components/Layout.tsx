@@ -1,9 +1,10 @@
-import { ReactNode, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { ReactNode, useEffect, useLayoutEffect, useRef, useState, lazy, Suspense } from "react";
 import { useLocation } from "react-router-dom";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
-import ChatWidget from "./ChatWidget";
 import { scrollToTopSmooth } from "../lib/utils";
+
+const ChatWidget = lazy(() => import("./ChatWidget"));
 
 type LayoutProps = {
   children: ReactNode;
@@ -229,7 +230,11 @@ export default function Layout({ children }: LayoutProps) {
           </span>
         </button>
       )}
-      {isShowcaseRoute ? null : <ChatWidget />}
+      {isShowcaseRoute ? null : (
+        <Suspense fallback={null}>
+          <ChatWidget />
+        </Suspense>
+      )}
     </div>
   );
 }
