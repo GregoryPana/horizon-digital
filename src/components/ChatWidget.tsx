@@ -132,7 +132,7 @@ export default function ChatWidget() {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-[100] font-sans">
+    <div className="fixed bottom-6 left-6 sm:right-6 sm:left-auto z-[100] font-sans">
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -321,9 +321,9 @@ export default function ChatWidget() {
             setIsOpen(!isOpen);
             setShouldPrompt(false);
           }}
-          className="relative flex h-14 w-14 md:h-[4.5rem] md:w-[4.5rem] items-center justify-center rounded-full bg-accent text-[#080C11] shadow-[0_0_20px_rgba(56,189,248,0.4)] shadow-accent/30 transition-shadow hover:shadow-[0_0_25px_rgba(56,189,248,0.6)]"
+          className="relative flex h-12 w-12 md:h-[4.5rem] md:w-[4.5rem] items-center justify-center rounded-full bg-accent text-[#080C11] shadow-[0_0_20px_rgba(56,189,248,0.4)] shadow-accent/30 transition-shadow hover:shadow-[0_0_25px_rgba(56,189,248,0.6)]"
         >
-          {isOpen ? <X className="w-6 h-6 md:w-7 md:h-7" /> : <MessageSquare className="w-6 h-6 md:w-7 md:h-7" />}
+          {isOpen ? <X className="w-5 h-5 md:w-7 md:h-7" /> : <MessageSquare className="w-5 h-5 md:w-7 md:h-7" />}
           {!isOpen && (
             <span className="absolute -right-1 -top-1 flex h-4 w-4">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75"></span>

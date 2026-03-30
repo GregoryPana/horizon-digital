@@ -64,7 +64,7 @@ export default function HomeHero() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-              className="hidden md:block max-w-[46ch] text-sm sm:text-base md:text-lg leading-relaxed text-gray-400 font-light motion-safe-gpu"
+              className="hidden md:block max-w-[46ch] text-sm sm:text-base md:text-lg leading-relaxed text-gray-300 font-light motion-safe-gpu"
             >
               Your business deserves a website that works as hard as you do — beautifully designed, easy to find, and built to turn visitors into customers you're proud to serve.
             </motion.p>

@@ -266,7 +266,7 @@ export default function Pricing() {
               >
                 <p className="text-xs uppercase tracking-[0.4em] text-cyan-400 bg-cyan-400/10 inline-block px-3 py-1 rounded-full border border-cyan-400/20">Step {index + 1}</p>
                 <h3 className="mt-4 text-lg font-semibold text-white">{step.title}</h3>
-                <p className="mt-3 text-sm text-gray-400 leading-relaxed">{step.description}</p>
+                <p className="mt-3 text-sm text-gray-300 leading-relaxed">{step.description}</p>
               </motion.div>
             ))}
           </div>
@@ -289,8 +289,8 @@ export default function Pricing() {
               viewport={{ once: true }}
               className="flex h-full flex-col rounded-3xl border border-border/40 bg-bg-elev p-8 hover:!border-[#00E5FF] hover:shadow-[0_0_12px_rgba(0,229,255,0.3)] transition-all"
             >
-              <h3 className="text-lg font-semibold text-accent-2">{foundationPackage.title}</h3>
-              <p className="mt-4 text-3xl font-semibold text-accent whitespace-nowrap">{foundationPackage.price}</p>
+              <h3 className="text-2xl font-bold text-white">{foundationPackage.title}</h3>
+              <p className="mt-3 text-xl font-medium text-accent/90 whitespace-nowrap">{foundationPackage.price}</p>
               <div className="mt-4 text-sm text-text-muted mb-8">
                 <p>{foundationPackage.description}</p>
               </div>
@@ -322,8 +322,8 @@ export default function Pricing() {
               className="flex h-full flex-col rounded-3xl border border-cyan shadow-[0_0_30px_rgba(0,229,255,0.15)] bg-[#121214] p-8 relative overflow-hidden pricing-card-featured-shine xl:-translate-y-4 z-20"
             >
               <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-cyan px-6 py-[6px] rounded-full text-[10px] font-black uppercase tracking-[0.2em] text-[#0A0A0C] whitespace-nowrap shadow-[0_0_20px_rgba(0,229,255,0.5)]">Most Popular</div>
-              <h3 className="text-lg font-semibold text-accent-2">{starterPackage.title}</h3>
-              <p className="mt-4 text-3xl font-semibold text-accent whitespace-nowrap">{starterPackage.price}</p>
+              <h3 className="text-2xl font-bold text-white">{starterPackage.title}</h3>
+              <p className="mt-3 text-xl font-medium text-accent/90 whitespace-nowrap">{starterPackage.price}</p>
               <div className="mt-4 text-sm text-text-muted mb-8">
                 <p>{starterPackage.description}</p>
               </div>
@@ -359,8 +359,8 @@ export default function Pricing() {
               transition={{ delay: 0.2 }}
               className="flex h-full flex-col rounded-3xl border border-border/40 bg-bg-elev p-8 hover:!border-[#00E5FF] hover:shadow-[0_0_12px_rgba(0,229,255,0.3)] transition-all"
             >
-              <h3 className="text-lg font-semibold text-accent-2">{growthPackage.title}</h3>
-              <p className="mt-4 text-3xl font-semibold text-accent whitespace-nowrap">{growthPackage.price}</p>
+              <h3 className="text-2xl font-bold text-white">{growthPackage.title}</h3>
+              <p className="mt-3 text-xl font-medium text-accent/90 whitespace-nowrap">{growthPackage.price}</p>
               <div className="mt-4 text-sm text-text-muted mb-8">
                 <p>{growthPackage.description}</p>
               </div>

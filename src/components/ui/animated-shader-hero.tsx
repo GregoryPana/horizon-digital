@@ -333,7 +333,7 @@ const Hero: React.FC<HeroProps> = ({
   const canvasRef = useShaderBackground();
 
   return (
-    <div className={`relative w-full h-[100svh] overflow-hidden bg-[#0A0A0C] ${className}`}>
+    <div className={`relative w-full h-[100lvh] lg:min-h-screen flex flex-col overflow-hidden bg-[#0A0A0C] ${className}`}>
       <style>{`
         @keyframes fade-in-down {
           from {
@@ -417,21 +417,21 @@ const Hero: React.FC<HeroProps> = ({
       
       <canvas
         ref={canvasRef}
-        className="absolute inset-0 w-full h-full object-contain touch-none"
+        className="absolute inset-0 w-full h-full object-cover touch-none"
         style={{ background: '#0A0A0C' }}
       />
       
       {/* Overlay Background - Darker at the bottom to transition to page background */}
-      <div className="absolute inset-x-0 bottom-0 z-[1] h-[75%] bg-gradient-to-t from-[#0A0A0C] via-[#0A0A0C]/50 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 z-[1] h-full bg-gradient-to-t from-[#0A0A0C] via-[#0A0A0C]/50 to-transparent pointer-events-none" />
 
-      {/* Hero Content Overlay - Flex layout to push buttons to the lower section */}
-      <div className="absolute inset-x-0 top-0 bottom-0 z-10 flex flex-col items-center justify-start pt-[14vh] sm:justify-center sm:pt-0 text-white px-6">
+      {/* Hero Content Overlay - Centered on Desktop, Top-offset on Mobile */}
+      <div className="relative z-10 flex flex-col items-center justify-start lg:justify-center flex-1 w-full pt-[16svh] lg:pt-0 lg:pb-[8vh] text-white px-6">
         
         {/* Centered Block: Eyebrow, Title, Subtitle, Tags */}
-        <div className="w-full flex flex-col items-center space-y-5 sm:space-y-10 py-[3vh] sm:py-[6vh]">
+        <div className="w-full flex flex-col items-center space-y-5 sm:space-y-8 lg:space-y-12 mb-8 sm:mb-12 lg:mb-12">
           {/* Trust Badge / Eyebrow */}
           {trustBadge && (
-            <div className="animate-fade-in-down">
+            <div>
               <div className="flex items-center justify-center gap-1.5 px-3 py-1.5 sm:px-6 sm:py-2 bg-cyan/5 backdrop-blur-md border border-cyan/40 rounded-full text-[9px] sm:text-[11px] lg:text-[14px] font-bold uppercase tracking-[0.2em] lg:tracking-[0.4em] text-accent leading-none">
                 {trustBadge.icons && (
                   <div className="flex gap-1.5">
@@ -455,8 +455,7 @@ const Hero: React.FC<HeroProps> = ({
                 return (
                   <h1 
                     key={index} 
-                    className="text-[clamp(2rem,9vw,3.5rem)] sm:text-5xl md:text-7xl lg:text-[6.5rem] font-bold font-display uppercase leading-[0.9] sm:leading-[0.8] lg:leading-[0.85] tracking-[0.01em] sm:tracking-[0.02em] animate-fade-in-up transition-all sm:whitespace-nowrap"
-                    style={{ animationDelay: `${0.2 + (index * 0.2)}s` }}
+                    className="text-[clamp(2rem,9vw,3.5rem)] sm:text-5xl md:text-7xl lg:text-[6.5rem] font-bold font-display uppercase leading-[0.9] sm:leading-[0.8] lg:leading-[0.85] tracking-[0.01em] sm:tracking-[0.02em] transition-all sm:whitespace-nowrap"
                   >
                     {hasSlot ? (
                       <span className="flex items-baseline justify-center gap-[0.2em]">
@@ -495,23 +494,23 @@ const Hero: React.FC<HeroProps> = ({
               })}
             </div>
             
-            {/* Subtitle with Animation */}
-            <div className="max-w-2xl sm:max-w-3xl mx-auto animate-fade-in-up animation-delay-600">
+            {/* Subtitle */}
+            <div className="max-w-2xl sm:max-w-3xl mx-auto">
               <p className="text-[12px] sm:text-base md:text-lg lg:text-xl text-white/90 font-light leading-snug sm:leading-relaxed">
                 {subtitle}
               </p>
             </div>
 
-            {/* Tags with Animation */}
+            {/* Tags */}
             {tags && (
-               <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:justify-center sm:gap-x-3 mt-4 animate-fade-in-up animation-delay-800">
+               <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:justify-center sm:gap-x-4 sm:gap-y-3 mt-4 sm:mt-12">
                {tags.map((tag) => (
                   <div
                     key={tag.text}
-                    className="flex items-center gap-1.5 whitespace-nowrap rounded-full border border-cyan/40 bg-cyan/5 px-3 py-1.5 text-[9px] sm:text-[11px] font-bold uppercase tracking-[0.05em] text-accent md:border-accent/50 md:bg-accent/10 md:px-5 md:py-2"
+                    className="flex items-center justify-start gap-1.5 whitespace-normal sm:whitespace-nowrap rounded-[1rem] sm:rounded-full border border-cyan/40 bg-cyan/5 px-3 py-1.5 sm:px-5 sm:py-2 text-[9px] sm:text-[11px] font-bold uppercase tracking-[0.05em] text-accent md:border-accent/50 md:bg-accent/10 min-h-[36px] sm:min-h-0 text-left leading-[1.2]"
                   >
-                    <span className="text-cyan scale-90 md:scale-100">{tag.icon}</span>
-                    <span className="opacity-90">{tag.text}</span>
+                    <span className="flex-shrink-0 text-cyan scale-90 md:scale-100">{tag.icon}</span>
+                    <span className="opacity-90 leading-tight">{tag.text}</span>
                   </div>
                ))}
              </div>
@@ -519,14 +518,14 @@ const Hero: React.FC<HeroProps> = ({
           </div>
         </div>
           
-        {/* CTA Buttons - Absolutely anchored at the bottom */}
+        {/* CTA Buttons - Natural flow below content */}
         {buttons && (
-          <div className="absolute bottom-24 sm:bottom-[5svh] flex flex-col sm:flex-row gap-3 sm:gap-5 justify-center items-center w-full px-6 animate-fade-in-up animation-delay-800">
+          <div className="mt-8 sm:mt-0 flex flex-col sm:flex-row gap-3 sm:gap-5 justify-center items-center w-full px-6 relative z-20">
             {buttons.primary && (
               <Link 
                 to={buttons.primary.link || '#'}
                 onClick={buttons.primary.onClick}
-                className="px-8 py-4 sm:px-10 sm:py-5 text-black rounded-lg font-black uppercase tracking-[0.2em] text-xs sm:text-sm transition-all duration-300 hover:scale-[1.02] hover:brightness-110 active:scale-95 shadow-[0_0_40px_rgba(0,229,255,0.5)] text-center flex items-center justify-center w-full sm:w-auto sm:min-w-[240px] cta-gradient-anim"
+                className="px-8 py-4 sm:px-10 sm:py-5 text-black rounded-full font-black uppercase tracking-[0.2em] text-xs sm:text-sm transition-all duration-300 hover:scale-[1.02] hover:brightness-110 active:scale-95 shadow-[0_0_40px_rgba(0,229,255,0.5)] text-center flex items-center justify-center w-full sm:w-auto sm:min-w-[240px] cta-gradient-anim"
                 style={{ backgroundImage: 'linear-gradient(90deg, #00E5FF, #38B2F5, #0C7CC4, #00E5FF)', backgroundSize: '300% 100%' }}
               >
                 {buttons.primary.text}
@@ -536,7 +535,7 @@ const Hero: React.FC<HeroProps> = ({
               <Link 
                 to={buttons.secondary.link || '#'}
                 onClick={buttons.secondary.onClick}
-                className="px-8 py-4 sm:px-10 sm:py-5 text-white rounded-lg font-black uppercase tracking-[0.2em] text-xs sm:text-sm transition-all duration-300 backdrop-blur-md text-center flex items-center justify-center w-full sm:w-auto sm:min-w-[240px] hover:brightness-125 cta-gradient-anim"
+                className="group px-8 py-4 sm:px-10 sm:py-5 text-white rounded-full font-black uppercase tracking-[0.2em] text-xs sm:text-sm transition-all duration-300 backdrop-blur-md text-center flex items-center justify-center w-full sm:w-auto sm:min-w-[240px] hover:brightness-125 cta-gradient-anim"
                 style={{ border: '1px solid transparent', backgroundImage: 'linear-gradient(#0A0A0C, #0A0A0C), linear-gradient(90deg, rgba(0,229,255,0.4), rgba(56,178,245,0.4), rgba(12,124,196,0.4), rgba(0,229,255,0.4))', backgroundOrigin: 'padding-box, border-box', backgroundClip: 'padding-box, border-box', backgroundSize: '100% 100%, 300% 100%' }}
               >
                 {buttons.secondary.text} <span className="ml-2 inline-block transition-transform group-hover:translate-x-1">→</span>
@@ -544,6 +543,14 @@ const Hero: React.FC<HeroProps> = ({
             )}
           </div>
         )}
+
+        {/* Scroll Indicator - Absolute anchored correctly */}
+        <div className="absolute inset-x-0 bottom-8 animate-bounce opacity-60 hidden sm:flex flex-col items-center justify-end pointer-events-none">
+           <span className="text-[10px] uppercase tracking-[0.2em] text-cyan/70 font-semibold mb-2">Scroll To Explore</span>
+           <svg className="w-5 h-5 text-cyan/70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+           </svg>
+        </div>
       </div>
     </div>
   );

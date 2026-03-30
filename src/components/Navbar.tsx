@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import Button from "./Button";
+
 import NavMenu from "./ui/menu-hover-effects";
 import Logo from "./Logo";
 
@@ -46,12 +46,19 @@ export default function Navbar() {
             <NavMenu />
           </div>
           <div className="hidden items-center gap-7 lg:flex">
-            <Button
-              label="Book a free consult"
+            <style>{`
+              @keyframes nav-cta-gradient {
+                0% { background-position: 0% 50%; }
+                100% { background-position: -300% 50%; }
+              }
+            `}</style>
+            <NavLink
               to="/contact"
-              size="sm"
-              className="whitespace-nowrap text-center shadow-[0_0_20px_var(--glow)]"
-            />
+              className="px-6 py-2.5 sm:px-8 sm:py-3 text-black rounded-full font-black uppercase tracking-[0.2em] text-[11px] sm:text-xs transition-all duration-300 hover:scale-[1.02] hover:brightness-110 active:scale-95 shadow-[0_0_20px_rgba(0,229,255,0.4)] text-center whitespace-nowrap"
+              style={{ backgroundImage: 'linear-gradient(90deg, #00E5FF, #38B2F5, #0C7CC4, #00E5FF)', backgroundSize: '300% 100%', animation: 'nav-cta-gradient 5s linear infinite' }}
+            >
+              Book a free consult
+            </NavLink>
           </div>
           <div className="lg:hidden">
             <NavMenu />

@@ -111,7 +111,7 @@ Looking forward to your reply.`;
                   name="businessName"
                   autoComplete="organization"
                   required
-                  className="contact-input mt-3 w-full rounded-xl border border-white/10 bg-transparent px-4 py-3 text-sm text-text focus-ring"
+                  className="contact-input mt-3 w-full rounded-xl border border-white/20 bg-white/5 hover:border-white/30 px-4 py-3 text-sm text-text placeholder:text-gray-400 focus-ring"
                   placeholder="Your business name"
                 />
               </label>
@@ -121,7 +121,7 @@ Looking forward to your reply.`;
                   type="text"
                   name="name"
                   autoComplete="name"
-                  className="contact-input mt-2.5 w-full rounded-xl border border-white/10 bg-transparent px-4 py-3 text-sm text-text focus-ring opacity-80"
+                  className="contact-input mt-2.5 w-full rounded-xl border border-white/20 bg-white/5 hover:border-white/30 px-4 py-3 text-sm text-text placeholder:text-gray-400 focus-ring"
                   placeholder="Your name"
                 />
               </label>
@@ -132,7 +132,7 @@ Looking forward to your reply.`;
                   name="email"
                   autoComplete="email"
                   required
-                  className="contact-input mt-3 w-full rounded-xl border border-white/10 bg-transparent px-4 py-3 text-sm text-text focus-ring"
+                  className="contact-input mt-3 w-full rounded-xl border border-white/20 bg-white/5 hover:border-white/30 px-4 py-3 text-sm text-text placeholder:text-gray-400 focus-ring"
                   placeholder="you@example.com"
                 />
               </label>
@@ -141,7 +141,7 @@ Looking forward to your reply.`;
                 <input
                   type="text"
                   name="industry"
-                  className="contact-input mt-2.5 w-full rounded-xl border border-white/10 bg-transparent px-4 py-3 text-sm text-text focus-ring opacity-80"
+                  className="contact-input mt-2.5 w-full rounded-xl border border-white/20 bg-white/5 hover:border-white/30 px-4 py-3 text-sm text-text placeholder:text-gray-400 focus-ring"
                   placeholder="e.g. Hospitality, Services, Retail"
                 />
               </label>
@@ -150,7 +150,7 @@ Looking forward to your reply.`;
                 <input
                   type="url"
                   name="website"
-                  className="contact-input mt-2.5 w-full rounded-xl border border-white/10 bg-transparent px-4 py-3 text-sm text-text focus-ring opacity-80"
+                  className="contact-input mt-2.5 w-full rounded-xl border border-white/20 bg-white/5 hover:border-white/30 px-4 py-3 text-sm text-text placeholder:text-gray-400 focus-ring"
                   placeholder="https://"
                 />
               </label>
@@ -158,7 +158,7 @@ Looking forward to your reply.`;
                 Project budget range
                 <select
                   name="budget"
-                  className="contact-input mt-2.5 w-full rounded-xl border border-white/10 bg-transparent px-4 py-3 text-sm text-text focus-ring opacity-80"
+                  className="contact-input mt-2.5 w-full rounded-xl border border-white/20 bg-white/5 hover:border-white/30 px-4 py-3 text-sm text-text placeholder:text-gray-400 focus-ring"
                   defaultValue={defaultBudget}
                 >
                   <option value="" disabled>
@@ -174,7 +174,7 @@ Looking forward to your reply.`;
                 Estimated timeline
                 <select
                   name="timeline"
-                  className="contact-input mt-2.5 w-full rounded-xl border border-white/10 bg-transparent px-4 py-3 text-sm text-text focus-ring opacity-80"
+                  className="contact-input mt-2.5 w-full rounded-xl border border-white/20 bg-white/5 hover:border-white/30 px-4 py-3 text-sm text-text placeholder:text-gray-400 focus-ring"
                   defaultValue=""
                 >
                   <option value="" disabled>
@@ -193,7 +193,7 @@ Looking forward to your reply.`;
                   name="message"
                   rows={5}
                   required
-                  className="contact-input mt-3 w-full rounded-xl border border-white/10 bg-transparent px-4 py-3 text-sm text-text focus-ring"
+                  className="contact-input mt-3 w-full rounded-xl border border-white/20 bg-white/5 hover:border-white/30 px-4 py-3 text-sm text-text placeholder:text-gray-400 focus-ring"
                   placeholder="Tell us about your project"
                 />
               </label>

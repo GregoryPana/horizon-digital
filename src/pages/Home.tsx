@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useState, useRef } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import Seo from "../components/Seo";
 import HomeFaq, { type HomeFaqCategory } from "../components/ui/home-faq";
@@ -189,7 +189,7 @@ function WorkShowcase() {
           <h2 className="font-display mx-auto max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl">
             See what is <span className="text-cyan hd-text-glow">possible</span> for your business
           </h2>
-          <p className="mx-auto mt-4 max-w-3xl text-lg text-gray-400">Three businesses. Three transformations. One studio that cares.</p>
+          <p className="mx-auto mt-4 max-w-3xl text-lg text-gray-300">Three businesses. Three transformations. One studio that cares.</p>
         </div>
       </div>
 
@@ -222,14 +222,6 @@ function WorkShowcase() {
                   <p className="mx-auto mt-6 max-w-xl text-lg text-gray-300 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] md:mx-0 md:text-2xl">{project.outcome}</p>
 
                   <div className="mt-10 flex flex-col items-stretch gap-4 sm:flex-row sm:items-center sm:gap-x-10 md:justify-start">
-                    <Link
-                      to="/services-pricing"
-                      className="group flex flex-1 items-center justify-center rounded-lg border border-cyan/40 bg-transparent px-8 py-3.5 text-[10px] font-black uppercase tracking-[0.2em] text-cyan transition-all hover:border-cyan hover:bg-cyan/5 md:flex-none md:text-[11px]"
-                    >
-                      <span className="whitespace-nowrap">Get Started</span>
-                      <span className="ml-2 inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
-                    </Link>
-
                     {project.url ? (
                       <a
                         href={project.url}
@@ -262,6 +254,47 @@ export default function Home() {
   const shouldReduceMotion = useReducedMotion();
   const allHomeFaqItems = homeFaqCategories.flatMap((category) => category.items);
   const handleWorkScrollTop = () => scrollToTopSmooth();
+
+  const [activeProblem, setActiveProblem] = useState(0);
+  const [activeService, setActiveService] = useState(0);
+
+  const problemScrollRef = useRef<HTMLDivElement>(null);
+  const serviceScrollRef = useRef<HTMLDivElement>(null);
+
+  const scrollCarouselTo = (ref: React.RefObject<HTMLDivElement>, targetIndex: number, totalSlides: number) => {
+    if (!ref.current) return;
+    const scrollContainer = ref.current;
+    
+    let index = targetIndex;
+    if (index >= totalSlides) {
+      index = 0;
+    }
+    if (index < 0) {
+      index = totalSlides - 1;
+    }
+    
+    const child = scrollContainer.children[index] as HTMLElement;
+    if (child) {
+      scrollContainer.scrollTo({
+        left: child.offsetLeft - parseInt(getComputedStyle(scrollContainer).paddingLeft || "20", 10),
+        behavior: "smooth"
+      });
+    }
+  };
+
+  const handleProblemScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const scrollLeft = e.currentTarget.scrollLeft;
+    const width = e.currentTarget.clientWidth;
+    const index = Math.round(scrollLeft / width);
+    setActiveProblem(index);
+  };
+
+  const handleServiceScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const scrollLeft = e.currentTarget.scrollLeft;
+    const width = e.currentTarget.clientWidth;
+    const index = Math.round(scrollLeft / width);
+    setActiveService(index);
+  };
 
   const faqSchema = {
     "@context": "https://schema.org",
@@ -297,25 +330,25 @@ export default function Home() {
           ],
           rotatingWords: ["STUNNING", "BEAUTIFUL", "CUSTOM"]
         }}
-        subtitle="Your business deserves a website that works as hard as you do — beautifully designed, easy to find, and built to turn visitors into customers you are proud to serve."
+        subtitle="A website that looks great, loads fast, and brings in real customers."
         tags={[
-          { text: "For Your Business", icon: (
+          { text: "BUILT AROUND YOU", icon: (
             <svg className="h-3 w-3 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
               <polyline points="20 6 9 17 4 12" />
             </svg>
           )},
-          { text: "Perfect on Mobile", icon: (
+          { text: "OPENS IN SECONDS", icon: (
+            <svg className="h-3 w-3 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+            </svg>
+          )},
+          { text: "LOOKS GREAT ON ANY PHONE", icon: (
             <svg className="h-3 w-3 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
               <line x1="12" y1="18" x2="12.01" y2="18" />
             </svg>
           )},
-          { text: "Loads Fast", icon: (
-            <svg className="h-3 w-3 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
-            </svg>
-          )},
-          { text: "Find you on Google", icon: (
+          { text: "CUSTOMERS CAN FIND YOU", icon: (
             <svg className="h-3 w-3 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
               <circle cx="11" cy="11" r="8" />
               <line x1="21" y1="21" x2="16.65" y2="16.65" />
@@ -345,20 +378,21 @@ export default function Home() {
           >
             <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow">Sound Familiar?</span>
             <h2 className="font-display mx-auto max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl">
-              Most businesses in Seychelles face the same three problems <span className="text-cyan">online.</span>
+              Most businesses in Seychelles face the same three problems <span className="text-gradient-cyan">online.</span>
             </h2>
           </motion.div>
 
-          <div className="mb-16 grid grid-cols-1 gap-8 md:grid-cols-3">
-            {problemCards.map((card, index) => (
+          <div 
+            ref={problemScrollRef}
+            className="mb-8 md:mb-16 flex gap-5 overflow-x-auto snap-x snap-mandatory pb-4 -mx-5 px-5 md:mx-0 md:px-0 md:grid md:grid-cols-3 md:gap-8 md:overflow-visible md:snap-none md:pb-0 scrollbar-hide"
+            onScroll={handleProblemScroll}
+          >
+            {problemCards.map((card) => (
               <motion.article
                 key={card.title}
-                initial={shouldReduceMotion ? undefined : { opacity: 0, y: 24 }}
-                whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
                 whileHover={shouldReduceMotion ? undefined : { y: -6, scale: 1.01 }}
-                viewport={{ once: true, amount: 0.35 }}
-                transition={{ duration: 0.6, delay: index * 0.08 }}
-                className="group relative overflow-hidden rounded-2xl border border-white/5 bg-[#1A1A1C] p-8 transition-all duration-500 hover:!border-[#00E5FF] hover:shadow-[0_0_12px_rgba(0,229,255,0.3)]"
+                transition={{ duration: 0.3 }}
+                className="group relative overflow-hidden rounded-2xl border border-white/5 bg-[#1A1A1C] p-8 transition-all duration-500 hover:!border-[#00E5FF] hover:shadow-[0_0_12px_rgba(0,229,255,0.3)] min-w-[calc(100vw-40px)] w-[calc(100vw-40px)] max-w-[calc(100vw-40px)] snap-center snap-always shrink-0 md:w-auto md:max-w-none md:min-w-0 md:shrink"
               >
                 <div className="absolute left-0 top-0 h-1 w-full bg-gradient-to-r from-transparent via-cyan to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                 <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-xl border border-white/10 bg-[#0A0A0C] transition-colors group-hover:!border-[#00E5FF]">
@@ -375,12 +409,35 @@ export default function Home() {
                   </svg>
                 </div>
                 <h3 className="font-display mb-3 text-xl font-semibold text-white">{card.title}</h3>
-                <p className="mb-6 leading-relaxed text-gray-400">{card.body}</p>
-                <Link to="/services-pricing" className="mt-auto inline-flex items-center text-[10px] font-bold uppercase tracking-[0.2em] text-cyan hover:text-[#00e5ff] transition-colors group/link pb-2">
-                  Learn More <span className="ml-2 inline-block transition-transform group-hover/link:translate-x-1">→</span>
-                </Link>
+                <p className="mb-6 leading-relaxed text-white/80">{card.body}</p>
               </motion.article>
             ))}
+          </div>
+
+          <div className="flex justify-center items-center gap-4 mb-16 md:hidden">
+            <button 
+              onClick={() => scrollCarouselTo(problemScrollRef, activeProblem - 1, problemCards.length)} 
+              className="flex items-center justify-center p-3 text-cyan hover:text-cyan-400 transition-colors bg-[#1A1A1C] border border-white/5 shadow-sm rounded-full active:scale-95"
+              aria-label="Previous problem"
+            >
+               <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" className="w-5 h-5"><path d="M15 19l-7-7 7-7" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" /></svg>
+            </button>
+            <div className="flex justify-center gap-3">
+              {problemCards.map((_, i) => (
+                <div 
+                  key={i} 
+                  className={`h-2 rounded-full transition-all duration-300 ${activeProblem === i ? "w-8 bg-cyan" : "w-2 bg-gray-700 hover:bg-gray-500 cursor-pointer"}`}
+                  onClick={() => scrollCarouselTo(problemScrollRef, i, problemCards.length)}
+                />
+              ))}
+            </div>
+            <button 
+              onClick={() => scrollCarouselTo(problemScrollRef, activeProblem + 1, problemCards.length)} 
+              className="flex items-center justify-center p-3 text-cyan hover:text-cyan-400 transition-colors bg-[#1A1A1C] border border-white/5 shadow-sm rounded-full active:scale-95"
+              aria-label="Next problem"
+            >
+               <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" className="w-5 h-5"><path d="M9 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" /></svg>
+            </button>
           </div>
 
           <div className="text-center">
@@ -409,12 +466,16 @@ export default function Home() {
           <div className="mb-20 text-center">
             <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow">Our Services</span>
             <h2 className="font-display mx-auto max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl">
-              Websites built around how your business <span className="text-cyan">actually works.</span>
+              Websites built around how your business <span className="text-gradient-cyan">actually works.</span>
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-            <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/5 bg-transparent transition-colors duration-500 hover:!border-[#00E5FF] hover:shadow-[0_0_12px_rgba(0,229,255,0.3)]">
+          <div 
+            ref={serviceScrollRef}
+            className="flex gap-5 overflow-x-auto snap-x snap-mandatory pb-4 -mx-5 px-5 md:mx-0 md:px-0 md:grid md:grid-cols-2 md:gap-8 md:overflow-visible md:snap-none md:pb-0 scrollbar-hide"
+            onScroll={handleServiceScroll}
+          >
+            <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/5 bg-transparent transition-colors duration-500 hover:!border-[#00E5FF] hover:shadow-[0_0_12px_rgba(0,229,255,0.3)] min-w-[calc(100vw-40px)] w-[calc(100vw-40px)] max-w-[calc(100vw-40px)] snap-center snap-always shrink-0 md:w-auto md:max-w-none md:min-w-0 md:shrink">
               <div className="relative flex h-72 items-center justify-center overflow-hidden bg-[#1A1A1C]/60 p-8">
                 <div className="relative h-full w-full max-w-sm">
                   <div className="hd-anim-before absolute inset-0 flex flex-col gap-3 rounded-lg border-2 border-dashed border-red-400/50 p-4">
@@ -443,14 +504,11 @@ export default function Home() {
               </div>
               <div className="flex flex-1 flex-col p-8 bg-gradient-to-t from-[#0A0A0C] via-[#0A0A0C]/95 via-[#0A0A0C]/80 to-transparent -mt-20 pt-24 relative z-10">
                 <h3 className="font-display mb-4 text-2xl font-bold uppercase text-white">Custom Design</h3>
-                <p className="mb-6 leading-relaxed text-gray-400">Every page designed around your specific services, your customers, and how you want to be found. No common Templates</p>
-                <Link to="/services-pricing" className="mt-auto inline-flex items-center text-sm font-bold uppercase tracking-[0.16em] text-cyan hover:text-[#00e5ff] transition-colors group/link">
-                  Learn More <span className="ml-2 inline-block transition-transform group-hover/link:translate-x-1">→</span>
-                </Link>
+                <p className="mb-6 leading-relaxed text-gray-300">Every page designed around your specific services, your customers, and how you want to be found. No common Templates</p>
               </div>
             </article>
 
-            <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/5 bg-transparent transition-colors duration-500 hover:!border-[#00E5FF] hover:shadow-[0_0_12px_rgba(0,229,255,0.3)]">
+            <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/5 bg-transparent transition-colors duration-500 hover:!border-[#00E5FF] hover:shadow-[0_0_12px_rgba(0,229,255,0.3)] min-w-[calc(100vw-40px)] w-[calc(100vw-40px)] max-w-[calc(100vw-40px)] snap-center snap-always shrink-0 md:w-auto md:max-w-none md:min-w-0 md:shrink">
               <div className="relative flex h-72 items-center justify-center overflow-hidden bg-[#1A1A1C]/60 p-8">
                 <div className="translate-y-6 overflow-hidden rounded-[2rem] border-4 border-gray-800 bg-black shadow-2xl transition-transform duration-500 group-hover:translate-y-2">
                   <div className="flex h-6 justify-center rounded-t-[1.7rem] bg-black">
@@ -469,18 +527,15 @@ export default function Home() {
               </div>
               <div className="flex flex-1 flex-col p-8 bg-gradient-to-t from-[#0A0A0C] via-[#0A0A0C]/95 via-[#0A0A0C]/80 to-transparent -mt-20 pt-24 relative z-10">
                 <h3 className="font-display mb-4 text-2xl font-bold uppercase text-white">Perfect on Mobile</h3>
-                <p className="mb-6 leading-relaxed text-gray-400">Over 70% of customers browse on phones. Your site works beautifully on the phones your customers use — no pinching, no squinting.</p>
-                <Link to="/services-pricing" className="mt-auto inline-flex items-center text-sm font-bold uppercase tracking-[0.16em] text-cyan hover:text-[#00e5ff] transition-colors group/link">
-                  Learn More <span className="ml-2 inline-block transition-transform group-hover/link:translate-x-1">→</span>
-                </Link>
+                <p className="mb-6 leading-relaxed text-gray-300">Over 70% of customers browse on phones. Your site works beautifully on the phones your customers use — no pinching, no squinting.</p>
               </div>
             </article>
 
-            <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-white/5 bg-[#1A1A1C] transition-colors duration-500 hover:!border-[#00E5FF] hover:shadow-[0_0_12px_rgba(0,229,255,0.3)]">
+            <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-white/5 bg-[#1A1A1C] transition-colors duration-500 hover:!border-[#00E5FF] hover:shadow-[0_0_12px_rgba(0,229,255,0.3)] min-w-[calc(100vw-40px)] w-[calc(100vw-40px)] max-w-[calc(100vw-40px)] snap-center snap-always shrink-0 md:w-auto md:max-w-none md:min-w-0 md:shrink">
               <div className="relative flex h-64 flex-col items-center justify-center overflow-hidden border-b border-white/5 bg-[#111113] p-8">
                 <div className="w-full max-w-sm">
                   <div className="mb-4 flex h-12 items-center rounded-full border border-gray-700 bg-[#202124] px-4 shadow-lg">
-                    <span className="mr-3 text-gray-400">⌕</span>
+                    <span className="mr-3 text-gray-300">⌕</span>
                     <div className="h-5 text-gray-300">
                       <span className="hd-typing inline-block overflow-hidden whitespace-nowrap">guesthouse mahe seychelles</span>
                     </div>
@@ -495,14 +550,11 @@ export default function Home() {
               </div>
               <div className="flex flex-1 flex-col p-8 bg-gradient-to-t from-[#0A0A0C] via-[#0A0A0C]/95 via-[#0A0A0C]/80 to-transparent -mt-20 pt-24 relative z-10">
                 <h3 className="font-display mb-4 text-2xl font-bold uppercase text-white">Found on Google</h3>
-                <p className="mb-6 leading-relaxed text-gray-400">We build every page so Google understands your business and shows you when locals are searching.</p>
-                <Link to="/services-pricing" className="mt-auto inline-flex items-center text-sm font-bold uppercase tracking-[0.16em] text-cyan hover:text-[#00e5ff] transition-colors group/link">
-                  Learn More <span className="ml-2 inline-block transition-transform group-hover/link:translate-x-1">→</span>
-                </Link>
+                <p className="mb-6 leading-relaxed text-gray-300">We build every page so Google understands your business and shows you when locals are searching.</p>
               </div>
             </article>
 
-            <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/5 bg-transparent transition-colors duration-500 hover:!border-[#00E5FF] hover:shadow-[0_0_12px_rgba(0,229,255,0.3)]">
+            <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/5 bg-transparent transition-colors duration-500 hover:!border-[#00E5FF] hover:shadow-[0_0_12px_rgba(0,229,255,0.3)] min-w-[calc(100vw-40px)] w-[calc(100vw-40px)] max-w-[calc(100vw-40px)] snap-center snap-always shrink-0 md:w-auto md:max-w-none md:min-w-0 md:shrink">
               <div className="relative flex h-72 items-center justify-center overflow-hidden bg-[#1A1A1C]/60 p-8">
                 <div className="relative flex h-32 w-32 items-center justify-center">
                   <svg className="h-full w-full -rotate-90" viewBox="0 0 100 100">
@@ -520,12 +572,35 @@ export default function Home() {
               </div>
               <div className="flex flex-1 flex-col p-8 bg-gradient-to-t from-[#0A0A0C] via-[#0A0A0C]/95 via-[#0A0A0C]/80 to-transparent -mt-20 pt-24 relative z-10">
                 <h3 className="font-display mb-4 text-2xl font-bold uppercase text-white">Fast & Reliable</h3>
-                <p className="mb-6 leading-relaxed text-gray-400">Fast-loading pages keep visitors on your site — and slow sites send them straight to your competitors.</p>
-                <Link to="/services-pricing" className="mt-auto inline-flex items-center text-sm font-bold uppercase tracking-[0.16em] text-cyan hover:text-[#00e5ff] transition-colors group/link">
-                  Learn More <span className="ml-2 inline-block transition-transform group-hover/link:translate-x-1">→</span>
-                </Link>
+                <p className="mb-6 leading-relaxed text-gray-300">Fast-loading pages keep visitors on your site — and slow sites send them straight to your competitors.</p>
               </div>
             </article>
+          </div>
+
+          <div className="flex justify-center items-center gap-4 mt-8 md:hidden">
+            <button 
+              onClick={() => scrollCarouselTo(serviceScrollRef, activeService - 1, 4)} 
+              className="flex items-center justify-center p-3 text-cyan hover:text-cyan-400 transition-colors bg-[#1A1A1C] border border-white/5 shadow-sm rounded-full active:scale-95"
+              aria-label="Previous service"
+            >
+               <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" className="w-5 h-5"><path d="M15 19l-7-7 7-7" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" /></svg>
+            </button>
+            <div className="flex justify-center gap-3">
+              {[0, 1, 2, 3].map((_, i) => (
+                <div 
+                  key={i} 
+                  className={`h-2 rounded-full transition-all duration-300 ${activeService === i ? "w-8 bg-cyan" : "w-2 bg-gray-700 hover:bg-gray-500 cursor-pointer"}`}
+                  onClick={() => scrollCarouselTo(serviceScrollRef, i, 4)}
+                />
+              ))}
+            </div>
+            <button 
+              onClick={() => scrollCarouselTo(serviceScrollRef, activeService + 1, 4)} 
+              className="flex items-center justify-center p-3 text-cyan hover:text-cyan-400 transition-colors bg-[#1A1A1C] border border-white/5 shadow-sm rounded-full active:scale-95"
+              aria-label="Next service"
+            >
+               <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" className="w-5 h-5"><path d="M9 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" /></svg>
+            </button>
           </div>
         </div>
       </section>
@@ -563,7 +638,7 @@ export default function Home() {
                     </span>
                     <h3 className="font-display text-lg font-bold uppercase text-white">{step.title}</h3>
                   </div>
-                  <p className="text-sm leading-relaxed text-gray-400">{step.description}</p>
+                  <p className="text-sm leading-relaxed text-gray-300">{step.description}</p>
                 </div>
               </article>
             ))}
@@ -617,19 +692,19 @@ export default function Home() {
                   <p className="mb-4 ml-0.5 inline-flex w-fit items-center rounded-full border border-cyan/35 bg-cyan/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-cyan">
                     {pkg.title === "Foundation" ? "Essentials" : pkg.title === "Starter" ? "Scalable" : pkg.title === "Growth" ? "Full Scale" : "One-of-a-kind"}
                   </p>
-                  <h3 className="text-3xl font-semibold text-white mb-6 pr-4 leading-tight tracking-tight font-display">{pkg.title}</h3>
-                  <p className="text-4xl sm:text-[2.75rem] font-light text-cyan font-display mb-8 leading-tight">
+                  <h3 className="text-4xl font-bold text-white mb-4 pr-4 leading-tight tracking-tight font-display">{pkg.title}</h3>
+                  <p className="text-2xl font-medium text-cyan/90 font-display mb-8 leading-tight">
                     {pkg.price}
                   </p>
                 </div>
 
-                <ul className="space-y-5 mb-12 flex-grow">
+                <ul className="space-y-3 sm:space-y-5 mb-8 sm:mb-12 flex-grow">
                   {pkg.includes.map((item, includeIdx) => (
                     <li key={`${item}-${includeIdx}`} className="flex items-start gap-4">
                       <svg className="h-4 w-4 text-cyan mt-1 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                       </svg>
-                      <span className="text-sm text-gray-400 leading-relaxed">{item}</span>
+                      <span className="text-sm text-gray-300 leading-relaxed">{item}</span>
                     </li>
                   ))}
                 </ul>
@@ -662,8 +737,8 @@ export default function Home() {
             <div className="grid lg:grid-cols-12">
               <div className="relative z-20 flex flex-col justify-center p-10 md:p-16 lg:col-span-7">
                 <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow">Stay in the know</span>
-                <h2 className="font-display mt-4 text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl">The digital world, <span className="text-cyan">explained simply.</span></h2>
-                <p className="mt-5 text-base leading-relaxed text-gray-400 md:text-lg">
+                <h2 className="font-display mt-4 text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl">The digital world, <span className="text-gradient-cyan">explained simply.</span></h2>
+                <p className="mt-5 text-base leading-relaxed text-gray-300 md:text-lg">
                   No jargon. No fluff. Just the things worth knowing for your business.
                 </p>
 
@@ -688,15 +763,15 @@ export default function Home() {
 
                 <div className="relative z-10 flex h-full w-full max-w-[400px] items-center justify-center pt-8 pr-12 lg:absolute lg:-left-24 lg:top-1/2 lg:w-[160%] lg:max-w-none lg:-translate-y-1/2 lg:pr-0 pointer-events-none">
                   <motion.div className="absolute left-[0%] top-1/2 z-10 w-52 -translate-y-[45%] rounded-[1.25rem] border-2 border-cyan/30 shadow-[0_0_60px_rgba(0,229,255,0.3)] lg:w-[15rem]" animate={shouldReduceMotion ? undefined : { y: [0, -15, 0], rotate: [-3, -5, -3] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}>
-                    <img src="/digital_trends_1.webp" alt="Digital trends for small business" className="h-auto w-full rounded-xl object-cover" />
+                    <img src="/digital_trends_1.webp" alt="Digital trends for small business" className="h-auto w-full rounded-xl object-cover" loading="lazy" decoding="async" />
                   </motion.div>
 
                   <motion.div className="absolute left-[20%] top-1/2 z-20 w-60 -translate-y-[48%] rounded-[1.25rem] border-2 border-cyan/40 shadow-[0_0_80px_rgba(0,229,255,0.45)] lg:left-[22%] lg:w-[18rem]" animate={shouldReduceMotion ? undefined : { y: [-10, 10, -10], scale: [1, 1.02, 1] }} transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut" }}>
-                    <img src="/digital_trends_2.webp" alt="Understanding AI chatbots" className="h-auto w-full rounded-xl object-cover" />
+                    <img src="/digital_trends_2.webp" alt="Understanding AI chatbots" className="h-auto w-full rounded-xl object-cover" loading="lazy" decoding="async" />
                   </motion.div>
 
                   <motion.div className="absolute left-[40%] top-1/2 z-30 w-64 -translate-y-[52%] rounded-[1.25rem] border-2 border-cyan/50 shadow-[0_0_120px_rgba(0,229,255,0.6)] lg:left-[45%] lg:w-[22rem]" animate={shouldReduceMotion ? undefined : { y: [-5, 15, -5], rotate: [3, 5, 3] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}>
-                    <img src="/digital_trends_3.webp" alt="Why data and analytics matter" className="h-auto w-full rounded-xl object-cover" />
+                    <img src="/digital_trends_3.webp" alt="Why data and analytics matter" className="h-auto w-full rounded-xl object-cover" loading="lazy" decoding="async" />
                   </motion.div>
                 </div>
               </div>
@@ -710,13 +785,13 @@ export default function Home() {
           <div className="mb-20 text-center">
             <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow">You probably have questions</span>
             <h2 className="font-display mx-auto max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl">We have answered the ones we hear most</h2>
-            <p className="mx-auto mt-4 max-w-3xl text-gray-400">Honest, plain-language answers so you feel confident before we begin.</p>
+            <p className="mx-auto mt-4 max-w-3xl text-gray-300">Honest, plain-language answers so you feel confident before we begin.</p>
           </div>
 
           <HomeFaq categories={homeFaqCategories} />
 
           <div className="mt-10 flex flex-col items-center gap-6 rounded-3xl border border-white/10 bg-[#1A1A1C] px-6 py-8 text-center md:flex-row md:justify-between md:text-left">
-            <p className="text-sm text-gray-400">Still have questions? We can walk you through it.</p>
+            <p className="text-sm text-gray-300">Still have questions? We can walk you through it.</p>
             <Link to="/contact">
               <ShimmerButton shimmerColor="#0A0A0C" shimmerDuration="4.2s" background="#00E5FF" className="px-6 py-3 text-sm font-semibold tracking-[0.1em] text-black">
                 Contact us
@@ -731,16 +806,18 @@ export default function Home() {
           <h2 className="font-display mb-8 text-4xl font-semibold text-white md:text-7xl">
             Let us build something
             <br />
-            <span className="text-cyan">you are proud of</span>
+            <span className="text-gradient-cyan">you are proud of</span>
           </h2>
-          <p className="mx-auto mb-12 max-w-2xl text-lg font-light leading-relaxed text-gray-400 md:text-2xl">
+          <p className="mx-auto mb-12 max-w-2xl text-lg font-light leading-relaxed text-gray-300 md:text-2xl">
             A short, free call is all it takes to get started. No pressure. Just a conversation.
           </p>
           <div className="flex justify-center">
-            <Link to="/contact">
-              <ShimmerButton shimmerColor="#0A0A0C" shimmerDuration="4.2s" background="#00E5FF" className="px-8 py-5 text-lg font-bold tracking-[0.1em] text-black">
-                Book a discovery call
-              </ShimmerButton>
+            <Link 
+              to="/contact"
+              className="px-8 py-4 sm:px-10 sm:py-5 text-black rounded-full font-black uppercase tracking-[0.2em] text-xs sm:text-sm transition-all duration-300 hover:scale-[1.02] hover:brightness-110 active:scale-95 shadow-[0_0_40px_rgba(0,229,255,0.5)] text-center flex items-center justify-center w-full sm:w-auto sm:min-w-[240px] cta-gradient-anim"
+              style={{ backgroundImage: 'linear-gradient(90deg, #00E5FF, #38B2F5, #0C7CC4, #00E5FF)', backgroundSize: '300% 100%' }}
+            >
+              Book a discovery call
             </Link>
           </div>
         </div>

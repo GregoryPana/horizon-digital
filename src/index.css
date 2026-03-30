@@ -36,7 +36,7 @@
   /* -- Text -- */
   --text: #FFFFFF;
   --text-muted: #D1D5DB; /* Muted Gray */
-  --text-dim: #9CA3AF;
+  --text-dim: #B0B6BF;
 
   /* -- Borders & Glow -- */
   --border: rgba(255, 255, 255, 0.08);
@@ -487,9 +487,19 @@ body::after {
 
 
 .section-eyebrow-glow {
+  color: #00E5FF !important;
   text-shadow:
     0 0 10px rgba(0, 229, 255, 0.4),
     0 0 20px rgba(0, 229, 255, 0.2);
+}
+
+.text-gradient-cyan {
+  background-image: linear-gradient(90deg, #00E5FF, #38B2F5, #0C7CC4);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
 }
 
 @keyframes horizon-pulse {
@@ -520,6 +530,14 @@ body::after {
       0 25%,
       0 65%;
   }
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }
 
 img {
