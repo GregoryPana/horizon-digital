@@ -187,7 +187,7 @@ function WorkShowcase() {
         <div className="mb-20 text-center">
           <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow">Real Results, Real Businesses</span>
           <h2 className="font-display mx-auto max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl">
-            See what is <span className="text-cyan hd-text-glow">possible</span> for your business
+            See what is <span className="text-gradient-cyan">possible</span> for your business
           </h2>
           <p className="mx-auto mt-4 max-w-3xl text-lg text-gray-300">Three businesses. Three transformations. One studio that cares.</p>
         </div>
@@ -601,6 +601,29 @@ export default function Home() {
             >
                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" className="w-5 h-5"><path d="M9 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" /></svg>
             </button>
+          </div>
+        </div>
+      </section>
+
+      <section id="difference" className="border-t border-white/5 bg-black py-24 md:py-32">
+        <div className="mx-auto max-w-5xl px-5 sm:px-6 lg:px-8 text-center">
+          <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow">How We're Different</span>
+          <h2 className="font-display mx-auto max-w-3xl text-3xl font-semibold leading-tight tracking-tight text-white md:text-4xl">
+            A different kind of <span className="text-gradient-cyan">digital partner.</span>
+          </h2>
+          <div className="mt-10 md:mt-14 p-7 md:p-12 lg:p-14 rounded-[2.5rem] border border-white/10 bg-[#0A0A0C] text-left shadow-[0_0_60px_rgba(0,229,255,0.03)] relative overflow-hidden">
+            <div className="absolute top-0 right-0 p-40 bg-cyan/5 blur-[120px] rounded-full pointer-events-none" />
+            <div className="relative z-10 space-y-6 md:space-y-8 text-gray-300 leading-relaxed text-lg md:text-[22px] font-light md:leading-[1.8]">
+              <p>
+                We believe in <span className="text-gradient-cyan font-medium">absolute transparency.</span> Every project kicks off with a clear, written brief that you approve before a single line of code is written.
+              </p>
+              <p>
+                As a team <span className="text-white font-medium drop-shadow-md">based locally in Seychelles</span>, we quote honestly in <span className="text-cyan font-medium">local SCR</span> with zero hidden fees — and we're always just a WhatsApp message away.
+              </p>
+              <p>
+                Before any website goes live, we guarantee it scores <span className="text-gradient-cyan font-bold">90+ on Google PageSpeed</span> so that your customers get the fast, premium experience they expect.
+              </p>
+            </div>
           </div>
         </div>
       </section>

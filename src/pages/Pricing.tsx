@@ -290,7 +290,7 @@ export default function Pricing() {
               className="flex h-full flex-col rounded-3xl border border-border/40 bg-bg-elev p-8 hover:!border-[#00E5FF] hover:shadow-[0_0_12px_rgba(0,229,255,0.3)] transition-all"
             >
               <h3 className="text-2xl font-bold text-white">{foundationPackage.title}</h3>
-              <p className="mt-3 text-xl font-medium text-accent/90 whitespace-nowrap">{foundationPackage.price}</p>
+              <p className="mt-3 text-xl font-extrabold text-gradient-cyan whitespace-nowrap">{foundationPackage.price}</p>
               <div className="mt-4 text-sm text-text-muted mb-8">
                 <p>{foundationPackage.description}</p>
               </div>
@@ -323,7 +323,7 @@ export default function Pricing() {
             >
               <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-cyan px-6 py-[6px] rounded-full text-[10px] font-black uppercase tracking-[0.2em] text-[#0A0A0C] whitespace-nowrap shadow-[0_0_20px_rgba(0,229,255,0.5)]">Most Popular</div>
               <h3 className="text-2xl font-bold text-white">{starterPackage.title}</h3>
-              <p className="mt-3 text-xl font-medium text-accent/90 whitespace-nowrap">{starterPackage.price}</p>
+              <p className="mt-3 text-xl font-extrabold text-gradient-cyan whitespace-nowrap">{starterPackage.price}</p>
               <div className="mt-4 text-sm text-text-muted mb-8">
                 <p>{starterPackage.description}</p>
               </div>
@@ -360,7 +360,7 @@ export default function Pricing() {
               className="flex h-full flex-col rounded-3xl border border-border/40 bg-bg-elev p-8 hover:!border-[#00E5FF] hover:shadow-[0_0_12px_rgba(0,229,255,0.3)] transition-all"
             >
               <h3 className="text-2xl font-bold text-white">{growthPackage.title}</h3>
-              <p className="mt-3 text-xl font-medium text-accent/90 whitespace-nowrap">{growthPackage.price}</p>
+              <p className="mt-3 text-xl font-extrabold text-gradient-cyan whitespace-nowrap">{growthPackage.price}</p>
               <div className="mt-4 text-sm text-text-muted mb-8">
                 <p>{growthPackage.description}</p>
               </div>
@@ -434,9 +434,9 @@ export default function Pricing() {
                 </p>
                 <h3 className="text-3xl font-semibold text-text">Hosting Plan</h3>
                 <p className="mt-3 text-base text-text-muted">For Business Websites of any size</p>
-                <p className="mb-4 mt-8 flex w-full justify-center items-end gap-2 text-5xl font-bold tabular-nums text-accent md:text-6xl">
-                  <span className="text-2xl pb-1">SCR</span>
-                  <span className="inline-block leading-none">2,500</span>
+                <p className="mb-4 mt-8 flex w-full justify-center items-end gap-2 text-5xl font-extrabold tabular-nums md:text-6xl">
+                  <span className="text-2xl pb-1 text-accent">SCR</span>
+                  <span className="text-gradient-cyan">2,500</span>
                 </p>
                 <p className="min-h-[1.25rem] text-sm text-text-muted">{hostingPlan.billing}</p>
                 <div className="mt-10 flex justify-center">
@@ -482,7 +482,7 @@ export default function Pricing() {
           {addOnItems.map((item) => (
             <div key={item.title} className="bg-bg-panel border border-border/40 p-6 rounded-2xl hover:!border-[#00E5FF] hover:shadow-[0_0_12px_rgba(0,229,255,0.3)] transition-colors">
               <h3 className="text-base font-semibold text-text">{item.title}</h3>
-              <p className="mt-3 inline-block px-3 py-1 rounded border border-accent/20 bg-accent/5 text-sm font-medium text-accent">{item.price}</p>
+              <p className="mt-3 inline-block px-3 py-1 rounded border border-accent/20 bg-accent/5 text-sm font-bold text-gradient-cyan">{item.price}</p>
             </div>
           ))}
           </div>
