@@ -26,15 +26,20 @@ const pricingSectionLinks = [
   { id: "packages", label: "Packages" },
   { id: "hosting", label: "Hosting" },
   { id: "addons", label: "Add-ons" },
-  { id: "stabilisation", label: "Stabilise" },
+  { id: "stabilisation", label: "After launch" },
   { id: "visibility", label: "Visibility" },
+  { id: "pricing-faq", label: "FAQ" },
 ] as const;
 
 const pricingVerticalTabs = [
   { id: "overview", label: "Overview" },
+  { id: "process", label: "Process" },
   { id: "packages", label: "Packages" },
   { id: "hosting", label: "Hosting" },
-  { id: "addons", label: "Optional Add-ons" },
+  { id: "addons", label: "Add-ons" },
+  { id: "stabilisation", label: "After launch" },
+  { id: "visibility", label: "Visibility" },
+  { id: "pricing-faq", label: "FAQ" },
 ] as const;
 
 export default function Pricing() {
@@ -42,13 +47,12 @@ export default function Pricing() {
   const location = useLocation();
   const compactDesktopSection = "md:!pt-14 md:!pb-16";
   const [activeServiceTab, setActiveServiceTab] = useState<
-    "overview" | "packages" | "hosting" | "addons"
+    "overview" | "process" | "packages" | "hosting" | "addons" | "stabilisation" | "visibility" | "pricing-faq"
   >("overview");
-  const [pricingViewMode, setPricingViewMode] = useState<"all" | "tab">("all");
   const [passedSectionIds, setPassedSectionIds] = useState<string[]>([]);
   const [isRailOpen, setIsRailOpen] = useState(false);
 
-  const scrollToSectionTop = (sectionId: "overview" | "packages" | "hosting" | "addons") => {
+  const scrollToSectionTop = (sectionId: "overview" | "process" | "packages" | "hosting" | "addons" | "stabilisation" | "visibility" | "pricing-faq") => {
     window.requestAnimationFrame(() => {
       window.setTimeout(() => {
         const target = document.getElementById(sectionId);
@@ -61,29 +65,32 @@ export default function Pricing() {
     });
   };
 
-  const jumpToSection = (sectionId: "overview" | "packages" | "hosting" | "addons") => {
-    setPricingViewMode("tab");
+  const jumpToSection = (sectionId: "overview" | "process" | "packages" | "hosting" | "addons" | "stabilisation" | "visibility" | "pricing-faq") => {
     setActiveServiceTab(sectionId);
     window.history.replaceState(null, "", `#${sectionId}`);
     scrollToSectionTop(sectionId);
   };
 
-  const showSelectedOrAll = (tabId: "overview" | "packages" | "hosting" | "addons") =>
-    pricingViewMode === "all" || activeServiceTab === tabId;
-
   useEffect(() => {
     const syncPassedSections = () => {
-      const threshold = window.innerHeight * 0.42;
-      const nextPassed = pricingSectionLinks
-        .filter((section) => {
-          const node = document.getElementById(section.id);
-          return node ? node.getBoundingClientRect().top <= threshold : false;
-        })
-        .map((section) => section.id);
+      window.requestAnimationFrame(() => {
+        const threshold = window.innerHeight * 0.42;
+        const nextPassed = pricingSectionLinks
+          .filter((section) => {
+            const node = document.getElementById(section.id);
+            return node ? node.getBoundingClientRect().top <= threshold : false;
+          })
+          .map((section) => section.id);
 
-      setPassedSectionIds((current) =>
-        current.join("|") === nextPassed.join("|") ? current : nextPassed
-      );
+        setPassedSectionIds((current) =>
+          current.join("|") === nextPassed.join("|") ? current : nextPassed
+        );
+
+        if (nextPassed.length > 0) {
+          const lastPassed = nextPassed[nextPassed.length - 1] as any;
+          setActiveServiceTab((prev) => (prev === lastPassed ? prev : lastPassed));
+        }
+      });
     };
 
     syncPassedSections();
@@ -98,13 +105,12 @@ export default function Pricing() {
 
   useEffect(() => {
     const hash = location.hash.replace("#", "");
-    if (hash === "overview" || hash === "packages" || hash === "hosting" || hash === "addons") {
-      setActiveServiceTab(hash);
-      setPricingViewMode("tab");
-      scrollToSectionTop(hash);
+    const validTabs = ["overview", "process", "packages", "hosting", "addons", "stabilisation", "visibility", "pricing-faq"];
+    if (validTabs.includes(hash)) {
+      setActiveServiceTab(hash as any);
+      scrollToSectionTop(hash as any);
       return;
     }
-    setPricingViewMode("all");
   }, [location.hash]);
 
   const packageOffers = [foundationPackage, starterPackage, growthPackage, customPackage]
@@ -160,8 +166,8 @@ export default function Pricing() {
     <div>
       <h1 className="sr-only">Website Design Services and Packages</h1>
       <Seo
-        title="Website Packages & Pricing Seychelles | Horizon Digital"
-        description="Explore Horizon Digital website packages for Seychelles businesses. Clear pricing, professional design, and structured website projects optimized for Google Core Web Vitals."
+        title="Website Packages & Pricing in Seychelles | Horizon Digital"
+        description="Clear website packages for Seychelles businesses — Foundation, Starter, and Growth. Honest SCR pricing, custom design, and everything your business needs to get found online."
         path="/services-pricing"
         keywords="website packages Seychelles, web design pricing Seychelles, website services Seychelles"
         structuredData={[serviceSchema, faqSchema]}
@@ -172,6 +178,7 @@ export default function Pricing() {
             type="button"
             onClick={() => setIsRailOpen((prev) => !prev)}
             aria-label={isRailOpen ? "Close section jump rail" : "Open section jump rail"}
+            aria-expanded={isRailOpen}
             className="jump-rail-toggle focus-ring h-12 w-[18px] rounded-r-full border border-l-0 border-accent/40 bg-bg-elev/95 text-base leading-none text-accent shadow-[0_8px_24px_rgba(2,8,12,0.32)]"
           >
             {isRailOpen ? "‹" : "›"}
@@ -220,26 +227,40 @@ export default function Pricing() {
         <div className="pointer-events-auto">
           <MenuVertical
             menuItems={pricingVerticalTabs.map((section) => ({ id: section.id, label: section.label }))}
-            activeId={pricingViewMode === "tab" ? activeServiceTab : undefined}
-            onSelect={(id) => jumpToSection(id as "overview" | "packages" | "hosting" | "addons")}
+            activeId={activeServiceTab}
+            onSelect={(id) => jumpToSection(id as any)}
           />
         </div>
       </div>
 
       <Section
         id="overview"
-        className={`${compactDesktopSection} ${showSelectedOrAll("overview") ? "lg:!block" : "lg:!hidden"}`}
+        className={compactDesktopSection}
         eyebrow="What we do"
         title="Websites that work for your business"
         description="Every project is built around your goals — not a template. Here's what that looks like."
       >
-        <div id="panel-overview" role="tabpanel" aria-hidden={!showSelectedOrAll("overview")} className="bg-[#121214]/20 p-8 rounded-2xl border border-border">
-          <p className="text-sm md:text-base text-text-muted max-w-4xl text-center mx-auto">{servicesPricingIntro.summary}</p>
-          <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div id="panel-overview" className="bg-[#121214]/20 p-8 rounded-2xl border border-border">
+          <p className="text-sm md:text-base text-text-muted max-w-4xl text-center mx-auto">
+            Every website we build is planned around your services, your customers, and your goals. The result is a site people can <span className="text-gradient-cyan font-bold">find easily</span>, feel good about, and actually use to reach you.
+          </p>
+          <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {services.slice(0, 5).map((service) => (
               <div key={service.title} className="p-6 rounded-2xl border border-border bg-[#121214] hover:!border-[#00E5FF] hover:shadow-[0_0_12px_rgba(0,229,255,0.3)] transition-colors">
                 <h3 className="text-base font-semibold text-accent-2">{service.title}</h3>
-                <p className="mt-3 text-sm text-text-muted">{service.description}</p>
+                <p className="mt-3 text-sm text-text-muted leading-relaxed">
+                  {service.title === "Website build" ? (
+                    <>We plan, design, and build your site <span className="text-gradient-cyan font-bold">from scratch</span> — structured around your business from day one.</>
+                  ) : service.title === "Design refresh" ? (
+                    <><span className="text-gradient-cyan font-bold">Modernise</span> your site without losing what already works for you.</>
+                  ) : service.title === "SEO & Performance" ? (
+                    <>Built-in speed and search visibility so customers can <span className="text-gradient-cyan font-bold">actually find you</span>.</>
+                  ) : service.title === "Mobile-friendly layout" ? (
+                    <>Designed for the phones your customers <span className="text-gradient-cyan font-bold">actually use</span> — no pinching, no squinting, no frustration.</>
+                  ) : (
+                    service.description
+                  )}
+                </p>
               </div>
             ))}
           </div>
@@ -251,7 +272,7 @@ export default function Pricing() {
         eyebrow="How we get there"
         title="What happens from start to launch"
         description="A clear sequence. No guesswork. You know exactly what's happening at every step."
-        className={`${compactDesktopSection} ${showSelectedOrAll("overview") ? "lg:!block" : "lg:!hidden"}`}
+        className={compactDesktopSection}
       >
         <div className="relative left-1/2 right-1/2 -mx-[50vw] my-8 w-screen py-16 md:my-10 md:py-20 bg-gradient-to-r from-bg-panel/10 via-accent/5 to-bg-panel/10 border-y border-border">
           <div className="mx-auto grid w-full max-w-7xl gap-8 px-5 sm:px-8 md:grid-cols-2 lg:grid-cols-5">
@@ -264,7 +285,7 @@ export default function Pricing() {
                 transition={{ duration: shouldReduceMotion ? 0 : 0.42, delay: index * 0.06, ease: "easeOut" }}
                 className="min-w-0"
               >
-                <p className="text-xs uppercase tracking-[0.4em] text-cyan-400 bg-cyan-400/10 inline-block px-3 py-1 rounded-full border border-cyan-400/20">Step {index + 1}</p>
+                <p className="text-[9px] uppercase tracking-[0.2em] font-black text-black bg-cyan inline-flex items-center justify-center px-3 py-1 rounded-full shadow-[0_0_12px_rgba(0,229,255,0.4)] whitespace-nowrap">Step {index + 1}</p>
                 <h3 className="mt-4 text-lg font-semibold text-white">{step.title}</h3>
                 <p className="mt-3 text-sm text-gray-300 leading-relaxed">{step.description}</p>
               </motion.div>
@@ -275,24 +296,24 @@ export default function Pricing() {
 
       <Section
         id="packages"
-        className={`${compactDesktopSection} ${showSelectedOrAll("packages") ? "lg:!block" : "lg:!hidden"}`}
+        className={compactDesktopSection}
         eyebrow="Find your fit"
         title="Pick the package that's right for right now"
         description="Foundation, Starter, and Growth — each one built around a different stage of business."
       >
-        <div id="panel-packages" role="tabpanel" aria-hidden={!showSelectedOrAll("packages")} className="max-w-[88rem] mx-auto">
-          <div className="grid items-stretch gap-6 xl:gap-8 md:grid-cols-2 lg:grid-cols-3 pt-6 lg:pt-10 pb-8">
+        <div id="panel-packages" className="max-w-[88rem] mx-auto">
+          <div className="grid items-stretch gap-6 xl:gap-8 md:grid-cols-2 lg:grid-cols-3 pt-0 pb-8">
             {/* Foundation */}
             <motion.div 
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              className="flex h-full flex-col rounded-3xl border border-border/40 bg-bg-elev p-8 hover:!border-[#00E5FF] hover:shadow-[0_0_12px_rgba(0,229,255,0.3)] transition-all"
+              className="flex h-full flex-col rounded-3xl border border-cyan/40 bg-bg-elev p-8 hover:!border-[#00E5FF] hover:shadow-[0_0_12px_rgba(0,229,255,0.3)] transition-all"
             >
               <h3 className="text-2xl font-bold text-white">{foundationPackage.title}</h3>
               <p className="mt-3 text-xl font-extrabold text-gradient-cyan whitespace-nowrap">{foundationPackage.price}</p>
               <div className="mt-4 text-sm text-text-muted mb-8">
-                <p>{foundationPackage.description}</p>
+                <p>Everything you need to <span className="text-gradient-cyan font-bold">be seen online</span> — no technical hurdles or hidden extras.</p>
               </div>
               
               <ul className="space-y-3 mb-8 text-text text-sm flex-grow">
@@ -306,7 +327,7 @@ export default function Pricing() {
 
               <div className="mt-auto pt-6">
                 <Link to="/contact?budget=7500-12500" className="w-full">
-                  <button className="w-full py-3 rounded-full border border-border hover:bg-text/5 font-semibold text-sm transition-colors text-text">
+                  <button className="w-full py-3 rounded-full border border-cyan/40 hover:bg-text/5 font-semibold text-sm transition-colors text-text">
                     Get Started →
                   </button>
                 </Link>
@@ -325,7 +346,7 @@ export default function Pricing() {
               <h3 className="text-2xl font-bold text-white">{starterPackage.title}</h3>
               <p className="mt-3 text-xl font-extrabold text-gradient-cyan whitespace-nowrap">{starterPackage.price}</p>
               <div className="mt-4 text-sm text-text-muted mb-8">
-                <p>{starterPackage.description}</p>
+                <p>The <span className="text-gradient-cyan font-bold">complete setup</span> for growing businesses that need to compete and win online.</p>
               </div>
 
               <ul className="space-y-3 mb-8 text-text text-sm flex-grow">
@@ -339,14 +360,12 @@ export default function Pricing() {
 
               <div className="mt-auto pt-6">
                 <Link to="/contact?budget=12500-25000" className="w-full">
-                  <ShimmerButton
-                    shimmerColor="#0A0A0C"
-                    shimmerDuration="4.2s"
-                    background="#00E5FF"
-                    className="w-full px-5 py-3 text-sm font-semibold tracking-wide text-black"
+                  <button 
+                    className="w-full px-8 py-4 text-black rounded-full font-black uppercase tracking-[0.2em] text-xs transition-all duration-300 hover:scale-[1.02] hover:brightness-110 active:scale-95 shadow-[0_0_40px_rgba(0,229,255,0.5)] text-center flex items-center justify-center cta-gradient-anim"
+                    style={{ backgroundImage: 'linear-gradient(90deg, #00E5FF, #38B2F5, #0C7CC4, #00E5FF)', backgroundSize: '300% 100%' }}
                   >
                     Get Started →
-                  </ShimmerButton>
+                  </button>
                 </Link>
               </div>
             </motion.div>
@@ -357,12 +376,12 @@ export default function Pricing() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="flex h-full flex-col rounded-3xl border border-border/40 bg-bg-elev p-8 hover:!border-[#00E5FF] hover:shadow-[0_0_12px_rgba(0,229,255,0.3)] transition-all"
+              className="flex h-full flex-col rounded-3xl border border-cyan/40 bg-bg-elev p-8 hover:!border-[#00E5FF] hover:shadow-[0_0_12px_rgba(0,229,255,0.3)] transition-all"
             >
               <h3 className="text-2xl font-bold text-white">{growthPackage.title}</h3>
               <p className="mt-3 text-xl font-extrabold text-gradient-cyan whitespace-nowrap">{growthPackage.price}</p>
               <div className="mt-4 text-sm text-text-muted mb-8">
-                <p>{growthPackage.description}</p>
+                <p>For established businesses ready for <span className="text-gradient-cyan font-bold">aggressive growth</span> and complete market visibility.</p>
               </div>
 
               <ul className="space-y-3 mb-8 text-text text-sm flex-grow">
@@ -376,7 +395,7 @@ export default function Pricing() {
 
               <div className="mt-auto pt-6">
                 <Link to="/contact?budget=25000-plus" className="w-full">
-                  <button className="w-full py-3 rounded-full border border-border hover:bg-text/5 font-semibold text-sm transition-colors text-text">
+                  <button className="w-full py-3 rounded-full border border-cyan/40 hover:bg-text/5 font-semibold text-sm transition-colors text-text">
                     Get Started →
                   </button>
                 </Link>
@@ -409,14 +428,18 @@ export default function Pricing() {
 
       <Section
         id="hosting"
-        className={`${compactDesktopSection} ${showSelectedOrAll("hosting") ? "lg:!block" : "lg:!hidden"}`}
+        className={compactDesktopSection}
         eyebrow="Managed hosting"
         title={hostingPlan.title}
-        description="One clear plan to keep your website secure and running smoothly."
+        description={
+          <>
+            One clear plan to keep your website <span className="text-gradient-cyan font-bold">secure and running smoothly</span>.
+          </>
+        }
       >
-        <div id="panel-hosting" role="tabpanel" aria-hidden={!showSelectedOrAll("hosting")}>
-        <div className="mb-8 max-w-5xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-2">What hosting means</p>
+        <div id="panel-hosting">
+        <div className="mb-8 max-w-5xl mx-auto rounded-2xl border border-border bg-bg-panel/20 p-6 md:p-8">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-2">What <span className="text-gradient-cyan font-bold">managed hosting</span> means</p>
           <div className="mt-4 space-y-4">
             {hostingPlan.details.map((detail) => (
               <p key={detail} className="text-sm text-text-muted max-w-3xl">
@@ -471,16 +494,16 @@ export default function Pricing() {
 
       <Section
         id="addons"
-        className={`${compactDesktopSection} ${showSelectedOrAll("addons") ? "lg:!block" : "lg:!hidden"}`}
+        className={compactDesktopSection}
         eyebrow="Add-ons"
         title="Optional add-ons"
-        description="All add-ons are clearly scoped before work begins, if not included in selected tier."
+        description="Every add-on is quoted and agreed before any work begins. No surprises."
       >
-        <div id="panel-addons" role="tabpanel" aria-hidden={!showSelectedOrAll("addons")}>
+        <div id="panel-addons">
         <div className="relative left-1/2 right-1/2 -mx-[50vw] my-8 w-screen py-14 md:my-10 md:py-16 bg-bg-panel/20 border-y border-border/40">
           <div className="mx-auto grid w-full max-w-7xl gap-x-10 gap-y-8 px-5 sm:px-8 md:grid-cols-3">
           {addOnItems.map((item) => (
-            <div key={item.title} className="bg-bg-panel border border-border/40 p-6 rounded-2xl hover:!border-[#00E5FF] hover:shadow-[0_0_12px_rgba(0,229,255,0.3)] transition-colors">
+            <div key={item.title} className="bg-bg-panel border border-cyan/40 p-6 rounded-2xl hover:!border-[#00E5FF] hover:shadow-[0_0_12px_rgba(0,229,255,0.3)] transition-colors">
               <h3 className="text-base font-semibold text-text">{item.title}</h3>
               <p className="mt-3 inline-block px-3 py-1 rounded border border-accent/20 bg-accent/5 text-sm font-bold text-gradient-cyan">{item.price}</p>
             </div>
@@ -492,10 +515,14 @@ export default function Pricing() {
 
       <Section
         id="stabilisation"
-        eyebrow="Stabilisation"
+        eyebrow="After launch"
         title={stabilisationPlan.title}
-        description="Included with every website build."
-        className={`${compactDesktopSection} ${showSelectedOrAll("overview") ? "lg:!block" : "lg:!hidden"}`}
+        description={
+          <>
+            Every website we build includes <span className="text-gradient-cyan font-bold">30 days of hands-on support</span> after going live — at no extra cost.
+          </>
+        }
+        className={compactDesktopSection}
       >
         <div className="p-8 md:p-12 rounded-3xl border border-border bg-bg-elev mt-6">
           <div className="grid gap-10 md:grid-cols-2">
@@ -530,24 +557,24 @@ export default function Pricing() {
         eyebrow="Performance & Visibility"
         title="Built to look good and be found"
         description="We focus on speed, clarity, and practical search setup so people can discover your business online."
-        className={`${compactDesktopSection} ${showSelectedOrAll("overview") ? "lg:!block" : "lg:!hidden"}`}
+        className={compactDesktopSection}
       >
         <div className="mt-8 p-10 md:p-14 rounded-3xl bg-gradient-to-br from-bg-panel/40 to-transparent border border-border text-center">
           <p className="max-w-4xl mx-auto text-base md:text-lg leading-relaxed text-text-muted">
-            A beautiful website should also be easy to find. We set up each site with clean semantic page structure, clear heading hierarchies, search-friendly page content, optimized Core Web Vitals, and technical signals that help Google seamlessly understand what your business offers. In simple terms, your website is built to perform brilliantly in lighthouse metrics, load instantly on mobile devices, and appear in front of the right local customers when they search.
+            Your website being beautiful is only half the job. The other half is making sure people can actually find it. We set up every site so <span className="text-gradient-cyan font-bold">Google understands what your business does</span>, where you are, and who it should show your site to. That means when someone in Seychelles searches for what you offer, your site has a real chance of appearing — not buried on page five where nobody looks.
           </p>
-          <p className="mt-8 text-lg font-medium text-accent max-w-2xl mx-auto border-t border-accent/20 pt-8">
-            Start a project that feels truly yours and is radically easier for customers to discover.
-          </p>
+          <Link to="/contact" className="mt-8 block text-lg font-medium text-accent max-w-2xl mx-auto border-t border-accent/20 pt-8 hover:text-accent-2 transition-colors">
+            Ready to have a website that both looks great and gets found? Let's build it →
+          </Link>
         </div>
       </Section>
 
       <Section
         id="pricing-faq"
-        eyebrow="Frequently Asked Questions"
-        title="Common questions before starting"
-        description="Straight answers on timeline, redesigns, hosting, and project scope."
-        className={`${compactDesktopSection} ${showSelectedOrAll("overview") ? "lg:!block" : "lg:!hidden"}`}
+        eyebrow="QUESTIONS BEFORE YOU START"
+        title="Straight answers to the things people ask us most"
+        description="No jargon. No small print. Just honest answers."
+        className={compactDesktopSection}
       >
         <div className="grid gap-6 md:grid-cols-2 mt-8">
           {faqs.slice(0, 4).map((faq) => (
@@ -561,20 +588,18 @@ export default function Pricing() {
 
       <section className="bg-bg-elev border-t border-border mt-16 text-center">
         <div className="mx-auto w-full max-w-4xl px-8 py-28 md:py-32">
-           <p className="text-xs uppercase tracking-[0.4em] text-accent font-semibold mb-6">Next step</p>
+           <p className="text-xs uppercase tracking-[0.4em] text-accent font-semibold mb-6">READY WHEN YOU ARE</p>
            <h2 className="text-3xl font-semibold text-text md:text-5xl tracking-tight mb-12">
-              Ready to start? Let's define your scope.
+              Not sure which package fits? We'll help you figure it out.
            </h2>
           <div className="flex justify-center">
-            <Link to="/contact">
-              <ShimmerButton
-                shimmerColor="#0A0A0C"
-                shimmerDuration="4.2s"
-                background="#00E5FF"
-                className="px-8 py-4 text-sm font-semibold tracking-widest text-black shadow-lg shadow-accent/20 inline-block"
+            <Link to="/contact" className="w-full sm:w-auto">
+              <button 
+                className="px-8 py-4 sm:px-12 sm:py-5 text-black rounded-full font-black uppercase tracking-[0.2em] text-xs sm:text-sm transition-all duration-300 hover:scale-[1.02] hover:brightness-110 active:scale-95 shadow-[0_0_40px_rgba(0,229,255,0.5)] text-center flex items-center justify-center w-full sm:w-auto sm:min-w-[280px] cta-gradient-anim"
+                style={{ backgroundImage: 'linear-gradient(90deg, #00E5FF, #38B2F5, #0C7CC4, #00E5FF)', backgroundSize: '300% 100%' }}
               >
                 Book a free consult
-              </ShimmerButton>
+              </button>
             </Link>
           </div>
         </div>

@@ -251,6 +251,7 @@ body::after {
 .hd-text-gradient {
   background: linear-gradient(135deg, #ffffff 0%, #9ca3af 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -499,7 +500,7 @@ body::after {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  display: inline-block;
+  display: inline;
 }
 
 @keyframes horizon-pulse {

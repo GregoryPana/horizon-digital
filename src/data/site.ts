@@ -60,7 +60,7 @@ export const trustItems = ["Fast", "Mobile-ready", "Easy to find", "Clear calls-
 export const services = [
   {
     title: "Website build",
-    description: "Structured planning, custom design, and a clean launch.",
+    description: "We plan, design, and build your site from scratch — structured around your business from day one.",
   },
   {
     title: "Design refresh",
@@ -72,7 +72,7 @@ export const services = [
   },
   {
     title: "Mobile-friendly layout",
-    description: "Clear and easy to use on every screen size.",
+    description: "Designed for the phones your customers actually use — no pinching, no squinting, no frustration.",
   },
 ];
 
@@ -87,11 +87,11 @@ export const addOns = [
 export const projectSteps = [
   {
     title: "Discovery",
-    description: "We listen to your goals and get to know your business and your customers.",
+    description: "You tell us about your business, your goals, and your customers. We listen carefully before anything else happens.",
   },
   {
     title: "Design",
-    description: "We create the visual layout and page structure for your review and approval.",
+    description: "We create the visual layout and page structure. You review it and approve the direction before we write a single line of code.",
   },
   {
     title: "Build",
@@ -99,7 +99,7 @@ export const projectSteps = [
   },
   {
     title: "Launch",
-    description: "We go live — and stay close to make sure everything runs perfectly.",
+    description: "We go live — and stay close for 30 days to make sure everything runs perfectly.",
   },
   {
     title: "Grow",
@@ -112,21 +112,21 @@ export const servicesPricingIntro = {
   title: "Services & Pricing",
   subtitle: "Websites built around how your business actually works — not copied from a template.",
   summary:
-    "Every website we build is planned around your services, your customers, and your goals. We combine clear design with a solid search foundation so people can find you more easily, feel good about what they see, and reach out with confidence.",
+    "Every website we build is planned around your services, your customers, and your goals. The result is a site people can find easily, feel good about, and actually use to reach you.",
 };
 
 export const foundationPackage = {
   title: "Foundation",
   price: "From SCR 7,500",
   description:
-    "Perfect for businesses looking for a simple, professional home online. We'll set you up with a beautiful, structured space that works perfectly from day one.",
+    "A clean, professional website with everything you need to get started — and nothing you don't. Right for businesses going online for the first time or replacing something outdated.",
   includes: [
     "Up to 3 clear pages",
-    "Choice of professional Horizon layouts",
+    "Professionally designed layout built for your business",
     "Works beautifully on mobile phones",
     "Easy-to-use contact form",
     "WhatsApp chat integration",
-    "Professional Search and Visibility",
+    "Set up so Google can find and understand your business",
     "30 Days Support after launch",
     "1 Revision Round",
   ],
@@ -136,12 +136,12 @@ export const starterPackage = {
   title: "Starter",
   price: "From SCR 12,500",
   description:
-    "Ideal for growing businesses that want to stand out. We'll create a unique, custom-made site with warm, clear messaging that helps new customers find and trust you.",
+    "For businesses that want to stand out properly — more pages, more depth, and a site that reflects the full picture of what you offer.",
   includes: [
     "Up to 5-6 custom pages",
-    "Mobile-first layout for easy browsing",
+    "Works perfectly on every phone your customers use",
     "Google Analytics setup",
-    "Advanced Search and Visibility",
+    "Advanced setup so Google shows you to the right local customers",
     "45 Days Support after launch",
     "2 Revision Rounds",
   ],
@@ -151,12 +151,12 @@ export const growthPackage = {
   title: "Growth",
   price: "From SCR 25,000",
   description:
-    "Designed for established businesses ready to reach the next level. We'll build a fully tailored space for your brand, with a deeper focus on telling your story.",
+    "For businesses that are ready to go further — more pages, more depth, and a site that genuinely reflects the scale of what you offer.",
   includes: [
     "Up to 10-12 custom tailored pages",
-    "Mobile-first layout for easy browsing",
-    "Google Business setup (to help you grow)",
-    "Advanced Search and Visibility",
+    "Works perfectly on every phone your customers use",
+    "Google Business Profile setup",
+    "Advanced setup so Google shows you to the right local customers",
     "60 Days Support after launch",
     "2 Revision Rounds",
   ],
@@ -166,7 +166,7 @@ export const customPackage = {
   title: "Custom",
   price: "Scoped per project",
   description:
-    "For truly unique projects that need something purely one-of-a-kind. We'll work closely with you to bring your vision to life, building a digital home that fits your business perfectly.",
+    "Some businesses need something that doesn't fit a standard package — more pages, more complexity, or a completely different direction. If that sounds like you, let's talk through what you actually need.",
   includes: [
     "A custom plan that fits your goals",
     "Work directly with your builder",
@@ -178,10 +178,10 @@ export const customPackage = {
 
 export const addOnItems = [
   { title: "Additional page", price: "SCR 2,500 per page" },
-  { title: "Content writing support", price: "SCR 600 per page" },
-  { title: "Structured booking / enquiry form", price: "SCR 2,000" },
+  { title: "We write your page content for you", price: "SCR 600 per page" },
+  { title: "Custom booking or enquiry form", price: "SCR 2,000" },
   { title: "Google Business Profile setup", price: "SCR 2,200" },
-  { title: "Rush delivery", price: "+40% (subject to availability)" },
+  { title: "Rush delivery", price: "+40% of project cost · subject to availability" },
 ];
 
 export const hostingPlan = {
@@ -189,6 +189,7 @@ export const hostingPlan = {
   price: "SCR 2,500 per year",
   billing: "Billed annually",
   features: [
+    "Your site stays live and loading — 24 hours a day, every day of the year",
     "Website security setup so visitors see a secure padlock",
     "Regular backups so your website can be restored if needed",
     "Ongoing updates to keep the website stable",
@@ -200,13 +201,14 @@ export const hostingPlan = {
     "Your domain name is the address people type. Hosting is the place where your website is stored and shown from.",
     "When someone visits your website, hosting sends your pages, images, and content to their phone or computer.",
     "With managed hosting, we handle setup, security, backups, and ongoing checks so you do not have to manage it yourself.",
+    "Your website files always remain yours — we manage the server environment, not your content.",
   ],
   note: "For advanced builds, hosting charges may differ.",
 };
 
 export const stabilisationPlan = {
-  title: "30-day stabilisation",
-  covers: ["Bug fixes", "Minor corrections", "Small adjustments"],
+  title: "30 days of support after every launch",
+  covers: ["Anything that doesn't look or work right after launch", "Bug fixes", "Minor corrections", "Small adjustments"],
   excludes: ["New features", "Redesigns"],
 };
 

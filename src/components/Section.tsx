@@ -4,8 +4,8 @@ import { motion, useReducedMotion } from "framer-motion";
 type SectionProps = {
   id?: string;
   eyebrow?: string;
-  title?: string;
-  description?: string;
+  title?: ReactNode;
+  description?: ReactNode;
   children?: ReactNode;
   className?: string;
   containerClassName?: string;
@@ -34,7 +34,7 @@ export default function Section({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.1, margin: "0px 0px -12% 0px" }}
             transition={{ duration: shouldReduceMotion ? 0 : 0.4, ease: "easeOut" }}
-            className="mb-20 text-center"
+            className="mb-10 text-center"
           >
             {eyebrow && (
               <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow">

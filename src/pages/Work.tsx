@@ -47,8 +47,8 @@ export default function Work() {
       />
 
       {/* Hero Header */}
-      <section className="pt-32 pb-20 md:pt-48 md:pb-32 text-center px-5 sm:px-8 max-w-5xl mx-auto">
-        <motion.div {...fadeIn} className="mb-20 text-center">
+      <section className="pt-12 pb-8 md:pt-24 md:pb-16 text-center px-5 sm:px-8 max-w-5xl mx-auto">
+        <motion.div {...fadeIn} className="mb-8 text-center">
           <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow">Real work, real businesses</span>
           <h2 className="font-display mx-auto max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl">
             Websites we've built with care
@@ -65,28 +65,21 @@ export default function Work() {
            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
               
               <motion.div className="lg:col-span-12 xl:col-span-5 relative z-10 flex flex-col items-start text-left" {...fadeIn}>
-                 <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent-2 mb-4 bg-accent-2/10 inline-block px-3 py-1 rounded-[9px] border border-accent-2/20">
+                 <p className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan mb-4 bg-cyan/10 inline-block px-3 py-1 rounded-[9px] border border-cyan/20">
                     Growth Tier
                   </p>
                   <h3 className="font-display text-3xl md:text-5xl font-semibold text-text mb-6">Drake Seaside</h3>
                   <p className="text-base md:text-lg text-text-muted mb-8 leading-relaxed lg:max-w-xl">
-                    A complete redesign with new pages, updated SEO-focused content, significantly faster load times, and a structure engineered for higher click-through conversions and bookings.
+                    A complete redesign with new pages, faster loading, and a layout that turns visitors into bookings.
                   </p>
-                  <div className="flex flex-wrap gap-4 justify-start">
-                     <a href="https://thedrake-seaside.com/" target="_blank" rel="noreferrer" className="inline-block hover:opacity-80 transition-opacity">
-                       <button className="px-6 py-3 border border-accent/30 bg-[#0D102D] text-sm font-semibold rounded-[9px] hover:bg-accent/10 transition-colors shadow-[0_0_15px_rgba(0,229,255,0.08)]">
-                         View live site
-                       </button>
+                  <div className="flex flex-wrap items-center gap-8 justify-start">
+                     <a href="https://thedrake-seaside.com/" target="_blank" rel="noreferrer" className="text-sm font-bold uppercase tracking-widest text-cyan hover:text-white transition-colors underline decoration-cyan/30 underline-offset-8">
+                       View live site →
                      </a>
                      <Link to="/contact">
-                       <ShimmerButton
-                          shimmerColor="#060818"
-                          shimmerDuration="4.2s"
-                          background="#00E5FF"
-                          className="px-6 py-3 text-sm font-semibold tracking-wide text-black"
-                        >
-                          Request similar site
-                        </ShimmerButton>
+                       <button className="px-6 py-3 bg-cyan text-black text-sm font-bold rounded-[9px] hover:bg-cyan/90 transition-colors shadow-[0_0_20px_rgba(0,229,255,0.2)]">
+                         Request similar site
+                       </button>
                      </Link>
                   </div>
               </motion.div>
@@ -160,28 +153,21 @@ export default function Work() {
               </motion.div>
 
               <motion.div className="lg:col-span-12 xl:col-span-5 relative z-10 order-1 lg:order-2 flex flex-col items-start text-left" {...fadeIn} transition={{ delay: 0.2 }}>
-                 <p className="text-xs font-semibold uppercase tracking-[0.3em] text-text mb-4 bg-text/5 inline-block px-3 py-1 rounded-[9px] border border-border">
+                 <p className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan mb-4 bg-cyan/10 inline-block px-3 py-1 rounded-[9px] border border-cyan/20">
                     Foundation Tier
                   </p>
                   <h3 className="font-display text-3xl md:text-5xl font-semibold text-text mb-6">Takamaka House</h3>
                   <p className="text-base md:text-lg text-text-muted mb-8 leading-relaxed lg:max-w-xl">
                     A calm, immersive site designed to let the beauty of Takamaka House do the talking – and make guests excited to book before they even arrive.
                   </p>
-                  <div className="flex flex-wrap gap-4 justify-start">
-                     <a href="https://horizondigitalsey.com/showcase/takamaka-house" target="_blank" rel="noreferrer" className="inline-block hover:opacity-80 transition-opacity">
-                       <button className="px-6 py-3 border border-accent/30 bg-[#0D102D] text-sm font-semibold rounded-[9px] hover:bg-accent/10 transition-colors shadow-[0_0_15px_rgba(0,229,255,0.08)]">
-                         View live site
-                       </button>
+                  <div className="flex flex-wrap items-center gap-8 justify-start">
+                     <a href="https://horizondigitalsey.com/showcase/takamaka-house" target="_blank" rel="noreferrer" className="text-sm font-bold uppercase tracking-widest text-cyan hover:text-white transition-colors underline decoration-cyan/30 underline-offset-8">
+                       View live site →
                      </a>
                      <Link to="/contact">
-                       <ShimmerButton
-                          shimmerColor="#060818"
-                          shimmerDuration="4.2s"
-                          background="#00E5FF"
-                          className="px-6 py-3 text-sm font-semibold tracking-wide text-black"
-                        >
-                          Request similar site
-                        </ShimmerButton>
+                       <button className="px-6 py-3 bg-cyan text-black text-sm font-bold rounded-[9px] hover:bg-cyan/90 transition-colors shadow-[0_0_20px_rgba(0,229,255,0.2)]">
+                         Request similar site
+                       </button>
                      </Link>
                   </div>
               </motion.div>
@@ -196,28 +182,21 @@ export default function Work() {
            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
               
               <motion.div className="lg:col-span-12 xl:col-span-5 relative z-10 flex flex-col items-start text-left" {...fadeIn}>
-                 <p className="text-xs font-semibold uppercase tracking-[0.3em] text-text mb-4 bg-text/5 inline-block px-3 py-1 rounded-[9px] border border-border">
+                 <p className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan mb-4 bg-cyan/10 inline-block px-3 py-1 rounded-[9px] border border-cyan/20">
                     Foundation Tier
                   </p>
                   <h3 className="font-display text-3xl md:text-5xl font-semibold text-text mb-6">Forma Studio</h3>
                   <p className="text-base md:text-lg text-text-muted mb-8 leading-relaxed lg:max-w-xl">
                     A clean, editorial showcase for a creative studio – designed to let their work breathe and make enquiries feel natural.
                   </p>
-                  <div className="flex flex-wrap gap-4 justify-start">
-                     <a href="https://horizondigitalsey.com/showcase/forma-studio" target="_blank" rel="noreferrer" className="inline-block hover:opacity-80 transition-opacity">
-                       <button className="px-6 py-3 border border-accent/30 bg-[#0D102D] text-sm font-semibold rounded-[9px] hover:bg-accent/10 transition-colors shadow-[0_0_15px_rgba(0,229,255,0.08)]">
-                         View live site
-                       </button>
+                  <div className="flex flex-wrap items-center gap-8 justify-start">
+                     <a href="https://horizondigitalsey.com/showcase/forma-studio" target="_blank" rel="noreferrer" className="text-sm font-bold uppercase tracking-widest text-cyan hover:text-white transition-colors underline decoration-cyan/30 underline-offset-8">
+                       View live site →
                      </a>
                      <Link to="/contact">
-                       <ShimmerButton
-                          shimmerColor="#060818"
-                          shimmerDuration="4.2s"
-                          background="#00E5FF"
-                          className="px-6 py-3 text-sm font-semibold tracking-wide text-black"
-                        >
-                          Request similar site
-                        </ShimmerButton>
+                       <button className="px-6 py-3 bg-cyan text-black text-sm font-bold rounded-[9px] hover:bg-cyan/90 transition-colors shadow-[0_0_20px_rgba(0,229,255,0.2)]">
+                         Request similar site
+                       </button>
                      </Link>
                   </div>
               </motion.div>
@@ -290,28 +269,21 @@ export default function Work() {
               </motion.div>
 
               <motion.div className="lg:col-span-12 xl:col-span-5 relative z-10 order-1 lg:order-2 flex flex-col items-start text-left" {...fadeIn} transition={{ delay: 0.2 }}>
-                 <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent mb-4 bg-accent/5 inline-block px-3 py-1 rounded-[9px] border border-accent/20">
+                 <p className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan mb-4 bg-cyan/10 inline-block px-3 py-1 rounded-[9px] border border-cyan/20">
                     Foundation Tier
                   </p>
                   <h3 className="font-display text-3xl md:text-5xl font-semibold text-text mb-6">Beauty Demo</h3>
                   <p className="text-base md:text-lg text-text-muted mb-8 leading-relaxed lg:max-w-xl">
                     A fast, focused site for a service business - clear pricing, easy contact, and a layout that turns curious visitors into real clients.
                   </p>
-                  <div className="flex flex-wrap gap-4 justify-start">
-                     <a href="https://demo-beauty.horizondigitalsey.com/" target="_blank" rel="noreferrer" className="inline-block hover:opacity-80 transition-opacity">
-                       <button className="px-6 py-3 border border-accent/30 bg-[#0D102D] text-sm font-semibold rounded-[9px] hover:bg-accent/10 transition-colors shadow-[0_0_15px_rgba(0,229,255,0.08)]">
-                         View live site
-                       </button>
+                  <div className="flex flex-wrap items-center gap-8 justify-start">
+                     <a href="https://demo-beauty.horizondigitalsey.com/" target="_blank" rel="noreferrer" className="text-sm font-bold uppercase tracking-widest text-cyan hover:text-white transition-colors underline decoration-cyan/30 underline-offset-8">
+                       View live site →
                      </a>
                      <Link to="/contact">
-                       <ShimmerButton
-                          shimmerColor="#060818"
-                          shimmerDuration="4.2s"
-                          background="#00E5FF"
-                          className="px-6 py-3 text-sm font-semibold tracking-wide text-black"
-                        >
-                          Request similar site
-                        </ShimmerButton>
+                       <button className="px-6 py-3 bg-cyan text-black text-sm font-bold rounded-[9px] hover:bg-cyan/90 transition-colors shadow-[0_0_20px_rgba(0,229,255,0.2)]">
+                         Request similar site
+                       </button>
                      </Link>
                   </div>
               </motion.div>
