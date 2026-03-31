@@ -1,3 +1,10 @@
 User-agent: *
 Allow: /
+Disallow: /admin/
+Disallow: /api/
+
 Sitemap: https://horizondigitalsey.com/sitemap.xml
+
+# Prevent snippet and image issues
+User-agent: *
+X-Robots-Tag: index, follow, max-image-preview:large, max-snippet:-1

@@ -519,7 +519,7 @@ export default function Pricing() {
         title={stabilisationPlan.title}
         description={
           <>
-            Every website we build includes <span className="text-gradient-cyan font-bold">30 days of hands-on support</span> after going live — at no extra cost.
+            Every website we build includes at least <span className="text-gradient-cyan font-bold">30 days of hands-on support</span> after going live — at no extra cost.
           </>
         }
         className={compactDesktopSection}
