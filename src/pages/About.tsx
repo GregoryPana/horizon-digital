@@ -26,7 +26,7 @@ export default function About() {
 
       {/* Section 1 — Opening: The Person, Not the Business */}
       <section className="pt-32 pb-20 md:pt-44 md:pb-32 relative">
-        <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
+        <div className="mx-auto w-full max-w-[1760px] px-6 sm:px-10 lg:px-14 xl:px-20">
           <motion.div {...fadeInUp} className="mb-12">
             <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow">WHO WE ARE</span>
             <h2 className="font-display max-w-4xl text-4xl font-semibold leading-tight tracking-tight text-white md:text-6xl">
@@ -36,22 +36,26 @@ export default function About() {
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center text-left">
             <motion.div 
-              className="lg:col-span-5 order-1 lg:order-1" 
+              className="lg:col-span-6 order-1 lg:order-1" 
               {...fadeInUp}
               transition={{ delay: 0.1 }}
             >
-              <div className="relative aspect-[4/5] rounded-3xl overflow-hidden border border-border shadow-2xl">
-                <img 
-                  src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=2070" 
-                  alt="The Horizon Digital Team" 
-                  className="w-full h-full object-cover opacity-80"
-                />
+              <div className="relative aspect-[4/5] lg:aspect-[16/10] rounded-3xl overflow-hidden border border-border shadow-2xl">
+                <picture>
+                  <source media="(min-width: 1024px)" srcSet="/studio-desktop.png" />
+                  <img 
+                    src="/studio-mobile.png" 
+                    alt="Horizon Digital Studio" 
+                    className="w-full h-full object-cover object-bottom lg:object-center opacity-80"
+                    loading="lazy"
+                  />
+                </picture>
                 <div className="absolute inset-0 bg-gradient-to-t from-bg via-transparent to-transparent opacity-40" />
               </div>
             </motion.div>
 
             <motion.div 
-              className="lg:col-span-7 order-2 lg:order-2 space-y-8"
+              className="lg:col-span-6 order-2 lg:order-2 space-y-8"
               {...fadeInUp}
               transition={{ delay: 0.2 }}
             >

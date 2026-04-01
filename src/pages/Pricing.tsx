@@ -237,6 +237,7 @@ export default function Pricing() {
         id="overview"
         className={compactDesktopSection}
         eyebrow="What we do"
+        initialAnimate={false}
         title="Websites that work for your business"
         description="Every project is built around your goals — not a template. Here's what that looks like."
       >

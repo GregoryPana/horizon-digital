@@ -9,6 +9,7 @@ type SectionProps = {
   children?: ReactNode;
   className?: string;
   containerClassName?: string;
+  initialAnimate?: boolean;
 };
 
 export default function Section({
@@ -19,8 +20,10 @@ export default function Section({
   children,
   className,
   containerClassName,
+  initialAnimate = true,
 }: SectionProps) {
   const shouldReduceMotion = useReducedMotion();
+  const skipAnimation = !initialAnimate || shouldReduceMotion;
 
   return (
     <section
@@ -30,10 +33,10 @@ export default function Section({
       <div className={`mx-auto w-full px-5 sm:px-8 ${containerClassName ?? "max-w-7xl"}`.trim()}>
         {(eyebrow || title || description) && (
           <motion.div
-            initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 24 }}
+            initial={{ opacity: skipAnimation ? 1 : 0, y: skipAnimation ? 0 : 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, amount: 0.1, margin: "0px 0px -12% 0px" }}
-            transition={{ duration: shouldReduceMotion ? 0 : 0.4, ease: "easeOut" }}
+            transition={{ duration: skipAnimation ? 0 : 0.4, ease: "easeOut" }}
             className="mb-10 text-center"
           >
             {eyebrow && (
@@ -52,10 +55,10 @@ export default function Section({
           </motion.div>
         )}
         <motion.div
-          initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 20 }}
+          initial={{ opacity: skipAnimation ? 1 : 0, y: skipAnimation ? 0 : 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.1, margin: "0px 0px -8% 0px" }}
-          transition={{ duration: shouldReduceMotion ? 0 : 0.36, ease: "easeOut" }}
+          transition={{ duration: skipAnimation ? 0 : 0.36, ease: "easeOut" }}
         >
           {children}
         </motion.div>

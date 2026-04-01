@@ -25,6 +25,7 @@ export default function Logo({ imageSrc, className, imageClassName }: LogoProps)
           width={132}
           height={40}
           className={imageClasses}
+          style={{ aspectRatio: "132 / 40" }}
         />
       ) : (
         <svg
