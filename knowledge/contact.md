@@ -1,26 +1,22 @@
-# Contacting Us
+# Contact Horizon Digital
 
-## How to get started
+**WhatsApp** (preferred): +248 260 4525 — fastest way to start a conversation
+**Email**: horizondigitalsey@gmail.com
+**Phone**: +248 260 4525
+**Contact form**: horizondigitalsey.com/contact
 
-The best way to start a conversation is by using the secure contact form on our website or starting a chat via WhatsApp. We're here for a friendly, no-pressure discussion about what your business needs.
+We reply within 24 hours. No spam. No obligation.
 
-## What helps us help you
-
-When you reach out, it's helpful if you can share a few basics:
-
+## What to share when you reach out
 - Your business name and industry
-- What you'd like your website to achieve (more bookings, clearer branding, etc.)
+- What you'd like your website to achieve
 - Any current website you have
 - Your ideal timeline
+- Approximate budget (not required — we can guide you)
 
 ## What to expect
+1. We read your message carefully
+2. We suggest the best fit for your business stage
+3. We agree on a plan that works for you
 
-We monitor enquiries closely and typically reply within 24 hours. We don't use aggressive sales tactics; we just listen to your goals and recommend the package that fits your stage of business right now.
-
-# Contact Details
-
-Email: horizondigitalsey@gmail.com
-
-Phone: +2482604525
-
-WhatsApp: +2482604525
+A short, free conversation is all it takes to get started.
