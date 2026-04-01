@@ -403,10 +403,11 @@ const Hero: React.FC<HeroProps> = ({
         }
 
         @keyframes hero-slot {
-          0%, 22% { transform: translateY(0); }
-          25%, 47% { transform: translateY(-25%); }
-          50%, 72% { transform: translateY(-50%); }
-          75%, 100% { transform: translateY(-75%); }
+          0%, 15% { transform: translate3d(0, 0, 0); }
+          20%, 35% { transform: translate3d(0, -20%, 0); }
+          40%, 55% { transform: translate3d(0, -40%, 0); }
+          60%, 75% { transform: translate3d(0, -60%, 0); }
+          80%, 100% { transform: translate3d(0, -80%, 0); }
         }
 
         @keyframes cta-gradient {
@@ -428,7 +429,7 @@ const Hero: React.FC<HeroProps> = ({
       <div className="relative z-10 flex flex-col items-center justify-start lg:justify-center flex-1 w-full pt-[16svh] lg:pt-0 lg:pb-[8vh] text-white px-6">
         
         {/* Centered Block: Eyebrow, Title, Subtitle, Tags */}
-        <div className="w-full flex flex-col items-center space-y-5 sm:space-y-8 lg:space-y-12 mb-8 sm:mb-12 lg:mb-12">
+        <div className="w-full flex flex-col items-center space-y-5 sm:space-y-8 lg:space-y-12 mb-4 sm:mb-12 lg:mb-12">
           {/* Trust Badge / Eyebrow */}
           {trustBadge && (
             <div>
@@ -450,22 +451,30 @@ const Hero: React.FC<HeroProps> = ({
             <div className="space-y-1.5 sm:space-y-3 max-w-[95vw] lg:max-w-none mx-auto flex flex-col items-center">
               {headline.lines.map((line, index) => {
                 const hasSlot = index === 0 && headline.rotatingWords && headline.rotatingWords.length > 1;
-                const suffix = hasSlot ? line.replace(headline.rotatingWords![0], '').trim() : '';
+                const rotatingWord0 = hasSlot ? headline.rotatingWords![0] : '';
+                const parts = hasSlot ? line.split(rotatingWord0) : [line];
+                const prefix = hasSlot ? parts[0].trim() : '';
+                const suffix = hasSlot ? parts[1].trim() : '';
 
                 return (
                   <h1 
                     key={index} 
-                    className="text-[clamp(2rem,9vw,3.5rem)] sm:text-5xl md:text-7xl lg:text-[6.5rem] font-bold font-display uppercase leading-[0.9] sm:leading-[0.8] lg:leading-[0.85] tracking-[0.01em] sm:tracking-[0.02em] transition-all sm:whitespace-nowrap"
+                    className="w-full text-center text-[clamp(2.4rem,11vw,4rem)] sm:text-6xl md:text-8xl lg:text-[6.5rem] font-bold font-display uppercase leading-[1.0] sm:leading-[0.85] lg:leading-[0.85] tracking-[0.01em] sm:tracking-[0.02em]"
                   >
                     {hasSlot ? (
-                      <span className="flex items-baseline justify-center gap-[0.2em]">
-                        <span className="inline-block overflow-hidden" style={{ height: '1.2em' }}>
+                      <span className="flex flex-col items-center justify-center text-center -space-y-[0.1em] sm:-space-y-[0.15em] lg:-space-y-[0.05em]">
+                        {prefix && (
+                          <span className="block w-full text-center bg-clip-text text-transparent bg-gradient-to-br from-white via-slate-100 to-slate-200">
+                            {prefix}
+                          </span>
+                        )}
+                        <span className="block w-full text-center overflow-hidden" style={{ height: '1.2em' }}>
                           <span className="block" style={{ animation: 'hero-slot 12s cubic-bezier(0.4, 0, 0.2, 1) infinite' }}>
                             {[...headline.rotatingWords!, headline.rotatingWords![0]].map((word, i) => (
                               <span 
                                 key={i} 
-                                className="block bg-clip-text text-transparent bg-gradient-to-br from-white via-slate-100 to-slate-200"
-                                style={{ height: '1.2em', lineHeight: '1.2' }}
+                                className="flex items-center justify-center text-center bg-clip-text text-transparent animate-gradient"
+                                style={{ height: '1.2em', lineHeight: '1.2', backgroundImage: 'linear-gradient(90deg, #00E5FF, #38B2F5, #0C7CC4, #00E5FF)' }}
                               >
                                 {word}
                               </span>
@@ -473,14 +482,14 @@ const Hero: React.FC<HeroProps> = ({
                           </span>
                         </span>
                         {suffix && (
-                          <span className="bg-clip-text text-transparent bg-gradient-to-br from-white via-slate-100 to-slate-200">
+                          <span className="block w-full text-center bg-clip-text text-transparent bg-gradient-to-br from-white via-slate-100 to-slate-200">
                             {suffix}
                           </span>
                         )}
                       </span>
                     ) : (
                       <span 
-                        className={`block bg-clip-text text-transparent ${index === 1 
+                        className={`block w-full text-center bg-clip-text text-transparent ${index === 1 
                           ? 'animate-gradient' 
                           : 'bg-gradient-to-br from-white via-slate-100 to-slate-200'
                         }`}
@@ -520,7 +529,7 @@ const Hero: React.FC<HeroProps> = ({
           
         {/* CTA Buttons - Natural flow below content */}
         {buttons && (
-          <div className="mt-8 sm:mt-0 flex flex-col sm:flex-row gap-3 sm:gap-5 justify-center items-center w-full px-6 relative z-20">
+          <div className="mt-4 sm:mt-0 flex flex-col sm:flex-row gap-3 sm:gap-5 justify-center items-center w-full px-6 relative z-20">
             {buttons.primary && (
               <Link 
                 to={buttons.primary.link || '#'}

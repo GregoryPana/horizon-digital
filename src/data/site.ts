@@ -119,7 +119,7 @@ export const foundationPackage = {
   title: "Foundation",
   price: "From SCR 7,500",
   description:
-    "A clean, professional website with everything you need to get started — and nothing you don't. Right for businesses going online for the first time or replacing something outdated.",
+    "A professional custom website with everything you need to get started — no templates, just your business online.",
   includes: [
     "Up to 3 clear pages",
     "Professionally designed layout built for your business",
@@ -135,8 +135,7 @@ export const foundationPackage = {
 export const starterPackage = {
   title: "Starter",
   price: "From SCR 12,500",
-  description:
-    "For businesses that want to stand out properly — more pages, more depth, and a site that reflects the full picture of what you offer.",
+  description: "A custom design made just for you",
   includes: [
     "Up to 5-6 custom pages",
     "Works perfectly on every phone your customers use",
@@ -151,7 +150,7 @@ export const growthPackage = {
   title: "Growth",
   price: "From SCR 25,000",
   description:
-    "For businesses that are ready to go further — more pages, more depth, and a site that genuinely reflects the scale of what you offer.",
+    "A custom-built website for businesses scaling up — more depth, more pages, and a professional digital presence.",
   includes: [
     "Up to 10-12 custom tailored pages",
     "Works perfectly on every phone your customers use",

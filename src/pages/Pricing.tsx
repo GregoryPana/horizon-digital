@@ -164,12 +164,12 @@ export default function Pricing() {
 
   return (
     <div>
-      <h1 className="sr-only">Website Design Services and Packages</h1>
+      <h1 className="sr-only">Custom Website Design Services and Packages</h1>
       <Seo
-        title="Website Packages & Pricing in Seychelles | Horizon Digital"
+        title="Custom Website Packages & Pricing in Seychelles | Horizon Digital"
         description="Clear website packages for Seychelles businesses — Foundation, Starter, and Growth. Honest SCR pricing, custom design, and everything your business needs to get found online."
         path="/services-pricing"
-        keywords="website packages Seychelles, web design pricing Seychelles, website services Seychelles"
+        keywords="custom website packages Seychelles, custom web design pricing Seychelles, bespoke website development Seychelles, tailored web solutions Seychelles"
         structuredData={[serviceSchema, faqSchema]}
       />
       {passedSectionIds.length > 0 && (

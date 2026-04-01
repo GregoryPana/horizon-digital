@@ -16,12 +16,12 @@ export default function About() {
 
   return (
     <div className="overflow-hidden">
-      <h1 className="sr-only">About Horizon Digital</h1>
+      <h1 className="sr-only">About Horizon Digital - Custom Website Design studio</h1>
       <Seo
-        title="About Horizon Digital | Web Design Studio in Seychelles"
-        description="Horizon Digital is a Seychelles web design studio helping local businesses build beautiful, fast websites that attract customers and grow online."
+        title="Custom Website Design Studio Seychelles | About Horizon Digital"
+        description="Horizon Digital is a local studio specialized in custom website design for Seychelles businesses. We build beautiful, fast websites that actually bring customers."
         path="/about"
-        keywords="about Horizon Digital, web design studio Seychelles, website designer Seychelles, local web design"
+        keywords="about Horizon Digital, custom web design studio Seychelles, bespoke website designer Seychelles, custom web development"
       />
 
       {/* Section 1 — Opening: The Person, Not the Business */}

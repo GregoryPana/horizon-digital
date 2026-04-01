@@ -310,25 +310,75 @@ export default function Home() {
     mainEntityOfPage: new URL("/", siteConfig.url).toString(),
   };
 
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Custom Web Development",
+    "provider": {
+      "@type": "ProfessionalService",
+      "name": siteConfig.name,
+      "url": siteConfig.url,
+      "email": siteConfig.email,
+      "telephone": siteConfig.phone,
+      "image": new URL("/og-image.png", siteConfig.url).toString(),
+      "priceRange": "SCR 7,500 - SCR 25,000+",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": siteConfig.location,
+        "addressCountry": "SC"
+      }
+    },
+    "description": "Expert custom web design and development services in Seychelles, focusing on speed, mobile-readiness, and SEO optimization.",
+    "areaServed": {
+      "@type": "Country",
+      "name": "Seychelles"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Web Design Packages",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Foundation Package"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Starter Package"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Growth Package"
+          }
+        }
+      ]
+    }
+  };
+
   return (
     <div className="bg-[#0A0A0C] text-white">
       <Seo
-        title="Website Design Seychelles - Fast Business Websites"
-        description="Custom websites for Seychelles businesses. Clear design, fast performance, and structured packages. Start your website project with Horizon Digital."
+        title="Custom Website Design Seychelles | Horizon Digital"
+        description="Custom-built websites for Seychelles businesses. Professional web design & development — no templates, just results. Fast, mobile-ready, SEO-optimized from day one."
         path="/"
-        keywords="website design Seychelles, business websites Seychelles, web design packages Seychelles"
-        structuredData={faqSchema}
+        keywords="custom website Seychelles, custom web design Seychelles, custom web development Seychelles, website design Seychelles, bespoke websites Seychelles"
+        structuredData={[faqSchema, serviceSchema]}
       />
 
       <Hero
         trustBadge={{ text: "Web Design Studio • Seychelles" }}
         headline={{
           lines: [
-            "STUNNING WEBSITES",
-            "TO BRING YOU",
-            "CUSTOMERS"
+            "CUSTOM STUNNING WEBSITES"
           ],
-          rotatingWords: ["STUNNING", "BEAUTIFUL", "CUSTOM"]
+          rotatingWords: ["STUNNING", "PROFESSIONAL", "FAST", "MOBILE-READY"]
         }}
         subtitle="A website that looks great, loads fast, and brings in real customers."
         tags={[

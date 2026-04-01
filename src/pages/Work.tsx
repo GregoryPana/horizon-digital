@@ -38,12 +38,12 @@ export default function Work() {
 
   return (
     <div className="overflow-hidden">
-      <h1 className="sr-only">Website Design Portfolio Horizon Digital</h1>
+      <h1 className="sr-only">Custom Website Design Portfolio Horizon Digital</h1>
       <Seo
-        title="Our Work | Website Design Portfolio Seychelles"
+        title="Custom Website Portfolio Seychelles | Horizon Digital"
         description="Explore the Horizon Digital website portfolio. We build custom websites designed to communicate clearly, perform fast, and support real business needs in Seychelles."
         path="/work"
-        keywords="website design portfolio Seychelles, web design examples Seychelles, real business websites, fast web templates"
+        keywords="custom website portfolio Seychelles, bespoke web design examples Seychelles, custom-built business websites Seychelles, tailored web development showcase"
       />
 
       {/* Hero Header */}
@@ -51,10 +51,10 @@ export default function Work() {
         <motion.div {...fadeIn} className="mb-8 text-center">
           <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow">Real work, real businesses</span>
           <h2 className="font-display mx-auto max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl">
-            Websites we've built with care
+            Custom websites we've built with care
           </h2>
           <p className="mx-auto mt-4 max-w-3xl text-lg text-text-muted md:text-2xl font-light leading-relaxed">
-            Every site you see here was built for a real business, with real goals. Take a look and imagine what we could do for yours.
+            Every site you see here was built for a real business, with real goals. Take a look and imagine what we could do with our custom approach for yours.
           </p>
         </motion.div>
       </section>

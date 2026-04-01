@@ -80,12 +80,12 @@ Looking forward to your reply.`;
 
   return (
     <div>
-      <h1 className="sr-only">Contact Horizon Digital</h1>
+      <h1 className="sr-only">Contact Horizon Digital - Start Your Custom Website Project</h1>
       <Seo
-        title="Start Your Website Project"
-        description="Tell us about your business and the type of website you would like to build."
+        title="Start Your Custom Website Project in Seychelles | Horizon Digital"
+        description="Tell us about your business goals and start your custom website project with Horizon Digital today."
         path="/contact"
-        keywords="contact web designer Seychelles, start website project Seychelles"
+        keywords="contact custom web designer Seychelles, start custom website project Seychelles, bespoke web solutions"
       />
       <Section
         eyebrow="Get in touch"

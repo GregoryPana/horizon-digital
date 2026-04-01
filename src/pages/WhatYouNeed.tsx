@@ -56,12 +56,12 @@ export default function WhatYouNeed() {
 
   return (
     <div className="overflow-hidden">
-      <h1 className="sr-only">What Website Does Your Business Need?</h1>
+      <h1 className="sr-only">What Custom Website Does Your Business Need?</h1>
       <Seo
-        title="What Does a Website Actually Involve? | Horizon Digital"
-        description="A plain-English guide for Seychelles business owners — what a domain, build, and hosting actually mean, what type of website suits your business, and how to get started with Horizon Digital."
+        title="Choosing the Right Custom Website | Horizon Digital"
+        description="A guide to understanding custom website options for your Seychelles business. Learn about domains, hosting, and finding the perfect custom web solution."
         path="/what-you-need"
-        keywords="what website do I need, business website types Seychelles, website package guidance, web design hosting"
+        keywords="what custom website do I need, bespoke business website types Seychelles, custom web design guidance"
         structuredData={serviceSchema}
       />
 
