@@ -406,15 +406,15 @@ body::after {
 @keyframes hd-type-text {
   0%,
   10% {
-    width: 0;
+    clip-path: inset(0 100% 0 0);
   }
   30%,
   60% {
-    width: 100%;
+    clip-path: inset(0 0 0 0);
   }
   80%,
   100% {
-    width: 0;
+    clip-path: inset(0 100% 0 0);
   }
 }
 

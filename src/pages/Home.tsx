@@ -15,7 +15,7 @@ import {
   workItems,
 } from "../data/site";
 import Hero from "../components/ui/animated-shader-hero";
-import drakeHeroBg from "../assets/work/drake-seaside/hero-bg.jpg";
+import drakeHeroBg from "../assets/work/drake-seaside/hero-bg.webp";
 
 const homeFaqCategories: HomeFaqCategory[] = [
   {
@@ -373,7 +373,7 @@ export default function Home() {
       />
 
       <Hero
-        trustBadge={{ text: "Web Design Studio • Seychelles" }}
+        trustBadge={{ text: "Custom Web Design Studio • Seychelles" }}
         headline={{
           lines: [
             "CUSTOM STUNNING WEBSITES"
@@ -418,7 +418,7 @@ export default function Home() {
         }}
       />
 
-      <section className="relative z-20 bg-[#0A0A0C] py-28 md:py-32">
+      <section className="relative z-20 bg-[#0A0A0C] py-20 md:py-32">
         <div className="mx-auto max-w-7xl px-6">
           <motion.div
             initial={shouldReduceMotion ? undefined : { opacity: 0, y: 24 }}
@@ -500,7 +500,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="relative z-20 overflow-hidden border-y border-[#1a2c33] bg-[#0d1a1f] py-6">
+      <section className="relative z-20 hidden sm:block overflow-hidden border-y border-[#1a2c33] bg-[#0d1a1f] py-6">
         <div className="hd-marquee-track flex items-center gap-20 whitespace-nowrap text-[11px] font-medium uppercase tracking-[0.3em] text-[#8fa7b4]">
           {[...marqueeItems, ...marqueeItems].map((item, i) => (
             <span key={`${item}-${i}`} className="inline-flex items-center gap-20">
@@ -511,7 +511,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="services" className="relative z-20 bg-[#0A0A0C] py-28 md:py-32">
+      <section id="services" className="relative z-20 bg-[#0A0A0C] py-20 md:py-32">
         <div className="mx-auto max-w-7xl px-6">
           <div className="mb-20 text-center">
             <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow">Our Services</span>

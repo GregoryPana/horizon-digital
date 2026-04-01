@@ -42,10 +42,10 @@ export default function About() {
             >
               <div className="relative aspect-[4/5] lg:aspect-[16/10] rounded-3xl overflow-hidden border border-border shadow-2xl">
                 <picture>
-                  <source media="(min-width: 1024px)" srcSet="/studio-desktop.png" />
+                  <source media="(min-width: 1024px)" srcSet="/studio-desktop.webp" />
                   <img 
-                    src="/studio-mobile.png" 
-                    alt="Horizon Digital Studio" 
+                    src="/studio-mobile.webp" 
+                    alt="Our professional studio at Eden Island" 
                     className="w-full h-full object-cover object-bottom lg:object-center opacity-80"
                     loading="lazy"
                   />

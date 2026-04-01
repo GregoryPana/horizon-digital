@@ -322,6 +322,7 @@ export default function ChatWidget() {
             setIsOpen(!isOpen);
             setShouldPrompt(false);
           }}
+          aria-label={isOpen ? "Close chat assistant" : "Open chat assistant"}
           className="relative flex h-12 w-12 md:h-[4.5rem] md:w-[4.5rem] items-center justify-center rounded-full bg-accent text-[#080C11] shadow-[0_0_20px_rgba(56,189,248,0.4)] shadow-accent/30 transition-shadow hover:shadow-[0_0_25px_rgba(56,189,248,0.6)]"
         >
           {isOpen ? <X className="w-5 h-5 md:w-7 md:h-7" /> : <MessageSquare className="w-5 h-5 md:w-7 md:h-7" />}

@@ -1,5 +1,5 @@
 import { siteConfig } from "../data/site";
-import primaryLogo from "../assets/logo/svg logo (1).png";
+import primaryLogo from "../assets/logo/logo.webp";
 
 type LogoProps = {
   imageSrc?: string;
@@ -22,10 +22,13 @@ export default function Logo({ imageSrc, className, imageClassName }: LogoProps)
         <img
           src={src}
           alt={`${siteConfig.name} logo`}
-          width={132}
+          width={60}
           height={40}
           className={imageClasses}
-          style={{ aspectRatio: "132 / 40" }}
+          fetchPriority="high"
+          decoding="sync"
+          loading="eager"
+          style={{ aspectRatio: "60 / 40" }}
         />
       ) : (
         <svg

@@ -290,24 +290,28 @@ void main(){gl_Position=position;}`;
 
     const canvas = canvasRef.current;
     const dpr = Math.max(1, 0.5 * window.devicePixelRatio);
-    
-    rendererRef.current = new WebGLRenderer(canvas, dpr);
-    pointersRef.current = new PointerHandler(canvas, dpr);
-    
-    rendererRef.current.setup();
-    rendererRef.current.init();
-    
-    resize();
-    
-    if (rendererRef.current.test(defaultShaderSource) === null) {
-      rendererRef.current.updateShader(defaultShaderSource);
-    }
-    
-    loop(0);
+
+    // Defer initialization to allow the text to paint first (better LCP)
+    const initTimer = setTimeout(() => {
+      rendererRef.current = new WebGLRenderer(canvas, dpr);
+      pointersRef.current = new PointerHandler(canvas, dpr);
+      
+      rendererRef.current.setup();
+      rendererRef.current.init();
+      
+      resize();
+      
+      if (rendererRef.current.test(defaultShaderSource) === null) {
+        rendererRef.current.updateShader(defaultShaderSource);
+      }
+      
+      loop(0);
+    }, 200);
     
     window.addEventListener('resize', resize);
     
     return () => {
+      clearTimeout(initTimer);
       window.removeEventListener('resize', resize);
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
@@ -429,7 +433,7 @@ const Hero: React.FC<HeroProps> = ({
       <div className="relative z-10 flex flex-col items-center justify-start lg:justify-center flex-1 w-full pt-[16svh] lg:pt-0 lg:pb-[8vh] text-white px-6">
         
         {/* Centered Block: Eyebrow, Title, Subtitle, Tags */}
-        <div className="w-full flex flex-col items-center space-y-5 sm:space-y-8 lg:space-y-12 mb-4 sm:mb-12 lg:mb-12">
+        <div className="w-full flex flex-col items-center space-y-5 sm:space-y-8 lg:space-y-12 mb-4 sm:mb-12 lg:mb-28">
           {/* Trust Badge / Eyebrow */}
           {trustBadge && (
             <div>
@@ -554,7 +558,7 @@ const Hero: React.FC<HeroProps> = ({
         )}
 
         {/* Scroll Indicator - Absolute anchored correctly */}
-        <div className="absolute inset-x-0 bottom-8 animate-bounce opacity-60 hidden sm:flex flex-col items-center justify-end pointer-events-none">
+        <div className="absolute inset-x-0 bottom-20 animate-bounce opacity-60 flex flex-col items-center justify-end pointer-events-none scale-90 sm:scale-100">
            <span className="text-[10px] uppercase tracking-[0.2em] text-cyan/70 font-semibold mb-2">Scroll To Explore</span>
            <svg className="w-5 h-5 text-cyan/70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />

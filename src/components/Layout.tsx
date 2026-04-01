@@ -26,16 +26,22 @@ export default function Layout({ children }: LayoutProps) {
     if (!header) return;
 
     const syncHeaderHeight = () => {
-      setHeaderHeight(Math.ceil(header.getBoundingClientRect().height));
+      // Use requestAnimationFrame to ensure we read layout after the browser is ready
+      window.requestAnimationFrame(() => {
+        const height = Math.ceil(header.getBoundingClientRect().height);
+        setHeaderHeight(height);
+      });
     };
 
-    syncHeaderHeight();
+    // Initial sync after a short delay to avoid blocking LCP
+    const initialSync = setTimeout(syncHeaderHeight, 100);
 
     const resizeObserver = new ResizeObserver(() => syncHeaderHeight());
     resizeObserver.observe(header);
     window.addEventListener("resize", syncHeaderHeight);
 
     return () => {
+      clearTimeout(initialSync);
       resizeObserver.disconnect();
       window.removeEventListener("resize", syncHeaderHeight);
     };
