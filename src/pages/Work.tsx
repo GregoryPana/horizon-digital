@@ -185,7 +185,7 @@ export default function Work() {
                   </p>
                   <div className="flex flex-wrap items-center gap-8 justify-start">
                      <a 
-                       href="https://takamakahouse.com" 
+                       href="https://horizondigitalsey.com/showcase/takamaka-house" 
                        target="_blank" 
                        rel="noreferrer" 
                        className="text-sm font-bold uppercase tracking-widest text-cyan hover:text-white transition-colors underline decoration-cyan/30 underline-offset-8"
@@ -235,7 +235,7 @@ export default function Work() {
                   </p>
                   <div className="flex flex-wrap items-center gap-8 justify-start">
                      <a 
-                       href="https://formastudio.sc" 
+                       href="https://horizondigitalsey.com/showcase/forma-studio" 
                        target="_blank" 
                        rel="noreferrer" 
                        className="text-sm font-bold uppercase tracking-widest text-cyan hover:text-white transition-colors underline decoration-cyan/30 underline-offset-8"

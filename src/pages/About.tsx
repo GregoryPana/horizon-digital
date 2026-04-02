@@ -237,19 +237,19 @@ export default function About() {
                   name: "Drake Seaside Apartments",
                   tier: "GROWTH TIER",
                   outcome: "Complete redesign with faster loading, updated content, and a structure built to convert visitors into bookings.",
-                  url: "https://drakeseaside.com"
+                  url: "https://thedrake-seaside.com/"
                 },
                 {
                   name: "Takamaka House",
                   tier: "FOUNDATION TIER",
                   outcome: "A calm, immersive site designed to make guests feel the experience before they even arrive.",
-                  url: "https://takamakahouse.com"
+                  url: "https://horizondigitalsey.com/showcase/takamaka-house"
                 },
                 {
                   name: "Forma Studio",
                   tier: "FOUNDATION TIER",
                   outcome: "A clean editorial showcase letting the work speak — with a layout that makes enquiries feel natural.",
-                  url: "https://formastudio.sc"
+                  url: "https://horizondigitalsey.com/showcase/forma-studio"
                 }
               ].map((project, i) => (
                 <motion.div 
