@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { trackEvent } from "../lib/analytics";
+
 import Seo from "../components/Seo";
 import Section from "../components/Section";
 import Card from "../components/Card";
@@ -58,10 +60,17 @@ export default function Insights() {
                 <Link
                   to={`/insights/${article.slug}`}
                   className="text-sm font-semibold uppercase tracking-[0.12em] text-accent transition hover:text-accent-2"
+                  onClick={() =>
+                    trackEvent("cta_click", {
+                      cta_name: `insight_article_read_${article.slug.replace(/-/g, "_")}`,
+                      page_path: window.location.pathname,
+                    })
+                  }
                 >
                   Read article
                 </Link>
               </div>
+
             </Card>
           ))}
         </div>

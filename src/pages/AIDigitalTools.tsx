@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { trackEvent } from "../lib/analytics";
+
 import { useEffect, useState } from "react";
 import Section from "../components/Section";
 import Seo from "../components/Seo";
@@ -81,7 +83,15 @@ export default function AIDigitalTools() {
         title="Plain talk about AI and digital tools"
         description="We cut through the noise so you can understand what's worth paying attention to — and what can wait."
         actions={
-          <Link to="/insights">
+          <Link 
+            to="/insights"
+            onClick={() =>
+              trackEvent("cta_click", {
+                cta_name: "ai_digital_tools_hero_explore_insights",
+                page_path: window.location.pathname,
+              })
+            }
+          >
             <ShimmerButton
               shimmerColor="rgba(0, 229, 255, 0.65)"
               shimmerDuration="4.2s"
@@ -91,6 +101,7 @@ export default function AIDigitalTools() {
               Explore Digital Insights
             </ShimmerButton>
           </Link>
+
         }
       />
 
@@ -177,7 +188,15 @@ export default function AIDigitalTools() {
             that may shape the future of businesses in Seychelles.
           </p>
           <div className="mt-6 flex justify-center">
-            <Link to="/insights">
+            <Link 
+              to="/insights"
+              onClick={() =>
+                trackEvent("cta_click", {
+                  cta_name: "ai_digital_tools_bottom_read_insights",
+                  page_path: window.location.pathname,
+                })
+              }
+            >
               <ShimmerButton
                 shimmerColor="rgba(0, 229, 255, 0.65)"
                 shimmerDuration="4.2s"
@@ -187,6 +206,7 @@ export default function AIDigitalTools() {
                 Read Our Insights
               </ShimmerButton>
             </Link>
+
           </div>
         </Card>
       </Section>

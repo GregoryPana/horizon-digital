@@ -2,6 +2,8 @@ import { motion, useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
 import Seo from "../components/Seo";
 import { ShimmerButton } from "../components/ui/shimmer-button";
+import { trackEvent } from "../lib/analytics";
+
 
 // Image Imports
 import drakeMain from "../assets/work/drake-seaside/drake-seaside.png";
@@ -73,14 +75,35 @@ export default function Work() {
                     A complete redesign with new pages, faster loading, and a layout that turns visitors into bookings.
                   </p>
                   <div className="flex flex-wrap items-center gap-8 justify-start">
-                     <a href="https://thedrake-seaside.com/" target="_blank" rel="noreferrer" className="text-sm font-bold uppercase tracking-widest text-cyan hover:text-white transition-colors underline decoration-cyan/30 underline-offset-8">
+                     <a 
+                       href="https://thedrake-seaside.com/" 
+                       target="_blank" 
+                       rel="noreferrer" 
+                       className="text-sm font-bold uppercase tracking-widest text-cyan hover:text-white transition-colors underline decoration-cyan/30 underline-offset-8"
+                       onClick={() =>
+                         trackEvent("cta_click", {
+                           cta_name: "work_view_live_drake_seaside",
+                           page_path: window.location.pathname,
+                         })
+                       }
+                     >
                        View live site →
                      </a>
-                     <Link to="/contact">
+
+                     <Link 
+                       to="/contact"
+                       onClick={() =>
+                         trackEvent("cta_click", {
+                           cta_name: "work_request_similar_drake_seaside",
+                           page_path: window.location.pathname,
+                         })
+                       }
+                     >
                        <button className="px-6 py-3 bg-cyan text-black text-sm font-bold rounded-[9px] hover:bg-cyan/90 transition-colors shadow-[0_0_20px_rgba(0,229,255,0.2)]">
                          Request similar site
                        </button>
                      </Link>
+
                   </div>
               </motion.div>
 
@@ -161,14 +184,35 @@ export default function Work() {
                     A calm, immersive site designed to let the beauty of Takamaka House do the talking – and make guests excited to book before they even arrive.
                   </p>
                   <div className="flex flex-wrap items-center gap-8 justify-start">
-                     <a href="https://horizondigitalsey.com/showcase/takamaka-house" target="_blank" rel="noreferrer" className="text-sm font-bold uppercase tracking-widest text-cyan hover:text-white transition-colors underline decoration-cyan/30 underline-offset-8">
+                     <a 
+                       href="https://horizondigitalsey.com/showcase/takamaka-house" 
+                       target="_blank" 
+                       rel="noreferrer" 
+                       className="text-sm font-bold uppercase tracking-widest text-cyan hover:text-white transition-colors underline decoration-cyan/30 underline-offset-8"
+                       onClick={() =>
+                         trackEvent("cta_click", {
+                           cta_name: "work_view_live_takamaka_house",
+                           page_path: window.location.pathname,
+                         })
+                       }
+                     >
                        View live site →
                      </a>
-                     <Link to="/contact">
+
+                     <Link 
+                       to="/contact"
+                       onClick={() =>
+                         trackEvent("cta_click", {
+                           cta_name: "work_request_similar_takamaka_house",
+                           page_path: window.location.pathname,
+                         })
+                       }
+                     >
                        <button className="px-6 py-3 bg-cyan text-black text-sm font-bold rounded-[9px] hover:bg-cyan/90 transition-colors shadow-[0_0_20px_rgba(0,229,255,0.2)]">
                          Request similar site
                        </button>
                      </Link>
+
                   </div>
               </motion.div>
 
@@ -190,14 +234,35 @@ export default function Work() {
                     A clean, editorial showcase for a creative studio – designed to let their work breathe and make enquiries feel natural.
                   </p>
                   <div className="flex flex-wrap items-center gap-8 justify-start">
-                     <a href="https://horizondigitalsey.com/showcase/forma-studio" target="_blank" rel="noreferrer" className="text-sm font-bold uppercase tracking-widest text-cyan hover:text-white transition-colors underline decoration-cyan/30 underline-offset-8">
+                     <a 
+                       href="https://horizondigitalsey.com/showcase/forma-studio" 
+                       target="_blank" 
+                       rel="noreferrer" 
+                       className="text-sm font-bold uppercase tracking-widest text-cyan hover:text-white transition-colors underline decoration-cyan/30 underline-offset-8"
+                       onClick={() =>
+                         trackEvent("cta_click", {
+                           cta_name: "work_view_live_forma_studio",
+                           page_path: window.location.pathname,
+                         })
+                       }
+                     >
                        View live site →
                      </a>
-                     <Link to="/contact">
+
+                     <Link 
+                       to="/contact"
+                       onClick={() =>
+                         trackEvent("cta_click", {
+                           cta_name: "work_request_similar_forma_studio",
+                           page_path: window.location.pathname,
+                         })
+                       }
+                     >
                        <button className="px-6 py-3 bg-cyan text-black text-sm font-bold rounded-[9px] hover:bg-cyan/90 transition-colors shadow-[0_0_20px_rgba(0,229,255,0.2)]">
                          Request similar site
                        </button>
                      </Link>
+
                   </div>
               </motion.div>
 
@@ -277,14 +342,35 @@ export default function Work() {
                     A fast, focused site for a service business - clear pricing, easy contact, and a layout that turns curious visitors into real clients.
                   </p>
                   <div className="flex flex-wrap items-center gap-8 justify-start">
-                     <a href="https://demo-beauty.horizondigitalsey.com/" target="_blank" rel="noreferrer" className="text-sm font-bold uppercase tracking-widest text-cyan hover:text-white transition-colors underline decoration-cyan/30 underline-offset-8">
+                     <a 
+                       href="https://demo-beauty.horizondigitalsey.com/" 
+                       target="_blank" 
+                       rel="noreferrer" 
+                       className="text-sm font-bold uppercase tracking-widest text-cyan hover:text-white transition-colors underline decoration-cyan/30 underline-offset-8"
+                       onClick={() =>
+                         trackEvent("cta_click", {
+                           cta_name: "work_view_live_beauty_demo",
+                           page_path: window.location.pathname,
+                         })
+                       }
+                     >
                        View live site →
                      </a>
-                     <Link to="/contact">
+
+                     <Link 
+                       to="/contact"
+                       onClick={() =>
+                         trackEvent("cta_click", {
+                           cta_name: "work_request_similar_beauty_demo",
+                           page_path: window.location.pathname,
+                         })
+                       }
+                     >
                        <button className="px-6 py-3 bg-cyan text-black text-sm font-bold rounded-[9px] hover:bg-cyan/90 transition-colors shadow-[0_0_20px_rgba(0,229,255,0.2)]">
                          Request similar site
                        </button>
                      </Link>
+
                   </div>
               </motion.div>
 
@@ -304,7 +390,16 @@ export default function Work() {
             <p className="text-lg md:text-xl text-text-muted mb-12 font-light">
               We build every site to look great, load fast, and feel natural to use — on any device, at any time.
             </p>
-            <Link to="/contact" className="inline-block hover:-translate-y-1 transition-transform duration-300">
+            <Link 
+              to="/contact" 
+              className="inline-block hover:-translate-y-1 transition-transform duration-300"
+              onClick={() =>
+                trackEvent("cta_click", {
+                  cta_name: "work_start_project",
+                  page_path: window.location.pathname,
+                })
+              }
+            >
               <ShimmerButton
                 shimmerColor="#060818"
                 shimmerDuration="4.2s"
@@ -314,6 +409,7 @@ export default function Work() {
                 Start your project
               </ShimmerButton>
             </Link>
+
           </motion.div>
         </div>
       </section>

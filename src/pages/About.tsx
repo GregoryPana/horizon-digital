@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { MessageCircle, ExternalLink } from "lucide-react";
 import Seo from "../components/Seo";
 import { siteConfig } from "../data/site";
+import { trackEvent } from "../lib/analytics";
+
 
 export default function About() {
   const shouldReduceMotion = useReducedMotion();
@@ -270,6 +272,12 @@ export default function About() {
                      target="_blank" 
                      rel="noreferrer" 
                      className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-cyan hover:text-white transition-colors"
+                     onClick={() =>
+                       trackEvent("cta_click", {
+                         cta_name: `about_view_site_${project.name.toLowerCase().replace(/\s+/g, "_")}`,
+                         page_path: window.location.pathname,
+                       })
+                     }
                    >
                      View site <ExternalLink className="w-3 h-3" />
                    </a>
@@ -326,7 +334,14 @@ export default function About() {
                   target="_blank" 
                   rel="noreferrer"
                   className="w-full max-w-md group"
+                  onClick={() =>
+                    trackEvent("cta_click", {
+                      cta_name: "about_whatsapp_chat",
+                      page_path: window.location.pathname,
+                    })
+                  }
                 >
+
                   <motion.button 
                     className="w-full py-5 rounded-full bg-gradient-to-r from-[#00E5FF] via-[#38B2F5] to-[#00E5FF] bg-[length:200%_auto] text-black font-black tracking-widest uppercase text-sm shadow-[0_0_20px_rgba(0,229,255,0.4)]"
                     animate={{ backgroundPosition: ["0% center", "200% center"] }}
@@ -342,9 +357,16 @@ export default function About() {
                 <Link 
                   to="/contact" 
                   className="text-sm font-bold uppercase tracking-widest text-cyan hover:text-white transition-colors underline decoration-cyan/30 underline-offset-8"
+                  onClick={() =>
+                    trackEvent("cta_click", {
+                      cta_name: "about_contact_form_link",
+                      page_path: window.location.pathname,
+                    })
+                  }
                 >
                   Or fill in the contact form →
                 </Link>
+
              </div>
            </motion.div>
         </div>

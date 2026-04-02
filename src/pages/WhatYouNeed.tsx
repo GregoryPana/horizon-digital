@@ -5,6 +5,8 @@ import { MessageSquare, Navigation, Layout, MessageCircle, Briefcase, ShoppingBa
 import Seo from "../components/Seo";
 import { ScenarioIcon } from "../components/ui/symbol-icons";
 import { siteConfig } from "../data/site";
+import { trackEvent } from "../lib/analytics";
+
 
 export default function WhatYouNeed() {
   const shouldReduceMotion = useReducedMotion();
@@ -359,7 +361,16 @@ export default function WhatYouNeed() {
              <p className="text-base md:text-lg text-text-muted/80 mb-12 max-w-2xl mx-auto">
                Before we begin, it helps to have a few things ready — your list of services or products, your contact details, any logo or branding you already have, and links to your social media if you use them. <span className="text-gradient-cyan font-bold">Don't worry</span> if you're missing some of these. We'll tell you exactly what we need and help you get it together.
              </p>
-             <Link to="/contact" className="w-full max-w-md mx-auto block hover:scale-[1.02] transition-transform duration-300">
+              <Link 
+                to="/contact" 
+                className="w-full max-w-md mx-auto block hover:scale-[1.02] transition-transform duration-300"
+                onClick={() =>
+                  trackEvent("cta_click", {
+                    cta_name: "what_you_need_start_conversation",
+                    page_path: window.location.pathname,
+                  })
+                }
+              >
                 <motion.button 
                   className="w-full py-4 rounded-full bg-gradient-to-r from-[#00E5FF] via-[#38B2F5] to-[#00E5FF] bg-[length:200%_auto] text-black font-bold tracking-wider uppercase text-sm shadow-[0_0_20px_rgba(0,229,255,0.4)]"
                   animate={{ backgroundPosition: ["0% center", "200% center"] }}

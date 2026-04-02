@@ -19,6 +19,8 @@ import {
 import { ShimmerButton } from "../components/ui/shimmer-button";
 import { Link, useLocation } from "react-router-dom";
 import MenuVertical from "../components/ui/menu-vertical";
+import { trackEvent } from "../lib/analytics";
+
 
 const pricingSectionLinks = [
   { id: "overview", label: "Overview" },
@@ -327,12 +329,22 @@ export default function Pricing() {
               </ul>
 
               <div className="mt-auto pt-6">
-                <Link to="/contact?budget=7500-12500" className="w-full">
+                <Link 
+                  to="/contact?budget=7500-12500" 
+                  className="w-full"
+                  onClick={() =>
+                    trackEvent("cta_click", {
+                      cta_name: "pricing_foundation_get_started",
+                      page_path: window.location.pathname,
+                    })
+                  }
+                >
                   <button className="w-full py-3 rounded-full border border-cyan/40 hover:bg-text/5 font-semibold text-sm transition-colors text-text">
                     Get Started →
                   </button>
                 </Link>
               </div>
+
             </motion.div>
 
             {/* Starter (Featured) */}
@@ -360,7 +372,16 @@ export default function Pricing() {
               </ul>
 
               <div className="mt-auto pt-6">
-                <Link to="/contact?budget=12500-25000" className="w-full">
+                <Link 
+                  to="/contact?budget=12500-25000" 
+                  className="w-full"
+                  onClick={() =>
+                    trackEvent("cta_click", {
+                      cta_name: "pricing_starter_get_started",
+                      page_path: window.location.pathname,
+                    })
+                  }
+                >
                   <button 
                     className="w-full px-8 py-4 text-black rounded-full font-black uppercase tracking-[0.2em] text-xs transition-all duration-300 hover:scale-[1.02] hover:brightness-110 active:scale-95 shadow-[0_0_40px_rgba(0,229,255,0.5)] text-center flex items-center justify-center cta-gradient-anim"
                     style={{ backgroundImage: 'linear-gradient(90deg, #00E5FF, #38B2F5, #0C7CC4, #00E5FF)', backgroundSize: '300% 100%' }}
@@ -369,6 +390,7 @@ export default function Pricing() {
                   </button>
                 </Link>
               </div>
+
             </motion.div>
 
             {/* Growth */}
@@ -395,12 +417,22 @@ export default function Pricing() {
               </ul>
 
               <div className="mt-auto pt-6">
-                <Link to="/contact?budget=25000-plus" className="w-full">
+                <Link 
+                  to="/contact?budget=25000-plus" 
+                  className="w-full"
+                  onClick={() =>
+                    trackEvent("cta_click", {
+                      cta_name: "pricing_growth_get_started",
+                      page_path: window.location.pathname,
+                    })
+                  }
+                >
                   <button className="w-full py-3 rounded-full border border-cyan/40 hover:bg-text/5 font-semibold text-sm transition-colors text-text">
                     Get Started →
                   </button>
                 </Link>
               </div>
+
             </motion.div>
           </div>
 
@@ -411,7 +443,15 @@ export default function Pricing() {
               <h3 className="text-xl font-semibold text-text">{customPackage.title}</h3>
               <p className="mt-4 text-sm text-text-muted">{customPackage.description}</p>
               <div className="mt-8 flex justify-center">
-                <Link to="/contact">
+                <Link 
+                  to="/contact"
+                  onClick={() =>
+                    trackEvent("cta_click", {
+                      cta_name: "pricing_custom_scope_request",
+                      page_path: window.location.pathname,
+                    })
+                  }
+                >
                   <ShimmerButton
                     shimmerColor="#0A0A0C"
                     shimmerDuration="4.2s"
@@ -422,6 +462,7 @@ export default function Pricing() {
                   </ShimmerButton>
                 </Link>
               </div>
+
             </div>
           </div>
         </div>
@@ -464,7 +505,15 @@ export default function Pricing() {
                 </p>
                 <p className="min-h-[1.25rem] text-sm text-text-muted">{hostingPlan.billing}</p>
                 <div className="mt-10 flex justify-center">
-                  <Link to="/contact">
+                  <Link 
+                    to="/contact"
+                    onClick={() =>
+                      trackEvent("cta_click", {
+                        cta_name: "pricing_hosting_get_started",
+                        page_path: window.location.pathname,
+                      })
+                    }
+                  >
                     <ShimmerButton
                       shimmerColor="#0A0A0C"
                       shimmerDuration="4.2s"
@@ -475,6 +524,7 @@ export default function Pricing() {
                     </ShimmerButton>
                   </Link>
                 </div>
+
               </div>
               <div className="md:px-10">
                 <ul className="space-y-4 text-base text-text-muted">
@@ -564,9 +614,19 @@ export default function Pricing() {
           <p className="max-w-4xl mx-auto text-base md:text-lg leading-relaxed text-text-muted">
             Your website being beautiful is only half the job. The other half is making sure people can actually find it. We set up every site so <span className="text-gradient-cyan font-bold">Google understands what your business does</span>, where you are, and who it should show your site to. That means when someone in Seychelles searches for what you offer, your site has a real chance of appearing — not buried on page five where nobody looks.
           </p>
-          <Link to="/contact" className="mt-8 block text-lg font-medium text-accent max-w-2xl mx-auto border-t border-accent/20 pt-8 hover:text-accent-2 transition-colors">
+          <Link 
+            to="/contact" 
+            className="mt-8 block text-lg font-medium text-accent max-w-2xl mx-auto border-t border-accent/20 pt-8 hover:text-accent-2 transition-colors"
+            onClick={() =>
+              trackEvent("cta_click", {
+                cta_name: "pricing_visibility_ready_link",
+                page_path: window.location.pathname,
+              })
+            }
+          >
             Ready to have a website that both looks great and gets found? Let's build it →
           </Link>
+
         </div>
       </Section>
 
@@ -594,7 +654,16 @@ export default function Pricing() {
               Not sure which package fits? We'll help you figure it out.
            </h2>
           <div className="flex justify-center">
-            <Link to="/contact" className="w-full sm:w-auto">
+            <Link 
+              to="/contact" 
+              className="w-full sm:w-auto"
+              onClick={() =>
+                trackEvent("cta_click", {
+                  cta_name: "pricing_bottom_book_consult",
+                  page_path: window.location.pathname,
+                })
+              }
+            >
               <button 
                 className="px-8 py-4 sm:px-12 sm:py-5 text-black rounded-full font-black uppercase tracking-[0.2em] text-xs sm:text-sm transition-all duration-300 hover:scale-[1.02] hover:brightness-110 active:scale-95 shadow-[0_0_40px_rgba(0,229,255,0.5)] text-center flex items-center justify-center w-full sm:w-auto sm:min-w-[280px] cta-gradient-anim"
                 style={{ backgroundImage: 'linear-gradient(90deg, #00E5FF, #38B2F5, #0C7CC4, #00E5FF)', backgroundSize: '300% 100%' }}
@@ -603,6 +672,7 @@ export default function Pricing() {
               </button>
             </Link>
           </div>
+
         </div>
       </section>
     </div>
