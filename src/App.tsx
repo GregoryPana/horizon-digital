@@ -1,6 +1,7 @@
 import { Suspense, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
+import AnalyticsListener from "./components/AnalyticsListener";
 
 const Home = lazy(() => import("./pages/Home"));
 const WhatYouNeed = lazy(() => import("./pages/WhatYouNeed"));
@@ -18,6 +19,7 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 export default function App() {
   return (
     <Layout>
+      <AnalyticsListener />
       <Suspense
         fallback={
           <div className="mx-auto flex min-h-[70svh] w-full max-w-7xl items-start px-8 py-24 text-sm text-text-muted">

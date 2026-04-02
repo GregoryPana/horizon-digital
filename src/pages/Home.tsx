@@ -5,6 +5,8 @@ import HomeFaq, { type HomeFaqCategory } from "../components/ui/home-faq";
 import { ShimmerButton } from "../components/ui/shimmer-button";
 import { Link } from "react-router-dom";
 import { scrollToTopSmooth } from "../lib/utils";
+import { trackEvent } from "../lib/analytics";
+
 import {
   foundationPackage,
   starterPackage,
@@ -228,7 +230,14 @@ function WorkShowcase() {
                         target="_blank"
                         rel="noreferrer"
                         className="group flex flex-1 items-center justify-center rounded-lg border border-cyan/40 bg-transparent px-8 py-3.5 text-[10px] font-black uppercase tracking-[0.2em] text-cyan transition-all hover:border-cyan hover:bg-cyan/5 md:flex-none md:text-[11px]"
+                        onClick={() =>
+                          trackEvent("cta_click", {
+                            cta_name: `explore_project_${project.title.toLowerCase().replace(/\s+/g, "_")}`,
+                            page_path: window.location.pathname,
+                          })
+                        }
                       >
+
                         <span className="whitespace-nowrap">Explore Project</span>
                         <span className="ml-2 inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
                       </a>
@@ -408,14 +417,26 @@ export default function Home() {
         buttons={{
           primary: {
             text: "Get Started",
-            link: "/contact"
+            link: "/contact",
+            onClick: () =>
+              trackEvent("cta_click", {
+                cta_name: "hero_get_started",
+                page_path: window.location.pathname,
+              }),
           },
           secondary: {
             text: "View Our Work",
             link: "/work",
-            onClick: handleWorkScrollTop
-          }
+            onClick: () => {
+              trackEvent("cta_click", {
+                cta_name: "hero_view_work",
+                page_path: window.location.pathname,
+              });
+              handleWorkScrollTop();
+            },
+          },
         }}
+
       />
 
       <section className="relative z-20 bg-[#0A0A0C] py-20 md:py-32">
@@ -784,14 +805,23 @@ export default function Home() {
 
                 <div className="mt-auto pt-6 border-t border-white/[0.05]">
                   <Link to="/contact" className="block w-full">
-                    <button className={`w-full py-5 rounded-xl text-[11px] font-black uppercase tracking-[0.2em] transition-all transform active:scale-95 ${
-                      pkg.featured
-                        ? "bg-cyan text-[#0A0A0C] hover:bg-cyan/90 border border-transparent shadow-[0_0_24px_rgba(0,229,255,0.4)]"
-                        : "bg-white/[0.03] border border-cyan/25 text-cyan hover:bg-white/[0.06] hover:!border-[#00e5ff] hover:text-[#00e5ff]"
-                    }`}>
+                    <button
+                      className={`w-full py-5 rounded-xl text-[11px] font-black uppercase tracking-[0.2em] transition-all transform active:scale-95 ${
+                        pkg.featured
+                          ? "bg-cyan text-[#0A0A0C] hover:bg-cyan/90 border border-transparent shadow-[0_0_24px_rgba(0,229,255,0.4)]"
+                          : "bg-white/[0.03] border border-cyan/25 text-cyan hover:bg-white/[0.06] hover:!border-[#00e5ff] hover:text-[#00e5ff]"
+                      }`}
+                      onClick={() =>
+                        trackEvent("cta_click", {
+                          cta_name: `package_get_started_${pkg.title.toLowerCase()}`,
+                          page_path: window.location.pathname,
+                        })
+                      }
+                    >
                       Get Started
                     </button>
                   </Link>
+
                 </div>
               </motion.div>
             ))}
