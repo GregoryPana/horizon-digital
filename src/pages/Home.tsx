@@ -17,7 +17,7 @@ import {
   workItems,
 } from "../data/site";
 import Hero from "../components/ui/animated-shader-hero";
-import drakeHeroBg from "../assets/work/drake-seaside/hero-bg.webp";
+
 
 const homeFaqCategories: HomeFaqCategory[] = [
   {
@@ -178,10 +178,7 @@ function WorkShowcase() {
     []
   );
 
-  const getWorkBackdrop = (index: number, fallback: string) => {
-    if (index === 0) return drakeHeroBg;
-    return fallback;
-  };
+
 
   return (
     <section id="work" className="relative overflow-hidden bg-[#0A0A0C]">
@@ -200,10 +197,12 @@ function WorkShowcase() {
           <div className="sticky top-0 flex h-screen items-center overflow-hidden">
             <div className="absolute inset-0 z-0">
               <img
-                src={getWorkBackdrop(idx, project.image)}
+                src={idx === 0 ? project.imageWebp : project.imageWebp800}
                 alt={project.title}
+                width="600"
+                height="400"
                 className="h-full w-full scale-[1.08] object-cover opacity-66"
-                loading="lazy"
+                loading={idx === 0 ? "eager" : "lazy"}
                 decoding="async"
               />
               <div className="absolute inset-0 bg-gradient-to-b from-[#0A0A0C] via-transparent to-[#0A0A0C]" />
@@ -564,7 +563,7 @@ export default function Home() {
                     <div className="-mt-8 mb-2 w-full text-center"><span className="text-xs font-bold uppercase tracking-widest text-cyan">After</span></div>
                     <div className="mt-2 flex h-6 w-1/3 items-center rounded bg-cyan/20 px-2"><div className="h-2 w-2 rounded-full bg-cyan" /></div>
                     <div className="relative flex-1 overflow-hidden rounded border border-white/5 bg-gradient-to-br from-[#0A0A0C] to-[#1A1A1C]">
-                      <img src={workItems[0]?.imageWebp} alt="Service visual" width="600" height="400" className="absolute inset-0 h-full w-full object-cover opacity-50" />
+                      <img src={workItems[0]?.imageWebp800} alt="Service visual" width="348" height="182" className="absolute inset-0 h-full w-full object-cover opacity-50" loading="lazy" decoding="async" />
                     </div>
                     <div className="flex h-12 gap-4">
                       <div className="w-1/2 rounded bg-white/5" />

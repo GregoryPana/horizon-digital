@@ -37,7 +37,7 @@ export default function Navbar() {
         >
           <Logo
             className="items-center gap-2"
-            imageClassName="h-8 w-auto rounded-sm object-contain md:h-9"
+            imageClassName="h-8 w-[48px] rounded-sm object-contain md:h-9 md:w-[54px]"
           />
           <span className="brand-name ml-2 whitespace-nowrap text-[11px] sm:text-xs uppercase tracking-[0.12em] text-accent text-left">
             Horizon Digital

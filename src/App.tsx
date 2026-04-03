@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
 import AnalyticsListener from "./components/AnalyticsListener";
 
-const Home = lazy(() => import("./pages/Home"));
+import Home from "./pages/Home";
 const WhatYouNeed = lazy(() => import("./pages/WhatYouNeed"));
 const Pricing = lazy(() => import("./pages/Pricing"));
 const Work = lazy(() => import("./pages/Work"));

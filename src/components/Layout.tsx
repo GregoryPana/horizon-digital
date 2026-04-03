@@ -210,7 +210,7 @@ export default function Layout({ children }: LayoutProps) {
         tabIndex={-1}
         ref={mainRef}
         className="flex-1 pb-[env(safe-area-inset-bottom)] min-h-[70vh]"
-        style={{ paddingTop: isHomeRoute || isShowcaseRoute ? "0px" : `${headerHeight}px` }}
+        style={{ paddingTop: isHomeRoute || isShowcaseRoute ? "0px" : "var(--header-height, 88px)" }}
       >
         {children}
       </main>

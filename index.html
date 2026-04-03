@@ -34,18 +34,15 @@
       content="Custom-built websites for Seychelles businesses. Beautiful design, fast performance, and built to turn visitors into customers. Get a free quote today."
     />
     <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z79X024S87"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-
-      gtag("config", "G-Z79X024S87", {
-        send_page_view: false,
-      });
+      (function(w,d,v,i){
+        w.dataLayer=w.dataLayer||[]; w.gtag=function(){w.dataLayer.push(arguments)};
+        function loadGTM(){
+          var j=d.createElement('script'); j.async=true; j.src='https://www.googletagmanager.com/gtag/js?id='+i;
+          d.head.appendChild(j); w.gtag('js',new Date()); w.gtag('config',i,{'send_page_view':false});
+        }
+        w.addEventListener('load',function(){setTimeout(loadGTM,1500)});
+      })(window,document,'dataLayer','G-Z79X024S87');
     </script>
   </head>
   <body class="bg-bg text-text">

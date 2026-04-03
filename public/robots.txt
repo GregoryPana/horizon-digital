@@ -7,4 +7,4 @@ Sitemap: https://horizondigitalsey.com/sitemap.xml
 
 # Prevent snippet and image issues
 User-agent: *
-X-Robots-Tag: index, follow, max-image-preview:large, max-snippet:-1
+# Snippets and images are handled via meta tags in index.html

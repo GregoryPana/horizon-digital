@@ -22,8 +22,8 @@ export default function Logo({ imageSrc, className, imageClassName }: LogoProps)
         <img
           src={src}
           alt={`${siteConfig.name} logo`}
-          width={60}
-          height={40}
+          width={54}
+          height={36}
           className={imageClasses}
           fetchPriority="high"
           decoding="sync"
