@@ -41,7 +41,8 @@
           var j=d.createElement('script'); j.async=true; j.src='https://www.googletagmanager.com/gtag/js?id='+i;
           d.head.appendChild(j); w.gtag('js',new Date()); w.gtag('config',i,{'send_page_view':false});
         }
-        w.addEventListener('load',function(){setTimeout(loadGTM,1500)});
+        const delay = window.innerWidth < 768 ? 3500 : 1500;
+        w.addEventListener('load',function(){setTimeout(loadGTM, delay)});
       })(window,document,'dataLayer','G-Z79X024S87');
     </script>
   </head>

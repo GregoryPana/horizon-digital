@@ -55,15 +55,27 @@ export default function Layout({ children }: LayoutProps) {
     let mutationObserver: MutationObserver | null = null;
     let setupTimer: number | null = null;
 
-    const updateGlow = () => {
-      frameId = null;
-      const viewportCenter = window.innerHeight / 2;
+    const cardPositions = new Map<HTMLElement, number>();
 
+    const updateCachedPositions = () => {
       activeCards.forEach((card) => {
         const rect = card.getBoundingClientRect();
-        const cardCenter = rect.top + rect.height / 2;
+        const cardCenter = window.scrollY + rect.top + rect.height / 2;
+        cardPositions.set(card, cardCenter);
+      });
+    };
+
+    const updateGlow = () => {
+      frameId = null;
+      const viewportCenter = window.scrollY + window.innerHeight / 2;
+
+      activeCards.forEach((card) => {
+        const cardCenter = cardPositions.get(card);
+        if (cardCenter === undefined) return;
+
         const distance = Math.abs(cardCenter - viewportCenter);
-        const maxDistance = viewportCenter + rect.height / 2;
+        // Approximate height for normalization if not cached
+        const maxDistance = window.innerHeight / 2 + 100; 
         const intensity = Math.max(0, 1 - distance / maxDistance) ** 1.55;
 
         card.style.setProperty("--glow-strength", intensity.toString());
@@ -77,9 +89,7 @@ export default function Layout({ children }: LayoutProps) {
     const initObserver = () => {
       if (cancelled) return;
       const cards = Array.from(document.querySelectorAll<HTMLElement>(".scroll-glow"));
-      if (!cards.length) {
-        return;
-      }
+      if (!cards.length) return;
 
       observer = new IntersectionObserver(
         (entries) => {
@@ -88,22 +98,30 @@ export default function Layout({ children }: LayoutProps) {
             if (entry.isIntersecting) {
               target.classList.add("is-inview");
               activeCards.add(target);
+              // Cache position immediately on entry
+              const rect = target.getBoundingClientRect();
+              cardPositions.set(target, window.scrollY + rect.top + rect.height / 2);
             } else {
               target.classList.remove("is-inview");
               target.style.setProperty("--glow-strength", "0");
               activeCards.delete(target);
+              cardPositions.delete(target);
             }
           });
           scheduleUpdate();
         },
-        { threshold: 0.15 }
+        { threshold: 0.1 }
       );
 
       cards.forEach((card) => observer?.observe(card));
-      updateGlow();
+
+      const handleResize = () => {
+        updateCachedPositions();
+        scheduleUpdate();
+      };
 
       window.addEventListener("scroll", scheduleUpdate, { passive: true });
-      window.addEventListener("resize", scheduleUpdate);
+      window.addEventListener("resize", handleResize, { passive: true });
     };
 
     setupTimer = window.setTimeout(() => {
@@ -116,7 +134,7 @@ export default function Layout({ children }: LayoutProps) {
         });
         mutationObserver.observe(mainRef.current, { childList: true, subtree: true });
       }
-    }, 160);
+    }, 200);
 
     return () => {
       cancelled = true;
@@ -124,7 +142,7 @@ export default function Layout({ children }: LayoutProps) {
       mutationObserver?.disconnect();
       observer?.disconnect();
       window.removeEventListener("scroll", scheduleUpdate);
-      window.removeEventListener("resize", scheduleUpdate);
+      window.removeEventListener("resize", updateCachedPositions);
       if (frameId !== null) window.cancelAnimationFrame(frameId);
     };
   }, [location.pathname]);

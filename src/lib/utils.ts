@@ -14,7 +14,4 @@ export function scrollToTopSmooth() {
   window.requestAnimationFrame(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   });
-  window.setTimeout(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-  }, 250);
 }
