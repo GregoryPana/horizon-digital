@@ -3,7 +3,6 @@ import Card from "../components/Card";
 import Section from "../components/Section";
 import Seo from "../components/Seo";
 import { emailTemplate, siteConfig } from "../data/site";
-import { ShimmerButton } from "../components/ui/shimmer-button";
 import { buildMailtoLink } from "../lib/utils";
 import { useLocation } from "react-router-dom";
 import { trackEvent } from "../lib/analytics";
@@ -217,7 +216,7 @@ Looking forward to your reply.`;
             </p>
           </Card>
           <Card className="min-w-0 order-first lg:order-last">
-            <span className="mb-6 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow">Contact Horizon Digital</span>
+            <span className="mb-6 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">Contact Horizon Digital</span>
             
             <a
               href={siteConfig.whatsappUrl}
@@ -245,7 +244,7 @@ Looking forward to your reply.`;
 
             <div className="space-y-5">
               <a
-                className="flex items-center gap-4 break-all text-lg font-semibold text-text transition hover:text-accent group"
+                className="flex items-center gap-4 break-all text-lg font-semibold text-text transition hover:text-cyan group"
                 href={mailtoHref}
                 onClick={() =>
                   trackEvent("cta_click", {
@@ -255,7 +254,7 @@ Looking forward to your reply.`;
                 }
               >
 
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-white/[0.05] bg-white/[0.03] text-text-muted transition-colors group-hover:bg-accent/10 group-hover:text-accent">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-white/[0.05] bg-white/[0.03] text-text-muted transition-colors group-hover:bg-cyan/10 group-hover:text-cyan">
                   <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
@@ -263,7 +262,7 @@ Looking forward to your reply.`;
                 <span>{siteConfig.email}</span>
               </a>
               <a
-                className="flex items-center gap-4 text-lg font-semibold text-text transition hover:text-accent group"
+                className="flex items-center gap-4 text-lg font-semibold text-text transition hover:text-cyan group"
                 href={`tel:${siteConfig.phone.replace(/\s+/g, "")}`}
                 onClick={() =>
                   trackEvent("cta_click", {
@@ -273,7 +272,7 @@ Looking forward to your reply.`;
                 }
               >
 
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-white/[0.05] bg-white/[0.03] text-text-muted transition-colors group-hover:bg-accent/10 group-hover:text-accent">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-white/[0.05] bg-white/[0.03] text-text-muted transition-colors group-hover:bg-cyan/10 group-hover:text-cyan">
                   <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
@@ -283,33 +282,31 @@ Looking forward to your reply.`;
             </div>
 
             <div className="mt-10 rounded-2xl border border-border bg-bg-panel p-5">
-              <p className="text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent-2">What happens next</p>
+              <p className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">What happens next</p>
               <ul className="mt-4 space-y-2.5 text-sm text-text-muted">
                 <li className="flex items-center gap-2">
-                  <span className="h-1 w-1 rounded-full bg-accent-2" />
+                  <span className="h-1 w-1 rounded-full bg-deep-teal" />
                   We reply within 24 hours — usually sooner
                 </li>
                 <li className="flex items-center gap-2">
-                  <span className="h-1 w-1 rounded-full bg-accent-2" />
+                  <span className="h-1 w-1 rounded-full bg-deep-teal" />
                   We read your message carefully
                 </li>
                 <li className="flex items-center gap-2">
-                  <span className="h-1 w-1 rounded-full bg-accent-2" />
+                  <span className="h-1 w-1 rounded-full bg-deep-teal" />
                   We suggest the best fit for your stage
                 </li>
                 <li className="flex items-center gap-2">
-                  <span className="h-1 w-1 rounded-full bg-accent-2" />
+                  <span className="h-1 w-1 rounded-full bg-deep-teal" />
                   We agree on a plan that works for you
                 </li>
               </ul>
             </div>
 
             <div className="mt-8">
-              <ShimmerButton
-                shimmerColor="#0A0A0C"
-                shimmerDuration="4.2s"
-                background="#00E5FF"
-                className="w-full px-8 py-4 text-sm font-bold uppercase tracking-[0.1em] text-black sm:w-auto"
+              <button 
+                className="w-full px-8 py-4 text-black rounded-full font-black uppercase tracking-[0.2em] text-sm transition-all duration-300 hover:scale-[1.02] hover:brightness-110 active:scale-95 shadow-[0_0_40px_rgba(0,229,255,0.5)] text-center flex items-center justify-center sm:w-auto sm:min-w-[240px] cta-gradient-anim"
+                style={{ backgroundImage: 'linear-gradient(90deg, #00E5FF, #38B2F5, #0C7CC4, #00E5FF)', backgroundSize: '300% 100%' }}
                 type="button"
                 onClick={() => {
                   trackEvent("cta_click", {
@@ -319,9 +316,8 @@ Looking forward to your reply.`;
                   window.location.href = mailtoHref;
                 }}
               >
-
                 Book a free consult
-              </ShimmerButton>
+              </button>
             </div>
           </Card>
         </div>

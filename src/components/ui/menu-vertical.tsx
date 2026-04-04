@@ -16,7 +16,7 @@ export default function MenuVertical({
   menuItems,
   activeId,
   onSelect,
-  color = "var(--accent)",
+  color = "var(--deep-teal)",
 }: MenuVerticalProps) {
   return (
     <nav aria-label="Section menu" className="hidden xl:block">
@@ -36,8 +36,8 @@ export default function MenuVertical({
                   onClick={() => onSelect(item.id)}
                   className={`menu-vertical-btn group focus-ring flex w-full items-center gap-2 rounded-xl px-3 py-2.5 text-left text-[0.69rem] font-semibold uppercase tracking-[0.13em] transition ${
                     isActive
-                      ? "menu-vertical-btn-active bg-accent-soft text-accent"
-                      : "text-text-muted hover:bg-accent-soft/50 hover:text-text"
+                      ? "menu-vertical-btn-active bg-deep-teal/10 text-deep-teal"
+                      : "text-text-muted hover:bg-deep-teal/5 hover:text-text"
                   }`.trim()}
                   whileHover={{ x: 2 }}
                   transition={{ duration: 0.18, ease: "easeOut" }}

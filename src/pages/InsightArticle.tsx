@@ -12,7 +12,7 @@ export default function InsightArticle() {
 
   if (!article) {
     return (
-      <div>
+      <div className="insights-theme-shell">
         <Seo
           title="Insight Not Found"
           description="The requested insight article could not be found."
@@ -20,7 +20,7 @@ export default function InsightArticle() {
           robots="noindex,follow"
         />
         <Section eyebrow="Insights" title="Article not found" description="Please return to the insights list.">
-          <Link to="/insights" className="text-sm font-semibold uppercase tracking-[0.12em] text-accent">
+          <Link to="/insights" className="text-sm font-semibold uppercase tracking-[0.12em] text-cyan hover:text-white">
             Back to insights
           </Link>
         </Section>
@@ -53,7 +53,7 @@ export default function InsightArticle() {
   };
 
   return (
-    <div>
+    <div className="insights-theme-shell">
       <Seo
         title={article.seoTitle}
         description={article.metaDescription}
@@ -97,11 +97,18 @@ export default function InsightArticle() {
 
           <div className="mt-8 horizon-line" />
           <div className="mt-6 flex items-center justify-between">
-            <Link to="/insights" className="text-sm font-semibold uppercase tracking-[0.12em] text-accent">
+            <Link 
+              to="/insights" 
+              className="cta-gradient-anim relative z-10 flex items-center justify-center rounded-full px-8 py-3 text-xs font-black uppercase tracking-[0.2em] text-[#0a0a0a] shadow-[0_0_20px_rgba(0,229,255,0.4)] transition-all hover:scale-105 active:scale-95"
+              style={{ backgroundImage: 'linear-gradient(90deg, #00E5FF, #A5F3FC, #FFFFFF, #00E5FF)', backgroundSize: '300% 100%' }}
+            >
               Back to insights
             </Link>
-            <Link to="/ai-digital-tools" className="text-sm font-semibold uppercase tracking-[0.12em] text-accent">
-              AI & Digital Tools page
+            <Link 
+              to="/ai-digital-tools" 
+              className="text-[10px] items-center justify-center rounded-full border border-cyan/40 px-8 py-3 font-black uppercase tracking-[0.2em] text-cyan transition hover:bg-cyan/10"
+            >
+              Related Tools
             </Link>
           </div>
         </Card>

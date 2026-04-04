@@ -13,6 +13,7 @@ module.exports = {
         "accent-2": "var(--accent-2)",
         "accent-soft": "var(--accent-soft)",
         "accent-2-soft": "var(--accent-2-soft)",
+        "deep-teal": "var(--deep-teal)",
         border: "var(--border)",
         "glow": "var(--glow)",
         cyan: "#00E5FF",
@@ -26,7 +27,7 @@ module.exports = {
       },
       fontFamily: {
         sans: ["Switzer", "Inter Variable", "Inter Fallback", "Inter", "Segoe UI", "Helvetica Neue", "Arial", "sans-serif"],
-        display: ["Poppins", "Gambarino", "Sora Variable", "Sora", "Segoe UI", "Helvetica Neue", "Arial", "sans-serif"],
+        display: ["Outfit", "Gambarino", "Sora Variable", "Sora", "Segoe UI", "Helvetica Neue", "Arial", "sans-serif"],
       },
       backgroundImage: {
         "horizon": "linear-gradient(90deg, transparent, var(--accent), var(--accent-2), transparent)",

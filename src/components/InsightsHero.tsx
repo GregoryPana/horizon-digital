@@ -12,15 +12,9 @@ type InsightsHeroProps = {
 export default function InsightsHero({ eyebrow, title, description, actions }: InsightsHeroProps) {
   return (
     <LampContainer className="border-b border-border/70">
-      <motion.p
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false, amount: 0.4 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        className="text-center text-xs font-semibold uppercase tracking-[0.34em] text-accent-2"
-      >
+      <p className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow text-center">
         {eyebrow}
-      </motion.p>
+      </p>
 
       <motion.h1
         initial={{ opacity: 0, y: 28 }}

@@ -110,7 +110,7 @@ function WorkShowcaseCard({ item, index, shouldReduceMotion, onPreview, layoutCl
 
         {/* Text Details Overlay */}
         <div className={`absolute inset-x-0 bottom-0 z-20 p-8 md:p-10 lg:p-12 transform transition-all duration-700 ease-out ${isExpanded ? "translate-y-0" : "translate-y-[125px] md:translate-y-[135px] md:group-hover:translate-y-0"}`}>
-          <p className="text-[0.72rem] font-bold uppercase tracking-[0.42em] text-accent mb-2 drop-shadow-md">
+          <p className="text-[0.72rem] font-bold uppercase tracking-[0.42em] text-deep-teal mb-2 drop-shadow-md">
             {item.label}
           </p>
           <h3 className="text-2xl font-semibold leading-tight text-white md:text-3xl lg:text-4xl font-display tracking-tight mb-5 drop-shadow-md">
@@ -133,9 +133,9 @@ function WorkShowcaseCard({ item, index, shouldReduceMotion, onPreview, layoutCl
                 target="_blank"
                 rel="noreferrer"
                 onClick={(e) => e.stopPropagation()}
-                className="inline-flex items-center gap-2 text-[10.5px] font-black uppercase tracking-[0.25em] text-accent transition-colors hover:text-white"
+                className="inline-flex items-center gap-2 text-[10.5px] font-black uppercase tracking-[0.25em] text-cyan transition-colors hover:text-white"
               >
-                <span className="border-b border-accent/30 pb-0.5">View Project</span>
+                <span className="border-b border-cyan/30 pb-0.5">View Project</span>
                 <span className="text-xl leading-none">→</span>
               </a>
             ) : (
@@ -145,9 +145,9 @@ function WorkShowcaseCard({ item, index, shouldReduceMotion, onPreview, layoutCl
                   e.stopPropagation();
                   onPreview(item);
                 }}
-                className="inline-flex items-center gap-2 text-[10.5px] font-black uppercase tracking-[0.25em] text-accent transition-colors hover:text-white"
+                className="inline-flex items-center gap-2 text-[10.5px] font-black uppercase tracking-[0.25em] text-cyan transition-colors hover:text-white"
               >
-                <span className="border-b border-accent/30 pb-0.5">View Project</span>
+                <span className="border-b border-cyan/30 pb-0.5">View Project</span>
                 <span className="text-xl leading-none">→</span>
               </button>
             )}

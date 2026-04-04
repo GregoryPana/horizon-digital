@@ -52,7 +52,7 @@ export function LampContainer({ children, className }: LampContainerProps) {
         <div className="absolute left-1/2 top-[37%] h-px w-[30rem] -translate-x-1/2 bg-accent-2/70" />
       </div>
 
-      <div className="relative z-10 mx-auto w-full max-w-6xl px-5 pb-12 pt-28 sm:px-8 md:pt-32">{children}</div>
+      <div className="relative z-10 mx-auto w-full max-w-6xl px-5 pb-32 pt-28 sm:px-8 md:pb-52 md:pt-32">{children}</div>
     </div>
   );
 }

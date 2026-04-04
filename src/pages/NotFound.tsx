@@ -10,7 +10,7 @@ export default function NotFound() {
         path="/404"
         robots="noindex,follow"
       />
-      <p className="mb-4 text-[11px] font-bold uppercase tracking-[0.3em] text-accent">404</p>
+      <p className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">404</p>
       <h1 className="font-display text-4xl font-semibold text-white md:text-5xl">Page not found</h1>
       <p className="mt-4 max-w-xl text-sm text-text-muted md:text-base">
         The link may be outdated or the page may have moved.

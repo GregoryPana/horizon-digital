@@ -9,7 +9,7 @@ import InsightsHero from "../components/InsightsHero";
 
 export default function Insights() {
   return (
-    <div>
+    <div className="insights-theme-shell">
       <Seo
         title="Digital Insights for Businesses in Seychelles"
         description="Educational articles from Horizon Digital on AI, automation, analytics, and digital trends relevant to businesses in Seychelles."
@@ -30,9 +30,7 @@ export default function Insights() {
       >
         <div className="grid gap-6 md:grid-cols-2">
           <Card className="no-scroll-glow border-dashed text-center flex flex-col justify-center items-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-accent-2">
-              All Insights
-            </p>
+            <p className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">All Insights</p>
             <h2 className="mt-4 text-xl font-semibold text-text">Monthly AI updates are coming</h2>
             <p className="mt-3 text-sm text-text-muted">
               We will publish monthly updates with practical AI news, plus simple tips and tricks
@@ -59,7 +57,8 @@ export default function Insights() {
               <div className="mt-5 flex justify-center">
                 <Link
                   to={`/insights/${article.slug}`}
-                  className="text-sm font-semibold uppercase tracking-[0.12em] text-accent transition hover:text-accent-2"
+                  className="cta-gradient-anim relative z-10 flex items-center justify-center rounded-full px-8 py-3 text-xs font-black uppercase tracking-[0.2em] text-[#0a0a0a] shadow-[0_0_20px_rgba(0,229,255,0.4)] transition-all hover:scale-105 active:scale-95"
+                  style={{ backgroundImage: 'linear-gradient(90deg, #00E5FF, #A5F3FC, #FFFFFF, #00E5FF)', backgroundSize: '300% 100%' }}
                   onClick={() =>
                     trackEvent("cta_click", {
                       cta_name: `insight_article_read_${article.slug.replace(/-/g, "_")}`,

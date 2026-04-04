@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import Section from "../components/Section";
 import Seo from "../components/Seo";
 import Card from "../components/Card";
-import { ShimmerButton } from "../components/ui/shimmer-button";
+
 import InsightsHero from "../components/InsightsHero";
 import MenuVertical from "../components/ui/menu-vertical";
 
@@ -70,7 +70,7 @@ export default function AIDigitalTools() {
   }, []);
 
   return (
-    <div>
+    <div className="insights-theme-shell">
       <Seo
         title="Artificial Intelligence & Digital Tools for Businesses in Seychelles"
         description="Learn how artificial intelligence, automation, and digital tools are beginning to shape businesses in Seychelles. Horizon Digital shares insights into emerging technologies and how they may benefit local companies."
@@ -92,14 +92,9 @@ export default function AIDigitalTools() {
               })
             }
           >
-            <ShimmerButton
-              shimmerColor="rgba(0, 229, 255, 0.65)"
-              shimmerDuration="4.2s"
-              background="#00E5FF"
-              className="px-6 py-2.5 text-sm font-semibold text-black"
-            >
+            <button className="cta-gradient-anim rounded-full px-10 py-5 text-sm font-black uppercase tracking-widest text-[#0a0a0a] shadow-[0_0_20px_rgba(0,229,255,0.3)] transition-all hover:scale-105 active:scale-95">
               Explore Digital Insights
-            </ShimmerButton>
+            </button>
           </Link>
 
         }
@@ -158,7 +153,7 @@ export default function AIDigitalTools() {
         <div className="grid gap-6 md:grid-cols-2">
           {technologyCards.map((card) => (
             <Card key={card.title} className="no-scroll-glow">
-              <h3 className="text-lg font-semibold text-accent-2">{card.title}</h3>
+              <h3 className="text-lg font-semibold text-deep-teal">{card.title}</h3>
               <p className="mt-3 text-sm text-text-muted">{card.text}</p>
             </Card>
           ))}
@@ -197,14 +192,9 @@ export default function AIDigitalTools() {
                 })
               }
             >
-              <ShimmerButton
-                shimmerColor="rgba(0, 229, 255, 0.65)"
-                shimmerDuration="4.2s"
-                background="#00E5FF"
-                className="px-6 py-2.5 text-sm font-semibold text-black"
-              >
+              <button className="cta-gradient-anim rounded-full px-10 py-5 text-sm font-black uppercase tracking-widest text-[#0a0a0a] shadow-[0_0_20px_rgba(0,229,255,0.3)] transition-all hover:scale-105 active:scale-95">
                 Read Our Insights
-              </ShimmerButton>
+              </button>
             </Link>
 
           </div>

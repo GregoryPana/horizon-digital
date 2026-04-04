@@ -51,7 +51,7 @@ export const Timeline = ({
       {showHeader && (eyebrow || title || description) && (
         <div className="mx-auto max-w-7xl px-4 py-16 md:px-8 lg:px-10">
           {eyebrow && (
-            <p className="text-xs uppercase tracking-[0.4em] text-accent">{eyebrow}</p>
+            <p className="text-xs uppercase tracking-[0.4em] text-deep-teal">{eyebrow}</p>
           )}
           {title && (
             <h2 className="mt-3 text-2xl font-semibold text-text md:text-4xl">{title}</h2>

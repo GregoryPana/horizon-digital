@@ -41,7 +41,7 @@ export default function HomeHero() {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow mb-6 motion-safe-gpu"
+              className="text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow mb-6 motion-safe-gpu"
             >
               Web Design Studio • Seychelles
             </motion.p>

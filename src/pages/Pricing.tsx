@@ -181,7 +181,7 @@ export default function Pricing() {
             onClick={() => setIsRailOpen((prev) => !prev)}
             aria-label={isRailOpen ? "Close section jump rail" : "Open section jump rail"}
             aria-expanded={isRailOpen}
-            className="jump-rail-toggle focus-ring h-12 w-[18px] rounded-r-full border border-l-0 border-accent/40 bg-bg-elev/95 text-base leading-none text-accent shadow-[0_8px_24px_rgba(2,8,12,0.32)]"
+            className="jump-rail-toggle focus-ring h-12 w-[18px] rounded-r-full border border-l-0 border-deep-teal/40 bg-bg-elev/95 text-base leading-none text-deep-teal shadow-[0_8px_24px_rgba(2,8,12,0.32)]"
           >
             {isRailOpen ? "‹" : "›"}
           </button>
@@ -213,7 +213,7 @@ export default function Pricing() {
                             ?.scrollIntoView({ behavior: "smooth", block: "start" });
                           setIsRailOpen(false);
                         }}
-                        className="jump-rail-item focus-ring rounded-full border border-accent/35 bg-accent-soft px-2.5 py-1 text-[0.62rem] uppercase tracking-[0.14em] text-accent"
+                        className="jump-rail-item focus-ring rounded-full border border-deep-teal/35 bg-deep-teal/10 px-2.5 py-1 text-[0.62rem] uppercase tracking-[0.14em] text-deep-teal"
                       >
                         {section.label}
                       </button>
@@ -245,7 +245,7 @@ export default function Pricing() {
       >
         <div id="panel-overview" className="bg-[#121214]/20 p-8 rounded-2xl border border-border">
           <p className="text-sm md:text-base text-text-muted max-w-4xl text-center mx-auto">
-            Every website we build is planned around your services, your customers, and your goals. The result is a site people can <span className="text-gradient-cyan font-bold">find easily</span>, feel good about, and actually use to reach you.
+            Every website we build is planned around your services, your customers, and your goals. The result is a site people can <span className="text-cyan font-semibold">find easily</span>, feel good about, and actually use to reach you.
           </p>
           <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {services.slice(0, 5).map((service) => (
@@ -253,13 +253,13 @@ export default function Pricing() {
                 <h3 className="text-base font-semibold text-accent-2">{service.title}</h3>
                 <p className="mt-3 text-sm text-text-muted leading-relaxed">
                   {service.title === "Website build" ? (
-                    <>We plan, design, and build your site <span className="text-gradient-cyan font-bold">from scratch</span> — structured around your business from day one.</>
+                    <>We plan, design, and build your site <span className="text-cyan font-semibold">from scratch</span> — structured around your business from day one.</>
                   ) : service.title === "Design refresh" ? (
-                    <><span className="text-gradient-cyan font-bold">Modernise</span> your site without losing what already works for you.</>
+                    <><span className="text-cyan font-semibold">Modernise</span> your site without losing what already works for you.</>
                   ) : service.title === "SEO & Performance" ? (
-                    <>Built-in speed and search visibility so customers can <span className="text-gradient-cyan font-bold">actually find you</span>.</>
+                    <>Built-in speed and search visibility so customers can <span className="text-cyan font-semibold">actually find you</span>.</>
                   ) : service.title === "Mobile-friendly layout" ? (
-                    <>Designed for the phones your customers <span className="text-gradient-cyan font-bold">actually use</span> — no pinching, no squinting, no frustration.</>
+                    <>Designed for the phones your customers <span className="text-cyan font-semibold">actually use</span> — no pinching, no squinting, no frustration.</>
                   ) : (
                     service.description
                   )}
@@ -288,8 +288,8 @@ export default function Pricing() {
                 transition={{ duration: shouldReduceMotion ? 0 : 0.42, delay: index * 0.06, ease: "easeOut" }}
                 className="min-w-0"
               >
-                <p className="text-[9px] uppercase tracking-[0.2em] font-black text-black bg-cyan inline-flex items-center justify-center px-3 py-1 rounded-full shadow-[0_0_12px_rgba(0,229,255,0.4)] whitespace-nowrap">Step {index + 1}</p>
-                <h3 className="mt-4 text-lg font-semibold text-white">{step.title}</h3>
+                <p className="text-[9px] uppercase tracking-[0.2em] font-black text-white bg-deep-teal inline-flex items-center justify-center px-3 py-1 rounded-full shadow-[0_0_12px_rgba(13,148,136,0.4)] whitespace-nowrap">Step {index + 1}</p>
+                <h3 className="mt-4 text-lg semibold-underline text-white">{step.title}</h3>
                 <p className="mt-3 text-sm text-gray-300 leading-relaxed">{step.description}</p>
               </motion.div>
             ))}
@@ -314,15 +314,15 @@ export default function Pricing() {
               className="flex h-full flex-col rounded-3xl border border-cyan/40 bg-bg-elev p-8 hover:!border-[#00E5FF] hover:shadow-[0_0_12px_rgba(0,229,255,0.3)] transition-all"
             >
               <h3 className="text-2xl font-bold text-white">{foundationPackage.title}</h3>
-              <p className="mt-3 text-xl font-extrabold text-gradient-cyan whitespace-nowrap">{foundationPackage.price}</p>
+              <p className="mt-3 text-xl font-extrabold text-cyan whitespace-nowrap">{foundationPackage.price}</p>
               <div className="mt-4 text-sm text-text-muted mb-8">
-                <p>Everything you need to <span className="text-gradient-cyan font-bold">be seen online</span> — no technical hurdles or hidden extras.</p>
+                <p>Everything you need to <span className="text-cyan font-semibold">be seen online</span> — no technical hurdles or hidden extras.</p>
               </div>
               
               <ul className="space-y-3 mb-8 text-text text-sm flex-grow">
                 {foundationPackage.includes.map((item) => (
                   <li key={item} className="flex items-start gap-3">
-                    <span className="text-cyan mt-0.5">✓</span>
+                    <span className="text-deep-teal mt-0.5">✓</span>
                     {item}
                   </li>
                 ))}
@@ -355,17 +355,17 @@ export default function Pricing() {
               transition={{ delay: 0.1 }}
               className="flex h-full flex-col rounded-3xl border border-cyan shadow-[0_0_30px_rgba(0,229,255,0.15)] bg-[#121214] p-8 relative overflow-hidden pricing-card-featured-shine xl:-translate-y-4 z-20"
             >
-              <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-cyan px-6 py-[6px] rounded-full text-[10px] font-black uppercase tracking-[0.2em] text-[#0A0A0C] whitespace-nowrap shadow-[0_0_20px_rgba(0,229,255,0.5)]">Most Popular</div>
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-deep-teal px-6 py-[6px] rounded-full text-[10px] font-black uppercase tracking-[0.2em] text-white whitespace-nowrap shadow-[0_0_20px_rgba(13,148,136,0.5)]">Most Popular</div>
               <h3 className="text-2xl font-bold text-white">{starterPackage.title}</h3>
-              <p className="mt-3 text-xl font-extrabold text-gradient-cyan whitespace-nowrap">{starterPackage.price}</p>
+              <p className="mt-3 text-xl font-extrabold text-cyan whitespace-nowrap">{starterPackage.price}</p>
               <div className="mt-4 text-sm text-text-muted mb-8">
-                <p>The <span className="text-gradient-cyan font-bold">complete setup</span> for growing businesses that need to compete and win online.</p>
+                <p>The <span className="text-cyan font-semibold">complete setup</span> for growing businesses that need to compete and win online.</p>
               </div>
 
               <ul className="space-y-3 mb-8 text-text text-sm flex-grow">
                 {starterPackage.includes.map((item) => (
                   <li key={item} className="flex items-start gap-3">
-                    <span className="text-cyan mt-0.5">✓</span>
+                    <span className="text-deep-teal mt-0.5">✓</span>
                     {item}
                   </li>
                 ))}
@@ -402,15 +402,15 @@ export default function Pricing() {
               className="flex h-full flex-col rounded-3xl border border-cyan/40 bg-bg-elev p-8 hover:!border-[#00E5FF] hover:shadow-[0_0_12px_rgba(0,229,255,0.3)] transition-all"
             >
               <h3 className="text-2xl font-bold text-white">{growthPackage.title}</h3>
-              <p className="mt-3 text-xl font-extrabold text-gradient-cyan whitespace-nowrap">{growthPackage.price}</p>
+              <p className="mt-3 text-xl font-extrabold text-cyan whitespace-nowrap">{growthPackage.price}</p>
               <div className="mt-4 text-sm text-text-muted mb-8">
-                <p>For established businesses ready for <span className="text-gradient-cyan font-bold">aggressive growth</span> and complete market visibility.</p>
+                <p>For established businesses ready for <span className="text-cyan font-semibold">aggressive growth</span> and complete market visibility.</p>
               </div>
 
               <ul className="space-y-3 mb-8 text-text text-sm flex-grow">
                 {growthPackage.includes.map((item) => (
                   <li key={item} className="flex items-start gap-3">
-                    <span className="text-cyan mt-0.5">✓</span>
+                    <span className="text-deep-teal mt-0.5">✓</span>
                     {item}
                   </li>
                 ))}
@@ -475,13 +475,13 @@ export default function Pricing() {
         title={hostingPlan.title}
         description={
           <>
-            One clear plan to keep your website <span className="text-gradient-cyan font-bold">secure and running smoothly</span>.
+            One clear plan to keep your website <span className="text-cyan font-semibold">secure and running smoothly</span>.
           </>
         }
       >
         <div id="panel-hosting">
         <div className="mb-8 max-w-5xl mx-auto rounded-2xl border border-border bg-bg-panel/20 p-6 md:p-8">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent-2">What <span className="text-gradient-cyan font-bold">managed hosting</span> means</p>
+          <p className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">What <span className="text-gradient-cyan font-bold">managed hosting</span> means</p>
           <div className="mt-4 space-y-4">
             {hostingPlan.details.map((detail) => (
               <p key={detail} className="text-sm text-text-muted max-w-3xl">
@@ -494,13 +494,13 @@ export default function Pricing() {
           <div className="rounded-3xl border border-accent/20 bg-gradient-to-r from-bg via-accent/5 to-bg overflow-hidden shadow-lg shadow-accent/5">
             <div className="grid items-center gap-6 p-8 sm:p-12 md:grid-cols-2 md:gap-10">
               <div className="flex flex-col items-center pb-10 text-center md:pb-0 md:px-10 md:border-r md:border-border">
-                <p className="mb-5 inline-flex items-center rounded-full border border-accent/45 bg-accent/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-accent">
+                <p className="mb-5 inline-flex items-center rounded-full border border-deep-teal/45 bg-deep-teal/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-deep-teal">
                   Annual plan
                 </p>
                 <h3 className="text-3xl font-semibold text-text">Hosting Plan</h3>
                 <p className="mt-3 text-base text-text-muted">For Business Websites of any size</p>
                 <p className="mb-4 mt-8 flex w-full justify-center items-end gap-2 text-5xl font-extrabold tabular-nums md:text-6xl">
-                  <span className="text-2xl pb-1 text-accent">SCR</span>
+                  <span className="text-2xl pb-1 text-deep-teal">SCR</span>
                   <span className="text-gradient-cyan">2,500</span>
                 </p>
                 <p className="min-h-[1.25rem] text-sm text-text-muted">{hostingPlan.billing}</p>
@@ -530,7 +530,7 @@ export default function Pricing() {
                 <ul className="space-y-4 text-base text-text-muted">
                   {hostingPlan.features.map((feature) => (
                     <li key={feature} className="flex items-start gap-3">
-                      <span className="mt-0.5 text-accent">✓</span>
+                      <span className="mt-0.5 text-deep-teal">✓</span>
                       <span>{feature}</span>
                     </li>
                   ))}
@@ -556,7 +556,7 @@ export default function Pricing() {
           {addOnItems.map((item) => (
             <div key={item.title} className="bg-bg-panel border border-cyan/40 p-6 rounded-2xl hover:!border-[#00E5FF] hover:shadow-[0_0_12px_rgba(0,229,255,0.3)] transition-colors">
               <h3 className="text-base font-semibold text-text">{item.title}</h3>
-              <p className="mt-3 inline-block px-3 py-1 rounded border border-accent/20 bg-accent/5 text-sm font-bold text-gradient-cyan">{item.price}</p>
+              <p className="mt-3 inline-block px-3 py-1 rounded border border-deep-teal/20 bg-deep-teal/5 text-sm font-bold text-gradient-cyan">{item.price}</p>
             </div>
           ))}
           </div>
@@ -570,7 +570,7 @@ export default function Pricing() {
         title={stabilisationPlan.title}
         description={
           <>
-            Every website we build includes at least <span className="text-gradient-cyan font-bold">30 days of hands-on support</span> after going live — at no extra cost.
+            Every website we build includes at least <span className="text-cyan font-semibold">30 days of hands-on support</span> after going live — at no extra cost.
           </>
         }
         className={compactDesktopSection}
@@ -578,11 +578,11 @@ export default function Pricing() {
         <div className="p-8 md:p-12 rounded-3xl border border-border bg-bg-elev mt-6">
           <div className="grid gap-10 md:grid-cols-2">
             <div className="bg-bg-panel/30 p-8 rounded-2xl border border-border">
-              <p className="text-xs uppercase tracking-[0.3em] font-semibold text-accent mb-6 flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-accent inline-block"/> Covers</p>
+              <p className="text-xs uppercase tracking-[0.3em] font-semibold text-deep-teal mb-6 flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-deep-teal inline-block"/> Covers</p>
               <ul className="space-y-4 text-sm text-text-muted">
                 {stabilisationPlan.covers.map((item) => (
                   <li key={item} className="flex items-start gap-3">
-                    <span className="text-accent mt-[1px]">✓</span>
+                    <span className="text-deep-teal mt-[1px]">✓</span>
                     {item}
                   </li>
                 ))}
@@ -612,11 +612,11 @@ export default function Pricing() {
       >
         <div className="mt-8 p-10 md:p-14 rounded-3xl bg-gradient-to-br from-bg-panel/40 to-transparent border border-border text-center">
           <p className="max-w-4xl mx-auto text-base md:text-lg leading-relaxed text-text-muted">
-            Your website being beautiful is only half the job. The other half is making sure people can actually find it. We set up every site so <span className="text-gradient-cyan font-bold">Google understands what your business does</span>, where you are, and who it should show your site to. That means when someone in Seychelles searches for what you offer, your site has a real chance of appearing — not buried on page five where nobody looks.
+            Your website being beautiful is only half the job. The other half is making sure people can actually find it. We set up every site so <span className="text-cyan font-semibold">Google understands what your business does</span>, where you are, and who it should show your site to. That means when someone in Seychelles searches for what you offer, your site has a real chance of appearing — not buried on page five where nobody looks.
           </p>
           <Link 
             to="/contact" 
-            className="mt-8 block text-lg font-medium text-accent max-w-2xl mx-auto border-t border-accent/20 pt-8 hover:text-accent-2 transition-colors"
+            className="mt-8 block text-lg font-medium text-cyan max-w-2xl mx-auto border-t border-cyan/20 pt-8 hover:text-white transition-colors"
             onClick={() =>
               trackEvent("cta_click", {
                 cta_name: "pricing_visibility_ready_link",
@@ -649,7 +649,7 @@ export default function Pricing() {
 
       <section className="bg-bg-elev border-t border-border mt-16 text-center">
         <div className="mx-auto w-full max-w-4xl px-8 py-28 md:py-32">
-           <p className="text-xs uppercase tracking-[0.4em] text-accent font-semibold mb-6">READY WHEN YOU ARE</p>
+           <p className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">READY WHEN YOU ARE</p>
            <h2 className="text-3xl font-semibold text-text md:text-5xl tracking-tight mb-12">
               Not sure which package fits? We'll help you figure it out.
            </h2>

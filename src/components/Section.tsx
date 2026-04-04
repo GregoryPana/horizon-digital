@@ -40,7 +40,7 @@ export default function Section({
             className="mb-10 text-center"
           >
             {eyebrow && (
-              <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow">
+              <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">
                 {eyebrow}
               </span>
             )}

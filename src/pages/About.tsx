@@ -30,9 +30,9 @@ export default function About() {
       <section className="pt-32 pb-20 md:pt-44 md:pb-32 relative">
         <div className="mx-auto w-full max-w-[1760px] px-6 sm:px-10 lg:px-14 xl:px-20">
           <motion.div {...fadeInUp} className="mb-12">
-            <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow">WHO WE ARE</span>
+            <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">WHO WE ARE</span>
             <h2 className="font-display max-w-4xl text-4xl font-semibold leading-tight tracking-tight text-white md:text-6xl">
-              A Seychelles studio built on one belief — your website should <span className="text-gradient-cyan">work as hard as you do</span>
+              A Seychelles studio built on one belief — your website should <span className="text-cyan font-semibold">work as hard as you do</span>
             </h2>
           </motion.div>
 
@@ -63,13 +63,13 @@ export default function About() {
             >
               <div className="space-y-6 text-lg text-text-muted leading-relaxed">
                 <p>
-                  We started Horizon Digital because we kept seeing the same problem — good Seychelles businesses with <span className="text-white font-medium">bad websites.</span> Guesthouses that looked worse online than they were in person. Restaurants with no online presence at all. Shops that couldn't be found on Google.
+                  We started Horizon Digital because we kept seeing the same problem — good Seychelles businesses with <span className="semibold-underline text-white">bad websites.</span> Guesthouses that looked worse online than they were in person. Restaurants with no online presence at all. Shops that couldn't be found on Google.
                 </p>
                 <p>
-                  We build websites for local businesses that look <span className="text-gradient-cyan font-semibold">genuinely professional</span>, load fast on mobile, and <span className="text-white font-medium">actually bring in customers.</span> Not templates with your name dropped in. Real custom sites, built around how your business works.
+                  We build websites for local businesses that look <span className="text-gradient-cyan font-semibold">genuinely professional</span>, load fast on mobile, and <span className="semibold-underline text-white">actually bring in customers.</span> Not templates with your name dropped in. Real custom sites, built around how your business works.
                 </p>
                 <p>
-                  We're <span className="text-white font-medium">based on Mahé.</span> We speak to every client directly. And we're <span className="text-gradient-cyan font-semibold">available on WhatsApp</span> when you need us.
+                  We're <span className="semibold-underline text-white">based on Mahé.</span> We speak to every client directly. And we're <span className="text-cyan font-semibold">available on WhatsApp</span> when you need us.
                 </p>
               </div>
 
@@ -96,12 +96,12 @@ export default function About() {
       <section className="py-24 bg-bg-panel/30 border-y border-border relative">
         <div className="mx-auto w-full max-w-5xl px-5 sm:px-8">
           <motion.div {...fadeInUp} className="max-w-4xl">
-            <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow">WHY LOCAL MATTERS</span>
+            <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">WHY LOCAL MATTERS</span>
             <h2 className="font-display text-3xl font-semibold leading-tight tracking-tight text-white md:text-5xl mb-8">
               Most web agencies don't know what <span className="text-white">"guesthouse seychelles"</span> means to someone searching from abroad
             </h2>
             <p className="text-lg text-text-muted leading-relaxed mb-16">
-              <span className="text-gradient-cyan font-bold uppercase">WE do.</span> We understand the search terms your customers use, the platforms they book through, and what Seychelles travellers and locals are <span className="text-white font-medium">actually looking for</span> when they find your site. An overseas agency builds a generic website. We build a website for your <span className="text-white">specific business</span>, in your specific market.
+              <span className="text-gradient-cyan font-bold uppercase">WE do.</span> We understand the search terms your customers use, the platforms they book through, and what Seychelles travellers and locals are <span className="semibold-underline text-white">actually looking for</span> when they find your site. An overseas agency builds a generic website. We build a website for your <span className="text-white">specific business</span>, in your specific market.
             </p>
           </motion.div>
 
@@ -131,23 +131,23 @@ export default function About() {
             </div>
 
             <div className="space-y-8">
-               <h3 className="text-sm font-black uppercase tracking-[0.2em] text-accent">Horizon Digital</h3>
+               <h3 className="text-sm font-black uppercase tracking-[0.2em] text-deep-teal">Horizon Digital</h3>
                <ul className="space-y-5 text-base text-text-muted leading-relaxed">
                   <li className="flex items-start gap-4">
-                     <span className="mt-2.5 w-1.5 h-1.5 rounded-full bg-accent shadow-[0_0_8px_#00E5FF]" />
-                     <span>Custom high quality layouts built <span className="text-gradient-cyan font-bold">around your business</span></span>
+                     <span className="mt-2.5 w-1.5 h-1.5 rounded-full bg-deep-teal" />
+                     <span>Custom high quality layouts built <span className="text-cyan font-semibold">around your business</span></span>
                   </li>
                   <li className="flex items-start gap-4">
-                     <span className="mt-2.5 w-1.5 h-1.5 rounded-full bg-accent shadow-[0_0_8px_#00E5FF]" />
+                     <span className="mt-2.5 w-1.5 h-1.5 rounded-full bg-deep-teal" />
                      <span>Designed for how Seychelles customers search and browse</span>
                   </li>
                   <li className="flex items-start gap-4">
-                     <span className="mt-2.5 w-1.5 h-1.5 rounded-full bg-accent shadow-[0_0_8px_#00E5FF]" />
-                     <span>Same timezone, <span className="text-gradient-cyan font-bold">available on WhatsApp</span></span>
+                     <span className="mt-2.5 w-1.5 h-1.5 rounded-full bg-deep-teal" />
+                     <span>Same timezone, <span className="text-cyan font-semibold">available on WhatsApp</span></span>
                   </li>
                   <li className="flex items-start gap-4">
-                     <span className="mt-2.5 w-1.5 h-1.5 rounded-full bg-accent shadow-[0_0_8px_#00E5FF]" />
-                     <span>Ongoing support from the <span className="text-white font-medium">person who built your site</span></span>
+                     <span className="mt-2.5 w-1.5 h-1.5 rounded-full bg-deep-teal" />
+                     <span>Ongoing support from the <span className="semibold-underline text-white">person who built your site</span></span>
                   </li>
                </ul>
             </div>
@@ -159,7 +159,7 @@ export default function About() {
       <section className="py-24 md:py-32 relative">
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
           <motion.div className="mb-16 md:mb-24 text-center" {...fadeInUp}>
-            <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow text-center">HOW WE WORK</span>
+            <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow text-center">HOW WE WORK</span>
             <h2 className="font-display mx-auto max-w-3xl text-3xl font-semibold leading-tight tracking-tight text-white md:text-5xl">A few things we believe about building websites</h2>
           </motion.div>
 
@@ -208,7 +208,7 @@ export default function About() {
                 {...fadeInUp}
                 transition={{ delay: i * 0.1 }}
               >
-                <span className="text-4xl md:text-5xl font-black bg-gradient-to-b from-accent to-accent-2 bg-clip-text text-transparent opacity-80 leading-none">
+                <span className="text-4xl md:text-5xl font-black text-deep-teal opacity-80 leading-none">
                   {item.num}
                 </span>
                 <div>
@@ -227,7 +227,7 @@ export default function About() {
       <section className="py-24 border-t border-border bg-bg-panel/10">
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
            <motion.div className="mb-16 md:mb-20 text-center" {...fadeInUp}>
-              <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow">WHAT THIS LOOKS LIKE IN PRACTICE</span>
+              <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">WHAT THIS LOOKS LIKE IN PRACTICE</span>
               <h2 className="font-display mx-auto max-w-3xl text-3xl font-semibold leading-tight tracking-tight text-white md:text-5xl">Three local businesses. Three real results.</h2>
            </motion.div>
 
@@ -259,7 +259,7 @@ export default function About() {
                   transition={{ delay: i * 0.1 }}
                 >
                    <div className="mb-6">
-                      <span className="px-3 py-1 rounded-full border border-accent/30 bg-accent/5 text-[10px] font-black tracking-widest text-accent uppercase">
+                      <span className="px-3 py-1 rounded-full border border-deep-teal/30 bg-deep-teal/5 text-[10px] font-black tracking-widest text-deep-teal uppercase">
                         {project.tier}
                       </span>
                    </div>
@@ -319,7 +319,7 @@ export default function About() {
         <div className="mx-auto w-full max-w-3xl px-5 sm:px-8 text-center">
            <motion.div {...fadeInUp} className="space-y-12">
              <div>
-               <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow">LET'S TALK</span>
+               <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">LET'S TALK</span>
                <h2 className="font-display text-4xl font-semibold leading-tight tracking-tight text-white md:text-6xl mb-8">
                  Ready to find out what the right website could do for your business?
                </h2>
@@ -333,7 +333,7 @@ export default function About() {
                   href={siteConfig.whatsappUrl} 
                   target="_blank" 
                   rel="noreferrer"
-                  className="w-full max-w-md group"
+                  className="w-full max-w-md"
                   onClick={() =>
                     trackEvent("cta_click", {
                       cta_name: "about_whatsapp_chat",
@@ -341,17 +341,13 @@ export default function About() {
                     })
                   }
                 >
-
-                  <motion.button 
-                    className="w-full py-5 rounded-full bg-gradient-to-r from-[#00E5FF] via-[#38B2F5] to-[#00E5FF] bg-[length:200%_auto] text-black font-black tracking-widest uppercase text-sm shadow-[0_0_20px_rgba(0,229,255,0.4)]"
-                    animate={{ backgroundPosition: ["0% center", "200% center"] }}
-                    transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                  <button 
+                    className="w-full py-5 rounded-full text-black font-black tracking-[0.2em] uppercase text-sm shadow-[0_0_30px_rgba(0,229,255,0.4)] transition-all duration-300 hover:scale-[1.02] hover:brightness-110 active:scale-95 flex items-center justify-center gap-3 cta-gradient-anim"
+                    style={{ backgroundImage: 'linear-gradient(90deg, #00E5FF, #38B2F5, #0C7CC4, #00E5FF)', backgroundSize: '300% 100%' }}
                   >
-                    <div className="flex items-center justify-center gap-3">
-                      <MessageCircle className="w-5 h-5" />
-                      Chat on WhatsApp
-                    </div>
-                  </motion.button>
+                    <MessageCircle className="w-5 h-5" />
+                    Chat on WhatsApp
+                  </button>
                 </a>
 
                 <Link 

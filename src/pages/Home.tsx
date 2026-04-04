@@ -184,9 +184,9 @@ function WorkShowcase() {
     <section id="work" className="relative overflow-hidden bg-[#0A0A0C]">
       <div className="relative z-30 mx-auto max-w-7xl bg-[#0A0A0C] px-6 pb-10 pt-24 md:pt-28">
         <div className="mb-20 text-center">
-          <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow">Real Results, Real Businesses</span>
+          <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">Real Results, Real Businesses</span>
           <h2 className="font-display mx-auto max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl">
-            See what is <span className="text-gradient-cyan">possible</span> for your business
+            See what is <span className="text-cyan font-semibold">possible</span> for your business
           </h2>
           <p className="mx-auto mt-4 max-w-3xl text-lg text-gray-300">Three businesses. Three transformations. One studio that cares.</p>
         </div>
@@ -213,9 +213,9 @@ function WorkShowcase() {
             <div className="relative z-20 mx-auto grid w-full max-w-7xl items-center gap-12 px-6 lg:grid-cols-2">
               <div className={idx % 2 === 1 ? "lg:order-2" : ""}>
                 <div className="relative rounded-[2.5rem] border border-white/[0.05] bg-black/10 p-8 text-center backdrop-blur-[1px] md:p-12 md:text-left lg:-ml-12 xl:-ml-16">
-                  <div className="mx-auto mb-7 inline-flex items-center gap-3 rounded-full border border-cyan/35 bg-cyan/10 px-4 py-2 md:mx-0">
-                    <span className="h-2 w-2 rounded-full bg-cyan animate-pulse shadow-[0_0_10px_#00E5FF]" />
-                    <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-cyan md:text-xs">{project.tier}</span>
+                  <div className="mx-auto mb-7 inline-flex items-center gap-3 rounded-full border border-deep-teal/35 bg-deep-teal/10 px-4 py-2 md:mx-0">
+                    <span className="h-2 w-2 rounded-full bg-deep-teal animate-pulse shadow-[0_0_10px_rgba(13,148,136,0.4)]" />
+                    <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-deep-teal md:text-xs">{project.tier}</span>
                   </div>
                   <h3 className="font-display text-4xl font-bold uppercase tracking-[-0.04em] text-white md:text-7xl">
                     {project.title}
@@ -446,9 +446,9 @@ export default function Home() {
             viewport={{ once: true, amount: 0.35 }}
             className="mb-20 text-center"
           >
-            <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow">Sound Familiar?</span>
+            <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">Sound Familiar?</span>
             <h2 className="font-display mx-auto max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl">
-              Most businesses in Seychelles face the same three problems <span className="text-gradient-cyan">online.</span>
+              Most businesses in Seychelles face the same three problems <span className="text-cyan font-semibold">online.</span>
             </h2>
           </motion.div>
 
@@ -478,7 +478,7 @@ export default function Home() {
                     {card.icon}
                   </svg>
                 </div>
-                <h3 className="font-display mb-3 text-xl font-semibold text-white">{card.title}</h3>
+                <h3 className="font-display mb-3 text-xl semibold-underline text-white">{card.title}</h3>
                 <p className="mb-6 leading-relaxed text-white/80">{card.body}</p>
               </motion.article>
             ))}
@@ -534,9 +534,9 @@ export default function Home() {
       <section id="services" className="relative z-20 bg-[#0A0A0C] py-20 md:py-32">
         <div className="mx-auto max-w-7xl px-6">
           <div className="mb-20 text-center">
-            <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow">Our Services</span>
+            <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">Our Services</span>
             <h2 className="font-display mx-auto max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl">
-              Websites built around how your business <span className="text-gradient-cyan">actually works.</span>
+              Websites built around how your business <span className="text-cyan font-semibold">actually works.</span>
             </h2>
           </div>
 
@@ -636,8 +636,8 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="ml-8 space-y-4">
-                  <div className="flex items-center gap-3"><span className="h-2 w-2 rounded-full bg-teal shadow-[0_0_8px_#22F1D6]" /><span className="text-sm text-gray-300">LOAD TIME <b className="text-white">1.2s</b></span></div>
-                  <div className="flex items-center gap-3"><span className="h-2 w-2 rounded-full bg-cyan shadow-[0_0_8px_#00E5FF]" /><span className="text-sm text-gray-300">UPTIME <b className="text-white">99.9%</b></span></div>
+                  <div className="flex items-center gap-3"><span className="h-2 w-2 rounded-full bg-deep-teal shadow-[0_0_8px_rgba(13,148,136,0.4)]" /><span className="text-sm text-gray-300">LOAD TIME <b className="text-white">1.2s</b></span></div>
+                  <div className="flex items-center gap-3"><span className="h-2 w-2 rounded-full bg-deep-teal shadow-[0_0_8px_rgba(13,148,136,0.4)]" /><span className="text-sm text-gray-300">UPTIME <b className="text-white">99.9%</b></span></div>
                 </div>
               </div>
               <div className="flex flex-1 flex-col p-8 bg-gradient-to-t from-[#0A0A0C] via-[#0A0A0C]/95 via-[#0A0A0C]/80 to-transparent -mt-20 pt-24 relative z-10">
@@ -659,7 +659,7 @@ export default function Home() {
               {[0, 1, 2, 3].map((_, i) => (
                 <div 
                   key={i} 
-                  className={`h-2 rounded-full transition-all duration-300 ${activeService === i ? "w-8 bg-cyan" : "w-2 bg-gray-700 hover:bg-gray-500 cursor-pointer"}`}
+                  className={`h-2 rounded-full transition-all duration-300 ${activeService === i ? "w-8 bg-deep-teal" : "w-2 bg-gray-700 hover:bg-gray-500 cursor-pointer"}`}
                   onClick={() => scrollCarouselTo(serviceScrollRef, i, 4)}
                 />
               ))}
@@ -677,21 +677,21 @@ export default function Home() {
 
       <section id="difference" className="border-t border-white/5 bg-black py-24 md:py-32">
         <div className="mx-auto max-w-5xl px-5 sm:px-6 lg:px-8 text-center">
-          <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow">How We're Different</span>
+          <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">How We're Different</span>
           <h2 className="font-display mx-auto max-w-3xl text-3xl font-semibold leading-tight tracking-tight text-white md:text-4xl">
-            A different kind of <span className="text-gradient-cyan">digital partner.</span>
+            A different kind of <span className="text-cyan font-semibold">digital partner.</span>
           </h2>
           <div className="mt-10 md:mt-14 p-7 md:p-12 lg:p-14 rounded-[2.5rem] border border-white/10 bg-[#0A0A0C] text-left shadow-[0_0_60px_rgba(0,229,255,0.03)] relative overflow-hidden">
             <div className="absolute top-0 right-0 p-40 bg-cyan/5 blur-[120px] rounded-full pointer-events-none" />
             <div className="relative z-10 space-y-6 md:space-y-8 text-gray-300 leading-relaxed text-lg md:text-[22px] font-light md:leading-[1.8]">
               <p>
-                We believe in <span className="text-gradient-cyan font-medium">absolute transparency.</span> Every project kicks off with a clear, written brief that you approve before a single line of code is written.
+                We believe in <span className="text-gradient-cyan font-semibold">absolute transparency.</span> Every project kicks off with a clear, written brief that you approve before a single line of code is written.
               </p>
               <p>
-                As a team <span className="text-white font-medium drop-shadow-md">based locally in Seychelles</span>, we quote honestly in <span className="text-cyan font-medium">local SCR</span> with zero hidden fees — and we're always just a WhatsApp message away.
+                As a team <span className="semibold-underline text-white drop-shadow-md">based locally in Seychelles</span>, we quote honestly in <span className="semibold-underline text-white">local SCR</span> with zero hidden fees — and we're always just a WhatsApp message away.
               </p>
               <p>
-                Before any website goes live, we guarantee it scores <span className="text-gradient-cyan font-bold">90+ on Google PageSpeed</span> so that your customers get the fast, premium experience they expect.
+                Before any website goes live, we guarantee it scores <span className="semibold-underline text-white">90+ on Google PageSpeed</span> so that your customers get the fast, premium experience they expect.
               </p>
             </div>
           </div>
@@ -701,7 +701,7 @@ export default function Home() {
       <section id="process" className="border-t border-white/5 bg-[#0A0A0C] py-28 md:py-32">
         <div className="mx-auto max-w-7xl px-6">
           <div className="mb-20 text-center">
-            <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow">What Actually Happens</span>
+            <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">What Actually Happens</span>
             <h2 className="font-display mx-auto max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl">
               Here's exactly what we do together - step by step.
             </h2>
@@ -721,11 +721,7 @@ export default function Home() {
                 <div className="relative z-10">
                   <div className="mb-4 flex items-center gap-3">
                     <span
-                      className={`flex h-10 w-10 items-center justify-center rounded-full font-display text-lg font-bold ${
-                        idx % 2 === 0
-                          ? "border border-cyan/35 bg-cyan/10 text-cyan"
-                          : "border border-teal/35 bg-teal/10 text-teal"
-                      }`}
+                      className="flex h-10 w-10 items-center justify-center rounded-full font-display text-lg font-bold border border-deep-teal/35 bg-deep-teal/10 text-deep-teal shadow-[0_0_12px_rgba(13,148,136,0.2)]"
                     >
                       {idx + 1}
                     </span>
@@ -750,7 +746,7 @@ export default function Home() {
       <section id="packages" className="py-24 md:py-40 bg-black border-t border-white/[0.05]">
         <div className="mx-auto w-full max-w-[92rem] px-6 md:px-10 lg:px-14">
           <div className="mb-20 text-center">
-            <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow">Find your fit</span>
+            <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">Find your fit</span>
             <h2 className="font-display mx-auto max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl">
               A home online, built for where you are right now
             </h2>
@@ -794,7 +790,7 @@ export default function Home() {
                 <ul className="space-y-3 sm:space-y-5 mb-8 sm:mb-12 flex-grow">
                   {pkg.includes.map((item, includeIdx) => (
                     <li key={`${item}-${includeIdx}`} className="flex items-start gap-4">
-                      <svg className="h-4 w-4 text-cyan mt-1 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <svg className="h-4 w-4 text-deep-teal mt-1 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                       </svg>
                       <span className="text-sm text-gray-300 leading-relaxed">{item}</span>
@@ -838,17 +834,17 @@ export default function Home() {
           >
             <div className="grid lg:grid-cols-12">
               <div className="relative z-20 flex flex-col justify-center p-10 md:p-16 lg:col-span-7">
-                <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow">Stay in the know</span>
-                <h2 className="font-display mt-4 text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl">The digital world, <span className="text-gradient-cyan">explained simply.</span></h2>
+                <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">Stay in the know</span>
+                <h2 className="font-display mt-4 text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl">The digital world, <span className="text-cyan font-semibold">explained simply.</span></h2>
                 <p className="mt-5 text-base leading-relaxed text-gray-300 md:text-lg">
                   No jargon. No fluff. Just the things worth knowing for your business.
                 </p>
 
                 <ul className="mt-8 space-y-4 text-sm text-gray-300 md:text-base">
-                  <li className="flex items-center gap-3"><span className="text-cyan">↗</span> Digital trends affecting small businesses</li>
-                  <li className="flex items-center gap-3"><span className="text-cyan">↗</span> Understanding AI chatbots</li>
-                  <li className="flex items-center gap-3"><span className="text-cyan">↗</span> Why data and analytics matter</li>
-                  <li className="flex items-center gap-3"><span className="text-cyan">↗</span> How automation saves time</li>
+                  <li className="flex items-center gap-3"><span className="text-deep-teal">↗</span> Digital trends affecting small businesses</li>
+                  <li className="flex items-center gap-3"><span className="text-deep-teal">↗</span> Understanding AI chatbots</li>
+                  <li className="flex items-center gap-3"><span className="text-deep-teal">↗</span> Why data and analytics matter</li>
+                  <li className="flex items-center gap-3"><span className="text-deep-teal">↗</span> How automation saves time</li>
                 </ul>
 
                 <div className="mt-10 flex justify-start">
@@ -885,7 +881,7 @@ export default function Home() {
       <section id="faq" className="py-20 md:py-28">
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
           <div className="mb-20 text-center">
-            <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow">You probably have questions</span>
+            <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">You probably have questions</span>
             <h2 className="font-display mx-auto max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl">We have answered the ones we hear most</h2>
             <p className="mx-auto mt-4 max-w-3xl text-gray-300">Honest, plain-language answers so you feel confident before we begin.</p>
           </div>
@@ -908,7 +904,7 @@ export default function Home() {
           <h2 className="font-display mb-8 text-4xl font-semibold text-white md:text-7xl">
             Let us build something
             <br />
-            <span className="text-gradient-cyan">you are proud of</span>
+            <span className="text-cyan font-semibold">you are proud of</span>
           </h2>
           <p className="mx-auto mb-12 max-w-2xl text-lg font-light leading-relaxed text-gray-300 md:text-2xl">
             A short, free call is all it takes to get started. No pressure. Just a conversation.

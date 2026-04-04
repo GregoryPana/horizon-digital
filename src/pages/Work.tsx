@@ -1,7 +1,6 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
 import Seo from "../components/Seo";
-import { ShimmerButton } from "../components/ui/shimmer-button";
 import { trackEvent } from "../lib/analytics";
 
 
@@ -51,7 +50,7 @@ export default function Work() {
       {/* Hero Header */}
       <section className="pt-12 pb-8 md:pt-24 md:pb-16 text-center px-5 sm:px-8 max-w-5xl mx-auto">
         <motion.div {...fadeIn} className="mb-8 text-center">
-          <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow">Real work, real businesses</span>
+          <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">Real work, real businesses</span>
           <h2 className="font-display mx-auto max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl">
             Custom websites we've built with care
           </h2>
@@ -67,7 +66,7 @@ export default function Work() {
            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
               
               <motion.div className="lg:col-span-12 xl:col-span-5 relative z-10 flex flex-col items-start text-left" {...fadeIn}>
-                 <p className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan mb-4 bg-cyan/10 inline-block px-3 py-1 rounded-[9px] border border-cyan/20">
+                 <p className="text-xs font-semibold uppercase tracking-[0.3em] text-deep-teal mb-4 bg-deep-teal/10 inline-block px-3 py-1 rounded-[9px] border border-deep-teal/20">
                     Growth Tier
                   </p>
                   <h3 className="font-display text-3xl md:text-5xl font-semibold text-text mb-6">Drake Seaside</h3>
@@ -176,7 +175,7 @@ export default function Work() {
               </motion.div>
 
               <motion.div className="lg:col-span-12 xl:col-span-5 relative z-10 order-1 lg:order-2 flex flex-col items-start text-left" {...fadeIn} transition={{ delay: 0.2 }}>
-                 <p className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan mb-4 bg-cyan/10 inline-block px-3 py-1 rounded-[9px] border border-cyan/20">
+                 <p className="text-xs font-semibold uppercase tracking-[0.3em] text-deep-teal mb-4 bg-deep-teal/10 inline-block px-3 py-1 rounded-[9px] border border-deep-teal/20">
                     Foundation Tier
                   </p>
                   <h3 className="font-display text-3xl md:text-5xl font-semibold text-text mb-6">Takamaka House</h3>
@@ -226,7 +225,7 @@ export default function Work() {
            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
               
               <motion.div className="lg:col-span-12 xl:col-span-5 relative z-10 flex flex-col items-start text-left" {...fadeIn}>
-                 <p className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan mb-4 bg-cyan/10 inline-block px-3 py-1 rounded-[9px] border border-cyan/20">
+                 <p className="text-xs font-semibold uppercase tracking-[0.3em] text-deep-teal mb-4 bg-deep-teal/10 inline-block px-3 py-1 rounded-[9px] border border-deep-teal/20">
                     Foundation Tier
                   </p>
                   <h3 className="font-display text-3xl md:text-5xl font-semibold text-text mb-6">Forma Studio</h3>
@@ -334,7 +333,7 @@ export default function Work() {
               </motion.div>
 
               <motion.div className="lg:col-span-12 xl:col-span-5 relative z-10 order-1 lg:order-2 flex flex-col items-start text-left" {...fadeIn} transition={{ delay: 0.2 }}>
-                 <p className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan mb-4 bg-cyan/10 inline-block px-3 py-1 rounded-[9px] border border-cyan/20">
+                 <p className="text-xs font-semibold uppercase tracking-[0.3em] text-deep-teal mb-4 bg-deep-teal/10 inline-block px-3 py-1 rounded-[9px] border border-deep-teal/20">
                     Foundation Tier
                   </p>
                   <h3 className="font-display text-3xl md:text-5xl font-semibold text-text mb-6">Beauty Demo</h3>
@@ -383,7 +382,7 @@ export default function Work() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(0,229,255,0.05)_0%,transparent_70%)]" />
         <div className="mx-auto w-full max-w-4xl px-5 sm:px-8 relative z-10">
           <motion.div {...fadeIn} className="mb-20 text-center">
-            <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow">What we believe</span>
+            <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">What we believe</span>
             <h2 className="font-display mx-auto max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl">
               Great websites feel effortless — for you and your customers
             </h2>
@@ -392,7 +391,8 @@ export default function Work() {
             </p>
             <Link 
               to="/contact" 
-              className="inline-block hover:-translate-y-1 transition-transform duration-300"
+              className="px-8 py-4 sm:px-12 sm:py-5 text-black rounded-full font-black uppercase tracking-[0.2em] text-xs sm:text-sm transition-all duration-300 hover:scale-[1.02] hover:brightness-110 active:scale-95 shadow-[0_0_40px_rgba(0,229,255,0.5)] text-center flex items-center justify-center w-full sm:w-auto sm:min-w-[280px] cta-gradient-anim"
+              style={{ backgroundImage: 'linear-gradient(90deg, #00E5FF, #38B2F5, #0C7CC4, #00E5FF)', backgroundSize: '300% 100%' }}
               onClick={() =>
                 trackEvent("cta_click", {
                   cta_name: "work_start_project",
@@ -400,14 +400,7 @@ export default function Work() {
                 })
               }
             >
-              <ShimmerButton
-                shimmerColor="#060818"
-                shimmerDuration="4.2s"
-                background="#00E5FF"
-                className="px-8 py-4 text-base font-semibold tracking-[0.08em] text-black shadow-[0_0_30_rgba(0,229,255,0.3)]"
-              >
-                Start your project
-              </ShimmerButton>
+              Start your project
             </Link>
 
           </motion.div>

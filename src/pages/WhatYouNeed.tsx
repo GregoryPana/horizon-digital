@@ -70,12 +70,12 @@ export default function WhatYouNeed() {
       {/* Hero Intro */}
       <section className="pt-32 pb-20 md:pt-40 md:pb-32 text-center px-5 sm:px-8 max-w-5xl mx-auto">
         <motion.div {...fadeInUp} className="mb-20 text-center">
-          <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow">YOUR GUIDE TO GETTING STARTED</span>
+          <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">YOUR GUIDE TO GETTING STARTED</span>
           <h2 className="font-display mx-auto max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl mb-8 text-balance">
-            Not sure where to start? Good — <span className="text-gradient-cyan">most people aren't.</span>
+            Not sure where to start? Good — <span className="text-cyan font-semibold">most people aren't.</span>
           </h2>
           <p className="text-lg md:text-xl text-text-muted max-w-3xl mx-auto leading-relaxed">
-            This page explains <span className="text-gradient-cyan font-bold">everything simply</span> — what a website involves, what type suits your business, and how we work together. <span className="text-gradient-cyan font-semibold">No jargon, no pressure.</span>
+            This page explains <span className="text-cyan font-semibold">everything simply</span> — what a website involves, what type suits your business, and how we work together. <span className="text-cyan font-semibold">No jargon, no pressure.</span>
           </p>
         </motion.div>
       </section>
@@ -85,7 +85,7 @@ export default function WhatYouNeed() {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-bg-panel/10 to-transparent pointer-events-none" />
         <div className="mx-auto w-full max-w-7xl relative z-10 px-5 sm:px-8">
           <motion.div className="mb-12 md:mb-16 text-center" {...fadeInUp}>
-            <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow text-center">WHAT KIND OF BUSINESS DO YOU HAVE?</span>
+            <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow text-center">WHAT KIND OF BUSINESS DO YOU HAVE?</span>
             <h2 className="font-display mx-auto max-w-4xl text-3xl font-semibold leading-tight tracking-tight text-white md:text-5xl">Most businesses in Seychelles fall into one of these three types</h2>
           </motion.div>
 
@@ -100,12 +100,12 @@ export default function WhatYouNeed() {
               className="flex-shrink-0 min-w-[calc(100vw-40px)] w-[calc(100vw-40px)] max-w-[calc(100vw-40px)] md:min-w-0 md:w-auto md:max-w-none snap-center rounded-2xl border border-border bg-[#121214] backdrop-blur pb-10 pt-12 px-8 text-center hover:!border-[#00E5FF] hover:shadow-[0_0_12px_rgba(0,229,255,0.3)] transition-all duration-500 group"
               {...fadeInUp} transition={{ delay: 0.1 }}
             >
-              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-accent/10 mb-6 group-hover:scale-110 transition-transform duration-500">
-                <Briefcase className="h-8 w-8 text-accent" />
+              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-deep-teal/10 mb-6 group-hover:scale-110 transition-transform duration-500">
+                <Briefcase className="h-8 w-8 text-deep-teal" />
               </div>
               <h3 className="text-xl font-semibold text-text mb-4">Service Business</h3>
               <p className="text-sm text-text-muted/90 leading-relaxed">
-                You offer a service — like a salon, a clinic, a repair shop, or a consultancy. Your website's job is to explain <span className="text-gradient-cyan font-bold">what you do clearly</span> and make it easy for customers to get in touch.
+                You offer a service — like a salon, a clinic, a repair shop, or a consultancy. Your website's job is to explain <span className="text-cyan font-semibold">what you do clearly</span> and make it easy for customers to get in touch.
               </p>
             </motion.div>
 
@@ -113,12 +113,12 @@ export default function WhatYouNeed() {
               className="flex-shrink-0 min-w-[calc(100vw-40px)] w-[calc(100vw-40px)] max-w-[calc(100vw-40px)] md:min-w-0 md:w-auto md:max-w-none snap-center rounded-2xl border border-border bg-[#121214] backdrop-blur pb-10 pt-12 px-8 text-center hover:!border-[#00E5FF] hover:shadow-[0_0_12px_rgba(0,229,255,0.3)] transition-all duration-500 group"
               {...fadeInUp} transition={{ delay: 0.2 }}
             >
-              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-accent-2/10 mb-6 group-hover:scale-110 transition-transform duration-500">
-                <ShoppingBag className="h-8 w-8 text-accent-2" />
+              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-deep-teal/10 mb-6 group-hover:scale-110 transition-transform duration-500">
+                <ShoppingBag className="h-8 w-8 text-deep-teal" />
               </div>
               <h3 className="text-xl font-semibold text-text mb-4">Retail Showcase</h3>
               <p className="text-sm text-text-muted/90 leading-relaxed">
-                You sell physical products — like a boutique, a bakery, or a gift shop. Your website should show what you stock, <span className="text-gradient-cyan font-bold">at what price</span>, and make it simple for customers to order or visit.
+                You sell physical products — like a boutique, a bakery, or a gift shop. Your website should show what you stock, <span className="text-cyan font-semibold">at what price</span>, and make it simple for customers to order or visit.
               </p>
             </motion.div>
 
@@ -126,12 +126,12 @@ export default function WhatYouNeed() {
               className="flex-shrink-0 min-w-[calc(100vw-40px)] w-[calc(100vw-40px)] max-w-[calc(100vw-40px)] md:min-w-0 md:w-auto md:max-w-none snap-center rounded-2xl border border-border bg-[#121214] backdrop-blur pb-10 pt-12 px-8 text-center hover:!border-[#00E5FF] hover:shadow-[0_0_12px_rgba(0,229,255,0.3)] transition-all duration-500 group"
               {...fadeInUp} transition={{ delay: 0.3 }}
             >
-              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-accent/10 mb-6 group-hover:scale-110 transition-transform duration-500">
-                <Bed className="h-8 w-8 text-accent" />
+              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-deep-teal/10 mb-6 group-hover:scale-110 transition-transform duration-500">
+                <Bed className="h-8 w-8 text-deep-teal" />
               </div>
               <h3 className="text-xl font-semibold text-text mb-4">Hospitality</h3>
               <p className="text-sm text-text-muted/90 leading-relaxed">
-                You run a guesthouse, villa, restaurant, or tour operation. Your website should make guests <span className="text-gradient-cyan font-bold">feel the experience</span> before they arrive — and make booking as easy as one tap.
+                You run a guesthouse, villa, restaurant, or tour operation. Your website should make guests <span className="text-cyan font-semibold">feel the experience</span> before they arrive — and make booking as easy as one tap.
               </p>
             </motion.div>
 
@@ -170,30 +170,30 @@ export default function WhatYouNeed() {
       <section className="py-20 md:py-24 border-y border-border relative">
         <div className="mx-auto w-full max-w-4xl px-5 sm:px-8">
            <motion.div className="mb-12 md:mb-16 text-center" {...fadeInUp}>
-              <h2 className="font-display mx-auto max-w-3xl text-3xl font-semibold leading-tight tracking-tight text-white md:text-5xl mb-4 text-balance">What <span className="text-gradient-cyan">every</span> website comes with</h2>
-              <p className="text-text-muted/90 max-w-2xl mx-auto">No matter which package you choose, these essentials are always <span className="text-white font-medium">part of the build.</span></p>
+              <h2 className="font-display mx-auto max-w-3xl text-3xl font-semibold leading-tight tracking-tight text-white md:text-5xl mb-4 text-balance">What <span className="text-cyan font-semibold">every</span> website comes with</h2>
+              <p className="text-text-muted/90 max-w-2xl mx-auto">No matter which package you choose, these essentials are always <span className="semibold-underline text-white">part of the build.</span></p>
            </motion.div>
 
            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
               {[
                  { 
                    name: "Contact form", 
-                   benefit: <>Customers can <span className="text-gradient-cyan font-bold">message you directly</span> from any page</>, 
+                   benefit: <>Customers can <span className="text-cyan font-semibold">message you directly</span> from any page</>, 
                    icon: MessageSquare 
                  },
                  { 
                    name: "Enquiry flow", 
-                   benefit: <>Visitors are <span className="text-gradient-cyan font-bold">guided naturally</span> toward reaching out</>, 
+                   benefit: <>Visitors are <span className="text-cyan font-semibold">guided naturally</span> toward reaching out</>, 
                    icon: Navigation 
                  },
                  { 
                    name: "Product or service display", 
-                   benefit: <>What you offer is shown <span className="text-gradient-cyan font-bold">clearly</span> with photos and details</>, 
+                   benefit: <>What you offer is shown <span className="text-cyan font-semibold">clearly</span> with photos and details</>, 
                    icon: Layout 
                  },
                  { 
                    name: "Booking or WhatsApp link", 
-                   benefit: <><span className="text-gradient-cyan font-bold">One tap</span> connects a customer straight to you</>, 
+                   benefit: <><span className="text-cyan font-semibold">One tap</span> connects a customer straight to you</>, 
                    icon: MessageCircle 
                  },
                ].map((item, i) => (
@@ -205,8 +205,8 @@ export default function WhatYouNeed() {
                   transition={{ delay: i * 0.1, duration: 0.5 }}
                   className="flex items-start gap-4 md:gap-5"
                 >
-                  <div className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-accent/5 border border-accent/20">
-                    <item.icon className="h-5 w-5 text-accent" />
+                  <div className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-deep-teal/5 border border-deep-teal/20">
+                    <item.icon className="h-5 w-5 text-deep-teal" />
                   </div>
                   <div>
                     <h4 className="font-semibold text-text text-base md:text-lg leading-snug mb-1">{item.name}</h4>
@@ -222,10 +222,10 @@ export default function WhatYouNeed() {
       <section className="py-24 md:py-32 relative bg-gradient-to-b from-transparent to-bg-panel/20">
         <div className="mx-auto w-full max-w-6xl px-5 sm:px-8 relative z-10">
           <motion.div className="mb-16 md:mb-20 text-center" {...fadeInUp}>
-            <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow text-center">HOW IT WORKS</span>
+            <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow text-center">HOW IT WORKS</span>
             <h2 className="font-display mx-auto max-w-3xl text-3xl font-semibold leading-tight tracking-tight text-white md:text-5xl mb-6">Three things every website on the internet needs</h2>
             <p className="text-lg text-text-muted max-w-3xl mx-auto">
-              Whether you build with us or anyone else, these three things are <span className="text-gradient-cyan font-bold">always required.</span> Understanding them helps you make <span className="text-gradient-cyan font-bold">confident decisions.</span>
+              Whether you build with us or anyone else, these three things are <span className="text-cyan font-semibold">always required.</span> Understanding them helps you make <span className="text-gradient-cyan font-semibold">confident decisions.</span>
             </p>
           </motion.div>
 
@@ -236,7 +236,7 @@ export default function WhatYouNeed() {
                 title: "What is a domain name?", 
                 desc: (
                   <>
-                    Your domain is your address online — for example, <span className="text-gradient-cyan font-semibold">yourbusiness.sc</span>. It legally belongs to you, and is registered for a small annual fee.
+                    Your domain is your address online — for example, <span className="text-cyan font-semibold">yourbusiness.sc</span>. It legally belongs to you, and is registered for a small annual fee.
                   </>
                 )
               },
@@ -254,7 +254,7 @@ export default function WhatYouNeed() {
                 title: "What is website hosting?", 
                 desc: (
                   <>
-                    Your built site needs a server to live on 24/7. Think of it like rent for the <span className="text-white font-medium">digital space</span> your website occupies.
+                    Your built site needs a server to live on 24/7. Think of it like rent for the <span className="semibold-underline text-white">digital space</span> your website occupies.
                   </>
                 )
               }
@@ -266,7 +266,7 @@ export default function WhatYouNeed() {
                 transition={{ delay: i * 0.1 }}
               >
                 <div className="md:w-1/3 flex items-center justify-center">
-                  <span className="text-7xl md:text-8xl font-bold bg-gradient-to-b from-accent to-accent-2 bg-clip-text text-transparent opacity-80 group-hover:opacity-100 transition-opacity leading-none">
+                  <span className="text-7xl md:text-8xl font-bold text-deep-teal opacity-80 group-hover:opacity-100 transition-opacity leading-none">
                     {card.num}
                   </span>
                 </div>
@@ -287,8 +287,8 @@ export default function WhatYouNeed() {
          <div className="absolute top-0 right-0 w-1/2 h-full bg-[radial-gradient(circle_at_top_right,rgba(0,229,255,0.05)_0%,transparent_50%)] pointer-events-none"/>
          <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 relative z-10">
              <motion.div className="mb-16 md:mb-20 text-center" {...fadeInUp}>
-                <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow">TWO WAYS WE CAN WORK TOGETHER</span>
-                <h2 className="font-display mx-auto max-w-3xl text-3xl font-semibold leading-tight tracking-tight text-white md:text-5xl mb-6">Both paths lead to the same result — a <span className="text-gradient-cyan">great website</span></h2>
+                <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">TWO WAYS WE CAN WORK TOGETHER</span>
+                <h2 className="font-display mx-auto max-w-3xl text-3xl font-semibold leading-tight tracking-tight text-white md:text-5xl mb-6">Both paths lead to the same result — a <span className="text-cyan font-semibold">great website</span></h2>
                 <p className="text-lg text-text-muted">The only difference is <span className="text-white font-medium">who looks after the hosting</span> once your site is live. Here is what each option means in practice.</p>
              </motion.div>
 
@@ -300,22 +300,22 @@ export default function WhatYouNeed() {
                >
                  <div className="relative z-10">
                    <div className="flex justify-between items-start mb-8">
-                     <span className="inline-block px-3 py-1 text-xs uppercase tracking-widest font-semibold bg-accent/10 text-accent rounded-full">Option 1</span>
-                     <ScenarioIcon className="w-12 h-12 text-accent opacity-20 group-hover:opacity-40 transition-opacity"/>
+                     <span className="inline-block px-3 py-1 text-xs uppercase tracking-widest font-semibold bg-deep-teal/10 text-deep-teal rounded-full">Option 1</span>
+                     <ScenarioIcon className="w-12 h-12 text-deep-teal opacity-20 group-hover:opacity-40 transition-opacity"/>
                    </div>
                    <h3 className="text-2xl font-semibold text-text mb-8">We build it — you choose where it lives</h3>
                    <ul className="space-y-5 text-sm md:text-[15px] text-text-muted">
                       <li className="flex items-start gap-4">
-                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
-                        <span>We handle <span className="text-gradient-cyan font-bold">everything</span> — design, build, and launch.</span>
+                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-deep-teal" />
+                        <span>We handle <span className="text-cyan font-semibold">everything</span> — design, build, and launch.</span>
                       </li>
                       <li className="flex items-start gap-4">
-                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-deep-teal" />
                         <span>Once live, your site is hosted by a provider you choose — such as Netlify or a local host.</span>
                       </li>
                       <li className="flex items-start gap-4">
-                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
-                        <span>Your domain name <span className="text-gradient-cyan font-bold">always stays</span> registered in your name.</span>
+                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-deep-teal" />
+                        <span>Your domain name <span className="text-cyan font-semibold">always stays</span> registered in your name.</span>
                       </li>
                    </ul>
                  </div>
@@ -328,21 +328,21 @@ export default function WhatYouNeed() {
                >
                  <div className="relative z-10">
                    <div className="flex justify-between items-start mb-8">
-                     <span className="inline-block px-3 py-1 text-xs uppercase tracking-widest font-semibold bg-accent border border-accent text-bg rounded-full shadow-[0_0_15px_rgba(0,229,255,0.5)]">Option 2 (Recommended)</span>
-                     <ScenarioIcon className="w-12 h-12 text-accent opacity-20 group-hover:opacity-40 transition-opacity"/>
+                     <span className="inline-block px-3 py-1 text-xs uppercase tracking-widest font-semibold bg-cyan border border-cyan text-black rounded-full shadow-[0_0_15px_rgba(0,229,255,0.5)]">Option 2 (Recommended)</span>
+                     <ScenarioIcon className="w-12 h-12 text-deep-teal opacity-20 group-hover:opacity-40 transition-opacity"/>
                    </div>
                    <h3 className="text-2xl font-semibold text-text mb-8">We build it and keep it running for you</h3>
                    <ul className="space-y-5 text-sm md:text-[15px] text-text-muted">
                       <li className="flex items-start gap-4">
-                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
-                        <span>We handle design, build, launch, and all hosting — you <span className="text-gradient-cyan font-bold">don't need to think</span> about the technical side.</span>
+                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-deep-teal" />
+                        <span>We handle design, build, launch, and all hosting — you <span className="text-cyan font-semibold">don't need to think</span> about the technical side.</span>
                       </li>
                       <li className="flex items-start gap-4">
-                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
-                        <span><span className="text-gradient-cyan font-bold">One person to call</span> or WhatsApp if anything ever needs attention.</span>
+                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-deep-teal" />
+                        <span><span className="text-cyan font-semibold">One person to call</span> or WhatsApp if anything ever needs attention.</span>
                       </li>
                       <li className="flex items-start gap-4">
-                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-deep-teal" />
                         <span>Your domain name stays registered in your name — we never hold it on your behalf.</span>
                       </li>
                    </ul>
@@ -356,10 +356,10 @@ export default function WhatYouNeed() {
       <section className="py-24 md:py-32">
         <div className="mx-auto flex w-full max-w-3xl flex-col items-center text-center px-5 sm:px-8">
            <motion.div {...fadeInUp} className="w-full">
-             <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-accent section-eyebrow-glow">Before we start</span>
-             <h2 className="font-display mx-auto max-w-3xl text-3xl font-semibold leading-tight tracking-tight text-white md:text-5xl mb-8">A few things that help us <span className="text-gradient-cyan">hit the ground running</span></h2>
+             <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">Before we start</span>
+             <h2 className="font-display mx-auto max-w-3xl text-3xl font-semibold leading-tight tracking-tight text-white md:text-5xl mb-8">A few things that help us <span className="text-cyan font-semibold">hit the ground running</span></h2>
              <p className="text-base md:text-lg text-text-muted/80 mb-12 max-w-2xl mx-auto">
-               Before we begin, it helps to have a few things ready — your list of services or products, your contact details, any logo or branding you already have, and links to your social media if you use them. <span className="text-gradient-cyan font-bold">Don't worry</span> if you're missing some of these. We'll tell you exactly what we need and help you get it together.
+               Before we begin, it helps to have a few things ready — your list of services or products, your contact details, any logo or branding you already have, and links to your social media if you use them. <span className="text-cyan font-semibold">Don't worry</span> if you're missing some of these. We'll tell you exactly what we need and help you get it together.
              </p>
               <Link 
                 to="/contact" 
@@ -371,13 +371,12 @@ export default function WhatYouNeed() {
                   })
                 }
               >
-                <motion.button 
-                  className="w-full py-4 rounded-full bg-gradient-to-r from-[#00E5FF] via-[#38B2F5] to-[#00E5FF] bg-[length:200%_auto] text-black font-bold tracking-wider uppercase text-sm shadow-[0_0_20px_rgba(0,229,255,0.4)]"
-                  animate={{ backgroundPosition: ["0% center", "200% center"] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                <button 
+                  className="w-full py-5 rounded-full text-black font-black tracking-[0.2em] uppercase text-sm shadow-[0_0_30px_rgba(0,229,255,0.4)] transition-all duration-300 hover:scale-[1.02] hover:brightness-110 active:scale-95 flex items-center justify-center cta-gradient-anim"
+                  style={{ backgroundImage: 'linear-gradient(90deg, #00E5FF, #38B2F5, #0C7CC4, #00E5FF)', backgroundSize: '300% 100%' }}
                 >
                   Start a conversation
-                </motion.button>
+                </button>
               </Link>
            </motion.div>
         </div>
