@@ -4,9 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "node node_modules/vite/bin/vite.js",
     "build": "node node_modules/typescript/bin/tsc -b && node node_modules/vite/bin/vite.js build",
-    "preview": "vite preview",
+    "preview": "node node_modules/vite/bin/vite.js preview",
     "sanity:dev": "npm --prefix test-project run dev",
     "sanity:deploy": "npm --prefix test-project run deploy"
   },
