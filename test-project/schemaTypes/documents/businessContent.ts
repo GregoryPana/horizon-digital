@@ -14,6 +14,64 @@ export const businessContent = defineType({
       of: [defineArrayMember({type: 'string'})],
     }),
     defineField({
+      name: 'servicesPricingIntro',
+      title: 'Services Pricing Intro',
+      type: 'object',
+      fields: [
+        defineField({name: 'title', type: 'string', validation: (rule) => rule.required()}),
+        defineField({name: 'subtitle', type: 'string', validation: (rule) => rule.required()}),
+        defineField({name: 'summary', type: 'text', rows: 4, validation: (rule) => rule.required()}),
+      ],
+    }),
+    defineField({
+      name: 'homeHero',
+      title: 'Home Hero',
+      type: 'object',
+      fields: [
+        defineField({name: 'trustBadgeText', type: 'string', validation: (rule) => rule.required()}),
+        defineField({
+          name: 'headlineLines',
+          title: 'Headline Lines',
+          type: 'array',
+          of: [defineArrayMember({type: 'string'})],
+          validation: (rule) => rule.min(1).required(),
+        }),
+        defineField({
+          name: 'rotatingWords',
+          title: 'Rotating Words',
+          type: 'array',
+          of: [defineArrayMember({type: 'string'})],
+          validation: (rule) => rule.min(1).required(),
+        }),
+        defineField({name: 'subtitle', type: 'text', rows: 3, validation: (rule) => rule.required()}),
+      ],
+    }),
+    defineField({
+      name: 'homeProblemSection',
+      title: 'Home Problem Section',
+      type: 'object',
+      fields: [
+        defineField({name: 'eyebrow', type: 'string', validation: (rule) => rule.required()}),
+        defineField({name: 'title', type: 'string', validation: (rule) => rule.required()}),
+        defineField({name: 'closingText', type: 'string', validation: (rule) => rule.required()}),
+      ],
+    }),
+    defineField({
+      name: 'homeProblemCards',
+      title: 'Home Problem Cards',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'object',
+          fields: [
+            defineField({name: 'title', type: 'string', validation: (rule) => rule.required()}),
+            defineField({name: 'body', type: 'text', rows: 3, validation: (rule) => rule.required()}),
+          ],
+          preview: {select: {title: 'title', subtitle: 'body'}},
+        }),
+      ],
+    }),
+    defineField({
       name: 'services',
       title: 'Service Highlights',
       type: 'array',

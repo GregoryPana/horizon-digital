@@ -2,20 +2,7 @@ import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import Section from "../components/Section";
 import Seo from "../components/Seo";
-import {
-  addOnItems,
-  customPackage,
-  faqs,
-  foundationPackage,
-  growthPackage,
-  hostingPlan,
-  projectSteps,
-  services,
-  servicesPricingIntro,
-  siteConfig,
-  starterPackage,
-  stabilisationPlan,
-} from "../data/site";
+import { useCmsContent } from "../content/cms-content";
 import { ShimmerButton } from "../components/ui/shimmer-button";
 import { Link, useLocation } from "react-router-dom";
 import MenuVertical from "../components/ui/menu-vertical";
@@ -45,6 +32,17 @@ const pricingVerticalTabs = [
 ] as const;
 
 export default function Pricing() {
+  const {
+    addOnItems,
+    faqs,
+    hostingPlan,
+    projectSteps,
+    services,
+    servicesPricingIntro,
+    servicePackages,
+    siteConfig,
+    stabilisationPlan,
+  } = useCmsContent();
   const shouldReduceMotion = useReducedMotion();
   const location = useLocation();
   const compactDesktopSection = "md:!pt-14 md:!pb-16";
@@ -114,6 +112,16 @@ export default function Pricing() {
       return;
     }
   }, [location.hash]);
+
+  const packageByTier = servicePackages.reduce<Record<string, (typeof servicePackages)[number]>>((acc, pkg) => {
+    acc[pkg.tier] = pkg;
+    return acc;
+  }, {});
+
+  const foundationPackage = packageByTier.foundation ?? servicePackages[0];
+  const starterPackage = packageByTier.starter ?? servicePackages[1] ?? servicePackages[0];
+  const growthPackage = packageByTier.growth ?? servicePackages[2] ?? servicePackages[0];
+  const customPackage = packageByTier.custom ?? servicePackages[3] ?? servicePackages[0];
 
   const packageOffers = [foundationPackage, starterPackage, growthPackage, customPackage]
     .map((pkg) => {

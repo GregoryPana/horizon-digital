@@ -6,14 +6,9 @@ import { ShimmerButton } from "../components/ui/shimmer-button";
 import { Link } from "react-router-dom";
 import { scrollToTopSmooth } from "../lib/utils";
 import { trackEvent } from "../lib/analytics";
+import { useCmsContent } from "../content/cms-content";
 
 import {
-  foundationPackage,
-  starterPackage,
-  growthPackage,
-  customPackage,
-  siteConfig,
-  projectSteps,
   workItems,
 } from "../data/site";
 import Hero from "../components/ui/animated-shader-hero";
@@ -114,37 +109,22 @@ const marqueeItems = [
   "Zero enquiries to consistent bookings",
 ];
 
-const problemCards = [
-  {
-    title: "My website looks outdated",
-    body: "I'm embarrassed to share it with customers. It doesn't reflect the quality of service we provide in person.",
-    color: "cyan",
-    icon: (
-      <>
-        <circle cx="12" cy="12" r="10" />
-        <path d="M16 16s-1.5-2-4-2-4 2-4 2" />
-        <line x1="9" y1="9" x2="9.01" y2="9" />
-        <line x1="15" y1="9" x2="15.01" y2="9" />
-      </>
-    ),
-  },
-  {
-    title: "Customers cannot find me",
-    body: "I tell people to Google us, but we don't show up. I don't know how to fix it and competitors get all the search traffic.",
-    color: "cyan",
-    icon: (
-      <>
-        <circle cx="11" cy="11" r="8" />
-        <line x1="21" y1="21" x2="16.65" y2="16.65" />
-      </>
-    ),
-  },
-  {
-    title: "Zero enquiries",
-    body: "The site is online but has never brought a new customer. It feels like an expense, not an asset.",
-    color: "cyan",
-    icon: <path d="M22 12h-4l-3 9L9 3l-3 9H2" />,
-  },
+const problemIcons = [
+  (
+    <>
+      <circle cx="12" cy="12" r="10" />
+      <path d="M16 16s-1.5-2-4-2-4 2-4 2" />
+      <line x1="9" y1="9" x2="9.01" y2="9" />
+      <line x1="15" y1="9" x2="15.01" y2="9" />
+    </>
+  ),
+  (
+    <>
+      <circle cx="11" cy="11" r="8" />
+      <line x1="21" y1="21" x2="16.65" y2="16.65" />
+    </>
+  ),
+  <path d="M22 12h-4l-3 9L9 3l-3 9H2" />,
 ] as const;
 
 function WorkShowcase() {
@@ -259,9 +239,23 @@ function WorkShowcase() {
 }
 
 export default function Home() {
+  const { homeHero, homeProblemCards, homeProblemSection, projectSteps, servicePackages, siteConfig } = useCmsContent();
   const shouldReduceMotion = useReducedMotion();
   const allHomeFaqItems = homeFaqCategories.flatMap((category) => category.items);
   const handleWorkScrollTop = () => scrollToTopSmooth();
+
+  const packageByTier = useMemo(() => {
+    const byTier: Record<string, (typeof servicePackages)[number]> = {};
+    for (const pkg of servicePackages) byTier[pkg.tier] = pkg;
+    return byTier;
+  }, [servicePackages]);
+
+  const foundationPackage = packageByTier.foundation ?? servicePackages[0];
+  const starterPackage = packageByTier.starter ?? servicePackages[1] ?? servicePackages[0];
+  const growthPackage = packageByTier.growth ?? servicePackages[2] ?? servicePackages[0];
+  const customPackage = packageByTier.custom ?? servicePackages[3] ?? servicePackages[0];
+
+  const problemCards = homeProblemCards;
 
   const [activeProblem, setActiveProblem] = useState(0);
   const [activeService, setActiveService] = useState(0);
@@ -381,14 +375,12 @@ export default function Home() {
       />
 
       <Hero
-        trustBadge={{ text: "Custom Web Design Studio • Seychelles" }}
+        trustBadge={{ text: homeHero.trustBadgeText }}
         headline={{
-          lines: [
-            "CUSTOM STUNNING WEBSITES"
-          ],
-          rotatingWords: ["STUNNING", "PROFESSIONAL", "FAST", "MOBILE-READY"]
+          lines: homeHero.headlineLines,
+          rotatingWords: homeHero.rotatingWords,
         }}
-        subtitle="A website that looks great, loads fast, and brings in real customers."
+        subtitle={homeHero.subtitle}
         tags={[
           { text: "BUILT AROUND YOU", icon: (
             <svg className="h-3 w-3 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
@@ -446,9 +438,9 @@ export default function Home() {
             viewport={{ once: true, amount: 0.35 }}
             className="mb-20 text-center"
           >
-            <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">Sound Familiar?</span>
+            <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">{homeProblemSection.eyebrow}</span>
             <h2 className="font-display mx-auto max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl">
-              Most businesses in Seychelles face the same three problems <span className="text-cyan font-semibold">online.</span>
+              {homeProblemSection.title}
             </h2>
           </motion.div>
 
@@ -457,7 +449,7 @@ export default function Home() {
             className="mb-8 md:mb-16 flex gap-5 overflow-x-auto snap-x snap-mandatory pb-4 -mx-5 px-5 md:mx-0 md:px-0 md:grid md:grid-cols-3 md:gap-8 md:overflow-visible md:snap-none md:pb-0 scrollbar-hide"
             onScroll={handleProblemScroll}
           >
-            {problemCards.map((card) => (
+            {problemCards.map((card, index) => (
               <motion.article
                 key={card.title}
                 whileHover={shouldReduceMotion ? undefined : { y: -6, scale: 1.01 }}
@@ -475,7 +467,7 @@ export default function Home() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                   >
-                    {card.icon}
+                    {problemIcons[index] ?? problemIcons[problemIcons.length - 1]}
                   </svg>
                 </div>
                 <h3 className="font-display mb-3 text-xl semibold-underline text-white">{card.title}</h3>
@@ -513,7 +505,7 @@ export default function Home() {
           <div className="text-center">
             <p className="font-display inline-flex items-center gap-4 text-2xl font-bold uppercase tracking-[0.2em] text-cyan">
               <span className="h-px w-12 bg-cyan/50" />
-              We fix this. Every time.
+              {homeProblemSection.closingText}
               <span className="h-px w-12 bg-cyan/50" />
             </p>
           </div>

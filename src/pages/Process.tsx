@@ -1,10 +1,12 @@
 import Section from "../components/Section";
 import Seo from "../components/Seo";
-import { projectSteps } from "../data/site";
+import { useCmsContent } from "../content/cms-content";
 import { ShimmerButton } from "../components/ui/shimmer-button";
 import { Link } from "react-router-dom";
 
 export default function Process() {
+  const { projectSteps } = useCmsContent();
+
   return (
     <div>
       <h1 className="sr-only">How We Build Your Website | Horizon Digital Process</h1>

@@ -4,11 +4,12 @@ import { useState, useRef } from "react";
 import { MessageSquare, Navigation, Layout, MessageCircle, Briefcase, ShoppingBag, Bed } from "lucide-react";
 import Seo from "../components/Seo";
 import { ScenarioIcon } from "../components/ui/symbol-icons";
-import { siteConfig } from "../data/site";
+import { useCmsContent } from "../content/cms-content";
 import { trackEvent } from "../lib/analytics";
 
 
 export default function WhatYouNeed() {
+  const { siteConfig } = useCmsContent();
   const shouldReduceMotion = useReducedMotion();
   const [activeCarousel, setActiveCarousel] = useState(0);
   const carouselScrollRef = useRef<HTMLDivElement>(null);
