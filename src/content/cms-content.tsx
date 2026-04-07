@@ -114,7 +114,7 @@ const fallbackHomeProblemCards: HomeProblemCard[] = [
   },
 ];
 
-const SITE_SETTINGS_QUERY = `*[_type == "siteSettings"][0]{
+const SITE_SETTINGS_QUERY = `*[_id == "siteSettings"][0]{
   name,
   tagline,
   taglineLong,

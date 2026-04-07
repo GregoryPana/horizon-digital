@@ -45,8 +45,8 @@ export default function WhatYouNeed() {
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    name: "What Does a Website Actually Involve? | Horizon Digital",
-    description: "A plain-English guide for Seychelles business owners — what a domain, build, and hosting actually mean, what type of website suits your business, and how to get started with Horizon Digital.",
+    name: `What Does a Website Actually Involve? | ${siteConfig.name}`,
+    description: `A plain-English guide for Seychelles business owners — what a domain, build, and hosting actually mean, what type of website suits your business, and how to get started with ${siteConfig.name}.`,
     url: new URL("/what-you-need", siteConfig.url).toString(),
   };
 
@@ -61,7 +61,7 @@ export default function WhatYouNeed() {
     <div className="overflow-hidden">
       <h1 className="sr-only">What Custom Website Does Your Business Need?</h1>
       <Seo
-        title="Choosing the Right Custom Website | Horizon Digital"
+        title={`Choosing the Right Custom Website | ${siteConfig.name}`}
         description="A guide to understanding custom website options for your Seychelles business. Learn about domains, hosting, and finding the perfect custom web solution."
         path="/what-you-need"
         keywords="what custom website do I need, bespoke business website types Seychelles, custom web design guidance"

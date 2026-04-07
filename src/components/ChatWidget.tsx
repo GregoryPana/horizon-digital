@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageSquare, Send, X, User, Bot, Loader2, CheckCircle2 } from "lucide-react";
+import { useCmsContent } from "../content/cms-content";
 
 interface Message {
   role: "user" | "assistant";
@@ -11,6 +12,7 @@ const API_BASE = "https://chat.horizondigitalsey.com/webhook";
 const WEBHOOK_TOKEN = "OK_SECRET44365457d9efd97d50e0f7f06b51343c53679a8cf49a87dbfbf03319e6e87305";
 
 export default function ChatWidget() {
+  const { siteConfig } = useCmsContent();
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState("");
@@ -36,7 +38,7 @@ export default function ChatWidget() {
     setMessages([
       {
         role: "assistant",
-        content: "Hi! I'm the Horizon Digital assistant. How can I help you today?",
+        content: `Hi! I'm the ${siteConfig.name} assistant. How can I help you today?`,
       },
     ]);
 
@@ -150,7 +152,7 @@ export default function ChatWidget() {
                   <span className="relative inline-flex h-2 w-2 rounded-full bg-accent"></span>
                 </div>
                 <div>
-                  <h3 className="text-sm font-semibold text-text uppercase tracking-wider">Horizon Assistant</h3>
+                  <h3 className="text-sm font-semibold text-text uppercase tracking-wider">{siteConfig.name} Assistant</h3>
                   <p className="text-[10px] text-text-muted">Always active • AI Powered</p>
                 </div>
               </div>
@@ -194,7 +196,7 @@ export default function ChatWidget() {
                 <div className="flex justify-start">
                   <div className="flex items-center gap-2 rounded-2xl bg-white/5 px-4 py-2.5 text-text-muted border border-white/5">
                     <Loader2 size={14} className="animate-spin" />
-                    <span className="text-xs">Horizon is thinking...</span>
+                    <span className="text-xs">{siteConfig.name} is thinking...</span>
                   </div>
                 </div>
               )}
@@ -272,7 +274,7 @@ export default function ChatWidget() {
                 </button>
               </div>
               <p className="mt-2 text-center text-[10px] text-text-muted uppercase tracking-tighter">
-                © {new Date().getFullYear()} Horizon Digital • Seychelles
+                © {new Date().getFullYear()} {siteConfig.name} • Seychelles
               </p>
             </div>
           </motion.div>

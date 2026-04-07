@@ -1,7 +1,9 @@
 import { useEffect, useRef } from "react";
 import Seo from "../components/Seo";
+import { useCmsContent } from "../content/cms-content";
 
 export default function ShowcaseTakamakaHouse() {
+  const { siteConfig } = useCmsContent();
   const frameRef = useRef<HTMLIFrameElement | null>(null);
 
   useEffect(() => {
@@ -20,7 +22,7 @@ export default function ShowcaseTakamakaHouse() {
     <>
       <Seo
         title="Takamaka House Showcase"
-        description="Explore the Takamaka House showcase by Horizon Digital, focused on hospitality storytelling and clear booking intent."
+        description={`Explore the Takamaka House showcase by ${siteConfig.name}, focused on hospitality storytelling and clear booking intent.`}
         path="/showcase/takamaka-house"
       />
       <section className="h-[100svh] w-full bg-black">

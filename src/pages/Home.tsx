@@ -367,7 +367,7 @@ export default function Home() {
   return (
     <div className="bg-[#0A0A0C] text-white">
       <Seo
-        title="Custom Website Design Seychelles | Horizon Digital"
+        title={`Custom Website Design Seychelles | ${siteConfig.name}`}
         description="Custom-built websites for Seychelles businesses. Professional web design & development — no templates, just results. Fast, mobile-ready, SEO-optimized from day one."
         path="/"
         keywords="custom website Seychelles, custom web design Seychelles, custom web development Seychelles, website design Seychelles, bespoke websites Seychelles"

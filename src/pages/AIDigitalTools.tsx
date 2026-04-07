@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import Section from "../components/Section";
 import Seo from "../components/Seo";
 import Card from "../components/Card";
+import { useCmsContent } from "../content/cms-content";
 
 import InsightsHero from "../components/InsightsHero";
 import MenuVertical from "../components/ui/menu-vertical";
@@ -29,6 +30,7 @@ const technologyCards = [
 ];
 
 export default function AIDigitalTools() {
+  const { siteConfig } = useCmsContent();
   const insightSectionLinks = [
     { id: "awareness", label: "Awareness" },
     { id: "future-trends", label: "Future Trends" },
@@ -73,7 +75,7 @@ export default function AIDigitalTools() {
     <div className="insights-theme-shell">
       <Seo
         title="Artificial Intelligence & Digital Tools for Businesses in Seychelles"
-        description="Learn how artificial intelligence, automation, and digital tools are beginning to shape businesses in Seychelles. Horizon Digital shares insights into emerging technologies and how they may benefit local companies."
+        description={`Learn how artificial intelligence, automation, and digital tools are beginning to shape businesses in Seychelles. ${siteConfig.name} shares insights into emerging technologies and how they may benefit local companies.`}
         path="/ai-digital-tools"
         keywords="AI Seychelles, Artificial Intelligence Seychelles, digital tools Seychelles, automation for small businesses Seychelles, future of technology Seychelles, AI for small business"
       />
@@ -119,7 +121,7 @@ export default function AIDigitalTools() {
       >
         <p className="mx-auto max-w-4xl text-center text-sm text-text-muted">
           While many of these technologies are still emerging in Seychelles, they are likely to play
-          an increasing role in the future of business. At Horizon Digital, we follow these
+          an increasing role in the future of business. At {siteConfig.name}, we follow these
           developments closely and help businesses understand what these technologies are and how
           they may be used.
         </p>
@@ -137,7 +139,7 @@ export default function AIDigitalTools() {
               Digital technology continues to evolve rapidly. Artificial intelligence, automation
               tools, and data analysis are already transforming industries globally. For businesses
               in Seychelles, these technologies may create opportunities to improve efficiency,
-              understand customers, and simplify daily operations. Horizon Digital follows
+              understand customers, and simplify daily operations. {siteConfig.name} follows
               developments in these areas to help local businesses stay informed.
             </p>
           </div>
@@ -163,7 +165,7 @@ export default function AIDigitalTools() {
       <Section id="current-focus" eyebrow="Honest about what we do" title="What we focus on right now" description="Clear scope and transparency.">
         <Card>
           <p className="text-sm text-text-muted">
-            Horizon Digital currently focuses on building clear, fast, and professional websites for
+            {siteConfig.name} currently focuses on building clear, fast, and professional websites for
             businesses in Seychelles. While we closely follow developments in artificial
             intelligence, automation, and emerging digital technologies, we do not currently offer
             AI development or automation services.

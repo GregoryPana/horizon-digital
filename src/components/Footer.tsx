@@ -10,9 +10,9 @@ export default function Footer() {
       <div className="mx-auto w-full max-w-[1760px] px-5 py-24 md:px-8 lg:px-12 xl:px-16 2xl:px-20">
         <div className="footer-content grid gap-16 md:grid-cols-2 lg:grid-cols-3">
           <div className="flex flex-col gap-6">
-            <p className="brand-name text-sm uppercase tracking-[0.24em] text-accent">Horizon Digital</p>
+            <p className="brand-name text-sm uppercase tracking-[0.24em] text-accent">{siteConfig.name}</p>
             <p className="max-w-xs text-sm leading-relaxed text-text-muted">
-              Horizon Digital builds custom, clear, fast websites for Seychelles businesses. We focus on calm
+              {siteConfig.name} builds custom, clear, fast websites for Seychelles businesses. We focus on calm
               design, structured content, and performance that helps visitors take action.
             </p>
           </div>

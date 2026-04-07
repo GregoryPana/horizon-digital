@@ -19,12 +19,12 @@ export default function About() {
 
   return (
     <div className="overflow-hidden">
-      <h1 className="sr-only">About Horizon Digital - Custom Website Design studio</h1>
+      <h1 className="sr-only">About {siteConfig.name} - Custom Website Design studio</h1>
       <Seo
-        title="Custom Website Design Studio Seychelles | About Horizon Digital"
-        description="Horizon Digital is a local studio specialized in custom website design for Seychelles businesses. We build beautiful, fast websites that actually bring customers."
+        title={`Custom Website Design Studio Seychelles | About ${siteConfig.name}`}
+        description={`${siteConfig.name} is a local studio specialized in custom website design for Seychelles businesses. We build beautiful, fast websites that actually bring customers.`}
         path="/about"
-        keywords="about Horizon Digital, custom web design studio Seychelles, bespoke website designer Seychelles, custom web development"
+        keywords={`about ${siteConfig.name}, custom web design studio Seychelles, bespoke website designer Seychelles, custom web development`}
       />
 
       {/* Section 1 — Opening: The Person, Not the Business */}
@@ -64,7 +64,7 @@ export default function About() {
             >
               <div className="space-y-6 text-lg text-text-muted leading-relaxed">
                 <p>
-                  We started Horizon Digital because we kept seeing the same problem — good Seychelles businesses with <span className="semibold-underline text-white">bad websites.</span> Guesthouses that looked worse online than they were in person. Restaurants with no online presence at all. Shops that couldn't be found on Google.
+                  We started {siteConfig.name} because we kept seeing the same problem — good Seychelles businesses with <span className="semibold-underline text-white">bad websites.</span> Guesthouses that looked worse online than they were in person. Restaurants with no online presence at all. Shops that couldn't be found on Google.
                 </p>
                 <p>
                   We build websites for local businesses that look <span className="text-gradient-cyan font-semibold">genuinely professional</span>, load fast on mobile, and <span className="semibold-underline text-white">actually bring in customers.</span> Not templates with your name dropped in. Real custom sites, built around how your business works.
@@ -132,7 +132,7 @@ export default function About() {
             </div>
 
             <div className="space-y-8">
-               <h3 className="text-sm font-black uppercase tracking-[0.2em] text-deep-teal">Horizon Digital</h3>
+               <h3 className="text-sm font-black uppercase tracking-[0.2em] text-deep-teal">{siteConfig.name}</h3>
                <ul className="space-y-5 text-base text-text-muted leading-relaxed">
                   <li className="flex items-start gap-4">
                      <span className="mt-2.5 w-1.5 h-1.5 rounded-full bg-deep-teal" />

@@ -9,7 +9,7 @@ import beautyPreviewWebp from "../assets/work/demo-beauty/demo-beauty.webp";
 import beautyPreviewWebp800 from "../assets/work/demo-beauty/demo-beauty 600.webp";
 
 export const siteConfig = {
-  name: "Horizon Digital",
+  name: "Horizon Digital", // Fallback, will be overridden by useCmsContent if available
   tagline: "Your business, beautifully online",
   taglineLong: "Your business, beautifully online — built for Seychelles",
   email: "horizondigital.sey@gmail.com",
@@ -22,7 +22,7 @@ export const siteConfig = {
 
 export const emailTemplate = {
   subject: "New Project Inquiry - [Business Name]",
-  body: `Hi Horizon Digital,
+  body: `Hi,
 
  I'd like to discuss a new website project.
 

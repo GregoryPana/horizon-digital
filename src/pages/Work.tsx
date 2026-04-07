@@ -2,6 +2,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
 import Seo from "../components/Seo";
 import { trackEvent } from "../lib/analytics";
+import { useCmsContent } from "../content/cms-content";
 
 
 // Image Imports
@@ -28,6 +29,7 @@ import takamakaAltOneWebp from "../assets/work/takamaka-house/takamaka house 2.w
 
 
 export default function Work() {
+  const { siteConfig } = useCmsContent();
   const shouldReduceMotion = useReducedMotion();
 
   const fadeIn = {
@@ -39,10 +41,10 @@ export default function Work() {
 
   return (
     <div className="overflow-hidden">
-      <h1 className="sr-only">Custom Website Design Portfolio Horizon Digital</h1>
+      <h1 className="sr-only">Custom Website Design Portfolio {siteConfig.name}</h1>
       <Seo
-        title="Custom Website Portfolio Seychelles | Horizon Digital"
-        description="Explore the Horizon Digital website portfolio. We build custom websites designed to communicate clearly, perform fast, and support real business needs in Seychelles."
+        title={`Custom Website Portfolio Seychelles | ${siteConfig.name}`}
+        description={`Explore the ${siteConfig.name} website portfolio. We build custom websites designed to communicate clearly, perform fast, and support real business needs in Seychelles.`}
         path="/work"
         keywords="custom website portfolio Seychelles, bespoke web design examples Seychelles, custom-built business websites Seychelles, tailored web development showcase"
       />

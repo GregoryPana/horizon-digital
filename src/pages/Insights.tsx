@@ -8,13 +8,13 @@ import { useCmsContent } from "../content/cms-content";
 import InsightsHero from "../components/InsightsHero";
 
 export default function Insights() {
-  const { insightArticles } = useCmsContent();
+  const { insightArticles, siteConfig } = useCmsContent();
 
   return (
     <div className="insights-theme-shell">
       <Seo
         title="Digital Insights for Businesses in Seychelles"
-        description="Educational articles from Horizon Digital on AI, automation, analytics, and digital trends relevant to businesses in Seychelles."
+        description={`Educational articles from ${siteConfig.name} on AI, automation, analytics, and digital trends relevant to businesses in Seychelles.`}
         path="/insights"
         keywords="AI Seychelles, Artificial Intelligence Seychelles, digital transformation Seychelles, automation tools for businesses, AI for small businesses Seychelles"
       />

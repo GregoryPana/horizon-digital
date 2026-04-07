@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { trackEvent } from "../lib/analytics";
+import { useCmsContent } from "../content/cms-content";
 
 import NavMenu from "./ui/menu-hover-effects";
 
@@ -40,7 +41,7 @@ export default function Navbar() {
             imageClassName="h-8 w-[48px] rounded-sm object-contain md:h-9 md:w-[54px]"
           />
           <span className="brand-name ml-2 whitespace-nowrap text-[11px] sm:text-xs uppercase tracking-[0.12em] text-accent text-left">
-            Horizon Digital
+            {useCmsContent().siteConfig.name}
           </span>
         </NavLink>
         <div className="ml-auto flex items-center gap-3">

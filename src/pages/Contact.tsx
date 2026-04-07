@@ -59,7 +59,7 @@ export default function Contact() {
       businessName || "Business"
     );
 
-    const body = `Hi Horizon Digital,
+    const body = `Hi ${siteConfig.name},
 
  I'd like to discuss a new website project.
 
@@ -88,10 +88,10 @@ Looking forward to your reply.`;
 
   return (
     <div>
-      <h1 className="sr-only">Contact Horizon Digital - Start Your Custom Website Project</h1>
+      <h1 className="sr-only">Contact {siteConfig.name} - Start Your Custom Website Project</h1>
       <Seo
-        title="Start Your Custom Website Project in Seychelles | Horizon Digital"
-        description="Tell us about your business goals and start your custom website project with Horizon Digital today."
+        title={`Start Your Custom Website Project in Seychelles | ${siteConfig.name}`}
+        description={`Tell us about your business goals and start your custom website project with ${siteConfig.name} today.`}
         path="/contact"
         keywords="contact custom web designer Seychelles, start custom website project Seychelles, bespoke web solutions"
       />
@@ -217,7 +217,7 @@ Looking forward to your reply.`;
             </p>
           </Card>
           <Card className="min-w-0 order-first lg:order-last">
-            <span className="mb-6 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">Contact Horizon Digital</span>
+            <span className="mb-6 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">Contact {siteConfig.name}</span>
             
             <a
               href={siteConfig.whatsappUrl}

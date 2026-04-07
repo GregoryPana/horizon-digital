@@ -1,7 +1,9 @@
 import { useEffect, useRef } from "react";
 import Seo from "../components/Seo";
+import { useCmsContent } from "../content/cms-content";
 
 export default function ShowcaseFormaStudio() {
+  const { siteConfig } = useCmsContent();
   const frameRef = useRef<HTMLIFrameElement | null>(null);
 
   useEffect(() => {
@@ -20,7 +22,7 @@ export default function ShowcaseFormaStudio() {
     <>
       <Seo
         title="Forma Studio Showcase"
-        description="View the Forma Studio website showcase by Horizon Digital, including layout, storytelling flow, and visual direction."
+        description={`View the Forma Studio website showcase by ${siteConfig.name}, including layout, storytelling flow, and visual direction.`}
         path="/showcase/forma-studio"
       />
       <section className="h-[100svh] w-full bg-black">

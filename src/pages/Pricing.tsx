@@ -176,8 +176,8 @@ export default function Pricing() {
     <div>
       <h1 className="sr-only">Custom Website Design Services and Packages</h1>
       <Seo
-        title="Custom Website Packages & Pricing in Seychelles | Horizon Digital"
-        description="Clear website packages for Seychelles businesses — Foundation, Starter, and Growth. Honest SCR pricing, custom design, and everything your business needs to get found online."
+        title={`Custom Website Packages & Pricing in Seychelles | ${siteConfig.name}`}
+        description={`Clear website packages for Seychelles businesses — Foundation, Starter, and Growth. Honest SCR pricing, custom design, and everything your business needs to get found online.`}
         path="/services-pricing"
         keywords="custom website packages Seychelles, custom web design pricing Seychelles, bespoke website development Seychelles, tailored web solutions Seychelles"
         structuredData={[serviceSchema, faqSchema]}

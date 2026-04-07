@@ -5,14 +5,14 @@ import { ShimmerButton } from "../components/ui/shimmer-button";
 import { Link } from "react-router-dom";
 
 export default function Process() {
-  const { projectSteps } = useCmsContent();
+  const { projectSteps, siteConfig } = useCmsContent();
 
   return (
     <div>
-      <h1 className="sr-only">How We Build Your Website | Horizon Digital Process</h1>
+      <h1 className="sr-only">How We Build Your Website | {siteConfig.name} Process</h1>
       <Seo
-        title="How We Build Your Website | Horizon Digital"
-        description="A clear, step-by-step look at how Horizon Digital takes your website from discovery to launch. No surprises, no guesswork — just a process you'll actually enjoy."
+        title={`How We Build Your Website | ${siteConfig.name}`}
+        description={`A clear, step-by-step look at how ${siteConfig.name} takes your website from discovery to launch. No surprises, no guesswork — just a process you'll actually enjoy.`}
         path="/process"
         keywords="website build process Seychelles, how to build a website, web design timeline, website project steps"
       />
