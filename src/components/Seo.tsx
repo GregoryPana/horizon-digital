@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import { siteConfig } from "../data/site";
+import { useCmsContent } from "../content/cms-content";
 
 type SeoProps = {
   title: string;
@@ -20,6 +20,7 @@ export default function Seo({
   ogType = "website",
   structuredData,
 }: SeoProps) {
+  const { siteConfig } = useCmsContent();
   const canonical = new URL(path, siteConfig.url).toString();
   const fullTitle = title.includes(siteConfig.name)
     ? title

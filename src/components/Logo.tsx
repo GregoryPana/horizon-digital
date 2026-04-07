@@ -1,4 +1,4 @@
-import { siteConfig } from "../data/site";
+import { useCmsContent } from "../content/cms-content";
 import primaryLogo from "../assets/logo/logo.webp";
 
 type LogoProps = {
@@ -8,6 +8,7 @@ type LogoProps = {
 };
 
 export default function Logo({ imageSrc, className, imageClassName }: LogoProps) {
+  const { siteConfig } = useCmsContent();
   const wrapperClass = ["flex items-center gap-3", className]
     .filter(Boolean)
     .join(" ");

@@ -9,7 +9,8 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "./navigation-menu";
-import { navLinks, workItems } from "../../data/site";
+import { workItems } from "../../data/site";
+import { useCmsContent } from "../../content/cms-content";
 import { cn, scrollToTopSmooth } from "../../lib/utils";
 
 type MobileMenuItem = {
@@ -71,6 +72,7 @@ const desktopDropdowns: Record<string, Array<{ label: string; to: string }>> = {
 };
 
 export default function NavMenu() {
+  const { navLinks } = useCmsContent();
   const location = useLocation();
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);

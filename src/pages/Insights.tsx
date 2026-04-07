@@ -4,10 +4,12 @@ import { trackEvent } from "../lib/analytics";
 import Seo from "../components/Seo";
 import Section from "../components/Section";
 import Card from "../components/Card";
-import { insightArticles } from "../data/insights";
+import { useCmsContent } from "../content/cms-content";
 import InsightsHero from "../components/InsightsHero";
 
 export default function Insights() {
+  const { insightArticles } = useCmsContent();
+
   return (
     <div className="insights-theme-shell">
       <Seo

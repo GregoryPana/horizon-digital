@@ -2,11 +2,12 @@ import { motion, useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { MessageCircle, ExternalLink } from "lucide-react";
 import Seo from "../components/Seo";
-import { siteConfig } from "../data/site";
+import { useCmsContent } from "../content/cms-content";
 import { trackEvent } from "../lib/analytics";
 
 
 export default function About() {
+  const { siteConfig } = useCmsContent();
   const shouldReduceMotion = useReducedMotion();
 
   const fadeInUp = {

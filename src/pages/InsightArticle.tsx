@@ -2,11 +2,11 @@ import { Link, useParams } from "react-router-dom";
 import Seo from "../components/Seo";
 import Section from "../components/Section";
 import Card from "../components/Card";
-import { insightArticles } from "../data/insights";
-import { siteConfig } from "../data/site";
+import { useCmsContent } from "../content/cms-content";
 import InsightsHero from "../components/InsightsHero";
 
 export default function InsightArticle() {
+  const { insightArticles, siteConfig } = useCmsContent();
   const { slug = "" } = useParams();
   const article = insightArticles.find((item) => item.slug === slug);
 

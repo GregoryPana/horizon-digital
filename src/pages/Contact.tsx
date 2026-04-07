@@ -2,13 +2,14 @@ import Button from "../components/Button";
 import Card from "../components/Card";
 import Section from "../components/Section";
 import Seo from "../components/Seo";
-import { emailTemplate, siteConfig } from "../data/site";
+import { useCmsContent } from "../content/cms-content";
 import { buildMailtoLink } from "../lib/utils";
 import { useLocation } from "react-router-dom";
 import { trackEvent } from "../lib/analytics";
 
 
 export default function Contact() {
+  const { emailTemplate, siteConfig } = useCmsContent();
   const location = useLocation();
   const mailtoHref = buildMailtoLink(
     siteConfig.email,

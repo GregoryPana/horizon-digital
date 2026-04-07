@@ -5,10 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
-    "preview": "vite preview"
+    "build": "node node_modules/typescript/bin/tsc -b && node node_modules/vite/bin/vite.js build",
+    "preview": "vite preview",
+    "sanity:dev": "npm --prefix test-project run dev",
+    "sanity:deploy": "npm --prefix test-project run deploy"
   },
   "dependencies": {
+    "@sanity/client": "^7.9.0",
     "@fontsource-variable/inter": "^5.2.8",
     "@fontsource-variable/sora": "^5.2.8",
     "@gsap/react": "^2.1.1",

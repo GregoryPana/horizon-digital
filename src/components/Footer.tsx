@@ -1,8 +1,10 @@
 import { NavLink } from "react-router-dom";
-import { emailTemplate, navLinks, siteConfig } from "../data/site";
+import { useCmsContent } from "../content/cms-content";
 import { buildMailtoLink, scrollToTopSmooth } from "../lib/utils";
 
 export default function Footer() {
+  const { emailTemplate, navLinks, siteConfig } = useCmsContent();
+
   return (
     <footer className="site-footer-dark border-t border-border bg-bg-elev min-h-[440px]">
       <div className="mx-auto w-full max-w-[1760px] px-5 py-24 md:px-8 lg:px-12 xl:px-16 2xl:px-20">
