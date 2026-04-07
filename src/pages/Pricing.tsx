@@ -284,7 +284,7 @@ export default function Pricing() {
                 key={step.title}
                 initial={{ opacity: shouldReduceMotion ? 1 : 0, x: shouldReduceMotion ? 0 : 42 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, amount: 0.4 }}
+                viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: shouldReduceMotion ? 0 : 0.42, delay: index * 0.06, ease: "easeOut" }}
                 className="min-w-0"
               >
@@ -310,7 +310,7 @@ export default function Pricing() {
             <motion.div 
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.3 }}
               className="flex h-full flex-col rounded-3xl border border-cyan/40 bg-bg-elev p-8 hover:!border-[#00E5FF] hover:shadow-[0_0_12px_rgba(0,229,255,0.3)] transition-all"
             >
               <h3 className="text-2xl font-bold text-white">{foundationPackage.title}</h3>
@@ -351,7 +351,7 @@ export default function Pricing() {
             <motion.div 
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.3 }}
               transition={{ delay: 0.1 }}
               className="flex h-full flex-col rounded-3xl border border-cyan shadow-[0_0_30px_rgba(0,229,255,0.15)] bg-[#121214] p-8 relative overflow-hidden pricing-card-featured-shine xl:-translate-y-4 z-20"
             >
@@ -397,7 +397,7 @@ export default function Pricing() {
             <motion.div 
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.3 }}
               transition={{ delay: 0.2 }}
               className="flex h-full flex-col rounded-3xl border border-cyan/40 bg-bg-elev p-8 hover:!border-[#00E5FF] hover:shadow-[0_0_12px_rgba(0,229,255,0.3)] transition-all"
             >

@@ -33,7 +33,7 @@ export default function Work() {
   const fadeIn = {
     initial: { opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 30 },
     whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true, amount: 0.4 },
+    viewport: { once: true, amount: 0.3 },
     transition: { duration: 0.7, ease: "easeOut" as const },
   };
 
@@ -65,7 +65,13 @@ export default function Work() {
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
               
-              <motion.div className="lg:col-span-12 xl:col-span-5 relative z-10 flex flex-col items-start text-left" {...fadeIn}>
+              <motion.div 
+                className="lg:col-span-12 xl:col-span-5 relative z-10 flex flex-col items-start text-left"
+                initial={shouldReduceMotion ? undefined : { opacity: 0, x: -30 }}
+                whileInView={shouldReduceMotion ? undefined : { opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              >
                  <p className="text-xs font-semibold uppercase tracking-[0.3em] text-deep-teal mb-4 bg-deep-teal/10 inline-block px-3 py-1 rounded-[9px] border border-deep-teal/20">
                     Growth Tier
                   </p>
@@ -106,7 +112,13 @@ export default function Work() {
                   </div>
               </motion.div>
 
-              <motion.div className="lg:col-span-12 xl:col-span-7 flex flex-col gap-6" {...fadeIn} transition={{ delay: 0.2 }}>
+              <motion.div 
+                className="lg:col-span-12 xl:col-span-7 flex flex-col gap-6"
+                initial={shouldReduceMotion ? undefined : { opacity: 0, x: 30 }}
+                whileInView={shouldReduceMotion ? undefined : { opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              >
                  <div className="relative group">
                    <picture className="block rounded-2xl overflow-hidden shadow-[0_0_60px_rgba(0,229,255,0.3)] dark:shadow-[0_0_50px_rgba(0,229,255,0.15)] border border-border/30">
                       <source srcSet={drakeMainWebp} type="image/webp" />
@@ -145,7 +157,13 @@ export default function Work() {
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
               
-              <motion.div className="lg:col-span-12 xl:col-span-7 flex flex-col gap-6 order-2 lg:order-1" {...fadeIn}>
+              <motion.div 
+                className="lg:col-span-12 xl:col-span-7 flex flex-col gap-6 order-2 lg:order-1"
+                initial={shouldReduceMotion ? undefined : { opacity: 0, x: -30 }}
+                whileInView={shouldReduceMotion ? undefined : { opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              >
                  <div className="relative group">
                    <picture className="block rounded-2xl overflow-hidden shadow-[0_0_60px_rgba(0,229,255,0.3)] dark:shadow-[0_0_50px_rgba(0,229,255,0.15)] border border-border/30">
                       <source srcSet={takamakaMainWebp} type="image/webp" />
@@ -174,7 +192,13 @@ export default function Work() {
                   </div>
               </motion.div>
 
-              <motion.div className="lg:col-span-12 xl:col-span-5 relative z-10 order-1 lg:order-2 flex flex-col items-start text-left" {...fadeIn} transition={{ delay: 0.2 }}>
+              <motion.div 
+                className="lg:col-span-12 xl:col-span-5 relative z-10 order-1 lg:order-2 flex flex-col items-start text-left"
+                initial={shouldReduceMotion ? undefined : { opacity: 0, x: 30 }}
+                whileInView={shouldReduceMotion ? undefined : { opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              >
                  <p className="text-xs font-semibold uppercase tracking-[0.3em] text-deep-teal mb-4 bg-deep-teal/10 inline-block px-3 py-1 rounded-[9px] border border-deep-teal/20">
                     Foundation Tier
                   </p>

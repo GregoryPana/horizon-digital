@@ -183,13 +183,19 @@ function WorkShowcase() {
   return (
     <section id="work" className="relative overflow-hidden bg-[#0A0A0C]">
       <div className="relative z-30 mx-auto max-w-7xl bg-[#0A0A0C] px-6 pb-10 pt-24 md:pt-28">
-        <div className="mb-20 text-center">
+        <motion.div
+          className="mb-20 text-center"
+          initial={{ opacity: 0, y: 24, filter: 'blur(10px)' }}
+          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        >
           <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">Real Results, Real Businesses</span>
           <h2 className="font-display mx-auto max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl">
             See what is <span className="text-cyan font-semibold">possible</span> for your business
           </h2>
           <p className="mx-auto mt-4 max-w-3xl text-lg text-gray-300">Three businesses. Three transformations. One studio that cares.</p>
-        </div>
+        </motion.div>
       </div>
 
       {showcase.map((project, idx) => (
@@ -386,7 +392,7 @@ export default function Home() {
           lines: [
             "CUSTOM STUNNING WEBSITES"
           ],
-          rotatingWords: ["STUNNING", "PROFESSIONAL", "FAST", "MOBILE-READY"]
+          rotatingWords: ["STUNNING", "PROFESSIONAL", "FAST", "MOBILE READY"]
         }}
         subtitle="A website that looks great, loads fast, and brings in real customers."
         tags={[
@@ -441,9 +447,10 @@ export default function Home() {
       <section className="relative z-20 bg-[#0A0A0C] py-20 md:py-32">
         <div className="mx-auto max-w-7xl px-6">
           <motion.div
-            initial={shouldReduceMotion ? undefined : { opacity: 0, y: 24 }}
-            whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.35 }}
+            initial={shouldReduceMotion ? undefined : { opacity: 0, y: 24, filter: 'blur(10px)' }}
+            whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: 'blur(0px)' }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="mb-20 text-center"
           >
             <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">Sound Familiar?</span>
@@ -457,11 +464,14 @@ export default function Home() {
             className="mb-8 md:mb-16 flex gap-5 overflow-x-auto snap-x snap-mandatory pb-4 -mx-5 px-5 md:mx-0 md:px-0 md:grid md:grid-cols-3 md:gap-8 md:overflow-visible md:snap-none md:pb-0 scrollbar-hide"
             onScroll={handleProblemScroll}
           >
-            {problemCards.map((card) => (
+            {problemCards.map((card, idx) => (
               <motion.article
                 key={card.title}
+                initial={shouldReduceMotion ? undefined : { opacity: 0, x: idx === 0 ? -20 : idx === 2 ? 20 : 0, y: 20 }}
+                whileInView={shouldReduceMotion ? undefined : { opacity: 1, x: 0, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.7, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
                 whileHover={shouldReduceMotion ? undefined : { y: -6, scale: 1.01 }}
-                transition={{ duration: 0.3 }}
                 className="group relative overflow-hidden rounded-2xl border border-white/5 bg-[#1A1A1C] p-8 transition-all duration-500 hover:!border-[#00E5FF] hover:shadow-[0_0_12px_rgba(0,229,255,0.3)] min-w-[calc(100vw-40px)] w-[calc(100vw-40px)] max-w-[calc(100vw-40px)] snap-center snap-always shrink-0 md:w-auto md:max-w-none md:min-w-0 md:shrink"
               >
                 <div className="absolute left-0 top-0 h-1 w-full bg-gradient-to-r from-transparent via-cyan to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
@@ -510,13 +520,19 @@ export default function Home() {
             </button>
           </div>
 
-          <div className="text-center">
+          <motion.div
+            className="text-center"
+            initial={shouldReduceMotion ? undefined : { opacity: 0, scale: 0.9 }}
+            whileInView={shouldReduceMotion ? undefined : { opacity: 1, scale: 1 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          >
             <p className="font-display inline-flex items-center gap-4 text-2xl font-bold uppercase tracking-[0.2em] text-cyan">
               <span className="h-px w-12 bg-cyan/50" />
               We fix this. Every time.
               <span className="h-px w-12 bg-cyan/50" />
             </p>
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -533,12 +549,18 @@ export default function Home() {
 
       <section id="services" className="relative z-20 bg-[#0A0A0C] py-20 md:py-32">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="mb-20 text-center">
+          <motion.div
+            className="mb-20 text-center"
+            initial={shouldReduceMotion ? undefined : { opacity: 0, y: 24, filter: 'blur(10px)' }}
+            whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: 'blur(0px)' }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          >
             <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">Our Services</span>
             <h2 className="font-display mx-auto max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl">
               Websites built around how your business <span className="text-cyan font-semibold">actually works.</span>
             </h2>
-          </div>
+          </motion.div>
 
           <div 
             ref={serviceScrollRef}
@@ -677,11 +699,29 @@ export default function Home() {
 
       <section id="difference" className="border-t border-white/5 bg-black py-24 md:py-32">
         <div className="mx-auto max-w-5xl px-5 sm:px-6 lg:px-8 text-center">
-          <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">How We're Different</span>
-          <h2 className="font-display mx-auto max-w-3xl text-3xl font-semibold leading-tight tracking-tight text-white md:text-4xl">
+          <motion.span
+            className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow"
+            initial={shouldReduceMotion ? undefined : { opacity: 0, y: 10 }}
+            whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          >How We're Different</motion.span>
+          <motion.h2 
+            initial={shouldReduceMotion ? undefined : { opacity: 0, scale: 0.95, filter: 'blur(8px)' }}
+            whileInView={shouldReduceMotion ? undefined : { opacity: 1, scale: 1, filter: 'blur(0px)' }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
+            className="font-display mx-auto max-w-3xl text-3xl font-semibold leading-tight tracking-tight text-white md:text-4xl"
+          >
             A different kind of <span className="text-cyan font-semibold">digital partner.</span>
-          </h2>
-          <div className="mt-10 md:mt-14 p-7 md:p-12 lg:p-14 rounded-[2.5rem] border border-white/10 bg-[#0A0A0C] text-left shadow-[0_0_60px_rgba(0,229,255,0.03)] relative overflow-hidden">
+          </motion.h2>
+          <motion.div
+            className="mt-10 md:mt-14 p-7 md:p-12 lg:p-14 rounded-[2.5rem] border border-white/10 bg-[#0A0A0C] text-left shadow-[0_0_60px_rgba(0,229,255,0.03)] relative overflow-hidden"
+            initial={shouldReduceMotion ? undefined : { opacity: 0, y: 30 }}
+            whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          >
             <div className="absolute top-0 right-0 p-40 bg-cyan/5 blur-[120px] rounded-full pointer-events-none" />
             <div className="relative z-10 space-y-6 md:space-y-8 text-gray-300 leading-relaxed text-lg md:text-[22px] font-light md:leading-[1.8]">
               <p>
@@ -694,22 +734,32 @@ export default function Home() {
                 Before any website goes live, we guarantee it scores <span className="semibold-underline text-white">90+ on Google PageSpeed</span> so that your customers get the fast, premium experience they expect.
               </p>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       <section id="process" className="border-t border-white/5 bg-[#0A0A0C] py-28 md:py-32">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="mb-20 text-center">
+          <motion.div
+            className="mb-20 text-center"
+            initial={shouldReduceMotion ? undefined : { opacity: 0, y: 24, filter: 'blur(10px)' }}
+            whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: 'blur(0px)' }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          >
             <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">What Actually Happens</span>
             <h2 className="font-display mx-auto max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl">
               Here's exactly what we do together - step by step.
             </h2>
-          </div>
+          </motion.div>
 
           <div className="grid grid-cols-1 gap-4 md:grid-cols-5 md:gap-6">
             {projectSteps.slice(0, 5).map((step, idx) => (
-              <article
+              <motion.article
+                initial={shouldReduceMotion ? undefined : { opacity: 0, y: 24 }}
+                whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.6, delay: idx * 0.08, ease: [0.16, 1, 0.3, 1] }}
                 key={step.title}
                 className={`group relative overflow-hidden rounded-2xl border border-white/5 bg-[#1A1A1C] p-6 transition-all duration-500 ${
                   idx % 2 === 0
@@ -729,7 +779,7 @@ export default function Home() {
                   </div>
                   <p className="text-sm leading-relaxed text-gray-300">{step.description}</p>
                 </div>
-              </article>
+              </motion.article>
             ))}
           </div>
 
@@ -745,12 +795,18 @@ export default function Home() {
 
       <section id="packages" className="py-24 md:py-40 bg-black border-t border-white/[0.05]">
         <div className="mx-auto w-full max-w-[92rem] px-6 md:px-10 lg:px-14">
-          <div className="mb-20 text-center">
+          <motion.div
+            className="mb-20 text-center"
+            initial={shouldReduceMotion ? undefined : { opacity: 0, y: 24, filter: 'blur(10px)' }}
+            whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: 'blur(0px)' }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          >
             <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">Find your fit</span>
             <h2 className="font-display mx-auto max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl">
               A home online, built for where you are right now
             </h2>
-          </div>
+          </motion.div>
 
           <div className="w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 xl:gap-8 items-stretch pt-8">
             {[
@@ -761,9 +817,9 @@ export default function Home() {
             ].map((pkg, idx) => (
               <motion.div
                 key={pkg.title}
-                initial={{ opacity: 1, y: 20 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.1 }}
+                viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.8, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
                 className={`flex flex-col relative p-8 sm:p-10 rounded-[2rem] border transition-all duration-500 motion-safe-gpu ${
                   pkg.featured
@@ -880,27 +936,45 @@ export default function Home() {
 
       <section id="faq" className="py-20 md:py-28">
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
-          <div className="mb-20 text-center">
+          <motion.div
+            className="mb-20 text-center"
+            initial={shouldReduceMotion ? undefined : { opacity: 0, y: 24, filter: 'blur(10px)' }}
+            whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: 'blur(0px)' }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          >
             <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">You probably have questions</span>
             <h2 className="font-display mx-auto max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl">We have answered the ones we hear most</h2>
             <p className="mx-auto mt-4 max-w-3xl text-gray-300">Honest, plain-language answers so you feel confident before we begin.</p>
-          </div>
+          </motion.div>
 
           <HomeFaq categories={homeFaqCategories} />
 
-          <div className="mt-10 flex flex-col items-center gap-6 rounded-3xl border border-white/10 bg-[#1A1A1C] px-6 py-8 text-center md:flex-row md:justify-between md:text-left">
+          <motion.div
+            className="mt-10 flex flex-col items-center gap-6 rounded-3xl border border-white/10 bg-[#1A1A1C] px-6 py-8 text-center md:flex-row md:justify-between md:text-left"
+            initial={shouldReduceMotion ? undefined : { opacity: 0, y: 16 }}
+            whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          >
             <p className="text-sm text-gray-300">Still have questions? We can walk you through it.</p>
             <Link to="/contact">
               <ShimmerButton shimmerColor="#0A0A0C" shimmerDuration="4.2s" background="#00E5FF" className="px-6 py-3 text-sm font-semibold tracking-[0.1em] text-black">
                 Contact us
               </ShimmerButton>
             </Link>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       <section id="ready" className="bg-gradient-to-b from-transparent to-black/20 py-24 md:py-36">
-        <div className="mx-auto w-full max-w-4xl px-5 text-center sm:px-8">
+        <motion.div
+          className="mx-auto w-full max-w-4xl px-5 text-center sm:px-8"
+          initial={shouldReduceMotion ? undefined : { opacity: 0, y: 30, filter: 'blur(10px)' }}
+          whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: 'blur(0px)' }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
+        >
           <h2 className="font-display mb-8 text-4xl font-semibold text-white md:text-7xl">
             Let us build something
             <br />
@@ -918,7 +992,7 @@ export default function Home() {
               Book a discovery call
             </Link>
           </div>
-        </div>
+        </motion.div>
       </section>
     </div>
   );

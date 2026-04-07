@@ -52,7 +52,7 @@ export default function WhatYouNeed() {
   const fadeInUp = {
     initial: { opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 20 },
     whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true, amount: 0.4 },
+    viewport: { once: true, amount: 0.3 },
     transition: { duration: 0.6, ease: "easeOut" as const },
   };
 
@@ -201,7 +201,7 @@ export default function WhatYouNeed() {
                   key={item.name} 
                   initial={{ opacity: 0, x: -10 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
+                  viewport={{ once: true, amount: 0.3 }}
                   transition={{ delay: i * 0.1, duration: 0.5 }}
                   className="flex items-start gap-4 md:gap-5"
                 >

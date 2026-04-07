@@ -1,5 +1,7 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState, useMemo } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { cn } from '../../lib/utils';
 
 // Types for component props
 interface HeroProps {
@@ -325,6 +327,51 @@ void main(){gl_Position=position;}`;
   return canvasRef;
 };
 
+// ── Character Wave Animation Component ──
+const WaveChar: React.FC<{
+  char: string;
+  index: number;
+  delay: number;
+  className?: string;
+  style?: React.CSSProperties;
+}> = ({ char, index, delay, className, style }) => (
+  <motion.span
+    key={index}
+    initial={{ opacity: 0, rotateX: -90 }}
+    animate={{ opacity: 1, rotateX: 0 }}
+    transition={{
+      duration: 0.5,
+      delay,
+      ease: [0.16, 1, 0.3, 1],
+    }}
+    className={className}
+    style={{ display: 'inline-block', transformOrigin: 'center bottom', ...style }}
+  >
+    {char === ' ' ? '\u00A0' : char}
+  </motion.span>
+);
+
+// ── Subtitle Wave Animation Component (Word-based to prevent mid-word wrapping) ──
+const SubtitleWaveWord: React.FC<{
+  word: string;
+  index: number;
+  delay: number;
+}> = ({ word, index, delay }) => (
+  <motion.span
+    key={index}
+    initial={{ opacity: 0, y: 8, filter: 'blur(4px)' }}
+    animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+    transition={{
+      duration: 0.4,
+      delay,
+      ease: [0.16, 1, 0.3, 1],
+    }}
+    style={{ display: 'inline-block', whiteSpace: 'pre' }}
+  >
+    {word}
+  </motion.span>
+);
+
 // Reusable Hero Component
 const Hero: React.FC<HeroProps> = ({
   trustBadge,
@@ -335,63 +382,75 @@ const Hero: React.FC<HeroProps> = ({
   className = ""
 }) => {
   const canvasRef = useShaderBackground();
+  const [slotActive, setSlotActive] = useState(false);
+
+  // ── Build the full title text for per-character animation ──
+  // For lines with rotating words, show line with FIRST rotating word statically
+  // The slot machine only activates after all animations complete
+  const titleData = useMemo(() => {
+    return headline.lines.map((line, lineIndex) => {
+      const hasSlot = lineIndex === 0 && headline.rotatingWords && headline.rotatingWords.length > 1;
+      if (hasSlot) {
+        const rotatingWord0 = headline.rotatingWords![0];
+        const parts = line.split(rotatingWord0);
+        const prefix = parts[0].trim();
+        const suffix = parts[1].trim();
+        return { line, prefix, suffix, rotatingWord0, hasSlot: true, lineIndex };
+      }
+      return { line, prefix: '', suffix: '', rotatingWord0: '', hasSlot: false, lineIndex };
+    });
+  }, [headline]);
+
+  // ── Calculate timing for the full animation sequence ──
+  const CHAR_STAGGER = 0.02; // seconds between each character (snappier)
+  const TITLE_START = 0.3; // initial delay before title starts
+
+  // Count total title characters across all lines
+  const totalTitleChars = useMemo(() => {
+    return titleData.reduce((acc, td) => {
+      if (td.hasSlot) {
+        return acc + td.prefix.length + td.rotatingWord0.length + td.suffix.length;
+      }
+      return acc + td.line.length;
+    }, 0);
+  }, [titleData]);
+
+  const titleDuration = TITLE_START + totalTitleChars * CHAR_STAGGER + 0.35;
+
+  // Subtitle timing (word-based)
+  const SUBTITLE_START = titleDuration + 0.05;
+  const subtitleWordCount = subtitle.split(' ').length;
+  const SUBTITLE_WORD_STAGGER = 0.04;
+  const subtitleDuration = SUBTITLE_START + subtitleWordCount * SUBTITLE_WORD_STAGGER + 0.4;
+
+  // Trust pills timing
+  const PILLS_START = subtitleDuration + 0.1;
+  const pillCount = tags?.length || 0;
+  const PILL_STAGGER = 0.08;
+  const pillsDuration = PILLS_START + pillCount * PILL_STAGGER + 0.4;
+
+  // CTAs timing
+  const CTA_START = pillsDuration + 0.08;
+  const ctaDuration = CTA_START + 0.5;
+
+  // Eyebrow timing
+  const EYEBROW_START = ctaDuration + 0.15;
+  const eyebrowDuration = EYEBROW_START + 0.8;
+
+  // Slot activation — after everything
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setSlotActive(true);
+    }, eyebrowDuration * 1000);
+    return () => clearTimeout(timer);
+  }, [eyebrowDuration]);
+
+  // ── Build character delay map for title ──
+  let charCounter = 0;
 
   return (
     <div className={`relative w-full h-[100lvh] lg:min-h-screen flex flex-col overflow-hidden bg-[#0A0A0C] ${className}`}>
       <style>{`
-        @keyframes fade-in-down {
-          from {
-            opacity: 0;
-            transform: translateY(-20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        
-        @keyframes fade-in-up {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        
-        .animate-fade-in-down {
-          animation: fade-in-down 0.8s ease-out forwards;
-        }
-        
-        .animate-fade-in-up {
-          animation: fade-in-up 0.8s ease-out forwards;
-          opacity: 0;
-        }
-        
-        .animation-delay-200 {
-          animation-delay: 0.2s;
-        }
-        
-        .animation-delay-400 {
-          animation-delay: 0.4s;
-        }
-        
-        .animation-delay-600 {
-          animation-delay: 0.6s;
-        }
-        
-        .animation-delay-800 {
-          animation-delay: 0.8s;
-        }
-        
-        @keyframes gradient-shift {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
-        }
-        
         .animate-gradient {
           background-size: 300% auto;
           animation: cta-gradient 4s linear infinite;
@@ -426,17 +485,22 @@ const Hero: React.FC<HeroProps> = ({
         style={{ background: '#0A0A0C' }}
       />
       
-      {/* Overlay Background - Darker at the bottom to transition to page background */}
+      {/* Overlay Background */}
       <div className="absolute inset-x-0 bottom-0 z-[1] h-full bg-gradient-to-t from-[#0A0A0C] via-[#0A0A0C]/50 to-transparent pointer-events-none" />
 
-      {/* Hero Content Overlay - Centered on Desktop, Top-offset on Mobile */}
+      {/* Hero Content Overlay */}
       <div className="relative z-10 flex flex-col items-center justify-start lg:justify-center flex-1 w-full pt-[16svh] lg:pt-0 lg:pb-[8vh] text-white px-6">
         
         {/* Centered Block: Eyebrow, Title, Subtitle, Tags */}
         <div className="w-full flex flex-col items-center space-y-5 sm:space-y-8 lg:space-y-12 mb-4 sm:mb-12 lg:mb-28">
-          {/* Trust Badge / Eyebrow */}
+          
+          {/* ═══ EYEBROW PILL — Animates 5th (after CTAs) ═══ */}
           {trustBadge && (
-            <div>
+            <motion.div
+              initial={{ opacity: 0, y: -20, filter: 'blur(8px)' }}
+              animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+              transition={{ duration: 0.8, delay: EYEBROW_START, ease: [0.16, 1, 0.3, 1] }}
+            >
               <div className="flex items-center justify-center gap-1.5 px-3 py-1.5 sm:px-6 sm:py-2 bg-cyan/5 backdrop-blur-md border border-cyan/40 rounded-full text-[9px] sm:text-[11px] lg:text-[14px] font-bold uppercase tracking-[0.2em] lg:tracking-[0.4em] text-accent leading-none">
                 {trustBadge.icons && (
                   <div className="flex gap-1.5">
@@ -447,123 +511,262 @@ const Hero: React.FC<HeroProps> = ({
                 )}
                 <span>{trustBadge.text}</span>
               </div>
-            </div>
+            </motion.div>
           )}
 
           <div className="text-center space-y-4 sm:space-y-6 w-full mx-auto flex flex-col items-center">
-            {/* Main Heading with Animation */}
+            
+            {/* ═══ HERO TITLE — Per-character wave animation (Phase 1) ═══ */}
             <div className="space-y-1.5 sm:space-y-3 max-w-[95vw] lg:max-w-none mx-auto flex flex-col items-center">
-              {headline.lines.map((line, index) => {
-                const hasSlot = index === 0 && headline.rotatingWords && headline.rotatingWords.length > 1;
-                const rotatingWord0 = hasSlot ? headline.rotatingWords![0] : '';
-                const parts = hasSlot ? line.split(rotatingWord0) : [line];
-                const prefix = hasSlot ? parts[0].trim() : '';
-                const suffix = hasSlot ? parts[1].trim() : '';
+              {titleData.map((td) => {
+                const lineCharStart = charCounter;
 
-                return (
-                  <h1 
-                    key={index} 
-                    className="w-full text-center text-[clamp(2.4rem,11vw,4rem)] sm:text-6xl md:text-8xl lg:text-[6.5rem] font-bold font-display uppercase leading-[1.0] sm:leading-[0.85] lg:leading-[0.85] tracking-[0.01em] sm:tracking-[0.02em]"
-                  >
-                    {hasSlot ? (
-                      <span className="flex flex-col items-center justify-center text-center -space-y-[0.1em] sm:-space-y-[0.15em] lg:-space-y-[0.05em]">
-                        {prefix && (
-                          <span className="block w-full text-center bg-clip-text text-transparent bg-gradient-to-br from-white via-slate-100 to-slate-200">
-                            {prefix}
-                          </span>
-                        )}
-                        <span className="block w-full text-center overflow-hidden" style={{ height: '1.2em' }}>
-                          <span className="block" style={{ animation: 'hero-slot 12s cubic-bezier(0.4, 0, 0.2, 1) infinite' }}>
-                            {[...headline.rotatingWords!, headline.rotatingWords![0]].map((word, i) => (
-                              <span 
-                                key={i} 
-                                className="flex items-center justify-center text-center bg-clip-text text-transparent animate-gradient"
-                                style={{ height: '1.2em', lineHeight: '1.2', backgroundImage: 'linear-gradient(90deg, #00E5FF, #38B2F5, #0C7CC4, #00E5FF)' }}
-                              >
-                                {word}
+                if (td.hasSlot) {
+                  // Line with rotating words — show prefix + first word (static initially) + suffix
+                  const prefixChars = td.prefix.split('');
+                  const wordChars = td.rotatingWord0.split('');
+                  const suffixChars = td.suffix.split('');
+
+                  const prefixElements = prefixChars.map((c, i) => {
+                    const delay = TITLE_START + (lineCharStart + i) * CHAR_STAGGER;
+                    charCounter++;
+                    return (
+                      <WaveChar
+                        key={`p-${i}`}
+                        char={c}
+                        index={i}
+                        delay={delay}
+                        className="bg-clip-text text-transparent"
+                        style={{ backgroundImage: 'linear-gradient(to bottom right, white, #e2e8f0, #cbd5e1)' }}
+                      />
+                    );
+                  });
+
+                  const wordElements = wordChars.map((c, i) => {
+                    const delay = TITLE_START + charCounter * CHAR_STAGGER;
+                    charCounter++;
+                    return (
+                      <WaveChar
+                        key={`w-${i}`}
+                        char={c}
+                        index={i}
+                        delay={delay}
+                        className="bg-clip-text text-transparent animate-gradient"
+                        style={{ backgroundImage: 'linear-gradient(90deg, #00E5FF, #38B2F5, #0C7CC4, #00E5FF)' }}
+                      />
+                    );
+                  });
+
+                  const suffixElements = suffixChars.map((c, i) => {
+                    const delay = TITLE_START + charCounter * CHAR_STAGGER;
+                    charCounter++;
+                    return (
+                      <WaveChar
+                        key={`s-${i}`}
+                        char={c}
+                        index={i}
+                        delay={delay}
+                        className="bg-clip-text text-transparent"
+                        style={{ backgroundImage: 'linear-gradient(to bottom right, white, #e2e8f0, #cbd5e1)' }}
+                      />
+                    );
+                  });
+
+                  return (
+                    <h1
+                      key={td.lineIndex}
+                      className="w-full text-center text-[clamp(2.4rem,11vw,4rem)] sm:text-6xl md:text-8xl lg:text-[6.5rem] font-bold font-display uppercase leading-[1.1] sm:leading-[1.0] lg:leading-[0.95] tracking-[0.01em] sm:tracking-[0.02em]"
+                    >
+                      <span className="grid w-full place-items-center">
+                        <AnimatePresence>
+                          {slotActive ? (
+                            /* Once slot is active, switch to the rotating version */
+                            <motion.span
+                              key="slot-active"
+                              initial={{ opacity: 0 }}
+                              animate={{ opacity: 1 }}
+                              transition={{ duration: 0.8, ease: "easeInOut" }}
+                              className="row-start-1 col-start-1 flex flex-col items-center justify-center text-center w-full"
+                            >
+                              {td.prefix && (
+                                <span className="flex items-center justify-center w-full text-center h-[1.1em] sm:h-[1.0em] lg:h-[0.95em] bg-clip-text text-transparent bg-gradient-to-br from-white via-slate-100 to-slate-200">
+                                  {td.prefix}
+                                </span>
+                              )}
+                              <span className="block w-full text-center overflow-hidden h-[1.1em] sm:h-[1.0em] lg:h-[0.95em]">
+                                <span className="block" style={{ animation: 'hero-slot 12s cubic-bezier(0.4, 0, 0.2, 1) infinite' }}>
+                                  {[...headline.rotatingWords!, headline.rotatingWords![0]].map((word, i) => (
+                                    <span
+                                      key={i}
+                                      className="flex items-center justify-center w-full text-center bg-clip-text text-transparent animate-gradient h-[1.1em] sm:h-[1.0em] lg:h-[0.95em]"
+                                      style={{ backgroundImage: 'linear-gradient(90deg, #00E5FF, #38B2F5, #0C7CC4, #00E5FF)' }}
+                                    >
+                                      {word}
+                                    </span>
+                                  ))}
+                                </span>
                               </span>
-                            ))}
-                          </span>
-                        </span>
-                        {suffix && (
-                          <span className="block w-full text-center bg-clip-text text-transparent bg-gradient-to-br from-white via-slate-100 to-slate-200">
-                            {suffix}
-                          </span>
-                        )}
+                              {td.suffix && (
+                                <span className="flex items-center justify-center w-full text-center h-[1.1em] sm:h-[1.0em] lg:h-[0.95em] bg-clip-text text-transparent bg-gradient-to-br from-white via-slate-100 to-slate-200">
+                                  {td.suffix}
+                                </span>
+                              )}
+                            </motion.span>
+                          ) : (
+                            /* Before slot is active, show each word group on its own line */
+                            <motion.span
+                              key="slot-inactive"
+                              initial={{ opacity: 1 }}
+                              animate={{ opacity: 1 }}
+                              exit={{ opacity: 0 }}
+                              transition={{ duration: 0.6, ease: "easeInOut" }}
+                              className="row-start-1 col-start-1 flex flex-col items-center justify-center text-center w-full"
+                            >
+                              {td.prefix && (
+                                <span className="flex items-center justify-center w-full text-center h-[1.1em] sm:h-[1.0em] lg:h-[0.95em]">
+                                  {prefixElements}
+                                </span>
+                              )}
+                              <span className="flex items-center justify-center w-full text-center h-[1.1em] sm:h-[1.0em] lg:h-[0.95em]">
+                                {wordElements}
+                              </span>
+                              {td.suffix && (
+                                <span className="flex items-center justify-center w-full text-center h-[1.1em] sm:h-[1.0em] lg:h-[0.95em]">
+                                  {suffixElements}
+                                </span>
+                              )}
+                            </motion.span>
+                          )}
+                        </AnimatePresence>
                       </span>
-                    ) : (
-                      <span 
-                        className={`block w-full text-center bg-clip-text text-transparent ${index === 1 
-                          ? 'animate-gradient' 
-                          : 'bg-gradient-to-br from-white via-slate-100 to-slate-200'
-                        }`}
-                        style={index === 1 ? { backgroundImage: 'linear-gradient(90deg, #00E5FF, #38B2F5, #0C7CC4, #00E5FF)' } : undefined}
-                      >
-                        {line}
+                    </h1>
+                  );
+                } else {
+                  // Non-slot line — simple per-char wave
+                  const chars = td.line.split('');
+                  const isGradientLine = td.lineIndex === 1;
+                  const elements = chars.map((c, i) => {
+                    const delay = TITLE_START + charCounter * CHAR_STAGGER;
+                    charCounter++;
+                    return (
+                      <WaveChar
+                        key={`l${td.lineIndex}-${i}`}
+                        char={c}
+                        index={i}
+                        delay={delay}
+                        className={`bg-clip-text text-transparent ${isGradientLine ? 'animate-gradient' : ''}`}
+                        style={
+                          isGradientLine
+                            ? { backgroundImage: 'linear-gradient(90deg, #00E5FF, #38B2F5, #0C7CC4, #00E5FF)' }
+                            : { backgroundImage: 'linear-gradient(to bottom right, white, #e2e8f0, #cbd5e1)' }
+                        }
+                      />
+                    );
+                  });
+
+                  return (
+                    <h1
+                      key={td.lineIndex}
+                      className="w-full text-center text-[clamp(2.4rem,11vw,4rem)] sm:text-6xl md:text-8xl lg:text-[6.5rem] font-bold font-display uppercase leading-[1.1] sm:leading-[1.0] lg:leading-[0.95] tracking-[0.01em] sm:tracking-[0.02em]"
+                    >
+                      <span className="flex flex-wrap items-center justify-center text-center">
+                        {elements}
                       </span>
-                    )}
-                  </h1>
-                );
+                    </h1>
+                  );
+                }
               })}
             </div>
             
-            {/* Subtitle */}
+            {/* ═══ SUBTITLE — Per-word wave animation (Phase 2) ═══ */}
             <div className="max-w-2xl sm:max-w-3xl mx-auto">
-              <p className="text-[12px] sm:text-base md:text-lg lg:text-xl text-white/90 font-light leading-snug sm:leading-relaxed">
-                {subtitle}
+              <p className="text-[12px] sm:text-base md:text-lg lg:text-xl text-white/90 font-light leading-snug sm:leading-relaxed" style={{ overflowWrap: 'break-word', wordBreak: 'normal' }}>
+                {subtitle.split(' ').map((word, i, arr) => (
+                  <SubtitleWaveWord
+                    key={i}
+                    word={i < arr.length - 1 ? word + ' ' : word}
+                    index={i}
+                    delay={SUBTITLE_START + i * 0.04}
+                  />
+                ))}
               </p>
             </div>
 
-            {/* Tags */}
+            {/* ═══ TRUST PILLS — Fade in from blur (Phase 3) ═══ */}
             {tags && (
-               <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:justify-center sm:gap-x-4 sm:gap-y-3 mt-4 sm:mt-12">
-               {tags.map((tag) => (
-                  <div
+               <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:justify-center sm:gap-x-4 sm:gap-y-3 mt-4 sm:mt-12 w-full max-w-[95vw] sm:max-w-none">
+               {tags.map((tag, idx) => (
+                  <motion.div
                     key={tag.text}
-                    className="flex items-center justify-start gap-1.5 whitespace-normal sm:whitespace-nowrap rounded-[1rem] sm:rounded-full border border-cyan/40 bg-cyan/5 px-3 py-1.5 sm:px-5 sm:py-2 text-[9px] sm:text-[11px] font-bold uppercase tracking-[0.05em] text-accent md:border-accent/50 md:bg-accent/10 min-h-[36px] sm:min-h-0 text-left leading-[1.2]"
+                    initial={{ opacity: 0, filter: 'blur(12px)', scale: 0.92 }}
+                    animate={{ opacity: 1, filter: 'blur(0px)', scale: 1 }}
+                    transition={{ duration: 0.55, delay: PILLS_START + (idx * PILL_STAGGER), ease: [0.16, 1, 0.3, 1] }}
+                    className={cn(
+                      "flex items-center justify-start gap-1.5 rounded-[1rem] sm:rounded-full border border-cyan/40 bg-cyan/5 px-3 py-2 sm:px-5 sm:py-2 text-[9px] sm:text-[11px] font-bold uppercase tracking-[0.05em] text-accent backdrop-blur-md md:border-accent/50 md:bg-accent/10 min-h-[44px] sm:min-h-0 text-left leading-[1.2]",
+                      idx >= 2 && "col-span-1"
+                    )}
                   >
                     <span className="flex-shrink-0 text-cyan scale-90 md:scale-100">{tag.icon}</span>
                     <span className="opacity-90 leading-tight">{tag.text}</span>
-                  </div>
+                  </motion.div>
                ))}
              </div>
             )}
           </div>
         </div>
           
-        {/* CTA Buttons - Natural flow below content */}
+        {/* ═══ CTA BUTTONS — Primary from left, Secondary from right (Phase 4) ═══ */}
         {buttons && (
           <div className="mt-4 sm:mt-0 flex flex-col sm:flex-row gap-3 sm:gap-5 justify-center items-center w-full px-6 relative z-20">
             {buttons.primary && (
-              <Link 
-                to={buttons.primary.link || '#'}
-                onClick={buttons.primary.onClick}
-                className="px-8 py-4 sm:px-10 sm:py-5 text-black rounded-full font-black uppercase tracking-[0.2em] text-xs sm:text-sm transition-all duration-300 hover:scale-[1.02] hover:brightness-110 active:scale-95 shadow-[0_0_40px_rgba(0,229,255,0.5)] text-center flex items-center justify-center w-full sm:w-auto sm:min-w-[240px] cta-gradient-anim"
-                style={{ backgroundImage: 'linear-gradient(90deg, #00E5FF, #38B2F5, #0C7CC4, #00E5FF)', backgroundSize: '300% 100%' }}
+              <motion.div
+                initial={{ opacity: 0, x: -40 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: CTA_START, ease: [0.16, 1, 0.3, 1] }}
+                className="w-full sm:w-auto"
               >
-                {buttons.primary.text}
-              </Link>
+                <Link 
+                  to={buttons.primary.link || '#'}
+                  onClick={buttons.primary.onClick}
+                  className="px-8 py-4 sm:px-10 sm:py-5 text-black rounded-full font-black uppercase tracking-[0.2em] text-xs sm:text-sm transition-all duration-300 hover:scale-[1.02] hover:brightness-110 active:scale-95 shadow-[0_0_40px_rgba(0,229,255,0.5)] text-center flex items-center justify-center w-full sm:w-auto sm:min-w-[240px] cta-gradient-anim"
+                  style={{ backgroundImage: 'linear-gradient(90deg, #00E5FF, #38B2F5, #0C7CC4, #00E5FF)', backgroundSize: '300% 100%' }}
+                >
+                  {buttons.primary.text}
+                </Link>
+              </motion.div>
             )}
             {buttons.secondary && (
-              <Link 
-                to={buttons.secondary.link || '#'}
-                onClick={buttons.secondary.onClick}
-                className="group px-8 py-4 sm:px-10 sm:py-5 text-white rounded-full font-black uppercase tracking-[0.2em] text-xs sm:text-sm transition-all duration-300 backdrop-blur-md text-center flex items-center justify-center w-full sm:w-auto sm:min-w-[240px] hover:brightness-125 cta-gradient-anim"
-                style={{ border: '1px solid transparent', backgroundImage: 'linear-gradient(#0A0A0C, #0A0A0C), linear-gradient(90deg, rgba(0,229,255,0.4), rgba(56,178,245,0.4), rgba(12,124,196,0.4), rgba(0,229,255,0.4))', backgroundOrigin: 'padding-box, border-box', backgroundClip: 'padding-box, border-box', backgroundSize: '100% 100%, 300% 100%' }}
+              <motion.div
+                initial={{ opacity: 0, x: 40 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: CTA_START + 0.08, ease: [0.16, 1, 0.3, 1] }}
+                className="w-full sm:w-auto"
               >
-                {buttons.secondary.text} <span className="ml-2 inline-block transition-transform group-hover:translate-x-1">→</span>
-              </Link>
+                <Link 
+                  to={buttons.secondary.link || '#'}
+                  onClick={buttons.secondary.onClick}
+                  className="group px-8 py-4 sm:px-10 sm:py-5 text-white rounded-full font-black uppercase tracking-[0.2em] text-xs sm:text-sm transition-all duration-300 backdrop-blur-md text-center flex items-center justify-center w-full sm:w-auto sm:min-w-[240px] hover:brightness-125 cta-gradient-anim"
+                  style={{ border: '1px solid transparent', backgroundImage: 'linear-gradient(#0A0A0C, #0A0A0C), linear-gradient(90deg, rgba(0,229,255,0.4), rgba(56,178,245,0.4), rgba(12,124,196,0.4), rgba(0,229,255,0.4))', backgroundOrigin: 'padding-box, border-box', backgroundClip: 'padding-box, border-box', backgroundSize: '100% 100%, 300% 100%' }}
+                >
+                  {buttons.secondary.text} <span className="ml-2 inline-block transition-transform group-hover:translate-x-1">→</span>
+                </Link>
+              </motion.div>
             )}
           </div>
         )}
 
-        {/* Scroll Indicator - Absolute anchored correctly */}
-        <div className="absolute inset-x-0 bottom-20 animate-bounce opacity-60 flex flex-col items-center justify-end pointer-events-none scale-90 sm:scale-100">
+        {/* Scroll Indicator */}
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.6 }}
+          transition={{ delay: eyebrowDuration + 0.5, duration: 1.0 }}
+          className="absolute inset-x-0 bottom-20 animate-bounce flex flex-col items-center justify-end pointer-events-none scale-90 sm:scale-100"
+        >
            <span className="text-[10px] uppercase tracking-[0.2em] text-cyan/70 font-semibold mb-2">Scroll To Explore</span>
            <svg className="w-5 h-5 text-cyan/70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
            </svg>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

@@ -33,10 +33,10 @@ export default function Section({
       <div className={`mx-auto w-full px-5 sm:px-8 ${containerClassName ?? "max-w-7xl"}`.trim()}>
         {(eyebrow || title || description) && (
           <motion.div
-            initial={{ opacity: skipAnimation ? 1 : 0, y: skipAnimation ? 0 : 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.1, margin: "0px 0px -12% 0px" }}
-            transition={{ duration: skipAnimation ? 0 : 0.4, ease: "easeOut" }}
+            initial={{ opacity: skipAnimation ? 1 : 0, y: skipAnimation ? 0 : 24, filter: skipAnimation ? 'none' : 'blur(8px)' }}
+            whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: skipAnimation ? 0 : 0.7, ease: [0.16, 1, 0.3, 1] }}
             className="mb-10 text-center"
           >
             {eyebrow && (
@@ -57,8 +57,8 @@ export default function Section({
         <motion.div
           initial={{ opacity: skipAnimation ? 1 : 0, y: skipAnimation ? 0 : 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.1, margin: "0px 0px -8% 0px" }}
-          transition={{ duration: skipAnimation ? 0 : 0.36, ease: "easeOut" }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: skipAnimation ? 0 : 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
         >
           {children}
         </motion.div>
