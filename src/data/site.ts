@@ -1,9 +1,11 @@
 import guesthousePreview from "../assets/work/drake-seaside/drake-seaside.jpg";
-import guesthousePreviewWebp from "../assets/work/drake-seaside/drake-seaside.webp";
-import guesthousePreviewWebp800 from "../assets/work/drake-seaside/drake-seaside-600.webp";
+import guesthousePreviewWebp from "../assets/work/drake-seaside/hero-bg.webp";
+import guesthousePreviewWebp800 from "../assets/work/drake-seaside/hero-bg-600.webp";
 import ogImage from "../assets/logo/logo.webp";
-import formaStudioPreview from "../assets/work/forma studio/forma.webp";
-import takamakaHousePreview from "../assets/work/takamaka-house/takamaka.webp";
+import formaStudioPreview from "../assets/work/forma studio/forma studio.webp";
+import formaStudioBg from "../assets/work/forma studio/forma.webp";
+import takamakaHousePreview from "../assets/work/takamaka-house/takamaka house.webp";
+import takamakaHouseBg from "../assets/work/takamaka-house/takamaka.webp";
 import beautyPreview from "../assets/work/demo-beauty/demo-beauty.jpg";
 import beautyPreviewWebp from "../assets/work/demo-beauty/demo-beauty.webp";
 import beautyPreviewWebp800 from "../assets/work/demo-beauty/demo-beauty 600.webp";
@@ -235,8 +237,8 @@ export const workItems = [
     outcome:
       "Portfolio-led website concept with a modern editorial layout, strong visual hierarchy, and a conversion-friendly enquiry path.",
     image: formaStudioPreview,
-    imageWebp: formaStudioPreview,
-    imageWebp800: formaStudioPreview,
+    imageWebp: formaStudioBg,
+    imageWebp800: formaStudioBg,
     imagePosition: "center 40%",
     url: "https://horizondigitalsey.com/showcase/forma-studio",
   },
@@ -246,8 +248,8 @@ export const workItems = [
     outcome:
       "Hospitality-focused showcase concept designed for immersive storytelling, clear accommodation details, and direct booking intent.",
     image: takamakaHousePreview,
-    imageWebp: takamakaHousePreview,
-    imageWebp800: takamakaHousePreview,
+    imageWebp: takamakaHouseBg,
+    imageWebp800: takamakaHouseBg,
     imagePosition: "center 55%",
     url: "https://horizondigitalsey.com/showcase/takamaka-house",
   },

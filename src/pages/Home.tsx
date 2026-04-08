@@ -199,7 +199,7 @@ function WorkShowcase() {
       </div>
 
       {showcase.map((project, idx) => (
-        <article key={project.title} className="relative min-h-[135vh]">
+        <article key={project.title} className="relative min-h-[110vh] md:min-h-[135vh]">
           <div className="sticky top-0 flex h-screen items-center overflow-hidden">
             <div className="absolute inset-0 z-0">
               <img
