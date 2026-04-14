@@ -10,7 +10,6 @@ import {
   growthPackage,
   hostingPlan,
   projectSteps,
-  services,
   servicesPricingIntro,
   siteConfig,
   starterPackage,
@@ -20,9 +19,7 @@ import { ShimmerButton } from "../components/ui/shimmer-button";
 import { Link, useLocation } from "react-router-dom";
 import MenuVertical from "../components/ui/menu-vertical";
 import { trackEvent } from "../lib/analytics";
-import { TracingCard, InteractiveIcon } from "../components/ui/TracingCard";
 import { ContainerScroll, CardSticky } from "../components/ui/cards-stack";
-import { Layout, Briefcase, SearchCheck, Smartphone, MessageSquare } from "lucide-react";
 
 
 const pricingSectionLinks = [
@@ -185,7 +182,7 @@ export default function Pricing() {
         }]}
       />
       {passedSectionIds.length > 0 && (
-        <div className="fixed left-0 top-[64%] z-40 -translate-y-1/2 md:hidden">
+        <div className="fixed left-0 top-[64%] z-40 -translate-y-1/2 lg:hidden">
           <button
             type="button"
             onClick={() => setIsRailOpen((prev) => !prev)}
@@ -235,7 +232,7 @@ export default function Pricing() {
         </div>
       )}
 
-      <div className="pointer-events-none fixed left-5 top-1/2 z-40 hidden -translate-y-1/2 xl:block">
+      <div className="pointer-events-none fixed left-5 top-1/2 z-40 hidden -translate-y-1/2 lg:block">
         <div className="pointer-events-auto">
           <MenuVertical
             menuItems={pricingVerticalTabs.map((section) => ({ id: section.id, label: section.label }))}
@@ -245,54 +242,156 @@ export default function Pricing() {
         </div>
       </div>
 
-      <Section
-        id="overview"
-        className={compactDesktopSection}
-        eyebrow="What we do"
-        initialAnimate={false}
-        title="Websites that work for your business"
-        description="Every project is built around your goals — not a template. Here's what that looks like."
-      >
-        <div id="panel-overview" className="bg-[#121214]/20 p-4 md:p-8 rounded-2xl border border-border">
-          <p className="text-sm md:text-base text-text-muted max-w-4xl text-center mx-auto mb-10">
-            Every website we build is planned around your services, your customers, and your goals. The result is a site people can <span className="text-cyan font-semibold">find easily</span>, feel good about, and actually use to reach you.
-          </p>
-          <div className="flex gap-5 overflow-x-auto snap-x snap-mandatory pb-4 -mx-5 px-5 md:mx-0 md:px-0 md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 md:overflow-visible md:snap-none md:pb-0 scrollbar-hide">
-            {services.slice(0, 5).map((service, idx) => {
-              const Icon = service.title === "Website build" ? Layout : service.title === "Design refresh" ? Briefcase : service.title === "SEO & Performance" ? SearchCheck : service.title === "Mobile-friendly layout" ? Smartphone : MessageSquare;
-              return (
-              <TracingCard
-                key={service.title}
-                initial={shouldReduceMotion ? undefined : { opacity: 0, y: 28, filter: 'blur(10px)' }}
-                whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: 'blur(0px)' }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.75, delay: 0.08 + idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                whileHover={shouldReduceMotion ? undefined : { y: -4 }}
-                className="p-8 min-w-[calc(100vw-40px)] w-[calc(100vw-40px)] max-w-[calc(100vw-40px)] snap-center snap-always shrink-0 md:w-auto md:max-w-none md:min-w-0 md:shrink"
-              >
-                <InteractiveIcon shouldReduceMotion={shouldReduceMotion || undefined}>
-                  <Icon className="h-full w-full text-white" />
-                </InteractiveIcon>
-                <h3 className="font-display mb-3 text-xl semibold-underline text-white">{service.title}</h3>
-                <p className="mt-3 text-sm text-white/80 leading-relaxed flex-1">
-                  {service.title === "Website build" ? (
-                    <>We plan, design, and build your site <span className="text-cyan font-semibold">from scratch</span> — structured around your business from day one.</>
-                  ) : service.title === "Design refresh" ? (
-                    <><span className="text-cyan font-semibold">Modernise</span> your site without losing what already works for you.</>
-                  ) : service.title === "SEO & Performance" ? (
-                    <>Built-in speed and search visibility so customers can <span className="text-cyan font-semibold">actually find you</span>.</>
-                  ) : service.title === "Mobile-friendly layout" ? (
-                    <>Designed for the phones your customers <span className="text-cyan font-semibold">actually use</span> — no pinching, no squinting, no frustration.</>
-                  ) : (
-                    service.description
-                  )}
+      {/* ═══ WHAT WE BUILD — OVERVIEW ═══ */}
+      <section id="overview" className="py-16 md:py-28 border-b border-white/[0.09]">
+        <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
+
+          {/* Split header — heading left, descriptor right */}
+          <motion.div
+            className="mb-16 md:mb-24"
+            initial={shouldReduceMotion ? undefined : { opacity: 0, y: 32, filter: 'blur(12px)' }}
+            whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: 'blur(0px)' }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <span className="block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow mb-7">
+              What We Build
+            </span>
+            <div className="flex flex-col md:flex-row md:items-end md:justify-between md:gap-20">
+              <h2 className="font-display text-[2.75rem] sm:text-5xl md:text-[3.5rem] lg:text-[4.5rem] font-semibold leading-[1.06] tracking-tight text-white max-w-xl">
+                Five disciplines.<br />
+                <span className="text-deep-teal">Every project.</span>
+              </h2>
+              <div className="mt-7 md:mt-0 md:text-right md:pb-2 max-w-[16rem]">
+                <p className="text-[1.0625rem] leading-relaxed text-text-muted">
+                  Nothing is an extra. Every engagement draws from all five — it's simply how we build.
                 </p>
-              </TracingCard>
-              );
-            })}
+                <p className="mt-3 text-[11px] font-black uppercase tracking-[0.25em] text-deep-teal">
+                  Five disciplines · One team
+                </p>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Editorial service rows */}
+          <div className="relative">
+            {[
+              {
+                title: "Website build",
+                desc: "We plan, design, and build your site from scratch — structured around your business from day one.",
+                tag: "From scratch",
+              },
+              {
+                title: "Design refresh",
+                desc: "Modernise your existing site without losing what already works — new look, same foundation.",
+                tag: "Evolve",
+              },
+              {
+                title: "SEO & Performance",
+                desc: "Built-in speed and search visibility so when customers look for what you offer, you appear.",
+                tag: "Get found",
+              },
+              {
+                title: "Mobile-friendly layout",
+                desc: "Designed for the phones your customers actually use — no pinching, no squinting, no frustration.",
+                tag: "Every device",
+              },
+              {
+                title: "WhatsApp & enquiry integration",
+                desc: "The tools your customers already use — WhatsApp, contact forms, and booking links — built in from day one.",
+                tag: "Direct contact",
+              },
+            ].map((item, i) => (
+              <div key={item.title}>
+                {/* Separator line — draws left to right on scroll */}
+                <motion.div
+                  className="h-px w-full origin-left"
+                  style={{ backgroundColor: 'rgba(255,255,255,0.13)' }}
+                  initial={shouldReduceMotion ? undefined : { scaleX: 0 }}
+                  whileInView={shouldReduceMotion ? undefined : { scaleX: 1 }}
+                  viewport={{ once: true, amount: 0.9 }}
+                  transition={{ duration: 1.05, delay: i * 0.09, ease: [0.16, 1, 0.3, 1] }}
+                />
+
+                {/* Service row */}
+                <motion.div
+                  className="group relative flex items-start gap-5 md:gap-0 py-10 md:py-12 cursor-default"
+                  initial={shouldReduceMotion ? undefined : { opacity: 0, y: 24, filter: 'blur(8px)' }}
+                  whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: 'blur(0px)' }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 1.0, delay: 0.07 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  {/* Hover wash — subtle gradient from left */}
+                  <div className="pointer-events-none absolute inset-0 -mx-5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-gradient-to-r from-accent/[0.07] via-accent/[0.02] to-transparent" />
+
+                  {/* Number — visible design element, not a watermark ghost */}
+                  <div className="relative z-10 shrink-0 w-14 md:w-32 flex items-center">
+                    <span
+                      aria-hidden="true"
+                      className="font-display text-[2rem] md:text-[5rem] font-black leading-none tabular-nums select-none transition-colors duration-700"
+                      style={{ color: `rgba(255,255,255,${i === 0 ? 0.14 : 0.10})` }}
+                      onMouseEnter={e => (e.currentTarget.style.color = 'rgba(20,184,166,0.5)')}
+                      onMouseLeave={e => (e.currentTarget.style.color = `rgba(255,255,255,${i === 0 ? 0.14 : 0.10})`)}
+                    >
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                  </div>
+
+                  {/* Content — stacks on mobile, row on desktop */}
+                  <div className="relative z-10 flex-1 min-w-0 flex flex-col md:flex-row md:items-center md:gap-10 lg:gap-16">
+                    {/* Title */}
+                    <h3 className="text-[1.25rem] sm:text-[1.375rem] md:text-[1.25rem] lg:text-[1.45rem] font-bold text-white leading-snug md:w-[240px] lg:w-[280px] md:shrink-0">
+                      {item.title}
+                    </h3>
+
+                    {/* Description */}
+                    <p className="mt-3 md:mt-0 flex-1 text-[0.9375rem] text-text-muted leading-relaxed group-hover:text-text/80 transition-colors duration-700 max-w-2xl">
+                      {item.desc}
+                    </p>
+
+                    {/* Tag — always faintly present; glows cyan on hover */}
+                    <p className="hidden lg:block shrink-0 text-[10px] font-black uppercase tracking-[0.25em] whitespace-nowrap transition-colors duration-700 text-white/20 group-hover:text-cyan/80">
+                      {item.tag}
+                    </p>
+                  </div>
+
+                  {/* Arrow — desktop only, slides in on hover */}
+                  <div className="hidden md:flex relative z-10 shrink-0 w-8 items-center justify-end self-center opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-500">
+                    <span className="text-cyan font-black">→</span>
+                  </div>
+                </motion.div>
+              </div>
+            ))}
+
+            {/* Final separator */}
+            <motion.div
+              className="h-px w-full origin-left"
+              style={{ backgroundColor: 'rgba(255,255,255,0.13)' }}
+              initial={shouldReduceMotion ? undefined : { scaleX: 0 }}
+              whileInView={shouldReduceMotion ? undefined : { scaleX: 1 }}
+              viewport={{ once: true, amount: 0.9 }}
+              transition={{ duration: 1.05, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            />
           </div>
+
+          {/* Footer note */}
+          <motion.div
+            className="mt-10 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3"
+            initial={shouldReduceMotion ? undefined : { opacity: 0 }}
+            whileInView={shouldReduceMotion ? undefined : { opacity: 1 }}
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ duration: 1.0, delay: 0.6 }}
+          >
+            <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-text-muted/60">
+              All five included in every package — no extras, no surprises
+            </p>
+            <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-deep-teal/80">
+              Explore packages below ↓
+            </p>
+          </motion.div>
+
         </div>
-      </Section>
+      </section>
 
       <section id="process" className="py-20 px-6 xl:px-12 relative z-10 border-y border-white/5 bg-[#0A0A0C]">
         <div className="mx-auto max-w-[92rem] min-h-svh place-content-center text-white">
@@ -372,8 +471,8 @@ export default function Pricing() {
           <div className="grid items-stretch gap-6 xl:gap-8 md:grid-cols-2 lg:grid-cols-3 pt-0 pb-8">
             {/* Foundation */}
             <motion.div
-              initial={{ opacity: 0, y: 20, filter: 'blur(10px)' }}
-              whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+              initial={shouldReduceMotion ? undefined : { opacity: 0, y: 20, filter: 'blur(10px)' }}
+              whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: 'blur(0px)' }}
               viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
               className="flex h-full flex-col rounded-3xl bg-[#111113] shadow-[0_4px_20px_rgba(0,0,0,0.45)] p-8 hover:shadow-[0_12px_48px_rgba(0,0,0,0.65),0_0_0_1px_rgba(94,209,222,0.07)] transition-all duration-300"
@@ -414,13 +513,13 @@ export default function Pricing() {
 
             {/* Starter (Featured) */}
             <motion.div
-              initial={{ opacity: 0, y: 20, filter: 'blur(10px)' }}
-              whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+              initial={shouldReduceMotion ? undefined : { opacity: 0, y: 20, filter: 'blur(10px)' }}
+              whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: 'blur(0px)' }}
               viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: 0.8, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
               className="flex h-full flex-col rounded-3xl bg-[#131315] featured-pkg-pulse p-8 relative overflow-hidden pricing-card-featured-shine xl:-translate-y-4 z-20"
             >
-              <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-deep-teal px-6 py-[6px] rounded-full text-[10px] font-black uppercase tracking-[0.2em] text-white whitespace-nowrap ">Most Popular</div>
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-deep-teal px-6 py-[6px] rounded-full text-[11px] font-black uppercase tracking-[0.2em] text-white whitespace-nowrap ">Most Popular</div>
               <h3 className="text-2xl font-bold text-white">{starterPackage.title}</h3>
               <p className="mt-3 text-xl font-extrabold text-cyan whitespace-nowrap">{starterPackage.price}</p>
               <div className="mt-4 text-sm text-text-muted mb-8">
@@ -460,8 +559,8 @@ export default function Pricing() {
 
             {/* Growth */}
             <motion.div
-              initial={{ opacity: 0, y: 20, filter: 'blur(10px)' }}
-              whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+              initial={shouldReduceMotion ? undefined : { opacity: 0, y: 20, filter: 'blur(10px)' }}
+              whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: 'blur(0px)' }}
               viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: 0.8, delay: 0.34, ease: [0.16, 1, 0.3, 1] }}
               className="flex h-full flex-col rounded-3xl bg-[#111113] shadow-[0_4px_16px_rgba(0,0,0,0.3)] p-8 hover:shadow-[0_10px_32px_rgba(0,0,0,0.45),0_0_0_1px_rgba(94,209,222,0.05)] transition-all duration-300"

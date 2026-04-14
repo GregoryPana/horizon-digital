@@ -40,7 +40,7 @@ export default function Footer() {
               rel="noreferrer"
               whileHover={{ scale: 1.04, y: -1 }}
               transition={{ type: "spring", stiffness: 400, damping: 15 }}
-              className="group inline-flex w-fit items-center gap-2.5 rounded-lg bg-white/5 px-3.5 py-2.5 text-[10px] font-bold uppercase tracking-[0.2em] text-text-muted shadow-[0_2px_8px_rgba(0,0,0,0.3)] transition-colors hover:text-accent"
+              className="group inline-flex w-fit items-center gap-2.5 rounded-lg bg-white/5 px-3.5 py-2.5 text-[11px] font-bold uppercase tracking-[0.2em] text-text-muted shadow-[0_2px_8px_rgba(0,0,0,0.3)] transition-colors hover:text-accent"
             >
               <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 text-accent" fill="currentColor" aria-hidden="true">
                 <path d="M21.35 11.1H12.18V13.83H18.69C18.36 17.64 15.19 19.27 12.19 19.27C8.36 19.27 5 16.25 5 12C5 7.9 8.2 4.73 12.2 4.73C15.29 4.73 17.1 6.7 17.1 6.7L19 4.72C19 4.72 16.56 2 12.1 2C6.42 2 2.03 6.8 2.03 12C2.03 17.05 6.16 22 12.25 22C17.6 22 21.5 18.33 21.5 12.91C21.5 11.76 21.35 11.1 21.35 11.1Z" />

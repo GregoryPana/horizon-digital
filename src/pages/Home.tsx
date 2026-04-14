@@ -265,6 +265,7 @@ const problemCards: Array<{
 ];
 
 function WorkShowcase() {
+  const shouldReduceMotion = useReducedMotion();
   const showcase = useMemo(
     () => [
       {
@@ -293,8 +294,8 @@ function WorkShowcase() {
       <div className="relative z-30 mx-auto max-w-7xl bg-[#0A0A0C] px-6 pb-10 pt-24 md:pt-28">
         <motion.div
           className="mb-20 text-center"
-          initial={{ opacity: 0, y: 24, filter: 'blur(10px)' }}
-          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          initial={shouldReduceMotion ? undefined : { opacity: 0, y: 24, filter: 'blur(10px)' }}
+          whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: 'blur(0px)' }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
@@ -329,7 +330,7 @@ function WorkShowcase() {
                 <div className="relative rounded-[2.5rem] bg-black/20 shadow-[0_8px_32px_rgba(0,0,0,0.4)] p-8 text-center backdrop-blur-[2px] md:p-12 md:text-left lg:-ml-12 xl:-ml-16">
                   <div className="mx-auto mb-7 inline-flex items-center gap-3 rounded-full border border-deep-teal/35 bg-deep-teal/10 px-4 py-2 md:mx-0">
                     <span className="h-2 w-2 rounded-full bg-deep-teal animate-pulse shadow-[0_0_10px_rgba(13,148,136,0.4)]" />
-                    <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-deep-teal md:text-xs">{project.tier}</span>
+                    <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-deep-teal md:text-xs">{project.tier}</span>
                   </div>
                   <h3 className="font-display text-4xl font-bold uppercase tracking-[-0.04em] text-white md:text-7xl">
                     {project.title}
@@ -342,7 +343,7 @@ function WorkShowcase() {
                         href={project.url}
                         target="_blank"
                         rel="noreferrer"
-                        className="group flex flex-1 items-center justify-center rounded-lg border border-cyan/40 bg-transparent px-8 py-3.5 text-[10px] font-black uppercase tracking-[0.2em] text-cyan transition-all hover:border-cyan hover:bg-cyan/5 md:flex-none md:text-[11px]"
+                        className="group flex flex-1 items-center justify-center rounded-lg border border-cyan/40 bg-transparent px-8 py-3.5 text-[11px] font-black uppercase tracking-[0.2em] text-cyan transition-all hover:border-cyan hover:bg-cyan/5 md:flex-none md:text-[11px]"
                         onClick={() =>
                           trackEvent("cta_click", {
                             cta_name: `explore_project_${project.title.toLowerCase().replace(/\s+/g, "_")}`,
@@ -526,20 +527,20 @@ export default function Home() {
         ]}
         buttons={{
           primary: {
-            text: "Get Started",
+            text: "Book a free call",
             link: "/contact",
             onClick: () =>
               trackEvent("cta_click", {
-                cta_name: "hero_get_started",
+                cta_name: "hero_book_call",
                 page_path: window.location.pathname,
               }),
           },
           secondary: {
-            text: "View Our Work",
+            text: "See our work",
             link: "/work",
             onClick: () => {
               trackEvent("cta_click", {
-                cta_name: "hero_view_work",
+                cta_name: "hero_see_work",
                 page_path: window.location.pathname,
               });
               handleWorkScrollTop();
@@ -663,7 +664,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="relative z-20 hidden sm:block overflow-hidden border-y border-[#1a2c33] bg-[#0d1a1f] py-6">
+      <section className="relative z-20 overflow-hidden border-y border-[#1a2c33] bg-[#0d1a1f] py-5 sm:py-6">
         <div className="hd-marquee-track flex items-center gap-20 whitespace-nowrap text-[11px] font-medium uppercase tracking-[0.3em] text-[#8fa7b4]">
           {[...marqueeItems, ...marqueeItems].map((item, i) => (
             <span key={`${item}-${i}`} className="inline-flex items-center gap-20">
@@ -750,7 +751,7 @@ export default function Home() {
                   style={{ originY: 0 }}
                   className="absolute left-0 top-0 bottom-0 w-0.5 bg-cyan/40 rounded-full"
                 />
-                <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.25em] text-deep-teal">{item.label}</p>
+                <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-deep-teal">{item.label}</p>
                 <p className="text-text-muted leading-relaxed text-base md:text-lg font-normal md:leading-[1.8]">{item.text}</p>
               </motion.div>
             ))}
@@ -844,15 +845,15 @@ export default function Home() {
 
           <div className="w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 xl:gap-8 items-stretch pt-8">
             {[
-              { ...foundationPackage, featured: false },
-              { ...starterPackage, featured: true },
-              { ...growthPackage, featured: false },
-              { ...customPackage, featured: false }
+              { ...foundationPackage, featured: false, budgetParam: "7500-12500" },
+              { ...starterPackage, featured: true, budgetParam: "12500-25000" },
+              { ...growthPackage, featured: false, budgetParam: "25000-plus" },
+              { ...customPackage, featured: false, budgetParam: "custom" }
             ].map((pkg, idx) => (
               <motion.div
                 key={pkg.title}
-                initial={{ opacity: 0, y: 24, filter: 'blur(12px)' }}
-                whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                initial={shouldReduceMotion ? undefined : { opacity: 0, y: 24, filter: 'blur(12px)' }}
+                whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: 'blur(0px)' }}
                 viewport={{ once: true, amount: 0.15 }}
                 transition={{ duration: 0.85, delay: 0.1 + idx * 0.12, ease: [0.16, 1, 0.3, 1] }}
                 whileHover={!pkg.featured && !shouldReduceMotion ? { y: -6 } : undefined}
@@ -863,13 +864,13 @@ export default function Home() {
                 }`}
               >
                 {pkg.featured && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-cyan px-6 py-[6px] rounded-full text-[10px] font-black uppercase tracking-[0.2em] text-[#0A0A0C] whitespace-nowrap">
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-cyan px-6 py-[6px] rounded-full text-[11px] font-black uppercase tracking-[0.2em] text-[#0A0A0C] whitespace-nowrap">
                     Most Popular
                   </div>
                 )}
 
                 <div className="mb-10">
-                  <p className="mb-4 ml-0.5 inline-flex w-fit items-center rounded-full border border-cyan/35 bg-cyan/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-cyan">
+                  <p className="mb-4 ml-0.5 inline-flex w-fit items-center rounded-full border border-cyan/35 bg-cyan/10 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.2em] text-cyan">
                     {pkg.title === "Foundation" ? "Essentials" : pkg.title === "Starter" ? "Scalable" : pkg.title === "Growth" ? "Full Scale" : "One-of-a-kind"}
                   </p>
                   <h3 className="text-4xl font-bold text-white mb-4 pr-4 leading-tight tracking-tight font-display">{pkg.title}</h3>
@@ -896,7 +897,7 @@ export default function Home() {
                 </ul>
 
                 <div className="mt-auto pt-6">
-                  <Link to="/contact" className="block w-full">
+                  <Link to={`/contact?budget=${pkg.budgetParam}`} className="block w-full">
                     <button
                       className={`w-full py-5 rounded-xl text-[11px] font-black uppercase tracking-[0.2em] transition-all transform active:scale-95 ${
                         pkg.featured
@@ -910,7 +911,7 @@ export default function Home() {
                         })
                       }
                     >
-                      Get Started
+                      {pkg.title === "Custom" ? "Get a quote" : "Start with " + pkg.title}
                     </button>
                   </Link>
 

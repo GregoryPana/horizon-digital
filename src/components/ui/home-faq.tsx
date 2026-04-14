@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 
 export type HomeFaqItem = {
   question: string;
@@ -18,6 +18,7 @@ type HomeFaqProps = {
 
 function FaqAccordionItem({ item }: { item: HomeFaqItem }) {
   const [isOpen, setIsOpen] = useState(false);
+  const shouldReduceMotion = useReducedMotion();
 
   return (
     <motion.div
@@ -55,7 +56,7 @@ function FaqAccordionItem({ item }: { item: HomeFaqItem }) {
       >
         <motion.p
           initial={false}
-          animate={isOpen ? { opacity: 1, y: 0, filter: 'blur(0px)' } : { opacity: 0, y: -4, filter: 'blur(4px)' }}
+          animate={isOpen ? { opacity: 1, y: 0, filter: shouldReduceMotion ? undefined : 'blur(0px)' } : { opacity: 0, y: -4, filter: shouldReduceMotion ? undefined : 'blur(4px)' }}
           transition={{ duration: 0.28, delay: isOpen ? 0.1 : 0, ease: [0.16, 1, 0.3, 1] }}
           className="pb-1 text-sm text-text-muted"
         >

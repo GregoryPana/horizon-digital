@@ -123,7 +123,7 @@ export default function InsightArticle() {
             </Link>
             <Link 
               to="/ai-digital-tools" 
-              className="text-[10px] items-center justify-center rounded-full border border-cyan/40 px-8 py-3 font-black uppercase tracking-[0.2em] text-cyan transition hover:bg-cyan/10"
+              className="text-[11px] items-center justify-center rounded-full border border-cyan/40 px-8 py-3 font-black uppercase tracking-[0.2em] text-cyan transition hover:bg-cyan/10"
             >
               Related Tools
             </Link>

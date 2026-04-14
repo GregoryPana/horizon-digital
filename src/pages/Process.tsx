@@ -47,7 +47,7 @@ export default function Process() {
                 <motion.div
                   initial={shouldReduceMotion ? undefined : { opacity: 0, y: 24, filter: 'blur(10px)' }}
                   whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: 'blur(0px)' }}
-                  viewport={{ once: true, amount: 0.3 }}
+                  viewport={{ once: true, amount: 0.15 }}
                   transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                 >
                   <h2 className="font-display mb-8 text-3xl sm:text-5xl font-semibold leading-tight tracking-tight">
@@ -119,7 +119,13 @@ export default function Process() {
 
       <section className="bg-bg py-40 border-t border-white/5">
         <div className="mx-auto w-full max-w-[92rem] px-6">
-          <div className="flex flex-col items-center text-center">
+          <motion.div
+            className="flex flex-col items-center text-center"
+            initial={shouldReduceMotion ? undefined : { opacity: 0, y: 24, filter: 'blur(8px)' }}
+            whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: 'blur(0px)' }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+          >
             <p className="mb-6 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">Ready to start?</p>
             <h2 className="font-display mb-10 text-4xl sm:text-6xl font-semibold leading-tight tracking-tight text-white">
               Let's build something <span className="text-cyan italic">exceptional.</span>
@@ -134,7 +140,7 @@ export default function Process() {
                 Start your project
               </ShimmerButton>
             </Link>
-          </div>
+          </motion.div>
         </div>
       </section>
     </div>

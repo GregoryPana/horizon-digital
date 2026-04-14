@@ -10,10 +10,10 @@ export default function About() {
   const shouldReduceMotion = useReducedMotion();
 
   const fadeInUp = {
-    initial: { opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 20 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true, amount: 0.3 },
-    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as const },
+    initial: shouldReduceMotion ? undefined : { opacity: 0, y: 22, filter: 'blur(8px)' },
+    whileInView: shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: 'blur(0px)' },
+    viewport: { once: true, amount: 0.15 },
+    transition: { duration: 0.75, ease: [0.16, 1, 0.3, 1] as const },
   };
 
   return (
@@ -121,12 +121,12 @@ export default function About() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 relative">
             <div className="absolute left-1/2 top-0 bottom-0 w-px bg-border hidden md:block" />
             
-            <motion.div 
+            <motion.div
               className="space-y-8"
-              initial={shouldReduceMotion ? undefined : { opacity: 0, x: -20 }}
-              whileInView={shouldReduceMotion ? undefined : { opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              initial={shouldReduceMotion ? undefined : { opacity: 0, x: -24, filter: 'blur(8px)' }}
+              whileInView={shouldReduceMotion ? undefined : { opacity: 1, x: 0, filter: 'blur(0px)' }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
             >
                <h3 className="text-sm font-black uppercase tracking-[0.2em] text-red-400/60">Any agency</h3>
                <ul className="space-y-5 text-base text-text-dim leading-relaxed">
@@ -149,12 +149,12 @@ export default function About() {
                </ul>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               className="space-y-8"
-              initial={shouldReduceMotion ? undefined : { opacity: 0, x: 20 }}
-              whileInView={shouldReduceMotion ? undefined : { opacity: 1, x: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+              initial={shouldReduceMotion ? undefined : { opacity: 0, x: 24, filter: 'blur(8px)' }}
+              whileInView={shouldReduceMotion ? undefined : { opacity: 1, x: 0, filter: 'blur(0px)' }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.75, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
             >
                <h3 className="text-sm font-black uppercase tracking-[0.2em] text-deep-teal">Horizon Digital</h3>
                <ul className="space-y-5 text-base text-text-muted leading-relaxed">
@@ -228,13 +228,13 @@ export default function About() {
                 )
               }
             ].map((item, i) => (
-              <motion.div 
+              <motion.div
                 key={item.num}
                 className="flex flex-col gap-6"
-                initial={shouldReduceMotion ? undefined : { opacity: 0, x: i % 2 === 0 ? -30 : 30 }}
-                whileInView={shouldReduceMotion ? undefined : { opacity: 1, x: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.8, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                initial={shouldReduceMotion ? undefined : { opacity: 0, x: i % 2 === 0 ? -28 : 28, filter: 'blur(8px)' }}
+                whileInView={shouldReduceMotion ? undefined : { opacity: 1, x: 0, filter: 'blur(0px)' }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{ duration: 0.75, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
               >
                 <span className="text-4xl md:text-5xl font-black text-deep-teal opacity-80 leading-none">
                   {item.num}
@@ -287,7 +287,7 @@ export default function About() {
                   transition={{ delay: i * 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                 >
                    <div className="mb-6">
-                      <span className="px-3 py-1 rounded-full border border-deep-teal/30 bg-deep-teal/5 text-[10px] font-black tracking-widest text-deep-teal uppercase">
+                      <span className="px-3 py-1 rounded-full border border-deep-teal/30 bg-deep-teal/5 text-[11px] font-black tracking-widest text-deep-teal uppercase">
                         {project.tier}
                       </span>
                    </div>
@@ -313,11 +313,11 @@ export default function About() {
               ))}
            </div>
 
-           <motion.div 
+           <motion.div
              className="text-center"
              initial={shouldReduceMotion ? undefined : { opacity: 0, y: 10 }}
              whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
-             viewport={{ once: true, amount: 0.3 }}
+             viewport={{ once: true, amount: 0.15 }}
              transition={{ duration: 0.5, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
            >
               <Link to="/work" className="text-sm font-bold uppercase tracking-widest text-cyan hover:text-white transition-colors underline decoration-cyan/30 underline-offset-8">
@@ -340,13 +340,13 @@ export default function About() {
                 <motion.div 
                   key={i} 
                   className="flex flex-col md:flex-row items-center gap-5 text-center md:text-left h-full"
-                  initial={shouldReduceMotion ? undefined : { opacity: 0, y: 16 }}
-                  whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  transition={{ duration: 0.5, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                  initial={shouldReduceMotion ? undefined : { opacity: 0, y: 16, filter: 'blur(6px)' }}
+                  whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: 'blur(0px)' }}
+                  viewport={{ once: true, amount: 0.15 }}
+                  transition={{ duration: 0.55, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
                 >
                   <div className="hidden lg:block w-px h-8 bg-border/50" />
-                  <span className="text-[10px] md:text-[14px] font-black uppercase tracking-[0.2em] text-cyan text-balance leading-relaxed">
+                  <span className="text-[11px] md:text-[13px] font-black uppercase tracking-[0.2em] text-cyan text-balance leading-relaxed">
                     {text}
                   </span>
                 </motion.div>

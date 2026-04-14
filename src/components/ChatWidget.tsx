@@ -133,15 +133,15 @@ export default function ChatWidget() {
   };
 
   return (
-    <div className="fixed bottom-6 left-6 sm:right-6 sm:left-auto z-[100] font-sans">
+    <div className="fixed bottom-[4.75rem] right-4 sm:bottom-20 sm:right-6 z-[100] font-sans">
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            initial={{ opacity: 0, scale: 0.95, y: 12 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            transition={{ type: "spring", damping: 20, stiffness: 300 }}
-            className="fixed inset-x-4 bottom-24 top-4 z-[100] flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-bg-elev/80 shadow-2xl backdrop-blur-xl sm:bottom-24 sm:right-6 sm:left-auto sm:top-auto sm:h-[550px] sm:w-[400px] md:h-[600px] lg:h-[650px]"
+            exit={{ opacity: 0, scale: 0.95, y: 12 }}
+            transition={{ type: "spring", damping: 24, stiffness: 320 }}
+            className="fixed inset-x-4 bottom-[8.5rem] top-4 z-[100] flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-bg-elev/80 shadow-2xl backdrop-blur-xl sm:bottom-36 sm:right-6 sm:left-auto sm:top-auto sm:h-[520px] sm:w-[380px] md:h-[560px]"
           >
             {/* Header */}
             <div className="flex items-center justify-between border-b border-white/5 bg-accent/10 px-6 py-4">
@@ -280,45 +280,11 @@ export default function ChatWidget() {
         )}
       </AnimatePresence>
 
-      {/* Floating Button with Nudge Animation */}
-      <div className="relative">
-        <AnimatePresence>
-          {!isOpen && shouldPrompt && (
-            <>
-              {[...Array(6)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 1, scale: 0, x: 0, y: 0 }}
-                  animate={{ 
-                    opacity: 0, 
-                    scale: [0, 1, 0.5], 
-                    x: (i % 2 === 0 ? 1 : -1) * (Math.random() * 50 + 20),
-                    y: (i < 3 ? -1 : 1) * (Math.random() * 50 + 20)
-                  }}
-                  transition={{ 
-                    duration: 1.5, 
-                    repeat: Infinity, 
-                    repeatDelay: 2,
-                    delay: i * 0.1 
-                  }}
-                  className="absolute left-1/2 top-1/2 h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent pr-1"
-                />
-              ))}
-            </>
-          )}
-        </AnimatePresence>
-
+      {/* Floating Button with Nudge Label */}
+      <div className="flex flex-row-reverse items-center gap-3">
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          animate={(!isOpen && shouldPrompt) ? {
-            rotate: [0, -10, 10, -10, 10, 0],
-            transition: { 
-              duration: 0.5, 
-              repeat: Infinity, 
-              repeatDelay: 4 
-            }
-          } : {}}
           onClick={() => {
             const opening = !isOpen;
             setIsOpen(opening);
@@ -328,16 +294,31 @@ export default function ChatWidget() {
             }
           }}
           aria-label={isOpen ? "Close chat assistant" : "Open chat assistant"}
-          className="relative flex h-12 w-12 md:h-[4.5rem] md:w-[4.5rem] items-center justify-center rounded-full bg-accent text-[#080C11] transition-opacity hover:opacity-90"
+          className="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-accent/50 bg-[#0a1418] text-accent shadow-[0_2px_12px_rgba(94,209,222,0.12)] transition-all hover:border-accent hover:bg-[#0d1f26] hover:shadow-[0_2px_20px_rgba(94,209,222,0.25)]"
         >
-          {isOpen ? <X className="w-5 h-5 md:w-7 md:h-7" /> : <MessageSquare className="w-5 h-5 md:w-7 md:h-7" />}
-          {!isOpen && (
-            <span className="absolute -right-1 -top-1 flex h-4 w-4">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75"></span>
-              <span className="relative inline-flex h-4 w-4 rounded-full bg-accent shadow-sm"></span>
+          {isOpen ? <X className="w-5 h-5" /> : <MessageSquare className="w-5 h-5" />}
+          {!isOpen && shouldPrompt && (
+            <span className="absolute -right-0.5 -top-0.5 flex h-3 w-3">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60"></span>
+              <span className="relative inline-flex h-3 w-3 rounded-full bg-accent"></span>
             </span>
           )}
         </motion.button>
+
+        <AnimatePresence>
+          {!isOpen && shouldPrompt && (
+            <motion.div
+              initial={{ opacity: 0, x: 16, scale: 0.92 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              exit={{ opacity: 0, x: 16, scale: 0.92 }}
+              transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
+              className="relative rounded-xl border border-border bg-bg-elev/95 px-4 py-2.5 text-xs font-semibold text-text shadow-lg backdrop-blur-xl whitespace-nowrap pointer-events-none"
+            >
+              Got questions?
+              <span className="absolute -right-[5px] top-1/2 h-2.5 w-2.5 -translate-y-1/2 rotate-45 border-r border-t border-border bg-bg-elev/95" />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </div>
   );

@@ -31,6 +31,7 @@ import takamakaMainWebp from "../assets/work/takamaka-house/takamaka house.webp"
 import takamakaAltOne from "../assets/work/takamaka-house/takamaka house 2.png";
 import takamakaAltOneWebp from "../assets/work/takamaka-house/takamaka house 2.webp";
 import horizonVideo from "../assets/Horizon Mockup-1.mp4";
+import drakeVideo from "../assets/DRAKE SEASIDE DESKTOP.mp4";
 
 const projects = [
   {
@@ -41,7 +42,7 @@ const projects = [
     link: "https://drakeseaside.com",
     cta: "View live site →",
     reqCta: "Request similar site",
-    videoSrc: horizonVideo,
+    videoSrc: drakeVideo,
     fallbackSrc: drakeMain,
     webpSrc: drakeMainWebp,
     altSrc: drakeAltOne,
@@ -266,7 +267,7 @@ export default function Work() {
               <div key={proj.id} className="absolute inset-0 w-full h-full px-5 sm:px-8 flex flex-col lg:grid lg:grid-cols-12 gap-4 sm:gap-8 lg:gap-20 items-center justify-start lg:justify-center pointer-events-none pt-0 sm:pt-12 lg:pt-0">
                 
                 <div className={`project-text-${i} lg:col-span-12 xl:col-span-5 flex flex-col justify-start lg:justify-center text-left pointer-events-auto ${proj.align === 'right' ? 'xl:order-2' : 'xl:order-1'} ${i === 0 ? 'opacity-100' : 'opacity-0'}`}>
-                  <p className="text-[10px] md:text-xs font-medium uppercase tracking-[0.2em] text-cyan mb-3 md:mb-5 bg-cyan/10 inline-block px-3 py-1.5 rounded-full border border-cyan/20 self-start">
+                  <p className="text-[11px] md:text-xs font-medium uppercase tracking-[0.2em] text-cyan mb-3 md:mb-5 bg-cyan/10 inline-block px-3 py-1.5 rounded-full border border-cyan/20 self-start">
                     {proj.tier}
                   </p>
                   <h3 className="font-display text-3xl sm:text-4xl lg:text-[3.5rem] font-medium text-white mb-4 lg:mb-6 leading-[1.05] tracking-tight">

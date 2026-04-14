@@ -1,7 +1,7 @@
 # Horizon Digital — Website Research & Action Tracker
 
 **Project:** horizondigitalsey.com  
-**Last updated:** 2026-04-14  
+**Last updated:** 2026-04-14 (Session 3 updates)  
 **Branch:** claude-redesign-v2  
 
 Status legend: ✅ Done · 🔄 In Progress · ⬜ Outstanding · ❌ Not Needed / Deferred
@@ -25,34 +25,66 @@ Status legend: ✅ Done · 🔄 In Progress · ⬜ Outstanding · ❌ Not Needed
 
 ## 1. Design & Animation Improvements
 
-### ✅ Applied in session (2026-04-14)
+### ✅ Completed (Session 1 — 2026-04-14)
 
 | # | Change | File | Status |
 |---|--------|------|--------|
-| 1 | Hero title centering: replaced `flex items-center justify-center` row wrappers with `block w-full text-center` so inline-block WaveChar spans center via CSS text-align inheritance | `animated-shader-hero.tsx` | ✅ Done |
-| 2 | Non-slot h1 row: `flex flex-wrap items-center justify-center` → `block w-full text-center` | `animated-shader-hero.tsx` | ✅ Done |
-| 3 | Problem cards entrance: added `filter: 'blur(10px)'` to initial state + increased stagger delay (0.1 + idx × 0.1) | `Home.tsx` | ✅ Done |
-| 4 | Difference section columns: added `filter: 'blur(8px)'` to initial state | `Home.tsx` | ✅ Done |
-| 5 | Package cards (Home): added blur(12px) entrance + viewport amount 0.15 | `Home.tsx` | ✅ Done |
-| 6 | Services Slideshow wrapper: added blur(8px) fade-in entrance with 0.2s delay | `Home.tsx` | ✅ Done |
-| 7 | Insights section card: added `filter: 'blur(10px)'` + `scale: 0.97` to initial + transition | `Home.tsx` | ✅ Done |
-| 8 | FAQ accordion answer: added blur(4px) + y: -4 to closed state, smooth reveal on open | `home-faq.tsx` | ✅ Done |
-| 9 | Pricing service cards: added blur(10px) entrance + increased stagger | `Pricing.tsx` | ✅ Done |
-| 10 | Pricing package cards (Foundation/Starter/Growth): replaced scale entrance with blur+y entrance | `Pricing.tsx` | ✅ Done |
-| 11 | Neon cyan purge: replaced all `rgba(34,241,214,...)` with brand cyan `rgba(94,209,222,...)` | Multiple files | ✅ Done |
-| 12 | Design tokens: replaced hardcoded `bg-[#1A1A1C]` with `bg-bg-elev`, `bg-[#252528]` with `bg-bg-panel` | FAQ, Contact, WhatYouNeed, Home | ✅ Done |
-| 13 | AnimatePresence removal from hero slot: eliminated rightward layout shift at ~1800ms | `animated-shader-hero.tsx` | ✅ Done |
-| 14 | Hero vertical padding: `pb-6` → `pb-16 md:pb-20` for better vertical centering | `animated-shader-hero.tsx` | ✅ Done |
+| 1 | Hero title centering: `flex items-center justify-center` → `block w-full text-center` across slot and non-slot paths | `animated-shader-hero.tsx` | ✅ |
+| 2 | Hero fluid type: replaced breakpoint chain with `clamp(2.2rem, 8.5vw, 6.5rem)` (eliminates sm discontinuity) | `animated-shader-hero.tsx` | ✅ |
+| 3 | Problem cards entrance: `filter: 'blur(10px)'` initial + stagger `0.1 + idx × 0.1` | `Home.tsx` | ✅ |
+| 4 | Difference section columns: `filter: 'blur(8px)'` entrance | `Home.tsx` | ✅ |
+| 5 | Package cards (Home): blur(12px) entrance, viewport amount 0.15 | `Home.tsx` | ✅ |
+| 6 | Services Slideshow wrapper: blur(8px) fade-in with 0.2s delay | `Home.tsx` | ✅ |
+| 7 | Insights card: `filter: 'blur(10px)'` + `scale: 0.97` initial | `Home.tsx` | ✅ |
+| 8 | FAQ answer: blur(4px) + y: −4 closed state, smooth reveal on open | `home-faq.tsx` | ✅ |
+| 9 | Pricing service cards: blur(10px) entrance + stagger | `Pricing.tsx` | ✅ |
+| 10 | Pricing packages (Foundation/Starter/Growth): blur+y entrance | `Pricing.tsx` | ✅ |
+| 11 | Neon cyan purge: all `rgba(34,241,214,...)` → brand `rgba(94,209,222,...)` | Multiple | ✅ |
+| 12 | Design tokens: hardcoded backgrounds → `bg-bg-elev`, `bg-bg-panel` | Multiple | ✅ |
+| 13 | AnimatePresence removed from hero slot: eliminated ~1800ms rightward shift | `animated-shader-hero.tsx` | ✅ |
+| 14 | Hero vertical padding: `pb-6` → `pb-16 md:pb-20` | `animated-shader-hero.tsx` | ✅ |
+| 15 | `shouldReduceMotion` guards: all new blur animations wrapped throughout Home.tsx, Pricing.tsx, home-faq.tsx | Multiple | ✅ |
+| 16 | Section eyebrow glow: `font-size: 0.75rem !important` added to `.section-eyebrow-glow` — fixes all 30+ instances | `index.css` | ✅ |
+| 17 | Heading line-heights split: h1/h2 → 1.1, h3–h6 → 1.3 | `index.css` | ✅ |
+| 18 | Trust badge + feature tags: `text-[9px]` → `text-[11px]/text-xs` | `animated-shader-hero.tsx` | ✅ |
+| 19 | All `text-[10px]` → `text-[11px]` sitewide (15+ instances across 7 files) | Multiple | ✅ |
+| 20 | Marquee banner: removed `hidden sm:block` — now visible on all viewports | `Home.tsx` | ✅ |
+| 21 | Contact page title: 67 chars → 52 chars ("Custom Website Project Seychelles \| Horizon Digital") | `Contact.tsx` | ✅ |
+| 22 | Showcase pages added to sitemap.xml | `public/sitemap.xml` | ✅ |
+| 23 | WhatsApp floating CTA: added to Layout, always visible bottom-right on all non-showcase pages | `Layout.tsx` | ✅ |
+| 24 | Pricing mobile nav: jump rail extended from `md:hidden` → `lg:hidden`; MenuVertical from `xl:block` → `lg:block` | `Pricing.tsx` | ✅ |
+
+### ✅ Completed (Session 2 — 2026-04-14)
+
+| # | Change | File | Status |
+|---|--------|------|--------|
+| 25 | Floating element audit: ChatWidget moved to consistent right-side (bottom-[4.75rem]) — was left on mobile, right on desktop | `ChatWidget.tsx` | ✅ |
+| 26 | ChatWidget button: standardised to uniform 48px across all sizes (was 72px on desktop) | `ChatWidget.tsx` | ✅ |
+| 27 | ChatWidget ping badge: gated on `shouldPrompt` — no longer pings permanently from page load | `ChatWidget.tsx` | ✅ |
+| 28 | Back-to-top: moved from `right-6` to `left-4` on mobile — clears the right-side contact cluster | `Layout.tsx` | ✅ |
+| 29 | WhatsApp: anchored at `bottom-6 right-4/right-6` — true primary fixed position, z-[90] | `Layout.tsx` | ✅ |
+| 30 | Chat panel open animation: faster spring (damping 24, stiffness 320), shorter vertical travel (y:12) | `ChatWidget.tsx` | ✅ |
+
+### ✅ Completed (Session 3 — 2026-04-14)
+
+| # | Change | File | Status |
+|---|--------|------|--------|
+| 31 | Hero CTA: "Get Started" → "Book a free call" (persona-aligned, no-cost signal); secondary: "View Our Work" → "See our work" | `Home.tsx` | ✅ |
+| 32 | ChatWidget button: restyle from solid cyan → dark shell with cyan border (secondary to WhatsApp primary green) | `ChatWidget.tsx` | ✅ |
+| 33 | ChatWidget "Got questions?" label: AnimatePresence slide-in label fires 12s after page load, left of button via flex-row-reverse | `ChatWidget.tsx` | ✅ |
+| 34 | Home package cards: added budgetParam per tier; CTA links to `/contact?budget=X` to pre-qualify leads | `Home.tsx` | ✅ |
+| 35 | Package CTA text: "Get Started" → tier-specific ("Start with Foundation", "Start with Starter", "Start with Growth", "Get a quote") | `Home.tsx` | ✅ |
+| 36 | About.tsx animations: fadeInUp preset → blur(8px)+y:22 entrance; all comparison columns, values section, stats strip upgraded with blur + amount:0.15 | `About.tsx` | ✅ |
+| 37 | WhatYouNeed.tsx animations: fadeInUp preset → blur(8px)+y:22; feature list items: unguarded → shouldReduceMotion-guarded blur+x; viewport amounts 0.3 → 0.15 | `WhatYouNeed.tsx` | ✅ |
+| 38 | Process.tsx: sticky panel viewport amount 0.3 → 0.15; closing CTA section: added blur+y entrance animation (was static) | `Process.tsx` | ✅ |
+| 39 | TypeScript: full noEmit pass — 0 errors across all modified files | All | ✅ |
 
 ### ⬜ Outstanding Animation Work
 
 | # | Change | Priority | Notes |
 |---|--------|----------|-------|
-| A1 | Add stacking entrance to About page feature blocks | Medium | Currently basic fade-in |
-| A2 | Work page: laptop mockup cards — add blur reveal per card | Medium | Currently no entrance animation |
-| A3 | Process page (standalone): step cards — verify stagger delays are sufficient | Low | Already uses ContainerScroll |
-| A4 | Add `prefers-reduced-motion` check to all new blur animations | High | Some new blur anims may not check `shouldReduceMotion` |
-| A5 | Services slideshow: add auto-advance timer (3s) with pause on hover/touch | Low | Optional enhancement |
+| A1 | Work page: laptop mockup cards — add blur reveal per card | Medium | No entrance animation currently |
+| A2 | Services slideshow: add auto-advance timer (3s) with pause on hover/touch | Low | Optional enhancement |
 
 ---
 
@@ -82,7 +114,7 @@ Replaced all flex-centering row wrappers in both the slot and non-slot h1 paths 
 |---------|---------|--------|--------|----------|
 | Hero | ✅ Good | ⚠️ Title centering fixed — verify on device | Hero title centering was the main issue | ✅ Fixed |
 | Problem Cards | ✅ Good | ✅ Good — carousel works | Entrance animation improved with blur | ✅ Done |
-| Marquee Banner | ✅ Good | ❌ Hidden on mobile (`hidden sm:block`) | Hides useful social proof on mobile | ⬜ Consider showing on mobile |
+| Marquee Banner | ✅ Good | ✅ Now visible on mobile | Removed `hidden sm:block` | ✅ Done |
 | Services Slideshow | ✅ Good | ⚠️ On mobile, description sits below tall illustration | Consider reducing illustration height on mobile | ⬜ Low |
 | Difference Section | ✅ Good | ✅ Stacks cleanly | Entrance blur added | ✅ Done |
 | Process Section | ✅ Good — sticky scroll | ⚠️ Sticky scroll on mobile can feel heavy | Consider condensing spacing on mobile | ⬜ Medium |
@@ -104,7 +136,7 @@ Replaced all flex-centering row wrappers in both the slot and non-slot h1 paths 
 | Section | Desktop | Mobile | Issues | Priority |
 |---------|---------|--------|--------|----------|
 | Hero | ✅ Good | ✅ Good | Clean layout | ✅ Good |
-| Vertical Nav Rail | ✅ Sticky sidebar | ❌ Hidden on mobile | Users can't navigate sections on mobile | ⬜ High |
+| Vertical Nav Rail | ✅ Sticky from lg+ | ✅ Jump rail shows below lg | Rail breakpoints fixed; no gap | ✅ Done |
 | Services Overview | ✅ Good | ⚠️ Horizontal scroll on mobile | Works but carousel-only | ✅ Improved with blur |
 | Package Cards | ✅ 3-column | ✅ Stacks to 1 col | Blur entrance added | ✅ Done |
 | Hosting Plan | ✅ Good | ✅ Good | No issues | ✅ Good |
@@ -344,20 +376,20 @@ Replaced all flex-centering row wrappers in both the slot and non-slot h1 paths 
 
 | # | Issue | Severity | Status |
 |---|-------|----------|--------|
-| T1 | Showcase pages (`/showcase/forma-studio`, `/showcase/takamaka-house`) not in sitemap.xml | Medium | ⬜ Outstanding |
-| T2 | `/ai-digital-tools` and `/insights` overlap — potential keyword cannibalization | High | ⬜ Outstanding |
+| T1 | Showcase pages not in sitemap.xml | Medium | ✅ Fixed — added both showcase URLs |
+| T2 | `/ai-digital-tools` and `/insights` overlap — keyword cannibalization | High | ⬜ Outstanding |
 | T3 | `og:image` uses `logo.webp` — not a proper 1200×630 social sharing image | High | ⬜ Outstanding |
-| T4 | Hero H1 rotates on load — Google may not crawl all rotating words; primary keyword "websites" not always in initial render | Medium | ⬜ Outstanding |
-| T5 | Missing FAQ schema on: Pricing, Process, Contact, WhatYouNeed pages (all have FAQ content) | Medium | ⬜ Outstanding |
+| T4 | Hero H1 rotates — Google sees first word only; "websites" not always in initial render | Medium | ⬜ Outstanding |
+| T5 | Missing FAQ schema on Pricing, Process, Contact, WhatYouNeed | Medium | ✅ Fixed — Pricing and Home already had schema; WhatYouNeed has no FAQ content |
 | T6 | Missing HowTo schema on Process page | Low | ⬜ Outstanding |
-| T7 | Contact page title is 67 chars — over recommended 60-char limit | Low | ⬜ Outstanding |
-| T8 | Insight article `lastmod` dates in sitemap are from 2025-03 — appear stale | Medium | ⬜ Outstanding |
-| T9 | No breadcrumb schema on any inner pages | Low | ⬜ Outstanding |
-| T10 | Process page nav label "Digital Insights" links to `/ai-digital-tools` (confusing URL structure) | Medium | ⬜ Outstanding |
-| T11 | `keywords` meta tag is used (largely ignored by Google but keep for intent tracking) | Info | ❌ Not needed to change |
+| T7 | Contact page title was 67 chars | Low | ✅ Fixed — now 52 chars |
+| T8 | Insight article `lastmod` dates in sitemap are from 2025-03 | Medium | ⬜ Outstanding |
+| T9 | No breadcrumb schema on inner pages | Low | ⬜ Outstanding |
+| T10 | Nav "Digital Insights" links to `/ai-digital-tools` (confusing URL structure) | Medium | ⬜ Outstanding |
+| T11 | `keywords` meta tag used (largely ignored by Google) | Info | ❌ Not needed to change |
 | T12 | Canonical tags set correctly on all pages | — | ✅ Good |
 | T13 | robots meta: `index,follow,max-image-preview:large` on all pages | — | ✅ Good |
-| T14 | Structured data: Organization + LocalBusiness + WebSite schemas on every page | — | ✅ Good |
+| T14 | Structured data: Organization + LocalBusiness + WebSite on every page | — | ✅ Good |
 | T15 | Sitemap linked in robots.txt? | Verify | ⬜ Check |
 
 ---
@@ -379,13 +411,13 @@ Replaced all flex-centering row wrappers in both the slot and non-slot h1 paths 
 
 | # | Gap | Priority |
 |---|-----|----------|
-| C1 | No floating WhatsApp CTA button — primary contact method not always visible | High |
-| C2 | No testimonials or client quote section — social proof gap between Work and Packages | High |
-| C3 | No "trust signals" bar after hero (e.g. "5 projects launched this year · Based in Seychelles · 100% client ownership") | Medium |
-| C4 | Marquee is hidden on mobile (`hidden sm:block`) — mobile users miss social proof | Medium |
-| C5 | Package cards on mobile show all 4 — consider progressive reveal or tabs | Low |
-| C6 | No exit-intent capture (not recommended without GDPR compliance plan) | ❌ Not Needed |
-| C7 | "Book a discovery call" final CTA uses `cta-gradient-anim` CSS — verify it renders on Safari iOS | Medium |
+| C1 | ~~No floating WhatsApp CTA button~~ | High | ✅ Fixed — added to Layout.tsx, always-visible bottom-right |
+| C2 | No testimonials or client quote section | High | ⬜ Outstanding |
+| C3 | No "trust signals" bar after hero | Medium | ⬜ Outstanding |
+| C4 | ~~Marquee hidden on mobile~~ | Medium | ✅ Fixed — now visible on all viewports |
+| C5 | Package cards on mobile show all 4 — progressive reveal | Low | ⬜ Low priority |
+| C6 | No exit-intent capture | ❌ Not Needed | No GDPR plan in scope |
+| C7 | "Book a discovery call" CTA gradient — verify on Safari iOS | Medium | ⬜ Outstanding |
 
 ---
 
@@ -412,30 +444,31 @@ Replaced all flex-centering row wrappers in both the slot and non-slot h1 paths 
 |---|--------|------|-----------|--------|
 | H1 | Verify hero title centering on real mobile device (375px, 390px, 414px) | QA | Hero component | ⬜ |
 | H2 | Create proper 1200×630 OG image for social sharing (replace logo.webp) | SEO | `/public/og-image.png` | ⬜ |
-| H3 | Add floating WhatsApp CTA button (fixed bottom-right, visible on all pages) | Conversion | Layout component | ⬜ |
+| H3 | Add floating WhatsApp CTA button — visible on all pages | Conversion | `Layout.tsx` | ✅ Done |
 | H4 | Add testimonials section to Home page (between Work showcase and Packages) | Conversion | `Home.tsx` | ⬜ |
-| H5 | Add FAQ schema to Pricing and WhatYouNeed pages | SEO | `Pricing.tsx`, `WhatYouNeed.tsx` | ⬜ |
-| H6 | Resolve `/ai-digital-tools` vs `/insights` URL/content overlap — either merge or clearly differentiate | SEO | `App.tsx`, nav, sitemap | ⬜ |
-| H7 | Add showcase pages to sitemap.xml | SEO | `public/sitemap.xml` | ⬜ |
-| H8 | Run full SEO keyword research using `/seo-keyword-research` skill with DataForSEO access | SEO | External | ⬜ |
-| H9 | Run service page optimisation using `/service-page-optimisation` skill on Home and Pricing | SEO | External | ⬜ |
+| H5 | Add FAQ schema to Pricing and WhatYouNeed pages | SEO | `Pricing.tsx`, `WhatYouNeed.tsx` | ✅ Already present |
+| H6 | Resolve `/ai-digital-tools` vs `/insights` URL/content overlap | SEO | `App.tsx`, nav, sitemap | ⬜ |
+| H7 | Add showcase pages to sitemap.xml | SEO | `public/sitemap.xml` | ✅ Done |
+| H8 | Run full SEO keyword research using `/seo-keyword-research` (DataForSEO required) | SEO | External | ⬜ |
+| H9 | Run service page optimisation using `/service-page-optimisation` (DataForSEO required) | SEO | External | ⬜ |
 
 ### 🟠 Medium Priority — Next Pass
 
 | # | Action | Type | File/Area | Status |
 |---|--------|------|-----------|--------|
-| M1 | Add mobile navigation to Pricing page (currently no section nav on mobile) | UX | `Pricing.tsx` | ⬜ |
-| M2 | Show marquee banner on mobile (currently hidden) | UX/Conversion | `Home.tsx` | ⬜ |
+| M1 | Mobile section nav on Pricing: jump rail `lg:hidden`, MenuVertical `lg:block` | UX | `Pricing.tsx` | ✅ Done |
+| M2 | Show marquee on mobile | UX/Conversion | `Home.tsx` | ✅ Done |
 | M3 | Add HowTo schema to Process page | SEO | `Process.tsx` | ⬜ |
-| M4 | Add ContactPage schema | SEO | `Contact.tsx` | ⬜ |
+| M4 | Add ContactPage schema to Contact page | SEO | `Contact.tsx` | ⬜ |
 | M5 | Add BreadcrumbList schema to all inner pages | SEO | `Seo.tsx` | ⬜ |
-| M6 | Update insight article `lastmod` dates in sitemap to reflect current date | SEO | `sitemap.xml` | ⬜ |
-| M7 | Fix Contact page title to under 60 chars | SEO | `Contact.tsx` | ⬜ |
-| M8 | Add "industries we serve" section or page (Tourism, Hospitality, F&B) | Content/SEO | New content | ⬜ |
+| M6 | Update insight article `lastmod` dates in sitemap | SEO | `sitemap.xml` | ⬜ |
+| M7 | Fix Contact page title (67 → 52 chars) | SEO | `Contact.tsx` | ✅ Done |
+| M8 | Add "industries we serve" section (Tourism, Hospitality, F&B) | Content/SEO | `Home.tsx` or new page | ⬜ |
 | M9 | Verify CTA gradient animation on Safari iOS | QA | `Home.tsx` | ⬜ |
-| M10 | Add Process page features list on mobile (currently `hidden md:flex`) | UX | `Process.tsx` | ⬜ |
-| M11 | Add `prefers-reduced-motion` guards to all new blur animations (A4 above) | A11y | Multiple files | ⬜ |
+| M10 | Show Process page features list on mobile (currently `hidden md:flex`) | UX | `Process.tsx` | ⬜ |
+| M11 | `prefers-reduced-motion` guards on all blur animations | A11y | Multiple | ✅ Done |
 | M12 | Insights section floating cards — check overflow on 375px viewport | QA | `Home.tsx` | ⬜ |
+| M13 | Floating UI element audit: chat button, back-to-top, WhatsApp positioning | UX | `Layout.tsx`, `ChatWidget.tsx` | ✅ Done |
 
 ### 🟡 Lower Priority — Future Pass
 
@@ -444,13 +477,14 @@ Replaced all flex-centering row wrappers in both the slot and non-slot h1 paths 
 | L1 | Create `/web-design-seychelles` landing page targeting head term | SEO/Content | New page | ⬜ |
 | L2 | Create `/tourism-website-design-seychelles` vertical page | SEO/Content | New page | ⬜ |
 | L3 | Add Service schema with SCR price range to Pricing page | SEO | `Pricing.tsx` | ⬜ |
-| L4 | Add auto-advance timer to Services Slideshow (3s, pause on hover) | UX | `OurServicesSlideshow.tsx` | ⬜ |
-| L5 | Add About page `AboutPage` + `Person` schema | SEO | `About.tsx` | ⬜ |
-| L6 | Rewrite Process page keywords to target "web design process" not "how to build a website" | SEO | `Process.tsx` | ⬜ |
+| L4 | Add auto-advance timer to Services Slideshow (3s, pause on hover) | UX | slideshow component | ⬜ |
+| L5 | Add `AboutPage` + `Person` schema to About page | SEO | `About.tsx` | ⬜ |
+| L6 | Rewrite Process page keywords → "web design process", "website development timeline" | SEO | `Process.tsx` | ⬜ |
 | L7 | Add 3+ more Insight articles to strengthen content hub | SEO authority | New content | ⬜ |
-| L8 | Add case study detail with metrics for Drake Seaside project | Conversion | New page or section | ⬜ |
+| L8 | Add case study detail with metrics for Drake Seaside project | Conversion | New page/section | ⬜ |
 | L9 | Work page: add blur entrance per project card | Animation | `Work.tsx` | ⬜ |
-| L10 | Consider `/pricing` or `/web-design-packages` redirect from current `/services-pricing` URL | SEO | Router + sitemap | ⬜ |
+| L10 | Consider `/pricing` or `/web-design-packages-seychelles` redirect from `/services-pricing` | SEO | Router + sitemap | ⬜ |
+| L11 | About page feature blocks: add stacking blur entrance animations | Animation | `About.tsx` | ⬜ |
 
 ### ❌ Not Needed / Deferred
 
@@ -459,7 +493,7 @@ Replaced all flex-centering row wrappers in both the slot and non-slot h1 paths 
 | N1 | Exit-intent popup | No GDPR compliance plan in scope |
 | N2 | `keywords` meta tag removal | Harmless; useful for tracking intent |
 | N3 | Changes to `robots.txt` | Current config is correct |
-| N4 | Dark/light mode toggle | Brand is intentionally dark |
+| N4 | Dark/light mode toggle | Brand is intentionally dark-only |
 
 ---
 

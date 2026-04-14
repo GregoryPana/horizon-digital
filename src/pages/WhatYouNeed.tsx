@@ -51,10 +51,10 @@ export default function WhatYouNeed() {
   };
 
   const fadeInUp = {
-    initial: { opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 20 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true, amount: 0.3 },
-    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as const },
+    initial: shouldReduceMotion ? undefined : { opacity: 0, y: 22, filter: 'blur(8px)' },
+    whileInView: shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: 'blur(0px)' },
+    viewport: { once: true, amount: 0.15 },
+    transition: { duration: 0.75, ease: [0.16, 1, 0.3, 1] as const },
   };
 
   return (
@@ -100,7 +100,7 @@ export default function WhatYouNeed() {
               className="flex-shrink-0 min-w-[calc(100vw-40px)] w-[calc(100vw-40px)] max-w-[calc(100vw-40px)] md:min-w-0 md:w-auto md:max-w-none snap-center p-8 group"
               initial={shouldReduceMotion ? undefined : { opacity: 0, y: 28 }}
               whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
+              viewport={{ once: true, amount: 0.15 }}
               transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             >
               <div className="flex flex-col h-full w-full text-left">
@@ -118,7 +118,7 @@ export default function WhatYouNeed() {
               className="flex-shrink-0 min-w-[calc(100vw-40px)] w-[calc(100vw-40px)] max-w-[calc(100vw-40px)] md:min-w-0 md:w-auto md:max-w-none snap-center p-8 group"
               initial={shouldReduceMotion ? undefined : { opacity: 0, y: 28 }}
               whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
+              viewport={{ once: true, amount: 0.15 }}
               transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             >
               <div className="flex flex-col h-full w-full text-left">
@@ -136,7 +136,7 @@ export default function WhatYouNeed() {
               className="flex-shrink-0 min-w-[calc(100vw-40px)] w-[calc(100vw-40px)] max-w-[calc(100vw-40px)] md:min-w-0 md:w-auto md:max-w-none snap-center p-8 group"
               initial={shouldReduceMotion ? undefined : { opacity: 0, y: 28 }}
               whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
+              viewport={{ once: true, amount: 0.15 }}
               transition={{ duration: 0.7, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
             >
               <div className="flex flex-col h-full w-full text-left">
@@ -212,12 +212,12 @@ export default function WhatYouNeed() {
                    icon: MessageCircle 
                  },
                ].map((item, i) => (
-                <motion.div 
-                  key={item.name} 
-                  initial={{ opacity: 0, x: -10 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  transition={{ delay: i * 0.1, duration: 0.5 }}
+                <motion.div
+                  key={item.name}
+                  initial={shouldReduceMotion ? undefined : { opacity: 0, x: -16, filter: 'blur(6px)' }}
+                  whileInView={shouldReduceMotion ? undefined : { opacity: 1, x: 0, filter: 'blur(0px)' }}
+                  viewport={{ once: true, amount: 0.15 }}
+                  transition={{ delay: i * 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                   className="flex items-start gap-4 md:gap-5"
                 >
                   <div className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-deep-teal/5 border border-deep-teal/20">

@@ -477,7 +477,7 @@ const Hero: React.FC<HeroProps> = ({
               animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
               transition={{ duration: 0.8, delay: EYEBROW_START, ease: [0.16, 1, 0.3, 1] }}
             >
-              <div className="flex items-center justify-center gap-1.5 px-3 py-1.5 sm:px-6 sm:py-2 bg-cyan/5 backdrop-blur-md border border-cyan/40 rounded-full text-[9px] sm:text-[11px] lg:text-[14px] font-bold uppercase tracking-[0.2em] lg:tracking-[0.4em] text-accent leading-none">
+              <div className="flex items-center justify-center gap-1.5 px-3 py-1.5 sm:px-6 sm:py-2 bg-cyan/5 backdrop-blur-md border border-cyan/40 rounded-full text-[11px] sm:text-xs lg:text-sm font-bold uppercase tracking-[0.2em] lg:tracking-[0.35em] text-accent leading-none">
                 {trustBadge.icons && (
                   <div className="flex gap-1.5">
                     {trustBadge.icons.map((icon, index) => (
@@ -550,41 +550,41 @@ const Hero: React.FC<HeroProps> = ({
                   return (
                     <h1
                       key={td.lineIndex}
-                      className="w-full text-center text-[clamp(2.4rem,11vw,4rem)] sm:text-6xl md:text-8xl lg:text-[6.5rem] font-bold font-display uppercase leading-[1.1] sm:leading-[1.0] lg:leading-[0.95] tracking-[0.01em] sm:tracking-[0.02em]"
+                      className="block w-full text-center text-[clamp(2.2rem,8.5vw,6.5rem)] font-bold font-display uppercase leading-[1.1] lg:leading-[0.95] tracking-[0.02em]"
                     >
-                      {/* Fixed 3-row layout — block + text-center for reliable centering of inline-block WaveChar spans */}
+                      {/* block + text-center: inline-block WaveChar spans center via CSS text-align inheritance */}
                       <span className="block w-full text-center">
                         {td.prefix && (
-                          <span className="block w-full text-center h-[1.1em] sm:h-[1.0em] lg:h-[0.95em] leading-[1.1] sm:leading-[1.0] lg:leading-[0.95]">
+                          <span className="block w-full text-center h-[1.1em] lg:h-[0.95em]">
                             {prefixElements}
                           </span>
                         )}
-                        <span className="block w-full text-center overflow-hidden h-[1.1em] sm:h-[1.0em] lg:h-[0.95em] leading-[1.1] sm:leading-[1.0] lg:leading-[0.95]">
+                        <span className="block w-full text-center overflow-hidden h-[1.1em] lg:h-[0.95em]">
                           <span
                             className="block w-full"
                             style={slotActive ? { animation: 'hero-slot 12s cubic-bezier(0.4, 0, 0.2, 1) infinite' } : undefined}
                           >
                             {/* First word: WaveChar animation on initial load */}
-                            <span className="block w-full text-center text-accent h-[1.1em] sm:h-[1.0em] lg:h-[0.95em] leading-[1.1] sm:leading-[1.0] lg:leading-[0.95]">
+                            <span className="block w-full text-center text-accent h-[1.1em] lg:h-[0.95em]">
                               {wordElements}
                             </span>
                             {/* Remaining words for slot rotation */}
                             {headline.rotatingWords!.slice(1).map((word, i) => (
                               <span
                                 key={i + 1}
-                                className="block w-full text-center text-accent h-[1.1em] sm:h-[1.0em] lg:h-[0.95em] leading-[1.1] sm:leading-[1.0] lg:leading-[0.95]"
+                                className="block w-full text-center text-accent h-[1.1em] lg:h-[0.95em]"
                               >
                                 {word}
                               </span>
                             ))}
                             {/* Repeat first word for seamless loop */}
-                            <span className="block w-full text-center text-accent h-[1.1em] sm:h-[1.0em] lg:h-[0.95em] leading-[1.1] sm:leading-[1.0] lg:leading-[0.95]">
+                            <span className="block w-full text-center text-accent h-[1.1em] lg:h-[0.95em]">
                               {headline.rotatingWords![0]}
                             </span>
                           </span>
                         </span>
                         {td.suffix && (
-                          <span className="block w-full text-center h-[1.1em] sm:h-[1.0em] lg:h-[0.95em] leading-[1.1] sm:leading-[1.0] lg:leading-[0.95]">
+                          <span className="block w-full text-center h-[1.1em] lg:h-[0.95em]">
                             {suffixElements}
                           </span>
                         )}
@@ -617,7 +617,7 @@ const Hero: React.FC<HeroProps> = ({
                   return (
                     <h1
                       key={td.lineIndex}
-                      className="w-full text-center text-[clamp(2.4rem,11vw,4rem)] sm:text-6xl md:text-8xl lg:text-[6.5rem] font-bold font-display uppercase leading-[1.1] sm:leading-[1.0] lg:leading-[0.95] tracking-[0.01em] sm:tracking-[0.02em]"
+                      className="block w-full text-center text-[clamp(2.2rem,8.5vw,6.5rem)] font-bold font-display uppercase leading-[1.1] lg:leading-[0.95] tracking-[0.02em]"
                     >
                       <span className="block w-full text-center">
                         {elements}
@@ -630,7 +630,7 @@ const Hero: React.FC<HeroProps> = ({
             
             {/* ═══ SUBTITLE — Per-word wave animation (Phase 2) ═══ */}
             <div className="max-w-2xl sm:max-w-3xl mx-auto">
-              <p className="text-[12px] sm:text-base md:text-lg lg:text-xl text-white/90 font-normal leading-snug sm:leading-relaxed" style={{ overflowWrap: 'break-word', wordBreak: 'normal' }}>
+              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white/80 font-normal leading-relaxed" style={{ overflowWrap: 'break-word', wordBreak: 'normal' }}>
                 {subtitle.split(' ').map((word, i, arr) => (
                   <SubtitleWaveWord
                     key={i}
@@ -652,7 +652,7 @@ const Hero: React.FC<HeroProps> = ({
                     animate={{ opacity: 1, filter: 'blur(0px)', scale: 1 }}
                     transition={{ duration: 0.55, delay: PILLS_START + (idx * 0.08), ease: [0.16, 1, 0.3, 1] }}
                     className={cn(
-                      "flex items-center justify-start gap-1.5 rounded-[1rem] sm:rounded-full border border-cyan/40 bg-cyan/5 px-3 py-2 sm:px-5 sm:py-2 text-[9px] sm:text-[11px] font-bold uppercase tracking-[0.05em] text-accent backdrop-blur-md md:border-accent/50 md:bg-accent/10 min-h-[44px] sm:min-h-0 text-left leading-[1.2]",
+                      "flex items-center justify-start gap-1.5 rounded-[1rem] sm:rounded-full border border-cyan/40 bg-cyan/5 px-3 py-2 sm:px-5 sm:py-2 text-[10px] sm:text-xs font-bold uppercase tracking-[0.08em] text-accent backdrop-blur-md md:border-accent/50 md:bg-accent/10 min-h-[44px] sm:min-h-0 text-left leading-[1.2]",
                       idx >= 2 && "col-span-1"
                     )}
                   >
