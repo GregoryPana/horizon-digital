@@ -473,7 +473,7 @@ export default function Pricing() {
             <motion.div
               initial={shouldReduceMotion ? undefined : { opacity: 0, y: 20, filter: 'blur(10px)' }}
               whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: 'blur(0px)' }}
-              viewport={{ once: true, amount: 0.1 }}
+              viewport={{ once: true, amount: 0, margin: "0px 0px 100px 0px" }}
               transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
               className="flex h-full flex-col rounded-3xl bg-[#111113] shadow-[0_4px_20px_rgba(0,0,0,0.45)] p-8 hover:shadow-[0_12px_48px_rgba(0,0,0,0.65),0_0_0_1px_rgba(94,209,222,0.07)] transition-all duration-300"
             >
@@ -515,7 +515,7 @@ export default function Pricing() {
             <motion.div
               initial={shouldReduceMotion ? undefined : { opacity: 0, y: 20, filter: 'blur(10px)' }}
               whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: 'blur(0px)' }}
-              viewport={{ once: true, amount: 0.1 }}
+              viewport={{ once: true, amount: 0, margin: "0px 0px 100px 0px" }}
               transition={{ duration: 0.8, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
               className="flex h-full flex-col rounded-3xl bg-[#131315] featured-pkg-pulse p-8 relative overflow-hidden pricing-card-featured-shine xl:-translate-y-4 z-20"
             >
@@ -561,7 +561,7 @@ export default function Pricing() {
             <motion.div
               initial={shouldReduceMotion ? undefined : { opacity: 0, y: 20, filter: 'blur(10px)' }}
               whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: 'blur(0px)' }}
-              viewport={{ once: true, amount: 0.1 }}
+              viewport={{ once: true, amount: 0, margin: "0px 0px 100px 0px" }}
               transition={{ duration: 0.8, delay: 0.34, ease: [0.16, 1, 0.3, 1] }}
               className="flex h-full flex-col rounded-3xl bg-[#111113] shadow-[0_4px_16px_rgba(0,0,0,0.3)] p-8 hover:shadow-[0_10px_32px_rgba(0,0,0,0.45),0_0_0_1px_rgba(94,209,222,0.05)] transition-all duration-300"
             >
