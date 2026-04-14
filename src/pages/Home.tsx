@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState, useRef } from "react";
+import React, { useMemo, useState, useRef } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, ArrowUpRight, Check, ChevronLeft, ChevronRight } from "lucide-react";
 import Seo from "../components/Seo";
@@ -19,6 +19,7 @@ import {
 } from "../data/site";
 
 import { TracingCard, InteractiveIcon } from '../components/ui/TracingCard';
+import { AnimatedIcon } from "../components/ui/AnimatedIcon";
 import { ContainerScroll, CardSticky } from "../components/ui/cards-stack";
 
 import Hero from "../components/ui/animated-shader-hero";
@@ -120,9 +121,6 @@ const marqueeItems = [
   "Zero enquiries to consistent bookings",
 ];
 
-import { TracingCard, InteractiveIcon } from '../components/ui/TracingCard';
-import { AnimatedIcon } from "../components/ui/AnimatedIcon";
-import { ContainerScroll, CardSticky } from "../components/ui/cards-stack";
 
 const problemCards: Array<{
   title: string;
