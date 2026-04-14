@@ -6,6 +6,7 @@ interface TracingCardProps extends HTMLMotionProps<"div"> {
   children: React.ReactNode;
   activeClassName?: string;
   borderRadius?: number;
+  active?: boolean;
 }
 
 /**
@@ -15,12 +16,14 @@ interface TracingCardProps extends HTMLMotionProps<"div"> {
  * Mobile: a clean tap (< 10px movement) toggles the trace and keeps it
  *         visible (locked) until tapped again. Swipe gestures are ignored
  *         so the carousel can scroll without accidentally triggering traces.
+ *         Wait, the user also wants it to play when directed by an 'active' prop.
  */
 export const TracingCard: React.FC<TracingCardProps> = ({
   children,
   className,
   activeClassName,
   borderRadius = 16,
+  active = false,
   ...props
 }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -47,7 +50,7 @@ export const TracingCard: React.FC<TracingCardProps> = ({
     return () => observer.disconnect();
   }, []);
 
-  const isActive = isHovered || isLocked;
+  const isActive = isHovered || isLocked || active;
 
   const w = dimensions.width;
   const h = dimensions.height;

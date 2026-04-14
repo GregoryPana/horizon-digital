@@ -120,7 +120,7 @@ const marqueeItems = [
   "Zero enquiries to consistent bookings",
 ];
 
-function AnimatedProblemIcon({ type }: { type: 'outdated' | 'found' | 'zero' | 'start' }) {
+function AnimatedProblemIcon({ type, active }: { type: 'outdated' | 'found' | 'zero' | 'start', active?: boolean }) {
   const [isMobile, setIsMobile] = useState(
     typeof window !== 'undefined' ? window.matchMedia("(max-width: 1023px)").matches : false
   );
@@ -140,7 +140,8 @@ function AnimatedProblemIcon({ type }: { type: 'outdated' | 'found' | 'zero' | '
     duration,
     delay,
     ease: "easeInOut" as const,
-    ...(isMobile ? { repeat: Infinity, repeatDelay: 3, repeatType: "loop" as const } : {})
+    // On mobile, if active, we don't necessarily need to repeat if we trigger it on navigation, 
+    // but the user might still like the gentle pulse. Let's make it play ONCE when active changes.
   });
 
   if (type === 'outdated') {
@@ -148,22 +149,30 @@ function AnimatedProblemIcon({ type }: { type: 'outdated' | 'found' | 'zero' | '
       <svg className="h-8 w-8 text-cyan transition-colors duration-300 group-hover:text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <motion.circle cx="12" cy="12" r="10" 
           initial={{ pathLength: 0, opacity: 0 }} 
-          whileInView={{ pathLength: 1, opacity: 1, transition: drawTransition(1) }} 
+          animate={active ? { pathLength: 1, opacity: 1 } : {}}
+          whileInView={!active ? { pathLength: 1, opacity: 1, transition: drawTransition(1) } : undefined} 
+          transition={active ? drawTransition(1) : undefined}
           whileHover={!isMobile ? { pathLength: [0, 1], opacity: [0, 1], transition: { duration: 1 } } : undefined}
         />
         <motion.path d="M16 16s-1.5-2-4-2-4 2-4 2" 
           initial={{ pathLength: 0, opacity: 0 }} 
-          whileInView={{ pathLength: 1, opacity: 1, transition: drawTransition(0.6, 0.5) }} 
+          animate={active ? { pathLength: 1, opacity: 1 } : {}}
+          whileInView={!active ? { pathLength: 1, opacity: 1, transition: drawTransition(0.6, 0.5) } : undefined} 
+          transition={active ? drawTransition(0.6, 0.5) : undefined}
           whileHover={!isMobile ? { pathLength: [0, 1], opacity: [0, 1], transition: { duration: 0.6, delay: 0.2 } } : undefined}
         />
         <motion.line x1="9" y1="9" x2="9.01" y2="9" 
           initial={{ opacity: 0, scale: 0 }} 
-          whileInView={{ opacity: 1, scale: 1, transition: drawTransition(0.3, 0.8) }} 
+          animate={active ? { opacity: 1, scale: 1 } : {}}
+          whileInView={!active ? { opacity: 1, scale: 1, transition: drawTransition(0.3, 0.8) } : undefined} 
+          transition={active ? drawTransition(0.3, 0.8) : undefined}
           whileHover={!isMobile ? { opacity: [0, 1], scale: [0, 1], transition: { duration: 0.3, delay: 0.4 } } : undefined}
         />
         <motion.line x1="15" y1="9" x2="15.01" y2="9" 
           initial={{ opacity: 0, scale: 0 }} 
-          whileInView={{ opacity: 1, scale: 1, transition: drawTransition(0.3, 0.9) }} 
+          animate={active ? { opacity: 1, scale: 1 } : {}}
+          whileInView={!active ? { opacity: 1, scale: 1, transition: drawTransition(0.3, 0.9) } : undefined} 
+          transition={active ? drawTransition(0.3, 0.9) : undefined}
           whileHover={!isMobile ? { opacity: [0, 1], scale: [0, 1], transition: { duration: 0.3, delay: 0.5 } } : undefined}
         />
       </svg>
@@ -175,22 +184,30 @@ function AnimatedProblemIcon({ type }: { type: 'outdated' | 'found' | 'zero' | '
       <svg className="h-8 w-8 text-cyan transition-colors duration-300 group-hover:text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <motion.circle cx="11" cy="11" r="8" 
           initial={{ pathLength: 0, opacity: 0 }} 
-          whileInView={{ pathLength: 1, opacity: 1, transition: drawTransition(0.8) }} 
+          animate={active ? { pathLength: 1, opacity: 1 } : {}}
+          whileInView={!active ? { pathLength: 1, opacity: 1, transition: drawTransition(0.8) } : undefined} 
+          transition={active ? drawTransition(0.8) : undefined}
           whileHover={!isMobile ? { pathLength: [0, 1], opacity: [0, 1], transition: { duration: 0.8 } } : undefined}
         />
         <motion.line x1="21" y1="21" x2="16.65" y2="16.65" 
           initial={{ pathLength: 0, opacity: 0 }} 
-          whileInView={{ pathLength: 1, opacity: 1, transition: drawTransition(0.4, 0.6) }} 
+          animate={active ? { pathLength: 1, opacity: 1 } : {}}
+          whileInView={!active ? { pathLength: 1, opacity: 1, transition: drawTransition(0.4, 0.6) } : undefined} 
+          transition={active ? drawTransition(0.4, 0.6) : undefined}
           whileHover={!isMobile ? { pathLength: [0, 1], opacity: [0, 1], transition: { duration: 0.4, delay: 0.4 } } : undefined}
         />
         <motion.path d="m13.5 8.5-5 5" 
           initial={{ pathLength: 0, opacity: 0 }} 
-          whileInView={{ pathLength: 1, opacity: 1, transition: drawTransition(0.4, 0.9) }} 
+          animate={active ? { pathLength: 1, opacity: 1 } : {}}
+          whileInView={!active ? { pathLength: 1, opacity: 1, transition: drawTransition(0.4, 0.9) } : undefined} 
+          transition={active ? drawTransition(0.4, 0.9) : undefined}
           whileHover={!isMobile ? { pathLength: [0, 1], opacity: [0, 1], transition: { duration: 0.4, delay: 0.6 } } : undefined}
         />
         <motion.path d="m8.5 8.5 5 5" 
           initial={{ pathLength: 0, opacity: 0 }} 
-          whileInView={{ pathLength: 1, opacity: 1, transition: drawTransition(0.4, 0.9) }} 
+          animate={active ? { pathLength: 1, opacity: 1 } : {}}
+          whileInView={!active ? { pathLength: 1, opacity: 1, transition: drawTransition(0.4, 0.9) } : undefined} 
+          transition={active ? drawTransition(0.4, 0.9) : undefined}
           whileHover={!isMobile ? { pathLength: [0, 1], opacity: [0, 1], transition: { duration: 0.4, delay: 0.6 } } : undefined}
         />
       </svg>
@@ -202,17 +219,23 @@ function AnimatedProblemIcon({ type }: { type: 'outdated' | 'found' | 'zero' | '
       <svg className="h-8 w-8 text-cyan transition-colors duration-300 group-hover:text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <motion.circle cx="12" cy="12" r="10"
           initial={{ pathLength: 0, opacity: 0 }}
-          whileInView={{ pathLength: 1, opacity: 1, transition: drawTransition(0.9) }}
+          animate={active ? { pathLength: 1, opacity: 1 } : {}}
+          whileInView={!active ? { pathLength: 1, opacity: 1, transition: drawTransition(0.9) } : undefined} 
+          transition={active ? drawTransition(0.9) : undefined}
           whileHover={!isMobile ? { pathLength: [0, 1], opacity: [0, 1], transition: { duration: 0.9 } } : undefined}
         />
         <motion.path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"
           initial={{ pathLength: 0, opacity: 0 }}
-          whileInView={{ pathLength: 1, opacity: 1, transition: drawTransition(0.7, 0.6) }}
+          animate={active ? { pathLength: 1, opacity: 1 } : {}}
+          whileInView={!active ? { pathLength: 1, opacity: 1, transition: drawTransition(0.7, 0.6) } : undefined} 
+          transition={active ? drawTransition(0.7, 0.6) : undefined}
           whileHover={!isMobile ? { pathLength: [0, 1], opacity: [0, 1], transition: { duration: 0.7, delay: 0.3 } } : undefined}
         />
         <motion.line x1="12" y1="17" x2="12.01" y2="17"
           initial={{ opacity: 0, scale: 0 }}
-          whileInView={{ opacity: 1, scale: 1, transition: drawTransition(0.3, 1.1) }}
+          animate={active ? { opacity: 1, scale: 1 } : {}}
+          whileInView={!active ? { opacity: 1, scale: 1, transition: drawTransition(0.3, 1.1) } : undefined} 
+          transition={active ? drawTransition(0.3, 1.1) : undefined}
           whileHover={!isMobile ? { opacity: [0, 1], scale: [0, 1], transition: { duration: 0.3, delay: 0.8 } } : undefined}
         />
       </svg>
@@ -223,43 +246,46 @@ function AnimatedProblemIcon({ type }: { type: 'outdated' | 'found' | 'zero' | '
     <svg className="h-8 w-8 text-cyan transition-colors duration-300 group-hover:text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <motion.path d="M22 12h-4l-3 9L9 3l-3 9H2"
         initial={{ pathLength: 0, opacity: 0 }}
-        whileInView={{ pathLength: 1, opacity: 1, transition: drawTransition(1.2) }}
+        animate={active ? { pathLength: 1, opacity: 1 } : {}}
+        whileInView={!active ? { pathLength: 1, opacity: 1, transition: drawTransition(1.2) } : undefined} 
+        transition={active ? drawTransition(1.2) : undefined}
         whileHover={!isMobile ? { pathLength: [0, 1], opacity: [0, 1], transition: { duration: 1.2 } } : undefined}
       />
     </svg>
   )
+}
 }
 
 const problemCards: Array<{
   title: string;
   body: string;
   color: string;
-  icon: React.ReactElement;
+  type: 'outdated' | 'found' | 'zero' | 'start';
   link?: { text: string; to: string };
 }> = [
   {
     title: "My website looks outdated",
     body: "I'm embarrassed to share it with customers. It doesn't reflect the quality of service we provide in person.",
     color: "cyan",
-    icon: <AnimatedProblemIcon type="outdated" />,
+    type: "outdated",
   },
   {
     title: "Customers cannot find me",
     body: "I tell people to Google us, but we don't show up. I don't know how to fix it and competitors get all the search traffic.",
     color: "cyan",
-    icon: <AnimatedProblemIcon type="found" />,
+    type: "found",
   },
   {
     title: "Zero enquiries",
     body: "The site is online but has never brought a new customer. It feels like an expense, not an asset.",
     color: "cyan",
-    icon: <AnimatedProblemIcon type="zero" />,
+    type: "zero",
   },
   {
     title: "I don't know where to begin",
     body: "I know I probably need a website, but every time I look into it I get more confused. I don't know what's involved, what it costs, or who to trust.",
     color: "cyan",
-    icon: <AnimatedProblemIcon type="start" />,
+    type: "start",
     link: { text: "Start here", to: "/what-you-need" },
   },
 ];
@@ -573,6 +599,7 @@ export default function Home() {
             {problemCards.map((card, idx) => (
               <TracingCard
                 key={card.title}
+                active={activeProblem === idx}
                 initial={shouldReduceMotion ? undefined : { opacity: 0, y: 28, filter: 'blur(10px)' }}
                 whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: 'blur(0px)' }}
                 viewport={{ once: true, amount: 0.2 }}
@@ -580,7 +607,7 @@ export default function Home() {
                 className="p-5 sm:p-6 min-w-[calc(100vw-40px)] w-[calc(100vw-40px)] max-w-[calc(100vw-40px)] snap-center snap-always shrink-0 md:w-auto md:max-w-none md:min-w-0 md:shrink self-stretch"
               >
                 <InteractiveIcon shouldReduceMotion={shouldReduceMotion || undefined}>
-                  {card.icon}
+                  <AnimatedProblemIcon type={card.type} active={activeProblem === idx} />
                 </InteractiveIcon>
 
                 <h3 className="font-display mb-2 text-lg semibold-underline text-white">{card.title}</h3>
