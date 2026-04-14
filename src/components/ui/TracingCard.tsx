@@ -7,6 +7,8 @@ interface TracingCardProps extends HTMLMotionProps<"div"> {
   activeClassName?: string;
   borderRadius?: number;
   active?: boolean;
+  /** If true, the tracing border fires with a short delay (desktop click). Default uses the long sequenced delay for mobile. */
+  clickActivated?: boolean;
 }
 
 /**

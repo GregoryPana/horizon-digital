@@ -280,6 +280,12 @@ export default function Home() {
 
   const problemScrollRef = useRef<HTMLDivElement>(null);
 
+  const handleProblemCardClick = (idx: number) => {
+    if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+      setActiveProblem(idx);
+    }
+  };
+
   const scrollCarouselTo = (ref: React.RefObject<HTMLDivElement>, targetIndex: number, totalSlides: number) => {
     if (!ref.current) return;
     const scrollContainer = ref.current;
@@ -466,11 +472,12 @@ export default function Home() {
               <TracingCard
                 key={card.title}
                 active={activeProblem === idx}
+                onClick={() => handleProblemCardClick(idx)}
                 initial={shouldReduceMotion ? undefined : { opacity: 0, y: 16, filter: 'blur(8px)' }}
                 whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: 'blur(0px)' }}
                 viewport={{ once: true, amount: 0.1 }}
                 transition={{ duration: 0.6, delay: 0.05 * idx, ease: [0.16, 1, 0.3, 1] }}
-                className="p-5 sm:p-6 min-w-[calc(100vw-40px)] w-[calc(100vw-40px)] max-w-[calc(100vw-40px)] snap-center snap-always shrink-0 md:w-auto md:max-w-none md:min-w-0 md:shrink self-stretch"
+                className="p-5 sm:p-6 min-w-[calc(100vw-40px)] w-[calc(100vw-40px)] max-w-[calc(100vw-40px)] snap-center snap-always shrink-0 md:w-auto md:max-w-none md:min-w-0 md:shrink self-stretch md:cursor-pointer"
               >
                 <InteractiveIcon shouldReduceMotion={shouldReduceMotion || undefined}>
                   <AnimatedIcon type={card.type} active={activeProblem === idx} />

@@ -32,6 +32,12 @@ export default function WhatYouNeed() {
     }
   };
 
+  const handleCardClick = (idx: number) => {
+    if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+      setActiveCarousel(idx);
+    }
+  };
+
   const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
     const scrollLeft = e.currentTarget.scrollLeft;
     const width = e.currentTarget.clientWidth;
@@ -95,8 +101,9 @@ export default function WhatYouNeed() {
             className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide md:grid md:grid-cols-3 gap-6 md:gap-8 -mx-5 px-5 md:mx-0 md:px-0 pb-8 md:pb-0 touch-pan-x"
           >
             <TracingCard 
-              className="flex-shrink-0 min-w-[calc(100vw-40px)] w-[calc(100vw-40px)] max-w-[calc(100vw-40px)] md:min-w-0 md:w-auto md:max-w-none snap-center p-8 group"
+              className="flex-shrink-0 min-w-[calc(100vw-40px)] w-[calc(100vw-40px)] max-w-[calc(100vw-40px)] md:min-w-0 md:w-auto md:max-w-none snap-center p-8 group md:cursor-pointer"
               active={activeCarousel === 0}
+              onClick={() => handleCardClick(0)}
               initial={shouldReduceMotion ? undefined : { opacity: 0, y: 16, filter: 'blur(8px)' }}
               whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: 'blur(0px)' }}
               viewport={{ once: true, amount: 0.1 }}
@@ -114,8 +121,9 @@ export default function WhatYouNeed() {
             </TracingCard>
 
             <TracingCard 
-              className="flex-shrink-0 min-w-[calc(100vw-40px)] w-[calc(100vw-40px)] max-w-[calc(100vw-40px)] md:min-w-0 md:w-auto md:max-w-none snap-center p-8 group"
+              className="flex-shrink-0 min-w-[calc(100vw-40px)] w-[calc(100vw-40px)] max-w-[calc(100vw-40px)] md:min-w-0 md:w-auto md:max-w-none snap-center p-8 group md:cursor-pointer"
               active={activeCarousel === 1}
+              onClick={() => handleCardClick(1)}
               initial={shouldReduceMotion ? undefined : { opacity: 0, y: 16, filter: 'blur(8px)' }}
               whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: 'blur(0px)' }}
               viewport={{ once: true, amount: 0.1 }}
@@ -133,8 +141,9 @@ export default function WhatYouNeed() {
             </TracingCard>
 
             <TracingCard 
-              className="flex-shrink-0 min-w-[calc(100vw-40px)] w-[calc(100vw-40px)] max-w-[calc(100vw-40px)] md:min-w-0 md:w-auto md:max-w-none snap-center p-8 group"
+              className="flex-shrink-0 min-w-[calc(100vw-40px)] w-[calc(100vw-40px)] max-w-[calc(100vw-40px)] md:min-w-0 md:w-auto md:max-w-none snap-center p-8 group md:cursor-pointer"
               active={activeCarousel === 2}
+              onClick={() => handleCardClick(2)}
               initial={shouldReduceMotion ? undefined : { opacity: 0, y: 16, filter: 'blur(8px)' }}
               whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: 'blur(0px)' }}
               viewport={{ once: true, amount: 0.1 }}
