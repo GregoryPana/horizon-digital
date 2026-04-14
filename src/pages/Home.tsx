@@ -138,10 +138,8 @@ function AnimatedProblemIcon({ type, active }: { type: 'outdated' | 'found' | 'z
   
   const drawTransition = (duration: number, delay: number = 0) => ({
     duration,
-    delay,
+    delay: (active ? 1.4 : 0) + delay,
     ease: "easeInOut" as const,
-    // On mobile, if active, we don't necessarily need to repeat if we trigger it on navigation, 
-    // but the user might still like the gentle pulse. Let's make it play ONCE when active changes.
   });
 
   if (type === 'outdated') {

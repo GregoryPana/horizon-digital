@@ -120,7 +120,7 @@ export const TracingCard: React.FC<TracingCardProps> = ({
             strokeLinecap="round"
             initial={{ pathLength: 0, opacity: 0 }}
             animate={isActive ? { pathLength: 1, opacity: 1 } : { pathLength: 0, opacity: 0 }}
-            transition={{ duration: 0.82, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.82, delay: active ? 1.2 : 0, ease: [0.16, 1, 0.3, 1] }}
           />
           <motion.path
             d={leftPath}
@@ -130,7 +130,7 @@ export const TracingCard: React.FC<TracingCardProps> = ({
             strokeLinecap="round"
             initial={{ pathLength: 0, opacity: 0 }}
             animate={isActive ? { pathLength: 1, opacity: 1 } : { pathLength: 0, opacity: 0 }}
-            transition={{ duration: 0.82, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.82, delay: active ? 1.2 : 0, ease: [0.16, 1, 0.3, 1] }}
           />
         </svg>
       )}
@@ -141,6 +141,7 @@ export const TracingCard: React.FC<TracingCardProps> = ({
           "absolute inset-0 pointer-events-none bg-gradient-to-b from-cyan/5 to-transparent transition-opacity duration-700 rounded-[inherit]",
           isActive ? "opacity-100" : "opacity-0"
         )}
+        style={{ transitionDelay: isActive ? '1400ms' : '0ms' }}
       />
 
       <div className="relative z-0 h-full w-full rounded-[inherit] overflow-hidden">
