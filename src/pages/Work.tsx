@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Seo from "../components/Seo";
 import { siteConfig } from "../data/site";
 import { trackEvent } from "../lib/analytics";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -105,6 +105,14 @@ const projects = [
 function LaptopMockupVisual({ 
   webpSrc, fallbackSrc, alt, isEager = false, videoSrc, altSrc, altWebpSrc, altText, index 
 }: any) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.playbackRate = 0.75;
+    }
+  }, [videoSrc]);
+
   return (
     <div className="w-full max-w-[340px] sm:max-w-[460px] lg:max-w-none mx-auto pb-2 lg:pb-16 pt-2 group relative pointer-events-auto">
       <div 
@@ -115,7 +123,15 @@ function LaptopMockupVisual({
            <div className="absolute top-1 lg:top-1.5 left-1/2 -translate-x-1/2 w-1 h-1 lg:w-2 lg:h-2 bg-black rounded-full z-20 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)]"></div>
            <div className="relative w-full overflow-hidden bg-zinc-900 rounded-sm lg:rounded-[0.5rem] translate-z-0" style={{aspectRatio: '16/10'}}>
              {videoSrc ? (
-               <video src={videoSrc} autoPlay loop muted playsInline className="w-full h-full object-cover object-top" />
+               <video 
+                 ref={videoRef}
+                 src={videoSrc} 
+                 autoPlay 
+                 loop 
+                 muted 
+                 playsInline 
+                 className="w-full h-full object-cover object-top" 
+               />
              ) : (
                <picture className="block w-full h-full">
                  <source srcSet={webpSrc} type="image/webp" />
