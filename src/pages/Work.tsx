@@ -31,7 +31,7 @@ import takamakaMainWebp from "../assets/work/takamaka-house/takamaka house.webp"
 import takamakaAltOne from "../assets/work/takamaka-house/takamaka house 2.png";
 import takamakaAltOneWebp from "../assets/work/takamaka-house/takamaka house 2.webp";
 import horizonVideo from "../assets/Horizon Mockup-1.mp4";
-import drakeVideo from "../assets/DRAKE SEASIDE DESKTOP.mp4";
+import drakeVideo from "../assets/DRAKE_SEASIDE_DESKTOP_OPTIMIZED.mp4";
 
 const projects = [
   {
