@@ -120,138 +120,9 @@ const marqueeItems = [
   "Zero enquiries to consistent bookings",
 ];
 
-function AnimatedProblemIcon({ type, active }: { type: 'outdated' | 'found' | 'zero' | 'start', active?: boolean }) {
-  const [isMobile, setIsMobile] = useState(
-    typeof window !== 'undefined' ? window.matchMedia("(max-width: 1023px)").matches : false
-  );
-
-  useEffect(() => {
-    const match = window.matchMedia("(max-width: 1023px)");
-    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
-    match.addEventListener("change", handler);
-    return () => match.removeEventListener("change", handler);
-  }, []);
-
-  // For mobile, repeat the animation continuously. For desktop, just run once on mount.
-  // The 'group-hover' interaction will be handled by CSS or by applying a key reset if we wanted to be fancy,
-  // but framer motion handles `whileHover` well if we define a specific 'hover' state.
-  
-  const drawTransition = (duration: number, delay: number = 0) => ({
-    duration,
-    delay: (active ? 1.4 : 0) + delay,
-    ease: "easeInOut" as const,
-  });
-
-  if (type === 'outdated') {
-    return (
-      <svg className="h-8 w-8 text-cyan transition-colors duration-300 group-hover:text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <motion.circle cx="12" cy="12" r="10" 
-          initial={{ pathLength: 0, opacity: 0 }} 
-          animate={active ? { pathLength: 1, opacity: 1 } : {}}
-          whileInView={!active ? { pathLength: 1, opacity: 1, transition: drawTransition(1) } : undefined} 
-          transition={active ? drawTransition(1) : undefined}
-          whileHover={!isMobile ? { pathLength: [0, 1], opacity: [0, 1], transition: { duration: 1 } } : undefined}
-        />
-        <motion.path d="M16 16s-1.5-2-4-2-4 2-4 2" 
-          initial={{ pathLength: 0, opacity: 0 }} 
-          animate={active ? { pathLength: 1, opacity: 1 } : {}}
-          whileInView={!active ? { pathLength: 1, opacity: 1, transition: drawTransition(0.6, 0.5) } : undefined} 
-          transition={active ? drawTransition(0.6, 0.5) : undefined}
-          whileHover={!isMobile ? { pathLength: [0, 1], opacity: [0, 1], transition: { duration: 0.6, delay: 0.2 } } : undefined}
-        />
-        <motion.line x1="9" y1="9" x2="9.01" y2="9" 
-          initial={{ opacity: 0, scale: 0 }} 
-          animate={active ? { opacity: 1, scale: 1 } : {}}
-          whileInView={!active ? { opacity: 1, scale: 1, transition: drawTransition(0.3, 0.8) } : undefined} 
-          transition={active ? drawTransition(0.3, 0.8) : undefined}
-          whileHover={!isMobile ? { opacity: [0, 1], scale: [0, 1], transition: { duration: 0.3, delay: 0.4 } } : undefined}
-        />
-        <motion.line x1="15" y1="9" x2="15.01" y2="9" 
-          initial={{ opacity: 0, scale: 0 }} 
-          animate={active ? { opacity: 1, scale: 1 } : {}}
-          whileInView={!active ? { opacity: 1, scale: 1, transition: drawTransition(0.3, 0.9) } : undefined} 
-          transition={active ? drawTransition(0.3, 0.9) : undefined}
-          whileHover={!isMobile ? { opacity: [0, 1], scale: [0, 1], transition: { duration: 0.3, delay: 0.5 } } : undefined}
-        />
-      </svg>
-    )
-  }
-
-  if (type === 'found') {
-    return (
-      <svg className="h-8 w-8 text-cyan transition-colors duration-300 group-hover:text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <motion.circle cx="11" cy="11" r="8" 
-          initial={{ pathLength: 0, opacity: 0 }} 
-          animate={active ? { pathLength: 1, opacity: 1 } : {}}
-          whileInView={!active ? { pathLength: 1, opacity: 1, transition: drawTransition(0.8) } : undefined} 
-          transition={active ? drawTransition(0.8) : undefined}
-          whileHover={!isMobile ? { pathLength: [0, 1], opacity: [0, 1], transition: { duration: 0.8 } } : undefined}
-        />
-        <motion.line x1="21" y1="21" x2="16.65" y2="16.65" 
-          initial={{ pathLength: 0, opacity: 0 }} 
-          animate={active ? { pathLength: 1, opacity: 1 } : {}}
-          whileInView={!active ? { pathLength: 1, opacity: 1, transition: drawTransition(0.4, 0.6) } : undefined} 
-          transition={active ? drawTransition(0.4, 0.6) : undefined}
-          whileHover={!isMobile ? { pathLength: [0, 1], opacity: [0, 1], transition: { duration: 0.4, delay: 0.4 } } : undefined}
-        />
-        <motion.path d="m13.5 8.5-5 5" 
-          initial={{ pathLength: 0, opacity: 0 }} 
-          animate={active ? { pathLength: 1, opacity: 1 } : {}}
-          whileInView={!active ? { pathLength: 1, opacity: 1, transition: drawTransition(0.4, 0.9) } : undefined} 
-          transition={active ? drawTransition(0.4, 0.9) : undefined}
-          whileHover={!isMobile ? { pathLength: [0, 1], opacity: [0, 1], transition: { duration: 0.4, delay: 0.6 } } : undefined}
-        />
-        <motion.path d="m8.5 8.5 5 5" 
-          initial={{ pathLength: 0, opacity: 0 }} 
-          animate={active ? { pathLength: 1, opacity: 1 } : {}}
-          whileInView={!active ? { pathLength: 1, opacity: 1, transition: drawTransition(0.4, 0.9) } : undefined} 
-          transition={active ? drawTransition(0.4, 0.9) : undefined}
-          whileHover={!isMobile ? { pathLength: [0, 1], opacity: [0, 1], transition: { duration: 0.4, delay: 0.6 } } : undefined}
-        />
-      </svg>
-    )
-  }
-
-  if (type === 'start') {
-    return (
-      <svg className="h-8 w-8 text-cyan transition-colors duration-300 group-hover:text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <motion.circle cx="12" cy="12" r="10"
-          initial={{ pathLength: 0, opacity: 0 }}
-          animate={active ? { pathLength: 1, opacity: 1 } : {}}
-          whileInView={!active ? { pathLength: 1, opacity: 1, transition: drawTransition(0.9) } : undefined} 
-          transition={active ? drawTransition(0.9) : undefined}
-          whileHover={!isMobile ? { pathLength: [0, 1], opacity: [0, 1], transition: { duration: 0.9 } } : undefined}
-        />
-        <motion.path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"
-          initial={{ pathLength: 0, opacity: 0 }}
-          animate={active ? { pathLength: 1, opacity: 1 } : {}}
-          whileInView={!active ? { pathLength: 1, opacity: 1, transition: drawTransition(0.7, 0.6) } : undefined} 
-          transition={active ? drawTransition(0.7, 0.6) : undefined}
-          whileHover={!isMobile ? { pathLength: [0, 1], opacity: [0, 1], transition: { duration: 0.7, delay: 0.3 } } : undefined}
-        />
-        <motion.line x1="12" y1="17" x2="12.01" y2="17"
-          initial={{ opacity: 0, scale: 0 }}
-          animate={active ? { opacity: 1, scale: 1 } : {}}
-          whileInView={!active ? { opacity: 1, scale: 1, transition: drawTransition(0.3, 1.1) } : undefined} 
-          transition={active ? drawTransition(0.3, 1.1) : undefined}
-          whileHover={!isMobile ? { opacity: [0, 1], scale: [0, 1], transition: { duration: 0.3, delay: 0.8 } } : undefined}
-        />
-      </svg>
-    )
-  }
-
-  return (
-    <svg className="h-8 w-8 text-cyan transition-colors duration-300 group-hover:text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <motion.path d="M22 12h-4l-3 9L9 3l-3 9H2"
-        initial={{ pathLength: 0, opacity: 0 }}
-        animate={active ? { pathLength: 1, opacity: 1 } : {}}
-        whileInView={!active ? { pathLength: 1, opacity: 1, transition: drawTransition(1.2) } : undefined} 
-        transition={active ? drawTransition(1.2) : undefined}
-        whileHover={!isMobile ? { pathLength: [0, 1], opacity: [0, 1], transition: { duration: 1.2 } } : undefined}
-      />
-    </svg>
-  )
-}
+import { TracingCard, InteractiveIcon } from '../components/ui/TracingCard';
+import { AnimatedIcon } from "../components/ui/AnimatedIcon";
+import { ContainerScroll, CardSticky } from "../components/ui/cards-stack";
 
 const problemCards: Array<{
   title: string;
@@ -604,7 +475,7 @@ export default function Home() {
                 className="p-5 sm:p-6 min-w-[calc(100vw-40px)] w-[calc(100vw-40px)] max-w-[calc(100vw-40px)] snap-center snap-always shrink-0 md:w-auto md:max-w-none md:min-w-0 md:shrink self-stretch"
               >
                 <InteractiveIcon shouldReduceMotion={shouldReduceMotion || undefined}>
-                  <AnimatedProblemIcon type={card.type} active={activeProblem === idx} />
+                  <AnimatedIcon type={card.type} active={activeProblem === idx} />
                 </InteractiveIcon>
 
                 <h3 className="font-display mb-2 text-lg semibold-underline text-white">{card.title}</h3>

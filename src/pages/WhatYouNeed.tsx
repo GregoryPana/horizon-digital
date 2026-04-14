@@ -1,12 +1,13 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useState, useRef } from "react";
-import { MessageSquare, Navigation, Layout, MessageCircle, Briefcase, ShoppingBag, Bed } from "lucide-react";
+import { MessageSquare, Navigation, Layout, MessageCircle } from "lucide-react";
 import Seo from "../components/Seo";
 import { ScenarioIcon } from "../components/ui/symbol-icons";
 import { siteConfig } from "../data/site";
 import { trackEvent } from "../lib/analytics";
 import { TracingCard, InteractiveIcon } from "../components/ui/TracingCard";
+import { AnimatedIcon } from "../components/ui/AnimatedIcon";
 
 
 export default function WhatYouNeed() {
@@ -22,9 +23,6 @@ export default function WhatYouNeed() {
     if (index >= totalSlides) index = 0;
     if (index < 0) index = totalSlides - 1;
     
-    // Calculate the left position to center the item
-    // On mobile, the item is calc(100vw - 40px), container padding is 20px (px-5)
-    // So centering the item means its left edge should be at 20px from container start
     const child = scrollContainer.children[index] as HTMLElement;
     if (child) {
       scrollContainer.scrollTo({
@@ -94,18 +92,19 @@ export default function WhatYouNeed() {
           <div 
             ref={carouselScrollRef}
             onScroll={handleScroll}
-            className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide md:grid md:grid-cols-3 gap-6 md:gap-8 -mx-5 px-5 md:mx-0 md:px-0 pb-8 md:pb-0"
+            className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide md:grid md:grid-cols-3 gap-6 md:gap-8 -mx-5 px-5 md:mx-0 md:px-0 pb-8 md:pb-0 touch-pan-x"
           >
             <TracingCard 
               className="flex-shrink-0 min-w-[calc(100vw-40px)] w-[calc(100vw-40px)] max-w-[calc(100vw-40px)] md:min-w-0 md:w-auto md:max-w-none snap-center p-8 group"
-              initial={shouldReduceMotion ? undefined : { opacity: 0, y: 28 }}
-              whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.15 }}
-              transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              active={activeCarousel === 0}
+              initial={shouldReduceMotion ? undefined : { opacity: 0, y: 16, filter: 'blur(8px)' }}
+              whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: 'blur(0px)' }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.6, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
             >
               <div className="flex flex-col h-full w-full text-left">
                 <InteractiveIcon shouldReduceMotion={shouldReduceMotion || undefined}>
-                  <Briefcase className="h-full w-full text-white" />
+                  <AnimatedIcon type="briefcase" active={activeCarousel === 0} />
                 </InteractiveIcon>
                 <h3 className="font-display mb-3 text-xl semibold-underline text-white mt-2">Service Business</h3>
                 <p className="mt-3 text-sm text-white/80 leading-relaxed flex-1">
@@ -116,14 +115,15 @@ export default function WhatYouNeed() {
 
             <TracingCard 
               className="flex-shrink-0 min-w-[calc(100vw-40px)] w-[calc(100vw-40px)] max-w-[calc(100vw-40px)] md:min-w-0 md:w-auto md:max-w-none snap-center p-8 group"
-              initial={shouldReduceMotion ? undefined : { opacity: 0, y: 28 }}
-              whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.15 }}
-              transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              active={activeCarousel === 1}
+              initial={shouldReduceMotion ? undefined : { opacity: 0, y: 16, filter: 'blur(8px)' }}
+              whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: 'blur(0px)' }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             >
               <div className="flex flex-col h-full w-full text-left">
                 <InteractiveIcon shouldReduceMotion={shouldReduceMotion || undefined}>
-                  <ShoppingBag className="h-full w-full text-white" />
+                  <AnimatedIcon type="shopping" active={activeCarousel === 1} />
                 </InteractiveIcon>
                 <h3 className="font-display mb-3 text-xl semibold-underline text-white mt-2">Retail Showcase</h3>
                 <p className="mt-3 text-sm text-white/80 leading-relaxed flex-1">
@@ -134,14 +134,15 @@ export default function WhatYouNeed() {
 
             <TracingCard 
               className="flex-shrink-0 min-w-[calc(100vw-40px)] w-[calc(100vw-40px)] max-w-[calc(100vw-40px)] md:min-w-0 md:w-auto md:max-w-none snap-center p-8 group"
-              initial={shouldReduceMotion ? undefined : { opacity: 0, y: 28 }}
-              whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.15 }}
-              transition={{ duration: 0.7, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              active={activeCarousel === 2}
+              initial={shouldReduceMotion ? undefined : { opacity: 0, y: 16, filter: 'blur(8px)' }}
+              whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: 'blur(0px)' }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
             >
               <div className="flex flex-col h-full w-full text-left">
                 <InteractiveIcon shouldReduceMotion={shouldReduceMotion || undefined}>
-                  <Bed className="h-full w-full text-white" />
+                  <AnimatedIcon type="bed" active={activeCarousel === 2} />
                 </InteractiveIcon>
                 <h3 className="font-display mb-3 text-xl semibold-underline text-white mt-2">Hospitality</h3>
                 <p className="mt-3 text-sm text-white/80 leading-relaxed flex-1">
