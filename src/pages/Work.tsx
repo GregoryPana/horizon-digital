@@ -191,23 +191,26 @@ export default function Work() {
     });
 
     projects.forEach((proj, i) => {
+      // Set initial pointer-events and z-index for all
+      gsap.set([`.project-text-${i}`, `.project-visual-${i}`], { pointerEvents: 'none', zIndex: 1 });
+
       // 1. Text is already at opacity 0 via class, so we fade it in FIRST (except item 0 which starts visible)
       if (i > 0) {
         tl.fromTo(`.project-text-${i}`,
           { y: 30, opacity: 0 },
-          { y: 0, opacity: 1, duration: 2.2, ease: 'expo.out' },
+          { y: 0, opacity: 1, duration: 2.2, ease: 'expo.out', onStart: () => gsap.set(`.project-text-${i}`, { pointerEvents: 'auto', zIndex: 10 }) },
           `reveal-${i}`
         );
       } else {
-        // Ensure first item text is fully visible immediately
-        gsap.set(`.project-text-0`, { opacity: 1, y: 0 });
+        // Ensure first item text is fully visible and interactive immediately
+        gsap.set(`.project-text-0`, { opacity: 1, y: 0, pointerEvents: 'auto', zIndex: 10 });
       }
 
       // 2. ONLY THEN, device flows up from bottom with cinematic scale
       tl.fromTo(`.project-visual-${i}`,
         { y: '60vh', scale: 0.85, opacity: 0 },
-        { y: '0vh', scale: 1, opacity: 1, duration: 3.2, ease: 'expo.out' },
-        `reveal-${i}+=0.5` // tighter connection to text reveal
+        { y: '0vh', scale: 1, opacity: 1, duration: 3.2, ease: 'expo.out', onStart: () => gsap.set(`.project-visual-${i}`, { pointerEvents: 'auto', zIndex: 10 }) },
+        `reveal-${i}+=0.5` 
       );
       
       // Inside visual, tilt the laptop dynamically adding cinematic isometric flair
@@ -231,12 +234,26 @@ export default function Work() {
       if (i < projects.length - 1) {
         // Visual flows out to the TOP with steady linear-like speed
         tl.to(`.project-visual-${i}`, 
-          { y: '-60vh', scale: 0.92, opacity: 0, duration: 3.5, ease: 'power1.inOut' }, 
+          { 
+            y: '-60vh', 
+            scale: 0.92, 
+            opacity: 0, 
+            duration: 3.5, 
+            ease: 'power1.inOut',
+            onComplete: () => gsap.set(`.project-visual-${i}`, { pointerEvents: 'none', zIndex: 1 })
+          }, 
           `exit-${i}`
         );
         // Text fades out gently in place with steady lift
         tl.to(`.project-text-${i}`, 
-          { y: -20, opacity: 0, scale: 0.95, duration: 3.0, ease: 'power1.inOut' }, 
+          { 
+            y: -20, 
+            opacity: 0, 
+            scale: 0.95, 
+            duration: 3.0, 
+            ease: 'power1.inOut',
+            onComplete: () => gsap.set(`.project-text-${i}`, { pointerEvents: 'none', zIndex: 1 })
+          }, 
           `exit-${i}+=0.1`
         );
       }
@@ -282,7 +299,7 @@ export default function Work() {
             {projects.map((proj, i) => (
               <div key={proj.id} className="absolute inset-0 w-full h-full px-5 sm:px-8 flex flex-col lg:grid lg:grid-cols-12 gap-4 sm:gap-8 lg:gap-20 items-center justify-start lg:justify-center pointer-events-none pt-0 sm:pt-12 lg:pt-0">
                 
-                <div className={`project-text-${i} lg:col-span-12 xl:col-span-5 flex flex-col justify-start lg:justify-center text-left pointer-events-auto ${proj.align === 'right' ? 'xl:order-2' : 'xl:order-1'} ${i === 0 ? 'opacity-100' : 'opacity-0'}`}>
+                <div className={`project-text-${i} lg:col-span-12 xl:col-span-5 flex flex-col justify-start lg:justify-center text-left pointer-events-none ${proj.align === 'right' ? 'xl:order-2' : 'xl:order-1'} ${i === 0 ? 'opacity-100' : 'opacity-0'}`}>
                   <p className="text-[11px] md:text-xs font-medium uppercase tracking-[0.2em] text-cyan mb-3 md:mb-5 bg-cyan/10 inline-block px-3 py-1.5 rounded-full border border-cyan/20 self-start">
                     {proj.tier}
                   </p>
@@ -307,7 +324,7 @@ export default function Work() {
                   </div>
                 </div>
                 
-                <div className={`project-visual-${i} lg:col-span-12 xl:col-span-7 flex flex-col justify-center pointer-events-auto opacity-0 ${proj.align === 'right' ? 'xl:order-1' : 'xl:order-2'} w-full mt-4 lg:mt-0`}>
+                <div className={`project-visual-${i} lg:col-span-12 xl:col-span-7 flex flex-col justify-center pointer-events-none opacity-0 ${proj.align === 'right' ? 'xl:order-1' : 'xl:order-2'} w-full mt-4 lg:mt-0`}>
                   <LaptopMockupVisual {...proj} index={i} />
                 </div>
                 
