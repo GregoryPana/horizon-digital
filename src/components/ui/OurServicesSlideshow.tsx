@@ -473,7 +473,7 @@ export function OurServicesSlideshow() {
       <div className="flex flex-col md:flex-row items-start justify-between gap-10 md:gap-x-16">
 
         {/* Left Column: Interactive Titles */}
-        <div className="flex flex-col space-y-4 md:space-y-6 w-full md:w-1/2 z-20 md:pt-2">
+        <div className="flex flex-col space-y-3 md:space-y-6 w-full md:w-1/2 z-20 md:pt-2">
           {SLIDES.map((slide, index) => (
             <div key={slide.title} className="flex flex-col">
               <TextStaggerHover
