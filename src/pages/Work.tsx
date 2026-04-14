@@ -7,6 +7,7 @@ import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { ArrowUpRight } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -296,10 +297,12 @@ export default function Work() {
                       href={proj.link}
                       target="_blank" 
                       rel="noreferrer" 
-                      className="text-xs md:text-sm font-medium uppercase tracking-widest text-white hover:text-cyan transition-colors underline decoration-cyan/40 hover:decoration-cyan underline-offset-[10px]"
+                      className="group relative flex items-center gap-2 px-6 py-3 rounded-full border border-white/10 bg-white/5 text-xs md:text-sm font-medium uppercase tracking-[0.2em] text-white transition-all duration-300 hover:border-cyan/50 hover:bg-cyan/10 hover:shadow-[0_0_20px_rgba(34,211,238,0.15)] overflow-hidden pointer-events-auto"
                       onClick={() => trackEvent("cta_click", { cta_name: `work_view_live_${proj.id}`, page_path: window.location.pathname })}
                     >
-                      {proj.cta}
+                      <span className="relative z-10">{proj.cta.replace(' →', '')}</span>
+                      <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-cyan" />
+                      <div className="absolute inset-0 bg-gradient-to-r from-cyan/0 via-cyan/5 to-cyan/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
                     </a>
                   </div>
                 </div>
