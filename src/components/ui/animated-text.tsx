@@ -88,7 +88,7 @@ export const AccentLine = ({
       ref={ref}
       initial={{ scaleX: 0, opacity: 0 }}
       animate={isInView ? { scaleX: 1, opacity: 1 } : { scaleX: 0, opacity: 0 }}
-      transition={{ duration: 0.8, ease: "easeInOut", delay: 0.2 }}
+      transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
       style={{ transformOrigin: getOrigin() }}
       className={`h-[2px] w-full bg-accent ${className}`}
     />

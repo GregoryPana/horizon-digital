@@ -20,6 +20,9 @@ import { ShimmerButton } from "../components/ui/shimmer-button";
 import { Link, useLocation } from "react-router-dom";
 import MenuVertical from "../components/ui/menu-vertical";
 import { trackEvent } from "../lib/analytics";
+import { TracingCard, InteractiveIcon } from "../components/ui/TracingCard";
+import { ContainerScroll, CardSticky } from "../components/ui/cards-stack";
+import { Layout, Briefcase, SearchCheck, Smartphone, MessageSquare } from "lucide-react";
 
 
 const pricingSectionLinks = [
@@ -172,7 +175,14 @@ export default function Pricing() {
         description="Clear website packages for Seychelles businesses — Foundation, Starter, and Growth. Honest SCR pricing, custom design, and everything your business needs to get found online."
         path="/services-pricing"
         keywords="custom website packages Seychelles, custom web design pricing Seychelles, bespoke website development Seychelles, tailored web solutions Seychelles"
-        structuredData={[serviceSchema, faqSchema]}
+        structuredData={[serviceSchema, faqSchema, {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Home", item: `${siteConfig.url}/` },
+            { "@type": "ListItem", position: 2, name: "Services & Pricing", item: `${siteConfig.url}/services-pricing` },
+          ],
+        }]}
       />
       {passedSectionIds.length > 0 && (
         <div className="fixed left-0 top-[64%] z-40 -translate-y-1/2 md:hidden">
@@ -243,15 +253,28 @@ export default function Pricing() {
         title="Websites that work for your business"
         description="Every project is built around your goals — not a template. Here's what that looks like."
       >
-        <div id="panel-overview" className="bg-[#121214]/20 p-8 rounded-2xl border border-border">
-          <p className="text-sm md:text-base text-text-muted max-w-4xl text-center mx-auto">
+        <div id="panel-overview" className="bg-[#121214]/20 p-4 md:p-8 rounded-2xl border border-border">
+          <p className="text-sm md:text-base text-text-muted max-w-4xl text-center mx-auto mb-10">
             Every website we build is planned around your services, your customers, and your goals. The result is a site people can <span className="text-cyan font-semibold">find easily</span>, feel good about, and actually use to reach you.
           </p>
-          <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {services.slice(0, 5).map((service) => (
-              <div key={service.title} className="p-6 rounded-2xl border border-border bg-[#121214] hover:!border-[#00E5FF] hover:shadow-[0_0_12px_rgba(0,229,255,0.3)] transition-colors">
-                <h3 className="text-base font-semibold text-accent-2">{service.title}</h3>
-                <p className="mt-3 text-sm text-text-muted leading-relaxed">
+          <div className="flex gap-5 overflow-x-auto snap-x snap-mandatory pb-4 -mx-5 px-5 md:mx-0 md:px-0 md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 md:overflow-visible md:snap-none md:pb-0 scrollbar-hide">
+            {services.slice(0, 5).map((service, idx) => {
+              const Icon = service.title === "Website build" ? Layout : service.title === "Design refresh" ? Briefcase : service.title === "SEO & Performance" ? SearchCheck : service.title === "Mobile-friendly layout" ? Smartphone : MessageSquare;
+              return (
+              <TracingCard
+                key={service.title}
+                initial={shouldReduceMotion ? undefined : { opacity: 0, y: 28 }}
+                whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.7, delay: idx * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                whileHover={shouldReduceMotion ? undefined : { y: -4 }}
+                className="p-8 min-w-[calc(100vw-40px)] w-[calc(100vw-40px)] max-w-[calc(100vw-40px)] snap-center snap-always shrink-0 md:w-auto md:max-w-none md:min-w-0 md:shrink"
+              >
+                <InteractiveIcon shouldReduceMotion={shouldReduceMotion || undefined}>
+                  <Icon className="h-full w-full text-white" />
+                </InteractiveIcon>
+                <h3 className="font-display mb-3 text-xl semibold-underline text-white">{service.title}</h3>
+                <p className="mt-3 text-sm text-white/80 leading-relaxed flex-1">
                   {service.title === "Website build" ? (
                     <>We plan, design, and build your site <span className="text-cyan font-semibold">from scratch</span> — structured around your business from day one.</>
                   ) : service.title === "Design refresh" ? (
@@ -264,38 +287,79 @@ export default function Pricing() {
                     service.description
                   )}
                 </p>
-              </div>
-            ))}
+              </TracingCard>
+              );
+            })}
           </div>
         </div>
       </Section>
 
-      <Section
-        id="process"
-        eyebrow="How we get there"
-        title="What happens from start to launch"
-        description="A clear sequence. No guesswork. You know exactly what's happening at every step."
-        className={compactDesktopSection}
-      >
-        <div className="relative left-1/2 right-1/2 -mx-[50vw] my-8 w-screen py-16 md:my-10 md:py-20 bg-gradient-to-r from-bg-panel/10 via-accent/5 to-bg-panel/10 border-y border-border">
-          <div className="mx-auto grid w-full max-w-7xl gap-8 px-5 sm:px-8 md:grid-cols-2 lg:grid-cols-5">
-            {projectSteps.map((step, index) => (
-              <motion.div
-                key={step.title}
-                initial={{ opacity: shouldReduceMotion ? 1 : 0, x: shouldReduceMotion ? 0 : 42 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: shouldReduceMotion ? 0 : 0.42, delay: index * 0.06, ease: "easeOut" }}
-                className="min-w-0"
-              >
-                <p className="text-[9px] uppercase tracking-[0.2em] font-black text-white bg-deep-teal inline-flex items-center justify-center px-3 py-1 rounded-full shadow-[0_0_12px_rgba(13,148,136,0.4)] whitespace-nowrap">Step {index + 1}</p>
-                <h3 className="mt-4 text-lg semibold-underline text-white">{step.title}</h3>
-                <p className="mt-3 text-sm text-gray-300 leading-relaxed">{step.description}</p>
-              </motion.div>
-            ))}
+      <section id="process" className="py-20 px-6 xl:px-12 relative z-10 border-y border-white/5 bg-[#0A0A0C]">
+        <div className="mx-auto max-w-[92rem] min-h-svh place-content-center text-white">
+          <div className="grid md:grid-cols-2 md:gap-8 xl:gap-24">
+            
+            {/* Left side text sticky wrapper */}
+            <div className="h-full w-full">
+              <div className="md:sticky md:top-32 w-full max-w-xl left-0 md:py-12 z-10">
+                <motion.div
+                  initial={shouldReduceMotion ? undefined : { opacity: 0, y: 24, filter: 'blur(10px)' }}
+                  whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: 'blur(0px)' }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  <span className="mb-6 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">How we get there</span>
+                  <h2 className="font-display mb-8 max-w-3xl text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-semibold leading-[1.1] tracking-tight">
+                    What happens from <span className="text-cyan">start to launch.</span>
+                  </h2>
+                  <p className="max-w-prose text-base md:text-xl leading-relaxed text-text-muted font-normal">
+                    A clear sequence. No guesswork. You know exactly what's happening at every step of your project.
+                  </p>
+                </motion.div>
+              </div>
+            </div>
+
+            {/* Right side ContainerScroll area */}
+            <ContainerScroll
+              className="space-y-[55vh] md:space-y-[70vh] pb-[50vh] md:pb-[60vh] pt-6 md:pt-32 z-20"
+              style={{
+                '--sticky-increment': '32px',
+                '--sticky-top': '15vh'
+              } as React.CSSProperties}
+            >
+              {projectSteps.slice(0, 5).map((step, idx) => (
+                <CardSticky
+                  key={step.title}
+                  index={idx}
+                  incrementY={32}
+                  style={{ '--sticky-increment': '32px', '--sticky-top': '15vh' } as React.CSSProperties}
+                  className="group hd-card rounded-[2rem] shadow-[0_-8px_24px_rgba(0,0,0,0.35)] w-full"
+                >
+                  <div className="relative overflow-hidden rounded-[2rem] bg-[#111113] border border-white/10 p-8 sm:p-12 h-full w-full">
+                    <div className={`absolute right-0 top-0 h-40 w-40 sm:h-64 sm:w-64 rounded-bl-full ${idx % 2 === 0 ? "bg-cyan/5" : "bg-teal/5"} pointer-events-none transition-transform duration-1000 group-hover:scale-110`} />
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/[0.01] to-transparent pointer-events-none" />
+
+                    <div className="relative z-10 flex flex-col h-full gap-6">
+                      <div className="flex items-start justify-between gap-4">
+                        <h2 className="font-display text-2xl sm:text-4xl font-bold tracking-tight text-white mb-2 max-w-[80%]">
+                          {step.title}
+                        </h2>
+                        <h3 className="font-display text-4xl sm:text-6xl font-black text-cyan drop-shadow-[0_2px_10px_rgba(94,209,222,0.2)]">
+                          {String(idx + 1).padStart(2, "0")}
+                        </h3>
+                      </div>
+
+                      <p className="text-base sm:text-xl text-text-muted font-normal leading-relaxed">
+                        {step.description}
+                      </p>
+                    </div>
+                  </div>
+                </CardSticky>
+              ))}
+            </ContainerScroll>
+
           </div>
         </div>
-      </Section>
+      </section>
 
       <Section
         id="packages"
@@ -307,11 +371,12 @@ export default function Pricing() {
         <div id="panel-packages" className="max-w-[88rem] mx-auto">
           <div className="grid items-stretch gap-6 xl:gap-8 md:grid-cols-2 lg:grid-cols-3 pt-0 pb-8">
             {/* Foundation */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, amount: 0.3 }}
-              className="flex h-full flex-col rounded-3xl border border-cyan/40 bg-bg-elev p-8 hover:!border-[#00E5FF] hover:shadow-[0_0_12px_rgba(0,229,255,0.3)] transition-all"
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.6, delay: 0, ease: [0.16, 1, 0.3, 1] }}
+              className="flex h-full flex-col rounded-3xl bg-[#111113] shadow-[0_4px_20px_rgba(0,0,0,0.45)] p-8 hover:shadow-[0_12px_48px_rgba(0,0,0,0.65),0_0_0_1px_rgba(94,209,222,0.07)] transition-all duration-300"
             >
               <h3 className="text-2xl font-bold text-white">{foundationPackage.title}</h3>
               <p className="mt-3 text-xl font-extrabold text-cyan whitespace-nowrap">{foundationPackage.price}</p>
@@ -348,14 +413,14 @@ export default function Pricing() {
             </motion.div>
 
             {/* Starter (Featured) */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ delay: 0.1 }}
-              className="flex h-full flex-col rounded-3xl border border-cyan shadow-[0_0_30px_rgba(0,229,255,0.15)] bg-[#121214] p-8 relative overflow-hidden pricing-card-featured-shine xl:-translate-y-4 z-20"
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.6, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
+              className="flex h-full flex-col rounded-3xl bg-[#131315] featured-pkg-pulse p-8 relative overflow-hidden pricing-card-featured-shine xl:-translate-y-4 z-20"
             >
-              <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-deep-teal px-6 py-[6px] rounded-full text-[10px] font-black uppercase tracking-[0.2em] text-white whitespace-nowrap shadow-[0_0_20px_rgba(13,148,136,0.5)]">Most Popular</div>
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-deep-teal px-6 py-[6px] rounded-full text-[10px] font-black uppercase tracking-[0.2em] text-white whitespace-nowrap ">Most Popular</div>
               <h3 className="text-2xl font-bold text-white">{starterPackage.title}</h3>
               <p className="mt-3 text-xl font-extrabold text-cyan whitespace-nowrap">{starterPackage.price}</p>
               <div className="mt-4 text-sm text-text-muted mb-8">
@@ -383,8 +448,8 @@ export default function Pricing() {
                   }
                 >
                   <button 
-                    className="w-full px-8 py-4 text-black rounded-full font-black uppercase tracking-[0.2em] text-xs transition-all duration-300 hover:scale-[1.02] hover:brightness-110 active:scale-95 shadow-[0_0_40px_rgba(0,229,255,0.5)] text-center flex items-center justify-center cta-gradient-anim"
-                    style={{ backgroundImage: 'linear-gradient(90deg, #00E5FF, #38B2F5, #0C7CC4, #00E5FF)', backgroundSize: '300% 100%' }}
+                    className="w-full px-8 py-4 text-black rounded-full font-black uppercase tracking-[0.2em] text-xs transition-all duration-300 hover:scale-[1.02] hover:brightness-110 active:scale-95 text-center flex items-center justify-center cta-gradient-anim"
+                    style={{ backgroundImage: 'linear-gradient(90deg, var(--accent), var(--accent-2), #0C7CC4, var(--accent))', backgroundSize: '300% 100%' }}
                   >
                     Get Started →
                   </button>
@@ -394,12 +459,12 @@ export default function Pricing() {
             </motion.div>
 
             {/* Growth */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ delay: 0.2 }}
-              className="flex h-full flex-col rounded-3xl border border-cyan/40 bg-bg-elev p-8 hover:!border-[#00E5FF] hover:shadow-[0_0_12px_rgba(0,229,255,0.3)] transition-all"
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.6, delay: 0.24, ease: [0.16, 1, 0.3, 1] }}
+              className="flex h-full flex-col rounded-3xl bg-[#111113] shadow-[0_4px_16px_rgba(0,0,0,0.3)] p-8 hover:shadow-[0_10px_32px_rgba(0,0,0,0.45),0_0_0_1px_rgba(94,209,222,0.05)] transition-all duration-300"
             >
               <h3 className="text-2xl font-bold text-white">{growthPackage.title}</h3>
               <p className="mt-3 text-xl font-extrabold text-cyan whitespace-nowrap">{growthPackage.price}</p>
@@ -436,8 +501,22 @@ export default function Pricing() {
             </motion.div>
           </div>
 
+          {/* Payment terms */}
+          <div className="mt-10 flex flex-col sm:flex-row items-stretch sm:items-center gap-0 rounded-2xl bg-[#131315] shadow-[0_4px_12px_rgba(0,0,0,0.3)] overflow-hidden text-sm text-text-muted">
+            <div className="flex items-center gap-3 px-6 py-4 flex-1">
+              <span className="h-2 w-2 rounded-full bg-deep-teal/70 shrink-0" />
+              <span><span className="text-text font-medium">Foundation &amp; Starter:</span> 50% deposit to start · 50% before launch</span>
+            </div>
+            <div className="hidden sm:block h-auto w-px bg-border/60 self-stretch" />
+            <div className="sm:hidden h-px w-full bg-border/60" />
+            <div className="flex items-center gap-3 px-6 py-4 flex-1">
+              <span className="h-2 w-2 rounded-full bg-deep-teal/70 shrink-0" />
+              <span><span className="text-text font-medium">Growth:</span> 40% deposit · 40% at design approval · 20% on launch</span>
+            </div>
+          </div>
+
           {/* Custom Banner */}
-          <div className="mt-16 text-center max-w-2xl mx-auto p-10 rounded-3xl bg-bg-panel/30 border border-border backdrop-blur-sm relative overflow-hidden">
+          <div className="mt-10 text-center max-w-2xl mx-auto p-10 rounded-3xl bg-bg-panel/30 border border-border backdrop-blur-sm relative overflow-hidden">
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-accent/5 blur-[50px] z-0 pointer-events-none"/>
             <div className="relative z-10">
               <h3 className="text-xl font-semibold text-text">{customPackage.title}</h3>
@@ -455,7 +534,7 @@ export default function Pricing() {
                   <ShimmerButton
                     shimmerColor="#0A0A0C"
                     shimmerDuration="4.2s"
-                    background="#00E5FF"
+                    background="var(--accent)"
                     className="px-6 py-3 text-sm font-semibold tracking-wide text-black mx-auto"
                   >
                     Request a custom scope
@@ -491,7 +570,7 @@ export default function Pricing() {
           </div>
         </div>
         <div className="mx-auto w-full max-w-5xl">
-          <div className="rounded-3xl border border-accent/20 bg-gradient-to-r from-bg via-accent/5 to-bg overflow-hidden shadow-lg shadow-accent/5">
+          <div className="rounded-3xl border border-accent/20 bg-gradient-to-r from-bg via-accent/5 to-bg overflow-hidden shadow-md shadow-accent/5">
             <div className="grid items-center gap-6 p-8 sm:p-12 md:grid-cols-2 md:gap-10">
               <div className="flex flex-col items-center pb-10 text-center md:pb-0 md:px-10 md:border-r md:border-border">
                 <p className="mb-5 inline-flex items-center rounded-full border border-deep-teal/45 bg-deep-teal/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-deep-teal">
@@ -517,7 +596,7 @@ export default function Pricing() {
                     <ShimmerButton
                       shimmerColor="#0A0A0C"
                       shimmerDuration="4.2s"
-                      background="#00E5FF"
+                      background="var(--accent)"
                       className="px-8 py-3.5 text-sm font-semibold text-black"
                     >
                       Get started
@@ -535,7 +614,7 @@ export default function Pricing() {
                     </li>
                   ))}
                 </ul>
-                <p className="mt-8 text-sm text-text-muted/60">{hostingPlan.note}</p>
+                <p className="mt-8 text-sm text-text-dim">{hostingPlan.note}</p>
               </div>
             </div>
           </div>
@@ -554,7 +633,7 @@ export default function Pricing() {
         <div className="relative left-1/2 right-1/2 -mx-[50vw] my-8 w-screen py-14 md:my-10 md:py-16 bg-bg-panel/20 border-y border-border/40">
           <div className="mx-auto grid w-full max-w-7xl gap-x-10 gap-y-8 px-5 sm:px-8 md:grid-cols-3">
           {addOnItems.map((item) => (
-            <div key={item.title} className="bg-bg-panel border border-cyan/40 p-6 rounded-2xl hover:!border-[#00E5FF] hover:shadow-[0_0_12px_rgba(0,229,255,0.3)] transition-colors">
+            <div key={item.title} className="bg-[#131315] shadow-[0_4px_16px_rgba(0,0,0,0.4)] p-6 rounded-2xl hover:shadow-[0_8px_32px_rgba(0,0,0,0.6),0_0_0_1px_rgba(94,209,222,0.06)] transition-all duration-300">
               <h3 className="text-base font-semibold text-text">{item.title}</h3>
               <p className="mt-3 inline-block px-3 py-1 rounded border border-deep-teal/20 bg-deep-teal/5 text-sm font-bold text-gradient-cyan">{item.price}</p>
             </div>
@@ -577,7 +656,7 @@ export default function Pricing() {
       >
         <div className="p-8 md:p-12 rounded-3xl border border-border bg-bg-elev mt-6">
           <div className="grid gap-10 md:grid-cols-2">
-            <div className="bg-bg-panel/30 p-8 rounded-2xl border border-border">
+            <div className="bg-[#131315] shadow-[0_4px_16px_rgba(0,0,0,0.4)] p-8 rounded-2xl">
               <p className="text-xs uppercase tracking-[0.3em] font-semibold text-deep-teal mb-6 flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-deep-teal inline-block"/> Covers</p>
               <ul className="space-y-4 text-sm text-text-muted">
                 {stabilisationPlan.covers.map((item) => (
@@ -639,7 +718,7 @@ export default function Pricing() {
       >
         <div className="grid gap-6 md:grid-cols-2 mt-8">
           {faqs.slice(0, 4).map((faq) => (
-            <div key={faq.question} className="p-8 rounded-2xl bg-bg-panel/10 border border-border hover:bg-bg-panel/20 transition-colors">
+            <div key={faq.question} className="p-8 rounded-2xl bg-[#131315] shadow-[0_4px_16px_rgba(0,0,0,0.4)] hover:shadow-[0_8px_32px_rgba(0,0,0,0.55)] transition-all duration-300">
               <h3 className="text-lg font-semibold text-text mb-4">{faq.question}</h3>
               <p className="text-sm text-text-muted leading-relaxed">{faq.answer}</p>
             </div>
@@ -665,8 +744,8 @@ export default function Pricing() {
               }
             >
               <button 
-                className="px-8 py-4 sm:px-12 sm:py-5 text-black rounded-full font-black uppercase tracking-[0.2em] text-xs sm:text-sm transition-all duration-300 hover:scale-[1.02] hover:brightness-110 active:scale-95 shadow-[0_0_40px_rgba(0,229,255,0.5)] text-center flex items-center justify-center w-full sm:w-auto sm:min-w-[280px] cta-gradient-anim"
-                style={{ backgroundImage: 'linear-gradient(90deg, #00E5FF, #38B2F5, #0C7CC4, #00E5FF)', backgroundSize: '300% 100%' }}
+                className="px-8 py-4 sm:px-12 sm:py-5 text-black rounded-full font-black uppercase tracking-[0.2em] text-xs sm:text-sm transition-all duration-300 hover:scale-[1.02] hover:brightness-110 active:scale-95 text-center flex items-center justify-center w-full sm:w-auto sm:min-w-[280px] cta-gradient-anim"
+                style={{ backgroundImage: 'linear-gradient(90deg, var(--accent), var(--accent-2), #0C7CC4, var(--accent))', backgroundSize: '300% 100%' }}
               >
                 Book a free consult
               </button>

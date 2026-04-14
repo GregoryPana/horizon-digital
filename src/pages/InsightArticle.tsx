@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import Seo from "../components/Seo";
 import Section from "../components/Section";
@@ -5,6 +6,7 @@ import Card from "../components/Card";
 import { insightArticles } from "../data/insights";
 import { siteConfig } from "../data/site";
 import InsightsHero from "../components/InsightsHero";
+import { trackEvent } from "../lib/analytics";
 
 export default function InsightArticle() {
   const { slug = "" } = useParams();
@@ -30,26 +32,41 @@ export default function InsightArticle() {
 
   const canonicalPath = `/insights/${article.slug}`;
   const imageUrl = new URL(article.image, siteConfig.url).toString();
+  const ogImageUrl = new URL("/og-image.png", siteConfig.url).toString();
+
+  useEffect(() => {
+    trackEvent("insight_article_view", {
+      article_slug: article.slug,
+      article_title: article.title,
+      page_path: window.location.pathname,
+    });
+  }, [article.slug, article.title]);
 
   const articleSchema = {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": "BlogPosting",
     headline: article.seoTitle,
     description: article.metaDescription,
     image: imageUrl,
+    datePublished: article.datePublished,
+    dateModified: article.dateModified,
     author: {
       "@type": "Organization",
       name: siteConfig.name,
+      url: siteConfig.url,
     },
     publisher: {
       "@type": "Organization",
       name: siteConfig.name,
       logo: {
         "@type": "ImageObject",
-        url: new URL(siteConfig.ogImage, siteConfig.url).toString(),
+        url: ogImageUrl,
       },
     },
-    mainEntityOfPage: new URL(canonicalPath, siteConfig.url).toString(),
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": new URL(canonicalPath, siteConfig.url).toString(),
+    },
   };
 
   return (
@@ -99,8 +116,8 @@ export default function InsightArticle() {
           <div className="mt-6 flex items-center justify-between">
             <Link 
               to="/insights" 
-              className="cta-gradient-anim relative z-10 flex items-center justify-center rounded-full px-8 py-3 text-xs font-black uppercase tracking-[0.2em] text-[#0a0a0a] shadow-[0_0_20px_rgba(0,229,255,0.4)] transition-all hover:scale-105 active:scale-95"
-              style={{ backgroundImage: 'linear-gradient(90deg, #00E5FF, #A5F3FC, #FFFFFF, #00E5FF)', backgroundSize: '300% 100%' }}
+              className="cta-gradient-anim relative z-10 flex items-center justify-center rounded-full px-8 py-3 text-xs font-black uppercase tracking-[0.2em] text-[#0a0a0a] transition-all hover:scale-105 active:scale-95"
+              style={{ backgroundImage: 'linear-gradient(90deg, var(--accent), #A5F3FC, #FFFFFF, var(--accent))', backgroundSize: '300% 100%' }}
             >
               Back to insights
             </Link>

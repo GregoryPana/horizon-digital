@@ -9,6 +9,7 @@ module.exports = {
         "bg-panel": "var(--bg-panel)",
         text: "var(--text)",
         "text-muted": "var(--text-muted)",
+        "text-dim": "var(--text-dim)",
         accent: "var(--accent)",
         "accent-2": "var(--accent-2)",
         "accent-soft": "var(--accent-soft)",
@@ -16,7 +17,7 @@ module.exports = {
         "deep-teal": "var(--deep-teal)",
         border: "var(--border)",
         "glow": "var(--glow)",
-        cyan: "#00E5FF",
+        cyan: "#5ED1DE",
       },
       boxShadow: {
         glow: "0 0 24px var(--glow)",
@@ -27,11 +28,11 @@ module.exports = {
       },
       fontFamily: {
         sans: ["Switzer", "Inter Variable", "Inter Fallback", "Inter", "Segoe UI", "Helvetica Neue", "Arial", "sans-serif"],
-        display: ["Outfit", "Gambarino", "Sora Variable", "Sora", "Segoe UI", "Helvetica Neue", "Arial", "sans-serif"],
+        display: ["Satoshi", "Segoe UI", "Helvetica Neue", "Arial", "sans-serif"],
       },
       backgroundImage: {
         "horizon": "linear-gradient(90deg, transparent, var(--accent), var(--accent-2), transparent)",
-        "hero-glow": "radial-gradient(60% 60% at 20% 20%, rgba(0, 229, 255, 0.22), transparent 60%)",
+        "hero-glow": "radial-gradient(60% 60% at 20% 20%, rgba(94, 209, 222, 0.18), transparent 60%)",
       },
       animation: {
         "shimmer-slide": "shimmer-slide var(--speed) ease-in-out infinite alternate",

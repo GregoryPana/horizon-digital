@@ -57,8 +57,8 @@ export default function Insights() {
               <div className="mt-5 flex justify-center">
                 <Link
                   to={`/insights/${article.slug}`}
-                  className="cta-gradient-anim relative z-10 flex items-center justify-center rounded-full px-8 py-3 text-xs font-black uppercase tracking-[0.2em] text-[#0a0a0a] shadow-[0_0_20px_rgba(0,229,255,0.4)] transition-all hover:scale-105 active:scale-95"
-                  style={{ backgroundImage: 'linear-gradient(90deg, #00E5FF, #A5F3FC, #FFFFFF, #00E5FF)', backgroundSize: '300% 100%' }}
+                  className="cta-gradient-anim relative z-10 flex items-center justify-center rounded-full px-8 py-3 text-xs font-black uppercase tracking-[0.2em] text-[#0a0a0a] transition-all hover:scale-105 active:scale-95"
+                  style={{ backgroundImage: 'linear-gradient(90deg, var(--accent), #A5F3FC, #FFFFFF, var(--accent))', backgroundSize: '300% 100%' }}
                   onClick={() =>
                     trackEvent("cta_click", {
                       cta_name: `insight_article_read_${article.slug.replace(/-/g, "_")}`,

@@ -26,8 +26,8 @@ export const BannerStrip: React.FC<BannerStripProps> = ({
       text: "text-text-muted/50",
     },
     cyan: {
-      bg: "bg-[#00E5FF]/[0.12] border-[#00E5FF]/25",
-      text: "text-[#00E5FF]/70",
+      bg: "bg-accent/[0.12] border-accent/25",
+      text: "text-accent/70",
     },
     gold: {
       bg: "bg-[#FFD97A]/[0.12] border-[#FFD97A]/25",

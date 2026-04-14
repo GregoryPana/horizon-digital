@@ -92,7 +92,7 @@ export default function AIDigitalTools() {
               })
             }
           >
-            <button className="cta-gradient-anim rounded-full px-10 py-5 text-sm font-black uppercase tracking-widest text-[#0a0a0a] shadow-[0_0_20px_rgba(0,229,255,0.3)] transition-all hover:scale-105 active:scale-95">
+            <button className="cta-gradient-anim rounded-full px-10 py-5 text-sm font-black uppercase tracking-widest text-[#0a0a0a] transition-all hover:scale-105 active:scale-95">
               Explore Digital Insights
             </button>
           </Link>
@@ -192,7 +192,7 @@ export default function AIDigitalTools() {
                 })
               }
             >
-              <button className="cta-gradient-anim rounded-full px-10 py-5 text-sm font-black uppercase tracking-widest text-[#0a0a0a] shadow-[0_0_20px_rgba(0,229,255,0.3)] transition-all hover:scale-105 active:scale-95">
+              <button className="cta-gradient-anim rounded-full px-10 py-5 text-sm font-black uppercase tracking-widest text-[#0a0a0a] transition-all hover:scale-105 active:scale-95">
                 Read Our Insights
               </button>
             </Link>

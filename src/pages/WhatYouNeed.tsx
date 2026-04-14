@@ -6,6 +6,7 @@ import Seo from "../components/Seo";
 import { ScenarioIcon } from "../components/ui/symbol-icons";
 import { siteConfig } from "../data/site";
 import { trackEvent } from "../lib/analytics";
+import { TracingCard, InteractiveIcon } from "../components/ui/TracingCard";
 
 
 export default function WhatYouNeed() {
@@ -53,7 +54,7 @@ export default function WhatYouNeed() {
     initial: { opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 20 },
     whileInView: { opacity: 1, y: 0 },
     viewport: { once: true, amount: 0.3 },
-    transition: { duration: 0.6, ease: "easeOut" as const },
+    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as const },
   };
 
   return (
@@ -95,45 +96,59 @@ export default function WhatYouNeed() {
             onScroll={handleScroll}
             className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide md:grid md:grid-cols-3 gap-6 md:gap-8 -mx-5 px-5 md:mx-0 md:px-0 pb-8 md:pb-0"
           >
-            
-            <motion.div 
-              className="flex-shrink-0 min-w-[calc(100vw-40px)] w-[calc(100vw-40px)] max-w-[calc(100vw-40px)] md:min-w-0 md:w-auto md:max-w-none snap-center rounded-2xl border border-border bg-[#121214] backdrop-blur pb-10 pt-12 px-8 text-center hover:!border-[#00E5FF] hover:shadow-[0_0_12px_rgba(0,229,255,0.3)] transition-all duration-500 group"
-              {...fadeInUp} transition={{ delay: 0.1 }}
+            <TracingCard 
+              className="flex-shrink-0 min-w-[calc(100vw-40px)] w-[calc(100vw-40px)] max-w-[calc(100vw-40px)] md:min-w-0 md:w-auto md:max-w-none snap-center p-8 group"
+              initial={shouldReduceMotion ? undefined : { opacity: 0, y: 28 }}
+              whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             >
-              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-deep-teal/10 mb-6 group-hover:scale-110 transition-transform duration-500">
-                <Briefcase className="h-8 w-8 text-deep-teal" />
+              <div className="flex flex-col h-full w-full text-left">
+                <InteractiveIcon shouldReduceMotion={shouldReduceMotion || undefined}>
+                  <Briefcase className="h-full w-full text-white" />
+                </InteractiveIcon>
+                <h3 className="font-display mb-3 text-xl semibold-underline text-white mt-2">Service Business</h3>
+                <p className="mt-3 text-sm text-white/80 leading-relaxed flex-1">
+                  You offer a service — like a salon, a clinic, a repair shop, or a consultancy. Your website's job is to explain <span className="text-cyan font-semibold">what you do clearly</span> and make it easy for customers to get in touch.
+                </p>
               </div>
-              <h3 className="text-xl font-semibold text-text mb-4">Service Business</h3>
-              <p className="text-sm text-text-muted/90 leading-relaxed">
-                You offer a service — like a salon, a clinic, a repair shop, or a consultancy. Your website's job is to explain <span className="text-cyan font-semibold">what you do clearly</span> and make it easy for customers to get in touch.
-              </p>
-            </motion.div>
+            </TracingCard>
 
-            <motion.div 
-              className="flex-shrink-0 min-w-[calc(100vw-40px)] w-[calc(100vw-40px)] max-w-[calc(100vw-40px)] md:min-w-0 md:w-auto md:max-w-none snap-center rounded-2xl border border-border bg-[#121214] backdrop-blur pb-10 pt-12 px-8 text-center hover:!border-[#00E5FF] hover:shadow-[0_0_12px_rgba(0,229,255,0.3)] transition-all duration-500 group"
-              {...fadeInUp} transition={{ delay: 0.2 }}
+            <TracingCard 
+              className="flex-shrink-0 min-w-[calc(100vw-40px)] w-[calc(100vw-40px)] max-w-[calc(100vw-40px)] md:min-w-0 md:w-auto md:max-w-none snap-center p-8 group"
+              initial={shouldReduceMotion ? undefined : { opacity: 0, y: 28 }}
+              whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             >
-              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-deep-teal/10 mb-6 group-hover:scale-110 transition-transform duration-500">
-                <ShoppingBag className="h-8 w-8 text-deep-teal" />
+              <div className="flex flex-col h-full w-full text-left">
+                <InteractiveIcon shouldReduceMotion={shouldReduceMotion || undefined}>
+                  <ShoppingBag className="h-full w-full text-white" />
+                </InteractiveIcon>
+                <h3 className="font-display mb-3 text-xl semibold-underline text-white mt-2">Retail Showcase</h3>
+                <p className="mt-3 text-sm text-white/80 leading-relaxed flex-1">
+                  You sell physical products — like a boutique, a bakery, or a gift shop. Your website should show what you stock, <span className="text-cyan font-semibold">at what price</span>, and make it simple for customers to order or visit.
+                </p>
               </div>
-              <h3 className="text-xl font-semibold text-text mb-4">Retail Showcase</h3>
-              <p className="text-sm text-text-muted/90 leading-relaxed">
-                You sell physical products — like a boutique, a bakery, or a gift shop. Your website should show what you stock, <span className="text-cyan font-semibold">at what price</span>, and make it simple for customers to order or visit.
-              </p>
-            </motion.div>
+            </TracingCard>
 
-            <motion.div 
-              className="flex-shrink-0 min-w-[calc(100vw-40px)] w-[calc(100vw-40px)] max-w-[calc(100vw-40px)] md:min-w-0 md:w-auto md:max-w-none snap-center rounded-2xl border border-border bg-[#121214] backdrop-blur pb-10 pt-12 px-8 text-center hover:!border-[#00E5FF] hover:shadow-[0_0_12px_rgba(0,229,255,0.3)] transition-all duration-500 group"
-              {...fadeInUp} transition={{ delay: 0.3 }}
+            <TracingCard 
+              className="flex-shrink-0 min-w-[calc(100vw-40px)] w-[calc(100vw-40px)] max-w-[calc(100vw-40px)] md:min-w-0 md:w-auto md:max-w-none snap-center p-8 group"
+              initial={shouldReduceMotion ? undefined : { opacity: 0, y: 28 }}
+              whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.7, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
             >
-              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-deep-teal/10 mb-6 group-hover:scale-110 transition-transform duration-500">
-                <Bed className="h-8 w-8 text-deep-teal" />
+              <div className="flex flex-col h-full w-full text-left">
+                <InteractiveIcon shouldReduceMotion={shouldReduceMotion || undefined}>
+                  <Bed className="h-full w-full text-white" />
+                </InteractiveIcon>
+                <h3 className="font-display mb-3 text-xl semibold-underline text-white mt-2">Hospitality</h3>
+                <p className="mt-3 text-sm text-white/80 leading-relaxed flex-1">
+                  You run a guesthouse, villa, restaurant, or tour operation. Your website should make guests <span className="text-cyan font-semibold">feel the experience</span> before they arrive — and make booking as easy as one tap.
+                </p>
               </div>
-              <h3 className="text-xl font-semibold text-text mb-4">Hospitality</h3>
-              <p className="text-sm text-text-muted/90 leading-relaxed">
-                You run a guesthouse, villa, restaurant, or tour operation. Your website should make guests <span className="text-cyan font-semibold">feel the experience</span> before they arrive — and make booking as easy as one tap.
-              </p>
-            </motion.div>
+            </TracingCard>
 
           </div>
 
@@ -141,7 +156,7 @@ export default function WhatYouNeed() {
           <div className="flex justify-center items-center gap-4 mt-6 md:hidden">
             <button 
               onClick={() => scrollCarouselTo(activeCarousel - 1, 3)} 
-              className="flex items-center justify-center p-3 text-cyan hover:text-cyan-400 transition-colors bg-[#1A1A1C] border border-white/5 shadow-sm rounded-full active:scale-95"
+              className="flex items-center justify-center p-3 text-cyan hover:text-cyan-400 transition-colors bg-bg-panel border border-white/5 shadow-sm rounded-full active:scale-95"
               aria-label="Previous type"
             >
                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" className="w-5 h-5"><path d="M15 19l-7-7 7-7" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" /></svg>
@@ -150,14 +165,14 @@ export default function WhatYouNeed() {
               {[0, 1, 2].map((_, i) => (
                 <div 
                   key={i} 
-                  className={`h-2 rounded-full transition-all duration-300 ${activeCarousel === i ? "w-8 bg-cyan" : "w-2 bg-gray-700 hover:bg-gray-500 cursor-pointer"}`}
+                  className={`h-2 rounded-full transition-all duration-300 ${activeCarousel === i ? "w-8 bg-cyan" : "w-2 bg-white/20 hover:bg-white/40 cursor-pointer"}`}
                   onClick={() => scrollCarouselTo(i, 3)}
                 />
               ))}
             </div>
             <button 
               onClick={() => scrollCarouselTo(activeCarousel + 1, 3)} 
-              className="flex items-center justify-center p-3 text-cyan hover:text-cyan-400 transition-colors bg-[#1A1A1C] border border-white/5 shadow-sm rounded-full active:scale-95"
+              className="flex items-center justify-center p-3 text-cyan hover:text-cyan-400 transition-colors bg-bg-panel border border-white/5 shadow-sm rounded-full active:scale-95"
               aria-label="Next type"
             >
                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" className="w-5 h-5"><path d="M9 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" /></svg>
@@ -171,7 +186,7 @@ export default function WhatYouNeed() {
         <div className="mx-auto w-full max-w-4xl px-5 sm:px-8">
            <motion.div className="mb-12 md:mb-16 text-center" {...fadeInUp}>
               <h2 className="font-display mx-auto max-w-3xl text-3xl font-semibold leading-tight tracking-tight text-white md:text-5xl mb-4 text-balance">What <span className="text-cyan font-semibold">every</span> website comes with</h2>
-              <p className="text-text-muted/90 max-w-2xl mx-auto">No matter which package you choose, these essentials are always <span className="semibold-underline text-white">part of the build.</span></p>
+              <p className="text-text-muted max-w-2xl mx-auto">No matter which package you choose, these essentials are always <span className="semibold-underline text-white">part of the build.</span></p>
            </motion.div>
 
            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
@@ -210,7 +225,7 @@ export default function WhatYouNeed() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-text text-base md:text-lg leading-snug mb-1">{item.name}</h4>
-                    <p className="text-sm text-text-muted/80 leading-relaxed">{item.benefit}</p>
+                    <p className="text-sm text-text-muted leading-relaxed">{item.benefit}</p>
                   </div>
                 </motion.div>
               ))}
@@ -261,7 +276,7 @@ export default function WhatYouNeed() {
             ].map((card, i) => (
               <motion.div 
                 key={card.num}
-                className="bg-bg-panel/60 backdrop-blur-sm p-6 md:p-8 rounded-3xl border border-border group hover:!border-[#00E5FF] transition-all flex flex-col md:flex-row items-center md:items-start text-center md:text-left gap-6"
+                className="bg-bg-panel/60 backdrop-blur-sm p-6 md:p-8 rounded-3xl border border-border group hover:!border-accent/50 transition-all flex flex-col md:flex-row items-center md:items-start text-center md:text-left gap-6"
                 {...fadeInUp}
                 transition={{ delay: i * 0.1 }}
               >
@@ -272,7 +287,7 @@ export default function WhatYouNeed() {
                 </div>
                 <div className="flex-1">
                   <h3 className="text-lg md:text-xl font-semibold text-text mb-3">{card.title}</h3>
-                  <p className="text-sm text-text-muted/80 leading-relaxed">
+                  <p className="text-sm text-text-muted leading-relaxed">
                     {card.desc}
                   </p>
                 </div>
@@ -284,7 +299,7 @@ export default function WhatYouNeed() {
 
       {/* Package Fit / Scenario Banners */}
       <section className="pt-24 md:pt-32 pb-0 relative">
-         <div className="absolute top-0 right-0 w-1/2 h-full bg-[radial-gradient(circle_at_top_right,rgba(0,229,255,0.05)_0%,transparent_50%)] pointer-events-none"/>
+         <div className="absolute top-0 right-0 w-1/2 h-full bg-[radial-gradient(circle_at_top_right,rgba(94,209,222,0.05)_0%,transparent_50%)] pointer-events-none"/>
          <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 relative z-10">
              <motion.div className="mb-16 md:mb-20 text-center" {...fadeInUp}>
                 <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">TWO WAYS WE CAN WORK TOGETHER</span>
@@ -295,7 +310,7 @@ export default function WhatYouNeed() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
                {/* Option 1 */}
                <motion.div 
-                 className="group relative overflow-hidden rounded-3xl border border-border bg-bg-elev p-8 md:p-12 hover:!border-[#00E5FF] transition-all duration-300"
+                 className="group relative overflow-hidden rounded-3xl border border-border bg-bg-elev p-8 md:p-12 hover:!border-accent/50 transition-all duration-300"
                  {...fadeInUp}
                >
                  <div className="relative z-10">
@@ -323,12 +338,12 @@ export default function WhatYouNeed() {
 
                {/* Option 2 */}
                <motion.div 
-                 className="group relative overflow-hidden rounded-3xl border border-accent/30 bg-bg-panel bg-gradient-to-b from-accent/5 to-transparent p-8 md:p-12 hover:!border-[#00E5FF] transition-all duration-300"
+                 className="group relative overflow-hidden rounded-3xl border border-accent/30 bg-bg-panel bg-gradient-to-b from-accent/5 to-transparent p-8 md:p-12 hover:!border-accent/50 transition-all duration-300"
                  {...fadeInUp} transition={{ delay: 0.2 }}
                >
                  <div className="relative z-10">
                    <div className="flex justify-between items-start mb-8">
-                     <span className="inline-block px-3 py-1 text-xs uppercase tracking-widest font-semibold bg-cyan border border-cyan text-black rounded-full shadow-[0_0_15px_rgba(0,229,255,0.5)]">Option 2 (Recommended)</span>
+                     <span className="inline-block px-3 py-1 text-xs uppercase tracking-widest font-semibold bg-cyan border border-cyan text-black rounded-full ">Option 2 (Recommended)</span>
                      <ScenarioIcon className="w-12 h-12 text-deep-teal opacity-20 group-hover:opacity-40 transition-opacity"/>
                    </div>
                    <h3 className="text-2xl font-semibold text-text mb-8">We build it and keep it running for you</h3>
@@ -358,7 +373,7 @@ export default function WhatYouNeed() {
            <motion.div {...fadeInUp} className="w-full">
              <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">Before we start</span>
              <h2 className="font-display mx-auto max-w-3xl text-3xl font-semibold leading-tight tracking-tight text-white md:text-5xl mb-8">A few things that help us <span className="text-cyan font-semibold">hit the ground running</span></h2>
-             <p className="text-base md:text-lg text-text-muted/80 mb-12 max-w-2xl mx-auto">
+             <p className="text-base md:text-lg text-text-muted mb-12 max-w-2xl mx-auto">
                Before we begin, it helps to have a few things ready — your list of services or products, your contact details, any logo or branding you already have, and links to your social media if you use them. <span className="text-cyan font-semibold">Don't worry</span> if you're missing some of these. We'll tell you exactly what we need and help you get it together.
              </p>
               <Link 
@@ -372,8 +387,8 @@ export default function WhatYouNeed() {
                 }
               >
                 <button 
-                  className="w-full py-5 rounded-full text-black font-black tracking-[0.2em] uppercase text-sm shadow-[0_0_30px_rgba(0,229,255,0.4)] transition-all duration-300 hover:scale-[1.02] hover:brightness-110 active:scale-95 flex items-center justify-center cta-gradient-anim"
-                  style={{ backgroundImage: 'linear-gradient(90deg, #00E5FF, #38B2F5, #0C7CC4, #00E5FF)', backgroundSize: '300% 100%' }}
+                  className="w-full py-5 rounded-full text-black font-black tracking-[0.2em] uppercase text-sm transition-all duration-300 hover:scale-[1.02] hover:brightness-110 active:scale-95 flex items-center justify-center cta-gradient-anim"
+                  style={{ backgroundImage: 'linear-gradient(90deg, var(--accent), var(--accent-2), #0C7CC4, var(--accent))', backgroundSize: '300% 100%' }}
                 >
                   Start a conversation
                 </button>

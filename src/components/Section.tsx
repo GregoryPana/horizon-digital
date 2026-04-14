@@ -50,7 +50,7 @@ export default function Section({
               </h2>
             )}
             {description && (
-              <p className="section-description mt-5 text-[1.05rem] leading-[1.65] text-text-muted md:text-[1.1rem] md:leading-[1.62]">{description}</p>
+              <p className="section-description mx-auto mt-5 max-w-2xl text-[1.05rem] leading-[1.65] text-text-muted md:text-[1.1rem] md:leading-[1.62]">{description}</p>
             )}
           </motion.div>
         )}

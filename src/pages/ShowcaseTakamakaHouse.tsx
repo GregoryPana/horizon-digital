@@ -22,6 +22,7 @@ export default function ShowcaseTakamakaHouse() {
         title="Takamaka House Showcase"
         description="Explore the Takamaka House showcase by Horizon Digital, focused on hospitality storytelling and clear booking intent."
         path="/showcase/takamaka-house"
+        robots="noindex,nofollow"
       />
       <section className="h-[100svh] w-full bg-black">
         <iframe

@@ -22,6 +22,7 @@ export default function ShowcaseFormaStudio() {
         title="Forma Studio Showcase"
         description="View the Forma Studio website showcase by Horizon Digital, including layout, storytelling flow, and visual direction."
         path="/showcase/forma-studio"
+        robots="noindex,nofollow"
       />
       <section className="h-[100svh] w-full bg-black">
         <iframe

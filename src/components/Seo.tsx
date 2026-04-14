@@ -37,6 +37,8 @@ export default function Seo({
     logo: ogImageUrl,
     sameAs: [
       siteConfig.whatsappUrl,
+      "https://share.google/40ZCpJGHmi2tMZhDv",
+      "https://maps.app.goo.gl/YcZHnx4ABoa4oHoCA",
     ],
   };
 
@@ -52,9 +54,25 @@ export default function Seo({
     priceRange: "SCR 7,500 - SCR 25,000+",
     address: {
       "@type": "PostalAddress",
-      addressLocality: siteConfig.location,
+      addressLocality: "Mahé",
+      addressRegion: "Mahé",
       addressCountry: "SC",
     },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: -4.6796,
+      longitude: 55.4796,
+    },
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        opens: "08:00",
+        closes: "18:00",
+      },
+    ],
+    currenciesAccepted: "SCR",
+    paymentAccepted: "Bank Transfer, Cash",
     areaServed: {
       "@type": "Country",
       name: "Seychelles",
@@ -66,6 +84,10 @@ export default function Seo({
       "Digital Marketing",
     ],
     knowsLanguage: ["en", "fr"],
+    sameAs: [
+      "https://share.google/40ZCpJGHmi2tMZhDv",
+      "https://maps.app.goo.gl/YcZHnx4ABoa4oHoCA",
+    ],
   };
 
   const websiteSchema = {

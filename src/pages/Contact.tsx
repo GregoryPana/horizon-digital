@@ -118,7 +118,7 @@ Looking forward to your reply.`;
                   name="businessName"
                   autoComplete="organization"
                   required
-                  className="contact-input mt-3 w-full rounded-xl border border-white/20 bg-white/5 hover:border-white/30 px-4 py-3 text-sm text-text placeholder:text-gray-400 focus-ring"
+                  className="contact-input mt-3 w-full rounded-xl border border-white/20 bg-white/5 hover:border-white/30 px-4 py-3 text-sm text-text placeholder:text-text-muted focus-ring"
                   placeholder="Your business name"
                 />
               </label>
@@ -128,7 +128,7 @@ Looking forward to your reply.`;
                   type="text"
                   name="name"
                   autoComplete="name"
-                  className="contact-input mt-2.5 w-full rounded-xl border border-white/20 bg-white/5 hover:border-white/30 px-4 py-3 text-sm text-text placeholder:text-gray-400 focus-ring"
+                  className="contact-input mt-2.5 w-full rounded-xl border border-white/20 bg-white/5 hover:border-white/30 px-4 py-3 text-sm text-text placeholder:text-text-muted focus-ring"
                   placeholder="Your name"
                 />
               </label>
@@ -139,7 +139,7 @@ Looking forward to your reply.`;
                   name="email"
                   autoComplete="email"
                   required
-                  className="contact-input mt-3 w-full rounded-xl border border-white/20 bg-white/5 hover:border-white/30 px-4 py-3 text-sm text-text placeholder:text-gray-400 focus-ring"
+                  className="contact-input mt-3 w-full rounded-xl border border-white/20 bg-white/5 hover:border-white/30 px-4 py-3 text-sm text-text placeholder:text-text-muted focus-ring"
                   placeholder="you@example.com"
                 />
               </label>
@@ -148,7 +148,7 @@ Looking forward to your reply.`;
                 <input
                   type="text"
                   name="industry"
-                  className="contact-input mt-2.5 w-full rounded-xl border border-white/20 bg-white/5 hover:border-white/30 px-4 py-3 text-sm text-text placeholder:text-gray-400 focus-ring"
+                  className="contact-input mt-2.5 w-full rounded-xl border border-white/20 bg-white/5 hover:border-white/30 px-4 py-3 text-sm text-text placeholder:text-text-muted focus-ring"
                   placeholder="e.g. Hospitality, Services, Retail"
                 />
               </label>
@@ -157,7 +157,7 @@ Looking forward to your reply.`;
                 <input
                   type="url"
                   name="website"
-                  className="contact-input mt-2.5 w-full rounded-xl border border-white/20 bg-white/5 hover:border-white/30 px-4 py-3 text-sm text-text placeholder:text-gray-400 focus-ring"
+                  className="contact-input mt-2.5 w-full rounded-xl border border-white/20 bg-white/5 hover:border-white/30 px-4 py-3 text-sm text-text placeholder:text-text-muted focus-ring"
                   placeholder="https://"
                 />
               </label>
@@ -165,7 +165,7 @@ Looking forward to your reply.`;
                 Project budget range
                 <select
                   name="budget"
-                  className="contact-input mt-2.5 w-full rounded-xl border border-white/20 bg-white/5 hover:border-white/30 px-4 py-3 text-sm text-text placeholder:text-gray-400 focus-ring"
+                  className="contact-input mt-2.5 w-full rounded-xl border border-white/20 bg-white/5 hover:border-white/30 px-4 py-3 text-sm text-text placeholder:text-text-muted focus-ring"
                   defaultValue={defaultBudget}
                 >
                   <option value="" disabled>
@@ -181,7 +181,7 @@ Looking forward to your reply.`;
                 Estimated timeline
                 <select
                   name="timeline"
-                  className="contact-input mt-2.5 w-full rounded-xl border border-white/20 bg-white/5 hover:border-white/30 px-4 py-3 text-sm text-text placeholder:text-gray-400 focus-ring"
+                  className="contact-input mt-2.5 w-full rounded-xl border border-white/20 bg-white/5 hover:border-white/30 px-4 py-3 text-sm text-text placeholder:text-text-muted focus-ring"
                   defaultValue=""
                 >
                   <option value="" disabled>
@@ -200,7 +200,7 @@ Looking forward to your reply.`;
                   name="message"
                   rows={5}
                   required
-                  className="contact-input mt-3 w-full rounded-xl border border-white/20 bg-white/5 hover:border-white/30 px-4 py-3 text-sm text-text placeholder:text-gray-400 focus-ring"
+                  className="contact-input mt-3 w-full rounded-xl border border-white/20 bg-white/5 hover:border-white/30 px-4 py-3 text-sm text-text placeholder:text-text-muted focus-ring"
                   placeholder="Tell us about your project"
                 />
               </label>
@@ -239,7 +239,7 @@ Looking forward to your reply.`;
 
             <div className="relative my-8 flex items-center justify-center">
               <div className="absolute inset-0 flex items-center"><div className="w-full border-t border-white/5"></div></div>
-              <span className="relative bg-[#1A1A1C] px-3 text-[10px] font-bold uppercase tracking-widest text-text-muted">OR</span>
+              <span className="relative bg-bg-elev px-3 text-[10px] font-bold uppercase tracking-widest text-text-muted">OR</span>
             </div>
 
             <div className="space-y-5">
@@ -305,8 +305,8 @@ Looking forward to your reply.`;
 
             <div className="mt-8">
               <button 
-                className="w-full px-8 py-4 text-black rounded-full font-black uppercase tracking-[0.2em] text-sm transition-all duration-300 hover:scale-[1.02] hover:brightness-110 active:scale-95 shadow-[0_0_40px_rgba(0,229,255,0.5)] text-center flex items-center justify-center sm:w-auto sm:min-w-[240px] cta-gradient-anim"
-                style={{ backgroundImage: 'linear-gradient(90deg, #00E5FF, #38B2F5, #0C7CC4, #00E5FF)', backgroundSize: '300% 100%' }}
+                className="w-full px-8 py-4 text-black rounded-full font-black uppercase tracking-[0.2em] text-sm transition-all duration-300 hover:scale-[1.02] hover:brightness-110 active:scale-95 text-center flex items-center justify-center sm:w-auto sm:min-w-[240px] cta-gradient-anim"
+                style={{ backgroundImage: 'linear-gradient(90deg, var(--accent), var(--accent-2), #0C7CC4, var(--accent))', backgroundSize: '300% 100%' }}
                 type="button"
                 onClick={() => {
                   trackEvent("cta_click", {

@@ -16,7 +16,7 @@ export const siteConfig = {
   taglineLong: "Your business, beautifully online — built for Seychelles",
   email: "horizondigital.sey@gmail.com",
   phone: "+248 2604525",
-  whatsappUrl: "https://wa.me/2482604525",
+  whatsappUrl: "https://wa.me/2482604525?text=Hi+Horizon+Digital%2C+I%27d+like+to+discuss+a+website+project.",
   url: "https://horizondigitalsey.com",
   location: "Seychelles",
   ogImage,
@@ -75,6 +75,10 @@ export const services = [
   {
     title: "Mobile-friendly layout",
     description: "Designed for the phones your customers actually use — no pinching, no squinting, no frustration.",
+  },
+  {
+    title: "WhatsApp & enquiry integration",
+    description: "The tools your customers already use — WhatsApp, contact forms, and booking links — built in from day one.",
   },
 ];
 
@@ -209,8 +213,18 @@ export const hostingPlan = {
 
 export const stabilisationPlan = {
   title: "30 days of support after every launch",
-  covers: ["Anything that doesn't look or work right after launch", "Bug fixes", "Minor corrections", "Small adjustments"],
-  excludes: ["New features", "Redesigns"],
+  covers: [
+    "Anything that doesn't look or work right after launch",
+    "Bug fixes and visual corrections",
+    "Browser and device compatibility issues",
+    "Minor copy changes in the first weeks",
+    "Guidance on how to share and use your new site",
+  ],
+  excludes: [
+    "New pages or structural redesigns",
+    "Third-party platform integrations not agreed in the brief",
+    "Ongoing content updates after the support window",
+  ],
 };
 
 export const trustStatement = [

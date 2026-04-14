@@ -22,7 +22,7 @@ function FaqAccordionItem({ item }: { item: HomeFaqItem }) {
   return (
     <motion.div
       animate={isOpen ? "open" : "closed"}
-      className={`rounded-xl border border-border bg-[#1A1A1C] transition-colors ${isOpen ? "bg-[#252528]" : ""}`.trim()}
+      className={`rounded-xl border border-border bg-bg-elev transition-colors ${isOpen ? "bg-bg-panel" : ""}`.trim()}
     >
       <button
         type="button"
@@ -50,7 +50,7 @@ function FaqAccordionItem({ item }: { item: HomeFaqItem }) {
           height: isOpen ? "auto" : "0px",
           marginBottom: isOpen ? "16px" : "0px",
         }}
-        transition={{ duration: 0.28, ease: "easeInOut" }}
+        transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
         className="overflow-hidden px-4 md:px-6"
       >
         <p className="pb-1 text-sm text-text-muted">{item.answer}</p>
@@ -91,7 +91,7 @@ export default function HomeFaq({ categories }: HomeFaqProps) {
                     initial={{ y: "100%" }}
                     animate={{ y: "0%" }}
                     exit={{ y: "100%" }}
-                    transition={{ duration: 0.28, ease: "easeInOut" }}
+                    transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
                     className="absolute inset-0 z-0 bg-gradient-to-r from-accent to-accent-2"
                   />
                 )}

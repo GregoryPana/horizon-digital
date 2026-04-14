@@ -18,7 +18,7 @@ export default function ShineBorder({
   borderRadius = 24,
   borderWidth = 1,
   duration = 12,
-  color = ["rgba(34,241,214,0.7)", "rgba(224,185,115,0.7)", "rgba(34,241,214,0.7)"],
+  color = ["rgba(94,209,222,0.7)", "rgba(224,185,115,0.7)", "rgba(94,209,222,0.7)"],
 }: ShineBorderProps) {
   const gradientStops = Array.isArray(color) ? color.join(",") : color;
 

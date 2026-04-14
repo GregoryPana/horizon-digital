@@ -22,7 +22,7 @@ const sizeClasses = {
 
 const variantClasses = {
   primary:
-    "btn-primary bg-accent text-black shadow-glow hover:shadow-[0_0_36px_var(--glow)] focus-ring",
+    "btn-primary bg-accent text-black shadow-glow hover:shadow-[0_0_20px_var(--glow)] focus-ring",
   ghost: "bg-transparent text-text hover:text-accent focus-ring",
   outline:
     "btn-outline-gold border border-accent-2 text-accent-2 hover:border-accent hover:text-accent focus-ring",

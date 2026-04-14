@@ -29,7 +29,7 @@ const MarqueeBanner: React.FC<MarqueeBannerProps> = ({
   return (
     <div 
       className={cn(
-        "marquee-band relative z-20 -mt-px w-full overflow-hidden border-y border-border/30 bg-bg py-5 backdrop-blur-3xl",
+        "relative z-20 w-full overflow-hidden py-8",
         className
       )}
     >
@@ -50,7 +50,7 @@ const MarqueeBanner: React.FC<MarqueeBannerProps> = ({
             key={`${item}-${idx}`} 
             className="flex flex-shrink-0 items-center gap-10 pr-12"
           >
-            <span className="text-[0.72rem] font-bold uppercase tracking-[0.24em] text-[#A8F0FF]">
+            <span className="text-[0.72rem] font-bold uppercase tracking-[0.24em] text-cyan opacity-80">
               {item}
             </span>
             <span className="text-accent/30 text-[0.6rem]">•</span>

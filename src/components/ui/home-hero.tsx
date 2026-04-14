@@ -8,7 +8,7 @@ export default function HomeHero() {
   const handleWorkScrollTop = () => scrollToTopSmooth();
 
   return (
-    <section id="top" className="relative h-[100svh] md:h-screen min-h-[660px] md:min-h-[700px] w-full overflow-hidden bg-black text-white">
+    <section id="top" className="relative h-[100dvh] min-h-[660px] md:min-h-[700px] w-full overflow-hidden bg-black text-white">
       {/* Background Tech Image with Mask */}
       <div className="absolute inset-0 z-0">
          <picture>
@@ -32,7 +32,7 @@ export default function HomeHero() {
         </div>
       </div>
 
-      <div className="relative mx-auto flex min-h-[100svh] w-full max-w-[1760px] flex-col justify-between px-6 pb-[4svh] pt-32 md:min-h-screen md:px-10 md:pt-48 lg:px-14 xl:px-20">
+      <div className="relative mx-auto flex min-h-[100dvh] w-full max-w-[1760px] flex-col justify-between px-6 pb-[4svh] pt-32 md:px-10 md:pt-48 lg:px-14 xl:px-20">
         {/* Main Content Area */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between z-20">
           <div className="max-w-4xl">
@@ -64,7 +64,7 @@ export default function HomeHero() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-              className="hidden md:block max-w-[46ch] text-sm sm:text-base md:text-lg leading-relaxed text-gray-300 font-light motion-safe-gpu"
+              className="hidden md:block max-w-[46ch] text-sm sm:text-base md:text-lg leading-relaxed text-text-muted font-normal motion-safe-gpu"
             >
               Your business deserves a website that works as hard as you do — beautifully designed, easy to find, and built to turn visitors into customers you're proud to serve.
             </motion.p>
@@ -110,7 +110,7 @@ export default function HomeHero() {
                 <Link to="/contact">
                   <button 
                     aria-label="Contact us to get started with your project"
-                    className="rounded-lg bg-accent px-10 py-4 text-sm font-black uppercase tracking-[0.2em] text-black transition-all hover:opacity-90 hover:scale-[1.02] active:scale-95 shadow-[0_0_30px_var(--glow)]"
+                    className="rounded-lg bg-accent px-10 py-4 text-sm font-black uppercase tracking-[0.2em] text-black transition-all hover:opacity-90 hover:scale-[1.02] active:scale-95"
                   >
                     Get Started
                   </button>
@@ -147,7 +147,7 @@ export default function HomeHero() {
             <Link to="/contact" className="w-full">
               <button 
                 aria-label="Contact us to discuss your project"
-                className="w-full rounded-lg bg-accent py-4 text-[11px] font-black uppercase tracking-[0.2em] text-black active:scale-95 transition-transform shadow-[0_0_30px_rgba(0,229,255,0.3)]"
+                className="w-full rounded-lg bg-accent py-4 text-[11px] font-black uppercase tracking-[0.2em] text-black active:scale-95 transition-transform"
               >
                 Discuss project
               </button>

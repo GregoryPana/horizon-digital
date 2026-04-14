@@ -1,9 +1,9 @@
 import heroDesktop from "../assets/hero/hero-desktop-tech-v2.png";
 import heroDesktopWebp from "../assets/hero/hero-desktop-tech-v2.webp";
-import businessAutomationImage from "../assets/insights/business automation.png";
-import aiToolsImage from "../assets/insights/ai tools.png";
-import dataAnalysisImage from "../assets/insights/data analysis.png";
-import chatbotImage from "../assets/insights/chatbot.png";
+import businessAutomationImage from "../assets/insights/business automation.webp";
+import aiToolsImage from "../assets/insights/ai tools.webp";
+import dataAnalysisImage from "../assets/insights/data analysis.webp";
+import chatbotImage from "../assets/insights/chatbot.webp";
 
 export type InsightArticle = {
   slug: string;
@@ -14,6 +14,8 @@ export type InsightArticle = {
   keywords: string;
   image: string;
   imageWebp?: string;
+  datePublished: string;
+  dateModified: string;
   sections: Array<{
     heading: string;
     body: string[];
@@ -27,6 +29,8 @@ export const insightArticles: InsightArticle[] = [
     slug: "ai-small-business-seychelles",
     title: "What AI means for small businesses in Seychelles",
     seoTitle: "What AI Means for Small Businesses in Seychelles",
+    datePublished: "2025-03-01",
+    dateModified: "2025-03-01",
     metaDescription:
       "A practical look at how AI awareness can help small businesses in Seychelles make better digital decisions without complex jargon.",
     excerpt:
@@ -61,6 +65,8 @@ export const insightArticles: InsightArticle[] = [
     slug: "automation-save-time-businesses",
     title: "How automation may help businesses save time",
     seoTitle: "How Automation Tools Help Businesses Save Time in Seychelles",
+    datePublished: "2025-03-01",
+    dateModified: "2025-03-01",
     metaDescription:
       "Learn where automation tools can reduce repetitive tasks and support smoother operations for local businesses in Seychelles.",
     excerpt:
@@ -94,6 +100,8 @@ export const insightArticles: InsightArticle[] = [
     slug: "why-data-analytics-matter",
     title: "Why data and analytics matter for modern businesses",
     seoTitle: "Why Data and Analytics Matter for Businesses in Seychelles",
+    datePublished: "2025-03-01",
+    dateModified: "2025-03-01",
     metaDescription:
       "Understand how website analytics and customer behaviour data can guide better digital decisions for businesses in Seychelles.",
     excerpt:
@@ -127,6 +135,8 @@ export const insightArticles: InsightArticle[] = [
     slug: "digital-trends-small-businesses",
     title: "Digital trends affecting small businesses",
     seoTitle: "Digital Trends Affecting Small Businesses in Seychelles",
+    datePublished: "2025-03-15",
+    dateModified: "2025-03-15",
     metaDescription:
       "A clear summary of digital trends that may shape how Seychelles businesses attract customers and manage operations.",
     excerpt:
@@ -161,6 +171,8 @@ export const insightArticles: InsightArticle[] = [
     slug: "understanding-ai-chatbots",
     title: "Understanding AI chatbots",
     seoTitle: "Understanding AI Chatbots for Businesses in Seychelles",
+    datePublished: "2025-03-15",
+    dateModified: "2025-03-15",
     metaDescription:
       "Learn what AI chatbots can and cannot do, and why clarity and safeguards matter when using chatbot tools for business websites.",
     excerpt:

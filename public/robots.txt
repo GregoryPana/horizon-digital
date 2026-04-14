@@ -2,9 +2,6 @@ User-agent: *
 Allow: /
 Disallow: /admin/
 Disallow: /api/
+Disallow: /showcase/
 
 Sitemap: https://horizondigitalsey.com/sitemap.xml
-
-# Prevent snippet and image issues
-User-agent: *
-# Snippets and images are handled via meta tags in index.html

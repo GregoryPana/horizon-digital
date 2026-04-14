@@ -21,7 +21,7 @@ export default function InsightsHero({ eyebrow, title, description, actions }: I
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: false, amount: 0.4 }}
         transition={{ delay: 0.08, duration: 0.72, ease: "easeOut" }}
-        className="mx-auto mt-6 max-w-4xl text-balance bg-gradient-to-br from-[#d6dee8] via-[#9fb6c8] to-[#7f96a7] bg-clip-text text-center text-4xl font-semibold tracking-[-0.02em] text-transparent md:text-6xl"
+        className="mx-auto mt-6 max-w-4xl text-balance text-center text-4xl font-semibold tracking-[-0.02em] text-[#F0F4F8] md:text-6xl"
       >
         {title}
       </motion.h1>

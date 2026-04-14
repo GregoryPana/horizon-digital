@@ -19,7 +19,7 @@ export function LampContainer({ children, className }: LampContainerProps) {
         <motion.div
           initial={{ opacity: 0.35, width: "14rem" }}
           whileInView={{ opacity: 1, width: "36rem" }}
-          transition={{ duration: 0.85, ease: "easeInOut" }}
+          transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
           viewport={{ once: false, amount: 0.4 }}
           className="absolute right-1/2 top-8 h-64 [--conic-position:from_72deg_at_center_top]"
           style={{
@@ -34,7 +34,7 @@ export function LampContainer({ children, className }: LampContainerProps) {
         <motion.div
           initial={{ opacity: 0.35, width: "14rem" }}
           whileInView={{ opacity: 1, width: "36rem" }}
-          transition={{ duration: 0.85, ease: "easeInOut" }}
+          transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
           viewport={{ once: false, amount: 0.4 }}
           className="absolute left-1/2 top-8 h-64 [--conic-position:from_288deg_at_center_top]"
           style={{

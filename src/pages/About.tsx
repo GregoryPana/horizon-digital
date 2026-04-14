@@ -13,7 +13,7 @@ export default function About() {
     initial: { opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 20 },
     whileInView: { opacity: 1, y: 0 },
     viewport: { once: true, amount: 0.3 },
-    transition: { duration: 0.6, ease: "easeOut" as const },
+    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as const },
   };
 
   return (
@@ -24,11 +24,19 @@ export default function About() {
         description="Horizon Digital is a local studio specialized in custom website design for Seychelles businesses. We build beautiful, fast websites that actually bring customers."
         path="/about"
         keywords="about Horizon Digital, custom web design studio Seychelles, bespoke website designer Seychelles, custom web development"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Home", item: `${siteConfig.url}/` },
+            { "@type": "ListItem", position: 2, name: "About", item: `${siteConfig.url}/about` },
+          ],
+        }}
       />
 
       {/* Section 1 — Opening: The Person, Not the Business */}
       <section className="pt-32 pb-20 md:pt-44 md:pb-32 relative">
-        <div className="mx-auto w-full max-w-[1760px] px-6 sm:px-10 lg:px-14 xl:px-20">
+        <div className="mx-auto w-full max-w-[92rem] px-6 sm:px-10 lg:px-14">
           <motion.div {...fadeInUp} className="mb-12">
             <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">WHO WE ARE</span>
             <h2 className="font-display max-w-4xl text-4xl font-semibold leading-tight tracking-tight text-white md:text-6xl">
@@ -40,7 +48,7 @@ export default function About() {
             <motion.div 
               className="lg:col-span-6 order-1 lg:order-1" 
               {...fadeInUp}
-              transition={{ delay: 0.1 }}
+              transition={{ delay: 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             >
               <div className="relative aspect-[4/5] lg:aspect-[16/10] rounded-3xl overflow-hidden border border-border shadow-2xl">
                 <motion.picture
@@ -64,7 +72,7 @@ export default function About() {
             <motion.div 
               className="lg:col-span-6 order-2 lg:order-2 space-y-8"
               {...fadeInUp}
-              transition={{ delay: 0.2 }}
+              transition={{ delay: 0.2, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             >
               <div className="space-y-6 text-lg text-text-muted leading-relaxed">
                 <p>
@@ -80,16 +88,16 @@ export default function About() {
 
               <div className="pt-4 flex flex-wrap items-center gap-x-8 gap-y-4 text-[11px] font-black uppercase tracking-[0.2em]">
                  <div className="flex items-center gap-2.5">
-                   <div className="h-1.5 w-1.5 rounded-full bg-cyan shadow-[0_0_10px_#00E5FF]" />
-                   <span className="text-cyan drop-shadow-[0_0_8px_rgba(0,229,255,0.4)]">Based on Mahé</span>
+                   <div className="h-1.5 w-1.5 rounded-full bg-cyan" />
+                   <span className="text-cyan">Based on Mahé</span>
                  </div>
                  <div className="flex items-center gap-2.5">
-                   <div className="h-1.5 w-1.5 rounded-full bg-cyan shadow-[0_0_10px_#00E5FF]" />
-                   <span className="text-cyan drop-shadow-[0_0_8px_rgba(0,229,255,0.4)]">Available on WhatsApp</span>
+                   <div className="h-1.5 w-1.5 rounded-full bg-cyan" />
+                   <span className="text-cyan">Available on WhatsApp</span>
                  </div>
                  <div className="flex items-center gap-2.5">
-                   <div className="h-1.5 w-1.5 rounded-full bg-cyan shadow-[0_0_10px_#00E5FF]" />
-                   <span className="text-cyan drop-shadow-[0_0_8px_rgba(0,229,255,0.4)]">Personal Service</span>
+                   <div className="h-1.5 w-1.5 rounded-full bg-cyan" />
+                   <span className="text-cyan">Personal Service</span>
                  </div>
               </div>
             </motion.div>
@@ -121,10 +129,10 @@ export default function About() {
               transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             >
                <h3 className="text-sm font-black uppercase tracking-[0.2em] text-red-400/60">Any agency</h3>
-               <ul className="space-y-5 text-base text-text-muted/70 leading-relaxed">
+               <ul className="space-y-5 text-base text-text-dim leading-relaxed">
                   <li className="flex items-start gap-4">
                      <span className="mt-2.5 w-1.5 h-1.5 rounded-full bg-red-400/40" />
-                     <span>Generic layouts built for <span className="text-white/60">any market</span></span>
+                     <span>Generic layouts built for <span className="text-text-dim">any market</span></span>
                   </li>
                   <li className="flex items-start gap-4">
                      <span className="mt-2.5 w-1.5 h-1.5 rounded-full bg-red-400/40" />
@@ -233,7 +241,7 @@ export default function About() {
                 </span>
                 <div>
                   <h3 className="text-xl md:text-2xl font-bold text-text mb-4 leading-tight">{item.title}</h3>
-                  <p className="text-base text-text-muted/80 leading-relaxed max-w-xl">
+                  <p className="text-base text-text-muted leading-relaxed max-w-xl">
                     {item.desc}
                   </p>
                 </div>
@@ -274,9 +282,9 @@ export default function About() {
               ].map((project, i) => (
                 <motion.div 
                   key={project.name}
-                  className="bg-bg-panel p-8 md:p-10 rounded-3xl border border-border flex flex-col h-full hover:!border-[#00E5FF] transition-colors group"
+                  className="bg-bg-panel p-8 md:p-10 rounded-3xl border border-border flex flex-col h-full hover:border-accent/50 transition-colors group"
                   {...fadeInUp}
-                  transition={{ delay: i * 0.1 }}
+                  transition={{ delay: i * 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                 >
                    <div className="mb-6">
                       <span className="px-3 py-1 rounded-full border border-deep-teal/30 bg-deep-teal/5 text-[10px] font-black tracking-widest text-deep-teal uppercase">
@@ -284,7 +292,7 @@ export default function About() {
                       </span>
                    </div>
                    <h3 className="text-xl font-bold text-white mb-6 font-display">{project.name}</h3>
-                   <p className="text-sm text-text-muted/80 leading-relaxed mb-8 flex-grow">
+                   <p className="text-sm text-text-muted leading-relaxed mb-8 flex-grow">
                      {project.outcome}
                    </p>
                    <a 
@@ -320,7 +328,7 @@ export default function About() {
       </section>
 
       {/* Section 5 — Specificity Strip (The Trust Mechanics) */}
-      <section className="py-10 md:py-12 border-y border-border bg-[#0d1a1f]/30">
+      <section className="py-10 md:py-12 border-y border-border bg-bg-panel/20">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-10 gap-x-6 items-center">
               {[
@@ -338,7 +346,7 @@ export default function About() {
                   transition={{ duration: 0.5, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
                 >
                   <div className="hidden lg:block w-px h-8 bg-border/50" />
-                  <span className="text-[10px] md:text-[14px] font-black uppercase tracking-[0.2em] text-cyan text-balance leading-relaxed drop-shadow-[0_0_8px_rgba(0,229,255,0.3)]">
+                  <span className="text-[10px] md:text-[14px] font-black uppercase tracking-[0.2em] text-cyan text-balance leading-relaxed">
                     {text}
                   </span>
                 </motion.div>
@@ -356,7 +364,7 @@ export default function About() {
                <h2 className="font-display text-4xl font-semibold leading-tight tracking-tight text-white md:text-6xl mb-8">
                  Ready to find out what the right website could do for your business?
                </h2>
-               <p className="text-lg text-text-muted/80 leading-relaxed max-w-2xl mx-auto">
+               <p className="text-lg text-text-muted leading-relaxed max-w-2xl mx-auto">
                  You will speak directly with the person who will build your site — not a sales team, not an account manager. Just an honest conversation about what your business needs.
                </p>
              </div>
@@ -374,9 +382,9 @@ export default function About() {
                     })
                   }
                 >
-                  <button 
-                    className="w-full py-5 rounded-full text-black font-black tracking-[0.2em] uppercase text-sm shadow-[0_0_30px_rgba(0,229,255,0.4)] transition-all duration-300 hover:scale-[1.02] hover:brightness-110 active:scale-95 flex items-center justify-center gap-3 cta-gradient-anim"
-                    style={{ backgroundImage: 'linear-gradient(90deg, #00E5FF, #38B2F5, #0C7CC4, #00E5FF)', backgroundSize: '300% 100%' }}
+                  <button
+                    className="w-full py-5 rounded-full text-black font-black tracking-[0.2em] uppercase text-sm transition-all duration-300 hover:scale-[1.02] hover:brightness-110 active:scale-95 flex items-center justify-center gap-3 cta-gradient-anim"
+                    style={{ backgroundImage: 'linear-gradient(90deg, var(--accent), var(--accent-2), #0C7CC4, var(--accent))', backgroundSize: '300% 100%' }}
                   >
                     <MessageCircle className="w-5 h-5" />
                     Chat on WhatsApp
