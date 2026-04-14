@@ -29,7 +29,7 @@ export default function Navbar() {
       data-site-header
       className={`site-header-dark fixed top-0 left-0 right-0 z-[150] border-b ${isScrolled ? "is-scrolled" : ""}`.trim()}
     >
-      <div className="mx-auto flex w-full max-w-[1760px] items-center gap-4 px-5 py-4 md:gap-6 md:px-8 md:py-5 lg:px-12 xl:px-16 2xl:px-20">
+      <div className="mx-auto flex w-full max-w-[1760px] items-center gap-4 px-5 py-3 md:gap-6 md:px-8 md:py-4 lg:px-12 xl:px-16 2xl:px-20">
         <NavLink
           to="/"
           className="focus-ring inline-flex items-center rounded-full"
