@@ -263,10 +263,10 @@ export default function Pricing() {
               return (
               <TracingCard
                 key={service.title}
-                initial={shouldReduceMotion ? undefined : { opacity: 0, y: 28 }}
-                whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
+                initial={shouldReduceMotion ? undefined : { opacity: 0, y: 28, filter: 'blur(10px)' }}
+                whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: 'blur(0px)' }}
                 viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.7, delay: idx * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ duration: 0.75, delay: 0.08 + idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
                 whileHover={shouldReduceMotion ? undefined : { y: -4 }}
                 className="p-8 min-w-[calc(100vw-40px)] w-[calc(100vw-40px)] max-w-[calc(100vw-40px)] snap-center snap-always shrink-0 md:w-auto md:max-w-none md:min-w-0 md:shrink"
               >
@@ -372,10 +372,10 @@ export default function Pricing() {
           <div className="grid items-stretch gap-6 xl:gap-8 md:grid-cols-2 lg:grid-cols-3 pt-0 pb-8">
             {/* Foundation */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: 20, filter: 'blur(10px)' }}
+              whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
               viewport={{ once: true, amount: 0.1 }}
-              transition={{ duration: 0.6, delay: 0, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
               className="flex h-full flex-col rounded-3xl bg-[#111113] shadow-[0_4px_20px_rgba(0,0,0,0.45)] p-8 hover:shadow-[0_12px_48px_rgba(0,0,0,0.65),0_0_0_1px_rgba(94,209,222,0.07)] transition-all duration-300"
             >
               <h3 className="text-2xl font-bold text-white">{foundationPackage.title}</h3>
@@ -414,10 +414,10 @@ export default function Pricing() {
 
             {/* Starter (Featured) */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: 20, filter: 'blur(10px)' }}
+              whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
               viewport={{ once: true, amount: 0.1 }}
-              transition={{ duration: 0.6, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.8, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
               className="flex h-full flex-col rounded-3xl bg-[#131315] featured-pkg-pulse p-8 relative overflow-hidden pricing-card-featured-shine xl:-translate-y-4 z-20"
             >
               <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-deep-teal px-6 py-[6px] rounded-full text-[10px] font-black uppercase tracking-[0.2em] text-white whitespace-nowrap ">Most Popular</div>
@@ -460,10 +460,10 @@ export default function Pricing() {
 
             {/* Growth */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: 20, filter: 'blur(10px)' }}
+              whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
               viewport={{ once: true, amount: 0.1 }}
-              transition={{ duration: 0.6, delay: 0.24, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.8, delay: 0.34, ease: [0.16, 1, 0.3, 1] }}
               className="flex h-full flex-col rounded-3xl bg-[#111113] shadow-[0_4px_16px_rgba(0,0,0,0.3)] p-8 hover:shadow-[0_10px_32px_rgba(0,0,0,0.45),0_0_0_1px_rgba(94,209,222,0.05)] transition-all duration-300"
             >
               <h3 className="text-2xl font-bold text-white">{growthPackage.title}</h3>

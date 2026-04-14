@@ -552,39 +552,39 @@ const Hero: React.FC<HeroProps> = ({
                       key={td.lineIndex}
                       className="w-full text-center text-[clamp(2.4rem,11vw,4rem)] sm:text-6xl md:text-8xl lg:text-[6.5rem] font-bold font-display uppercase leading-[1.1] sm:leading-[1.0] lg:leading-[0.95] tracking-[0.01em] sm:tracking-[0.02em]"
                     >
-                      {/* Fixed 3-row layout — never changes structure, eliminating layout shift */}
-                      <span className="flex flex-col items-center justify-center w-full text-center">
+                      {/* Fixed 3-row layout — block + text-center for reliable centering of inline-block WaveChar spans */}
+                      <span className="block w-full text-center">
                         {td.prefix && (
-                          <span className="flex items-center justify-center w-full text-center h-[1.1em] sm:h-[1.0em] lg:h-[0.95em]">
+                          <span className="block w-full text-center h-[1.1em] sm:h-[1.0em] lg:h-[0.95em] leading-[1.1] sm:leading-[1.0] lg:leading-[0.95]">
                             {prefixElements}
                           </span>
                         )}
-                        <span className="block w-full text-center overflow-hidden h-[1.1em] sm:h-[1.0em] lg:h-[0.95em]">
+                        <span className="block w-full text-center overflow-hidden h-[1.1em] sm:h-[1.0em] lg:h-[0.95em] leading-[1.1] sm:leading-[1.0] lg:leading-[0.95]">
                           <span
-                            className="block"
+                            className="block w-full"
                             style={slotActive ? { animation: 'hero-slot 12s cubic-bezier(0.4, 0, 0.2, 1) infinite' } : undefined}
                           >
                             {/* First word: WaveChar animation on initial load */}
-                            <span className="flex items-center justify-center w-full text-center text-accent h-[1.1em] sm:h-[1.0em] lg:h-[0.95em]">
+                            <span className="block w-full text-center text-accent h-[1.1em] sm:h-[1.0em] lg:h-[0.95em] leading-[1.1] sm:leading-[1.0] lg:leading-[0.95]">
                               {wordElements}
                             </span>
                             {/* Remaining words for slot rotation */}
                             {headline.rotatingWords!.slice(1).map((word, i) => (
                               <span
                                 key={i + 1}
-                                className="flex items-center justify-center w-full text-center text-accent h-[1.1em] sm:h-[1.0em] lg:h-[0.95em]"
+                                className="block w-full text-center text-accent h-[1.1em] sm:h-[1.0em] lg:h-[0.95em] leading-[1.1] sm:leading-[1.0] lg:leading-[0.95]"
                               >
                                 {word}
                               </span>
                             ))}
                             {/* Repeat first word for seamless loop */}
-                            <span className="flex items-center justify-center w-full text-center text-accent h-[1.1em] sm:h-[1.0em] lg:h-[0.95em]">
+                            <span className="block w-full text-center text-accent h-[1.1em] sm:h-[1.0em] lg:h-[0.95em] leading-[1.1] sm:leading-[1.0] lg:leading-[0.95]">
                               {headline.rotatingWords![0]}
                             </span>
                           </span>
                         </span>
                         {td.suffix && (
-                          <span className="flex items-center justify-center w-full text-center h-[1.1em] sm:h-[1.0em] lg:h-[0.95em]">
+                          <span className="block w-full text-center h-[1.1em] sm:h-[1.0em] lg:h-[0.95em] leading-[1.1] sm:leading-[1.0] lg:leading-[0.95]">
                             {suffixElements}
                           </span>
                         )}
@@ -619,7 +619,7 @@ const Hero: React.FC<HeroProps> = ({
                       key={td.lineIndex}
                       className="w-full text-center text-[clamp(2.4rem,11vw,4rem)] sm:text-6xl md:text-8xl lg:text-[6.5rem] font-bold font-display uppercase leading-[1.1] sm:leading-[1.0] lg:leading-[0.95] tracking-[0.01em] sm:tracking-[0.02em]"
                     >
-                      <span className="flex flex-wrap items-center justify-center text-center">
+                      <span className="block w-full text-center">
                         {elements}
                       </span>
                     </h1>

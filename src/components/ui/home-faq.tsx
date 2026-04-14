@@ -50,10 +50,17 @@ function FaqAccordionItem({ item }: { item: HomeFaqItem }) {
           height: isOpen ? "auto" : "0px",
           marginBottom: isOpen ? "16px" : "0px",
         }}
-        transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
         className="overflow-hidden px-4 md:px-6"
       >
-        <p className="pb-1 text-sm text-text-muted">{item.answer}</p>
+        <motion.p
+          initial={false}
+          animate={isOpen ? { opacity: 1, y: 0, filter: 'blur(0px)' } : { opacity: 0, y: -4, filter: 'blur(4px)' }}
+          transition={{ duration: 0.28, delay: isOpen ? 0.1 : 0, ease: [0.16, 1, 0.3, 1] }}
+          className="pb-1 text-sm text-text-muted"
+        >
+          {item.answer}
+        </motion.p>
       </motion.div>
     </motion.div>
   );

@@ -572,10 +572,10 @@ export default function Home() {
             {problemCards.map((card, idx) => (
               <TracingCard
                 key={card.title}
-                initial={shouldReduceMotion ? undefined : { opacity: 0, y: 28 }}
-                whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
+                initial={shouldReduceMotion ? undefined : { opacity: 0, y: 28, filter: 'blur(10px)' }}
+                whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: 'blur(0px)' }}
                 viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.7, delay: idx * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ duration: 0.75, delay: 0.1 + idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
                 className="p-5 sm:p-6 min-w-[calc(100vw-40px)] w-[calc(100vw-40px)] max-w-[calc(100vw-40px)] snap-center snap-always shrink-0 md:w-auto md:max-w-none md:min-w-0 md:shrink self-stretch"
               >
                 <InteractiveIcon shouldReduceMotion={shouldReduceMotion || undefined}>
@@ -689,9 +689,15 @@ export default function Home() {
             </h2>
           </motion.div>
 
-          <div className="mt-16 w-full">
+          <motion.div
+            className="mt-16 w-full"
+            initial={shouldReduceMotion ? undefined : { opacity: 0, y: 20, filter: 'blur(8px)' }}
+            whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: 'blur(0px)' }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          >
             <OurServicesSlideshow />
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -730,10 +736,10 @@ export default function Home() {
             ].map((item, idx) => (
               <motion.div
                 key={item.label}
-                initial={shouldReduceMotion ? undefined : { opacity: 0, y: 20 }}
-                whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
+                initial={shouldReduceMotion ? undefined : { opacity: 0, y: 20, filter: 'blur(8px)' }}
+                whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: 'blur(0px)' }}
                 viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.7, delay: 0.15 + idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ duration: 0.75, delay: 0.15 + idx * 0.12, ease: [0.16, 1, 0.3, 1] }}
                 className="relative pl-6 text-left"
               >
                 <motion.span
@@ -845,10 +851,10 @@ export default function Home() {
             ].map((pkg, idx) => (
               <motion.div
                 key={pkg.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.8, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                initial={{ opacity: 0, y: 24, filter: 'blur(12px)' }}
+                whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{ duration: 0.85, delay: 0.1 + idx * 0.12, ease: [0.16, 1, 0.3, 1] }}
                 whileHover={!pkg.featured && !shouldReduceMotion ? { y: -6 } : undefined}
                 className={`flex flex-col relative p-8 sm:p-10 rounded-[2rem] transition-all duration-500 ${
                   pkg.featured
@@ -918,9 +924,10 @@ export default function Home() {
       <section id="insights" className="py-20 md:py-32">
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
           <motion.div
-            initial={shouldReduceMotion ? undefined : { opacity: 0, scale: 0.98 }}
-            whileInView={shouldReduceMotion ? undefined : { opacity: 1, scale: 1 }}
-            viewport={{ once: true, amount: 0.3 }}
+            initial={shouldReduceMotion ? undefined : { opacity: 0, scale: 0.97, filter: 'blur(10px)' }}
+            whileInView={shouldReduceMotion ? undefined : { opacity: 1, scale: 1, filter: 'blur(0px)' }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
             className="group relative overflow-hidden rounded-3xl bg-[#131315] shadow-[0_8px_32px_rgba(0,0,0,0.35)]"
           >
             <div className="grid lg:grid-cols-12">
