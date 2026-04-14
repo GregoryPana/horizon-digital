@@ -597,10 +597,10 @@ export default function Home() {
               <TracingCard
                 key={card.title}
                 active={activeProblem === idx}
-                initial={shouldReduceMotion ? undefined : { opacity: 0, y: 28, filter: 'blur(10px)' }}
+                initial={shouldReduceMotion ? undefined : { opacity: 0, y: 16, filter: 'blur(8px)' }}
                 whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: 'blur(0px)' }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.75, delay: 0.1 + idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ duration: 0.6, delay: 0.05 * idx, ease: [0.16, 1, 0.3, 1] }}
                 className="p-5 sm:p-6 min-w-[calc(100vw-40px)] w-[calc(100vw-40px)] max-w-[calc(100vw-40px)] snap-center snap-always shrink-0 md:w-auto md:max-w-none md:min-w-0 md:shrink self-stretch"
               >
                 <InteractiveIcon shouldReduceMotion={shouldReduceMotion || undefined}>
