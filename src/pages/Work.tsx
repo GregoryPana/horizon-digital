@@ -186,18 +186,17 @@ export default function Work() {
         gsap.set(`.project-text-0`, { opacity: 1, y: 0 });
       }
 
-      // 2. ONLY THEN, device flows up from bottom
-      // Adding a dynamic delay gap between text arriving and device arriving
+      // 2. ONLY THEN, device flows up from bottom with cinematic scale
       tl.fromTo(`.project-visual-${i}`,
-        { y: '100vh', opacity: 0 },
-        { y: '0vh', opacity: 1, duration: 2, ease: 'power2.out' },
-        `+=${0.5}` 
+        { y: '60vh', scale: 0.85, opacity: 0 },
+        { y: '0vh', scale: 1, opacity: 1, duration: 2.2, ease: 'expo.out' },
+        `reveal-${i}+=0.3` // tighter connection to text reveal
       );
       
       // Inside visual, tilt the laptop dynamically adding cinematic isometric flair
       tl.fromTo(`.laptop-model-${i}`,
-        { rotateX: -25, scale: 0.95 },
-        { rotateX: -12, scale: 1, duration: 2, ease: 'power2.out' },
+        { rotateX: -22, rotateY: -3, scale: 0.92 },
+        { rotateX: -12, rotateY: 0, scale: 1, duration: 2.5, ease: 'expo.out' },
         "<" // concurrent with visual ascending
       );
 
@@ -213,15 +212,15 @@ export default function Work() {
 
       // 4. Move everything out to make way for next project (if not the last project)
       if (i < projects.length - 1) {
-        // Visual flows out to the TOP
+        // Visual flows out to the TOP with subtle shrink
         tl.to(`.project-visual-${i}`, 
-          { y: '-100vh', opacity: 0, duration: 1.5, ease: 'power2.inOut' }, 
+          { y: '-60vh', scale: 0.92, opacity: 0, duration: 1.8, ease: 'expo.inOut' }, 
           `exit-${i}`
         );
-        // Text fades out gently in place
+        // Text fades out gently in place with slight lift
         tl.to(`.project-text-${i}`, 
-          { opacity: 0, scale: 0.98, duration: 1.5, ease: 'power2.inOut' }, 
-          `exit-${i}`
+          { y: -20, opacity: 0, scale: 0.95, duration: 1.5, ease: 'expo.inOut' }, 
+          `exit-${i}+=0.1`
         );
       }
     });
