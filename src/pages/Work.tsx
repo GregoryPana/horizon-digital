@@ -31,7 +31,6 @@ import takamakaMain from "../assets/work/takamaka-house/takamaka house.png";
 import takamakaMainWebp from "../assets/work/takamaka-house/takamaka house.webp";
 import takamakaAltOne from "../assets/work/takamaka-house/takamaka house 2.png";
 import takamakaAltOneWebp from "../assets/work/takamaka-house/takamaka house 2.webp";
-import horizonVideo from "../assets/Horizon Mockup-1.mp4";
 import drakeVideo from "../assets/DRAKE_SEASIDE_DESKTOP_OPTIMIZED.mp4";
 
 const projects = [
@@ -198,7 +197,7 @@ export default function Work() {
       if (i > 0) {
         tl.fromTo(`.project-text-${i}`,
           { y: 30, opacity: 0 },
-          { y: 0, opacity: 1, duration: 2.2, ease: 'expo.out', onStart: () => gsap.set(`.project-text-${i}`, { pointerEvents: 'auto', zIndex: 10 }) },
+          { y: 0, opacity: 1, duration: 2.2, ease: 'expo.out', onStart: () => { gsap.set(`.project-text-${i}`, { pointerEvents: 'auto', zIndex: 10 }) } },
           `reveal-${i}`
         );
       } else {
@@ -209,7 +208,7 @@ export default function Work() {
       // 2. ONLY THEN, device flows up from bottom with cinematic scale
       tl.fromTo(`.project-visual-${i}`,
         { y: '60vh', scale: 0.85, opacity: 0 },
-        { y: '0vh', scale: 1, opacity: 1, duration: 3.2, ease: 'expo.out', onStart: () => gsap.set(`.project-visual-${i}`, { pointerEvents: 'auto', zIndex: 10 }) },
+        { y: '0vh', scale: 1, opacity: 1, duration: 3.2, ease: 'expo.out', onStart: () => { gsap.set(`.project-visual-${i}`, { pointerEvents: 'auto', zIndex: 10 }) } },
         `reveal-${i}+=0.5` 
       );
       
@@ -240,7 +239,7 @@ export default function Work() {
             opacity: 0, 
             duration: 3.5, 
             ease: 'power1.inOut',
-            onComplete: () => gsap.set(`.project-visual-${i}`, { pointerEvents: 'none', zIndex: 1 })
+            onComplete: () => { gsap.set(`.project-visual-${i}`, { pointerEvents: 'none', zIndex: 1 }) }
           }, 
           `exit-${i}`
         );
@@ -252,7 +251,7 @@ export default function Work() {
             scale: 0.95, 
             duration: 3.0, 
             ease: 'power1.inOut',
-            onComplete: () => gsap.set(`.project-text-${i}`, { pointerEvents: 'none', zIndex: 1 })
+            onComplete: () => { gsap.set(`.project-text-${i}`, { pointerEvents: 'none', zIndex: 1 }) }
           }, 
           `exit-${i}+=0.1`
         );

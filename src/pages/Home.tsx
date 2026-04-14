@@ -252,7 +252,6 @@ function AnimatedProblemIcon({ type, active }: { type: 'outdated' | 'found' | 'z
     </svg>
   )
 }
-}
 
 const problemCards: Array<{
   title: string;
