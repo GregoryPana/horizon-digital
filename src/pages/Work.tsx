@@ -212,14 +212,14 @@ export default function Work() {
 
       // 4. Move everything out to make way for next project (if not the last project)
       if (i < projects.length - 1) {
-        // Visual flows out to the TOP with subtle shrink
+        // Visual flows out to the TOP with steady linear-like speed
         tl.to(`.project-visual-${i}`, 
-          { y: '-60vh', scale: 0.92, opacity: 0, duration: 2.8, ease: 'expo.inOut' }, 
+          { y: '-60vh', scale: 0.92, opacity: 0, duration: 3.5, ease: 'power1.inOut' }, 
           `exit-${i}`
         );
-        // Text fades out gently in place with slight lift
+        // Text fades out gently in place with steady lift
         tl.to(`.project-text-${i}`, 
-          { y: -20, opacity: 0, scale: 0.95, duration: 2.5, ease: 'expo.inOut' }, 
+          { y: -20, opacity: 0, scale: 0.95, duration: 3.0, ease: 'power1.inOut' }, 
           `exit-${i}+=0.1`
         );
       }
