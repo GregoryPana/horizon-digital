@@ -494,6 +494,16 @@ const Hero: React.FC<HeroProps> = ({
             
             {/* ═══ HERO TITLE — Per-character wave animation (Phase 1) ═══ */}
             <div className="space-y-1.5 sm:space-y-3 max-w-[95vw] lg:max-w-none mx-auto flex flex-col items-center">
+              {/* Visually hidden but crawler-accessible H1 for SEO */}
+              <h1 className="sr-only">
+                {headline.lines.map((line, idx) => {
+                  if (idx === 0 && headline.rotatingWords && headline.rotatingWords.length > 0) {
+                    return line.replace(headline.rotatingWords[0], headline.rotatingWords.join(', '));
+                  }
+                  return line;
+                }).join(' ')}
+              </h1>
+
               {titleData.map((td) => {
                 const lineCharStart = charCounter;
 
@@ -548,8 +558,9 @@ const Hero: React.FC<HeroProps> = ({
                   });
 
                   return (
-                    <h1
+                    <div
                       key={td.lineIndex}
+                      aria-hidden="true"
                       className="block w-full text-center text-[clamp(1.4rem,8.5vw,6.5rem)] sm:text-[clamp(2.2rem,8.5vw,6.5rem)] font-bold font-display uppercase leading-[1.1] lg:leading-[0.95] tracking-[0.02em]"
                     >
                       {/* block + text-center: inline-block WaveChar spans center via CSS text-align inheritance */}
@@ -589,7 +600,7 @@ const Hero: React.FC<HeroProps> = ({
                           </span>
                         )}
                       </span>
-                    </h1>
+                    </div>
                   );
                 } else {
                   // Non-slot line — simple per-char wave
@@ -615,14 +626,15 @@ const Hero: React.FC<HeroProps> = ({
                   });
 
                   return (
-                    <h1
+                    <div
                       key={td.lineIndex}
+                      aria-hidden="true"
                       className="block w-full text-center text-[clamp(1.4rem,8.5vw,6.5rem)] sm:text-[clamp(2.2rem,8.5vw,6.5rem)] font-bold font-display uppercase leading-[1.1] lg:leading-[0.95] tracking-[0.02em]"
                     >
                       <span className="block w-full text-center whitespace-normal sm:whitespace-nowrap">
                         {elements}
                       </span>
-                    </h1>
+                    </div>
                   );
                 }
               })}

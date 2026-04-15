@@ -15,6 +15,9 @@ const InsightArticle = lazy(() => import("./pages/InsightArticle"));
 const ShowcaseFormaStudio = lazy(() => import("./pages/ShowcaseFormaStudio"));
 const ShowcaseTakamakaHouse = lazy(() => import("./pages/ShowcaseTakamakaHouse"));
 const WebDesignSeychelles = lazy(() => import("./pages/WebDesignSeychelles"));
+const TourismWebsiteDesignSeychelles = lazy(() => import("./pages/TourismWebsiteDesignSeychelles"));
+const FAndBWebsiteDesignSeychelles = lazy(() => import("./pages/FAndBWebsiteDesignSeychelles"));
+const ProfessionalServicesWebsiteDesignSeychelles = lazy(() => import("./pages/ProfessionalServicesWebsiteDesignSeychelles"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 export default function App() {
@@ -50,6 +53,9 @@ export default function App() {
           <Route path="/showcase/forma-studio" element={<ShowcaseFormaStudio />} />
           <Route path="/showcase/takamaka-house" element={<ShowcaseTakamakaHouse />} />
           <Route path="/web-design-seychelles" element={<WebDesignSeychelles />} />
+          <Route path="/tourism-website-design-seychelles" element={<TourismWebsiteDesignSeychelles />} />
+          <Route path="/f-and-b-website-design-seychelles" element={<FAndBWebsiteDesignSeychelles />} />
+          <Route path="/professional-services-website-design-seychelles" element={<ProfessionalServicesWebsiteDesignSeychelles />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
