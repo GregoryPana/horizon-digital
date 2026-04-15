@@ -1,9 +1,11 @@
 import heroDesktop from "../assets/hero/hero-desktop-tech-v2.png";
 import heroDesktopWebp from "../assets/hero/hero-desktop-tech-v2.webp";
-import businessAutomationImage from "../assets/insights/business automation.webp";
-import aiToolsImage from "../assets/insights/ai tools.webp";
+import businessAutomationImage from "../assets/insights/business-automation-v3.png";
+import aiToolsImage from "../assets/insights/ai-seychelles-v3.png";
 import dataAnalysisImage from "../assets/insights/data analysis.webp";
 import chatbotImage from "../assets/insights/chatbot.webp";
+// import businessAutomationWebp from "../assets/insights/business automation.webp";
+// import aiToolsWebp from "../assets/insights/ai tools.webp";
 import trends2026Image from "../assets/insights/trends-2026.png";
 import roiImage from "../assets/insights/website-roi.png";
 import securityImage from "../assets/insights/cybersecurity.png";

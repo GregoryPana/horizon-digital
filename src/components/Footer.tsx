@@ -7,16 +7,12 @@ import { trackEvent } from "../lib/analytics";
 
 const mainLinks = [
   { label: "Home", path: "/" },
-  { label: "Our Work", path: "/work" },
   { label: "Services & Pricing", path: "/pricing" },
-  { label: "About", path: "/about" },
+  { label: "Our Work", path: "/work" },
   { label: "What You Need", path: "/what-you-need" },
-  { label: "Process", path: "/process" },
-  { label: "Contact", path: "/contact" },
-];
-
-const insightsLinks = [
   { label: "Digital Insights", path: "/insights" },
+  { label: "About", path: "/about" },
+  { label: "Contact", path: "/contact" },
 ];
 
 export default function Footer() {
@@ -80,24 +76,13 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Insights column */}
+          {/* Showcases column */}
           <div className="flex flex-col gap-5">
-            <p className="text-xs uppercase tracking-[0.4em] text-deep-teal">Insights</p>
-            <div className="flex flex-col gap-3">
-              {insightsLinks.map((link) => (
-                <Link
-                  key={link.path}
-                  to={link.path}
-                  className="text-sm text-text-muted transition hover:text-cyan"
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </div>
-            <div className="mt-2 flex flex-col gap-2.5">
-              <p className="text-xs uppercase tracking-[0.4em] text-deep-teal/70">Showcases</p>
-              <a href="/showcase/takamaka-house" className="text-sm text-text-muted transition hover:text-cyan">Takamaka House</a>
-              <a href="/showcase/forma-studio" className="text-sm text-text-muted transition hover:text-cyan">Forma Studio</a>
+            <p className="text-xs uppercase tracking-[0.4em] text-deep-teal">Showcases</p>
+            <div className="flex flex-col gap-2.5">
+              <Link to="/showcase/takamaka-house" className="text-sm text-text-muted transition hover:text-cyan">Takamaka House</Link>
+              <Link to="/showcase/forma-studio" className="text-sm text-text-muted transition hover:text-cyan">Forma Studio</Link>
+              <Link to="/showcase/drake-seaside" className="text-sm text-text-muted transition hover:text-cyan">Drake Seaside</Link>
             </div>
           </div>
 

@@ -2,24 +2,24 @@ import { motion, useReducedMotion } from "framer-motion";
 
 const signals = [
   {
-    label: "Google PageSpeed",
-    value: "95+ Score",
-    description: "Ultra-fast performance",
+    label: "Performance",
+    value: "A-Grade Speed",
+    description: "Fast-loading pages",
   },
   {
-    label: "Local Projects",
-    value: "20+ Delivered",
-    description: "Seychelles specialized",
+    label: "Mobile First",
+    value: "100% Responsive",
+    description: "Perfect on every phone",
   },
   {
-    label: "Professionalism",
-    value: "10+ Years",
-    description: "Design experience",
+    label: "Local Support",
+    value: "Direct Access",
+    description: "Help when you need it",
   },
   {
-    label: "Total Control",
+    label: "Total Ownership",
     value: "Zero Lock-ins",
-    description: "You own your code",
+    description: "You own your website",
   },
 ];
 

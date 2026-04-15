@@ -58,27 +58,27 @@ export const navLinks = [
   { label: "Contact", path: "/contact" },
 ];
 
-export const trustItems = ["Fast", "Mobile-ready", "Easy to find", "Clear calls-to-action"];
+export const trustItems = ["Fast Loading", "Mobile Ready", "Easy to Find", "Simple to Use"];
 export const services = [
   {
-    title: "Website build",
-    description: "We plan, design, and build your site from scratch — structured around your business from day one.",
+    title: "New Website Build",
+    description: "We plan, design, and build a beautiful website from scratch that's made specifically for your business.",
   },
   {
-    title: "Design refresh",
-    description: "Modernise your site without losing what already works for you.",
+    title: "Website Refresh",
+    description: "Give your current website a fresh, modern look and feel without losing what already works for you.",
   },
   {
-    title: "SEO & Performance",
-    description: "Built-in speed and search visibility so customers can actually find you.",
+    title: "Found on Google",
+    description: "We set up your website so it is fast and easy for customers to find when they search for your services online.",
   },
   {
-    title: "Mobile-friendly layout",
-    description: "Designed for the phones your customers actually use — no pinching, no squinting, no frustration.",
+    title: "Looks Great on Phones",
+    description: "Your website will look perfect on every phone your customers use—no more pinching or zooming to read.",
   },
   {
-    title: "WhatsApp & enquiry integration",
-    description: "The tools your customers already use — WhatsApp, contact forms, and booking links — built in from day one.",
+    title: "Easy Customer Contact",
+    description: "We make it simple for customers to reach you through WhatsApp, contact forms, or booking links directly on your site.",
   },
 ];
 
@@ -92,24 +92,24 @@ export const addOns = [
 
 export const projectSteps = [
   {
-    title: "Strategic Discovery",
-    description: "We don't just 'listen'—we audit. We identify the specific digital bottlenecks slowing your growth and define the exact technical path needed to resolve them.",
+    title: "Our First Chat",
+    description: "We talk about your business and your goals. We'll decide exactly what your new website needs to do to help you get more customers.",
   },
   {
-    title: "High-Fidelity Design",
-    description: "We engineer a visual blueprint optimized for trust. You review the exact layout and user journey, ensuring the design matches your strategic goals before we build.",
+    title: "Design & Review",
+    description: "We show you a visual plan of how your website will look and work. You can tell us what you like or what you want to change so it's just right.",
   },
   {
-    title: "Core Engineering",
-    description: "We build. Your site is engineered for sub-second load times, mobile perfection, and deep search visibility using modern performance frameworks.",
+    title: "Building Your Site",
+    description: "Once you're happy with the plan, we build it. We make sure everything is fast, clean, and works perfectly on all mobile phones.",
   },
   {
-    title: "Deployment & Speed Test",
-    description: "We launch with precision. We verify every link, form, and page speed metric to ensure your first impression is flawless and business-ready.",
+    title: "Going Live",
+    description: "We turn your website on for the world to see! We check everything one last time to make sure your first impression is perfect for your customers.",
   },
   {
-    title: "Performance Support",
-    description: "We don't disappear. We provide 30-60 days of hyper-responsive support to stabilize your growth and keep your digital asset performing at its peak.",
+    title: "Support & Growth",
+    description: "We don't just leave you there. We stay with you for the first month to help you with any questions and make sure everything keeps running smoothly.",
   },
 ];
 
@@ -254,7 +254,7 @@ export const workItems = [
     imageWebp: formaStudioBg,
     imageWebp800: formaStudioBg,
     imagePosition: "center 40%",
-    url: "https://horizondigitalsey.com/showcase/forma-studio",
+    url: "/showcase/forma-studio",
   },
   {
     label: "Hospitality · Foundation Tier",
@@ -265,7 +265,7 @@ export const workItems = [
     imageWebp: takamakaHouseBg,
     imageWebp800: takamakaHouseBg,
     imagePosition: "center 55%",
-    url: "https://horizondigitalsey.com/showcase/takamaka-house",
+    url: "/showcase/takamaka-house",
   },
   {
     label: "Wellness & Beauty · Foundation Tier",

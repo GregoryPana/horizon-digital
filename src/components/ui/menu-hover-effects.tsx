@@ -320,28 +320,54 @@ export default function NavMenu({
                   <NavigationMenuContent className={isInsightsMenu ? "nav-dropdown-insights" : undefined}>
                     {hasWorkDropdown ? (
                       <div className="grid min-w-[170px] grid-cols-1 gap-2">
-                        {workItems.map((work) => (
-                          <a
-                            key={work.title}
-                            href={work.url ?? "/work"}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="group flex items-center gap-2 rounded-lg border border-border bg-bg-panel/80 p-1.5 transition hover:border-accent/50"
-                          >
-                            <img
-                              src={work.imageWebp800 || work.imageWebp || work.image}
-                              alt={work.title}
-                              width={52}
-                              height={68}
-                              loading="lazy"
-                              decoding="async"
-                              className="h-[68px] w-[52px] rounded-md object-cover"
-                            />
-                            <p className="line-clamp-2 text-[0.62rem] font-semibold uppercase tracking-[0.11em] text-accent-2">
-                              {work.title}
-                            </p>
-                          </a>
-                        ))}
+                        {workItems.map((work) => {
+                          const isExternal = work.url?.startsWith("http");
+                          const linkClassName = "group flex items-center gap-2 rounded-lg border border-border bg-bg-panel/80 p-1.5 transition hover:border-accent/50";
+                          const content = (
+                            <>
+                              <img
+                                src={work.imageWebp800 || work.imageWebp || work.image}
+                                alt={work.title}
+                                width={52}
+                                height={68}
+                                loading="lazy"
+                                decoding="async"
+                                className="h-[68px] w-[52px] rounded-md object-cover"
+                              />
+                              <p className="line-clamp-2 text-[0.62rem] font-semibold uppercase tracking-[0.11em] text-accent-2">
+                                {work.title}
+                              </p>
+                            </>
+                          );
+
+                          if (isExternal) {
+                            return (
+                              <a
+                                key={work.title}
+                                href={work.url ?? "/work"}
+                                target="_blank"
+                                rel="noreferrer"
+                                className={linkClassName}
+                              >
+                                {content}
+                              </a>
+                            );
+                          }
+
+                          return (
+                            <Link
+                              key={work.title}
+                              to={work.url ?? "/work"}
+                              className={linkClassName}
+                              onClick={() => {
+                                if (work.url === "/work") scrollToTopSmooth();
+                                closeMenu();
+                              }}
+                            >
+                              {content}
+                            </Link>
+                          );
+                        })}
                       </div>
                     ) : (
                       <div className="grid min-w-[460px] grid-cols-2 gap-x-8 gap-y-2">

@@ -761,7 +761,7 @@ export default function Home() {
                     Here's exactly what we do together—<span className="text-deep-teal">step by step.</span>
                   </h2>
                   <p className="max-w-prose text-base md:text-xl leading-relaxed text-text-muted font-normal">
-                    Our journey begins with a deep dive into your vision. In the Discovery phase, we engage in meaningful conversations to grasp your brand identity, goals, and the essence you want to convey. This phase sets the stage for all that follows.
+                    We've made our process as simple as possible. We handle all the technical parts so you can focus on your business, keeping you involved and informed every step of the way.
                   </p>
                 </motion.div>
               </div>
