@@ -63,10 +63,15 @@ const desktopDropdowns: Record<string, Array<{ label: string; to: string }>> = {
   ],
 };
 
-export default function NavMenu() {
+export default function NavMenu({
+  isMenuOpen,
+  setIsMenuOpen,
+}: {
+  isMenuOpen: boolean;
+  setIsMenuOpen: (val: boolean | ((p: boolean) => boolean)) => void;
+}) {
   const location = useLocation();
   const navigate = useNavigate();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [expandedGroups, setExpandedGroups] = useState<string[]>([]);
   const scrollLockRef = useRef(0);
 

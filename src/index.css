@@ -85,6 +85,7 @@
 html,
 body {
   width: 100%;
+  max-width: 100%;
   overflow-x: clip;
 }
 
@@ -1055,11 +1056,11 @@ html .section-eyebrow-glow {
   color: #EAF2FF;
 }
 
-
 .insights-theme-shell .section-eyebrow-glow {
   text-shadow:
     0 0 10px rgba(94, 209, 222,0.5),
     0 0 24px rgba(94, 209, 222,0.3);
+}
 
 .insights-theme-shell p {
   color: #F3F4F6 !important;
@@ -1069,7 +1070,6 @@ html .section-eyebrow-glow {
 .insights-theme-shell .text-text-muted {
   color: #F3F4F6 !important;
   opacity: 0.95 !important;
-}
 }
 
 .insights-theme-shell .glass {

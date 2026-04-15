@@ -11,6 +11,7 @@ export default function Navbar() {
   const normalizedPath = pathname.replace(/\/+$/, "") || "/";
   const isHomeRoute = normalizedPath === "/";
   const [isScrolled, setIsScrolled] = useState(!isHomeRoute);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     if (!isHomeRoute) {
@@ -27,7 +28,7 @@ export default function Navbar() {
   return (
     <header
       data-site-header
-      className={`site-header-dark fixed top-0 left-0 right-0 z-[150] border-b ${isScrolled ? "is-scrolled" : ""}`.trim()}
+      className={`site-header-dark fixed top-0 left-0 right-0 z-[150] border-b ${isScrolled ? "is-scrolled" : ""} ${isMenuOpen ? "!z-[250] !bg-transparent !border-transparent !backdrop-blur-none" : ""}`.trim()}
     >
       <div className="mx-auto flex w-full max-w-[1760px] items-center gap-4 px-5 py-3 md:gap-6 md:px-8 md:py-4 lg:px-12 xl:px-16 2xl:px-20">
         <NavLink
@@ -44,7 +45,7 @@ export default function Navbar() {
           </span>
         </NavLink>
         <div className="ml-auto flex items-center gap-3">
-          <NavMenu />
+          <NavMenu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
           <div className="hidden items-center gap-7 lg:flex">
             <style>{`
               @keyframes nav-cta-gradient {

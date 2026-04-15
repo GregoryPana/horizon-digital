@@ -57,7 +57,7 @@ export default function Section({
         <motion.div
           initial={{ opacity: skipAnimation ? 1 : 0, y: skipAnimation ? 0 : 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.05, margin: "0px 0px -80px 0px" }}
           transition={{ duration: skipAnimation ? 0 : 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
         >
           {children}

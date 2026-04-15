@@ -19,7 +19,7 @@ export default function InsightsHero({ eyebrow, title, description, actions }: I
       <motion.h1
         initial={{ opacity: 0, y: 28 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false, amount: 0.4 }}
+        viewport={{ once: false, amount: 0.1 }}
         transition={{ delay: 0.08, duration: 0.72, ease: "easeOut" }}
         className="mx-auto mt-6 max-w-4xl text-balance text-center text-4xl font-semibold tracking-[-0.02em] text-[#F0F4F8] md:text-6xl"
       >
@@ -29,7 +29,7 @@ export default function InsightsHero({ eyebrow, title, description, actions }: I
       <motion.p
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false, amount: 0.4 }}
+        viewport={{ once: false, amount: 0.1 }}
         transition={{ delay: 0.16, duration: 0.65, ease: "easeOut" }}
         className="mx-auto mt-6 max-w-3xl text-center text-sm leading-7 text-text-muted md:text-base"
       >

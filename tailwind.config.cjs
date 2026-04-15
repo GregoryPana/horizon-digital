@@ -18,6 +18,7 @@ module.exports = {
         border: "var(--border)",
         "glow": "var(--glow)",
         cyan: "#5ED1DE",
+        "blue-menu-fade": "rgba(4, 18, 30, 0.95)",
       },
       boxShadow: {
         glow: "0 0 24px var(--glow)",
