@@ -24,6 +24,7 @@ import { ContainerScroll, CardSticky } from "../components/ui/cards-stack";
 
 import Hero from "../components/ui/animated-shader-hero";
 import { OurServicesSlideshow } from "../components/ui/OurServicesSlideshow";
+import { TrustSignalsBar } from "../components/ui/TrustSignalsBar";
 
 
 const homeFaqCategories: HomeFaqCategory[] = [
@@ -447,6 +448,7 @@ export default function Home() {
         }}
 
       />
+      <TrustSignalsBar />
 
       <section className="relative z-20 bg-[#0A0A0C] py-20 md:py-32">
         <div className="mx-auto max-w-7xl px-6">

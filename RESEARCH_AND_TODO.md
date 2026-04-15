@@ -405,7 +405,9 @@ Replaced all flex-centering row wrappers in both the slot and non-slot h1 paths 
 | Page | Target Keyword | Intent | Status |
 |------|---------------|--------|----------|
 | `/web-design-seychelles` | web design Seychelles | TRANS | ✅ Done |
-| `/tourism-website-design-seychelles` | hotel/guesthouse website Seychelles | VERTICAL | ⬜ |
+| `/tourism-website-design-seychelles` | hotel/guesthouse website Seychelles | VERTICAL | ✅ Done |
+| `/f-and-b-website-design-seychelles` | restaurant/cafe website Seychelles | VERTICAL | ✅ Done |
+| `/professional-services-website-design-seychelles` | law/accounting website Seychelles | VERTICAL | ✅ Done |
 | `/seo-seychelles` | SEO Seychelles | TRANS | ⬜ |
 | `/website-cost-seychelles` | how much does a website cost Seychelles | INFO/COMM | ⬜ |
 
@@ -483,7 +485,7 @@ Replaced all flex-centering row wrappers in both the slot and non-slot h1 paths 
 |---|-----|----------|
 | C1 | ~~No floating WhatsApp CTA button~~ | High | ✅ Fixed — added to Layout.tsx, always-visible bottom-right |
 | C2 | Testimonials or client quote section | High | ✅ Done (Single Cinematic Testimonial) |
-| C3 | No "trust signals" bar after hero | Medium | ⬜ Outstanding |
+| C3 | No "trust signals" bar after hero | Medium | ✅ Done |
 | C4 | Marquee hidden on mobile | Medium | ✅ Fixed — now visible on all viewports |
 | C5 | Package cards on mobile show all 4 — progressive reveal | Low | ⬜ Low priority |
 | C6 | No exit-intent capture | ❌ Not Needed | No GDPR plan in scope |
@@ -498,11 +500,11 @@ Replaced all flex-centering row wrappers in both the slot and non-slot h1 paths 
 | G1 | No testimonials page or testimonial snippets on Home | Social proof | ✅ Fixed |
 | G2 | "industries we serve" content — Tourism, Hospitality, F&B are primary Seychelles verticals | SEO + UX | ✅ Fixed |
 | G3 | About page likely thin on content depth | Authority | Medium |
-| G4 | No FAQ page for common "how much does a website cost" type queries | SEO | Medium |
-| G5 | Insights section has 5 articles — thin for a blog/insights hub | SEO authority | Medium |
-| G6 | No case study detail pages with metrics (Drake Seaside has a showcase but no conversion story) | Conversion | Medium |
-| G7 | No pricing FAQ specifically answering "what's included" | Conversion | Low |
-| G8 | Process page description copy ("Our journey begins with a deep dive...") reads as generic | UX | Low |
+| G4 | No FAQ page for common "how much does a website cost" type queries | SEO | ✅ Fixed |
+| G5 | Insights section has 5 articles — thin for a blog/insights hub | SEO authority | ✅ Fixed (8 articles) |
+| G6 | No case study detail pages with metrics (Drake Seaside has a cinematic conversion story) | Conversion | ✅ Fixed |
+| G7 | No pricing FAQ specifically answering "what's included" | Conversion | ✅ Fixed |
+| G8 | Process page description copy ("Our journey begins with a deep dive...") reads as generic | UX | ✅ Fixed |
 
 ---
 
@@ -547,15 +549,15 @@ Replaced all flex-centering row wrappers in both the slot and non-slot h1 paths 
 | L1 | Create `/web-design-seychelles` landing page targeting head term | SEO/Content | New page | ✅ Done |
 | L2 | Create `/tourism-website-design-seychelles` vertical page | SEO/Content | New page | ✅ Done |
 | L12 | Create `/f-and-b-website-design-seychelles` vertical page | SEO/Content | New page | ✅ Done |
-| L13 | Create `/professional-services-website-design-seychelles` vertical page | SEO/Content | New page | ⬜ |
+| L13 | Create `/professional-services-website-design-seychelles` vertical page | SEO/Content | New page | ✅ Done |
 | L3 | Add Service schema with SCR price range to Pricing page | SEO | `Pricing.tsx` | ✅ Done |
-| L4 | Add auto-advance timer to Services Slideshow (3s, pause on hover) | UX | slideshow component | ⬜ |
+| L4 | Add auto-advance timer to Services Slideshow (3s, pause on hover) | UX | slideshow component | ✅ Done |
 | L5 | Add `AboutPage` + `Person` schema to About page | SEO | `About.tsx` | ✅ Done |
 | L6 | Rewrite Process page keywords → "web design process", "website development timeline" | SEO | `Process.tsx` | ✅ Done |
-| L7 | Add 3+ more Insight articles to strengthen content hub | SEO authority | New content | ⬜ |
-| L8 | Add case study detail with metrics for Drake Seaside project | Conversion | New page/section | ⬜ |
+| L7 | Add 3+ more Insight articles to strengthen content hub (8 total now) | SEO authority | New content | ✅ Done |
+| L8 | Add case study detail with metrics for Drake Seaside project | Conversion | ✅ Done |
 | L9 | Work page: upgrade fadeIn preset — blur(8px)+y:24, amount 0.15, 0.95s | Animation | `Work.tsx` | ✅ Done |
-| L10 | Consider `/pricing` or `/web-design-packages-seychelles` redirect from `/services-pricing` | SEO | Router + sitemap | ⬜ |
+| L10 | Consider `/pricing` or `/web-design-packages-seychelles` redirect from `/services-pricing` | SEO | Router + sitemap | ✅ Done |
 | L11 | About page feature blocks: add stacking blur entrance animations | Animation | `About.tsx` | ✅ Done |
 
 ### ❌ Not Needed / Deferred

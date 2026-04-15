@@ -23,7 +23,7 @@ export default {
         { path: "/", priority: "1.0", changefreq: "weekly" },
         { path: "/what-you-need", priority: "0.9", changefreq: "monthly" },
         { path: "/work", priority: "0.8", changefreq: "monthly" },
-        { path: "/services-pricing", priority: "0.9", changefreq: "monthly" },
+        { path: "/pricing", priority: "0.9", changefreq: "monthly" },
         { path: "/web-design-seychelles", priority: "1.0", changefreq: "monthly" },
         { path: "/insights", priority: "0.8", changefreq: "weekly" },
         { path: "/about", priority: "0.7", changefreq: "monthly" },

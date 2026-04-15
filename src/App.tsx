@@ -15,6 +15,7 @@ const InsightArticle = lazy(() => import("./pages/InsightArticle"));
 const ShowcaseFormaStudio = lazy(() => import("./pages/ShowcaseFormaStudio"));
 const ShowcaseTakamakaHouse = lazy(() => import("./pages/ShowcaseTakamakaHouse"));
 const WebDesignSeychelles = lazy(() => import("./pages/WebDesignSeychelles"));
+const ShowcaseDrakeSeaside = lazy(() => import("./pages/ShowcaseDrakeSeaside"));
 const TourismWebsiteDesignSeychelles = lazy(() => import("./pages/TourismWebsiteDesignSeychelles"));
 const FAndBWebsiteDesignSeychelles = lazy(() => import("./pages/FAndBWebsiteDesignSeychelles"));
 const ProfessionalServicesWebsiteDesignSeychelles = lazy(() => import("./pages/ProfessionalServicesWebsiteDesignSeychelles"));
@@ -42,8 +43,8 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/what-you-need" element={<WhatYouNeed />} />
           <Route path="/work" element={<Work />} />
-          <Route path="/services-pricing" element={<Pricing />} />
-          <Route path="/pricing" element={<Navigate to="/services-pricing" replace />} />
+          <Route path="/pricing" element={<Pricing />} />
+          <Route path="/services-pricing" element={<Navigate to="/pricing" replace />} />
           <Route path="/process" element={<Process />} />
           <Route path="/ai-digital-tools" element={<Navigate to="/insights" replace />} />
           <Route path="/insights" element={<Insights />} />
@@ -52,6 +53,7 @@ export default function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/showcase/forma-studio" element={<ShowcaseFormaStudio />} />
           <Route path="/showcase/takamaka-house" element={<ShowcaseTakamakaHouse />} />
+          <Route path="/showcase/drake-seaside" element={<ShowcaseDrakeSeaside />} />
           <Route path="/web-design-seychelles" element={<WebDesignSeychelles />} />
           <Route path="/tourism-website-design-seychelles" element={<TourismWebsiteDesignSeychelles />} />
           <Route path="/f-and-b-website-design-seychelles" element={<FAndBWebsiteDesignSeychelles />} />

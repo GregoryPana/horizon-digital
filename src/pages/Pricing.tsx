@@ -124,7 +124,7 @@ export default function Pricing() {
         name: pkg.title,
         priceCurrency: "SCR",
         price: priceValue,
-        url: new URL("/services-pricing", siteConfig.url).toString(),
+        url: new URL("/pricing", siteConfig.url).toString(),
       };
     })
     .filter(Boolean) as Array<{
@@ -196,11 +196,11 @@ export default function Pricing() {
       <Seo
         title="Custom Website Packages & Pricing in Seychelles | Horizon Digital"
         description="Clear website packages for Seychelles businesses — Foundation, Starter, and Growth. Honest SCR pricing, custom design, and everything your business needs to get found online."
-        path="/services-pricing"
+        path="/pricing"
         keywords="custom website packages Seychelles, custom web design pricing Seychelles, bespoke website development Seychelles, tailored web solutions Seychelles"
         breadcrumbs={[
           { name: "Home", path: "/" },
-          { name: "Services & Pricing", path: "/services-pricing" },
+          { name: "Services & Pricing", path: "/pricing" },
         ]}
         structuredData={[serviceSchema, faqSchema]}
       />
@@ -428,11 +428,12 @@ export default function Pricing() {
                   transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                 >
                   <span className="mb-6 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">How we get there</span>
-                  <h2 className="font-display mb-8 max-w-3xl text-4xl sm:text-5xl lg:text-5xl xl:text-6xl font-semibold leading-[1.1] tracking-tight">
-                    What happens from <span className="text-cyan">start to launch.</span>
-                  </h2>
-                  <p className="max-w-prose text-base md:text-xl leading-relaxed text-text-muted font-normal">
-                    A clear sequence. No guesswork. You know exactly what's happening at every step of your project.
+                  <h1 className="font-display mb-8 text-5xl sm:text-7xl lg:text-8xl font-semibold leading-[1.05] tracking-tight">
+                    A path defined by <br />
+                    <span className="text-cyan italic">precision & speed.</span>
+                  </h1>
+                  <p className="max-w-2xl text-lg sm:text-2xl leading-relaxed text-text-muted font-normal">
+                    We move from strategy to launch with surgical focus, ensuring your business stays ahead of the digital curve.
                   </p>
                 </motion.div>
               </div>
@@ -843,7 +844,7 @@ export default function Pricing() {
         containerClassName="max-w-7xl xl:pl-64 2xl:pl-8"
       >
         <div className="grid gap-6 md:grid-cols-2 mt-8">
-          {faqs.slice(0, 4).map((faq) => (
+          {faqs.map((faq) => (
             <div key={faq.question} className="p-8 rounded-2xl bg-[#131315] shadow-[0_4px_16px_rgba(0,0,0,0.4)] hover:shadow-[0_8px_32px_rgba(0,0,0,0.55)] transition-all duration-300">
               <h3 className="text-lg font-semibold text-text mb-4">{faq.question}</h3>
               <p className="text-sm text-text-muted leading-relaxed">{faq.answer}</p>

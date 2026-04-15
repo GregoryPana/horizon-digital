@@ -467,9 +467,8 @@ function ActiveSlideDescription() {
 }
 
 // ── Auto-advance (pauses on hover) ────────────────────────────────────────
-function AutoAdvance({ total, interval = 4000 }: { total: number; interval?: number }) {
+function AutoAdvance({ total, interval = 3000, paused }: { total: number; interval?: number; paused: boolean }) {
   const { changeSlide, activeSlide } = useHoverSliderContext();
-  const pausedRef = useRef(false);
   const slideRef = useRef(activeSlide);
 
   // Keep ref in sync with context without re-creating the timer
@@ -479,36 +478,29 @@ function AutoAdvance({ total, interval = 4000 }: { total: number; interval?: num
 
   useEffect(() => {
     const id = setInterval(() => {
-      if (!pausedRef.current) {
+      if (!paused) {
         changeSlide((slideRef.current + 1) % total);
       }
     }, interval);
     return () => clearInterval(id);
-  }, [changeSlide, total, interval]);
+  }, [changeSlide, total, interval, paused]);
 
-  return (
-    <div
-      className="absolute inset-0 z-0"
-      onMouseEnter={() => { pausedRef.current = true; }}
-      onMouseLeave={() => { pausedRef.current = false; }}
-      aria-hidden="true"
-    />
-  );
+  return null;
 }
 
 // ── Main export ────────────────────────────────────────────────────────────
 export function OurServicesSlideshow() {
-  const pausedRef = useRef(false);
+  const [isPaused, setIsPaused] = useState(false);
+  
   return (
-    <HoverSlider className="w-full relative z-10 bg-[#0A0A0C]">
-      {/* Auto-advance overlay — pauses on component hover */}
-      <div
-        className="contents"
-        onMouseEnter={() => { pausedRef.current = true; }}
-        onMouseLeave={() => { pausedRef.current = false; }}
-      >
-        <AutoAdvance total={SLIDES.length} interval={4000} />
-      </div>
+    <HoverSlider 
+      className="w-full relative z-10 bg-[#0A0A0C]"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      onTouchStart={() => setIsPaused(true)}
+      onTouchEnd={() => setIsPaused(false)}
+    >
+      <AutoAdvance total={SLIDES.length} interval={3000} paused={isPaused} />
 
       <div className="flex flex-col md:flex-row items-start justify-between gap-10 md:gap-x-16">
 

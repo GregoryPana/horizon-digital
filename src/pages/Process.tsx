@@ -72,11 +72,11 @@ export default function Process() {
           >
             <span className="mb-6 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">How we get there</span>
             <h1 className="font-display mb-8 text-5xl sm:text-7xl lg:text-8xl font-semibold leading-[1.05] tracking-tight">
-              A process you'll <br />
-              <span className="text-cyan italic">actually enjoy.</span>
+              A path defined by <br />
+              <span className="text-cyan italic">precision & speed.</span>
             </h1>
             <p className="max-w-2xl text-lg sm:text-2xl leading-relaxed text-text-muted font-normal">
-              Every step is clear, every decision is yours, and nothing happens without your green light.
+              We move from strategy to launch with surgical focus, ensuring your business stays ahead of the digital curve.
             </p>
           </motion.div>
         </div>

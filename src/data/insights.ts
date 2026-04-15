@@ -4,6 +4,9 @@ import businessAutomationImage from "../assets/insights/business automation.webp
 import aiToolsImage from "../assets/insights/ai tools.webp";
 import dataAnalysisImage from "../assets/insights/data analysis.webp";
 import chatbotImage from "../assets/insights/chatbot.webp";
+import trends2026Image from "../assets/insights/trends-2026.png";
+import roiImage from "../assets/insights/website-roi.png";
+import securityImage from "../assets/insights/cybersecurity.png";
 
 export type InsightArticle = {
   slug: string;
@@ -219,6 +222,99 @@ export const insightArticles: InsightArticle[] = [
         subBody:
           "Good chatbot setups include a clear handoff path to WhatsApp, phone, or email, plus regular content reviews. Reliable short answers are better than long uncertain responses.",
       },
+    ],
+  },
+  {
+    slug: "web-design-trends-2026-seychelles",
+    title: "Web Design Trends for 2026: A Seychelles Perspective",
+    seoTitle: "Web Design Trends 2026 Seychelles | Horizon Digital",
+    datePublished: "2025-04-10",
+    dateModified: "2025-04-10",
+    metaDescription: "Explore the emerging web design trends shaped for the Seychelles business landscape in 2026, from glassmorphism to AI-driven personalization.",
+    excerpt: "2026 is set to be a transformative year for digital interfaces in Seychelles, blending global aesthetics with local utility.",
+    keywords: "web design trends 2026 seychelles, modern web design mahe, digital trends victoria",
+    image: trends2026Image,
+    sections: [
+      {
+        heading: "Glassmorphism and Depth in 2026",
+        body: [
+          "We're seeing a significant shift towards glassmorphism—using frosted-glass effects to create layers and depth. This aesthetic mirrors the clarity and vibrancy of the Seychelles environment.",
+          "For local brands, this means interfaces that feel light, airy, and modern, moving away from flat, heavy designs of the past."
+        ],
+        subheading: "Visual Clarity as a Trust Signal",
+        subBody: "Clean, high-depth interfaces aren't just about looks; they signal professional maturity and technical investment to your potential clients."
+      },
+      {
+        heading: "AI-Driven Personalization",
+        body: [
+          "Websites are becoming more than static brochures; they are evolving into responsive entities that adapt to user behaviour in real-time.",
+          "In 2026, we expect to see more Seychelles tourism and service sites using AI to tailor content based on whether a visitor is a returning local client or an international traveler."
+        ],
+        subheading: "Dynamic User Journeys",
+        subBody: "The goal is to provide the most relevant information at the exact right time, reducing the steps needed for a visitor to become a customer."
+      }
+    ],
+  },
+  {
+    slug: "maximizing-website-roi-seychelles",
+    title: "Maximizing ROI: How a Professional Website Pays for Itself",
+    seoTitle: "Maximizing Website ROI for Seychelles Businesses | Horizon Digital",
+    datePublished: "2025-04-12",
+    dateModified: "2025-04-12",
+    metaDescription: "Understand the financial impact of a high-performance website. Learn how Seychelles businesses can track and maximize their digital return on investment.",
+    excerpt: "A website is an investment, not an expense. When built correctly, it serves as your hardest-working sales representative.",
+    keywords: "website ROI seychelles, business growth digital seychelles, website investment local business",
+    image: roiImage,
+    sections: [
+      {
+        heading: "Lowering Client Acquisition Costs",
+        body: [
+          "A high-ranking website reduces your reliance on paid advertising. By capturing organic search traffic, you lower the cost of acquiring every new lead.",
+          "For Seychelles businesses, this is particularly powerful in the tourism and professional services sectors where competition for visibility is high."
+        ],
+        subheading: "The Power of Organic Reach",
+        subBody: "A site that ranks for 'Accountant in Victoria' or 'Praslin Guesthouse' provides a continuous stream of leads without recurring ad spend."
+      },
+      {
+        heading: "24/7 Automated Sales",
+        body: [
+          "Your website never sleeps. It handles initial enquiries, showcases your best work, and qualifies leads while you are offline.",
+          "By automating the first 20% of the sales conversation, your team can focus on closing deals rather than answering repetitive questions."
+        ],
+        subheading: "Efficiency as a Growth Driver",
+        subBody: "Time saved through automation is time redirected toward service quality and business strategy."
+      }
+    ],
+  },
+  {
+    slug: "cybersecurity-small-business-seychelles",
+    title: "Cybersecurity for Small Businesses: Keeping Your Customers Safe",
+    seoTitle: "Cybersecurity Tips for Small Businesses in Seychelles | Horizon Digital",
+    datePublished: "2025-04-15",
+    dateModified: "2025-04-15",
+    metaDescription: "Practical cybersecurity advice for Seychelles small business owners. Learn how to protect your customer data and maintain digital trust.",
+    excerpt: "In an increasingly connected world, protecting your digital assets and customer data is no longer optional—it's essential.",
+    keywords: "cybersecurity seychelles, small business security mahe, customer data protection seychelles",
+    image: securityImage,
+    sections: [
+      {
+        heading: "Security is the Foundation of Trust",
+        body: [
+          "In professional services, your clients trust you with sensitive information. A security breach doesn't just lose data; it destroys your reputation.",
+          "Implementing SSL certificates, secure hosting, and encrypted contact forms are the minimum requirements for any serious Seychelles business."
+        ],
+        subheading: "Protecting Your Reputation",
+        subBody: "Customers are more likely to buy from businesses that demonstrate a clear commitment to their data privacy and security."
+      },
+      {
+        heading: "Simple Steps for Better Defense",
+        body: [
+          "You don't need a multi-million dollar budget to stay secure. Regular software updates, strong password policies, and multi-factor authentication provide significant protection.",
+          "Educating your team on phishing and basic digital hygiene is often the most effective defense against common online threats."
+        ],
+        subheading: "Building a Culture of Security",
+        subBody: "Digital security is a continuous process of awareness and improvement, not a one-time technical fix."
+      }
     ],
   },
 ];

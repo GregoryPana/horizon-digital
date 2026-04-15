@@ -50,7 +50,7 @@ export const emailTemplate = {
 
 export const navLinks = [
   { label: "Home", path: "/" },
-  { label: "Services & Pricing", path: "/services-pricing" },
+  { label: "Services & Pricing", path: "/pricing" },
   { label: "Our Work", path: "/work" },
   { label: "What You Need", path: "/what-you-need" },
   { label: "Digital Insights", path: "/insights" },
@@ -92,24 +92,24 @@ export const addOns = [
 
 export const projectSteps = [
   {
-    title: "Discovery",
-    description: "You tell us about your business, your goals, and your customers. We listen carefully before anything else happens.",
+    title: "Strategic Discovery",
+    description: "We don't just 'listen'—we audit. We identify the specific digital bottlenecks slowing your growth and define the exact technical path needed to resolve them.",
   },
   {
-    title: "Design",
-    description: "We create the visual layout and page structure. You review it and approve the direction before we write a single line of code.",
+    title: "High-Fidelity Design",
+    description: "We engineer a visual blueprint optimized for trust. You review the exact layout and user journey, ensuring the design matches your strategic goals before we build.",
   },
   {
-    title: "Build",
-    description: "We engineer the full site, optimised for speed, mobile, and search.",
+    title: "Core Engineering",
+    description: "We build. Your site is engineered for sub-second load times, mobile perfection, and deep search visibility using modern performance frameworks.",
   },
   {
-    title: "Launch",
-    description: "We go live — and stay close for 30 days to make sure everything runs perfectly.",
+    title: "Deployment & Speed Test",
+    description: "We launch with precision. We verify every link, form, and page speed metric to ensure your first impression is flawless and business-ready.",
   },
   {
-    title: "Grow",
-    description: "We keep your site healthy, fast, and supported whenever you need us.",
+    title: "Performance Support",
+    description: "We don't disappear. We provide 30-60 days of hyper-responsive support to stabilize your growth and keep your digital asset performing at its peak.",
   },
 ];
 
@@ -243,7 +243,7 @@ export const workItems = [
     image: guesthousePreview,
     imageWebp: guesthousePreviewWebp,
     imageWebp800: guesthousePreviewWebp800,
-    url: "https://thedrake-seaside.com/?utm_source=horizondigitalsey.com&utm_medium=referral&utm_campaign=portfolio_showcase",
+    url: "/showcase/drake-seaside",
   },
   {
     label: "Creative Studio · Foundation Tier",
@@ -289,27 +289,35 @@ export const testimonials = [
 
 export const faqs = [
   {
+    question: "How much does a website actually cost?",
+    answer: "Our standard packages range from SCR 7,500 for foundations to SCR 25,000+ for aggressive growth tiers. We believe in total transparency—your quote covers everything from strategy to launch with no hidden fees.",
+  },
+  {
+    question: "What exactly is included in the price?",
+    answer: "Every project includes custom design (no templates), mobile optimization, basic SEO setup, direct WhatsApp integration, and at least 30 days of post-launch stabilization support.",
+  },
+  {
     question: "What is a typical timeline?",
-    answer: "Most projects launch in 3–6 weeks, depending on scope and how quickly content is ready. We'll give you a clear estimate before anything starts.",
+    answer: "Most projects launch in 3–6 weeks. We move fast because we follow a structured sequence, ensuring quality isn't sacrificed for speed.",
   },
   {
-    question: "Is pricing flexible?",
-    answer: "Yes. Package pricing gives a clear starting range, and we adjust based on your page count, content needs, and any extras. No surprises.",
+    question: "Do I own my website and domain?",
+    answer: "Always. Ownership of the codebase, assets, and domain remains 100% yours. We can manage them for you, but you hold the keys.",
   },
   {
-    question: "Do I own the website?",
-    answer: "Absolutely. Once the project closes, the final codebase and all approved assets are yours. Always.",
+    question: "Do you provide content writing?",
+    answer: "Yes. While we can use your existing text, we offer professional copywriting as an add-on to ensure your messaging is optimized for both customers and search engines.",
   },
   {
-    question: "Who controls my domain name?",
-    answer: "You do. Your domain lives in your registrar account and renews yearly. We can help with setup and renewals, but ownership always stays with you.",
+    question: "Can I update the website myself?",
+    answer: "Yes. For clients who want hands-on control, we can build using a user-friendly CMS (Content Management System) that allows you to edit text and images without touching code.",
   },
   {
-    question: "What is hosting and who provides it?",
-    answer: "Hosting is what keeps your website live online. You can host with us — we handle everything — or use another provider if you prefer. Either works.",
+    question: "Is pricing flexible for smaller projects?",
+    answer: "We offer the Foundation tier specifically for startups and small practices. Beyond that, we can adjust scopes to fit specific budgets while maintaining our quality standards.",
   },
   {
     question: "How many revisions are included?",
-    answer: "Every package includes structured revision rounds tied to project milestones, so feedback stays focused and the process stays smooth.",
+    answer: "Every package includes dedicated revision rounds at key milestones (Design and Final Review) to ensure the end result is exactly what you envisioned.",
   },
 ];

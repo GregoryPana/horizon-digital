@@ -8,7 +8,7 @@ import { trackEvent } from "../lib/analytics";
 const mainLinks = [
   { label: "Home", path: "/" },
   { label: "Our Work", path: "/work" },
-  { label: "Services & Pricing", path: "/services-pricing" },
+  { label: "Services & Pricing", path: "/pricing" },
   { label: "About", path: "/about" },
   { label: "What You Need", path: "/what-you-need" },
   { label: "Process", path: "/process" },

@@ -25,12 +25,12 @@ const mobileMenuItems: MobileMenuItem[] = [
   {
     id: "pricing",
     label: "Services & Pricing",
-    to: "/services-pricing",
+    to: "/pricing",
     children: [
-      { label: "Overview", to: "/services-pricing#overview" },
-      { label: "Packages", to: "/services-pricing#packages" },
-      { label: "Hosting", to: "/services-pricing#hosting" },
-      { label: "Add-ons", to: "/services-pricing#addons" },
+      { label: "Overview", to: "/pricing#overview" },
+      { label: "Packages", to: "/pricing#packages" },
+      { label: "Hosting", to: "/pricing#hosting" },
+      { label: "Add-ons", to: "/pricing#addons" },
     ],
   },
   { id: "work", label: "Our Work", to: "/work" },
@@ -53,13 +53,13 @@ const desktopDropdowns: Record<string, Array<{ label: string; to: string }>> = {
     { label: "FAQ", to: "/#faq" },
     { label: "Ready", to: "/#ready" },
   ],
-  "/services-pricing": [
-    { label: "Overview", to: "/services-pricing#overview" },
-    { label: "Process", to: "/services-pricing#process" },
-    { label: "Packages", to: "/services-pricing#packages" },
-    { label: "Hosting", to: "/services-pricing#hosting" },
-    { label: "Add-ons", to: "/services-pricing#addons" },
-    { label: "Visibility", to: "/services-pricing#visibility" },
+  "/pricing": [
+    { label: "Overview", to: "/pricing#overview" },
+    { label: "Process", to: "/pricing#process" },
+    { label: "Packages", to: "/pricing#packages" },
+    { label: "Hosting", to: "/pricing#hosting" },
+    { label: "Add-ons", to: "/pricing#addons" },
+    { label: "Visibility", to: "/pricing#visibility" },
   ],
 };
 
