@@ -135,11 +135,14 @@ Status legend: ✅ Done · 🔄 In Progress · ⬜ Outstanding · ❌ Not Needed
 | 79 | GA4 Work Page: Added visual click tracking (laptop mockups) and button interaction tracking | `Work.tsx` | ✅ |
 | 80 | GA4 Home Page: Instrumented portfolio accordion with click tracking for all interaction points | `home-work-accordion.tsx` | ✅ |
 | 81 | Lead Optimization: Added "Request similar site" CTAs and Contact form pre-filling logic | `Work.tsx`, `Contact.tsx` | ✅ |
+| 82 | UTM Attribution: Added project-specific UTM tags to Drake Seaside links for client GA4 tracking | `site.ts`, `Work.tsx` | ✅ |
 
 ### ✅ Completed (Session 7 — 2026-04-15)
 
 | # | Change | File | Status |
 |---|--------|------|--------|
+| 83 | UTM Link Strategy: Implemented `utm_source=horizondigitalsey.com` on portfolio links to provide baseline attribution for clients | `site.ts`, `Work.tsx` | ✅ |
+| 84 | Footer Backlink Strategy: Generated referral-tagged backlinks for client footers to track inbound leads | N/A | ✅ |
 | 82 | Lead Generation Engine: Implemented `request` query parameter parsing in Contact page to pre-populate message for specific projects | `Contact.tsx` | ✅ |
 | 83 | Actionable Visuals: Wrapped portfolio mockup visualizers in tracked links for intuitive navigation | `Work.tsx` | ✅ |
 | 84 | Global GA4 Event Audit: Ensured all primary project CTAs on Work and Home pages have consistent `trackEvent` naming | `Work.tsx`, `home-work-accordion.tsx` | ✅ |

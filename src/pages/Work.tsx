@@ -38,7 +38,7 @@ const projects = [
     title: "Drake Seaside",
     tier: "Growth Tier",
     body: "A complete redesign with new pages, faster loading, and a layout that turns visitors into bookings.",
-    link: "https://thedrake-seaside.com",
+    link: "https://thedrake-seaside.com/?utm_source=horizondigitalsey.com&utm_medium=referral&utm_campaign=portfolio_showcase",
     cta: "View live site →",
     reqCta: "Request similar site",
     videoSrc: drakeVideo,

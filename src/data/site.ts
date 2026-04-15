@@ -243,7 +243,7 @@ export const workItems = [
     image: guesthousePreview,
     imageWebp: guesthousePreviewWebp,
     imageWebp800: guesthousePreviewWebp800,
-    url: "https://thedrake-seaside.com/",
+    url: "https://thedrake-seaside.com/?utm_source=horizondigitalsey.com&utm_medium=referral&utm_campaign=portfolio_showcase",
   },
   {
     label: "Creative Studio · Foundation Tier",
