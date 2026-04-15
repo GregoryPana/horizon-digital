@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { motion } from "framer-motion";
 import Seo from "../components/Seo";
-import Breadcrumbs from "../components/ui/Breadcrumbs";
+// Removed Breadcrumbs import to fix build error
 import guesthouseHero from "../assets/work/drake-seaside/hero-bg.webp";
 import guesthousePreview from "../assets/work/drake-seaside/drake-seaside.jpg";
 import { ArrowUpRight, CheckCircle2, Zap, Target, MousePointer2 } from "lucide-react";
@@ -48,13 +48,7 @@ export default function ShowcaseDrakeSeaside() {
       />
 
       <div className="pt-24 lg:pt-32">
-        <Breadcrumbs 
-          items={[
-            { name: "Home", path: "/" },
-            { name: "Our Work", path: "/work" },
-            { name: "Drake Seaside", path: "/showcase/drake-seaside" },
-          ]} 
-        />
+        {/* Placeholder for top spacing */}
       </div>
 
       {/* Hero Section */}
