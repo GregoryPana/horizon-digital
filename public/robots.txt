@@ -2,6 +2,6 @@ User-agent: *
 Allow: /
 Disallow: /admin/
 Disallow: /api/
-Disallow: /showcase/
+Disallow: /tmp/
 
 Sitemap: https://horizondigitalsey.com/sitemap.xml
