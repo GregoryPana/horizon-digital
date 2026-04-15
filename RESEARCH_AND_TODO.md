@@ -122,6 +122,16 @@ Status legend: ✅ Done · 🔄 In Progress · ⬜ Outstanding · ❌ Not Needed
 | 71 | Digital Insights: Restored visibility and accessibility on mobile viewports | `menu-hover-effects.tsx` | ✅ |
 | 72 | Navigation Leakage: Fixed desktop links overlapping mobile view on small devices | `menu-hover-effects.tsx` | ✅ |
 
+### ✅ Completed (Session 6 — 2026-04-15)
+
+| # | Change | File | Status |
+|---|--------|------|--------|
+| 73 | overflow-x: hidden → clip on html/body: 'hidden' creates a scroll container breaking all position:sticky site-wide (stacking cards). 'clip' achieves same containment without breaking sticky context | `index.css` | ✅ |
+| 74 | Section children viewport threshold: lowered from amount:0.3 to amount:0.05 + margin:"-80px". On mobile with a tall card grid, 30% visibility threshold was never reached, leaving Insights articles invisible at opacity:0 | `Section.tsx` | ✅ |
+| 75 | LampContainer overflow: switched to CSS `clip` value ([overflow-x:clip] and [overflow:clip]) so decorative conic light effects are visually clipped without creating a scroll container that would break sticky positioning | `lamp.tsx` | ✅ |
+| 76 | Critical CSS syntax error: .insights-theme-shell .section-eyebrow-glow was missing its closing brace, nesting p and .text-text-muted rules inside it. This broke all insights theme text color overrides | `index.css` | ✅ |
+| 77 | Mobile menu overlay: reverted erroneous bg-[#03111e] back to correct .blue-menu-fade CSS class (properly defined in index.css with dark gradient) | `menu-hover-effects.tsx` | ✅ |
+
 ### ⬜ Outstanding Animation Work
 
 | # | Change | Priority | Notes |
