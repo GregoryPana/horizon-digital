@@ -5,7 +5,7 @@
 //   /services/found_on_google.png
 //   /services/fast_and_reliable.png
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   HoverSlider,
@@ -466,10 +466,50 @@ function ActiveSlideDescription() {
   );
 }
 
+// ── Auto-advance (pauses on hover) ────────────────────────────────────────
+function AutoAdvance({ total, interval = 4000 }: { total: number; interval?: number }) {
+  const { changeSlide, activeSlide } = useHoverSliderContext();
+  const pausedRef = useRef(false);
+  const slideRef = useRef(activeSlide);
+
+  // Keep ref in sync with context without re-creating the timer
+  useEffect(() => {
+    slideRef.current = activeSlide;
+  }, [activeSlide]);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      if (!pausedRef.current) {
+        changeSlide((slideRef.current + 1) % total);
+      }
+    }, interval);
+    return () => clearInterval(id);
+  }, [changeSlide, total, interval]);
+
+  return (
+    <div
+      className="absolute inset-0 z-0"
+      onMouseEnter={() => { pausedRef.current = true; }}
+      onMouseLeave={() => { pausedRef.current = false; }}
+      aria-hidden="true"
+    />
+  );
+}
+
 // ── Main export ────────────────────────────────────────────────────────────
 export function OurServicesSlideshow() {
+  const pausedRef = useRef(false);
   return (
     <HoverSlider className="w-full relative z-10 bg-[#0A0A0C]">
+      {/* Auto-advance overlay — pauses on component hover */}
+      <div
+        className="contents"
+        onMouseEnter={() => { pausedRef.current = true; }}
+        onMouseLeave={() => { pausedRef.current = false; }}
+      >
+        <AutoAdvance total={SLIDES.length} interval={4000} />
+      </div>
+
       <div className="flex flex-col md:flex-row items-start justify-between gap-10 md:gap-x-16">
 
         {/* Left Column: Interactive Titles */}

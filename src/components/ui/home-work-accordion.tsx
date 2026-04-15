@@ -116,7 +116,7 @@ function WorkShowcaseCard({ item, index, shouldReduceMotion, onPreview, layoutCl
           <h3 className="text-2xl font-semibold leading-tight text-white md:text-3xl lg:text-4xl font-display tracking-tight mb-5 drop-shadow-md">
             {item.title}
           </h3>
-          <p className={`max-w-xl text-sm leading-relaxed text-[#d1e1f0]/90 md:text-base transition-opacity duration-700 ${isExpanded ? "opacity-100" : "opacity-0 md:group-hover:opacity-100"}`}>
+          <p className={`max-w-xl text-[0.9375rem] sm:text-base lg:text-[1.125rem] font-light leading-relaxed text-slate-100/95 transition-opacity duration-700 ${isExpanded ? "opacity-100" : "opacity-0 md:group-hover:opacity-100"}`}>
             {item.outcome}
           </p>
           

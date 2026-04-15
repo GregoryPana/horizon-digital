@@ -93,6 +93,33 @@ Looking forward to your reply.`;
         description="Tell us about your business goals and start your custom website project with Horizon Digital today."
         path="/contact"
         keywords="contact custom web designer Seychelles, start custom website project Seychelles, bespoke web solutions"
+        breadcrumbs={[
+          { name: "Home", path: "/" },
+          { name: "Contact", path: "/contact" },
+        ]}
+        structuredData={[
+          {
+            "@context": "https://schema.org",
+            "@type": "ContactPage",
+            name: "Contact Horizon Digital",
+            description: "Get in touch with Horizon Digital to start your custom website project in Seychelles.",
+            url: "https://horizondigitalsey.com/contact",
+            mainEntity: {
+              "@type": "Organization",
+              name: "Horizon Digital",
+              url: "https://horizondigitalsey.com",
+              email: siteConfig.email,
+              telephone: siteConfig.phone,
+              areaServed: "Seychelles",
+              contactPoint: {
+                "@type": "ContactPoint",
+                contactType: "customer support",
+                email: siteConfig.email,
+                availableLanguage: "English",
+              },
+            },
+          }
+        ]}
       />
       <Section
         eyebrow="Get in touch"

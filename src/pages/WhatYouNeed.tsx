@@ -4,7 +4,6 @@ import { useState, useRef } from "react";
 import { MessageSquare, Navigation, Layout, MessageCircle } from "lucide-react";
 import Seo from "../components/Seo";
 import { ScenarioIcon } from "../components/ui/symbol-icons";
-import { siteConfig } from "../data/site";
 import { trackEvent } from "../lib/analytics";
 import { TracingCard, InteractiveIcon } from "../components/ui/TracingCard";
 import { AnimatedIcon } from "../components/ui/AnimatedIcon";
@@ -46,13 +45,6 @@ export default function WhatYouNeed() {
     setActiveCarousel(index);
   };
 
-  const serviceSchema = {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    name: "What Does a Website Actually Involve? | Horizon Digital",
-    description: "A plain-English guide for Seychelles business owners — what a domain, build, and hosting actually mean, what type of website suits your business, and how to get started with Horizon Digital.",
-    url: new URL("/what-you-need", siteConfig.url).toString(),
-  };
 
   const fadeInUp = {
     initial: shouldReduceMotion ? undefined : { opacity: 0, y: 22, filter: 'blur(8px)' },
@@ -69,7 +61,10 @@ export default function WhatYouNeed() {
         description="A guide to understanding custom website options for your Seychelles business. Learn about domains, hosting, and finding the perfect custom web solution."
         path="/what-you-need"
         keywords="what custom website do I need, bespoke business website types Seychelles, custom web design guidance"
-        structuredData={serviceSchema}
+        breadcrumbs={[
+          { name: "Home", path: "/" },
+          { name: "What You Need", path: "/what-you-need" },
+        ]}
       />
 
       {/* Hero Intro */}

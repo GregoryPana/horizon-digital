@@ -78,6 +78,11 @@ export default function InsightArticle() {
         keywords={article.keywords}
         ogType="article"
         structuredData={articleSchema}
+        breadcrumbs={[
+          { name: "Home", path: "/" },
+          { name: "Insights", path: "/insights" },
+          { name: article.title, path: canonicalPath },
+        ]}
       />
 
       <InsightsHero eyebrow="Digital Insights" title={article.title} description={article.excerpt} />
@@ -113,19 +118,20 @@ export default function InsightArticle() {
           </div>
 
           <div className="mt-8 horizon-line" />
-          <div className="mt-6 flex items-center justify-between">
+          <div className="mt-6 flex items-center justify-start">
             <Link 
               to="/insights" 
               className="cta-gradient-anim relative z-10 flex items-center justify-center rounded-full px-8 py-3 text-xs font-black uppercase tracking-[0.2em] text-[#0a0a0a] transition-all hover:scale-105 active:scale-95"
               style={{ backgroundImage: 'linear-gradient(90deg, var(--accent), #A5F3FC, #FFFFFF, var(--accent))', backgroundSize: '300% 100%' }}
+              onClick={() =>
+                trackEvent("cta_click", {
+                  cta_name: "insight_article_back_to_list",
+                  article_slug: article.slug,
+                  page_path: window.location.pathname,
+                })
+              }
             >
               Back to insights
-            </Link>
-            <Link 
-              to="/ai-digital-tools" 
-              className="text-[11px] items-center justify-center rounded-full border border-cyan/40 px-8 py-3 font-black uppercase tracking-[0.2em] text-cyan transition hover:bg-cyan/10"
-            >
-              Related Tools
             </Link>
           </div>
         </Card>

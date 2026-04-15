@@ -4,6 +4,7 @@ import Seo from "../components/Seo";
 import { projectSteps } from "../data/site";
 import { ShimmerButton } from "../components/ui/shimmer-button";
 import { ContainerScroll, CardSticky } from "../components/ui/cards-stack";
+import { trackEvent } from "../lib/analytics";
 
 export default function Process() {
   const shouldReduceMotion = useReducedMotion();
@@ -15,6 +16,50 @@ export default function Process() {
         description="A clear, step-by-step look at how Horizon Digital takes your website from discovery to launch. No surprises, no guesswork — just a process you'll actually enjoy."
         path="/process"
         keywords="website build process Seychelles, how to build a website, web design timeline, website project steps"
+        breadcrumbs={[
+          { name: "Home", path: "/" },
+          { name: "Our Process", path: "/process" },
+        ]}
+        structuredData={[
+          {
+            "@context": "https://schema.org",
+            "@type": "HowTo",
+            name: "How Horizon Digital builds your website",
+            description: "A clear, step-by-step look at how we take your website from first conversation to launch — with no surprises and your approval at every stage.",
+            step: [
+              {
+                "@type": "HowToStep",
+                position: 1,
+                name: "Discovery",
+                text: "You tell us about your business, your goals, and your customers. We listen carefully before anything else happens.",
+              },
+              {
+                "@type": "HowToStep",
+                position: 2,
+                name: "Design",
+                text: "We create the visual layout and page structure. You review it and approve the direction before we write a single line of code.",
+              },
+              {
+                "@type": "HowToStep",
+                position: 3,
+                name: "Build",
+                text: "We engineer the full site, optimised for speed, mobile, and search.",
+              },
+              {
+                "@type": "HowToStep",
+                position: 4,
+                name: "Launch",
+                text: "We go live — and stay close for 30 days to make sure everything runs perfectly.",
+              },
+              {
+                "@type": "HowToStep",
+                position: 5,
+                name: "Grow",
+                text: "We keep your site healthy, fast, and supported whenever you need us.",
+              },
+            ],
+          },
+        ]}
       />
 
       <section id="hero" className="relative pt-32 pb-20 px-6 xl:px-12 border-b border-white/5">
@@ -57,7 +102,7 @@ export default function Process() {
                     A clear sequence. No guesswork. You know exactly what's happening at every step of your project.
                   </p>
                   
-                  <div className="hidden md:flex flex-col gap-5 border-l border-white/5 pl-8">
+                  <div className="grid grid-cols-2 md:grid-cols-1 gap-3 md:gap-5">
                     {[
                       "Transparent pricing",
                       "Weekly progress updates",
@@ -65,7 +110,7 @@ export default function Process() {
                       "Clear milestone approvals"
                     ].map((feature, i) => (
                       <div key={i} className="flex items-center gap-3 text-sm text-text-dim font-medium tracking-wide">
-                        <div className="h-1.5 w-1.5 rounded-full bg-cyan shadow-[0_0_8px_rgba(94,209,222,0.6)]" />
+                        <div className="h-1.5 w-1.5 shrink-0 rounded-full bg-cyan shadow-[0_0_8px_rgba(94,209,222,0.6)]" />
                         {feature}
                       </div>
                     ))}
@@ -136,6 +181,12 @@ export default function Process() {
                 shimmerDuration="3s"
                 background="var(--accent)"
                 className="px-10 py-5 text-lg font-bold tracking-widest text-black uppercase"
+                onClick={() =>
+                  trackEvent("cta_click", {
+                    cta_name: "process_bottom_start_project",
+                    page_path: window.location.pathname,
+                  })
+                }
               >
                 Start your project
               </ShimmerButton>

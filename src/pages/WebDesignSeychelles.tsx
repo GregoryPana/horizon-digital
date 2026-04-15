@@ -271,7 +271,7 @@ function WorkShowcase() {
   );
 }
 
-export default function Home() {
+export default function WebDesignSeychelles() {
   const shouldReduceMotion = useReducedMotion();
   const allHomeFaqItems = homeFaqCategories.flatMap((category) => category.items);
   const handleWorkScrollTop = () => scrollToTopSmooth();
@@ -383,40 +383,37 @@ export default function Home() {
   return (
     <div className="bg-[#0A0A0C] text-white">
       <Seo
-        title="Custom Website Design Seychelles | Horizon Digital"
-        description="Custom-built websites for Seychelles businesses. Professional web design & development — no templates, just results. Fast, mobile-ready, SEO-optimized from day one."
-        path="/"
-        keywords="custom website Seychelles, custom web design Seychelles, custom web development Seychelles, website design Seychelles, bespoke websites Seychelles"
+        title="Web Design Seychelles | Custom Websites | Horizon Digital"
+        description="Horizon Digital builds premium, high-conversion custom websites for businesses in Seychelles. Grow your local brand with expert web design on Mahé."
+        path="/web-design-seychelles"
+        keywords="web design seychelles, web designer mahé, seychelles website development, custom web design seychelles, local web agency seychelles"
         structuredData={[faqSchema, serviceSchema]}
+        breadcrumbs={[
+          { name: "Home", path: "/" },
+          { name: "Web Design Seychelles", path: "/web-design-seychelles" },
+        ]}
       />
 
       <Hero
-        trustBadge={{ text: "Custom Web Design Studio • Seychelles" }}
+        trustBadge={{ text: "Based on Mahé, Seychelles" }}
         headline={{
-          lines: [
-            "CUSTOM STUNNING WEBSITES"
-          ],
-          rotatingWords: ["STUNNING", "PROFESSIONAL", "FAST", "MOBILE READY"]
+          lines: ["Premium Web Design", "For Seychelles"],
+          rotatingWords: ["Businesses", "Hotels", "Restaurants", "Agencies"],
         }}
-        subtitle="A website that looks great, loads fast, and brings in real customers."
+        subtitle="We build fast, bespoke websites that help local businesses look professional and capture online bookings."
         tags={[
-          { text: "BUILT AROUND YOU", icon: (
+          { text: "Fast Browsing", icon: (
             <svg className="h-3 w-3 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
               <polyline points="20 6 9 17 4 12" />
             </svg>
           )},
-          { text: "OPENS IN SECONDS", icon: (
-            <svg className="h-3 w-3 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
-            </svg>
-          )},
-          { text: "LOOKS GREAT ON ANY PHONE", icon: (
+          { text: "Mobile Perfect", icon: (
             <svg className="h-3 w-3 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
               <line x1="12" y1="18" x2="12.01" y2="18" />
             </svg>
           )},
-          { text: "CUSTOMERS CAN FIND YOU", icon: (
+          { text: "Google Ranked", icon: (
             <svg className="h-3 w-3 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
               <circle cx="11" cy="11" r="8" />
               <line x1="21" y1="21" x2="16.65" y2="16.65" />
@@ -425,27 +422,26 @@ export default function Home() {
         ]}
         buttons={{
           primary: {
-            text: "Book a free call",
+            text: "Request a Quote",
             link: "/contact",
             onClick: () =>
               trackEvent("cta_click", {
-                cta_name: "hero_book_call",
+                cta_name: "hero_book_call_seychelles",
                 page_path: window.location.pathname,
               }),
           },
           secondary: {
-            text: "See our work",
+            text: "View Our Work",
             link: "/work",
             onClick: () => {
               trackEvent("cta_click", {
-                cta_name: "hero_see_work",
+                cta_name: "hero_see_work_seychelles",
                 page_path: window.location.pathname,
               });
               handleWorkScrollTop();
             },
           },
         }}
-
       />
 
       <section className="relative z-20 bg-[#0A0A0C] py-20 md:py-32">
@@ -904,7 +900,7 @@ export default function Home() {
                 viewport={{ once: true, amount: 0.15 }}
                 transition={{ duration: 0.85, delay: 0.1 + idx * 0.12, ease: [0.16, 1, 0.3, 1] }}
                 whileHover={!pkg.featured && !shouldReduceMotion ? { y: -6 } : undefined}
-                className={`flex flex-col relative p-8 lg:px-10 lg:py-9 rounded-[2rem] transition-all duration-500 ${
+                className={`flex flex-col relative p-8 sm:p-10 rounded-[2rem] transition-all duration-500 ${
                   pkg.featured
                     ? "bg-[#131315] featured-pkg-pulse xl:-translate-y-4 z-20"
                     : "bg-[#111113] shadow-[0_4px_16px_rgba(0,0,0,0.3)] z-10"
@@ -916,17 +912,17 @@ export default function Home() {
                   </div>
                 )}
 
-                <div className="mb-6">
-                  <p className="mb-3 ml-0.5 inline-flex w-fit items-center rounded-full border border-cyan/35 bg-cyan/10 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.2em] text-cyan">
+                <div className="mb-10">
+                  <p className="mb-4 ml-0.5 inline-flex w-fit items-center rounded-full border border-cyan/35 bg-cyan/10 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.2em] text-cyan">
                     {pkg.title === "Foundation" ? "Essentials" : pkg.title === "Starter" ? "Scalable" : pkg.title === "Growth" ? "Full Scale" : "One-of-a-kind"}
                   </p>
-                  <h3 className="text-4xl font-bold text-white mb-3 pr-4 leading-tight tracking-tight font-display">{pkg.title}</h3>
-                  <p className="text-2xl font-medium text-cyan/90 font-display mb-4 leading-tight">
+                  <h3 className="text-4xl font-bold text-white mb-4 pr-4 leading-tight tracking-tight font-display">{pkg.title}</h3>
+                  <p className="text-2xl font-medium text-cyan/90 font-display mb-8 leading-tight">
                     {pkg.price}
                   </p>
                 </div>
 
-                <ul className="space-y-3 lg:space-y-3.5 mb-8 lg:mb-10 flex-grow">
+                <ul className="space-y-3 sm:space-y-5 mb-8 sm:mb-12 flex-grow">
                   {pkg.includes.map((item, includeIdx) => (
                     <li key={`${item}-${includeIdx}`} className="flex items-start gap-4">
                       <motion.span
@@ -943,7 +939,7 @@ export default function Home() {
                   ))}
                 </ul>
 
-                <div className="mt-auto pt-4">
+                <div className="mt-auto pt-6">
                   <Link to={`/contact?budget=${pkg.budgetParam}`} className="block w-full">
                     <button
                       className={`w-full py-5 rounded-xl text-[11px] font-black uppercase tracking-[0.2em] transition-all transform active:scale-95 ${
@@ -1102,7 +1098,7 @@ export default function Home() {
               style={{ backgroundImage: 'linear-gradient(90deg, var(--accent), var(--accent-2), #0C7CC4, var(--accent))', backgroundSize: '300% 100%' }}
               onClick={() =>
                 trackEvent("cta_click", {
-                  cta_name: "bottom_ready_book_call",
+                  cta_name: "seychelles_bottom_discovery_call",
                   page_path: window.location.pathname,
                 })
               }

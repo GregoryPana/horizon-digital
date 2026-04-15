@@ -4,6 +4,7 @@ import Footer from "./Footer";
 import Navbar from "./Navbar";
 import { scrollToTopSmooth } from "../lib/utils";
 import { siteConfig } from "../data/site";
+import { trackEvent } from "../lib/analytics";
 
 const ChatWidget = lazy(() => import("./ChatWidget"));
 
@@ -17,7 +18,8 @@ export default function Layout({ children }: LayoutProps) {
   const isHomeRoute = normalizedPath === "/";
   const isShowcaseRoute = normalizedPath.startsWith("/showcase/");
   const isInsightsThemeRoute =
-    location.pathname === "/ai-digital-tools" || location.pathname.startsWith("/insights");
+    location.pathname === "/insights" ||
+    location.pathname.startsWith("/insights/");
   const mainRef = useRef<HTMLElement | null>(null);
   const [showTopButton, setShowTopButton] = useState(false);
   const [headerHeight, setHeaderHeight] = useState(88);
@@ -261,6 +263,12 @@ export default function Layout({ children }: LayoutProps) {
           target="_blank"
           rel="noreferrer noopener"
           aria-label="Chat on WhatsApp"
+          onClick={() =>
+            trackEvent("cta_click", {
+              cta_name: "whatsapp_sticky",
+              page_path: window.location.pathname,
+            })
+          }
           className="fixed bottom-6 right-4 z-[90] flex h-12 w-12 items-center justify-center rounded-full bg-[#25D366] shadow-[0_4px_20px_rgba(37,211,102,0.4)] transition-all duration-300 hover:scale-110 hover:shadow-[0_4px_28px_rgba(37,211,102,0.6)] sm:right-6"
         >
           <svg viewBox="0 0 24 24" className="h-6 w-6 text-white" fill="currentColor" aria-hidden="true">

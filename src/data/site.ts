@@ -53,7 +53,7 @@ export const navLinks = [
   { label: "Services & Pricing", path: "/services-pricing" },
   { label: "Our Work", path: "/work" },
   { label: "What You Need", path: "/what-you-need" },
-  { label: "Digital Insights", path: "/ai-digital-tools" },
+  { label: "Digital Insights", path: "/insights" },
   { label: "About", path: "/about" },
   { label: "Contact", path: "/contact" },
 ];
@@ -276,6 +276,14 @@ export const workItems = [
     imageWebp: beautyPreviewWebp,
     imageWebp800: beautyPreviewWebp800,
     url: "https://demo-beauty.horizondigitalsey.com/",
+  },
+];
+
+export const testimonials = [
+  {
+    quote: "Working with Horizon Digital was a smooth experience from start to finish. Our new website has brought in more online enquiries than we ever expected — guests now book directly instead of just calling.",
+    author: "Mrs. Danielle Panagary",
+    role: "Owner, Drake Seaside Apartments",
   },
 ];
 

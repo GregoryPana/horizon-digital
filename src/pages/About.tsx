@@ -24,15 +24,53 @@ export default function About() {
         description="Horizon Digital is a local studio specialized in custom website design for Seychelles businesses. We build beautiful, fast websites that actually bring customers."
         path="/about"
         keywords="about Horizon Digital, custom web design studio Seychelles, bespoke website designer Seychelles, custom web development"
-        structuredData={{
-          "@context": "https://schema.org",
-          "@type": "BreadcrumbList",
-          itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Home", item: `${siteConfig.url}/` },
-            { "@type": "ListItem", position: 2, name: "About", item: `${siteConfig.url}/about` },
-          ],
-        }}
+        structuredData={[
+          {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            name: siteConfig.name,
+            url: siteConfig.url,
+            logo: `${siteConfig.url}/og-image.png`,
+            email: siteConfig.email,
+            telephone: siteConfig.phone,
+            address: {
+              "@type": "PostalAddress",
+              addressLocality: "Mahé",
+              addressCountry: "SC",
+            },
+            areaServed: {
+              "@type": "Place",
+              name: "Seychelles",
+            },
+            description: "A local web design studio on Mahé, Seychelles, building custom, fast, and conversion-focused websites for hospitality, food & beverage, and service businesses.",
+            sameAs: [],
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "Person",
+            name: "Horizon Digital Studio",
+            jobTitle: "Web Designer & Developer",
+            worksFor: {
+              "@type": "Organization",
+              name: siteConfig.name,
+              url: siteConfig.url,
+            },
+            address: {
+              "@type": "PostalAddress",
+              addressLocality: "Mahé",
+              addressCountry: "SC",
+            },
+            email: siteConfig.email,
+            telephone: siteConfig.phone,
+            url: `${siteConfig.url}/about`,
+          }
+        ]}
+        breadcrumbs={[
+          { name: "Home", path: "/" },
+          { name: "About", path: "/about" },
+        ]}
       />
+
 
       {/* Section 1 — Opening: The Person, Not the Business */}
       <section className="pt-32 pb-20 md:pt-44 md:pb-32 relative">

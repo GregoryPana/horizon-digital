@@ -15,6 +15,10 @@ export default function Insights() {
         description="Educational articles from Horizon Digital on AI, automation, analytics, and digital trends relevant to businesses in Seychelles."
         path="/insights"
         keywords="AI Seychelles, Artificial Intelligence Seychelles, digital transformation Seychelles, automation tools for businesses, AI for small businesses Seychelles"
+        breadcrumbs={[
+          { name: "Home", path: "/" },
+          { name: "Insights", path: "/insights" },
+        ]}
       />
 
       <InsightsHero

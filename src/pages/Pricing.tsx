@@ -172,14 +172,11 @@ export default function Pricing() {
         description="Clear website packages for Seychelles businesses — Foundation, Starter, and Growth. Honest SCR pricing, custom design, and everything your business needs to get found online."
         path="/services-pricing"
         keywords="custom website packages Seychelles, custom web design pricing Seychelles, bespoke website development Seychelles, tailored web solutions Seychelles"
-        structuredData={[serviceSchema, faqSchema, {
-          "@context": "https://schema.org",
-          "@type": "BreadcrumbList",
-          itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Home", item: `${siteConfig.url}/` },
-            { "@type": "ListItem", position: 2, name: "Services & Pricing", item: `${siteConfig.url}/services-pricing` },
-          ],
-        }]}
+        breadcrumbs={[
+          { name: "Home", path: "/" },
+          { name: "Services & Pricing", path: "/services-pricing" },
+        ]}
+        structuredData={[serviceSchema, faqSchema]}
       />
       {passedSectionIds.length > 0 && (
         <div className="fixed left-0 top-[64%] z-40 -translate-y-1/2 lg:hidden">
@@ -232,7 +229,7 @@ export default function Pricing() {
         </div>
       )}
 
-      <div className="pointer-events-none fixed left-5 top-1/2 z-40 hidden -translate-y-1/2 lg:block">
+      <div className="pointer-events-none fixed left-4 2xl:left-8 top-1/2 z-40 hidden -translate-y-1/2 lg:block">
         <div className="pointer-events-auto">
           <MenuVertical
             menuItems={pricingVerticalTabs.map((section) => ({ id: section.id, label: section.label }))}
@@ -243,8 +240,8 @@ export default function Pricing() {
       </div>
 
       {/* ═══ WHAT WE BUILD — OVERVIEW ═══ */}
-      <section id="overview" className="py-16 md:py-28 border-b border-white/[0.09]">
-        <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
+      <section id="overview" className="py-16 md:py-28 lg:pt-32 border-b border-white/[0.09]">
+        <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 xl:pl-64 2xl:pl-8">
 
           {/* Split header — heading left, descriptor right */}
           <motion.div
@@ -258,12 +255,12 @@ export default function Pricing() {
               What We Build
             </span>
             <div className="flex flex-col md:flex-row md:items-end md:justify-between md:gap-20">
-              <h2 className="font-display text-[2.75rem] sm:text-5xl md:text-[3.5rem] lg:text-[4.5rem] font-semibold leading-[1.06] tracking-tight text-white max-w-xl">
+              <h2 className="font-display text-[2.75rem] sm:text-5xl md:text-[3.5rem] lg:text-[4.5rem] xl:text-[5.5rem] font-semibold leading-[1.03] tracking-tight text-white max-w-2xl">
                 Five disciplines.<br />
                 <span className="text-deep-teal">Every project.</span>
               </h2>
-              <div className="mt-7 md:mt-0 md:text-right md:pb-2 max-w-[16rem]">
-                <p className="text-[1.0625rem] leading-relaxed text-text-muted">
+              <div className="mt-7 md:mt-0 md:text-right md:pb-2 max-w-[18rem]">
+                <p className="text-[1.0625rem] md:text-lg lg:text-xl lg:leading-relaxed text-text-muted">
                   Nothing is an extra. Every engagement draws from all five — it's simply how we build.
                 </p>
                 <p className="mt-3 text-[11px] font-black uppercase tracking-[0.25em] text-deep-teal">
@@ -315,23 +312,21 @@ export default function Pricing() {
 
                 {/* Service row */}
                 <motion.div
-                  className="group relative flex items-start gap-5 md:gap-0 py-10 md:py-12 cursor-default"
+                  className="group relative flex items-start gap-5 md:gap-0 py-10 md:py-12 cursor-default transition-all duration-500 hover:scale-[1.005]"
                   initial={shouldReduceMotion ? undefined : { opacity: 0, y: 24, filter: 'blur(8px)' }}
                   whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: 'blur(0px)' }}
                   viewport={{ once: true, amount: 0.2 }}
                   transition={{ duration: 1.0, delay: 0.07 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
                 >
                   {/* Hover wash — subtle gradient from left */}
-                  <div className="pointer-events-none absolute inset-0 -mx-5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-gradient-to-r from-accent/[0.07] via-accent/[0.02] to-transparent" />
+                  <div className="pointer-events-none absolute inset-0 -mx-6 rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-700 bg-white/[0.02] backdrop-blur-[2px]" />
+                  <div className="pointer-events-none absolute inset-y-0 left-0 w-1 bg-deep-teal opacity-0 group-hover:opacity-100 transition-all duration-700 -translate-x-6" />
 
-                  {/* Number — visible design element, not a watermark ghost */}
+                  {/* Number — visible design element */}
                   <div className="relative z-10 shrink-0 w-14 md:w-32 flex items-center">
                     <span
                       aria-hidden="true"
-                      className="font-display text-[2rem] md:text-[5rem] font-black leading-none tabular-nums select-none transition-colors duration-700"
-                      style={{ color: `rgba(255,255,255,${i === 0 ? 0.14 : 0.10})` }}
-                      onMouseEnter={e => (e.currentTarget.style.color = 'rgba(20,184,166,0.5)')}
-                      onMouseLeave={e => (e.currentTarget.style.color = `rgba(255,255,255,${i === 0 ? 0.14 : 0.10})`)}
+                      className="font-display text-[2rem] md:text-[5rem] font-black leading-none tabular-nums select-none text-deep-teal/35 group-hover:text-deep-teal transition-all duration-700"
                     >
                       {String(i + 1).padStart(2, '0')}
                     </span>
@@ -345,7 +340,7 @@ export default function Pricing() {
                     </h3>
 
                     {/* Description */}
-                    <p className="mt-3 md:mt-0 flex-1 text-[0.9375rem] text-text-muted leading-relaxed group-hover:text-text/80 transition-colors duration-700 max-w-2xl">
+                    <p className="mt-3 md:mt-0 flex-1 text-base lg:text-lg lg:leading-relaxed text-text-muted group-hover:text-text/90 transition-colors duration-700 max-w-2xl">
                       {item.desc}
                     </p>
 
@@ -393,7 +388,7 @@ export default function Pricing() {
         </div>
       </section>
 
-      <section id="process" className="py-20 px-6 xl:px-12 relative z-10 border-y border-white/5 bg-[#0A0A0C]">
+      <section id="process" className="py-20 px-6 xl:pl-72 2xl:pl-12 relative z-10 border-y border-white/5 bg-[#0A0A0C]">
         <div className="mx-auto max-w-[92rem] min-h-svh place-content-center text-white">
           <div className="grid md:grid-cols-2 md:gap-8 xl:gap-24">
             
@@ -463,6 +458,7 @@ export default function Pricing() {
       <Section
         id="packages"
         className={compactDesktopSection}
+        containerClassName="max-w-7xl xl:pl-64 2xl:pl-8"
         eyebrow="Find your fit"
         title="Pick the package that's right for right now"
         description="Foundation, Starter, and Growth — each one built around a different stage of business."
@@ -649,6 +645,7 @@ export default function Pricing() {
       <Section
         id="hosting"
         className={compactDesktopSection}
+        containerClassName="max-w-7xl xl:pl-64 2xl:pl-8"
         eyebrow="Managed hosting"
         title={hostingPlan.title}
         description={
@@ -724,6 +721,7 @@ export default function Pricing() {
       <Section
         id="addons"
         className={compactDesktopSection}
+        containerClassName="max-w-7xl xl:pl-64 2xl:pl-8"
         eyebrow="Add-ons"
         title="Optional add-ons"
         description="Every add-on is quoted and agreed before any work begins. No surprises."
@@ -752,6 +750,7 @@ export default function Pricing() {
           </>
         }
         className={compactDesktopSection}
+        containerClassName="max-w-7xl xl:pl-64 2xl:pl-8"
       >
         <div className="p-8 md:p-12 rounded-3xl border border-border bg-bg-elev mt-6">
           <div className="grid gap-10 md:grid-cols-2">
@@ -787,6 +786,7 @@ export default function Pricing() {
         title="Built to look good and be found"
         description="We focus on speed, clarity, and practical search setup so people can discover your business online."
         className={compactDesktopSection}
+        containerClassName="max-w-7xl xl:pl-64 2xl:pl-8"
       >
         <div className="mt-8 p-10 md:p-14 rounded-3xl bg-gradient-to-br from-bg-panel/40 to-transparent border border-border text-center">
           <p className="max-w-4xl mx-auto text-base md:text-lg leading-relaxed text-text-muted">
@@ -814,6 +814,7 @@ export default function Pricing() {
         title="Straight answers to the things people ask us most"
         description="No jargon. No small print. Just honest answers."
         className={compactDesktopSection}
+        containerClassName="max-w-7xl xl:pl-64 2xl:pl-8"
       >
         <div className="grid gap-6 md:grid-cols-2 mt-8">
           {faqs.slice(0, 4).map((faq) => (

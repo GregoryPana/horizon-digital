@@ -1,7 +1,7 @@
 # Horizon Digital — Website Research & Action Tracker
 
 **Project:** horizondigitalsey.com  
-**Last updated:** 2026-04-14 (Session 3 updates)  
+**Last updated:** 2026-04-15 (Session 5 updates)  
 **Branch:** claude-redesign-v2  
 
 Status legend: ✅ Done · 🔄 In Progress · ⬜ Outstanding · ❌ Not Needed / Deferred
@@ -79,12 +79,51 @@ Status legend: ✅ Done · 🔄 In Progress · ⬜ Outstanding · ❌ Not Needed
 | 38 | Process.tsx: sticky panel viewport amount 0.3 → 0.15; closing CTA section: added blur+y entrance animation (was static) | `Process.tsx` | ✅ |
 | 39 | TypeScript: full noEmit pass — 0 errors across all modified files | All | ✅ |
 
+### ✅ Completed (Session 4 — 2026-04-15)
+
+| # | Change | File | Status |
+|---|--------|------|--------|
+| 40 | Pricing overview "What We Build": full redesign — editorial rows, scaleX separator animation, watermark numbers, split header, split layout | `Pricing.tsx` | ✅ |
+| 41 | Overview contrast fixes: separators `bg-border/70` → `rgba(255,255,255,0.13)`, numbers `text-white/[0.06]` → `text-white/[0.12]` hover `text-deep-teal/50`, footer notes from /35 → /60 | `Pricing.tsx` | ✅ |
+| 42 | Overview animations: header 0.8s → 1.1s, separators 0.75s → 1.05s, rows 0.65s → 1.0s — all more deliberate | `Pricing.tsx` | ✅ |
+| 43 | Arrow duplication fix: removed `→` from accent tag strings; single arrow div only | `Pricing.tsx` | ✅ |
+| 44 | Work.tsx fadeIn: upgraded to blur(8px)+y:24, amount 0.15, duration 0.95s | `Work.tsx` | ✅ |
+| 45 | Process.tsx features list: `hidden md:flex` → `grid grid-cols-2 md:grid-cols-1` — now visible on mobile | `Process.tsx` | ✅ |
+| 46 | HowTo schema added to Process page (5 steps: Discovery → Design → Build → Launch → Grow) | `Process.tsx` | ✅ |
+| 47 | ContactPage + BreadcrumbList schema added to Contact page | `Contact.tsx` | ✅ |
+| 48 | BreadcrumbList schema added to WhatYouNeed page (was missing) | `WhatYouNeed.tsx` | ✅ |
+| 49 | Sitemap lastmod: all dates updated to 2026-04-15 (insight articles were showing 2025-03) | `public/sitemap.xml` | ✅ |
+| 50 | TypeScript: full noEmit pass — 0 errors across all Session 4 files | All | ✅ |
+| 51 | Testimonials redesign: transitioned from multi-tile grid to single, cinematic pull-quote for Drake Seaside (Mrs. Danielle Panagary) | `Home.tsx`, `WebDesignSeychelles.tsx` | ✅ |
+| 52 | Industries We Serve: added high-conversion section for Tourism, F&B, and Professional services with Lucide-style SVG icons | `Home.tsx`, `WebDesignSeychelles.tsx` | ✅ |
+| 53 | Real Data Migration: updated `site.ts` testimonials array with Mrs. Danielle Panagary's verified quote | `site.ts` | ✅ |
+| 54 | Typography Standardisation: enforced 11px uppercase keywords/eyebrows across all new sections | Multiple | ✅ |
+| 55 | Pricing Cards Density: reduced vertical padding and margins on home page packages for 1080p visibility | `Home.tsx` | ✅ |
+| 56 | Work Showcase Contrast: outcome description `text-[#d1e1f0]/90` → `text-slate-100/95` + lg typography scaling | `home-work-accordion.tsx` | ✅ |
+| 57 | Side-Nav Overflow: added dynamic `xl:pl-64` gutter to Pricing sections and adjusted MenuVertical anchor | `Pricing.tsx` | ✅ |
+| 58 | "What We Build" Polish: upgraded discipline headers to `xl:text-[5.5rem]` and descriptions to `lg:text-lg` | `Pricing.tsx` | ✅ |
+| 59 | Ultra-Wide Optimization: implemented fluid sizing/padding for 2560px displays across core layout blocks | Multiple | ✅ |
+| 60 | Brand Teal Integration: updated 'What We Build' numbers to brand teal and added full-row hover wash | `Pricing.tsx` | ✅ |
+| 61 | Toggleable Sidebar: added collapse/expand functionality to MenuVertical rail for better UX | `MenuVertical.tsx` | ✅ |
+| 62 | GA4: Bottom Hero CTA tagged with `bottom_ready_book_call` | `Home.tsx` | ✅ |
+| 63 | GA4: Process Bottom CTA tagged with `process_bottom_start_project` | `Process.tsx` | ✅ |
+| 64 | GA4: Insight Article Back Button tagged with `insight_article_back_to_list` | `InsightArticle.tsx` | ✅ |
+| 65 | SEO: Verified `<Seo />` implementation and canonicals for all 13+ primary routes | All | ✅ |
+| 66 | Production Build: Verified site stability with `npm run build` | All | ✅ |
+
+### ✅ Completed (Session 5 — 2026-04-15)
+
+| # | Change | File | Status |
+|---|--------|------|--------|
+| 67 | Final GA4 Audit: instrumented bottom CTAs on Home, Process, and Insight pages | Multiple | ✅ |
+| 68 | SEO Verification: Confirmed canonical URL structure and `<Seo />` tag coverage | All | ✅ |
+| 69 | Build Validation: Successfully completed production bundle pass | All | ✅ |
+
 ### ⬜ Outstanding Animation Work
 
 | # | Change | Priority | Notes |
 |---|--------|----------|-------|
-| A1 | Work page: laptop mockup cards — add blur reveal per card | Medium | No entrance animation currently |
-| A2 | Services slideshow: add auto-advance timer (3s) with pause on hover/touch | Low | Optional enhancement |
+| A1 | Services slideshow: add auto-advance timer (3s) with pause on hover/touch | Low | Optional enhancement |
 
 ---
 
@@ -112,7 +151,7 @@ Replaced all flex-centering row wrappers in both the slot and non-slot h1 paths 
 
 | Section | Desktop | Mobile | Issues | Priority |
 |---------|---------|--------|--------|----------|
-| Hero | ✅ Good | ⚠️ Title centering fixed — verify on device | Hero title centering was the main issue | ✅ Fixed |
+| Hero | ✅ Good | ✅ Title centering and word-wrapping fixed and verified (375px safe) | Hero title clipping / wrap issue on small devices | ✅ Fixed |
 | Problem Cards | ✅ Good | ✅ Good — carousel works | Entrance animation improved with blur | ✅ Done |
 | Marquee Banner | ✅ Good | ✅ Now visible on mobile | Removed `hidden sm:block` | ✅ Done |
 | Services Slideshow | ✅ Good | ⚠️ On mobile, description sits below tall illustration | Consider reducing illustration height on mobile | ⬜ Low |
@@ -121,6 +160,7 @@ Replaced all flex-centering row wrappers in both the slot and non-slot h1 paths 
 | Work Showcase | ✅ Good — full-screen sticky | ✅ Dark overlay on mobile added | Already well-optimised | ✅ Good |
 | Packages | ✅ 4-column grid | ✅ Single column | Blur entrance added | ✅ Done |
 | Insights Card | ✅ Good | ⚠️ Floating card stack overflows on small phones | Check on 375px viewport | ⬜ Medium |
+| Industries We Serve | ✅ Icons + 3 columns | ✅ Good | Added vertical-specific targeting | ✅ Done |
 | FAQ | ✅ Tabbed with accordion | ✅ Works on mobile | Blur answer reveal added | ✅ Done |
 | CTA Banner | ✅ Good | ✅ Full-width button on mobile | No issues | ✅ Good |
 
@@ -129,7 +169,7 @@ Replaced all flex-centering row wrappers in both the slot and non-slot h1 paths 
 - Section padding: `py-20 md:py-32` — consistent breathing room ✅
 - Section header margins: `mb-20` — generous, appropriate ✅
 - Body text: `text-base md:text-lg` — readable ✅
-- Missing: No testimonials/social proof section between Work and Packages
+- Testimonials: Cinematic single-item layout (Drake Seaside) implemented ✅
 
 ### Pricing Page (`/services-pricing`)
 
@@ -412,9 +452,9 @@ Replaced all flex-centering row wrappers in both the slot and non-slot h1 paths 
 | # | Gap | Priority |
 |---|-----|----------|
 | C1 | ~~No floating WhatsApp CTA button~~ | High | ✅ Fixed — added to Layout.tsx, always-visible bottom-right |
-| C2 | No testimonials or client quote section | High | ⬜ Outstanding |
+| C2 | Testimonials or client quote section | High | ✅ Done (Single Cinematic Testimonial) |
 | C3 | No "trust signals" bar after hero | Medium | ⬜ Outstanding |
-| C4 | ~~Marquee hidden on mobile~~ | Medium | ✅ Fixed — now visible on all viewports |
+| C4 | Marquee hidden on mobile | Medium | ✅ Fixed — now visible on all viewports |
 | C5 | Package cards on mobile show all 4 — progressive reveal | Low | ⬜ Low priority |
 | C6 | No exit-intent capture | ❌ Not Needed | No GDPR plan in scope |
 | C7 | "Book a discovery call" CTA gradient — verify on Safari iOS | Medium | ⬜ Outstanding |
@@ -425,8 +465,8 @@ Replaced all flex-centering row wrappers in both the slot and non-slot h1 paths 
 
 | # | Gap | Type | Priority |
 |---|-----|------|----------|
-| G1 | No testimonials page or testimonial snippets on Home | Social proof | High |
-| G2 | No "industries we serve" content — Tourism, Hospitality, F&B are primary Seychelles verticals | SEO + UX | High |
+| G1 | No testimonials page or testimonial snippets on Home | Social proof | ✅ Fixed |
+| G2 | "industries we serve" content — Tourism, Hospitality, F&B are primary Seychelles verticals | SEO + UX | ✅ Fixed |
 | G3 | About page likely thin on content depth | Authority | Medium |
 | G4 | No FAQ page for common "how much does a website cost" type queries | SEO | Medium |
 | G5 | Insights section has 5 articles — thin for a blog/insights hub | SEO authority | Medium |
@@ -445,7 +485,7 @@ Replaced all flex-centering row wrappers in both the slot and non-slot h1 paths 
 | H1 | Verify hero title centering on real mobile device (375px, 390px, 414px) | QA | Hero component | ⬜ |
 | H2 | Create proper 1200×630 OG image for social sharing (replace logo.webp) | SEO | `/public/og-image.png` | ⬜ |
 | H3 | Add floating WhatsApp CTA button — visible on all pages | Conversion | `Layout.tsx` | ✅ Done |
-| H4 | Add testimonials section to Home page (between Work showcase and Packages) | Conversion | `Home.tsx` | ⬜ |
+| H4 | Add testimonials section to Home page (between Work showcase and Packages) | Conversion | `Home.tsx` | ✅ Done |
 | H5 | Add FAQ schema to Pricing and WhatYouNeed pages | SEO | `Pricing.tsx`, `WhatYouNeed.tsx` | ✅ Already present |
 | H6 | Resolve `/ai-digital-tools` vs `/insights` URL/content overlap | SEO | `App.tsx`, nav, sitemap | ⬜ |
 | H7 | Add showcase pages to sitemap.xml | SEO | `public/sitemap.xml` | ✅ Done |
@@ -458,14 +498,14 @@ Replaced all flex-centering row wrappers in both the slot and non-slot h1 paths 
 |---|--------|------|-----------|--------|
 | M1 | Mobile section nav on Pricing: jump rail `lg:hidden`, MenuVertical `lg:block` | UX | `Pricing.tsx` | ✅ Done |
 | M2 | Show marquee on mobile | UX/Conversion | `Home.tsx` | ✅ Done |
-| M3 | Add HowTo schema to Process page | SEO | `Process.tsx` | ⬜ |
-| M4 | Add ContactPage schema to Contact page | SEO | `Contact.tsx` | ⬜ |
-| M5 | Add BreadcrumbList schema to all inner pages | SEO | `Seo.tsx` | ⬜ |
-| M6 | Update insight article `lastmod` dates in sitemap | SEO | `sitemap.xml` | ⬜ |
+| M3 | Add HowTo schema to Process page | SEO | `Process.tsx` | ✅ Done |
+| M4 | Add ContactPage schema to Contact page | SEO | `Contact.tsx` | ✅ Done |
+| M5 | Add BreadcrumbList schema to all inner pages | SEO | Multiple | ✅ Done |
+| M6 | Update insight article `lastmod` dates in sitemap | SEO | `sitemap.xml` | ✅ Done |
 | M7 | Fix Contact page title (67 → 52 chars) | SEO | `Contact.tsx` | ✅ Done |
-| M8 | Add "industries we serve" section (Tourism, Hospitality, F&B) | Content/SEO | `Home.tsx` or new page | ⬜ |
+| M8 | Add "industries we serve" section (Tourism, Hospitality, F&B) | Content/SEO | `Home.tsx` | ✅ Done |
 | M9 | Verify CTA gradient animation on Safari iOS | QA | `Home.tsx` | ⬜ |
-| M10 | Show Process page features list on mobile (currently `hidden md:flex`) | UX | `Process.tsx` | ⬜ |
+| M10 | Show Process page features list on mobile (currently `hidden md:flex`) | UX | `Process.tsx` | ✅ Done |
 | M11 | `prefers-reduced-motion` guards on all blur animations | A11y | Multiple | ✅ Done |
 | M12 | Insights section floating cards — check overflow on 375px viewport | QA | `Home.tsx` | ⬜ |
 | M13 | Floating UI element audit: chat button, back-to-top, WhatsApp positioning | UX | `Layout.tsx`, `ChatWidget.tsx` | ✅ Done |
@@ -482,7 +522,7 @@ Replaced all flex-centering row wrappers in both the slot and non-slot h1 paths 
 | L6 | Rewrite Process page keywords → "web design process", "website development timeline" | SEO | `Process.tsx` | ⬜ |
 | L7 | Add 3+ more Insight articles to strengthen content hub | SEO authority | New content | ⬜ |
 | L8 | Add case study detail with metrics for Drake Seaside project | Conversion | New page/section | ⬜ |
-| L9 | Work page: add blur entrance per project card | Animation | `Work.tsx` | ⬜ |
+| L9 | Work page: upgrade fadeIn preset — blur(8px)+y:24, amount 0.15, 0.95s | Animation | `Work.tsx` | ✅ Done |
 | L10 | Consider `/pricing` or `/web-design-packages-seychelles` redirect from `/services-pricing` | SEO | Router + sitemap | ⬜ |
 | L11 | About page feature blocks: add stacking blur entrance animations | Animation | `About.tsx` | ⬜ |
 

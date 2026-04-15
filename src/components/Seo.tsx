@@ -9,6 +9,7 @@ type SeoProps = {
   robots?: string;
   ogType?: "website" | "article";
   structuredData?: Record<string, unknown> | Array<Record<string, unknown>>;
+  breadcrumbs?: Array<{ name: string; path: string }>;
 };
 
 export default function Seo({
@@ -19,6 +20,7 @@ export default function Seo({
   robots = "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1",
   ogType = "website",
   structuredData,
+  breadcrumbs,
 }: SeoProps) {
   const canonical = new URL(path, siteConfig.url).toString();
   const fullTitle = title.includes(siteConfig.name)
@@ -93,6 +95,7 @@ export default function Seo({
   const websiteSchema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": `${siteConfig.url}/#website`,
     name: siteConfig.name,
     url: siteConfig.url,
     description: siteConfig.tagline,
@@ -106,7 +109,32 @@ export default function Seo({
     },
   };
 
-  schemas.push(organizationSchema, localBusinessSchema, websiteSchema);
+  const webPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${canonical}/#webpage`,
+    url: canonical,
+    name: fullTitle,
+    description: description,
+    isPartOf: {
+      "@id": `${siteConfig.url}/#website`
+    }
+  };
+
+  schemas.push(organizationSchema, localBusinessSchema, websiteSchema, webPageSchema);
+
+  if (breadcrumbs && breadcrumbs.length > 0) {
+    schemas.push({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: breadcrumbs.map((crumb, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: crumb.name,
+        item: new URL(crumb.path, siteConfig.url).toString(),
+      })),
+    });
+  }
 
   if (structuredData) {
     if (Array.isArray(structuredData)) {

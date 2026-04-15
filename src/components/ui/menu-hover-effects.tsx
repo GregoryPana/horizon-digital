@@ -38,11 +38,7 @@ const mobileMenuItems: MobileMenuItem[] = [
   {
     id: "insights",
     label: "Digital Insights",
-    to: "/ai-digital-tools",
-    children: [
-      { label: "Main page", to: "/ai-digital-tools" },
-      { label: "All insights", to: "/insights" },
-    ],
+    to: "/insights"
   },
   { id: "about", label: "About", to: "/about" },
   { id: "contact", label: "Contact", to: "/contact" },
@@ -64,10 +60,6 @@ const desktopDropdowns: Record<string, Array<{ label: string; to: string }>> = {
     { label: "Hosting", to: "/services-pricing#hosting" },
     { label: "Add-ons", to: "/services-pricing#addons" },
     { label: "Visibility", to: "/services-pricing#visibility" },
-  ],
-  "/ai-digital-tools": [
-    { label: "Main page", to: "/ai-digital-tools" },
-    { label: "All insights", to: "/insights" },
   ],
 };
 
@@ -105,8 +97,8 @@ export default function NavMenu() {
     const itemPath = normalizePath(path);
 
     if (itemPath === "/") return currentPath === "/";
-    if (path === "/ai-digital-tools") {
-      return currentPath === "/ai-digital-tools" || currentPath.startsWith("/insights");
+    if (path === "/insights") {
+      return currentPath === "/insights" || currentPath.startsWith("/insights");
     }
     return currentPath === itemPath;
   };
@@ -285,7 +277,7 @@ export default function NavMenu() {
               const hasSectionDropdown = Object.prototype.hasOwnProperty.call(desktopDropdowns, item.path);
               const hasWorkDropdown = item.path === "/work";
               const hasDropdown = hasSectionDropdown || hasWorkDropdown;
-              const isInsightsMenu = item.path === "/ai-digital-tools";
+              const isInsightsMenu = item.path === "/insights";
               const isActive = isDesktopItemActive(item.path);
 
               if (!hasDropdown) {

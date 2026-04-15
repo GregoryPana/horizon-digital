@@ -1,5 +1,5 @@
 import { Suspense, lazy } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import Layout from "./components/Layout";
 import AnalyticsListener from "./components/AnalyticsListener";
 
@@ -10,11 +10,11 @@ const Process = lazy(() => import("./pages/Process"));
 const Work = lazy(() => import("./pages/Work"));
 const About = lazy(() => import("./pages/About"));
 const Contact = lazy(() => import("./pages/Contact"));
-const AIDigitalTools = lazy(() => import("./pages/AIDigitalTools"));
 const Insights = lazy(() => import("./pages/Insights"));
 const InsightArticle = lazy(() => import("./pages/InsightArticle"));
 const ShowcaseFormaStudio = lazy(() => import("./pages/ShowcaseFormaStudio"));
 const ShowcaseTakamakaHouse = lazy(() => import("./pages/ShowcaseTakamakaHouse"));
+const WebDesignSeychelles = lazy(() => import("./pages/WebDesignSeychelles"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 export default function App() {
@@ -40,14 +40,16 @@ export default function App() {
           <Route path="/what-you-need" element={<WhatYouNeed />} />
           <Route path="/work" element={<Work />} />
           <Route path="/services-pricing" element={<Pricing />} />
+          <Route path="/pricing" element={<Navigate to="/services-pricing" replace />} />
           <Route path="/process" element={<Process />} />
-          <Route path="/ai-digital-tools" element={<AIDigitalTools />} />
+          <Route path="/ai-digital-tools" element={<Navigate to="/insights" replace />} />
           <Route path="/insights" element={<Insights />} />
           <Route path="/insights/:slug" element={<InsightArticle />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/showcase/forma-studio" element={<ShowcaseFormaStudio />} />
           <Route path="/showcase/takamaka-house" element={<ShowcaseTakamakaHouse />} />
+          <Route path="/web-design-seychelles" element={<WebDesignSeychelles />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>

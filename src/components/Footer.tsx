@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Mail, Phone, MessageCircle, MapPin } from "lucide-react";
 import { emailTemplate, siteConfig } from "../data/site";
 import { buildMailtoLink, scrollToTopSmooth } from "../lib/utils";
+import { trackEvent } from "../lib/analytics";
 
 const mainLinks = [
   { label: "Home", path: "/" },
@@ -15,8 +16,7 @@ const mainLinks = [
 ];
 
 const insightsLinks = [
-  { label: "Digital Insights", path: "/ai-digital-tools" },
-  { label: "All Articles", path: "/insights" },
+  { label: "Digital Insights", path: "/insights" },
 ];
 
 export default function Footer() {
@@ -40,6 +40,12 @@ export default function Footer() {
               rel="noreferrer"
               whileHover={{ scale: 1.04, y: -1 }}
               transition={{ type: "spring", stiffness: 400, damping: 15 }}
+              onClick={() =>
+                trackEvent("cta_click", {
+                  cta_name: "google_verified_badge",
+                  page_path: window.location.pathname,
+                })
+              }
               className="group inline-flex w-fit items-center gap-2.5 rounded-lg bg-white/5 px-3.5 py-2.5 text-[11px] font-bold uppercase tracking-[0.2em] text-text-muted shadow-[0_2px_8px_rgba(0,0,0,0.3)] transition-colors hover:text-accent"
             >
               <svg viewBox="0 0 24 24" className="h-3.5 w-3.5 text-accent" fill="currentColor" aria-hidden="true">
@@ -102,6 +108,13 @@ export default function Footer() {
               <a
                 className="group/email flex w-fit items-center gap-3 text-sm text-text-muted transition hover:text-cyan"
                 href={buildMailtoLink(siteConfig.email, emailTemplate.subject, emailTemplate.body)}
+                onClick={() =>
+                  trackEvent("contact_click", {
+                    type: "email",
+                    source: "footer",
+                    page_path: window.location.pathname,
+                  })
+                }
               >
                 <motion.div
                   whileHover={{ y: -2, scale: 1.1 }}
@@ -115,6 +128,13 @@ export default function Footer() {
               <a
                 className="group/phone flex w-fit items-center gap-3 text-sm text-text-muted transition hover:text-cyan"
                 href={`tel:${siteConfig.phone.replace(/\s+/g, "")}`}
+                onClick={() =>
+                  trackEvent("contact_click", {
+                    type: "phone",
+                    source: "footer",
+                    page_path: window.location.pathname,
+                  })
+                }
               >
                 <motion.div
                   whileHover={{ rotate: 18, scale: 1.1 }}
@@ -130,6 +150,12 @@ export default function Footer() {
                 href={siteConfig.whatsappUrl}
                 target="_blank"
                 rel="noreferrer"
+                onClick={() =>
+                  trackEvent("cta_click", {
+                    cta_name: "whatsapp_footer",
+                    page_path: window.location.pathname,
+                  })
+                }
               >
                 <motion.div
                   whileHover={{ scale: 1.15, rotate: -8 }}

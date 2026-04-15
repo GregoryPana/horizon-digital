@@ -1,7 +1,6 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
 import Seo from "../components/Seo";
-import { siteConfig } from "../data/site";
 import { trackEvent } from "../lib/analytics";
 import { useRef, useEffect } from "react";
 import gsap from "gsap";
@@ -165,10 +164,10 @@ export default function Work() {
   const bgRef = useRef<HTMLDivElement>(null);
 
   const fadeIn = {
-    initial: { opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 20 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true, amount: 0.3 },
-    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] as any },
+    initial: shouldReduceMotion ? undefined : { opacity: 0, y: 24, filter: 'blur(8px)' },
+    whileInView: shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: 'blur(0px)' },
+    viewport: { once: true, amount: 0.15 },
+    transition: { duration: 0.95, ease: [0.16, 1, 0.3, 1] as any },
   };
 
   useGSAP(() => {
@@ -268,14 +267,10 @@ export default function Work() {
         description="Explore the Horizon Digital website portfolio. We build custom websites designed to communicate clearly, perform fast, and support real business needs in Seychelles."
         path="/work"
         keywords="custom website portfolio Seychelles, bespoke web design examples Seychelles, custom-built business websites Seychelles, tailored web development showcase"
-        structuredData={{
-          "@context": "https://schema.org",
-          "@type": "BreadcrumbList",
-          itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Home", item: `${siteConfig.url}/` },
-            { "@type": "ListItem", position: 2, name: "Our Work", item: `${siteConfig.url}/work` },
-          ],
-        }}
+        breadcrumbs={[
+          { name: "Home", path: "/" },
+          { name: "Our Work", path: "/work" },
+        ]}
       />
 
       <section className="pt-12 pb-8 md:pt-24 md:pb-16 text-center px-5 sm:px-8 max-w-5xl mx-auto relative z-20 bg-bg-main/80 backdrop-blur-sm">

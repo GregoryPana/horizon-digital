@@ -550,12 +550,12 @@ const Hero: React.FC<HeroProps> = ({
                   return (
                     <h1
                       key={td.lineIndex}
-                      className="block w-full text-center text-[clamp(2.2rem,8.5vw,6.5rem)] font-bold font-display uppercase leading-[1.1] lg:leading-[0.95] tracking-[0.02em]"
+                      className="block w-full text-center text-[clamp(1.6rem,8.5vw,6.5rem)] sm:text-[clamp(2.2rem,8.5vw,6.5rem)] font-bold font-display uppercase leading-[1.1] lg:leading-[0.95] tracking-[0.02em]"
                     >
                       {/* block + text-center: inline-block WaveChar spans center via CSS text-align inheritance */}
                       <span className="block w-full text-center">
                         {td.prefix && (
-                          <span className="block w-full text-center h-[1.1em] lg:h-[0.95em]">
+                          <span className="block w-full text-center h-[1.1em] lg:h-[0.95em] whitespace-nowrap">
                             {prefixElements}
                           </span>
                         )}
@@ -565,26 +565,26 @@ const Hero: React.FC<HeroProps> = ({
                             style={slotActive ? { animation: 'hero-slot 12s cubic-bezier(0.4, 0, 0.2, 1) infinite' } : undefined}
                           >
                             {/* First word: WaveChar animation on initial load */}
-                            <span className="block w-full text-center text-accent h-[1.1em] lg:h-[0.95em]">
+                            <span className="block w-full text-center text-accent h-[1.1em] lg:h-[0.95em] whitespace-nowrap">
                               {wordElements}
                             </span>
                             {/* Remaining words for slot rotation */}
                             {headline.rotatingWords!.slice(1).map((word, i) => (
                               <span
                                 key={i + 1}
-                                className="block w-full text-center text-accent h-[1.1em] lg:h-[0.95em]"
+                                className="block w-full text-center text-accent h-[1.1em] lg:h-[0.95em] whitespace-nowrap"
                               >
                                 {word}
                               </span>
                             ))}
                             {/* Repeat first word for seamless loop */}
-                            <span className="block w-full text-center text-accent h-[1.1em] lg:h-[0.95em]">
+                            <span className="block w-full text-center text-accent h-[1.1em] lg:h-[0.95em] whitespace-nowrap">
                               {headline.rotatingWords![0]}
                             </span>
                           </span>
                         </span>
                         {td.suffix && (
-                          <span className="block w-full text-center h-[1.1em] lg:h-[0.95em]">
+                          <span className="block w-full text-center h-[1.1em] lg:h-[0.95em] whitespace-nowrap">
                             {suffixElements}
                           </span>
                         )}
@@ -617,9 +617,9 @@ const Hero: React.FC<HeroProps> = ({
                   return (
                     <h1
                       key={td.lineIndex}
-                      className="block w-full text-center text-[clamp(2.2rem,8.5vw,6.5rem)] font-bold font-display uppercase leading-[1.1] lg:leading-[0.95] tracking-[0.02em]"
+                      className="block w-full text-center text-[clamp(1.6rem,8.5vw,6.5rem)] sm:text-[clamp(2.2rem,8.5vw,6.5rem)] font-bold font-display uppercase leading-[1.1] lg:leading-[0.95] tracking-[0.02em]"
                     >
-                      <span className="block w-full text-center">
+                      <span className="block w-full text-center whitespace-nowrap">
                         {elements}
                       </span>
                     </h1>
