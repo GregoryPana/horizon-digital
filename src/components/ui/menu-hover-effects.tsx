@@ -138,10 +138,12 @@ export default function NavMenu() {
   }, [isMenuOpen]);
 
   return (
-    <nav className="nav-menu inline-block">
+    <div className="nav-menu-container flex items-center">
+      {/* Mobile Menu Button - only visible on mobile */}
       <button
+        type="button"
         onClick={() => setIsMenuOpen((prev) => !prev)}
-        className="nav-menu-button header-control-dark focus-ring relative z-[160] inline-flex h-11 w-11 items-center justify-center rounded-full border shadow-[0_0_12px_var(--glow)] lg:hidden"
+        className="nav-menu-button header-control-dark focus-ring relative z-[210] lg:hidden inline-flex h-11 w-11 items-center justify-center rounded-full border shadow-[0_0_12px_var(--glow)]"
         aria-label={isMenuOpen ? "Close menu" : "Open menu"}
         aria-expanded={isMenuOpen}
         aria-controls="mobile-site-menu"
@@ -168,7 +170,7 @@ export default function NavMenu() {
       {createPortal(
         <div
           id="mobile-site-menu"
-          className={`fixed inset-0 z-[140] h-[100dvh] w-screen overflow-y-auto overscroll-contain blue-menu-fade text-[#e8edf5] transition-all duration-500 ease-in-out lg:hidden ${
+          className={`fixed inset-0 z-[200] h-[100dvh] w-screen overflow-y-auto overscroll-contain blue-menu-fade text-[#e8edf5] transition-all duration-500 ease-in-out lg:hidden ${
             isMenuOpen ? "pointer-events-auto translate-x-0 opacity-100" : "pointer-events-none translate-x-full opacity-0"
           }`.trim()}
         >
@@ -270,7 +272,8 @@ export default function NavMenu() {
         document.body
       )}
 
-      <div className="hidden lg:block">
+      {/* Desktop Menu - only visible on lg and up */}
+      <div className="hidden lg:block ml-auto">
         <NavigationMenu viewport={false} className="relative">
           <NavigationMenuList className="gap-3 xl:gap-5">
             {navLinks.map((item) => {
@@ -360,6 +363,6 @@ export default function NavMenu() {
           </NavigationMenuList>
         </NavigationMenu>
       </div>
-    </nav>
+    </div>
   );
 }

@@ -118,6 +118,9 @@ Status legend: ✅ Done · 🔄 In Progress · ⬜ Outstanding · ❌ Not Needed
 | 67 | Final GA4 Audit: instrumented bottom CTAs on Home, Process, and Insight pages | Multiple | ✅ |
 | 68 | SEO Verification: Confirmed canonical URL structure and `<Seo />` tag coverage | All | ✅ |
 | 69 | Build Validation: Successfully completed production bundle pass | All | ✅ |
+| 70 | Mobile Navigation: Fixed broken menu overlay and z-index issues; consolidated NavMenu logic | `menu-hover-effects.tsx`, `Navbar.tsx` | ✅ |
+| 71 | Digital Insights: Restored visibility and accessibility on mobile viewports | `menu-hover-effects.tsx` | ✅ |
+| 72 | Navigation Leakage: Fixed desktop links overlapping mobile view on small devices | `menu-hover-effects.tsx` | ✅ |
 
 ### ⬜ Outstanding Animation Work
 

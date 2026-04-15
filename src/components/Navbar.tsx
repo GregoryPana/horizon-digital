@@ -44,9 +44,7 @@ export default function Navbar() {
           </span>
         </NavLink>
         <div className="ml-auto flex items-center gap-3">
-          <div className="hidden lg:block">
-            <NavMenu />
-          </div>
+          <NavMenu />
           <div className="hidden items-center gap-7 lg:flex">
             <style>{`
               @keyframes nav-cta-gradient {
@@ -67,9 +65,6 @@ export default function Navbar() {
             >
               Book a free consult
             </NavLink>
-          </div>
-          <div className="lg:hidden">
-            <NavMenu />
           </div>
         </div>
       </div>
