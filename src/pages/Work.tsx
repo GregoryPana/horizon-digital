@@ -189,68 +189,74 @@ export default function Work() {
     });
 
     projects.forEach((proj, i) => {
-      // Set initial pointer-events and z-index for all
-      gsap.set([`.project-text-${i}`, `.project-visual-${i}`], { pointerEvents: 'none', zIndex: 1 });
-
-      // 1. Text is already at opacity 0 via class, so we fade it in FIRST (except item 0 which starts visible)
+      // Ensure specific elements are explicitly interactive only when active
       if (i > 0) {
         tl.fromTo(`.project-text-${i}`,
-          { y: 30, opacity: 0 },
-          { y: 0, opacity: 1, duration: 2.2, ease: 'expo.out', onStart: () => { gsap.set(`.project-text-${i}`, { pointerEvents: 'auto', zIndex: 10 }) } },
+          { y: 30, opacity: 0, pointerEvents: 'none' },
+          { 
+            y: 0, 
+            opacity: 1, 
+            pointerEvents: 'auto',
+            duration: 2.2, 
+            ease: 'expo.out', 
+            onStart: () => { gsap.set(`.project-text-${i}`, { zIndex: 10 }) }
+          },
           `reveal-${i}`
         );
       } else {
-        // Ensure first item text is fully visible and interactive immediately
         gsap.set(`.project-text-0`, { opacity: 1, y: 0, pointerEvents: 'auto', zIndex: 10 });
       }
 
-      // 2. ONLY THEN, device flows up from bottom with cinematic scale
       tl.fromTo(`.project-visual-${i}`,
-        { y: '60vh', scale: 0.85, opacity: 0 },
-        { y: '0vh', scale: 1, opacity: 1, duration: 3.2, ease: 'expo.out', onStart: () => { gsap.set(`.project-visual-${i}`, { pointerEvents: 'auto', zIndex: 10 }) } },
+        { y: '60vh', scale: 0.85, opacity: 0, pointerEvents: 'none' },
+        { 
+          y: '0vh', 
+          scale: 1, 
+          opacity: 1, 
+          pointerEvents: 'auto',
+          duration: 3.2, 
+          ease: 'expo.out', 
+          onStart: () => { gsap.set(`.project-visual-${i}`, { zIndex: 10 }) }
+        },
         `reveal-${i}+=0.5` 
       );
       
-      // Inside visual, tilt the laptop dynamically adding cinematic isometric flair
       tl.fromTo(`.laptop-model-${i}`,
         { rotateX: -22, rotateY: -3, scale: 0.92 },
         { rotateX: -12, rotateY: 0, scale: 1, duration: 3.8, ease: 'expo.out' },
-        "<" // concurrent with visual ascending
+        "<"
       );
 
-      // Transition the background color
       tl.to(bgRef.current, {
         backgroundColor: proj.bgColor,
         duration: 2,
         ease: 'power2.out'
       }, "<");
 
-      // 3. Locked in position pause (the user scrolls but nothing moves)
       tl.to({}, { duration: 1.5 });
 
-      // 4. Move everything out to make way for next project (if not the last project)
       if (i < projects.length - 1) {
-        // Visual flows out to the TOP with steady linear-like speed
         tl.to(`.project-visual-${i}`, 
           { 
             y: '-60vh', 
             scale: 0.92, 
             opacity: 0, 
+            pointerEvents: 'none',
             duration: 3.5, 
             ease: 'power1.inOut',
-            onComplete: () => { gsap.set(`.project-visual-${i}`, { pointerEvents: 'none', zIndex: 1 }) }
+            onComplete: () => { gsap.set(`.project-visual-${i}`, { zIndex: 1 }) }
           }, 
           `exit-${i}`
         );
-        // Text fades out gently in place with steady lift
         tl.to(`.project-text-${i}`, 
           { 
             y: -20, 
             opacity: 0, 
             scale: 0.95, 
+            pointerEvents: 'none',
             duration: 3.0, 
             ease: 'power1.inOut',
-            onComplete: () => { gsap.set(`.project-text-${i}`, { pointerEvents: 'none', zIndex: 1 }) }
+            onComplete: () => { gsap.set(`.project-text-${i}`, { zIndex: 1 }) }
           }, 
           `exit-${i}+=0.1`
         );

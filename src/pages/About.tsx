@@ -27,42 +27,39 @@ export default function About() {
         structuredData={[
           {
             "@context": "https://schema.org",
-            "@type": "Organization",
-            name: siteConfig.name,
-            url: siteConfig.url,
-            logo: `${siteConfig.url}/og-image.png`,
-            email: siteConfig.email,
-            telephone: siteConfig.phone,
-            address: {
-              "@type": "PostalAddress",
-              addressLocality: "Mahé",
-              addressCountry: "SC",
-            },
-            areaServed: {
-              "@type": "Place",
-              name: "Seychelles",
-            },
-            description: "A local web design studio on Mahé, Seychelles, building custom, fast, and conversion-focused websites for hospitality, food & beverage, and service businesses.",
-            sameAs: [],
+            "@type": "AboutPage",
+            "mainEntity": {
+              "@type": "Organization",
+              "name": siteConfig.name,
+              "url": siteConfig.url,
+              "logo": `${siteConfig.url}/og-image.png`,
+              "description": "Horizon Digital is a local web design studio based on Mahé, Seychelles, specialized in custom conversion-focused websites for Tourism, F&B and Professional services.",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Mahé",
+                "addressCountry": "SC"
+              }
+            }
           },
           {
             "@context": "https://schema.org",
-            "@type": "Person",
-            name: "Horizon Digital Studio",
-            jobTitle: "Web Designer & Developer",
-            worksFor: {
-              "@type": "Organization",
-              name: siteConfig.name,
-              url: siteConfig.url,
-            },
-            address: {
+            "@type": "LocalBusiness",
+            "name": siteConfig.name,
+            "image": `${siteConfig.url}/og-image.png`,
+            "telephone": siteConfig.phone,
+            "url": siteConfig.url,
+            "address": {
               "@type": "PostalAddress",
-              addressLocality: "Mahé",
-              addressCountry: "SC",
+              "addressLocality": "Mahé",
+              "addressCountry": "SC"
             },
-            email: siteConfig.email,
-            telephone: siteConfig.phone,
-            url: `${siteConfig.url}/about`,
+            "areaServed": [
+              { "@type": "AdministrativeArea", "name": "Mahé" },
+              { "@type": "AdministrativeArea", "name": "Praslin" },
+              { "@type": "AdministrativeArea", "name": "La Digue" },
+              { "@type": "Country", "name": "Seychelles" }
+            ],
+            "priceRange": "SCR7500-SCR25000+"
           }
         ]}
         breadcrumbs={[

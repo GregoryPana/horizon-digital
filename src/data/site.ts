@@ -18,7 +18,7 @@ export const siteConfig = {
   phone: "+248 2604525",
   whatsappUrl: "https://wa.me/2482604525?text=Hi+Horizon+Digital%2C+I%27d+like+to+discuss+a+website+project.",
   url: "https://horizondigitalsey.com",
-  location: "Seychelles",
+  location: "Mahé, Seychelles",
   ogImage,
 };
 

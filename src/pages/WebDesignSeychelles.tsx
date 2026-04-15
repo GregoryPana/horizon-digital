@@ -342,15 +342,29 @@ export default function WebDesignSeychelles() {
       "priceRange": "SCR 7,500 - SCR 25,000+",
       "address": {
         "@type": "PostalAddress",
-        "addressLocality": siteConfig.location,
+        "addressLocality": "Mahé",
         "addressCountry": "SC"
       }
     },
     "description": "Expert custom web design and development services in Seychelles, focusing on speed, mobile-readiness, and SEO optimization.",
-    "areaServed": {
-      "@type": "Country",
-      "name": "Seychelles"
-    },
+    "areaServed": [
+      {
+        "@type": "AdministrativeArea",
+        "name": "Mahé"
+      },
+      {
+        "@type": "AdministrativeArea",
+        "name": "Praslin"
+      },
+      {
+        "@type": "AdministrativeArea",
+        "name": "La Digue"
+      },
+      {
+        "@type": "Country",
+        "name": "Seychelles"
+      }
+    ],
     "hasOfferCatalog": {
       "@type": "OfferCatalog",
       "name": "Web Design Packages",

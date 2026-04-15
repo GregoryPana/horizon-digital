@@ -138,17 +138,43 @@ export default function Pricing() {
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: "Website design and development",
-    description: servicesPricingIntro.summary,
-    provider: {
-      "@type": "Organization",
-      name: siteConfig.name,
-      url: siteConfig.url,
-      email: siteConfig.email,
-      telephone: siteConfig.phone,
+    "serviceType": "Website design and development",
+    "name": "Custom Website Packages",
+    "description": servicesPricingIntro.summary,
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": siteConfig.name,
+      "image": new URL("/logo.png", siteConfig.url).toString(),
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Mahé",
+        "addressCountry": "SC"
+      },
+      "url": siteConfig.url,
+      "telephone": siteConfig.phone
     },
-    areaServed: siteConfig.location,
-    offers: packageOffers,
+    "areaServed": [
+      { "@type": "AdministrativeArea", "name": "Mahé" },
+      { "@type": "AdministrativeArea", "name": "Praslin" },
+      { "@type": "AdministrativeArea", "name": "La Digue" },
+      { "@type": "Country", "name": "Seychelles" }
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Web Design Packages",
+      "itemListElement": packageOffers.map(offer => ({
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": offer.name
+        },
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "price": offer.price,
+          "priceCurrency": "SCR"
+        }
+      }))
+    }
   };
 
   const faqSchema = {

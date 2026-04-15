@@ -65,6 +65,51 @@ export default function Seo({
       latitude: -4.6796,
       longitude: 55.4796,
     },
+    areaServed: [
+      {
+        "@type": "AdministrativeArea",
+        name: "Mahé"
+      },
+      {
+        "@type": "AdministrativeArea",
+        name: "Praslin"
+      },
+      {
+        "@type": "AdministrativeArea",
+        name: "La Digue"
+      },
+      {
+        "@type": "Country",
+        name: "Seychelles"
+      }
+    ],
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Digital Services",
+      itemListElement: [
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Custom Web Design"
+          }
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Web Development"
+          }
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Search Engine Optimisation (SEO)"
+          }
+        }
+      ]
+    },
     openingHoursSpecification: [
       {
         "@type": "OpeningHoursSpecification",
@@ -75,10 +120,6 @@ export default function Seo({
     ],
     currenciesAccepted: "SCR",
     paymentAccepted: "Bank Transfer, Cash",
-    areaServed: {
-      "@type": "Country",
-      name: "Seychelles",
-    },
     serviceType: [
       "Web Design",
       "Web Development",
