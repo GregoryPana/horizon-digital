@@ -24,6 +24,25 @@ export type InsightArticle = {
   }>;
 };
 
+export const technologyTopics = [
+  {
+    title: "AI Chatbots for Customer Communication",
+    text: "AI-powered chatbots can answer common questions, guide visitors, and support customer communication outside normal working hours. They can help with booking enquiries, service questions, and basic support requests.",
+  },
+  {
+    title: "Automation Tools",
+    text: "Automation tools can streamline repetitive tasks like confirmations, follow-ups, and information routing. This can reduce workload and help teams focus on customer-facing work.",
+  },
+  {
+    title: "Understanding Customers Through Data",
+    text: "Digital analytics can help businesses understand customer behaviour, popular services, and content performance. Better insights support better decisions.",
+  },
+  {
+    title: "AI Tools for Content and Communication",
+    text: "AI-assisted tools can support drafting, translation, and idea generation. They should support human judgement, not replace it.",
+  },
+];
+
 export const insightArticles: InsightArticle[] = [
   {
     slug: "ai-small-business-seychelles",

@@ -4,7 +4,7 @@ import { trackEvent } from "../lib/analytics";
 import Seo from "../components/Seo";
 import Section from "../components/Section";
 import Card from "../components/Card";
-import { insightArticles } from "../data/insights";
+import { insightArticles, technologyTopics } from "../data/insights";
 import InsightsHero from "../components/InsightsHero";
 
 export default function Insights() {
@@ -26,6 +26,23 @@ export default function Insights() {
         title="The digital world, made simple for you"
         description="No jargon. No fluff. Just honest, useful context for running a modern business."
       />
+
+      <Section
+        eyebrow="The digital basics"
+        title="Digital tools in plain English"
+        description="No degree required. Just honest, useful context on the tools everyone's talking about."
+      >
+        <div className="grid gap-6 md:grid-cols-2">
+          {technologyTopics.map((topic) => (
+            <Card key={topic.title} className="no-scroll-glow">
+              <h3 className="text-lg font-semibold text-deep-teal">{topic.title}</h3>
+              <p className="mt-2 text-sm text-text-muted leading-relaxed">
+                {topic.text}
+              </p>
+            </Card>
+          ))}
+        </div>
+      </Section>
 
       <Section
         eyebrow="Worth reading"

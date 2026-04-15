@@ -1,7 +1,7 @@
 import guesthousePreview from "../assets/work/drake-seaside/drake-seaside.jpg";
 import guesthousePreviewWebp from "../assets/work/drake-seaside/hero-bg.webp";
 import guesthousePreviewWebp800 from "../assets/work/drake-seaside/hero-bg-600.webp";
-import ogImage from "../assets/logo/logo.webp";
+import ogImage from "../assets/logo/og-image.png";
 import formaStudioPreview from "../assets/work/forma studio/forma studio.webp";
 import formaStudioBg from "../assets/work/forma studio/forma.webp";
 import takamakaHousePreview from "../assets/work/takamaka-house/takamaka house.webp";

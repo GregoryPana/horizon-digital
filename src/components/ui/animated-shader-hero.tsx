@@ -550,7 +550,7 @@ const Hero: React.FC<HeroProps> = ({
                   return (
                     <h1
                       key={td.lineIndex}
-                      className="block w-full text-center text-[clamp(1.6rem,8.5vw,6.5rem)] sm:text-[clamp(2.2rem,8.5vw,6.5rem)] font-bold font-display uppercase leading-[1.1] lg:leading-[0.95] tracking-[0.02em]"
+                      className="block w-full text-center text-[clamp(1.4rem,8.5vw,6.5rem)] sm:text-[clamp(2.2rem,8.5vw,6.5rem)] font-bold font-display uppercase leading-[1.1] lg:leading-[0.95] tracking-[0.02em]"
                     >
                       {/* block + text-center: inline-block WaveChar spans center via CSS text-align inheritance */}
                       <span className="block w-full text-center">
@@ -617,9 +617,9 @@ const Hero: React.FC<HeroProps> = ({
                   return (
                     <h1
                       key={td.lineIndex}
-                      className="block w-full text-center text-[clamp(1.6rem,8.5vw,6.5rem)] sm:text-[clamp(2.2rem,8.5vw,6.5rem)] font-bold font-display uppercase leading-[1.1] lg:leading-[0.95] tracking-[0.02em]"
+                      className="block w-full text-center text-[clamp(1.4rem,8.5vw,6.5rem)] sm:text-[clamp(2.2rem,8.5vw,6.5rem)] font-bold font-display uppercase leading-[1.1] lg:leading-[0.95] tracking-[0.02em]"
                     >
-                      <span className="block w-full text-center whitespace-nowrap">
+                      <span className="block w-full text-center whitespace-normal sm:whitespace-nowrap">
                         {elements}
                       </span>
                     </h1>
