@@ -38,7 +38,7 @@ const projects = [
     title: "Drake Seaside",
     tier: "Growth Tier",
     body: "A complete redesign with new pages, faster loading, and a layout that turns visitors into bookings.",
-    link: "https://drakeseaside.com",
+    link: "https://thedrake-seaside.com",
     cta: "View live site →",
     reqCta: "Request similar site",
     videoSrc: drakeVideo,
@@ -315,11 +315,27 @@ export default function Work() {
                       <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-cyan" />
                       <div className="absolute inset-0 bg-gradient-to-r from-cyan/0 via-cyan/5 to-cyan/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
                     </a>
+
+                    <Link 
+                      to={`/contact?request=${encodeURIComponent(proj.title)}`}
+                      className="text-[10px] md:text-[11px] font-bold uppercase tracking-[0.2em] text-text-muted hover:text-cyan transition-colors pointer-events-auto border-b border-transparent hover:border-cyan/30 pb-0.5"
+                      onClick={() => trackEvent("cta_click", { cta_name: `work_request_similar_${proj.id}`, page_path: window.location.pathname })}
+                    >
+                      {proj.reqCta}
+                    </Link>
                   </div>
                 </div>
                 
                 <div className={`project-visual-${i} lg:col-span-12 xl:col-span-7 flex flex-col justify-center pointer-events-none opacity-0 ${proj.align === 'right' ? 'xl:order-1' : 'xl:order-2'} w-full mt-4 lg:mt-0`}>
-                  <LaptopMockupVisual {...proj} index={i} />
+                  <a 
+                    href={proj.link} 
+                    target="_blank" 
+                    rel="noreferrer" 
+                    className="block w-full pointer-events-auto cursor-pointer"
+                    onClick={() => trackEvent("cta_click", { cta_name: `work_visual_click_${proj.id}`, page_path: window.location.pathname })}
+                  >
+                    <LaptopMockupVisual {...proj} index={i} />
+                  </a>
                 </div>
                 
               </div>

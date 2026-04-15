@@ -18,7 +18,11 @@ export default function Contact() {
 
   const allowedBudgets = ["7500-12500", "12500-25000", "25000-plus", "not-sure"];
   const budgetParam = new URLSearchParams(location.search).get("budget") ?? "";
+  const requestParam = new URLSearchParams(location.search).get("request") ?? "";
   const defaultBudget = allowedBudgets.includes(budgetParam) ? budgetParam : "";
+  const defaultMessage = requestParam 
+    ? `I'm interested in a website similar to ${decodeURIComponent(requestParam)}. Please let me know how we can get started.`
+    : "";
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -227,6 +231,7 @@ Looking forward to your reply.`;
                   name="message"
                   rows={5}
                   required
+                  defaultValue={defaultMessage}
                   className="contact-input mt-3 w-full rounded-xl border border-white/20 bg-white/5 hover:border-white/30 px-4 py-3 text-sm text-text placeholder:text-text-muted focus-ring"
                   placeholder="Tell us about your project"
                 />

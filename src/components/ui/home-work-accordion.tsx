@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { ExternalLink } from "lucide-react";
+import { trackEvent } from "../../lib/analytics";
 
 type WorkItem = {
   label: string;
@@ -87,15 +88,16 @@ function WorkShowcaseCard({ item, index, shouldReduceMotion, onPreview, layoutCl
         {/* Action Button */}
         <div className="absolute right-4 top-4 z-30 h-12 w-12 p-1" onClick={(e) => e.stopPropagation()}>
           {item.url ? (
-            <a
-              href={item.url}
-              target="_blank"
-              rel="noreferrer"
-              className={`${actionButtonClassName} rounded-full h-full w-full touch-manipulation`.trim()}
-              aria-label={`Open ${item.title} live site`}
-            >
-              <ExternalLink className="h-4 w-4" />
-            </a>
+              <a
+                href={item.url}
+                target="_blank"
+                rel="noreferrer"
+                className={`${actionButtonClassName} rounded-full h-full w-full touch-manipulation`.trim()}
+                aria-label={`Open ${item.title} live site`}
+                onClick={() => trackEvent("cta_click", { cta_name: `home_work_top_button_${item.title.toLowerCase().replace(/\s+/g, '_')}`, page_path: window.location.pathname })}
+              >
+                <ExternalLink className="h-4 w-4" />
+              </a>
           ) : (
             <button
               type="button"
@@ -132,7 +134,10 @@ function WorkShowcaseCard({ item, index, shouldReduceMotion, onPreview, layoutCl
                 href={item.url}
                 target="_blank"
                 rel="noreferrer"
-                onClick={(e) => e.stopPropagation()}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  trackEvent("cta_click", { cta_name: `home_work_project_link_${item.title.toLowerCase().replace(/\s+/g, '_')}`, page_path: window.location.pathname });
+                }}
                 className="inline-flex items-center gap-2 text-[10.5px] font-black uppercase tracking-[0.25em] text-cyan transition-colors hover:text-white"
               >
                 <span className="border-b border-cyan/30 pb-0.5">View Project</span>

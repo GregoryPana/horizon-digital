@@ -131,6 +131,18 @@ Status legend: ✅ Done · 🔄 In Progress · ⬜ Outstanding · ❌ Not Needed
 | 75 | LampContainer overflow: switched to CSS `clip` value ([overflow-x:clip] and [overflow:clip]) so decorative conic light effects are visually clipped without creating a scroll container that would break sticky positioning | `lamp.tsx` | ✅ |
 | 76 | Critical CSS syntax error: .insights-theme-shell .section-eyebrow-glow was missing its closing brace, nesting p and .text-text-muted rules inside it. This broke all insights theme text color overrides | `index.css` | ✅ |
 | 77 | Mobile menu overlay: reverted erroneous bg-[#03111e] back to correct .blue-menu-fade CSS class (properly defined in index.css with dark gradient) | `menu-hover-effects.tsx` | ✅ |
+| 78 | Portfolio Drake Seaside URL: updated to official live site `thedrake-seaside.com` | `site.ts`, `Work.tsx` | ✅ |
+| 79 | GA4 Work Page: Added visual click tracking (laptop mockups) and button interaction tracking | `Work.tsx` | ✅ |
+| 80 | GA4 Home Page: Instrumented portfolio accordion with click tracking for all interaction points | `home-work-accordion.tsx` | ✅ |
+| 81 | Lead Optimization: Added "Request similar site" CTAs and Contact form pre-filling logic | `Work.tsx`, `Contact.tsx` | ✅ |
+
+### ✅ Completed (Session 7 — 2026-04-15)
+
+| # | Change | File | Status |
+|---|--------|------|--------|
+| 82 | Lead Generation Engine: Implemented `request` query parameter parsing in Contact page to pre-populate message for specific projects | `Contact.tsx` | ✅ |
+| 83 | Actionable Visuals: Wrapped portfolio mockup visualizers in tracked links for intuitive navigation | `Work.tsx` | ✅ |
+| 84 | Global GA4 Event Audit: Ensured all primary project CTAs on Work and Home pages have consistent `trackEvent` naming | `Work.tsx`, `home-work-accordion.tsx` | ✅ |
 
 ### ⬜ Outstanding Animation Work
 
