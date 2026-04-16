@@ -46,9 +46,9 @@ export function TrustSignalsBar() {
           {marqueeSignals.map((signal, idx) => (
             <div
               key={`${signal.label}-${idx}`}
-              className="group relative flex w-[250px] shrink-0 sm:w-[300px] lg:w-[320px] flex-col items-center p-6 text-center border-r border-white/5 transition-colors hover:bg-white/[0.02]"
+              className="group relative flex w-[250px] shrink-0 sm:w-[300px] lg:w-[320px] flex-col items-center p-6 text-center border-r border-white/5 transition-colors hover:bg-[#5ED1DE]/[0.02]"
             >
-              <span className="mb-1 text-[10px] font-bold uppercase tracking-[0.2em] text-deep-teal/70">
+              <span className="mb-1 text-[10px] font-bold uppercase tracking-[0.2em] text-[#5ED1DE]/70 group-hover:text-[#5ED1DE] transition-colors">
                 {signal.label}
               </span>
               <span className="text-xl font-bold tracking-tight text-white sm:text-2xl whitespace-nowrap">
@@ -59,7 +59,7 @@ export function TrustSignalsBar() {
               </span>
 
               {/* Subtle hover effect light */}
-              <div className="absolute inset-0 -z-10 bg-gradient-to-b from-cyan/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              <div className="absolute inset-0 -z-10 bg-gradient-to-b from-[#5ED1DE]/15 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
             </div>
           ))}
         </motion.div>
