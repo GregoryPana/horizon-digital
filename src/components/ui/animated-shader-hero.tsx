@@ -39,6 +39,7 @@ const useShaderBackground = () => {
   const animationFrameRef = useRef<number>();
   const rendererRef = useRef<WebGLRenderer | null>(null);
   const pointersRef = useRef<PointerHandler | null>(null);
+  const [isReady, setIsReady] = useState(false);
 
   // WebGL Renderer class
   class WebGLRenderer {
@@ -63,7 +64,7 @@ void main(){gl_Position=position;}`;
 
     constructor(canvas: HTMLCanvasElement, scale: number) {
       this.canvas = canvas;
-      this.gl = canvas.getContext('webgl2')!;
+      this.gl = canvas.getContext('webgl2', { alpha: true })!;
       this.gl.viewport(0, 0, canvas.width * scale, canvas.height * scale);
       this.shaderSource = defaultShaderSource;
     }
@@ -177,13 +178,13 @@ void main(){gl_Position=position;}`;
       
       if (!program || gl.getProgramParameter(program, gl.DELETE_STATUS)) return;
 
-      gl.clearColor(0, 0, 0, 1);
+      gl.clearColor(0, 0, 0, 0); // Transparent clear
       gl.clear(gl.COLOR_BUFFER_BIT);
       gl.useProgram(program);
       gl.bindBuffer(gl.ARRAY_BUFFER, this.buffer);
       
       gl.uniform2f((program as any).resolution, this.canvas.width, this.canvas.height);
-      gl.uniform1f((program as any).time, now * 0.4e-3); // Slower animation (0.4 instead of 1.0)
+      gl.uniform1f((program as any).time, now * 0.4e-3);
       gl.uniform2f((program as any).move, this.mouseMove[0], this.mouseMove[1]);
       gl.uniform2f((program as any).touch, this.mouseCoords[0], this.mouseCoords[1]);
       gl.uniform1i((program as any).pointerCount, this.nbrOfPointers);
@@ -293,7 +294,6 @@ void main(){gl_Position=position;}`;
     const canvas = canvasRef.current;
     const dpr = Math.max(1, 0.5 * window.devicePixelRatio);
 
-    // Defer initialization to allow the text to paint first (better LCP)
     const initTimer = setTimeout(() => {
       rendererRef.current = new WebGLRenderer(canvas, dpr);
       pointersRef.current = new PointerHandler(canvas, dpr);
@@ -307,6 +307,7 @@ void main(){gl_Position=position;}`;
         rendererRef.current.updateShader(defaultShaderSource);
       }
       
+      setIsReady(true);
       loop(0);
     }, 200);
     
@@ -324,7 +325,7 @@ void main(){gl_Position=position;}`;
     };
   }, []);
 
-  return canvasRef;
+  return { canvasRef, isReady };
 };
 
 // ── Character Wave Animation Component ──
@@ -381,7 +382,7 @@ const Hero: React.FC<HeroProps> = ({
   buttons,
   className = ""
 }) => {
-  const canvasRef = useShaderBackground();
+  const { canvasRef, isReady } = useShaderBackground();
   const [slotActive, setSlotActive] = useState(false);
 
   // ── Build the full title text for per-character animation ──
@@ -458,8 +459,22 @@ const Hero: React.FC<HeroProps> = ({
       
       <canvas
         ref={canvasRef}
-        className="absolute inset-0 w-full h-full object-cover touch-none"
-        style={{ background: '#0A0A0C' }}
+        className={cn(
+          "absolute inset-0 w-full h-full object-cover touch-none transition-opacity duration-1000",
+          isReady ? "opacity-100" : "opacity-0"
+        )}
+        style={{ background: 'transparent' }}
+      />
+      
+      {/* Fallback/Initial Background Placeholder */}
+      <div 
+        className={cn(
+          "absolute inset-0 bg-[#0A0A0C] transition-opacity duration-1000 p-0 m-0",
+          isReady ? "opacity-0" : "opacity-100"
+        )}
+        style={{ 
+          background: 'radial-gradient(circle at 50% 50%, #0d1a1f 0%, #0A0A0C 100%)' 
+        }} 
       />
       
       {/* Overlay Background */}

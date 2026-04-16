@@ -215,6 +215,12 @@ body::after {
   animation: featured-pkg-pulse 6s ease-in-out infinite;
 }
 
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
 /* ── Icon hover wiggle ── */
 @keyframes icon-wiggle {
   0%, 100% { transform: rotate(0deg); }

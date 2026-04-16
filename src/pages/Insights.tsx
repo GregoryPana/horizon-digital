@@ -6,6 +6,7 @@ import Section from "../components/Section";
 import Card from "../components/Card";
 import { insightArticles, technologyTopics } from "../data/insights";
 import InsightsHero from "../components/InsightsHero";
+import { ImageWithSkeleton } from "../components/ui/ImageWithSkeleton";
 
 export default function Insights() {
   return (
@@ -61,18 +62,16 @@ export default function Insights() {
 
           {insightArticles.map((article) => (
             <Card key={article.slug} className="no-scroll-glow text-center flex flex-col items-center">
-              <picture className="w-full">
-                {article.imageWebp ? <source srcSet={article.imageWebp} type="image/webp" /> : null}
-                <img
-                  src={article.image}
-                  alt={article.title}
-                  width={1200}
-                  height={680}
-                  loading="lazy"
-                  decoding="async"
-                  className="h-44 w-full rounded-xl border border-border object-cover mx-auto"
-                />
-              </picture>
+              <ImageWithSkeleton
+                src={article.image}
+                alt={article.title}
+                width={1200}
+                height={680}
+                containerClassName="h-44 w-full rounded-xl border border-border overflow-hidden mx-auto"
+                className="h-full w-full object-cover"
+                loading="lazy"
+                decoding="async"
+              />
               <h2 className="mt-4 text-xl font-semibold text-text">{article.title}</h2>
               <p className="mt-3 text-sm text-text-muted">{article.excerpt}</p>
               <div className="mt-5 flex justify-center">

@@ -8,6 +8,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { ArrowUpRight } from "lucide-react";
+import { Skeleton } from "../components/ui/skeleton";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -158,13 +159,33 @@ function LaptopMockupVisual({
   );
 }
 
+function WorkSkeleton() {
+  return (
+    <div className="absolute inset-0 w-full h-full px-5 sm:px-8 flex flex-col lg:grid lg:grid-cols-12 gap-4 sm:gap-8 lg:gap-20 items-center justify-start lg:justify-center pt-0 sm:pt-12 lg:pt-0">
+      <div className="lg:col-span-12 xl:col-span-5 flex flex-col justify-start lg:justify-center text-left w-full">
+        <Skeleton className="h-6 w-32 rounded-full mb-5" />
+        <Skeleton className="h-12 w-full max-w-md rounded-lg mb-6" />
+        <Skeleton className="h-4 w-full max-w-sm rounded-md mb-3" />
+        <Skeleton className="h-4 w-3/4 max-w-sm rounded-md mb-8" />
+        <div className="flex gap-4">
+          <Skeleton className="h-12 w-40 rounded-full" />
+          <Skeleton className="h-12 w-24 rounded-full" />
+        </div>
+      </div>
+      <div className="lg:col-span-12 xl:col-span-7 w-full aspect-[16/10] max-w-[600px]">
+        <Skeleton className="w-full h-full rounded-tr-[1.5rem] rounded-tl-[1.5rem] bg-zinc-900/50" />
+      </div>
+    </div>
+  );
+}
+
 export default function Work() {
   const shouldReduceMotion = useReducedMotion();
   const containerRef = useRef<HTMLDivElement>(null);
   const pinRef = useRef<HTMLDivElement>(null);
   const bgRef = useRef<HTMLDivElement>(null);
 
-  const [projects, setProjects] = useState<any[]>(fallbackProjects);
+  const [projects, setProjects] = useState<any[]>([]);
   const [dataLoaded, setDataLoaded] = useState(false);
 
   useEffect(() => {
@@ -196,9 +217,12 @@ export default function Work() {
             altWebpSrc: p.altSrc ? `${p.altSrc}?fm=webp` : null,
           }));
           setProjects(formattedData);
+        } else {
+          setProjects(fallbackProjects);
         }
       } catch (err) {
         console.error("Failed to fetch projects from Sanity", err);
+        setProjects(fallbackProjects);
       } finally {
         setDataLoaded(true);
       }
@@ -214,8 +238,8 @@ export default function Work() {
   };
 
   useGSAP(() => {
-    if (shouldReduceMotion || !containerRef.current || !pinRef.current || !bgRef.current || !dataLoaded) return;
-
+    if (shouldReduceMotion || !containerRef.current || !pinRef.current || !bgRef.current || !dataLoaded || projects.length === 0) return;
+    
     // Set initial transparent bg
     gsap.set(bgRef.current, { backgroundColor: 'transparent' });
 
@@ -339,7 +363,10 @@ export default function Work() {
         <div ref={pinRef} className="h-[100dvh] w-full relative flex flex-col justify-center overflow-hidden z-10 pt-16 sm:pt-20">
           <div ref={bgRef} className="absolute inset-0 w-full h-full pointer-events-none -z-10" />
           <div className="relative w-full h-[85vh] min-h-[600px] flex mx-auto max-w-7xl items-center justify-center">
-            {projects.map((proj: any, i: number) => (
+            {!dataLoaded ? (
+              <WorkSkeleton />
+            ) : (
+              projects.map((proj: any, i: number) => (
               <div key={proj.id} className="absolute inset-0 w-full h-full px-5 sm:px-8 flex flex-col lg:grid lg:grid-cols-12 gap-4 sm:gap-8 lg:gap-20 items-center justify-start lg:justify-center pointer-events-none pt-0 sm:pt-12 lg:pt-0">
                 
                 <div className={`project-text-${i} lg:col-span-12 xl:col-span-5 flex flex-col justify-start lg:justify-center text-left pointer-events-none ${proj.align === 'right' ? 'xl:order-2' : 'xl:order-1'} ${i === 0 ? 'opacity-100' : 'opacity-0'}`}>
@@ -388,7 +415,8 @@ export default function Work() {
                 </div>
                 
               </div>
-            ))}
+            ))
+          )}
           </div>
         </div>
       </div>

@@ -147,7 +147,19 @@ Status legend: ✅ Done · 🔄 In Progress · ⬜ Outstanding · ❌ Not Needed
 | 83 | Actionable Visuals: Wrapped portfolio mockup visualizers in tracked links for intuitive navigation | `Work.tsx` | ✅ |
 | 84 | Global GA4 Event Audit: Ensured all primary project CTAs on Work and Home pages have consistent `trackEvent` naming | `Work.tsx`, `home-work-accordion.tsx` | ✅ |
 
-### ⬜ Outstanding Animation Work
+### ✅ Completed (Session 9 — 2026-04-16)
+
+| # | Change | File | Status |
+|---|--------|------|--------|
+| 85 | Patched critical runtime crash in industry mapping logic (null checks) | `WebDesignSeychelles.tsx`, `Home.tsx` | ✅ |
+| 86 | Added null-safe guards to SEO title handling to prevent page crashes | `Seo.tsx` | ✅ |
+| 87 | Memoization safety in Hero component for split-headline logic | `animated-shader-hero.tsx` | ✅ |
+| 88 | Visual Pass: Increased contrast for Project Outcome and Pricing inclusion text | Multiple | ✅ |
+| 89 | Mobile UX: Added `touch-action: pan-y` to carousels to prevent scroll blocking | Multiple | ✅ |
+| 90 | FAQ Expansion: Added comprehensive local-market questions and CMS clarity | `Home.tsx` | ✅ |
+| 91 | Production Audit: Verified live site performance (Lighthouse) and build stability | All | ✅ |
+
+### ⬜ Outstanding Production Items
 
 | # | Change | Priority | Notes |
 |---|--------|----------|-------|

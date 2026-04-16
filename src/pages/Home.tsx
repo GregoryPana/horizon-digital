@@ -7,6 +7,7 @@ import { ShimmerButton } from "../components/ui/shimmer-button";
 import { Link } from "react-router-dom";
 import { scrollToTopSmooth } from "../lib/utils";
 import { trackEvent } from "../lib/analytics";
+import { ImageWithSkeleton } from "../components/ui/ImageWithSkeleton";
 
 import {
   foundationPackage,
@@ -38,12 +39,12 @@ const homeFaqCategories: HomeFaqCategory[] = [
           "We design and develop custom business websites focused on clarity, speed, and enquiry flow. Most projects include service pages, contact capture, and SEO-ready structure from day one.",
       },
       {
-        question: "Can you refresh my current website instead of starting from scratch?",
+        question: "Can you help with local payment integration?",
         answer:
-          "Yes. We can either redesign your current site or rebuild it on a cleaner structure if performance and content flow need major improvements.",
+          "Yes. We can integrate local Seychelles payment options like MCB Juice, CIM, or international gateways like Stripe and PayPal, depending on your business needs.",
       },
       {
-        question: "Do you also help with content and structure?",
+        question: "Do you help with branding and content?",
         answer:
           "Absolutely. We guide page structure, section order, and messaging so visitors understand your offer quickly and know what action to take.",
       },
@@ -64,30 +65,30 @@ const homeFaqCategories: HomeFaqCategory[] = [
           "Each package includes clear revision rounds tied to project milestones, so feedback stays focused and predictable.",
       },
       {
-        question: "How involved do I need to be during the project?",
+        question: "How involved do I need to be?",
         answer:
           "We keep the process lightweight. You mainly review milestone drafts, approve direction, and share business details we use to shape the final site.",
       },
     ],
   },
   {
-    key: "packages",
-    label: "Packages",
+    key: "self-management",
+    label: "Updates & Support",
     items: [
       {
-        question: "Is pricing flexible?",
+        question: "Can I update the website myself?",
         answer:
-          "Yes. Package pricing gives a clear starting range, then we adjust based on page count, content complexity, and extra functionality.",
+          "Yes. We provide a simple, easy-to-use software that allows you to change text and images anytime without touching code or affecting the design. You'll have full access to this as part of your package.",
       },
       {
-        question: "How do I choose the right package?",
+        question: "What support is provided after launch?",
         answer:
-          "We recommend a package after a short discovery call. The goal is to match your current business stage without overbuilding.",
+          "We include 45 days of priority support after launch to ensure everything is running smoothly. After that, we offer various plans for ongoing updates and security.",
       },
       {
-        question: "Can I start small and expand later?",
+        question: "What if I need help with my site later on?",
         answer:
-          "Definitely. We can launch with a focused scope and extend the site in phases as your business grows.",
+          "We are always just a WhatsApp away. Whether you need a small change or a new feature, we support our clients long-term.",
       },
     ],
   },
@@ -96,19 +97,19 @@ const homeFaqCategories: HomeFaqCategory[] = [
     label: "Hosting & Ownership",
     items: [
       {
-        question: "Do I own the website when the project is complete?",
+        question: "Do I own the website?",
         answer:
-          "Yes. You own the final codebase and approved assets once the project closes.",
+          "Yes. You own the final codebase and all approved assets once the project is complete. No long-term lock-ins.",
       },
       {
-        question: "Who controls my domain name?",
+        question: "Can you set up my business emails?",
         answer:
-          "Your domain stays under your registrar account and renews yearly. We can assist with setup and renewals, but ownership remains with you.",
+          "Yes, we can assist with setting up professional business emails (e.g., info@yourbusiness.com) to ensure your communication matches your new professional brand.",
       },
       {
-        question: "What is hosting and who provides it?",
+        question: "Where is my website hosted?",
         answer:
-          "Hosting keeps your site live online. You can host with Horizon Digital or choose your own provider. We support both options.",
+          "We use premium, high-speed servers to ensure your site loads instantly in Seychelles and abroad. You can host with us or use your own provider.",
       },
     ],
   },
@@ -204,11 +205,12 @@ function WorkShowcase() {
         <article key={project.title} className="relative min-h-[110vh] md:min-h-[135vh]">
           <div className="sticky top-0 flex h-[100dvh] items-center overflow-hidden">
             <div className="absolute inset-0 z-0">
-              <img
+              <ImageWithSkeleton
                 src={idx === 0 ? project.imageWebp : project.imageWebp800}
                 alt={project.title}
                 width="600"
                 height="400"
+                containerClassName="h-full w-full"
                 className="h-full w-full scale-[1.08] object-cover opacity-66"
                 loading={idx === 0 ? "eager" : "lazy"}
                 decoding="async"
@@ -261,7 +263,16 @@ function WorkShowcase() {
                   transition={{ type: "spring", stiffness: 150, damping: 20 }}
                   className={`relative ${idx % 2 === 0 ? "rotate-3" : "-rotate-3"} rounded-2xl bg-[#131315] shadow-[0_10px_32px_rgba(0,0,0,0.45)] p-2`}
                 >
-                  <img src={project.image} alt={project.title} width="600" height="320" className="h-80 w-full rounded-2xl object-cover" loading="lazy" decoding="async" />
+                  <ImageWithSkeleton 
+                    src={project.image} 
+                    alt={project.title} 
+                    width="600" 
+                    height="320" 
+                    containerClassName="rounded-2xl overflow-hidden aspect-[16/9]"
+                    className="h-80 w-full object-cover" 
+                    loading="lazy" 
+                    decoding="async" 
+                  />
                 </motion.div>
               </div>
             </div>
@@ -1035,15 +1046,42 @@ export default function Home() {
 
                 <div className="relative z-10 flex h-full w-full max-w-[380px] items-center justify-center lg:absolute lg:-left-24 lg:top-1/2 lg:w-[160%] lg:max-w-none lg:-translate-y-1/2 lg:pr-0 pointer-events-none">
                   <motion.div className="absolute left-[0%] top-1/2 z-10 w-32 sm:w-44 -translate-y-[45%] rounded-[1.25rem] border border-cyan/20 shadow-[0_4px_16px_rgba(0,0,0,0.35)] lg:w-[15rem]" animate={shouldReduceMotion ? undefined : { y: [0, -10, 0] }} transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}>
-                    <img src="/digital_trends_1.webp" alt="Digital trends for small business" width="400" height="300" className="h-auto w-full rounded-xl object-cover" loading="lazy" decoding="async" />
+                    <ImageWithSkeleton 
+                      src="/digital_trends_1.webp" 
+                      alt="Digital trends for small business" 
+                      width="400" 
+                      height="300" 
+                      containerClassName="rounded-xl overflow-hidden aspect-[4/3]"
+                      className="h-auto w-full object-cover" 
+                      loading="lazy" 
+                      decoding="async" 
+                    />
                   </motion.div>
 
                   <motion.div className="absolute left-[20%] sm:left-[22%] top-1/2 z-20 w-40 sm:w-52 -translate-y-[48%] rounded-[1.25rem] border border-cyan/30 shadow-[0_4px_24px_rgba(0,0,0,0.4)] lg:left-[22%] lg:w-[18rem]" animate={shouldReduceMotion ? undefined : { y: [-8, 8, -8] }} transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut" }}>
-                    <img src="/digital_trends_2.webp" alt="Understanding AI chatbots" width="400" height="300" className="h-auto w-full rounded-xl object-cover" loading="lazy" decoding="async" />
+                    <ImageWithSkeleton 
+                      src="/digital_trends_2.webp" 
+                      alt="Understanding AI chatbots" 
+                      width="400" 
+                      height="300" 
+                      containerClassName="rounded-xl overflow-hidden aspect-[4/3]"
+                      className="h-auto w-full object-cover" 
+                      loading="lazy" 
+                      decoding="async" 
+                    />
                   </motion.div>
 
                   <motion.div className="absolute left-[35%] sm:left-[42%] top-1/2 z-30 w-48 sm:w-56 -translate-y-[52%] rounded-[1.25rem] border border-cyan/40 shadow-[0_8px_32px_rgba(0,0,0,0.45)] lg:left-[45%] lg:w-[22rem]" animate={shouldReduceMotion ? undefined : { y: [-6, 10, -6] }} transition={{ duration: 6.2, repeat: Infinity, ease: "easeInOut" }}>
-                    <img src="/digital_trends_3.webp" alt="Why data and analytics matter" width="400" height="300" className="h-auto w-full rounded-xl object-cover" loading="lazy" decoding="async" />
+                    <ImageWithSkeleton 
+                      src="/digital_trends_3.webp" 
+                      alt="Why data and analytics matter" 
+                      width="400" 
+                      height="300" 
+                      containerClassName="rounded-xl overflow-hidden aspect-[4/3]"
+                      className="h-auto w-full object-cover" 
+                      loading="lazy" 
+                      decoding="async" 
+                    />
                   </motion.div>
                 </div>
               </div>
