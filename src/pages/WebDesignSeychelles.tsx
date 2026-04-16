@@ -940,7 +940,7 @@ export default function WebDesignSeychelles() {
 
                 <ul className="space-y-3 sm:space-y-5 mb-8 sm:mb-12 flex-grow">
                   {pkg.includes.map((item, includeIdx) => (
-                    <li key={`${item}-${includeIdx}`} className="flex items-start gap-4">
+                    <li key={`${item.title}-${includeIdx}`} className="flex items-start gap-4">
                       <motion.span
                         initial={shouldReduceMotion ? undefined : { scale: 0, opacity: 0 }}
                         whileInView={shouldReduceMotion ? undefined : { scale: 1, opacity: 1 }}
@@ -950,7 +950,7 @@ export default function WebDesignSeychelles() {
                       >
                         <Check className="h-4 w-4" strokeWidth={3} />
                       </motion.span>
-                      <span className="text-sm text-text-muted leading-relaxed">{item}</span>
+                      <span className="text-sm text-text-muted leading-relaxed">{item.title}</span>
                     </li>
                   ))}
                 </ul>

@@ -1,8 +1,9 @@
 import { motion, useReducedMotion } from "framer-motion";
+import { sanityClient } from "../lib/sanity";
 import { Link } from "react-router-dom";
 import Seo from "../components/Seo";
 import { trackEvent } from "../lib/analytics";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -32,7 +33,7 @@ import takamakaAltOne from "../assets/work/takamaka-house/takamaka house 2.png";
 import takamakaAltOneWebp from "../assets/work/takamaka-house/takamaka house 2.webp";
 import drakeVideo from "../assets/DRAKE_SEASIDE_DESKTOP_OPTIMIZED.mp4";
 
-const projects = [
+const fallbackProjects = [
   {
     id: "drake",
     title: "Drake Seaside",
@@ -163,6 +164,48 @@ export default function Work() {
   const pinRef = useRef<HTMLDivElement>(null);
   const bgRef = useRef<HTMLDivElement>(null);
 
+  const [projects, setProjects] = useState<any[]>(fallbackProjects);
+  const [dataLoaded, setDataLoaded] = useState(false);
+
+  useEffect(() => {
+    async function fetchProjects() {
+      try {
+        const query = `*[_type == "portfolio"] | order(_createdAt asc) {
+          "id": _id,
+          title,
+          "tier": category,
+          "body": short_desc,
+          link,
+          cta,
+          reqCta,
+          bgColor,
+          align,
+          "fallbackSrc": cover_image.asset->url,
+          "altSrc": alt_image.asset->url,
+          "videoSrc": videoFile.asset->url,
+          "altText": cover_image.altText
+        }`;
+        const data = await sanityClient.fetch(query);
+        if (data && data.length > 0) {
+          // Format sanity data to have webp fallback strings if needed
+          const formattedData = data.map((p: any) => ({
+            ...p,
+            fallbackSrc: p.fallbackSrc ? `${p.fallbackSrc}?auto=format` : null,
+            webpSrc: p.fallbackSrc ? `${p.fallbackSrc}?fm=webp` : null,
+            altSrc: p.altSrc ? `${p.altSrc}?auto=format` : null,
+            altWebpSrc: p.altSrc ? `${p.altSrc}?fm=webp` : null,
+          }));
+          setProjects(formattedData);
+        }
+      } catch (err) {
+        console.error("Failed to fetch projects from Sanity", err);
+      } finally {
+        setDataLoaded(true);
+      }
+    }
+    fetchProjects();
+  }, []);
+
   const fadeIn = {
     initial: shouldReduceMotion ? undefined : { opacity: 0, y: 24, filter: 'blur(8px)' },
     whileInView: shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: 'blur(0px)' },
@@ -171,7 +214,7 @@ export default function Work() {
   };
 
   useGSAP(() => {
-    if (shouldReduceMotion || !containerRef.current || !pinRef.current || !bgRef.current) return;
+    if (shouldReduceMotion || !containerRef.current || !pinRef.current || !bgRef.current || !dataLoaded) return;
 
     // Set initial transparent bg
     gsap.set(bgRef.current, { backgroundColor: 'transparent' });
@@ -188,7 +231,7 @@ export default function Work() {
       }
     });
 
-    projects.forEach((proj, i) => {
+    projects.forEach((proj: any, i: number) => {
       // Ensure specific elements are explicitly interactive only when active
       if (i > 0) {
         tl.fromTo(`.project-text-${i}`,
@@ -263,7 +306,7 @@ export default function Work() {
       }
     });
 
-  }, { scope: containerRef, dependencies: [shouldReduceMotion] });
+  }, { scope: containerRef, dependencies: [shouldReduceMotion, dataLoaded, projects] });
 
   return (
     <div className="overflow-hidden bg-gradient-to-b from-bg-main to-bg-panel/20 relative">
@@ -296,7 +339,7 @@ export default function Work() {
         <div ref={pinRef} className="h-[100dvh] w-full relative flex flex-col justify-center overflow-hidden z-10 pt-16 sm:pt-20">
           <div ref={bgRef} className="absolute inset-0 w-full h-full pointer-events-none -z-10" />
           <div className="relative w-full h-[85vh] min-h-[600px] flex mx-auto max-w-7xl items-center justify-center">
-            {projects.map((proj, i) => (
+            {projects.map((proj: any, i: number) => (
               <div key={proj.id} className="absolute inset-0 w-full h-full px-5 sm:px-8 flex flex-col lg:grid lg:grid-cols-12 gap-4 sm:gap-8 lg:gap-20 items-center justify-start lg:justify-center pointer-events-none pt-0 sm:pt-12 lg:pt-0">
                 
                 <div className={`project-text-${i} lg:col-span-12 xl:col-span-5 flex flex-col justify-start lg:justify-center text-left pointer-events-none ${proj.align === 'right' ? 'xl:order-2' : 'xl:order-1'} ${i === 0 ? 'opacity-100' : 'opacity-0'}`}>

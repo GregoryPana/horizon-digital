@@ -1,4 +1,5 @@
-import { motion, useReducedMotion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { Link } from "react-router-dom";
 import Seo from "../components/Seo";
 import { projectSteps } from "../data/site";
@@ -8,6 +9,14 @@ import { trackEvent } from "../lib/analytics";
 
 export default function Process() {
   const shouldReduceMotion = useReducedMotion();
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start center", "end end"]
+  });
+
+  const pathLength = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
     <div className="bg-bg text-white overflow-x-hidden">
@@ -82,8 +91,42 @@ export default function Process() {
         </div>
       </section>
 
-      <section id="steps" className="py-20 px-6 xl:px-12 relative z-10 bg-[#0A0A0C]">
-        <div className="mx-auto max-w-[92rem] min-h-svh place-content-center">
+      <section id="steps" ref={containerRef} className="py-20 px-6 xl:px-12 relative z-10 bg-[#0A0A0C]">
+        <div className="mx-auto max-w-[92rem] min-h-svh place-content-center relative">
+          
+          {/* Scroll-linked dashed line between columns on Desktop */}
+          <div className="absolute left-1/2 top-20 bottom-0 w-8 -translate-x-1/2 pointer-events-none hidden md:block z-0">
+            <svg
+              className="h-full w-full"
+              preserveAspectRatio="none"
+              viewBox="0 0 10 100"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <line
+                x1="5"
+                y1="0"
+                x2="5"
+                y2="100"
+                stroke="rgba(255, 255, 255, 0.05)"
+                strokeWidth="2"
+                strokeDasharray="4 4"
+                vectorEffect="non-scaling-stroke"
+              />
+              <motion.line
+                x1="5"
+                y1="0"
+                x2="5"
+                y2="100"
+                stroke="#5ED1DE"
+                strokeWidth="2"
+                style={shouldReduceMotion ? {} : { pathLength }}
+                vectorEffect="non-scaling-stroke"
+                className="drop-shadow-[0_0_8px_rgba(94,209,222,0.6)]"
+              />
+            </svg>
+          </div>
+
           <div className="grid md:grid-cols-2 md:gap-8 xl:gap-24">
             
             {/* Left side text sticky wrapper */}

@@ -930,7 +930,7 @@ export default function Home() {
 
                 <ul className="space-y-3 lg:space-y-3.5 mb-8 lg:mb-10 flex-grow">
                   {pkg.includes.map((item, includeIdx) => (
-                    <li key={`${item}-${includeIdx}`} className="flex items-start gap-4">
+                    <li key={`${item.title}-${includeIdx}`} className="flex items-start gap-4">
                       <motion.span
                         initial={shouldReduceMotion ? undefined : { scale: 0, opacity: 0 }}
                         whileInView={shouldReduceMotion ? undefined : { scale: 1, opacity: 1 }}
@@ -940,7 +940,7 @@ export default function Home() {
                       >
                         <Check className="h-4 w-4" strokeWidth={3} />
                       </motion.span>
-                      <span className="text-sm text-text-muted leading-relaxed">{item}</span>
+                      <span className="text-sm text-text-muted leading-relaxed">{item.title}</span>
                     </li>
                   ))}
                 </ul>

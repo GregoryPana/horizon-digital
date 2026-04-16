@@ -127,14 +127,14 @@ export const foundationPackage = {
   description:
     "A professional custom website with everything you need to get started — no templates, just your business online.",
   includes: [
-    "Up to 3 clear pages",
-    "Professionally designed layout built for your business",
-    "Works beautifully on mobile phones",
-    "Easy-to-use contact form",
-    "WhatsApp chat integration",
-    "Set up so Google can find and understand your business",
-    "30 Days Support after launch",
-    "1 Revision Round",
+    { title: "Up to 3 clear pages", description: "Typically Home, About, and Contact. Enough to establish your presence cleanly." },
+    { title: "Professionally designed layout built for your business", description: "No pre-made templates. We design the site specifically around your brand." },
+    { title: "Works beautifully on mobile phones", description: "Responsive design ensures your site looks perfect on all smartphones and tablets." },
+    { title: "Easy-to-use contact form", description: "A structured form so customers can email you inquiries instantly." },
+    { title: "WhatsApp chat integration", description: "A button that lets visitors message your WhatsApp directly from the website." },
+    { title: "Set up so Google can find and understand your business", description: "Basic SEO setup including meta tags and fast-loading structure." },
+    { title: "30 Days Support after launch", description: "Hands-on technical support to fix bugs or make minor adjustments after going live." },
+    { title: "1 Revision Round", description: "Dedicated time to review the digital design and request adjustments." },
   ],
 };
 
@@ -143,12 +143,12 @@ export const starterPackage = {
   price: "From SCR 12,500",
   description: "A custom design made just for you",
   includes: [
-    "Up to 5-6 custom pages",
-    "Works perfectly on every phone your customers use",
-    "Google Analytics setup",
-    "Advanced setup so Google shows you to the right local customers",
-    "45 Days Support after launch",
-    "2 Revision Rounds",
+    { title: "Up to 5-6 custom pages", description: "Ideal for showing specific services, galleries, or more detailed business info." },
+    { title: "Works perfectly on every phone your customers use", description: "A fluid, mobile-first design process ensuring pixel-perfect layout on all screens." },
+    { title: "Google Analytics setup", description: "Track how many people visit your website and where they come from." },
+    { title: "Advanced setup so Google shows you to the right local customers", description: "On-page SEO optimization targeted to rank well in local search results." },
+    { title: "45 Days Support after launch", description: "Extended post-launch stabilization and technical support." },
+    { title: "2 Revision Rounds", description: "Two distinct phases for feedback on design and development." },
   ],
 };
 
@@ -158,12 +158,12 @@ export const growthPackage = {
   description:
     "A custom-built website for businesses scaling up — more depth, more pages, and a professional digital presence.",
   includes: [
-    "Up to 10-12 custom tailored pages",
-    "Works perfectly on every phone your customers use",
-    "Google Business Profile setup",
-    "Advanced setup so Google shows you to the right local customers",
-    "60 Days Support after launch",
-    "2 Revision Rounds",
+    { title: "Up to 10-12 custom tailored pages", description: "A comprehensive digital footprint to showcase deep service lines or portfolios." },
+    { title: "Works perfectly on every phone your customers use", description: "Impeccable responsiveness with interactive mobile elements." },
+    { title: "Google Business Profile setup", description: "We set up and optimize your Google Maps listing to drive local traffic." },
+    { title: "Advanced setup so Google shows you to the right local customers", description: "In-depth keyword placement, sitemaps, and technical SEO." },
+    { title: "60 Days Support after launch", description: "Two full months of priority support for absolute peace of mind." },
+    { title: "2 Revision Rounds", description: "Extensive feedback loops during the wireframing and high-fidelity design phases." },
   ],
 };
 
@@ -173,11 +173,11 @@ export const customPackage = {
   description:
     "Some businesses need something that doesn't fit a standard package — more pages, more complexity, or a completely different direction. If that sounds like you, let's talk through what you actually need.",
   includes: [
-    "A custom plan that fits your goals",
-    "Work directly with your builder",
-    "A thoughtful plan for your project",
-    "Everything you need to succeed",
-    "Our priority support after you launch",
+    { title: "A custom plan that fits your goals", description: "Built from the ground up tailored exclusively to unique operational specs." },
+    { title: "Work directly with your builder", description: "Direct line of communication with the lead developer and designer." },
+    { title: "A thoughtful plan for your project", description: "We outline architecture, tech stacks, and timelines before signing." },
+    { title: "Everything you need to succeed", description: "Complete digital infrastructure tailored to your exact market." },
+    { title: "Our priority support after you launch", description: "Extended SLA support for complex backend features and implementations." },
   ],
 };
 
