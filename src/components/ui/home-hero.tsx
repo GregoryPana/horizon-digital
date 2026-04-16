@@ -19,6 +19,7 @@ export default function HomeHero() {
               className="w-full h-full object-cover object-center opacity-85" 
               fetchPriority="high"
               loading="eager"
+              decoding="async"
               width={1600}
               height={900}
             />

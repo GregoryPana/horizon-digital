@@ -135,7 +135,7 @@ function LaptopMockupVisual({
              ) : (
                <picture className="block w-full h-full">
                  <source srcSet={webpSrc} type="image/webp" />
-                 <img src={fallbackSrc} alt={alt} width={800} height={500} loading={isEager ? 'eager' : 'lazy'} fetchPriority={isEager ? 'high' : 'auto'} className="w-full h-full object-cover object-top" />
+                 <img src={fallbackSrc} alt={alt} width={800} height={500} loading={isEager ? 'eager' : 'lazy'} fetchPriority={isEager ? 'high' : 'auto'} decoding="async" className="w-full h-full object-cover object-top" />
                </picture>
              )}
            </div>
@@ -150,7 +150,7 @@ function LaptopMockupVisual({
         <div className={`hidden md:flex w-full justify-center ${index % 2 === 0 ? 'xl:justify-end xl:-ml-12' : 'xl:justify-start xl:ml-12'} -mt-10 sm:-mt-24 relative z-20 pointer-events-none px-4 sm:px-8 xl:px-0`}>
           <picture className="block rounded-2xl overflow-hidden shadow-[0_8px_24px_rgba(0,0,0,0.45)] w-[80%] md:w-[62%]">
             <source srcSet={altWebpSrc} type="image/webp" />
-            <img src={altSrc} alt={altText} width={600} height={400} loading="lazy" className="w-full h-auto" />
+            <img src={altSrc} alt={altText} width={600} height={400} loading="lazy" decoding="async" className="w-full h-auto" />
           </picture>
         </div>
       )}
