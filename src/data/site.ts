@@ -149,6 +149,7 @@ export const starterPackage = {
     { title: "Advanced setup so Google shows you to the right local customers", description: "On-page SEO optimization targeted to rank well in local search results." },
     { title: "45 Days Support after launch", description: "Extended post-launch stabilization and technical support." },
     { title: "2 Revision Rounds", description: "Two distinct phases for feedback on design and development." },
+    { title: "Self-Manage Your Site", description: "Change text and images anytime without touching code. We provide easy-to-use software that lets you update your site while keeping the professional design perfectly intact." },
   ],
 };
 
@@ -164,6 +165,7 @@ export const growthPackage = {
     { title: "Advanced setup so Google shows you to the right local customers", description: "In-depth keyword placement, sitemaps, and technical SEO." },
     { title: "60 Days Support after launch", description: "Two full months of priority support for absolute peace of mind." },
     { title: "2 Revision Rounds", description: "Extensive feedback loops during the wireframing and high-fidelity design phases." },
+    { title: "Self-Manage Your Site", description: "Change text and images anytime without touching code. We provide easy-to-use software that lets you update your site while keeping the professional design perfectly intact." },
   ],
 };
 
@@ -178,6 +180,7 @@ export const customPackage = {
     { title: "A thoughtful plan for your project", description: "We outline architecture, tech stacks, and timelines before signing." },
     { title: "Everything you need to succeed", description: "Complete digital infrastructure tailored to your exact market." },
     { title: "Our priority support after you launch", description: "Extended SLA support for complex backend features and implementations." },
+    { title: "Self-Manage Your Site", description: "Included as standard. Update your content whenever you like using our simple editing software." },
   ],
 };
 
@@ -187,6 +190,7 @@ export const addOnItems = [
   { title: "Custom booking or enquiry form", price: "SCR 2,000" },
   { title: "Google Business Profile setup", price: "SCR 2,200" },
   { title: "Rush delivery", price: "+40% of project cost · subject to availability" },
+  { title: "Self-Manage Software (CMS)", price: "SCR 2,500 (Included in Starter & above)" },
 ];
 
 export const hostingPlan = {

@@ -388,13 +388,14 @@ const Hero: React.FC<HeroProps> = ({
   // For lines with rotating words, show line with FIRST rotating word statically
   // The slot machine only activates after all animations complete
   const titleData = useMemo(() => {
+    if (!headline?.lines) return [];
     return headline.lines.map((line, lineIndex) => {
       const hasSlot = lineIndex === 0 && headline.rotatingWords && headline.rotatingWords.length > 1;
       if (hasSlot) {
         const rotatingWord0 = headline.rotatingWords![0];
         const parts = line.split(rotatingWord0);
-        const prefix = parts[0].trim();
-        const suffix = parts[1].trim();
+        const prefix = parts[0]?.trim() || '';
+        const suffix = parts[1]?.trim() || '';
         return { line, prefix, suffix, rotatingWord0, hasSlot: true, lineIndex };
       }
       return { line, prefix: '', suffix: '', rotatingWord0: '', hasSlot: false, lineIndex };

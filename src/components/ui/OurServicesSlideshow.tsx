@@ -494,7 +494,7 @@ export function OurServicesSlideshow() {
   
   return (
     <HoverSlider 
-      className="w-full relative z-10 bg-[#0A0A0C]"
+      className="w-full relative z-10 bg-[#0A0A0C] touch-pan-y touch-pan-x"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       onTouchStart={() => setIsPaused(true)}

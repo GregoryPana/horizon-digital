@@ -23,7 +23,7 @@ export default function Seo({
   breadcrumbs,
 }: SeoProps) {
   const canonical = new URL(path, siteConfig.url).toString();
-  const fullTitle = title.includes(siteConfig.name)
+  const fullTitle = title?.includes(siteConfig.name)
     ? title
     : `${title} | ${siteConfig.name}`;
   const ogImageUrl = new URL("/og-image.png", siteConfig.url).toString();

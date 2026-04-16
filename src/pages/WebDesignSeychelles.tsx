@@ -228,7 +228,7 @@ function WorkShowcase() {
                   <h3 className="font-display text-4xl font-bold uppercase tracking-[-0.04em] text-white md:text-7xl">
                     {project.title}
                   </h3>
-                  <p className="mx-auto mt-6 max-w-xl text-lg text-text-muted drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] md:mx-0 md:text-2xl">{project.outcome}</p>
+                  <p className="mx-auto mt-6 max-w-xl text-lg text-white/90 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] md:mx-0 md:text-2xl">{project.outcome}</p>
 
                   <div className="mt-10 flex flex-col items-stretch gap-4 sm:flex-row sm:items-center sm:gap-x-10 md:justify-start">
                     {project.url ? (
@@ -477,7 +477,7 @@ export default function WebDesignSeychelles() {
 
           <div
             ref={problemScrollRef}
-            className="mb-8 md:mb-16 flex items-stretch gap-5 overflow-x-auto snap-x snap-mandatory pb-4 -mx-5 px-5 md:mx-0 md:px-0 md:grid md:grid-cols-2 md:gap-6 md:overflow-visible md:snap-none md:pb-0 lg:grid-cols-4 scrollbar-hide touch-pan-x"
+            className="mb-8 md:mb-16 flex items-stretch gap-5 overflow-x-auto snap-x snap-mandatory pb-4 -mx-5 px-5 md:mx-0 md:px-0 md:grid md:grid-cols-2 md:gap-6 md:overflow-visible md:snap-none md:pb-0 lg:grid-cols-4 scrollbar-hide touch-pan-y touch-pan-x"
             onScroll={handleProblemScroll}
           >
             {problemCards.map((card, idx) => (
@@ -632,7 +632,7 @@ export default function WebDesignSeychelles() {
           >
             A different kind of <span className="text-cyan font-semibold">digital partner.</span>
           </motion.h2>
-          <div className="mt-10 md:mt-14 grid gap-8 md:grid-cols-3 md:gap-10">
+          <div className="mt-10 md:mt-14 grid gap-8 md:grid-cols-2 lg:grid-cols-4 md:gap-10">
             {[
               {
                 label: "Transparency",
@@ -645,6 +645,10 @@ export default function WebDesignSeychelles() {
               {
                 label: "Performance first",
                 text: (<>Before anything goes live, we guarantee it scores <span className="semibold-underline text-white">90+ on Google PageSpeed</span> so your customers get the fast, premium experience they expect.</>),
+              },
+              {
+                label: "Easy updates",
+                text: (<>Change your own text and images anytime <span className="text-cyan font-semibold">without touching code.</span> We provide simple software that gives you full control over your content while keeping the professional design perfectly intact.</>),
               },
             ].map((item, idx) => (
               <motion.div
@@ -728,9 +732,9 @@ export default function WebDesignSeychelles() {
                 />
                 <div className="flex items-center gap-3 mb-4">
                   <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan/10 border border-cyan/20">
-                    {industry.eyebrow.includes("Tourism") ? (
+                    {industry.eyebrow?.includes("Tourism") ? (
                       <svg className="h-5 w-5 text-cyan" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
-                    ) : industry.eyebrow.includes("Food") ? (
+                    ) : industry.eyebrow?.includes("Food") ? (
                       <svg className="h-5 w-5 text-cyan" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
                     ) : (
                       <svg className="h-5 w-5 text-cyan" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
@@ -950,7 +954,7 @@ export default function WebDesignSeychelles() {
                       >
                         <Check className="h-4 w-4" strokeWidth={3} />
                       </motion.span>
-                      <span className="text-sm text-text-muted leading-relaxed">{item.title}</span>
+                      <span className="text-sm text-white/80 leading-relaxed">{item.title}</span>
                     </li>
                   ))}
                 </ul>
