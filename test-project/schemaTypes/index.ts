@@ -4,6 +4,7 @@ import {insightArticle} from './documents/insightArticle'
 import {servicePackage} from './documents/servicePackage'
 import {siteSettings} from './documents/siteSettings'
 import {workProject} from './documents/workProject'
+import {portfolio} from './documents/portfolio'
 import {insightSection} from './objects/insightSection'
 import {navLink} from './objects/navLink'
 
@@ -11,6 +12,7 @@ export const schemaTypes = [
   siteSettings,
   insightArticle,
   workProject,
+  portfolio,
   servicePackage,
   faqItem,
   businessContent,
