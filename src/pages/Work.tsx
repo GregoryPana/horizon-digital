@@ -344,6 +344,24 @@ export default function Work() {
           { name: "Home", path: "/" },
           { name: "Our Work", path: "/work" },
         ]}
+        structuredData={[
+          {
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            "name": "Horizon Digital Portfolio",
+            "description": "Showcase of custom-built websites for businesses in Seychelles.",
+            "itemListElement": Array.isArray(projects) ? projects.map((p, i) => ({
+              "@type": "ListItem",
+              "position": i + 1,
+              "item": {
+                "@type": "CreativeWork",
+                "name": p.title,
+                "description": p.body,
+                "url": `https://horizondigitalsey.com/work#${p.id}`
+              }
+            })) : []
+          }
+        ]}
       />
 
       <section className="pt-12 pb-8 md:pt-24 md:pb-16 text-center px-5 sm:px-8 max-w-5xl mx-auto relative z-20 bg-bg-main/80 backdrop-blur-sm">

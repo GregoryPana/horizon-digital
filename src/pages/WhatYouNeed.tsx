@@ -65,6 +65,38 @@ export default function WhatYouNeed() {
           { name: "Home", path: "/" },
           { name: "What You Need", path: "/what-you-need" },
         ]}
+        structuredData={[
+          {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What is a domain name?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Your domain is your address online — for example, yourbusiness.sc. It legally belongs to you, and is registered for a small annual fee."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What is design and build?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Designing how your site looks and building it for all devices. This is a one-time project — once done, you own the finished files."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What is website hosting?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Your built site needs a server to live on 24/7. Think of it like rent for the digital space your website occupies."
+                }
+              }
+            ]
+          }
+        ]}
       />
 
       {/* Hero Intro */}

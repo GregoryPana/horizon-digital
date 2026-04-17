@@ -94,7 +94,7 @@ Looking forward to your reply.`;
       <h1 className="sr-only">Contact Horizon Digital - Start Your Custom Website Project</h1>
       <Seo
         title="Custom Website Project Seychelles | Horizon Digital"
-        description="Tell us about your business goals and start your custom website project with Horizon Digital today."
+        description="Start your custom website project in Seychelles today. We focus on conversion-led design, fixed pricing, and weekly updates to help your business grow online."
         path="/contact"
         keywords="contact custom web designer Seychelles, start custom website project Seychelles, bespoke web solutions"
         breadcrumbs={[
