@@ -1,7 +1,7 @@
 # Horizon Digital — Website Research & Action Tracker
 
 **Project:** horizondigitalsey.com  
-**Last updated:** 2026-04-15 (Session 8 updates)  
+**Last updated:** 2026-04-16 (Session 11 updates)  
 **Branch:** claude-redesign-v2  
 
 Status legend: ✅ Done · 🔄 In Progress · ⬜ Outstanding · ❌ Not Needed / Deferred
@@ -159,6 +159,24 @@ Status legend: ✅ Done · 🔄 In Progress · ⬜ Outstanding · ❌ Not Needed
 | 90 | FAQ Expansion: Added comprehensive local-market questions and CMS clarity | `Home.tsx` | ✅ |
 | 91 | Production Audit: Verified live site performance (Lighthouse) and build stability | All | ✅ |
 
+### ✅ Completed (Session 10 — 2026-04-16)
+
+| # | Change | File | Status |
+|---|--------|------|--------|
+| 92 | Reusable `ImageWithSkeleton` component: shimmer-backed wrapper for all async images | `ImageWithSkeleton.tsx` | ✅ |
+| 93 | High-fidelity Work page skeletons: grid placeholders for projects, text, and mockups | `Work.tsx` | ✅ |
+| 94 | Hero Background Fix: Instant radial-gradient placeholder to hide WebGL boot-up delay | `animated-shader-hero.tsx` | ✅ |
+| 95 | Insights & Home Integration: Added skeletons to all article and showcase cards | `Home.tsx`, `Insights.tsx` | ✅ |
+| 96 | GSAP Safety: Synchronized data loading with animation initialization | `Work.tsx` | ✅ |
+
+### ✅ Completed (Session 11 — 2026-04-16)
+
+| # | Change | File | Status |
+|---|--------|------|--------|
+| 97 | Mobile UX Condensation: Reduced vertical spacing in Process sections | `Home.tsx`, `Process.tsx` | ✅ |
+| 98 | Services Slideshow Optimization: Reduced illustration height for mobile | `OurServicesSlideshow.tsx` | ✅ |
+| 99 | Project Audit Refinement: Final sitemap and robots.txt check | `robots.txt` | ✅ |
+
 ### ⬜ Outstanding Production Items
 
 | # | Change | Priority | Notes |
@@ -194,9 +212,9 @@ Replaced all flex-centering row wrappers in both the slot and non-slot h1 paths 
 | Hero | ✅ Good | ✅ Title centering and word-wrapping fixed and verified (375px safe) | Hero title clipping / wrap issue on small devices | ✅ Fixed |
 | Problem Cards | ✅ Good | ✅ Good — carousel works | Entrance animation improved with blur | ✅ Done |
 | Marquee Banner | ✅ Good | ✅ Now visible on mobile | Removed `hidden sm:block` | ✅ Done |
-| Services Slideshow | ✅ Good | ⚠️ On mobile, description sits below tall illustration | Consider reducing illustration height on mobile | ⬜ Low |
+| Services Slideshow | ✅ Good | ✅ Illustration height optimized | Reduced aspect ratio for mobile viewports | ✅ Done |
 | Difference Section | ✅ Good | ✅ Stacks cleanly | Entrance blur added | ✅ Done |
-| Process Section | ✅ Good — sticky scroll | ⚠️ Sticky scroll on mobile can feel heavy | Consider condensing spacing on mobile | ⬜ Medium |
+| Process Section | ✅ Good — sticky scroll | ✅ Condensed mobile spacing | Reduced space-y from 55vh to 35vh | ✅ Done |
 | Work Showcase | ✅ Good — full-screen sticky | ✅ Dark overlay on mobile added | Already well-optimised | ✅ Good |
 | Packages | ✅ 4-column grid | ✅ Single column | Blur entrance added | ✅ Done |
 | Insights Card | ✅ Good | ✅ Checked and fixed overflow on 375px viewports (Session 8) | Floating card stack overflows on small phones | ✅ Fixed |
@@ -234,7 +252,7 @@ Replaced all flex-centering row wrappers in both the slot and non-slot h1 paths 
 | Section | Desktop | Mobile | Issues |
 |---------|---------|--------|--------|
 | Hero | ✅ Good | ✅ Good | Clean |
-| Steps (sticky scroll) | ✅ Good | ⚠️ Space-y spacing may feel excessive | Review `space-y-[55vh]` on mobile |
+| Steps (sticky scroll) | ✅ Good | ✅ Condensed space-y (35vh) | Improved mobile scroll weight | ✅ Done |
 | Features list | ✅ Good (`hidden md:flex`) | ❌ Hidden on mobile | The "Transparent pricing, Weekly updates" list is hidden on mobile |
 
 ### Work Page (`/work`)

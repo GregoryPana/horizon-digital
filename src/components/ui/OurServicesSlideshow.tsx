@@ -519,7 +519,7 @@ export function OurServicesSlideshow() {
 
         {/* Right Column: SVG Illustration + description below */}
         <div className="w-full md:w-1/2 flex flex-col gap-5 group">
-          <div className="w-full aspect-[4/3] max-w-lg rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-white/5 bg-[#111113]">
+          <div className="w-full aspect-[3/2.2] sm:aspect-[4/3] max-w-lg rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-white/5 bg-[#111113]">
             <ServiceIllustrationPanel />
           </div>
 

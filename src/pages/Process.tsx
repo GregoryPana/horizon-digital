@@ -164,7 +164,7 @@ export default function Process() {
 
             {/* Right side ContainerScroll area */}
             <ContainerScroll
-              className="space-y-[55vh] md:space-y-[70vh] pb-[50vh] md:pb-[60vh] pt-6 md:pt-32 z-20"
+              className="space-y-[35vh] md:space-y-[70vh] pb-[30vh] md:pb-[60vh] pt-6 md:pt-32 z-20"
               style={{
                 '--sticky-increment': '32px',
                 '--sticky-top': '15vh'
