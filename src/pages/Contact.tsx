@@ -6,6 +6,7 @@ import { emailTemplate, siteConfig } from "../data/site";
 import { buildMailtoLink } from "../lib/utils";
 import { useLocation } from "react-router-dom";
 import { trackEvent } from "../lib/analytics";
+import { Instagram, Facebook } from "lucide-react";
 
 
 export default function Contact() {
@@ -286,7 +287,7 @@ Looking forward to your reply.`;
                 }
               >
 
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-white/[0.05] bg-white/[0.03] text-text-muted transition-colors group-hover:bg-cyan/10 group-hover:text-cyan">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-white/[0.05] bg-white/[0.03] text-text-muted transition-colors group-hover:bg-amber-500/10 group-hover:text-[#F59E0B]">
                   <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
@@ -304,13 +305,45 @@ Looking forward to your reply.`;
                 }
               >
 
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-white/[0.05] bg-white/[0.03] text-text-muted transition-colors group-hover:bg-cyan/10 group-hover:text-cyan">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-white/[0.05] bg-white/[0.03] text-text-muted transition-colors group-hover:bg-blue-500/10 group-hover:text-[#3B82F6]">
                   <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
                 </div>
                 <span>{siteConfig.phone}</span>
               </a>
+              <div className="flex items-center gap-4 pt-2">
+                <a
+                  href={siteConfig.instagramUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group/social flex h-10 w-10 items-center justify-center rounded-lg border border-white/[0.05] bg-white/[0.03] text-text-muted transition-all hover:bg-white/[0.05]"
+                  aria-label="Instagram"
+                  onClick={() =>
+                    trackEvent("cta_click", {
+                      cta_name: "instagram_contact",
+                      page_path: window.location.pathname,
+                    })
+                  }
+                >
+                  <Instagram className="h-5 w-5 text-[#E4405F]" strokeWidth={1.5} />
+                </a>
+                <a
+                  href={siteConfig.facebookUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group/social flex h-10 w-10 items-center justify-center rounded-lg border border-white/[0.05] bg-white/[0.03] text-text-muted transition-all hover:bg-white/[0.05]"
+                  aria-label="Facebook"
+                  onClick={() =>
+                    trackEvent("cta_click", {
+                      cta_name: "facebook_contact",
+                      page_path: window.location.pathname,
+                    })
+                  }
+                >
+                  <Facebook className="h-5 w-5 text-[#1877F2]" strokeWidth={1.5} />
+                </a>
+              </div>
             </div>
 
             <div className="mt-10 rounded-2xl border border-border bg-bg-panel p-5">

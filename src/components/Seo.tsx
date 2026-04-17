@@ -39,6 +39,8 @@ export default function Seo({
     logo: ogImageUrl,
     sameAs: [
       siteConfig.whatsappUrl,
+      siteConfig.instagramUrl,
+      siteConfig.facebookUrl,
       "https://share.google/40ZCpJGHmi2tMZhDv",
       "https://maps.app.goo.gl/YcZHnx4ABoa4oHoCA",
     ],
@@ -128,6 +130,8 @@ export default function Seo({
     ],
     knowsLanguage: ["en", "fr"],
     sameAs: [
+      siteConfig.instagramUrl,
+      siteConfig.facebookUrl,
       "https://share.google/40ZCpJGHmi2tMZhDv",
       "https://maps.app.goo.gl/YcZHnx4ABoa4oHoCA",
     ],

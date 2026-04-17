@@ -17,6 +17,8 @@ export const siteConfig = {
   email: "horizondigital.sey@gmail.com",
   phone: "+248 2604525",
   whatsappUrl: "https://wa.me/2482604525?text=Hi+Horizon+Digital%2C+I%27d+like+to+discuss+a+website+project.",
+  instagramUrl: "https://www.instagram.com/horizondigitalsey",
+  facebookUrl: "https://www.facebook.com/share/1Hc1jJmyJB/",
   url: "https://horizondigitalsey.com",
   location: "Mahé, Seychelles",
   ogImage,
