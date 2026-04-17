@@ -314,7 +314,7 @@ export default function Pricing() {
               isRailOpen ? "Close section jump rail" : "Open section jump rail"
             }
             aria-expanded={isRailOpen}
-            className="jump-rail-toggle focus-ring h-12 w-[18px] rounded-r-full border border-l-0 border-deep-teal/40 bg-bg-elev/95 text-base leading-none text-deep-teal shadow-[0_8px_24px_rgba(2,8,12,0.32)]"
+            className="jump-rail-toggle focus-ring h-12 w-[36px] items-center justify-center flex rounded-r-full border border-l-0 border-deep-teal/40 bg-bg-elev/95 text-base leading-none text-deep-teal shadow-[0_8px_24px_rgba(2,8,12,0.32)]"
           >
             {isRailOpen ? "‹" : "›"}
           </button>

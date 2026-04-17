@@ -188,7 +188,7 @@ export default function NavMenu({
               {mobileMenuItems.map((item) => {
                 const isExpanded = expandedGroups.includes(item.id);
                 return (
-                  <li key={item.id} className="border-b border-[#28415a] py-4">
+                  <li key={item.id} className="border-b border-[#28415a]">
                     <div className="flex items-center justify-between gap-3">
                       {item.to ? (
                         <NavLink
@@ -198,7 +198,7 @@ export default function NavMenu({
                             closeMenu();
                           }}
                           className={({ isActive }) =>
-                            `focus-ring text-sm font-semibold uppercase tracking-[0.14em] transition ${
+                            `focus-ring block w-full py-5 text-sm font-semibold uppercase tracking-[0.14em] transition ${
                               isActive ? "text-accent" : "text-[#e8edf5]"
                             }`
                           }
@@ -249,12 +249,12 @@ export default function NavMenu({
                       >
                         <ul className="overflow-hidden border-l border-[#36506b] pl-3">
                           {item.children.map((subItem) => (
-                            <li key={subItem.to} className="py-1.5">
+                            <li key={subItem.to}>
                               <NavLink
                                 to={subItem.to}
                                 onClick={closeMenu}
                                 className={({ isActive }) =>
-                                  `focus-ring text-xs uppercase tracking-[0.13em] transition ${
+                                  `focus-ring block w-full py-4 text-xs uppercase tracking-[0.13em] transition ${
                                     isActive ? "text-[#ff8f5a]" : "text-[#bfd0de] hover:text-accent"
                                   }`
                                 }

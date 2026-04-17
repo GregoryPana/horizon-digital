@@ -175,7 +175,9 @@ Status legend: ✅ Done · 🔄 In Progress · ⬜ Outstanding · ❌ Not Needed
 |---|--------|------|--------|
 | 97 | Mobile UX Condensation: Reduced vertical spacing in Process sections | `Home.tsx`, `Process.tsx` | ✅ |
 | 98 | Services Slideshow Optimization: Reduced illustration height for mobile | `OurServicesSlideshow.tsx` | ✅ |
-| 99 | Project Audit Refinement: Final sitemap and robots.txt check | `robots.txt` | ✅ |
+| 100 | Mobile Nav Optimization: Increased tap targets for primary/secondary links | `menu-hover-effects.tsx` | ✅ |
+| 101 | Section Jump Rail: Increased toggle width to 36px for mobile accessibility | `Pricing.tsx` | ✅ |
+| 102 | Technical SEO Fix: Resolved React console warnings for fetchPriority | `Logo.tsx` | ✅ |
 
 ### ✅ All production items addressed
 
