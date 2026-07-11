@@ -1,6 +1,6 @@
-# CLAUDE.md
+# Claude Code Operating Rules — Horizon Digital
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file combines the repository architecture guide with the Claude Code/IDE adapter. Read `AGENTS.md` first and follow its business boundaries, worktree rules, design route, and validation expectations.
 
 ## Commands
 
@@ -10,82 +10,88 @@ npm run build      # TypeScript check + Vite production build (outputs to dist/)
 npm run preview    # Preview the production build locally
 ```
 
-There are no tests. TypeScript (`tsc -b`) is the primary correctness check — the build will fail on type errors.
+There is no established automated test suite in the production baseline. TypeScript (`tsc -b`) is the minimum correctness check; transformation work must add targeted tests for route/SEO utilities where practical.
 
-**Deploy:** The site runs on Cloudflare Workers via Wrangler. The worker at [src/worker.ts](src/worker.ts) serves the SPA, handles `/sitemap.xml` and `/robots.txt` dynamically, and rewrites all non-asset 404s to `index.html` for client-side routing.
-
----
+**Deployment architecture:** Cloudflare Workers via Wrangler. `src/worker.ts` serves the SPA, sitemap and robots response. Production/DNS/deployment changes require separate Gregory approval; this local transformation must not deploy.
 
 ## Architecture
 
 ### Stack
-- **React 18 + TypeScript** via Vite
-- **Tailwind CSS v3** with CSS custom properties for the design token system (see below)
-- **React Router v6** for client-side routing — all routes defined in [src/App.tsx](src/App.tsx)
-- **Framer Motion + GSAP** for animations; GSAP `ScrollTrigger` used in several page components
-- **Sanity CMS** (via `@sanity/client`) for the Insights blog content — client configured in [src/lib/sanity.ts](src/lib/sanity.ts)
-- **react-helmet-async** for per-page `<head>` management via the [src/components/Seo.tsx](src/components/Seo.tsx) component
 
-### Directory layout
-```
-src/
-  App.tsx          — Route definitions. Home is eager; all other pages are lazy-loaded.
-  main.tsx         — Entry point: BrowserRouter + HelmetProvider wrapping App
-  index.css        — CSS custom properties (design tokens), font-face declarations, global utilities
-  worker.ts        — Cloudflare Worker: SPA fallback, sitemap, robots.txt
+- React 18 + TypeScript via Vite
+- Tailwind CSS v3 with CSS custom-property design tokens
+- React Router v6; routes are defined in `src/App.tsx`
+- Framer Motion + GSAP; GSAP ScrollTrigger appears in several page components
+- Sanity CMS via `@sanity/client` for Insights content
+- `react-helmet-async` and `src/components/Seo.tsx` for page head management
 
-  pages/           — One file per route. Large files (Home, Pricing, WebDesignSeychelles) are self-contained with all section content inline.
-  components/      — Shared layout/UI: Layout, Navbar, Footer, Seo, Button, Card, ChatWidget, etc.
-  components/ui/   — Animated, visual-heavy primitives: shader hero, slideshows, tracing cards, skeleton, etc.
-  data/
-    site.ts        — siteConfig (name, email, phone, URLs), navLinks, emailTemplate, and all work/portfolio asset imports
-    insights.ts    — Static array of insight articles (blog posts served without CMS)
-  lib/
-    analytics.ts   — GA4 helpers: trackPageView, trackEvent (wraps window.gtag)
-    sanity.ts      — Sanity client + urlFor image builder
-    utils.ts       — cn(), buildMailtoLink(), scrollToTopSmooth()
-  hooks/
-    useTheme.ts    — Theme hook (dark-mode only; no toggle in production)
-  assets/          — Images (webp/jpg) organized by work project
+### Key paths
+
+```text
+src/App.tsx                  route definitions
+src/main.tsx                 BrowserRouter + HelmetProvider entry
+src/index.css                global design tokens and utilities
+src/worker.ts                Cloudflare Worker, sitemap, robots, SPA fallback
+src/pages/                   route pages
+src/components/              shared shell and UI
+src/components/ui/           visual and motion-heavy primitives
+src/data/site.ts             site identity, navigation and portfolio assets
+src/data/insights.ts         static insight content
+src/lib/analytics.ts         GA4 helpers
+src/lib/sanity.ts            Sanity client
+src/lib/utils.ts             shared utilities
 ```
 
 ### Layout system
-[src/components/Layout.tsx](src/components/Layout.tsx) is the persistent shell. It:
-- Measures header height via `ResizeObserver` and applies it as `--header-height` CSS var; inner pages use `paddingTop: var(--header-height)` except `/` and `/showcase/*`
-- Runs global scroll effects: `.scroll-glow` elements get a `--glow-strength` CSS var driven by viewport proximity; `.reveal-on-scroll` elements get `is-revealed` class added on intersection
-- Hides `Navbar` and `Footer` on `/showcase/*` routes (full-bleed showcase pages)
-- Lazy-loads `ChatWidget` so it doesn't affect LCP
+
+`src/components/Layout.tsx` is the persistent shell. It measures header height, runs global reveal/glow effects, hides the normal shell on showcase routes, and lazy-loads the chat widget.
 
 ### Design token system
-All colors are CSS custom properties defined in [src/index.css](src/index.css) and exposed as Tailwind utilities via `tailwind.config.cjs`. **Never hardcode colors** — always use the token names:
 
-| Token | Value | Usage |
-|---|---|---|
-| `--bg` / `bg` | `#0D0D0F` | Page background |
-| `--bg-elev` / `bg-elev` | `#121214` | Elevated surfaces |
-| `--bg-panel` / `bg-panel` | `#1A1A1C` | Cards, panels |
-| `--accent` / `accent` | `#5ED1DE` | Primary CTAs, one emphasis per section max |
-| `--accent-2` / `accent-2` | `#38BDF8` | Secondary accent |
-| `--deep-teal` / `deep-teal` | `#14B8A6` | Nav, structural UI |
-| `--text-muted` / `text-muted` | `#8B9AB0` | Secondary text |
-| `--glow` / `glow` | `rgba(94,209,222,0.14)` | Glow shadows |
+Use the CSS custom properties in `src/index.css` and their Tailwind mappings. Do not introduce disconnected one-off palettes.
 
-Fonts: **Switzer** (body, `font-sans`) and **Satoshi** (headings, `font-display`) — both self-hosted woff2 in `public/fonts/`.
+| Token | Current role |
+|---|---|
+| `--bg` / `bg` | page background |
+| `--bg-elev` / `bg-elev` | elevated surfaces |
+| `--bg-panel` / `bg-panel` | cards and panels |
+| `--accent` / `accent` | primary CTA and controlled emphasis |
+| `--accent-2` / `accent-2` | secondary accent |
+| `--deep-teal` / `deep-teal` | structural UI |
+| `--text-muted` / `text-muted` | secondary text |
+| `--glow` / `glow` | restrained glow effects |
 
-### Brand constraints (from `.impeccable.md`)
-- **Dark-mode only** — no theme toggle, non-negotiable
-- Cyan accent is used *sparingly*: primary CTAs and maximum **one** emphasis phrase per section
-- Animation must be purposeful — spring physics preferred over linear easing
-- Mobile-first: the target audience browses on phones on moderate connections
+Fonts are self-hosted. Preserve the dark Tropical Precision identity, but simplify visual effects where they damage performance, hierarchy or conversion.
 
-### SEO pattern
-Every page must include `<Seo>` from [src/components/Seo.tsx](src/components/Seo.tsx) with `title`, `description`, `path`, and optionally `structuredData` and `breadcrumbs`. The component automatically injects Organization, LocalBusiness, WebSite, and WebPage JSON-LD schemas on every page.
+### SEO and route rule
+
+The current code duplicates route knowledge across `src/App.tsx`, `src/worker.ts`, the sitemap and page metadata. The transformation plan requires one authoritative route registry and correct server status/redirect behaviour. Do not add another duplicate route list.
 
 ### Analytics
-Use `trackEvent(eventName, params)` from [src/lib/analytics.ts](src/lib/analytics.ts) for all GA4 custom events. `AnalyticsListener` in [src/components/AnalyticsListener.tsx](src/components/AnalyticsListener.tsx) handles automatic page-view tracking on route changes.
 
-### Adding a new page
-1. Create `src/pages/MyPage.tsx` with a `<Seo>` component at the top
-2. Lazy-import it in `App.tsx` and add a `<Route>` entry
-3. Add the route to `src/worker.ts` `baseRoutes` array so it appears in the sitemap
-4. Add it to `navLinks` in `src/data/site.ts` if it belongs in the nav
+Use `trackEvent(eventName, params)` from `src/lib/analytics.ts`. `AnalyticsListener` handles route page views. Do not change analytics IDs or production configuration.
+
+## Claude-specific rules
+
+- Read `docs/AGENT_DESIGN_SKILLS.md`, `docs/TRANSFORMATION_BRIEF.md`, the active session section in `docs/TRANSFORMATION_TRACKER.md`, and the brand/business references before substantial work.
+- Use `/hermes-handoff` or `/hermes-update-pack` only when Gregory requests the consolidated Hermes Update Pack.
+- Treat public copy, pricing, analytics, Cloudflare/deployment and lead flow as business-sensitive.
+- Do not assume CWS rules apply; this is a public Horizon Digital business website.
+- Never fabricate testimonials, clients, case studies, metrics, awards or logos.
+- Clearly classify real work, concepts and demos.
+- Preserve unrelated changes and stage only intended session files.
+- Do not inspect or print secret values.
+
+## Expected session handoff
+
+Report:
+
+- task and verified outcome;
+- branch/commit/push status;
+- files changed and materially inspected;
+- tests, build, type, lint, browser and accessibility checks actually run;
+- public/deployment impact (`none` unless separately approved);
+- analytics, CTA and lead-flow impact;
+- public claims changed or deliberately avoided;
+- secret-redaction statement;
+- risks, open questions and exact next action.

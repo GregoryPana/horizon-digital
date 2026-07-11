@@ -1,0 +1,13 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "instructions": ["OPENCODE.md"],
+  "skills": {
+    "paths": [".opencode/skills"]
+  },
+  "command": {
+    "hermes-handoff": {
+      "description": "Generate the Horizon Digital Hermes Update Pack",
+      "prompt": "Follow .opencode/skills/hermes-update-pack/SKILL.md and produce the consolidated Hermes Update Pack."
+    }
+  }
+}

@@ -1,0 +1,15 @@
+# Agent/protected-path ignore hints. This does not replace .gitignore.
+node_modules/
+dist/
+build/
+.cache/
+.codegraph/
+.codegraph-win/
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+secrets/
+credentials/
