@@ -15,7 +15,7 @@
 |---|---|---|---|---|---|
 | 0 | Workspace, dependencies, CodeGraph, baseline build and plans | Complete | `b8417cd` | `npm ci`, build and CodeGraph smoke passed | Begin Session 1 route/SEO architecture |
 | 1 | Route registry, real statuses and server-visible SEO | Complete | `ec1b142` | 36 tests, build, Worker dry-run, HTTP and hydrated-browser checks passed | Begin Session 2 proof, copy and chatbot knowledge sync |
-| 2 | Proof register, copy and information architecture | Pending | — | — | Start only after Session 1 passes |
+| 2 | Proof register, copy, chatbot knowledge and information architecture | Complete | `7def0b5` | 39 tests, knowledge drift check, build, Worker dry-run, secret scan, HTTP and hydrated-browser checks passed | Begin Session 3 visual system and responsive redesign |
 | 3 | Visual system and responsive redesign | Pending | — | — | Start only after Session 2 passes |
 | 4 | Performance and motion budget | Pending | — | — | Start only after Session 3 passes |
 | 5 | Lead flow, accessibility, analytics and legal surfaces | Pending | — | — | Start only after Session 4 passes |
@@ -53,6 +53,25 @@
 - **Remaining risks:** `www` repair requires a production Cloudflare/DNS decision; public copy includes unsupported performance, ranking and outcome claims; chatbot knowledge and webhook security require Session 2 work.
 - **Commit:** `ec1b142` (local only).
 - **Next bounded action:** inventory and synchronize `knowledge/*.md`, remove unsupported claims from website and chatbot surfaces, and document the external re-ingestion requirement.
+
+### Session 2 — 2026-07-26
+
+- **Agent/harness:** Hermes direct source audit, implementation, claim triage and browser verification; the independent delegated audit failed before execution because its configured model identifier was invalid, so no delegated findings were relied upon.
+- **Mission:** make public and chatbot claims defensible, synchronize repeated business facts, classify portfolio work truthfully, and remove browser-exposed chatbot credentials.
+- **Starting branch/HEAD:** `transformation/local-redesign@0897a05`; Session 1 implementation commit `ec1b142` already verified.
+- **Pre-existing worktree state:** clean after Session 1 tracker evidence; production and source baselines preserved.
+- **Content authority:** created `src/data/businessFacts.json`, `docs/CONTENT_AUTHORITY.md`, `docs/PROOF_AND_CLAIMS_REGISTER.md`, and generated `knowledge/*.md` with `scripts/generate-chatbot-knowledge.mjs`.
+- **Website synchronization:** aligned package prices, support periods, payment schedules, hosting, services, process, contact details and FAQs; removed or qualified unsupported performance, ranking, booking, enquiry, revenue, conversion and testimonial claims.
+- **Portfolio proof:** labelled Drake Seaside as live client work; Takamaka House and Forma Studio as concept showcases; Beauty Demo as a demonstration; removed unsupported Drake metrics and outcome claims.
+- **Architecture/content reliability:** replaced the duplicated `/web-design-seychelles` implementation with a route-specific wrapper around `Home`; made local portfolio fallback data render immediately when optional Sanity retrieval is unavailable.
+- **Chatbot security:** browser now calls same-origin `/api/chat` and `/api/lead`; Worker adds the private credential from `CHAT_WEBHOOK_TOKEN`; request method, content type, body size, upstream failure and missing-configuration behavior are tested.
+- **Checks passed:** `npm test` (39/39, including eight-file knowledge drift check); `npm run build`; `git diff --check`; Wrangler `deploy --dry-run`; source/build/knowledge scans found no old secret-like value, legacy email or browser secret placeholder.
+- **HTTP/browser evidence:** fresh local Workers served non-empty 200 responses for `/`, `/pricing`, `/work`, `/web-design-seychelles` and sector routes; unconfigured local `/api/chat` returned controlled 503; hydrated checks covered homepage claims, canonical metadata, pricing, portfolio classifications, sector copy and Drake showcase; browser console remained clean on checked routes.
+- **External checks not run:** no production chatbot request or knowledge ingestion because the exposed credential requires rotation and production/external side effects were not authorized.
+- **Public/deployment impact:** none; no push, PR, deployment, DNS, Cloudflare, external chatbot database or production Sanity change.
+- **Owner decisions remaining:** approve current package/add-on/hosting prices, payment schedules and support periods; confirm portfolio publication classifications and final controlled copy before deployment.
+- **Commit:** `7def0b5` (local only).
+- **Next bounded action:** Session 3 Tropical Precision visual-system and responsive redesign, starting with `DESIGN.md`, shell/navigation, homepage hierarchy and 375/768/1280/1440 viewport evidence.
 
 ### Session N — YYYY-MM-DD
 
