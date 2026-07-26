@@ -4,10 +4,27 @@
   "skills": {
     "paths": [".opencode/skills"]
   },
+  "mcp": {
+    "codegraph": {
+      "type": "local",
+      "command": ["codegraph", "serve", "--mcp"],
+      "enabled": true
+    }
+  },
+  "permission": {
+    "external_directory": {
+      "/mnt/c/Users/gpanagary/central-agent-skills/**": "allow",
+      "/home/gpanagary/.hermes/skills/**": "allow"
+    },
+    "edit": {
+      "/mnt/c/Users/gpanagary/central-agent-skills/**": "deny",
+      "/home/gpanagary/.hermes/skills/**": "deny"
+    }
+  },
   "command": {
     "hermes-handoff": {
       "description": "Generate the Horizon Digital Hermes Update Pack",
-      "prompt": "Follow .opencode/skills/hermes-update-pack/SKILL.md and produce the consolidated Hermes Update Pack."
+      "template": "Follow .opencode/skills/hermes-update-pack/SKILL.md and produce the consolidated Hermes Update Pack."
     }
   }
 }

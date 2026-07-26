@@ -7,8 +7,9 @@ This repository is the Horizon Digital public website and client-showcase codeba
 1. `AGENTS.md` — this cross-agent operating contract.
 2. `OPENCODE.md` or `CLAUDE.md` — tool-specific adapter for the current agent.
 3. `docs/AGENT_DESIGN_SKILLS.md` before substantial UI/design work.
-4. `master_brief.md`, `brand-design-guidelines.md`, `brand_interview.md`, and relevant `knowledge/*.md` before changing public copy, positioning, pricing, services, or proof.
-5. `.opencode/skills/hermes-update-pack/SKILL.md` or `.claude/commands/hermes-handoff.md` when logging or flushing a Hermes Update Pack.
+4. `docs/TRANSFORMATION_BRIEF.md`, `docs/plans/2026-07-26-horizon-digital-transformation-master-plan.md`, and the active session in `docs/TRANSFORMATION_TRACKER.md` for this local transformation.
+5. `master_brief.md`, `brand-design-guidelines.md`, `brand_interview.md`, and relevant `knowledge/*.md` before changing public copy, positioning, pricing, services, or proof.
+6. `.opencode/skills/hermes-update-pack/SKILL.md` or `.claude/commands/hermes-handoff.md` when logging or flushing a Hermes Update Pack.
 
 ## Business boundaries
 
@@ -22,6 +23,7 @@ This repository is the Horizon Digital public website and client-showcase codeba
 - Preserve the existing dirty worktree. Do not stage or commit unrelated files.
 - Do not stage `node_modules/`, local caches, generated artifacts, secrets, or analytics credentials.
 - Do not deploy, change DNS/Cloudflare config, alter production routing, change analytics IDs, or publish public copy/pricing changes without Gregory's explicit approval.
+- Work one numbered transformation session at a time. Update `docs/TRANSFORMATION_TRACKER.md` with verified evidence before starting the next session.
 - Do not inspect or print `.env` values, tokens, cookies, service-account files, private keys, or API secrets.
 
 ## Validation expectations
