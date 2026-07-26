@@ -407,8 +407,8 @@ export default function Pricing() {
               </h2>
               <div className="mt-7 md:mt-0 md:text-right md:pb-2 max-w-[18rem]">
                 <p className="text-[1.0625rem] md:text-lg lg:text-xl lg:leading-relaxed text-text-muted">
-                  Nothing is an extra. Every engagement draws from all five —
-                  it's simply how we build.
+                  Every project considers these five disciplines. The selected
+                  package and written scope confirm the exact deliverables.
                 </p>
                 <p className="mt-3 text-[11px] font-black uppercase tracking-[0.25em] text-deep-teal">
                   Five disciplines · One team
@@ -545,7 +545,7 @@ export default function Pricing() {
             transition={{ duration: 1.0, delay: 0.6 }}
           >
             <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-text-muted/60">
-              All five included in every package — no extras, no surprises
+              Five disciplines considered · inclusions confirmed in the package and scope
             </p>
             <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-deep-teal/80">
               Explore packages below ↓
@@ -585,8 +585,8 @@ export default function Pricing() {
                     <span className="text-cyan italic">new website.</span>
                   </h2>
                   <p className="max-w-2xl text-lg sm:text-2xl leading-relaxed text-text-muted font-normal">
-                    We make the process clear, simple, and stress-free—from our
-                    first chat to the day your site goes live.
+                    We define the stages, responsibilities, and review points from
+                    the first conversation through launch.
                   </p>
                 </motion.div>
               </div>
@@ -681,11 +681,8 @@ export default function Pricing() {
               </p>
               <div className="mt-4 text-sm text-text-muted mb-8">
                 <p>
-                  Everything you need to{" "}
-                  <span className="text-cyan font-semibold">
-                    be seen online
-                  </span>{" "}
-                  — no technical hurdles or hidden extras.
+                  A focused custom website for a business establishing or replacing
+                  a basic online presence.
                 </p>
               </div>
 
@@ -740,11 +737,8 @@ export default function Pricing() {
               </p>
               <div className="mt-4 text-sm text-text-muted mb-8">
                 <p>
-                  The{" "}
-                  <span className="text-cyan font-semibold">
-                    complete setup
-                  </span>{" "}
-                  for growing businesses that need to compete and win online.
+                  A larger custom website for a growing business with more services
+                  or content.
                 </p>
               </div>
 
@@ -803,11 +797,8 @@ export default function Pricing() {
               </p>
               <div className="mt-4 text-sm text-text-muted mb-8">
                 <p>
-                  For established businesses ready for{" "}
-                  <span className="text-cyan font-semibold">
-                    aggressive growth
-                  </span>{" "}
-                  and complete market visibility.
+                  A more extensive website for businesses with deeper content,
+                  service lines, or integrations.
                 </p>
               </div>
 
@@ -897,11 +888,8 @@ export default function Pricing() {
         title={hostingPlan.title}
         description={
           <>
-            One clear plan to keep your website{" "}
-            <span className="text-cyan font-semibold">
-              secure and running smoothly
-            </span>
-            .
+            Hosting configuration, backups, routine updates, and basic availability
+            checks under one annual plan.
           </>
         }
       >
@@ -1064,8 +1052,8 @@ export default function Pricing() {
       <Section
         id="visibility"
         eyebrow="Performance & Visibility"
-        title="Built to look good and be found"
-        description="We focus on speed, clarity, and practical search setup so people can discover your business online."
+        title="Built for clarity and search readiness"
+        description="We focus on responsive use, performance-aware delivery, crawlable structure, and practical technical SEO foundations. Rankings are not guaranteed."
         className={compactDesktopSection}
         containerClassName="max-w-7xl xl:pl-64 2xl:pl-8"
       >
@@ -1091,8 +1079,7 @@ export default function Pricing() {
               })
             }
           >
-            Ready to have a website that both looks great and gets found? Let's
-            build it →
+            Ready to discuss a clear, search-ready website? Let's talk →
           </Link>
         </div>
       </Section>

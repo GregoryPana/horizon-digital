@@ -21,18 +21,18 @@ const SLIDES = [
   },
   {
     id: "slide-2",
-    title: "Perfect on Mobile",
-    description: "Over 70% of customers browse on phones. Your site works beautifully on the phones your customers use — no pinching, no squinting.",
+    title: "Responsive Layouts",
+    description: "Customers use many screen sizes. We design and test responsive layouts for common phone, tablet, and desktop widths.",
   },
   {
     id: "slide-3",
-    title: "Found on Google",
-    description: "We build every page so Google understands your business and shows you when locals are searching.",
+    title: "Search-Ready Structure",
+    description: "We use crawlable structure, descriptive metadata, and technical SEO foundations. Search visibility and rankings are not guaranteed.",
   },
   {
     id: "slide-4",
-    title: "Fast & Reliable",
-    description: "Fast-loading pages keep visitors on your site — and slow sites send them straight to your competitors.",
+    title: "Performance-Aware",
+    description: "We test and optimize agreed pages and media before launch. Results vary by content, integrations, devices, and network conditions.",
   },
 ];
 
@@ -320,29 +320,12 @@ function GoogleIllustration({ active }: { active: boolean }) {
 function FastIllustration({ active }: { active: boolean }) {
   const radius = 88;
   const circumference = 2 * Math.PI * radius;
-  const score = 96;
-  const dashOffset = circumference * (1 - score / 100);
-
-  const [displayScore, setDisplayScore] = useState(0);
-  useEffect(() => {
-    if (!active) { setDisplayScore(0); return; }
-    const timeout = setTimeout(() => {
-      let n = 0;
-      const step = () => {
-        n = Math.min(n + 3, score);
-        setDisplayScore(n);
-        if (n < score) requestAnimationFrame(step);
-      };
-      requestAnimationFrame(step);
-    }, 400);
-    return () => clearTimeout(timeout);
-  }, [active]);
+  const dashOffset = circumference * 0.12;
 
   const metrics = [
-    { label: "FCP", value: "0.8s" },
-    { label: "LCP", value: "1.2s" },
-    { label: "CLS", value: "0.02" },
-    { label: "FID", value: "10ms" },
+    { label: "Performance", value: "Tested" },
+    { label: "Responsive", value: "Multi-device" },
+    { label: "SEO", value: "Foundation" },
   ];
 
   return (
@@ -372,32 +355,26 @@ function FastIllustration({ active }: { active: boolean }) {
         transition={{ duration: 1.4, delay: active ? 0.3 : 0, ease: [0.16, 1, 0.3, 1] }}
       />
 
-      {/* Score number */}
+      {/* Performance testing label */}
       <motion.text
-        x="240" y="158"
+        x="240" y="166"
         fill="white"
-        fontSize="54"
+        fontSize="30"
         fontWeight="800"
         textAnchor="middle"
         fontFamily="sans-serif"
         animate={active ? { opacity: 1 } : { opacity: 0 }}
         transition={{ delay: active ? 0.4 : 0 }}
-      >{displayScore}</motion.text>
-
-      {/* "/ 100" label */}
-      <motion.text x="240" y="178" fill="#5C6B7A" fontSize="11" textAnchor="middle" fontFamily="sans-serif"
-        animate={active ? { opacity: 1 } : { opacity: 0 }} transition={{ delay: active ? 0.6 : 0 }}
-      >/ 100</motion.text>
+      >TESTED</motion.text>
 
       {/* PERFORMANCE label */}
       <motion.text x="240" y="198" fill="#5ED1DE" fontSize="9" textAnchor="middle" fontFamily="sans-serif" letterSpacing="3"
         animate={active ? { opacity: 1 } : { opacity: 0 }} transition={{ delay: active ? 0.7 : 0 }}
       >PERFORMANCE</motion.text>
 
-      {/* Google PageSpeed Insights */}
       <motion.text x="240" y="222" fill="#5C6B7A" fontSize="8" textAnchor="middle" fontFamily="sans-serif"
         animate={active ? { opacity: 1 } : { opacity: 0 }} transition={{ delay: active ? 0.9 : 0 }}
-      >Google PageSpeed Insights</motion.text>
+      >Results vary by page, content and connection</motion.text>
 
       {/* Metric chips */}
       {metrics.map((m, i) => (
@@ -406,9 +383,9 @@ function FastIllustration({ active }: { active: boolean }) {
           animate={active ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
           transition={{ duration: 0.4, delay: active ? 1.0 + i * 0.08 : 0 }}
         >
-          <rect x={76 + i * 82} y="282" width="68" height="44" rx="8" fill="#161618" stroke="#252528" strokeWidth="1" />
-          <text x={110 + i * 82} y="302" fill="#5C6B7A" fontSize="7" textAnchor="middle" fontFamily="monospace">{m.label}</text>
-          <text x={110 + i * 82} y="318" fill="#5ED1DE" fontSize="10" fontWeight="700" textAnchor="middle" fontFamily="monospace">{m.value}</text>
+          <rect x={117 + i * 82} y="282" width="68" height="44" rx="8" fill="#161618" stroke="#252528" strokeWidth="1" />
+          <text x={151 + i * 82} y="302" fill="#5C6B7A" fontSize="7" textAnchor="middle" fontFamily="monospace">{m.label}</text>
+          <text x={151 + i * 82} y="318" fill="#5ED1DE" fontSize="10" fontWeight="700" textAnchor="middle" fontFamily="monospace">{m.value}</text>
         </motion.g>
       ))}
     </svg>

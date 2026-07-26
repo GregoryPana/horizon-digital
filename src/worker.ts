@@ -17,9 +17,74 @@ import {
 
 export type WorkerEnv = {
   ASSETS: { fetch: (request: Request) => Promise<Response> };
+  CHAT_WEBHOOK_TOKEN?: string;
+  CHAT_API_BASE?: string;
 };
 
 type JsonLdSchema = Record<string, unknown>;
+
+const DEFAULT_CHAT_API_BASE = "https://chat.horizondigitalsey.com/webhook";
+const MAX_CHAT_REQUEST_BYTES = 32_768;
+
+function jsonResponse(body: Record<string, unknown>, status: number, extraHeaders?: HeadersInit): Response {
+  return Response.json(body, {
+    status,
+    headers: {
+      "cache-control": "no-store",
+      ...extraHeaders,
+    },
+  });
+}
+
+export async function proxyChatRequest(
+  request: Request,
+  env: WorkerEnv,
+  endpoint: "chat" | "lead",
+): Promise<Response> {
+  if (request.method !== "POST") {
+    return jsonResponse({ error: "Method not allowed" }, 405, { allow: "POST" });
+  }
+
+  if (!request.headers.get("content-type")?.toLowerCase().includes("application/json")) {
+    return jsonResponse({ error: "Content-Type must be application/json" }, 415);
+  }
+
+  const declaredLength = Number(request.headers.get("content-length") ?? "0");
+  if (Number.isFinite(declaredLength) && declaredLength > MAX_CHAT_REQUEST_BYTES) {
+    return jsonResponse({ error: "Request too large" }, 413);
+  }
+
+  if (!env.CHAT_WEBHOOK_TOKEN) {
+    return jsonResponse({ error: "Chat service is not configured" }, 503);
+  }
+
+  const body = await request.arrayBuffer();
+  if (body.byteLength > MAX_CHAT_REQUEST_BYTES) {
+    return jsonResponse({ error: "Request too large" }, 413);
+  }
+
+  const apiBase = (env.CHAT_API_BASE ?? DEFAULT_CHAT_API_BASE).replace(/\/$/, "");
+  try {
+    const upstream = await fetch(`${apiBase}/${endpoint}`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        "x-chat-token": env.CHAT_WEBHOOK_TOKEN,
+      },
+      body,
+      redirect: "error",
+    });
+    return new Response(upstream.body, {
+      status: upstream.status,
+      headers: {
+        "content-type": upstream.headers.get("content-type") ?? "application/json; charset=utf-8",
+        "cache-control": "no-store",
+      },
+    });
+  } catch {
+    return jsonResponse({ error: "Chat service unavailable" }, 502);
+  }
+}
 
 export function escapeHtml(value: string): string {
   return value
@@ -128,6 +193,13 @@ export default {
     const url = new URL(request.url);
     const isAssetRequest = url.pathname.includes(".");
     const canonicalOrigin = SITE_URL;
+
+    if (url.pathname === "/api/chat") {
+      return proxyChatRequest(request, env, "chat");
+    }
+    if (url.pathname === "/api/lead") {
+      return proxyChatRequest(request, env, "lead");
+    }
 
     if (url.pathname === "/robots.txt") {
       const body = `User-agent: *\nAllow: /\nHost: horizondigitalsey.com\n\nSitemap: ${canonicalOrigin}/sitemap.xml`;

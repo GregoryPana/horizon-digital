@@ -38,8 +38,9 @@ const fallbackProjects = [
   {
     id: "drake",
     title: "Drake Seaside",
+    status: "Live client project",
     tier: "Growth Tier",
-    body: "A complete redesign with new pages, faster loading, and a layout that turns visitors into bookings.",
+    body: "A live redesign with new pages, updated content, and a faster-loading structure.",
     link: "https://thedrake-seaside.com/?utm_source=horizondigitalsey.com&utm_medium=referral&utm_campaign=portfolio_showcase",
     cta: "View live site →",
     reqCta: "Request similar site",
@@ -56,10 +57,11 @@ const fallbackProjects = [
   {
     id: "takamaka",
     title: "Takamaka House",
+    status: "Concept showcase",
     tier: "Foundation Tier",
-    body: "A calm, immersive site designed to let the beauty of Takamaka House do the talking – and make guests excited to book before they even arrive.",
+    body: "A hospitality concept focused on accommodation details, visual storytelling, and direct booking intent.",
     link: "https://horizondigitalsey.com/showcase/takamaka-house",
-    cta: "View live site →",
+    cta: "View showcase →",
     reqCta: "Request similar site",
     fallbackSrc: takamakaMain,
     webpSrc: takamakaMainWebp,
@@ -72,10 +74,11 @@ const fallbackProjects = [
   {
     id: "forma",
     title: "Forma Studio",
+    status: "Concept showcase",
     tier: "Foundation Tier",
-    body: "A clean, editorial showcase for a creative studio – designed to let their work breathe and make enquiries feel natural.",
+    body: "A portfolio-led concept with an editorial layout and a clear enquiry path.",
     link: "https://horizondigitalsey.com/showcase/forma-studio",
-    cta: "View live site →",
+    cta: "View showcase →",
     reqCta: "Request similar site",
     fallbackSrc: formaMain,
     webpSrc: formaMainWebp,
@@ -88,10 +91,11 @@ const fallbackProjects = [
   {
     id: "beauty",
     title: "Beauty Demo",
+    status: "Demonstration site",
     tier: "Foundation Tier",
-    body: "A fast, focused site for a service business - clear pricing, easy contact, and a layout that turns curious visitors into real clients.",
+    body: "A demonstration of a focused service-business website with clear services, pricing, and contact paths.",
     link: "https://demo-beauty.horizondigitalsey.com/",
-    cta: "View live site →",
+    cta: "View demonstration →",
     reqCta: "Request similar site",
     fallbackSrc: seykelzMain,
     webpSrc: seykelzMainWebp,
@@ -102,6 +106,14 @@ const fallbackProjects = [
     bgColor: "rgba(255, 182, 193, 0.15)" // pastel pink with transparency
   }
 ];
+
+const projectStatusByTitle: Record<string, string> = {
+  "Drake Seaside": "Live client project",
+  "Drake Seaside Apartments": "Live client project",
+  "Takamaka House": "Concept showcase",
+  "Forma Studio": "Concept showcase",
+  "Beauty Demo": "Demonstration site",
+};
 
 function LaptopMockupVisual({ 
   webpSrc, fallbackSrc, alt, isEager = false, videoSrc, altSrc, altWebpSrc, altText, index 
@@ -185,8 +197,8 @@ export default function Work() {
   const pinRef = useRef<HTMLDivElement>(null);
   const bgRef = useRef<HTMLDivElement>(null);
 
-  const [projects, setProjects] = useState<any[]>([]);
-  const [dataLoaded, setDataLoaded] = useState(false);
+  const [projects, setProjects] = useState<any[]>(fallbackProjects);
+  const [dataLoaded, setDataLoaded] = useState(true);
 
   useEffect(() => {
     async function fetchProjects() {
@@ -211,6 +223,13 @@ export default function Work() {
           // Format sanity data to have webp fallback strings if needed
           const formattedData = data.map((p: any) => ({
             ...p,
+            status: projectStatusByTitle[p.title] ?? "Unclassified showcase",
+            cta:
+              (projectStatusByTitle[p.title] ?? "Unclassified showcase") === "Live client project"
+                ? "View live site →"
+                : (projectStatusByTitle[p.title] ?? "Unclassified showcase") === "Demonstration site"
+                  ? "View demonstration →"
+                  : "View showcase →",
             fallbackSrc: p.fallbackSrc ? `${p.fallbackSrc}?auto=format` : null,
             webpSrc: p.fallbackSrc ? `${p.fallbackSrc}?fm=webp` : null,
             altSrc: p.altSrc ? `${p.altSrc}?auto=format` : null,
@@ -366,12 +385,12 @@ export default function Work() {
 
       <section className="pt-12 pb-8 md:pt-24 md:pb-16 text-center px-5 sm:px-8 max-w-5xl mx-auto relative z-20 bg-bg-main/80 backdrop-blur-sm">
         <motion.div {...fadeIn} className="mb-8 text-center">
-          <span className="mb-5 block text-[11px] font-medium uppercase tracking-[0.2em] leading-none text-cyan section-eyebrow-glow">Real work, real businesses</span>
+          <span className="mb-5 block text-[11px] font-medium uppercase tracking-[0.2em] leading-none text-cyan section-eyebrow-glow">Selected work and concepts</span>
           <h2 className="font-display mx-auto max-w-4xl text-3xl font-medium leading-[1.1] tracking-tight text-white md:text-5xl lg:text-6xl">
-            Custom websites we've built with care.
+            A live client project, concepts, and demonstrations.
           </h2>
           <p className="mx-auto mt-6 max-w-2xl text-[1.1rem] text-text-muted md:text-xl font-normal leading-relaxed">
-            Every site you see here was built for a real business, with real goals. Take a look and imagine what we could do with our custom approach for yours.
+            Each entry is labelled so you can distinguish commissioned work from a concept or demonstration.
           </p>
         </motion.div>
       </section>
@@ -389,7 +408,7 @@ export default function Work() {
                 
                 <div className={`project-text-${i} lg:col-span-12 xl:col-span-5 flex flex-col justify-start lg:justify-center text-left pointer-events-none ${proj.align === 'right' ? 'xl:order-2' : 'xl:order-1'} ${i === 0 ? 'opacity-100' : 'opacity-0'}`}>
                   <p className="text-[11px] md:text-xs font-medium uppercase tracking-[0.2em] text-cyan mb-3 md:mb-5 bg-cyan/10 inline-block px-3 py-1.5 rounded-full border border-cyan/20 self-start">
-                    {proj.tier}
+                    {proj.status} · {proj.tier}
                   </p>
                   <h3 className="font-display text-3xl sm:text-4xl lg:text-[3.5rem] font-medium text-white mb-4 lg:mb-6 leading-[1.05] tracking-tight">
                     {proj.title}
@@ -448,7 +467,7 @@ export default function Work() {
               Great websites feel effortless — for you and your customers.
             </h2>
             <p className="text-[1.1rem] md:text-xl text-text-muted mb-12 font-normal max-w-2xl mx-auto mt-6">
-              We build every site to look great, load fast, and feel natural to use — on any device, at any time.
+              We design for clear information, responsive use, and straightforward contact paths across common devices.
             </p>
             <Link 
               to="/contact" 

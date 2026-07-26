@@ -29,11 +29,11 @@ const profFaqCategories: HomeFaqCategory[] = [
       },
       {
         question: "Can you help with lead generation?",
-        answer: "Absolutely. We don't just build pretty sites; we build conversion engines. From strategic call-to-actions to optimized enquiry forms, every element is designed to turn visitors into leads."
+        answer: "We can structure calls to action and enquiry forms so visitors have a clear route to contact you. Enquiry volume and business results are not guaranteed."
       },
       {
         question: "Is the site secure for my clients' data?",
-        answer: "Security is non-negotiable for professional services. We implement SSL, secure contact forms, and follow best practices in data protection to ensure both your and your clients' peace of mind."
+        answer: "We use HTTPS, minimize requested contact data, and apply appropriate form and deployment controls within scope. No website can be described as risk-free, so requirements involving sensitive data need specific review."
       }
     ]
   }
@@ -47,7 +47,7 @@ const profProblemCards = [
   },
   {
     title: "Zero Lead Flow",
-    body: "A site that doesn't generate enquiries is just a digital brochure. we build high-performance funnels that drive real business growth.",
+    body: "A site with unclear calls to action can make it difficult for prospective clients to enquire. We create clear contact paths without guaranteeing enquiry volume or business growth.",
     type: "zero" as const
   },
   {
@@ -63,10 +63,10 @@ const profProblemCards = [
 ];
 
 const marqueeItems = [
-  "HIGH-CONVERSION LEAD FORMS",
+  "CLEAR ENQUIRY FORMS",
   "AUTHORITY-DRIVEN DESIGN",
   "LOCAL SEO FOR PROFESSIONALS",
-  "ULTRA-SECURE ARCHITECTURE",
+  "SECURITY-AWARE DELIVERY",
   "MOBILE-OPTIMIZED ENQUIRIES",
   "SEYCHELLES BUSINESS TARGETING",
 ];
@@ -172,7 +172,7 @@ export default function ProfessionalServicesWebsiteDesignSeychelles() {
           lines: ["STUNNING", "PROFESSIONAL WEBSITES"],
           rotatingWords: ["LEGAL", "FINANCE", "CONSULT", "REALTY"],
         }}
-        subtitle="We build high-trust websites for Seychelles professionals that establish authority and drive qualified enquiries."
+        subtitle="We build clear, professional websites for Seychelles service businesses, with structured information and direct enquiry paths."
         tags={[
           { text: "Lead Generation Ready", icon: (
             <svg className="h-3 w-3 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
@@ -268,15 +268,15 @@ export default function ProfessionalServicesWebsiteDesignSeychelles() {
 
       <section className="bg-black py-24 md:py-32">
         <div className="mx-auto max-w-5xl px-6 text-center">
-          <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] text-deep-teal section-eyebrow-glow">Commanding Authority</span>
+          <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] text-deep-teal section-eyebrow-glow">Professional Service Structure</span>
           <h2 className="font-display mx-auto max-w-3xl text-3xl font-semibold text-white md:text-4xl">
-            Strategies to win high-value <span className="text-cyan font-semibold">B2B relationships.</span>
+            Clear website structure for <span className="text-cyan font-semibold">professional B2B services.</span>
           </h2>
           <div className="mt-14 grid gap-10 md:grid-cols-3">
             {[
-              { label: "Trust-First Architecture", text: "Every pixel is placed to build credibility. We use premium design patterns that signal reliability and professional excellence to your prospects." },
-              { label: "Precision Funnels", text: "We design effortless pathways for potential clients to enquire, download your case studies, or book a consultation directly on your site." },
-              { label: "B2B Search Power", text: "We help you rank for the specific terms your ideal clients use, ensuring you're visible when they need expert help in Seychelles." }
+              { label: "Professional Presentation", text: "We use clear hierarchy, service information, and genuine trust signals appropriate to the business." },
+              { label: "Enquiry Paths", text: "We provide direct routes for prospective clients to enquire, read case studies, or request a consultation." },
+              { label: "B2B Search Foundations", text: "We structure relevant service content and metadata without guaranteeing rankings or visibility." }
             ].map((item) => (
               <div key={item.label} className="relative pl-6 text-left border-l border-cyan/30">
                 <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-deep-teal">{item.label}</p>
@@ -291,7 +291,7 @@ export default function ProfessionalServicesWebsiteDesignSeychelles() {
       <section className="bg-[#0A0A0C] py-20 px-6">
         <div className="mx-auto max-w-4xl rounded-[3rem] border border-white/5 bg-gradient-to-b from-white/[0.03] to-transparent p-12 text-center">
           <h2 className="font-display mb-6 text-3xl font-bold text-white md:text-5xl">Ready to grow your practice?</h2>
-          <p className="mb-10 text-lg text-text-muted">Join the top Seychelles firms leveraging high-performance web design to secure their market position.</p>
+          <p className="mb-10 text-lg text-text-muted">Discuss a professional website structured around your services, evidence, and client enquiry process.</p>
           <div className="flex flex-col gap-4 sm:flex-row justify-center">
              <Link to="/contact">
                 <ShimmerButton className="px-10 py-4 font-bold uppercase tracking-widest">Start the consultation</ShimmerButton>

@@ -3,13 +3,13 @@ import { motion, useReducedMotion } from "framer-motion";
 const signals = [
   {
     label: "Performance",
-    value: "A-Grade Speed",
-    description: "Fast-loading pages",
+    value: "Tested Before Launch",
+    description: "Performance-aware builds",
   },
   {
     label: "Mobile First",
-    value: "100% Responsive",
-    description: "Perfect on every phone",
+    value: "Responsive Layouts",
+    description: "Phone, tablet and desktop",
   },
   {
     label: "Local Support",
@@ -18,8 +18,8 @@ const signals = [
   },
   {
     label: "Total Ownership",
-    value: "Zero Lock-ins",
-    description: "You own your website",
+    value: "Clear Ownership",
+    description: "Terms agreed in writing",
   },
 ];
 

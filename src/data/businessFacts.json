@@ -1,0 +1,301 @@
+{
+  "site": {
+    "name": "Horizon Digital",
+    "tagline": "Your business, beautifully online",
+    "taglineLong": "Your business, beautifully online — built for Seychelles",
+    "email": "horizondigital.sey@gmail.com",
+    "phone": "+248 2604525",
+    "whatsappUrl": "https://wa.me/2482604525?text=Hi+Horizon+Digital%2C+I%27d+like+to+discuss+a+website+project.",
+    "instagramUrl": "https://www.instagram.com/horizondigitalsey",
+    "facebookUrl": "https://www.facebook.com/share/1Hc1jJmyJB/",
+    "url": "https://horizondigitalsey.com",
+    "location": "Mahé, Seychelles",
+    "serviceArea": "Seychelles",
+    "pricingPath": "/pricing",
+    "contactPath": "/contact",
+    "responseTime": "within 24 hours"
+  },
+  "business": {
+    "description": "Horizon Digital is a web design and development studio based on Mahé, Seychelles. We plan, design and build custom websites for local businesses.",
+    "positioning": "Custom websites built around each business, its customers and its goals.",
+    "industries": [
+      "Hospitality and tourism",
+      "Food and beverage",
+      "Retail",
+      "Professional services",
+      "Wellness and beauty",
+      "Tour operators and water sports",
+      "Creative studios"
+    ],
+    "services": [
+      {
+        "title": "New Website Build",
+        "description": "Planning, custom design, development and launch for a new business website."
+      },
+      {
+        "title": "Website Refresh",
+        "description": "A redesign or rebuild for an existing website that needs clearer content, better mobile use or a more current visual direction."
+      },
+      {
+        "title": "Search Visibility Setup",
+        "description": "Technical and on-page SEO foundations that help search engines crawl and understand the website. Search positions are not guaranteed."
+      },
+      {
+        "title": "Mobile-responsive Design",
+        "description": "Layouts are designed and tested for phones, tablets and desktop screens."
+      },
+      {
+        "title": "Customer Contact Tools",
+        "description": "Contact forms, WhatsApp links and agreed booking or enquiry integrations."
+      }
+    ]
+  },
+  "trustItems": [
+    "Performance-aware",
+    "Mobile responsive",
+    "Search-ready structure",
+    "Clear contact paths"
+  ],
+  "projectSteps": [
+    {
+      "title": "Our First Chat",
+      "description": "We discuss your business, customers and goals, then agree what the website needs to do."
+    },
+    {
+      "title": "Design & Review",
+      "description": "We prepare the structure and visual direction for review before development begins."
+    },
+    {
+      "title": "Building Your Site",
+      "description": "After the direction is approved, we build and test the website across supported screen sizes and browsers."
+    },
+    {
+      "title": "Going Live",
+      "description": "We complete final checks and launch once the agreed scope is ready."
+    },
+    {
+      "title": "Support After Launch",
+      "description": "Post-launch support lasts 30, 45 or 60 days depending on the selected package."
+    }
+  ],
+  "servicesPricingIntro": {
+    "title": "Services & Pricing",
+    "subtitle": "Websites built around how your business actually works — not copied from a template.",
+    "summary": "Every website is planned around your services, customers and goals. Package prices are starting points; the written scope confirms the final price and deliverables."
+  },
+  "packages": [
+    {
+      "id": "foundation",
+      "title": "Foundation",
+      "price": "From SCR 7,500",
+      "description": "A focused custom website for a business establishing or replacing a basic online presence.",
+      "includes": [
+        { "title": "Up to 3 pages", "description": "Usually Home, About and Contact, adjusted to the agreed scope." },
+        { "title": "Custom layout for your business", "description": "Designed around your brand and content rather than a pre-made customer-facing template." },
+        { "title": "Mobile-responsive build", "description": "Designed and tested for common phone, tablet and desktop sizes." },
+        { "title": "Contact form and WhatsApp link", "description": "Clear ways for visitors to contact your business." },
+        { "title": "Technical SEO foundation", "description": "Page metadata, crawlable structure and sitemap setup; rankings are not guaranteed." },
+        { "title": "30 days of post-launch support", "description": "Bug fixes and minor agreed adjustments during the support window." },
+        { "title": "1 revision round", "description": "One defined round of consolidated feedback." }
+      ]
+    },
+    {
+      "id": "starter",
+      "title": "Starter",
+      "price": "From SCR 12,500",
+      "description": "A larger custom website for a growing business with more services or content.",
+      "includes": [
+        { "title": "Up to 5–6 pages", "description": "Suitable for service pages, galleries and more detailed business information." },
+        { "title": "Custom design", "description": "A visual system and page layouts shaped around the business." },
+        { "title": "Mobile-responsive build", "description": "Designed and tested for common phone, tablet and desktop sizes." },
+        { "title": "Google Analytics setup", "description": "Basic visitor measurement when the required account access and consent setup are available." },
+        { "title": "Expanded on-page SEO setup", "description": "Page-level metadata, internal structure and technical search foundations; rankings are not guaranteed." },
+        { "title": "45 days of post-launch support", "description": "Bug fixes and minor agreed adjustments during the support window." },
+        { "title": "2 revision rounds", "description": "Two defined rounds of consolidated feedback." },
+        { "title": "Content management", "description": "A configured editing interface for agreed text and image fields." }
+      ]
+    },
+    {
+      "id": "growth",
+      "title": "Growth",
+      "price": "From SCR 25,000",
+      "description": "A more extensive website for businesses with deeper content, service lines or integrations.",
+      "includes": [
+        { "title": "Up to 10–12 pages", "description": "A broader site structure for multiple services, audiences or content areas." },
+        { "title": "Custom design", "description": "A visual system and page layouts shaped around the business." },
+        { "title": "Mobile-responsive build", "description": "Designed and tested for common phone, tablet and desktop sizes." },
+        { "title": "Google Business Profile setup", "description": "Setup or configuration support when the business provides the required verified details and access." },
+        { "title": "Expanded technical and on-page SEO", "description": "Metadata, internal structure, sitemap and technical search foundations; rankings are not guaranteed." },
+        { "title": "60 days of post-launch support", "description": "Bug fixes and minor agreed adjustments during the support window." },
+        { "title": "2 revision rounds", "description": "Two defined rounds of consolidated feedback." },
+        { "title": "Content management", "description": "A configured editing interface for agreed text and image fields." }
+      ]
+    },
+    {
+      "id": "custom",
+      "title": "Custom",
+      "price": "Scoped per project",
+      "description": "For projects whose page count, functionality or integration needs do not fit a standard package.",
+      "includes": [
+        { "title": "A written scope", "description": "Deliverables, responsibilities, assumptions and exclusions agreed before work begins." },
+        { "title": "Direct communication", "description": "Work directly with the person responsible for the build." },
+        { "title": "A project-specific plan", "description": "Architecture, milestones and timeline based on the agreed requirements." },
+        { "title": "Relevant integrations", "description": "Functionality and third-party services agreed in the project scope." },
+        { "title": "Post-launch support", "description": "The support period and coverage are defined in the proposal." },
+        { "title": "Content management when required", "description": "Editing tools can be included where they fit the project requirements." }
+      ]
+    }
+  ],
+  "addOns": [
+    { "title": "Additional page", "price": "SCR 2,500 per page" },
+    { "title": "Page content writing support", "price": "SCR 600 per page" },
+    { "title": "Custom booking or enquiry form", "price": "SCR 2,000" },
+    { "title": "Google Business Profile setup", "price": "SCR 2,200" },
+    { "title": "Rush delivery", "price": "+40% of project cost, subject to availability" },
+    { "title": "Content management for Foundation", "price": "SCR 2,500; included in Starter and Growth" }
+  ],
+  "paymentTerms": [
+    "Foundation and Starter: 50% deposit to start, 50% before launch",
+    "Growth: 40% deposit, 40% at design approval, 20% on launch",
+    "Custom: confirmed in the project proposal"
+  ],
+  "hosting": {
+    "title": "Managed hosting",
+    "price": "SCR 2,500 per year",
+    "billing": "Billed annually",
+    "features": [
+      "Hosting configuration and SSL setup",
+      "Regular backups",
+      "Routine stability and security updates",
+      "Basic availability checks",
+      "A simple monthly website activity update"
+    ],
+    "details": [
+      "Hosting keeps the website available online and serves its pages, images and files to visitors.",
+      "The domain remains registered in the client's name.",
+      "Clients can use Horizon Digital managed hosting or an agreed alternative provider.",
+      "Website files remain the client's property while Horizon Digital manages the agreed hosting environment."
+    ],
+    "note": "Large or complex builds may need a different hosting plan and price."
+  },
+  "stabilisation": {
+    "title": "At least 30 days of support after launch",
+    "covers": [
+      "Bugs or visual issues within the agreed scope",
+      "Browser and device compatibility issues within the supported range",
+      "Minor copy corrections during the support window",
+      "Guidance on using and sharing the new website"
+    ],
+    "excludes": [
+      "New pages or structural redesigns",
+      "Third-party integrations not included in the agreed scope",
+      "Ongoing content updates after the support window"
+    ]
+  },
+  "portfolio": [
+    {
+      "id": "drake-seaside",
+      "status": "Live client project",
+      "label": "Guesthouse · Growth Tier · Live client project",
+      "title": "Drake Seaside Apartments",
+      "outcome": "A live redesign with new pages, updated content and a faster-loading structure.",
+      "url": "https://thedrake-seaside.com/"
+    },
+    {
+      "id": "forma-studio",
+      "status": "Concept showcase",
+      "label": "Creative studio · Foundation Tier · Concept showcase",
+      "title": "Forma Studio",
+      "outcome": "A portfolio-led concept with an editorial layout and a clear enquiry path.",
+      "url": "/showcase/forma-studio"
+    },
+    {
+      "id": "takamaka-house",
+      "status": "Concept showcase",
+      "label": "Hospitality · Foundation Tier · Concept showcase",
+      "title": "Takamaka House",
+      "outcome": "A hospitality concept focused on accommodation details, visual storytelling and direct booking intent.",
+      "url": "/showcase/takamaka-house"
+    },
+    {
+      "id": "beauty-demo",
+      "status": "Demonstration site",
+      "label": "Wellness and beauty · Foundation Tier · Demonstration site",
+      "title": "Beauty Demo",
+      "outcome": "A demonstration of a focused service-business website with clear services, pricing and contact paths.",
+      "url": "https://demo-beauty.horizondigitalsey.com/"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How much does a website cost?",
+      "answer": "Packages start at SCR 7,500 for Foundation, SCR 12,500 for Starter and SCR 25,000 for Growth. Custom work is scoped separately. The written proposal confirms the final price."
+    },
+    {
+      "question": "What is included in the price?",
+      "answer": "The package lists the included page range, design, responsive development, contact options, SEO foundations, revisions and post-launch support. The written scope records any project-specific additions or exclusions."
+    },
+    {
+      "question": "How long does a project take?",
+      "answer": "Many standard projects take around 3 to 6 weeks. Scope, content readiness, feedback and integrations can change the timeline, so the proposal includes a project-specific estimate."
+    },
+    {
+      "question": "Do I own the website and domain?",
+      "answer": "The final approved website files and assets transfer as agreed when the project closes. The domain remains in the client's registrar account. Third-party licences and services remain subject to their own terms."
+    },
+    {
+      "question": "Can I update the website myself?",
+      "answer": "Content management is included in Starter and Growth for agreed fields, can be added to Foundation, and can be scoped for Custom projects. Horizon Digital can also handle later updates."
+    },
+    {
+      "question": "Is support included after launch?",
+      "answer": "Foundation includes 30 days, Starter 45 days and Growth 60 days of post-launch support. Custom support is defined in the proposal."
+    },
+    {
+      "question": "Can you guarantee Google rankings or business results?",
+      "answer": "No. Horizon Digital provides technical and on-page SEO foundations and builds clear contact paths, but search rankings, traffic, enquiries, bookings and revenue depend on factors outside the website build and are not guaranteed."
+    },
+    {
+      "question": "How do I get started?",
+      "answer": "Use the contact page or WhatsApp link to share your business, goals, current website, preferred timeline and approximate budget. Horizon Digital aims to reply within 24 hours."
+    }
+  ],
+  "homeFaqCategories": [
+    {
+      "key": "services",
+      "label": "Services",
+      "items": [
+        { "question": "What kind of websites do you build?", "answer": "Custom business websites and redesigns focused on clear information, responsive use, performance and straightforward enquiry paths." },
+        { "question": "Can you add payments or bookings?", "answer": "Payment, booking and enquiry integrations can be scoped when the required provider supports the business and the necessary account access is available." },
+        { "question": "Do you help with content?", "answer": "Yes. Page structure and messaging guidance are included, and page content writing is available as an add-on." }
+      ]
+    },
+    {
+      "key": "process",
+      "label": "Process",
+      "items": [
+        { "question": "What is a typical timeline?", "answer": "Many standard projects take around 3 to 6 weeks. The proposal confirms the estimate for your scope." },
+        { "question": "How many revisions are included?", "answer": "Foundation includes one revision round. Starter and Growth include two. Custom revision terms are confirmed in the proposal." },
+        { "question": "How involved do I need to be?", "answer": "You provide business information and content, review milestone drafts and approve the direction. Horizon Digital handles the design and technical work." }
+      ]
+    },
+    {
+      "key": "self-management",
+      "label": "Updates & Support",
+      "items": [
+        { "question": "Can I update the website myself?", "answer": "Content management is included in Starter and Growth for agreed fields, can be added to Foundation, and can be scoped for Custom projects." },
+        { "question": "What support is provided after launch?", "answer": "Foundation includes 30 days, Starter 45 days and Growth 60 days of post-launch support. Custom support is defined in the proposal." },
+        { "question": "What if I need help later?", "answer": "Later changes can be quoted separately or covered through an agreed ongoing support arrangement." }
+      ]
+    },
+    {
+      "key": "hosting",
+      "label": "Hosting & Ownership",
+      "items": [
+        { "question": "Do I own the website?", "answer": "The final approved website files and assets transfer as agreed when the project closes. The domain remains in your registrar account." },
+        { "question": "Can you help with business email?", "answer": "Business email setup can be scoped using a suitable email provider and an address on your domain." },
+        { "question": "Where is my website hosted?", "answer": "Managed hosting is available for SCR 2,500 per year, or an alternative provider can be agreed. Large or complex builds may require a different plan." }
+      ]
+    }
+  ]
+}

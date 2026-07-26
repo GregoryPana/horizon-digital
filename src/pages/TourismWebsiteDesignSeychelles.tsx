@@ -26,17 +26,17 @@ const homeFaqCategories: HomeFaqCategory[] = [
       {
         question: "Can you integrate my existing booking system?",
         answer:
-          "Yes. We can integrate major booking engines like Little Hotelier, Cloudbeds, or custom reservation forms to ensure your guest data flows directly into your management system.",
+          "We can assess major booking engines such as Little Hotelier or Cloudbeds and connect supported booking or enquiry paths within the agreed scope.",
       },
       {
         question: "How do you help reduce Booking.com/OTA commissions?",
         answer:
-          "We design with a 'Direct-First' approach, making it easier and more attractive for guests to book on your site rather than third-party platforms. This keeps more revenue in your business.",
+          "We can provide a prominent direct booking or enquiry path alongside your third-party listings. Commission savings and direct-booking volume depend on your commercial setup and guest behaviour.",
       },
       {
         question: "Do you provide professional photography?",
         answer:
-          "While we focus on design and code, we partner with local Seychelles photographers to ensure your property looks stunning with high-resolution, fast-loading imagery.",
+          "Photography is not included by default. We can work with client-provided assets or discuss coordinating a suitable specialist as a separately confirmed requirement.",
       },
     ],
   },
@@ -52,17 +52,17 @@ const homeFaqCategories: HomeFaqCategory[] = [
       {
         question: "Is the site mobile-friendly for travelers?",
         answer:
-          "Absolutely. Over 70% of travelers research on mobile. Every site we build is optimized for flawless performance on iPhones, Androids, and tablets.",
+          "Yes. We design and test responsive layouts across common phone, tablet, and desktop sizes. Results vary by device, content, integrations, and network conditions.",
       },
     ],
   },
 ];
 
 const marqueeItems = [
-  "Direct bookings, zero commission",
+  "Clear direct booking paths",
   "High-resolution island storytelling",
   "Mobile-first guest experience",
-  "Fast loading on island connections",
+  "Performance-aware island delivery",
   "Integrated Seychelles booking tech",
 ];
 
@@ -75,7 +75,7 @@ const tourismProblemCards: Array<{
 }> = [
   {
     title: "High OTA Commissions",
-    body: "You're losing 15-20% of every booking to platforms like Booking.com. Your direct website should be your most profitable channel.",
+    body: "Third-party platforms may charge commission. A direct website can provide an additional booking or enquiry path without guaranteeing channel mix or savings.",
     color: "cyan",
     type: "zero",
   },
@@ -87,7 +87,7 @@ const tourismProblemCards: Array<{
   },
   {
     title: "Poor Mobile Experience",
-    body: "Guests trying to book on their phones find a broken, slow site and leave. You're losing bookings before they even start.",
+    body: "A difficult mobile experience can make property information and booking paths harder to use. Responsive design reduces that friction.",
     color: "cyan",
     type: "outdated",
   },
@@ -165,7 +165,7 @@ export default function TourismWebsiteDesignSeychelles() {
         "addressCountry": "SC"
       }
     },
-    "description": "Premium website design for Seychelles hotels, villas, and tourism operators. Custom booking integrations and SEO built for high direct revenue.",
+    "description": "Website design for Seychelles hotels, villas, and tourism operators, with responsive layouts, supported booking integrations, and technical SEO foundations.",
     "areaServed": [
       { "@type": "AdministrativeArea", "name": "Mahé" },
       { "@type": "AdministrativeArea", "name": "Praslin" },
@@ -178,7 +178,7 @@ export default function TourismWebsiteDesignSeychelles() {
     <div className="bg-[#0A0A0C] text-white">
       <Seo
         title="Tourism Website Design Seychelles | Hotel & Villa Websites"
-        description="Horizon Digital creates high-conversion websites for Seychelles tourism. Custom hotel and villa web design optimized for direct bookings and local SEO."
+        description="Custom hotel and villa website design for Seychelles tourism businesses, with responsive layouts, booking paths, and technical SEO foundations."
         path="/tourism-website-design-seychelles"
         keywords="tourism website design seychelles, hotel web design mahé, villa booking website seychelles, luxury resort web design praslin, direct bookings seychelles"
         structuredData={[faqSchema, tourismServiceSchema]}
@@ -194,9 +194,9 @@ export default function TourismWebsiteDesignSeychelles() {
           lines: ["STUNNING", "TOURISM WEBSITES"],
           rotatingWords: ["HOTEL", "VILLA", "CHARTER", "RESORT"],
         }}
-        subtitle="We build premium websites for the Seychelles hospitality industry that turn browsing travelers into direct guests."
+        subtitle="We build custom websites for Seychelles hospitality businesses with clear property information and direct booking or enquiry paths."
         tags={[
-          { text: "OTA Fee Reduction", icon: (
+          { text: "Direct Path Planning", icon: (
             <svg className="h-3 w-3 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
               <polyline points="20 6 9 17 4 12" />
             </svg>
@@ -207,7 +207,7 @@ export default function TourismWebsiteDesignSeychelles() {
               <line x1="12" y1="18" x2="12.01" y2="18" />
             </svg>
           )},
-          { text: "Island-Fast Speed", icon: (
+          { text: "Performance-Aware", icon: (
             <svg className="h-3 w-3 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
               <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
             </svg>
@@ -215,7 +215,7 @@ export default function TourismWebsiteDesignSeychelles() {
         ]}
         buttons={{
           primary: {
-            text: "Boost Your Bookings",
+            text: "Discuss Your Website",
             link: "/contact",
             onClick: () => trackEvent("cta_click", { cta_name: "hero_tourism_cta", page_path: window.location.pathname }),
           },
@@ -236,7 +236,7 @@ export default function TourismWebsiteDesignSeychelles() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="mb-20 text-center"
           >
-            <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">Stop the Revenue Leak</span>
+            <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">Review Your Booking Path</span>
             <h2 className="font-display mx-auto max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl">
               Is your property losing out to <span className="text-cyan font-semibold">third-party platforms?</span>
             </h2>
@@ -290,13 +290,13 @@ export default function TourismWebsiteDesignSeychelles() {
         <div className="mx-auto max-w-5xl px-6 text-center">
           <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] text-deep-teal section-eyebrow-glow">Direct First Architecture</span>
           <h2 className="font-display mx-auto max-w-3xl text-3xl font-semibold text-white md:text-4xl">
-            Websites designed to drive <span className="text-cyan font-semibold">direct revenue.</span>
+            Websites designed around <span className="text-cyan font-semibold">clear direct booking paths.</span>
           </h2>
           <div className="mt-14 grid gap-10 md:grid-cols-3">
             {[
-              { label: "OTA Independence", text: "We build systems that encourage guests to book with you directly, bypasssing high commission fees and building your own customer database." },
-              { label: "Visual Narrative", text: "Your island property is beautiful. We use immersive layouts and ultra-fast media loading to ensure guests feel the magic before they arrive." },
-              { label: "Frictionless Booking", text: "Whether it's a simple enquiry or a fully integrated reservation system, we make the path from 'looking' to 'booked' effortless." }
+              { label: "Direct Path", text: "We make your own booking or enquiry option prominent while allowing third-party channels to remain available." },
+              { label: "Visual Narrative", text: "We use responsive imagery and clear property information to present the guest experience without making performance guarantees." },
+              { label: "Booking Integration", text: "We can connect a supported reservation system or provide a focused enquiry path within the agreed scope." }
             ].map((item) => (
               <div key={item.label} className="relative pl-6 text-left border-l border-cyan/30">
                 <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-deep-teal">{item.label}</p>
@@ -310,8 +310,8 @@ export default function TourismWebsiteDesignSeychelles() {
       {/* CTA Section */}
       <section className="bg-[#0A0A0C] py-20 px-6">
         <div className="mx-auto max-w-4xl rounded-[3rem] border border-white/5 bg-gradient-to-b from-white/[0.03] to-transparent p-12 text-center">
-          <h2 className="font-display mb-6 text-3xl font-bold text-white md:text-5xl">Ready to own your bookings?</h2>
-          <p className="mb-10 text-lg text-text-muted">Join the leading Seychelles properties moving away from template sites and high OTA reliance.</p>
+          <h2 className="font-display mb-6 text-3xl font-bold text-white md:text-5xl">Ready to improve your direct booking path?</h2>
+          <p className="mb-10 text-lg text-text-muted">Discuss a custom hospitality website that works alongside your existing sales channels.</p>
           <div className="flex flex-col gap-4 sm:flex-row justify-center">
              <Link to="/contact">
                 <ShimmerButton className="px-10 py-4 font-bold uppercase tracking-widest">Start the transformation</ShimmerButton>

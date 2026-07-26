@@ -1,4 +1,6 @@
 # 02 — SITEMAP ANALYSIS
+
+> **Historical April 2026 snapshot.** It does not describe current route or content state. Use `CONTENT_AUTHORITY.md`, `../src/config/routes.ts` and `TRANSFORMATION_TRACKER.md`. Do not ingest this document into the chatbot.
 ## Horizon Digital · Full Diff: Relume Original vs Revised Sitemap vs Live Codebase
 
 **Version:** 1.0  

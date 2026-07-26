@@ -74,7 +74,7 @@ export const STATIC_ROUTES: StaticRoute[] = [
     seo: {
       title: "Custom Website Design Seychelles | Horizon Digital",
       description:
-        "Custom-built websites for Seychelles businesses. Professional web design & development — no templates, just results. Fast, mobile-ready, SEO-optimized from day one.",
+        "Custom-built websites for Seychelles businesses, with responsive design, clear contact paths and technical SEO foundations.",
       keywords:
         "custom website Seychelles, custom web design Seychelles, custom web development Seychelles, website design Seychelles, bespoke websites Seychelles",
       robots: DEFAULT_ROBOTS,
@@ -115,7 +115,7 @@ export const STATIC_ROUTES: StaticRoute[] = [
     seo: {
       title: "Custom Website Packages & Pricing in Seychelles | Horizon Digital",
       description:
-        "Clear website packages for Seychelles businesses — Foundation, Starter, and Growth. Honest SCR pricing, custom design, and everything your business needs to get found online.",
+        "Website packages for Seychelles businesses, with published SCR starting prices, defined inclusions and custom design.",
       keywords:
         "custom website packages Seychelles, custom web design pricing Seychelles, bespoke website development Seychelles, tailored web solutions Seychelles",
       robots: DEFAULT_ROBOTS,
@@ -170,7 +170,7 @@ export const STATIC_ROUTES: StaticRoute[] = [
     seo: {
       title: "Custom Website Project Seychelles | Horizon Digital",
       description:
-        "Start your custom website project in Seychelles today. We focus on conversion-led design, fixed pricing, and weekly updates to help your business grow online.",
+        "Discuss a custom website project for your Seychelles business, including scope, timeline, starting budget and contact requirements.",
       keywords: "contact custom web designer Seychelles, start custom website project Seychelles, bespoke web solutions",
       robots: DEFAULT_ROBOTS,
       ogType: "website",
@@ -205,9 +205,9 @@ export const STATIC_ROUTES: StaticRoute[] = [
     kind: "static",
     path: "/showcase/drake-seaside",
     seo: {
-      title: "Drake Seaside Apartments Case Study | Horizon Digital",
+      title: "Drake Seaside Apartments Website Project | Horizon Digital",
       description:
-        "How we transformed Drake Seaside's digital presence, resulting in a 140% increase in direct bookings through professional web design.",
+        "A live client website redesign for Drake Seaside Apartments, with updated pages, responsive layouts and direct contact paths.",
       robots: DEFAULT_ROBOTS,
       ogType: "website",
     },
@@ -219,7 +219,7 @@ export const STATIC_ROUTES: StaticRoute[] = [
     seo: {
       title: "Web Design Seychelles | Custom Websites | Horizon Digital",
       description:
-        "Horizon Digital builds premium, high-conversion custom websites for businesses in Seychelles. Grow your local brand with expert web design on Mahé.",
+        "Custom website planning, design and development for Seychelles businesses, with responsive layouts and technical SEO foundations.",
       keywords:
         "web design seychelles, web designer mahé, seychelles website development, custom web design seychelles, local web agency seychelles",
       robots: DEFAULT_ROBOTS,
@@ -233,7 +233,7 @@ export const STATIC_ROUTES: StaticRoute[] = [
     seo: {
       title: "Tourism Website Design Seychelles | Hotel & Villa Websites",
       description:
-        "Horizon Digital creates high-conversion websites for Seychelles tourism. Custom hotel and villa web design optimized for direct bookings and local SEO.",
+        "Custom websites for Seychelles hotels, guesthouses and villas, with responsive layouts, accommodation information and direct enquiry paths.",
       keywords:
         "tourism website design seychelles, hotel web design mahé, villa booking website seychelles, luxury resort web design praslin, direct bookings seychelles",
       robots: DEFAULT_ROBOTS,
@@ -247,7 +247,7 @@ export const STATIC_ROUTES: StaticRoute[] = [
     seo: {
       title: "F&B Website Design Seychelles | Restaurant & Bar Websites",
       description:
-        "Horizon Digital builds high-conversion websites for Seychelles restaurants and cafes. Mobile-first digital menus, reservation systems, and local SEO for food businesses.",
+        "Custom websites for Seychelles restaurants and cafes, including responsive digital menus and agreed reservation or enquiry integrations.",
       keywords:
         "restaurant website design seychelles, cafe web design mahé, digital menu seychelles, bar website design praslin, food delivery website victoria",
       robots: DEFAULT_ROBOTS,

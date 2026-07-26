@@ -21,7 +21,7 @@ export default function About() {
       <h1 className="sr-only">About Horizon Digital - Custom Website Design studio</h1>
       <Seo
         title="Custom Website Design Studio Seychelles | About Horizon Digital"
-        description="Horizon Digital is a local studio specialized in custom website design for Seychelles businesses. We build beautiful, fast websites that actually bring customers."
+        description="Horizon Digital is a Mahé-based studio that plans, designs and builds custom websites for Seychelles businesses."
         path="/about"
         keywords="about Horizon Digital, custom web design studio Seychelles, bespoke website designer Seychelles, custom web development"
         structuredData={[
@@ -33,33 +33,9 @@ export default function About() {
               "name": siteConfig.name,
               "url": siteConfig.url,
               "logo": `${siteConfig.url}/og-image.png`,
-              "description": "Horizon Digital is a local web design studio based on Mahé, Seychelles, specialized in custom conversion-focused websites for Tourism, F&B and Professional services.",
-              "address": {
-                "@type": "PostalAddress",
-                "addressLocality": "Mahé",
-                "addressCountry": "SC"
-              }
+              "description": "Horizon Digital is a web design and development studio based on Mahé, Seychelles.",
+              "areaServed": { "@type": "Country", "name": "Seychelles" }
             }
-          },
-          {
-            "@context": "https://schema.org",
-            "@type": "LocalBusiness",
-            "name": siteConfig.name,
-            "image": `${siteConfig.url}/og-image.png`,
-            "telephone": siteConfig.phone,
-            "url": siteConfig.url,
-            "address": {
-              "@type": "PostalAddress",
-              "addressLocality": "Mahé",
-              "addressCountry": "SC"
-            },
-            "areaServed": [
-              { "@type": "AdministrativeArea", "name": "Mahé" },
-              { "@type": "AdministrativeArea", "name": "Praslin" },
-              { "@type": "AdministrativeArea", "name": "La Digue" },
-              { "@type": "Country", "name": "Seychelles" }
-            ],
-            "priceRange": "SCR7500-SCR25000+"
           }
         ]}
         breadcrumbs={[
@@ -95,7 +71,7 @@ export default function About() {
                   <source media="(min-width: 1024px)" srcSet="/studio-desktop.webp" />
                   <img 
                     src="/studio-mobile.webp" 
-                    alt="Our professional studio at Eden Island" 
+                    alt="Horizon Digital workspace in Seychelles"
                     className="w-full h-full object-cover object-bottom lg:object-center"
                     loading="lazy"
                   />
@@ -114,7 +90,7 @@ export default function About() {
                   We started Horizon Digital because we kept seeing the same problem — good Seychelles businesses with <span className="semibold-underline text-white">bad websites.</span> Guesthouses that looked worse online than they were in person. Restaurants with no online presence at all. Shops that couldn't be found on Google.
                 </p>
                 <p>
-                  We build websites for local businesses that look <span className="text-gradient-cyan font-semibold">genuinely professional</span>, load fast on mobile, and <span className="semibold-underline text-white">actually bring in customers.</span> Not templates with your name dropped in. Real custom sites, built around how your business works.
+                  We build websites for local businesses that look <span className="text-gradient-cyan font-semibold">genuinely professional</span>, work across common screen sizes, and make the business easier to understand and contact. Not templates with your name dropped in. Custom sites, built around how your business works.
                 </p>
                 <p>
                   We're <span className="semibold-underline text-white">based on Mahé.</span> We speak to every client directly. And we're <span className="text-cyan font-semibold">available on WhatsApp</span> when you need us.
@@ -291,27 +267,27 @@ export default function About() {
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
            <motion.div className="mb-16 md:mb-20 text-center" {...fadeInUp}>
               <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">WHAT THIS LOOKS LIKE IN PRACTICE</span>
-              <h2 className="font-display mx-auto max-w-3xl text-3xl font-semibold leading-tight tracking-tight text-white md:text-5xl">Three local businesses. Three real results.</h2>
+              <h2 className="font-display mx-auto max-w-3xl text-3xl font-semibold leading-tight tracking-tight text-white md:text-5xl">One live client project, alongside two concept showcases.</h2>
            </motion.div>
 
            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
               {[
                 {
                   name: "Drake Seaside Apartments",
-                  tier: "GROWTH TIER",
-                  outcome: "Complete redesign with faster loading, updated content, and a structure built to convert visitors into bookings.",
+                  tier: "LIVE CLIENT PROJECT · GROWTH TIER",
+                  outcome: "A live redesign with new pages, updated content, and a faster-loading structure.",
                   url: "https://thedrake-seaside.com/"
                 },
                 {
                   name: "Takamaka House",
-                  tier: "FOUNDATION TIER",
-                  outcome: "A calm, immersive site designed to make guests feel the experience before they even arrive.",
+                  tier: "CONCEPT SHOWCASE · FOUNDATION TIER",
+                  outcome: "A hospitality concept focused on accommodation details, visual storytelling, and direct booking intent.",
                   url: "https://horizondigitalsey.com/showcase/takamaka-house"
                 },
                 {
                   name: "Forma Studio",
-                  tier: "FOUNDATION TIER",
-                  outcome: "A clean editorial showcase letting the work speak — with a layout that makes enquiries feel natural.",
+                  tier: "CONCEPT SHOWCASE · FOUNDATION TIER",
+                  outcome: "A portfolio-led concept with an editorial layout and a clear enquiry path.",
                   url: "https://horizondigitalsey.com/showcase/forma-studio"
                 }
               ].map((project, i) => (
@@ -342,7 +318,7 @@ export default function About() {
                        })
                      }
                    >
-                     View site <ExternalLink className="w-3 h-3" />
+                     View project <ExternalLink className="w-3 h-3" />
                    </a>
                 </motion.div>
               ))}
@@ -367,10 +343,10 @@ export default function About() {
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-10 gap-x-6 items-center">
               {[
-                "Every site we deliver scores 90+ on Google PageSpeed",
-                "Priced in SCR. No foreign invoices, no hidden fees",
+                "Performance tested before launch",
+                "Starting prices published in SCR",
                 "Built for Seychelles — in Seychelles",
-                "Structured for Google from day one"
+                "Structured for Google to understand"
               ].map((text, i) => (
                 <motion.div 
                   key={i} 

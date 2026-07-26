@@ -2,14 +2,14 @@ import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageSquare, Send, X, User, Bot, Loader2, CheckCircle2 } from "lucide-react";
 import { trackEvent } from "../lib/analytics";
+import { siteConfig } from "../data/site";
 
 interface Message {
   role: "user" | "assistant";
   content: string;
 }
 
-const API_BASE = "https://chat.horizondigitalsey.com/webhook";
-const WEBHOOK_TOKEN = "OK_SECRET44365457d9efd97d50e0f7f06b51343c53679a8cf49a87dbfbf03319e6e87305";
+const API_BASE = "/api";
 
 export default function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
@@ -68,7 +68,6 @@ export default function ChatWidget() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "x-chat-token": WEBHOOK_TOKEN,
         },
         body: JSON.stringify({
           message: userMessage,
@@ -77,6 +76,7 @@ export default function ChatWidget() {
         }),
       });
 
+      if (!response.ok) throw new Error(`Chat request failed with ${response.status}`);
       const data = await response.json();
 
       if (data.reply) {
@@ -94,7 +94,7 @@ export default function ChatWidget() {
         ...prev,
         {
           role: "assistant",
-          content: "Sorry, I'm having trouble connecting right now. Please try again later or contact us directly at horizondigitalsey@gmail.com.",
+          content: `Sorry, I'm having trouble connecting right now. Please try again later or contact us directly at ${siteConfig.email}.`,
         },
       ]);
     } finally {
@@ -108,11 +108,10 @@ export default function ChatWidget() {
 
     setIsLoading(true);
     try {
-      await fetch(`${API_BASE}/lead`, {
+      const response = await fetch(`${API_BASE}/lead`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "x-chat-token": WEBHOOK_TOKEN,
         },
         body: JSON.stringify({
           ...leadData,
@@ -120,6 +119,7 @@ export default function ChatWidget() {
           source_page: window.location.pathname,
         }),
       });
+      if (!response.ok) throw new Error(`Lead request failed with ${response.status}`);
       setLeadSubmitted(true);
       setTimeout(() => {
         setShowLeadForm(false);

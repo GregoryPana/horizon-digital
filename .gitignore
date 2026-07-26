@@ -28,6 +28,8 @@ pricing.md
 .DS_Store
 .env
 .env.*
+.dev.vars
+.dev.vars.*
 *.tsbuildinfo
 vite.config.js
 vite.config.d.ts

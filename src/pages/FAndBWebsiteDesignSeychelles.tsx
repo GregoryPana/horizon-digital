@@ -25,7 +25,7 @@ const fAndBFaqCategories: HomeFaqCategory[] = [
     items: [
       {
         question: "Can you integrate my existing reservation system?",
-        answer: "Yes. Whether you use TableRequest, OpenTable, or a custom Seychelles solution, we can integrate it seamlessly into your new design to ensure a frictionless booking flow for your guests."
+        answer: "We can assess systems such as TableRequest or OpenTable and connect supported reservation or enquiry paths within the agreed scope."
       },
       {
         question: "Do you build digital QR menus?",
@@ -42,17 +42,17 @@ const fAndBFaqCategories: HomeFaqCategory[] = [
 const fbProblemCards = [
   {
     title: "Hard-to-Read PDF Menus",
-    body: "Guests hate downloading PDFs. We build mobile-first digital menus that load instantly and look stunning on every device.",
+    body: "PDF menus can be awkward on phones. We can build responsive digital menus designed for common mobile and desktop screen sizes.",
     type: "outdated" as const
   },
   {
-    title: "Ghost Bookings",
-    body: "Old contact forms lead to missed tables. We integrate real-time reservation systems that work while you're busy in the kitchen.",
+    title: "Disconnected Reservations",
+    body: "Outdated contact paths can make reservations harder to manage. We can connect supported reservation systems or provide a clearer enquiry flow.",
     type: "zero" as const
   },
   {
     title: "Hidden from Search",
-    body: "If tourists can't find you on Google, they go next door. Our local SEO ensures your restaurant shows up for 'best dinner in Mahé'.",
+    body: "Incomplete business information and weak page structure can limit search visibility. We provide practical technical and on-page SEO foundations without guaranteeing rankings.",
     type: "found" as const
   },
   {
@@ -67,8 +67,8 @@ const marqueeItems = [
   "RESERVATIONS INTEGRATED",
   "LOCAL SEO FOR RESTAURANTS",
   "LUXURY F&B BRANDING",
-  "INSTANT LOAD TIMES",
-  "GOOGLE MAPS OPTIMIZED",
+  "PERFORMANCE-AWARE DELIVERY",
+  "GOOGLE BUSINESS PROFILE SUPPORT",
 ];
 
 export default function FAndBWebsiteDesignSeychelles() {
@@ -156,7 +156,7 @@ export default function FAndBWebsiteDesignSeychelles() {
     <div className="bg-[#0A0A0C] text-white">
       <Seo
         title="F&B Website Design Seychelles | Restaurant & Bar Websites"
-        description="Horizon Digital builds high-conversion websites for Seychelles restaurants and cafes. Mobile-first digital menus, reservation systems, and local SEO for food businesses."
+        description="Custom websites for Seychelles restaurants and cafés, with responsive menus, reservation paths, and technical SEO foundations."
         path="/f-and-b-website-design-seychelles"
         keywords="restaurant website design seychelles, cafe web design mahé, digital menu seychelles, bar website design praslin, food delivery website victoria"
         structuredData={[faqSchema, fbServiceSchema]}
@@ -179,7 +179,7 @@ export default function FAndBWebsiteDesignSeychelles() {
               <path d="M12 2v20M2 12h20" />
             </svg>
           )},
-          { text: "One-Click Booking", icon: (
+          { text: "Reservation Paths", icon: (
             <svg className="h-3 w-3 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
               <line x1="16" y1="2" x2="16" y2="6" />
@@ -275,9 +275,9 @@ export default function FAndBWebsiteDesignSeychelles() {
           </h2>
           <div className="mt-14 grid gap-10 md:grid-cols-3">
             {[
-              { label: "Mobile First Dining", text: "80% of guests look at your menu on their phone while on the move. We ensure it's a beautiful, fast, and interactive experience." },
-              { label: "Seamless Bookings", text: "Don't let technical hurdles stop a reservation. We integrate smooth booking flows that work as hard as your front-of-house team." },
-              { label: "Local Flavor SEO", text: "We optimize for the keywords that matter: 'restaurants near me Mahé', 'best seafood Praslin', and 'beach bar Seychelles'." }
+              { label: "Responsive Menus", text: "We design menus and key information for common phone, tablet, and desktop sizes." },
+              { label: "Reservation Paths", text: "We can connect supported reservation systems or provide a clear enquiry route." },
+              { label: "Local Search Foundations", text: "We structure business information, metadata, and relevant page content without guaranteeing rankings." }
             ].map((item) => (
               <div key={item.label} className="relative pl-6 text-left border-l border-cyan/30">
                 <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-deep-teal">{item.label}</p>
@@ -292,7 +292,7 @@ export default function FAndBWebsiteDesignSeychelles() {
       <section className="bg-[#0A0A0C] py-20 px-6">
         <div className="mx-auto max-w-4xl rounded-[3rem] border border-white/5 bg-gradient-to-b from-white/[0.03] to-transparent p-12 text-center">
           <h2 className="font-display mb-6 text-3xl font-bold text-white md:text-5xl">Ready to serve more guests?</h2>
-          <p className="mb-10 text-lg text-text-muted">Put your restaurant on the digital map with a premium website that drives real-world bookings.</p>
+          <p className="mb-10 text-lg text-text-muted">Present your menu, venue information, and reservation options clearly with a custom restaurant website.</p>
           <div className="flex flex-col gap-4 sm:flex-row justify-center">
              <Link to="/contact">
                 <ShimmerButton className="px-10 py-4 font-bold uppercase tracking-widest">Start the design</ShimmerButton>

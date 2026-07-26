@@ -1,4 +1,6 @@
 # 05 — AUDIENCE STRATEGY
+
+> **Historical April 2026 research.** Personas may remain useful, but offer, proof and guarantee statements are superseded by `CONTENT_AUTHORITY.md` and `../src/data/businessFacts.json`. Do not ingest this document into the chatbot.
 ## Horizon Digital · Target Audience, Personas, Objections & Conversion Design
 
 **Version:** 1.0  

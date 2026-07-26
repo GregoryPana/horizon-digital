@@ -2,7 +2,7 @@ import React, { useMemo, useState, useRef } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, ArrowUpRight, Check, ChevronLeft, ChevronRight } from "lucide-react";
 import Seo from "../components/Seo";
-import HomeFaq, { type HomeFaqCategory } from "../components/ui/home-faq";
+import HomeFaq from "../components/ui/home-faq";
 import { ShimmerButton } from "../components/ui/shimmer-button";
 import { Link } from "react-router-dom";
 import { scrollToTopSmooth } from "../lib/utils";
@@ -17,6 +17,7 @@ import {
   siteConfig,
   projectSteps,
   workItems,
+  homeFaqCategories,
 } from "../data/site";
 
 import { TracingCard, InteractiveIcon } from '../components/ui/TracingCard';
@@ -28,99 +29,12 @@ import { OurServicesSlideshow } from "../components/ui/OurServicesSlideshow";
 import { TrustSignalsBar } from "../components/ui/TrustSignalsBar";
 
 
-const homeFaqCategories: HomeFaqCategory[] = [
-  {
-    key: "services",
-    label: "Services",
-    items: [
-      {
-        question: "What kind of websites do you build?",
-        answer:
-          "We design and develop custom business websites focused on clarity, speed, and enquiry flow. Most projects include service pages, contact capture, and SEO-ready structure from day one.",
-      },
-      {
-        question: "Can you help with local payment integration?",
-        answer:
-          "Yes. We can integrate local Seychelles payment options like MCB Juice, CIM, or international gateways like Stripe and PayPal, depending on your business needs.",
-      },
-      {
-        question: "Do you help with branding and content?",
-        answer:
-          "Absolutely. We guide page structure, section order, and messaging so visitors understand your offer quickly and know what action to take.",
-      },
-    ],
-  },
-  {
-    key: "process",
-    label: "Process",
-    items: [
-      {
-        question: "What is a typical timeline?",
-        answer:
-          "Most projects launch in 3 to 6 weeks, depending on scope, feedback speed, and content readiness.",
-      },
-      {
-        question: "How many revisions are included?",
-        answer:
-          "Each package includes clear revision rounds tied to project milestones, so feedback stays focused and predictable.",
-      },
-      {
-        question: "How involved do I need to be?",
-        answer:
-          "We keep the process lightweight. You mainly review milestone drafts, approve direction, and share business details we use to shape the final site.",
-      },
-    ],
-  },
-  {
-    key: "self-management",
-    label: "Updates & Support",
-    items: [
-      {
-        question: "Can I update the website myself?",
-        answer:
-          "Yes. We provide a simple, easy-to-use software that allows you to change text and images anytime without touching code or affecting the design. You'll have full access to this as part of your package.",
-      },
-      {
-        question: "What support is provided after launch?",
-        answer:
-          "We include 45 days of priority support after launch to ensure everything is running smoothly. After that, we offer various plans for ongoing updates and security.",
-      },
-      {
-        question: "What if I need help with my site later on?",
-        answer:
-          "We are always just a WhatsApp away. Whether you need a small change or a new feature, we support our clients long-term.",
-      },
-    ],
-  },
-  {
-    key: "hosting",
-    label: "Hosting & Ownership",
-    items: [
-      {
-        question: "Do I own the website?",
-        answer:
-          "Yes. You own the final codebase and all approved assets once the project is complete. No long-term lock-ins.",
-      },
-      {
-        question: "Can you set up my business emails?",
-        answer:
-          "Yes, we can assist with setting up professional business emails (e.g., info@yourbusiness.com) to ensure your communication matches your new professional brand.",
-      },
-      {
-        question: "Where is my website hosted?",
-        answer:
-          "We use premium, high-speed servers to ensure your site loads instantly in Seychelles and abroad. You can host with us or use your own provider.",
-      },
-    ],
-  },
-];
-
 const marqueeItems = [
-  "Visible on Google within weeks of launch",
-  "Average project: 3-5 weeks",
-  "Your site, owned by you forever",
-  "Launched in under 4 weeks",
-  "Zero enquiries to consistent bookings",
+  "Technical SEO foundations included",
+  "Typical projects: around 3–6 weeks",
+  "Clear ownership terms",
+  "Responsive layouts for common devices",
+  "Direct contact paths for customers",
 ];
 
 
@@ -193,11 +107,11 @@ function WorkShowcase() {
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
-          <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">Real Results, Real Businesses</span>
+          <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">Selected work and concepts</span>
           <h2 className="font-display mx-auto max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl">
             See what is <span className="text-cyan font-semibold">possible</span> for your business
           </h2>
-          <p className="mx-auto mt-4 max-w-3xl text-lg text-text-muted">Three businesses. Three transformations. One studio that cares.</p>
+          <p className="mx-auto mt-4 max-w-3xl text-lg text-text-muted">One live client project alongside clearly labelled concept work.</p>
         </motion.div>
       </div>
 
@@ -283,7 +197,17 @@ function WorkShowcase() {
   );
 }
 
-export default function Home() {
+type HomeProps = {
+  seoPath?: string;
+  seoTitle?: string;
+  seoDescription?: string;
+};
+
+export default function Home({
+  seoPath = "/",
+  seoTitle = "Custom Website Design Seychelles | Horizon Digital",
+  seoDescription = "Custom-built websites for Seychelles businesses, with responsive design, clear contact paths and technical SEO foundations.",
+}: HomeProps = {}) {
   const shouldReduceMotion = useReducedMotion();
   const allHomeFaqItems = homeFaqCategories.flatMap((category) => category.items);
   const handleWorkScrollTop = () => scrollToTopSmooth();
@@ -345,20 +269,14 @@ export default function Home() {
     "@type": "Service",
     "serviceType": "Custom Web Development",
     "provider": {
-      "@type": "ProfessionalService",
+      "@type": "Organization",
       "name": siteConfig.name,
       "url": siteConfig.url,
       "email": siteConfig.email,
       "telephone": siteConfig.phone,
-      "image": new URL("/og-image.png", siteConfig.url).toString(),
-      "priceRange": "SCR 7,500 - SCR 25,000+",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": siteConfig.location,
-        "addressCountry": "SC"
-      }
+      "image": new URL("/og-image.png", siteConfig.url).toString()
     },
-    "description": "Expert custom web design and development services in Seychelles, focusing on speed, mobile-readiness, and SEO optimization.",
+    "description": "Custom web design and development for Seychelles businesses, with responsive layouts and technical SEO foundations.",
     "areaServed": {
       "@type": "Country",
       "name": "Seychelles"
@@ -395,9 +313,9 @@ export default function Home() {
   return (
     <div className="bg-[#0A0A0C] text-white">
       <Seo
-        title="Custom Website Design Seychelles | Horizon Digital"
-        description="Custom-built websites for Seychelles businesses. Professional web design & development — no templates, just results. Fast, mobile-ready, SEO-optimized from day one."
-        path="/"
+        title={seoTitle}
+        description={seoDescription}
+        path={seoPath}
         keywords="custom website Seychelles, custom web design Seychelles, custom web development Seychelles, website design Seychelles, bespoke websites Seychelles"
         structuredData={[faqSchema, serviceSchema]}
       />
@@ -410,14 +328,14 @@ export default function Home() {
           ],
           rotatingWords: ["STUNNING", "PROFESSIONAL", "FAST", "MOBILE READY"]
         }}
-        subtitle="A website that looks great, loads fast, and brings in real customers."
+        subtitle="A website that presents your business clearly, works across common devices, and makes it easy for customers to contact you."
         tags={[
           { text: "BUILT AROUND YOU", icon: (
             <svg className="h-3 w-3 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
               <polyline points="20 6 9 17 4 12" />
             </svg>
           )},
-          { text: "OPENS IN SECONDS", icon: (
+          { text: "PERFORMANCE-AWARE", icon: (
             <svg className="h-3 w-3 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
             </svg>
@@ -563,7 +481,7 @@ export default function Home() {
                 style={{ originX: 1 }}
                 className="h-px w-12 bg-cyan/50 block"
               />
-              We fix this. Every time.
+              A clearer way forward.
               <motion.span
                 initial={shouldReduceMotion ? undefined : { scaleX: 0 }}
                 whileInView={shouldReduceMotion ? undefined : { scaleX: 1 }}
@@ -637,19 +555,19 @@ export default function Home() {
             {[
               {
                 label: "Transparency",
-                text: (<>We believe in <span className="text-gradient-cyan font-semibold">absolute transparency.</span> Every project kicks off with a clear, written brief that you approve before a single line of code is written.</>),
+                text: (<>Each project starts with a <span className="text-gradient-cyan font-semibold">clear written scope</span> that records the agreed direction before implementation begins.</>),
               },
               {
                 label: "Local & honest",
-                text: (<>As a team <span className="semibold-underline text-white drop-shadow-md">based locally in Seychelles</span>, we quote honestly in <span className="semibold-underline text-white">local SCR</span> with zero hidden fees — always just a WhatsApp away.</>),
+                text: (<>Based locally in Seychelles, we publish starting prices in <span className="semibold-underline text-white">SCR</span> and confirm project-specific costs in the written proposal.</>),
               },
               {
                 label: "Performance first",
-                text: (<>Before anything goes live, we guarantee it scores <span className="semibold-underline text-white">90+ on Google PageSpeed</span> so your customers get the fast, premium experience they expect.</>),
+                text: (<>We test performance before launch and optimize the agreed pages and media. Results vary by content, integrations, devices, and network conditions.</>),
               },
               {
                 label: "Easy updates",
-                text: (<>Change your own text and images anytime <span className="text-cyan font-semibold">without touching code.</span> We provide simple software that gives you full control over your content while keeping the professional design perfectly intact.</>),
+                text: (<>Content management is included from Starter upward for agreed fields and can be added to Foundation when required.</>),
               },
             ].map((item, idx) => (
               <motion.div
@@ -699,7 +617,7 @@ export default function Home() {
               {
                 eyebrow: "Hospitality & Tourism",
                 title: "Hotels, Guesthouses & Villas",
-                body: "We build websites for Seychelles accommodation businesses that need to convert browser traffic into real bookings. Fast-loading, mobile-first, and structured to drive direct enquiries — so guests reach you before they go to a third-party platform.",
+                body: "We build websites for Seychelles accommodation businesses with clear property information, responsive layouts, and direct enquiry or booking paths.",
                 keywords: ["Hotel website Seychelles", "Guesthouse website Seychelles", "Villa rental website"],
               },
               {
@@ -711,7 +629,7 @@ export default function Home() {
               {
                 eyebrow: "Services & Professional",
                 title: "Trades, Clinics & Agencies",
-                body: "Whether you're a local tradesperson, a professional services firm, or a growing agency — we build websites that communicate trust, answer the right questions, and convert visitors into enquiries.",
+                body: "For trades, professional services, and agencies, we structure the site to explain the offer, answer common questions, and provide a clear route to contact the business.",
                 keywords: ["Professional services website", "Business website Seychelles", "Small business web design"],
               },
             ].map((industry, idx) => (
@@ -826,71 +744,6 @@ export default function Home() {
       </section>
 
       <WorkShowcase />
-
-      {/* ── Single Featured Testimonial ────────────────────────────────────────────────── */}
-      <section id="testimonials" className="border-t border-white/[0.05] bg-[#070709] py-24 md:py-32 lg:py-40">
-        <div className="mx-auto w-full max-w-5xl px-6 md:px-10">
-          <motion.div
-            className="mb-12 text-center md:mb-16"
-            initial={shouldReduceMotion ? undefined : { opacity: 0, y: 24, filter: "blur(10px)" }}
-            whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: "blur(0px)" }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">
-              Client Success
-            </span>
-            <h2 className="font-display mx-auto max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl">
-              Real businesses. <span className="text-cyan font-semibold">Real results.</span>
-            </h2>
-          </motion.div>
-
-          <motion.div
-            initial={shouldReduceMotion ? undefined : { opacity: 0, scale: 0.98, filter: "blur(12px)" }}
-            whileInView={shouldReduceMotion ? undefined : { opacity: 1, scale: 1, filter: "blur(0px)" }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
-            className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-b from-[#0e1517] to-[#0A0E0F] border border-cyan/15 px-8 py-14 shadow-[0_12px_48px_rgba(0,0,0,0.6)] md:px-16 md:py-24 text-center"
-          >
-            {/* Cinematic subtle glow */}
-            <div className="pointer-events-none absolute left-1/2 top-1/2 h-[30rem] w-[30rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan/5 blur-[80px]" />
-            <div className="pointer-events-none absolute right-0 top-0 h-[20rem] w-[20rem] translate-x-1/3 -translate-y-1/3 rounded-full bg-cyan/5 blur-[100px]" />
-
-            <div className="relative z-10 flex flex-col items-center gap-8 md:gap-12">
-              {/* Star rating */}
-              <div className="flex gap-1.5" aria-label="5 out of 5 stars">
-                {[0, 1, 2, 3, 4].map((i) => (
-                  <svg key={i} className="h-5 w-5 md:h-6 md:w-6 text-cyan drop-shadow-[0_0_8px_rgba(94,209,222,0.4)]" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-                ))}
-              </div>
-
-              {/* Quote mark (Decorative) */}
-              <div className="absolute top-8 left-6 md:top-12 md:left-12 text-[8rem] md:text-[14rem] leading-none text-cyan/[0.03] font-serif select-none pointer-events-none">
-                &ldquo;
-              </div>
-
-              <blockquote className="text-xl leading-relaxed text-white md:text-3xl lg:text-[2rem] lg:leading-[1.5] font-light max-w-4xl mx-auto tracking-wide">
-                "Working with Horizon Digital was a smooth experience from start to finish. Our new website has brought in more online enquiries than we ever expected — guests now book directly instead of just calling."
-              </blockquote>
-
-              <div className="flex flex-col items-center gap-3">
-                <p className="text-sm md:text-base font-bold text-white tracking-wide">
-                  Mrs. Danielle Panagary
-                </p>
-                <div className="flex items-center gap-4">
-                  <div className="h-[2px] w-4 border-t border-cyan/40" />
-                  <p className="text-[11px] font-bold uppercase tracking-[0.25em] text-deep-teal">
-                    Drake Seaside Apartments
-                  </p>
-                  <div className="h-[2px] w-4 border-t border-cyan/40" />
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
 
       <section id="packages" className="py-24 md:py-40 bg-black border-t border-white/[0.05]">
         <div className="mx-auto w-full max-w-[92rem] px-6 md:px-10 lg:px-14">

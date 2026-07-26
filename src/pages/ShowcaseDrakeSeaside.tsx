@@ -8,30 +8,30 @@ import { ArrowUpRight, CheckCircle2, Zap, Target, MousePointer2 } from "lucide-r
 
 const metrics = [
   {
-    label: "Direct Bookings",
-    value: "+140%",
-    description: "Significant shift from phone enquiries to automated direct website bookings.",
+    label: "Project Status",
+    value: "Live",
+    description: "Commissioned client work, not a concept or demonstration.",
     icon: Target
   },
   {
-    label: "Page Load Speed",
-    value: "0.8s",
-    description: "Ultra-fast performance ensuring guests stay engaged from the first click.",
+    label: "Delivery",
+    value: "Redesign",
+    description: "Performance-aware page and media delivery for common visitor devices and connections.",
     icon: Zap
   },
   {
-    label: "Mobile Conversion",
-    value: "65%",
-    description: "Majority of bookings now completed seamlessly on mobile devices.",
+    label: "Responsive Build",
+    value: "Multi-device",
+    description: "Layouts prepared for common phone, tablet, and desktop sizes.",
     icon: MousePointer2
   }
 ];
 
 const solutions = [
   "Visual Storytelling: High-resolution room galleries and immersive video backgrounds.",
-  "Frictionless UX: One-click accessibility to booking engine and WhatsApp support.",
-  "SEO Foundation: Targeted local keywords for 'Seychelles self-catering' dominance.",
-  "Mobile First: 100% responsive design optimized for travellers on-the-go."
+  "Booking Path: Direct access to the existing booking engine and WhatsApp contact.",
+  "SEO Foundation: Page structure and metadata for relevant Seychelles self-catering searches.",
+  "Responsive Design: Layouts tested across common phone, tablet, and desktop sizes."
 ];
 
 export default function ShowcaseDrakeSeaside() {
@@ -42,8 +42,8 @@ export default function ShowcaseDrakeSeaside() {
   return (
     <div className="bg-bg min-h-screen text-text overflow-x-hidden">
       <Seo
-        title="Drake Seaside Apartments Case Study | Horizon Digital"
-        description="How we transformed Drake Seaside's digital presence, resulting in a 140% increase in direct bookings through professional web design."
+        title="Drake Seaside Apartments Website Project | Horizon Digital"
+        description="A live client website redesign for Drake Seaside Apartments, with updated pages, responsive layouts and direct contact paths."
         path="/showcase/drake-seaside"
       />
 
@@ -81,8 +81,8 @@ export default function ShowcaseDrakeSeaside() {
               <span className="text-accent underline decoration-accent/30 decoration-offset-8">Apartments</span>
             </h1>
             <p className="max-w-2xl mx-auto text-text/60 text-lg md:text-xl leading-relaxed">
-              Transforming a traditional Seychelles guesthouse into a high-conversion 
-              digital flagship with measurable business results.
+              A live redesign for a Seychelles guesthouse, with clearer property
+              information, responsive layouts, and direct booking paths.
             </p>
           </motion.div>
 
@@ -142,7 +142,7 @@ export default function ShowcaseDrakeSeaside() {
             >
               <h2 className="text-3xl md:text-5xl font-bold mb-8 leading-tight">
                 From a static brochure to a <br />
-                <span className="text-accent italic">booking engine.</span>
+                <span className="text-accent italic">clear booking path.</span>
               </h2>
               <div className="space-y-6 text-text/70 text-lg">
                 <p>
@@ -151,9 +151,9 @@ export default function ShowcaseDrakeSeaside() {
                   site was slow, outdated, and required guests to call or email for every enquiry.
                 </p>
                 <p>
-                  Our goal was to eliminate this friction. We built a custom platform 
-                  that emphasizes visual storytelling while guiding users directly towards 
-                  the booking process, reducing management overhead and increasing revenue.
+                  The redesign emphasizes visual storytelling while guiding visitors
+                  toward the property's existing booking process. No booking, revenue,
+                  or operational outcome is asserted without measured evidence.
                 </p>
               </div>
               
@@ -185,7 +185,7 @@ export default function ShowcaseDrakeSeaside() {
         </div>
       </section>
 
-      {/* Testimonial Section */}
+      {/* Verified project classification */}
       <section className="py-32 bg-accent/5 backdrop-blur-sm relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
         <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
@@ -197,26 +197,10 @@ export default function ShowcaseDrakeSeaside() {
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <div className="inline-flex items-center gap-2 mb-12">
-              {[1, 2, 3, 4, 5].map((s) => (
-                <Zap key={s} className="w-5 h-5 text-accent fill-accent" />
-              ))}
-            </div>
-            
-            <blockquote className="text-3xl md:text-5xl font-medium text-white mb-12 leading-[1.3] tracking-tight italic">
-              "Our new website has brought in more online enquiries than we ever expected — 
-              guests now book directly instead of just calling."
-            </blockquote>
-            
-            <div className="flex flex-col items-center">
-              <div className="w-16 h-16 rounded-full bg-accent/20 border border-accent/20 flex items-center justify-center mb-4">
-                <span className="text-accent font-bold text-xl">DP</span>
-              </div>
-              <h4 className="text-xl font-bold text-white">Mrs. Danielle Panagary</h4>
-              <p className="text-accent/60 font-medium tracking-wide uppercase text-[11px] mt-1">
-                Owner, Drake Seaside Apartments
-              </p>
-            </div>
+            <p className="text-3xl md:text-5xl font-medium text-white mb-8 leading-[1.3] tracking-tight">
+              A live client redesign with new pages, updated content, and a faster-loading structure.
+            </p>
+            <p className="text-text-muted uppercase tracking-widest text-xs">Project classification: live client work</p>
           </motion.div>
         </div>
       </section>
@@ -231,7 +215,7 @@ export default function ShowcaseDrakeSeaside() {
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <h2 className="text-4xl md:text-6xl font-bold mb-12">
-              Ready to see similar results?
+              Ready to discuss a similar approach?
             </h2>
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
               <a 

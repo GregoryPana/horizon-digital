@@ -8,8 +8,9 @@ This repository is the Horizon Digital public website and client-showcase codeba
 2. `OPENCODE.md` or `CLAUDE.md` — tool-specific adapter for the current agent.
 3. `docs/AGENT_DESIGN_SKILLS.md` before substantial UI/design work.
 4. `docs/TRANSFORMATION_BRIEF.md`, `docs/plans/2026-07-26-horizon-digital-transformation-master-plan.md`, and the active session in `docs/TRANSFORMATION_TRACKER.md` for this local transformation.
-5. `master_brief.md`, `brand-design-guidelines.md`, `brand_interview.md`, and relevant `knowledge/*.md` before changing public copy, positioning, pricing, services, or proof.
-6. `.opencode/skills/hermes-update-pack/SKILL.md` or `.claude/commands/hermes-handoff.md` when logging or flushing a Hermes Update Pack.
+5. `docs/CONTENT_AUTHORITY.md` and `src/data/businessFacts.json` before changing public copy, positioning, pricing, services, portfolio status, chatbot knowledge or proof.
+6. Treat `master_brief.md`, `brand_interview.md`, and `docs/00-*` through `docs/05-*` as historical research when they conflict with the current content authority. Generated `knowledge/*.md` files are chatbot retrieval outputs, not independent sources.
+7. `.opencode/skills/hermes-update-pack/SKILL.md` or `.claude/commands/hermes-handoff.md` when logging or flushing a Hermes Update Pack.
 
 ## Business boundaries
 

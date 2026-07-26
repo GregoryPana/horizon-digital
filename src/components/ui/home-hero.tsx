@@ -67,7 +67,7 @@ export default function HomeHero() {
               transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
               className="hidden md:block max-w-[46ch] text-sm sm:text-base md:text-lg leading-relaxed text-text-muted font-normal motion-safe-gpu"
             >
-              Your business deserves a website that works as hard as you do — beautifully designed, easy to find, and built to turn visitors into customers you're proud to serve.
+              Your business deserves a website that presents it clearly, works across common devices, and gives customers a straightforward way to contact you.
             </motion.p>
             
             {/* Mobile Trust Pills - Staggered Scale-In */}

@@ -1,4 +1,6 @@
 # 00 — PROJECT CONTEXT
+
+> **Historical April 2026 research — not authoritative for current public claims.** Use `CONTENT_AUTHORITY.md` and `../src/data/businessFacts.json`. Do not ingest this document into the chatbot.
 ## Horizon Digital · Master Entry Point for Designers & AI Editors
 
 **Version:** 1.0  

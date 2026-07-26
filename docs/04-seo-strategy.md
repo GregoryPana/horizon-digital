@@ -1,4 +1,6 @@
 # 04 — SEO STRATEGY
+
+> **Historical April 2026 research.** Current route metadata lives in `../src/config/routes.ts`; current claims are governed by `CONTENT_AUTHORITY.md`. PageSpeed and ranking guarantees are not approved. Do not ingest this document into the chatbot.
 ## Horizon Digital · Technical SEO, Keyword Map & Per-Page Optimisation
 
 **Version:** 1.0  

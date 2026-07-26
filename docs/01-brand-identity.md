@@ -1,4 +1,6 @@
 # 01 — BRAND IDENTITY
+
+> **Historical April 2026 research.** Visual guidance may still be useful, but offers, proof and performance promises are superseded by `CONTENT_AUTHORITY.md` and `../src/data/businessFacts.json`. Do not ingest this document into the chatbot.
 ## Horizon Digital · Visual System, Tone of Voice & Brand Rules
 
 **Version:** 1.0  

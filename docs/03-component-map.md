@@ -1,4 +1,6 @@
 # 03 — COMPONENT MAP
+
+> **Historical April 2026 snapshot.** Component descriptions and quoted copy may be stale. Use the current source files plus `CONTENT_AUTHORITY.md`. Do not ingest this document into the chatbot.
 ## Horizon Digital · Every Page, Every Section, Every Component
 
 **Version:** 1.0  

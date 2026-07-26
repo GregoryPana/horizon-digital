@@ -1,5 +1,7 @@
 # 🌊 Horizon Digital
 
+> **Historical reference — not a current content source.** Some offers, contact details and claims in this brief are superseded. Use `docs/CONTENT_AUTHORITY.md`, `src/data/businessFacts.json` and the generated `knowledge/*.md` files for current public or chatbot content.
+
 ## Master Brand & Website Development Brief
 
 _(React + TypeScript + Tailwind Implementation Target)_
@@ -370,7 +372,7 @@ Include:
 Reusable credit line snippet:
 
 Website designed by Horizon Digital.  
-Need a tailored web solution? horizondigitalsey@gmail.com
+Need a tailored web solution? horizondigital.sey@gmail.com
 
 ---
 

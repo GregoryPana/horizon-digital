@@ -1,5 +1,7 @@
 # Website Chatbot — Full Build Guide (Option A)
 
+> **Legacy architecture reference.** Current business knowledge comes only from generated `knowledge/*.md` files. The current browser integration uses same-origin `/api/chat` and `/api/lead`; a Worker injects `CHAT_WEBHOOK_TOKEN` server-side. Never place a webhook token in client HTML, React source or Vite environment variables. The previously client-embedded token must be rotated before deployment.
+
 ### Google Cloud Free VPS · n8n · Postgres/pgvector · Cloudflare Embeddings · Groq
 
 ---
@@ -1280,9 +1282,7 @@ In any HTTP Request node header or body field, use:
 
 ## PHASE 11 — Chat Widget
 
-Paste this snippet into every page where you want the chatbot, just before `</body>`.
-
-Replace `YOUR_DOMAIN` and `YOUR_WEBHOOK_SECRET` with your values. Adjust `brandColor` and `botName` to match your website.
+This legacy snippet is retained as implementation history. If adapting it, send browser requests only to same-origin proxy routes. The Worker or application server must add the webhook credential from a server-side secret. Never expose the credential in browser configuration.
 
 ```html
 <!-- Chatbot Widget -->
@@ -1290,9 +1290,8 @@ Replace `YOUR_DOMAIN` and `YOUR_WEBHOOK_SECRET` with your values. Adjust `brandC
 <script>
   (function () {
     const CONFIG = {
-      webhookUrl: "https://chat.YOUR_DOMAIN/webhook/chat",
-      leadUrl: "https://chat.YOUR_DOMAIN/webhook/lead",
-      token: "YOUR_WEBHOOK_SECRET",
+      webhookUrl: "/api/chat",
+      leadUrl: "/api/lead",
       brandColor: "#1a1a2e",
       botName: "Chat with us",
     };
@@ -1419,7 +1418,6 @@ Replace `YOUR_DOMAIN` and `YOUR_WEBHOOK_SECRET` with your values. Adjust `brandC
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
-                "X-Chat-Token": CONFIG.token,
               },
               body: JSON.stringify({
                 session_id: sessionId,
@@ -1447,7 +1445,6 @@ Replace `YOUR_DOMAIN` and `YOUR_WEBHOOK_SECRET` with your values. Adjust `brandC
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            "X-Chat-Token": CONFIG.token,
           },
           body: JSON.stringify({
             message: msg,
