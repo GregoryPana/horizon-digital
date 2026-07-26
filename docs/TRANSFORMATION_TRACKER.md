@@ -13,7 +13,7 @@
 
 | Session | Scope | Status | Commit | Verified gate | Next action |
 |---|---|---|---|---|---|
-| 0 | Workspace, dependencies, CodeGraph, baseline build and plans | Complete | pending local commit | `npm ci`, build and CodeGraph smoke passed | Begin Session 1 route/SEO architecture |
+| 0 | Workspace, dependencies, CodeGraph, baseline build and plans | Complete | `b8417cd` | `npm ci`, build and CodeGraph smoke passed | Begin Session 1 route/SEO architecture |
 | 1 | Route registry, real statuses and server-visible SEO | Pending | — | — | Start only after Session 0 passes |
 | 2 | Proof register, copy and information architecture | Pending | — | — | Start only after Session 1 passes |
 | 3 | Visual system and responsive redesign | Pending | — | — | Start only after Session 2 passes |
@@ -34,7 +34,7 @@
 - **Baseline evidence:** `docs/baselines/2026-07-26-production-baseline.md`.
 - **Public/deployment impact:** none; no push, PR, DNS, Cloudflare, Sanity or production change.
 - **Remaining risks:** all application defects remain intentionally open for Sessions 1–6.
-- **Commit:** pending local foundation commit.
+- **Commit:** `b8417cd` (local only).
 - **Next bounded action:** Session 1 typed route registry, redirect/status tests and server-visible metadata.
 
 ### Session N — YYYY-MM-DD
