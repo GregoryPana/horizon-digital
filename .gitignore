@@ -3,6 +3,9 @@ dist/
 .vite/
 .codegraph/
 .codegraph-win/
+.wrangler/
+.serena/
+.claude/settings.local.json
 
 *.log
 npm-debug.log*

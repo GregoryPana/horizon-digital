@@ -7,6 +7,7 @@ import { insightArticles } from "../data/insights";
 import { siteConfig } from "../data/site";
 import InsightsHero from "../components/InsightsHero";
 import { trackEvent } from "../lib/analytics";
+import { INSIGHT_NOT_FOUND_SEO } from "../config/routes";
 
 export default function InsightArticle() {
   const { slug = "" } = useParams();
@@ -16,10 +17,10 @@ export default function InsightArticle() {
     return (
       <div className="insights-theme-shell">
         <Seo
-          title="Insight Not Found"
-          description="The requested insight article could not be found."
+          title={INSIGHT_NOT_FOUND_SEO.title}
+          description={INSIGHT_NOT_FOUND_SEO.description}
           path="/insights"
-          robots="noindex,follow"
+          robots={INSIGHT_NOT_FOUND_SEO.robots}
         />
         <Section eyebrow="Insights" title="Article not found" description="Please return to the insights list.">
           <Link to="/insights" className="text-sm font-semibold uppercase tracking-[0.12em] text-cyan hover:text-white">

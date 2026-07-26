@@ -1,7 +1,8 @@
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, type ReactElement } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import Layout from "./components/Layout";
 import AnalyticsListener from "./components/AnalyticsListener";
+import { STATIC_ROUTES, REDIRECTS, DYNAMIC_ROUTES } from "./config/routes";
 
 import Home from "./pages/Home";
 const WhatYouNeed = lazy(() => import("./pages/WhatYouNeed"));
@@ -18,8 +19,32 @@ const WebDesignSeychelles = lazy(() => import("./pages/WebDesignSeychelles"));
 const ShowcaseDrakeSeaside = lazy(() => import("./pages/ShowcaseDrakeSeaside"));
 const TourismWebsiteDesignSeychelles = lazy(() => import("./pages/TourismWebsiteDesignSeychelles"));
 const FAndBWebsiteDesignSeychelles = lazy(() => import("./pages/FAndBWebsiteDesignSeychelles"));
-const ProfessionalServicesWebsiteDesignSeychelles = lazy(() => import("./pages/ProfessionalServicesWebsiteDesignSeychelles"));
+const ProfessionalServicesWebsiteDesignSeychelles = lazy(
+  () => import("./pages/ProfessionalServicesWebsiteDesignSeychelles"),
+);
 const NotFound = lazy(() => import("./pages/NotFound"));
+
+// Component references cannot live in the Worker-safe route registry
+// (JSX + lazy imports pull in the full client bundle), so path/redirect/SEO
+// knowledge stays in src/config/routes.ts and only this lookup of
+// path -> element remains local to the client router.
+const componentByPath: Record<string, ReactElement> = {
+  "/": <Home />,
+  "/what-you-need": <WhatYouNeed />,
+  "/work": <Work />,
+  "/pricing": <Pricing />,
+  "/process": <Process />,
+  "/insights": <Insights />,
+  "/about": <About />,
+  "/contact": <Contact />,
+  "/showcase/forma-studio": <ShowcaseFormaStudio />,
+  "/showcase/takamaka-house": <ShowcaseTakamakaHouse />,
+  "/showcase/drake-seaside": <ShowcaseDrakeSeaside />,
+  "/web-design-seychelles": <WebDesignSeychelles />,
+  "/tourism-website-design-seychelles": <TourismWebsiteDesignSeychelles />,
+  "/f-and-b-website-design-seychelles": <FAndBWebsiteDesignSeychelles />,
+  "/professional-services-website-design-seychelles": <ProfessionalServicesWebsiteDesignSeychelles />,
+};
 
 export default function App() {
   return (
@@ -40,24 +65,19 @@ export default function App() {
         }
       >
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/what-you-need" element={<WhatYouNeed />} />
-          <Route path="/work" element={<Work />} />
-          <Route path="/pricing" element={<Pricing />} />
-          <Route path="/services-pricing" element={<Navigate to="/pricing" replace />} />
-          <Route path="/process" element={<Process />} />
-          <Route path="/ai-digital-tools" element={<Navigate to="/insights" replace />} />
-          <Route path="/insights" element={<Insights />} />
-          <Route path="/insights/:slug" element={<InsightArticle />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/showcase/forma-studio" element={<ShowcaseFormaStudio />} />
-          <Route path="/showcase/takamaka-house" element={<ShowcaseTakamakaHouse />} />
-          <Route path="/showcase/drake-seaside" element={<ShowcaseDrakeSeaside />} />
-          <Route path="/web-design-seychelles" element={<WebDesignSeychelles />} />
-          <Route path="/tourism-website-design-seychelles" element={<TourismWebsiteDesignSeychelles />} />
-          <Route path="/f-and-b-website-design-seychelles" element={<FAndBWebsiteDesignSeychelles />} />
-          <Route path="/professional-services-website-design-seychelles" element={<ProfessionalServicesWebsiteDesignSeychelles />} />
+          {STATIC_ROUTES.map((route) => (
+            <Route key={route.path} path={route.path} element={componentByPath[route.path]} />
+          ))}
+          {DYNAMIC_ROUTES.map((route) => (
+            <Route
+              key={route.basePath}
+              path={`${route.basePath}/:${route.paramName}`}
+              element={<InsightArticle />}
+            />
+          ))}
+          {REDIRECTS.map((redirect) => (
+            <Route key={redirect.path} path={redirect.path} element={<Navigate to={redirect.to} replace />} />
+          ))}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>

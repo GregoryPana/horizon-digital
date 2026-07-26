@@ -580,10 +580,10 @@ export default function Pricing() {
                   <span className="mb-6 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">
                     How we get there
                   </span>
-                  <h1 className="font-display mb-8 text-5xl sm:text-7xl lg:text-8xl font-semibold leading-[1.05] tracking-tight">
+                  <h2 className="font-display mb-8 text-5xl sm:text-7xl lg:text-8xl font-semibold leading-[1.05] tracking-tight">
                     A simple path to your <br />
                     <span className="text-cyan italic">new website.</span>
-                  </h1>
+                  </h2>
                   <p className="max-w-2xl text-lg sm:text-2xl leading-relaxed text-text-muted font-normal">
                     We make the process clear, simple, and stress-free—from our
                     first chat to the day your site goes live.
