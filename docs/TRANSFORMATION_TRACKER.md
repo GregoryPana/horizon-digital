@@ -157,6 +157,16 @@
 - **Public/deployment impact:** none at the time of this implementation record; no commit, push, PR, deployment, DNS, Cloudflare or analytics configuration change.
 - **Remaining performance action:** continue the deferred performance-plan tasks and rerun the mobile Lighthouse gate before claiming that the wider performance plan is complete.
 
+### Production release — 2026-07-29 — mobile navigation, CTA, proof and motion slice
+
+- **Approval:** Gregory explicitly authorized commit, push and deployment.
+- **Source:** application commit `f0523d0039bca0ba95eee16967c813d956bbe609` on `transformation/local-redesign`; local and remote SHAs matched after push. The local `.opencode/hermes-pending-updates.md` queue was explicitly excluded.
+- **Release gate:** 57/57 tests, eight knowledge outputs, TypeScript/Vite build, staged diff check, secret-pattern scan and Wrangler dry-run passed. Independent Headroom-wrapped Claude release review returned APPROVED after its stale CTA-authority and rendered-mobile-QA blockers were remediated.
+- **Deployment:** Cloudflare Worker `horizon-digital` version `059fe366-251e-4186-80a3-177f51a50ca2` deployed to `horizondigitalsey.com/*` and `www.horizondigitalsey.com/*`; only the `ASSETS` binding is present.
+- **Rollback:** previous 100% deployment version `275567a6-89a9-476a-a3c8-316ef9ebedb4`.
+- **Production verification:** all primary route probes returned 200; arbitrary route returned true 404/noindex; retired `/api/chat` returned 404; `www` preserved path/query in its 301 redirect; apex raw response retained canonical/index metadata. Production Playwright passed the same 36/36 mobile/reduced-motion/desktop interaction and rendering checks as local.
+- **Post-deploy Lighthouse:** three mobile homepage runs produced stable 83/100/100/92 scores; median LCP 3,378ms, CLS 0 and TBT 214ms. The LCP candidate remained `WebsiteBuildStory .story-stage-design`, so performance-plan Task 3 remains open and no ≥90/≤2.5s claim is made.
+
 ### Session N — YYYY-MM-DD
 
 - **Agent/harness:**
