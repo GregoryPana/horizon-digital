@@ -1136,7 +1136,7 @@ export default function Pricing() {
                   backgroundSize: "300% 100%",
                 }}
               >
-                Book a free consult
+                {siteConfig.primaryCtaLabel}
               </button>
             </Link>
           </div>

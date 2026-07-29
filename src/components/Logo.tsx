@@ -25,7 +25,6 @@ export default function Logo({ imageSrc, className, imageClassName }: LogoProps)
           width={54}
           height={36}
           className={imageClasses}
-          fetchPriority="high"
           decoding="sync"
           loading="eager"
           style={{ aspectRatio: "60 / 40" }}

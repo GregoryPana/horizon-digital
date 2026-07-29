@@ -5,8 +5,9 @@ import Seo from "../components/Seo";
 import { emailTemplate, siteConfig } from "../data/site";
 import { buildMailtoLink } from "../lib/utils";
 import { useLocation } from "react-router-dom";
-import { trackEvent } from "../lib/analytics";
+import { trackContactIntent, trackEvent } from "../lib/analytics";
 import { Instagram, Facebook } from "lucide-react";
+import WhatsAppIcon from "../components/ui/WhatsAppIcon";
 
 
 export default function Contact() {
@@ -81,10 +82,7 @@ ${message}
 
 Looking forward to your reply.`;
 
-    trackEvent("generate_lead", {
-      form_name: "contact_form",
-      page_path: window.location.pathname,
-    });
+    trackContactIntent({ method: "contact_form", source: "contact_page_form" });
 
     window.location.href = buildMailtoLink(siteConfig.email, subject, body);
   };
@@ -92,7 +90,6 @@ Looking forward to your reply.`;
 
   return (
     <div>
-      <h1 className="sr-only">Contact Horizon Digital - Start Your Custom Website Project</h1>
       <Seo
         title="Custom Website Project Seychelles | Horizon Digital"
         description="Start your custom website project in Seychelles today. We focus on conversion-led design, fixed pricing, and weekly updates to help your business grow online."
@@ -115,11 +112,12 @@ Looking forward to your reply.`;
               url: "https://horizondigitalsey.com",
               email: siteConfig.email,
               telephone: siteConfig.phone,
-              areaServed: "Seychelles",
+              areaServed: siteConfig.serviceArea,
               contactPoint: {
                 "@type": "ContactPoint",
-                contactType: "customer support",
+                contactType: "sales",
                 email: siteConfig.email,
+                areaServed: siteConfig.serviceArea,
                 availableLanguage: "English",
               },
             },
@@ -130,6 +128,7 @@ Looking forward to your reply.`;
         eyebrow="Get in touch"
         title="Let's figure out the right website for you"
         description="Takes less than 2 minutes. We read every message personally. Just tell us where you're at and we'll suggest the best path forward."
+        headingLevel="h1"
         className="!pt-16 !pb-24 md:!pt-32 md:!pb-32"
       >
         <div className="mx-auto max-w-2xl text-center mt-4 mb-10 lg:max-w-none lg:text-left">
@@ -256,17 +255,10 @@ Looking forward to your reply.`;
               target="_blank"
               rel="noreferrer"
               className="group flex w-full items-center justify-center gap-3 rounded-xl border border-[#25D366]/30 bg-[#25D366]/10 px-6 py-4 transition-all hover:bg-[#25D366]/20 hover:border-[#25D366]/50"
-              onClick={() =>
-                trackEvent("cta_click", {
-                  cta_name: "whatsapp_chat",
-                  page_path: window.location.pathname,
-                })
-              }
+              onClick={() => trackContactIntent({ method: "whatsapp", source: "contact_page_primary" })}
             >
 
-              <svg className="h-5 w-5 fill-[#25D366]" viewBox="0 0 24 24">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.414 0 .011 5.403.008 12.039c0 2.12.54 4.19 1.566 6.02L0 24l6.142-1.61c1.768.963 3.75 1.47 5.762 1.472h.005c6.634 0 12.037-5.404 12.04-12.04.002-3.213-1.248-6.234-3.515-8.504z" />
-              </svg>
+              <WhatsAppIcon className="h-5 w-5 text-[#25D366]" />
               <span className="text-base font-bold text-[#25D366]">Chat on WhatsApp — fastest reply</span>
             </a>
 
@@ -279,12 +271,7 @@ Looking forward to your reply.`;
               <a
                 className="flex items-center gap-4 break-all text-lg font-semibold text-text transition hover:text-cyan group"
                 href={mailtoHref}
-                onClick={() =>
-                  trackEvent("cta_click", {
-                    cta_name: "email_link",
-                    page_path: window.location.pathname,
-                  })
-                }
+                onClick={() => trackContactIntent({ method: "email", source: "contact_page_link" })}
               >
 
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-white/[0.05] bg-white/[0.03] text-text-muted transition-colors group-hover:bg-amber-500/10 group-hover:text-[#F59E0B]">
@@ -297,12 +284,7 @@ Looking forward to your reply.`;
               <a
                 className="flex items-center gap-4 text-lg font-semibold text-text transition hover:text-cyan group"
                 href={`tel:${siteConfig.phone.replace(/\s+/g, "")}`}
-                onClick={() =>
-                  trackEvent("cta_click", {
-                    cta_name: "phone_link",
-                    page_path: window.location.pathname,
-                  })
-                }
+                onClick={() => trackContactIntent({ method: "phone", source: "contact_page_link" })}
               >
 
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-white/[0.05] bg-white/[0.03] text-text-muted transition-colors group-hover:bg-blue-500/10 group-hover:text-[#3B82F6]">
@@ -374,14 +356,11 @@ Looking forward to your reply.`;
                 style={{ backgroundImage: 'linear-gradient(90deg, var(--accent), var(--accent-2), #0C7CC4, var(--accent))', backgroundSize: '300% 100%' }}
                 type="button"
                 onClick={() => {
-                  trackEvent("cta_click", {
-                    cta_name: "book_free_consult",
-                    page_path: window.location.pathname,
-                  });
+                  trackContactIntent({ method: "email", source: "contact_page_consult" });
                   window.location.href = mailtoHref;
                 }}
               >
-                Book a free consult
+                {siteConfig.primaryCtaLabel}
               </button>
             </div>
           </Card>

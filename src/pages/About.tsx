@@ -1,9 +1,10 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { MessageCircle, ExternalLink } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import Seo from "../components/Seo";
 import { siteConfig } from "../data/site";
-import { trackEvent } from "../lib/analytics";
+import { trackContactIntent, trackEvent } from "../lib/analytics";
+import WhatsAppIcon from "../components/ui/WhatsAppIcon";
 
 
 export default function About() {
@@ -387,17 +388,14 @@ export default function About() {
                   rel="noreferrer"
                   className="w-full max-w-md"
                   onClick={() =>
-                    trackEvent("cta_click", {
-                      cta_name: "about_whatsapp_chat",
-                      page_path: window.location.pathname,
-                    })
+                    trackContactIntent({ method: "whatsapp", source: "about_page" })
                   }
                 >
                   <button
                     className="w-full py-5 rounded-full text-black font-black tracking-[0.2em] uppercase text-sm transition-all duration-300 hover:scale-[1.02] hover:brightness-110 active:scale-95 flex items-center justify-center gap-3 cta-gradient-anim"
                     style={{ backgroundImage: 'linear-gradient(90deg, var(--accent), var(--accent-2), #0C7CC4, var(--accent))', backgroundSize: '300% 100%' }}
                   >
-                    <MessageCircle className="w-5 h-5" />
+                    <WhatsAppIcon className="h-5 w-5" />
                     Chat on WhatsApp
                   </button>
                 </a>

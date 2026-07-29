@@ -22,3 +22,22 @@ export function trackEvent(eventName: string, params: Record<string, any> = {}) 
 
   window.gtag('event', eventName, params);
 }
+
+export type ContactIntentMethod = 'whatsapp' | 'email' | 'phone' | 'contact_form';
+
+export function trackContactIntent({
+  method,
+  source,
+  pagePath = window.location.pathname,
+}: {
+  method: ContactIntentMethod;
+  source: string;
+  pagePath?: string;
+}) {
+  trackEvent('contact_intent', {
+    method,
+    source,
+    page_path: pagePath,
+    transport_type: 'beacon',
+  });
+}

@@ -27,12 +27,10 @@
     <script>
       (function(w,d,v,i){
         w.dataLayer=w.dataLayer||[]; w.gtag=function(){w.dataLayer.push(arguments)};
-        function loadGTM(){
-          var j=d.createElement('script'); j.async=true; j.src='https://www.googletagmanager.com/gtag/js?id='+i;
-          d.head.appendChild(j); w.gtag('js',new Date()); w.gtag('config',i,{'send_page_view':false});
-        }
-        const delay = window.innerWidth < 768 ? 3500 : 1500;
-        w.addEventListener('load',function(){setTimeout(loadGTM, delay)});
+        w.gtag('js',new Date());
+        w.gtag('config',i,{'send_page_view':false});
+        var j=d.createElement('script'); j.async=true; j.src='https://www.googletagmanager.com/gtag/js?id='+i;
+        d.head.appendChild(j);
       })(window,document,'dataLayer','G-Z79X024S87');
     </script>
   </head>

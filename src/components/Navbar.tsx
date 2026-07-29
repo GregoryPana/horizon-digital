@@ -1,15 +1,27 @@
 import { useEffect, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { trackEvent } from "../lib/analytics";
-
+import { siteConfig } from "../data/site";
 import NavMenu from "./ui/menu-hover-effects";
-
 import Logo from "./Logo";
+
+export function getHeaderClassName(isScrolled: boolean, isMenuOpen: boolean): string {
+  return [
+    "site-header-dark fixed inset-x-0 top-0 z-[150] border-b",
+    isScrolled ? "is-scrolled" : "",
+    // The compact menu portals to document.body at z-[200]; without pointer-events-none here,
+    // this header (raised to z-[250] while open) sits above it and swallows taps meant for the
+    // close button, since the header's own box still overlaps that region even though its inner
+    // content is already hidden and non-interactive.
+    isMenuOpen ? "!z-[250] !border-transparent !bg-transparent !backdrop-blur-none pointer-events-none" : "",
+  ]
+    .filter(Boolean)
+    .join(" ");
+}
 
 export default function Navbar() {
   const { pathname } = useLocation();
-  const normalizedPath = pathname.replace(/\/+$/, "") || "/";
-  const isHomeRoute = normalizedPath === "/";
+  const isHomeRoute = (pathname.replace(/\/+$/, "") || "/") === "/";
   const [isScrolled, setIsScrolled] = useState(!isHomeRoute);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -28,45 +40,40 @@ export default function Navbar() {
   return (
     <header
       data-site-header
-      className={`site-header-dark fixed top-0 left-0 right-0 z-[150] border-b ${isScrolled ? "is-scrolled" : ""} ${isMenuOpen ? "!z-[250] !bg-transparent !border-transparent !backdrop-blur-none" : ""}`.trim()}
+      className={getHeaderClassName(isScrolled, isMenuOpen)}
     >
-      <div className="mx-auto flex w-full max-w-[1760px] items-center gap-4 px-5 py-3 md:gap-6 md:px-8 md:py-4 lg:px-12 xl:px-16 2xl:px-20">
+      <div
+        className={`container-wide flex h-[var(--header-height)] items-center gap-4 transition-opacity duration-200 ${
+          isMenuOpen ? "pointer-events-none opacity-0" : "opacity-100"
+        }`.trim()}
+      >
         <NavLink
           to="/"
-          className="focus-ring inline-flex items-center rounded-full"
+          aria-label="Horizon Digital home"
+          title="Home"
+          className="focus-ring inline-flex min-h-11 items-center rounded-xl"
           onClick={() => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })}
         >
-          <Logo
-            className="items-center gap-2"
-            imageClassName="h-8 w-[48px] rounded-sm object-contain md:h-9 md:w-[54px]"
-          />
-          <span className="brand-name ml-2 whitespace-nowrap text-[11px] sm:text-xs uppercase tracking-[0.12em] text-accent text-left">
+          <Logo className="items-center gap-2" imageClassName="h-8 w-[48px] object-contain" />
+          <span className="brand-name ml-2 hidden whitespace-nowrap text-[0.7rem] uppercase tracking-[0.14em] text-accent sm:inline">
             Horizon Digital
           </span>
         </NavLink>
-        <div className="ml-auto flex items-center gap-3">
+
+        <div className="ml-auto flex items-center gap-3 xl:gap-5">
           <NavMenu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
-          <div className="hidden items-center gap-7 lg:flex">
-            <style>{`
-              @keyframes nav-cta-gradient {
-                0% { background-position: 0% 50%; }
-                100% { background-position: -300% 50%; }
-              }
-            `}</style>
-            <NavLink
-              to="/contact"
-              className="px-6 py-2.5 sm:px-8 sm:py-3 text-black rounded-full font-black uppercase tracking-[0.2em] text-[11px] sm:text-xs transition-all duration-300 hover:scale-[1.02] hover:brightness-110 active:scale-95 text-center whitespace-nowrap"
-              style={{ backgroundImage: 'linear-gradient(90deg, var(--accent), var(--accent-2), #0C7CC4, var(--accent))', backgroundSize: '300% 100%', animation: 'nav-cta-gradient 5s linear infinite' }}
-              onClick={() =>
-                trackEvent("cta_click", {
-                  cta_name: "nav_book_free_consult",
-                  page_path: window.location.pathname,
-                })
-              }
-            >
-              Book a free consult
-            </NavLink>
-          </div>
+          <NavLink
+            to="/contact"
+            className="focus-ring hidden min-h-11 items-center justify-center rounded-xl bg-accent px-5 text-center text-[0.68rem] font-black uppercase tracking-[0.14em] text-[#071013] transition-[background-color,transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:bg-accent-strong hover:shadow-[0_10px_28px_rgba(88,213,227,0.18)] active:translate-y-0 xl:inline-flex 2xl:px-6"
+            onClick={() =>
+              trackEvent("cta_click", {
+                cta_name: "nav_book_free_consult",
+                page_path: window.location.pathname,
+              })
+            }
+          >
+            {siteConfig.primaryCtaLabel}
+          </NavLink>
         </div>
       </div>
     </header>

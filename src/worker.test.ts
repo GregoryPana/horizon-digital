@@ -85,64 +85,15 @@ describe("worker fetch handler", () => {
     vi.unstubAllGlobals();
   });
 
-  it("keeps the chat webhook token server-side", async () => {
-    const upstreamFetch = vi.fn(async (input: string | URL | Request, init?: RequestInit) => {
-      expect(String(input)).toBe("https://chat.example.test/webhook/chat");
-      expect(new Headers(init?.headers).get("x-chat-token")).toBe("server-secret");
-      expect(init?.body).toBeInstanceOf(ArrayBuffer);
-      return Response.json({ reply: "Hello" });
-    });
-    vi.stubGlobal("fetch", upstreamFetch);
-
+  it("permanently redirects www requests to the canonical apex", async () => {
     const response = await worker.fetch(
-      new Request("https://horizondigitalsey.com/api/chat", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ message: "Hello" }),
-      }),
-      {
-        ...makeEnv(),
-        CHAT_WEBHOOK_TOKEN: "server-secret",
-        CHAT_API_BASE: "https://chat.example.test/webhook",
-      },
-    );
-
-    expect(response.status).toBe(200);
-    await expect(response.json()).resolves.toEqual({ reply: "Hello" });
-    expect(response.headers.get("cache-control")).toBe("no-store");
-    expect(upstreamFetch).toHaveBeenCalledOnce();
-  });
-
-  it("returns 503 when the server-side chat secret is not configured", async () => {
-    const response = await worker.fetch(
-      new Request("https://horizondigitalsey.com/api/chat", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ message: "Hello" }),
-      }),
+      new Request("https://www.horizondigitalsey.com/pricing?source=www"),
       makeEnv(),
     );
-    expect(response.status).toBe(503);
-  });
-
-  it("rejects non-POST and oversized chat requests", async () => {
-    const env = { ...makeEnv(), CHAT_WEBHOOK_TOKEN: "server-secret" };
-    const methodResponse = await worker.fetch(
-      new Request("https://horizondigitalsey.com/api/chat"),
-      env,
+    expect(response.status).toBe(301);
+    expect(response.headers.get("location")).toBe(
+      "https://horizondigitalsey.com/pricing?source=www",
     );
-    expect(methodResponse.status).toBe(405);
-    expect(methodResponse.headers.get("allow")).toBe("POST");
-
-    const sizeResponse = await worker.fetch(
-      new Request("https://horizondigitalsey.com/api/chat", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ message: "x".repeat(33_000) }),
-      }),
-      env,
-    );
-    expect(sizeResponse.status).toBe(413);
   });
 
   it("returns 200 for the canonical /pricing route", async () => {

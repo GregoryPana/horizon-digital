@@ -1,201 +1,33 @@
-import React, { useMemo, useState, useRef } from "react";
-import { motion, useReducedMotion } from "framer-motion";
-import { ArrowRight, ArrowUpRight, Check, ChevronLeft, ChevronRight } from "lucide-react";
-import Seo from "../components/Seo";
-import HomeFaq from "../components/ui/home-faq";
-import { ShimmerButton } from "../components/ui/shimmer-button";
-import { Link } from "react-router-dom";
-import { scrollToTopSmooth } from "../lib/utils";
-import { trackEvent } from "../lib/analytics";
-import { ImageWithSkeleton } from "../components/ui/ImageWithSkeleton";
-
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
-  foundationPackage,
-  starterPackage,
-  growthPackage,
-  customPackage,
-  siteConfig,
-  projectSteps,
-  workItems,
-  homeFaqCategories,
-} from "../data/site";
-
-import { TracingCard, InteractiveIcon } from '../components/ui/TracingCard';
-import { AnimatedIcon } from "../components/ui/AnimatedIcon";
-import { ContainerScroll, CardSticky } from "../components/ui/cards-stack";
-
+  ArrowRight,
+  ArrowUpRight,
+  Sparkles,
+} from "lucide-react";
+import { useRef, type PointerEvent as ReactPointerEvent, type ReactNode } from "react";
+import { Link } from "react-router-dom";
+import Seo from "../components/Seo";
+import { InteractiveSvgIcon } from "../components/ui/InteractiveSvgIcon";
+import { SectorStoryMark, type SectorStoryKind } from "../components/ui/SectorStoryMark";
+import { buildHomeProcessFlowStages } from "../components/ui/homeProcessFlow";
+import HomeFaq from "../components/ui/home-faq";
 import Hero from "../components/ui/animated-shader-hero";
-import { OurServicesSlideshow } from "../components/ui/OurServicesSlideshow";
-import { TrustSignalsBar } from "../components/ui/TrustSignalsBar";
-
-
-const marqueeItems = [
-  "Technical SEO foundations included",
-  "Typical projects: around 3–6 weeks",
-  "Clear ownership terms",
-  "Responsive layouts for common devices",
-  "Direct contact paths for customers",
-];
-
-
-const problemCards: Array<{
-  title: string;
-  body: string;
-  color: string;
-  type: 'outdated' | 'found' | 'zero' | 'start';
-  link?: { text: string; to: string };
-}> = [
-  {
-    title: "My website looks outdated",
-    body: "I'm embarrassed to share it with customers. It doesn't reflect the quality of service we provide in person.",
-    color: "cyan",
-    type: "outdated",
-  },
-  {
-    title: "Customers cannot find me",
-    body: "I tell people to Google us, but we don't show up. I don't know how to fix it and competitors get all the search traffic.",
-    color: "cyan",
-    type: "found",
-  },
-  {
-    title: "Zero enquiries",
-    body: "The site is online but has never brought a new customer. It feels like an expense, not an asset.",
-    color: "cyan",
-    type: "zero",
-  },
-  {
-    title: "I don't know where to begin",
-    body: "I know I probably need a website, but every time I look into it I get more confused. I don't know what's involved, what it costs, or who to trust.",
-    color: "cyan",
-    type: "start",
-    link: { text: "Start here", to: "/what-you-need" },
-  },
-];
-
-function WorkShowcase() {
-  const shouldReduceMotion = useReducedMotion();
-  const showcase = useMemo(
-    () => [
-      {
-        ...workItems[0],
-        tier: "Growth Tier",
-        tag: "Real client · Live site",
-      },
-      {
-        ...workItems[2],
-        tier: "Foundation Tier",
-        tag: "Showcase demo",
-      },
-      {
-        ...workItems[1],
-        tier: "Foundation Tier",
-        tag: "Showcase demo",
-      },
-    ],
-    []
-  );
-
-
-
-  return (
-    <section id="work" className="relative overflow-hidden bg-[#0A0A0C]">
-      <div className="relative z-30 mx-auto max-w-7xl bg-[#0A0A0C] px-6 pb-10 pt-24 md:pt-28">
-        <motion.div
-          className="mb-20 text-center"
-          initial={shouldReduceMotion ? undefined : { opacity: 0, y: 24, filter: 'blur(10px)' }}
-          whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: 'blur(0px)' }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">Selected work and concepts</span>
-          <h2 className="font-display mx-auto max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl">
-            See what is <span className="text-cyan font-semibold">possible</span> for your business
-          </h2>
-          <p className="mx-auto mt-4 max-w-3xl text-lg text-text-muted">One live client project alongside clearly labelled concept work.</p>
-        </motion.div>
-      </div>
-
-      {showcase.map((project, idx) => (
-        <article key={project.title} className="relative min-h-[110vh] md:min-h-[135vh]">
-          <div className="sticky top-0 flex h-[100dvh] items-center overflow-hidden">
-            <div className="absolute inset-0 z-0">
-              <ImageWithSkeleton
-                src={idx === 0 ? project.imageWebp : project.imageWebp800}
-                alt={project.title}
-                width="600"
-                height="400"
-                containerClassName="h-full w-full"
-                className="h-full w-full scale-[1.08] object-cover opacity-66"
-                loading={idx === 0 ? "eager" : "lazy"}
-                decoding="async"
-              />
-              <div className="absolute inset-0 bg-gradient-to-b from-[#0A0A0C] via-transparent to-[#0A0A0C]" />
-              <div className="absolute inset-0 bg-[radial-gradient(ellipse_112%_100%_at_center,transparent_0%,#0A0A0C_86%)] translate-y-[-1px]" />
-              <div className="absolute inset-0 md:hidden bg-gradient-to-b from-[#0A0A0C]/86 via-[#0A0A0C]/34 to-[#0A0A0C]/90" />
-            </div>
-
-            <div className="relative z-20 mx-auto grid w-full max-w-7xl items-center gap-12 px-6 lg:grid-cols-2">
-              <div className={idx % 2 === 1 ? "lg:order-2" : ""}>
-                <div className="relative rounded-[2.5rem] bg-black/20 shadow-[0_8px_32px_rgba(0,0,0,0.4)] p-8 text-center backdrop-blur-[2px] md:p-12 md:text-left lg:-ml-12 xl:-ml-16">
-                  <div className="mx-auto mb-7 inline-flex items-center gap-3 rounded-full border border-deep-teal/35 bg-deep-teal/10 px-4 py-2 md:mx-0">
-                    <span className="h-2 w-2 rounded-full bg-deep-teal animate-pulse shadow-[0_0_10px_rgba(13,148,136,0.4)]" />
-                    <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-deep-teal md:text-xs">{project.tier}</span>
-                  </div>
-                  <h3 className="font-display text-4xl font-bold uppercase tracking-[-0.04em] text-white md:text-7xl">
-                    {project.title}
-                  </h3>
-                  <p className="mx-auto mt-6 max-w-xl text-lg text-white/90 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)] md:mx-0 md:text-2xl">{project.outcome}</p>
-
-                  <div className="mt-10 flex flex-col items-stretch gap-4 sm:flex-row sm:items-center sm:gap-x-10 md:justify-start">
-                    {project.url ? (
-                      <a
-                        href={project.url}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="group flex flex-1 items-center justify-center rounded-lg border border-cyan/40 bg-transparent px-8 py-3.5 text-[11px] font-black uppercase tracking-[0.2em] text-cyan transition-all hover:border-cyan hover:bg-cyan/5 md:flex-none md:text-[11px]"
-                        onClick={() =>
-                          trackEvent("cta_click", {
-                            cta_name: `explore_project_${project.title.toLowerCase().replace(/\s+/g, "_")}`,
-                            page_path: window.location.pathname,
-                          })
-                        }
-                      >
-
-                        <span className="whitespace-nowrap">Explore Project</span>
-                        <motion.span whileHover={{ x: 4 }} transition={{ type: "spring", stiffness: 400, damping: 15 }} className="ml-2 flex items-center">
-                          <ArrowRight className="h-3.5 w-3.5" />
-                        </motion.span>
-                      </a>
-                    ) : null}
-                  </div>
-                </div>
-              </div>
-
-              <div className={`hidden lg:block ${idx % 2 === 1 ? "lg:order-1" : ""}`}>
-                <motion.div
-                  whileHover={{ rotate: 0, scale: 1.02 }}
-                  transition={{ type: "spring", stiffness: 150, damping: 20 }}
-                  className={`relative ${idx % 2 === 0 ? "rotate-3" : "-rotate-3"} rounded-2xl bg-[#131315] shadow-[0_10px_32px_rgba(0,0,0,0.45)] p-2`}
-                >
-                  <ImageWithSkeleton 
-                    src={project.image} 
-                    alt={project.title} 
-                    width="600" 
-                    height="320" 
-                    containerClassName="rounded-2xl overflow-hidden aspect-[16/9]"
-                    className="h-80 w-full object-cover" 
-                    loading="lazy" 
-                    decoding="async" 
-                  />
-                </motion.div>
-              </div>
-            </div>
-          </div>
-        </article>
-      ))}
-    </section>
-  );
-}
+import { trackContactIntent, trackEvent } from "../lib/analytics";
+import WhatsAppIcon from "../components/ui/WhatsAppIcon";
+import {
+  businessFacts,
+  foundationPackage,
+  growthPackage,
+  homeFaqCategories,
+  homeProofPoints,
+  projectSteps,
+  services,
+  siteConfig,
+  starterPackage,
+  workItems,
+} from "../data/site";
 
 type HomeProps = {
   seoPath?: string;
@@ -203,52 +35,271 @@ type HomeProps = {
   seoDescription?: string;
 };
 
+gsap.registerPlugin(ScrollTrigger, useGSAP);
+
+const buyerFits = [
+  {
+    number: "01",
+    icon: "refresh" as const,
+    effect: "trace" as const,
+    title: "Your website feels out of date",
+    body: "Your business has moved on, but the website is still difficult to share or use on a phone.",
+  },
+  {
+    number: "02",
+    icon: "compass" as const,
+    effect: "glow" as const,
+    title: "You are not sure where to start",
+    body: "We can help you work out the pages, content, cost and next steps before anything is built.",
+  },
+  {
+    number: "03",
+    icon: "expand" as const,
+    effect: "pop" as const,
+    title: "Your business has outgrown the website",
+    body: "You now have more to explain, more people to reach or better ways for customers to get in touch.",
+  },
+];
+
+const packages = [foundationPackage, starterPackage, growthPackage];
+const serviceIcons = ["browser", "refresh", "search", "devices", "message"] as const;
+const serviceEffects = ["trace", "colour", "glow", "pop", "glow"] as const;
+const processIcons = ["message", "palette", "code", "launch", "support"] as const;
+const processEffects = ["trace", "colour", "trace", "pop", "glow"] as const;
+const sectorKinds: SectorStoryKind[] = [
+  "hospitality",
+  "food",
+  "retail",
+  "professional",
+  "wellness",
+  "tours",
+  "creative",
+];
+
+function replayTouchIconEffect(event: ReactPointerEvent<HTMLDivElement>) {
+  if (event.pointerType !== "touch") return;
+
+  const target = (event.target as HTMLElement).closest<HTMLElement>(".group, .reactive-cta");
+  const hasReplayableEffect = target?.querySelector(
+    ".interactive-svg-icon, .cta-shine",
+  );
+  if (!target || !hasReplayableEffect) return;
+
+  target.classList.remove("is-tap-animating");
+  void target.offsetWidth;
+  target.classList.add("is-tap-animating");
+  window.setTimeout(() => target.classList.remove("is-tap-animating"), 720);
+}
+
+function SectionArt({ tone = "light", side = "right" }: { tone?: "light" | "dark" | "lagoon"; side?: "left" | "right" }) {
+  return (
+    <div className={`section-art section-art-${tone} section-art-${side}`} aria-hidden="true">
+      <svg viewBox="0 0 360 360" fill="none">
+        <path className="section-art-path" d="M18 246C76 130 137 309 202 170C249 68 298 115 346 38" />
+        <path className="section-art-path section-art-path-fine" d="M7 288C88 179 140 336 222 222C273 151 315 165 360 103" />
+        <circle className="section-art-ring" cx="226" cy="132" r="82" />
+        <circle className="section-art-ring section-art-ring-small" cx="226" cy="132" r="48" />
+      </svg>
+      <span className="section-art-node section-art-node-a" />
+      <span className="section-art-node section-art-node-b" />
+      <span className="section-art-node section-art-node-c" />
+    </div>
+  );
+}
+
+function ProjectLink({
+  url,
+  children,
+  className,
+  onClick,
+}: {
+  url?: string;
+  children: ReactNode;
+  className: string;
+  onClick?: () => void;
+}) {
+  if (url?.startsWith("http")) {
+    return (
+      <a href={url} target="_blank" rel="noreferrer noopener" className={className} onClick={onClick}>
+        {children}
+      </a>
+    );
+  }
+
+  return (
+    <Link to={url || "/work"} className={className} onClick={onClick}>
+      {children}
+    </Link>
+  );
+}
+
 export default function Home({
   seoPath = "/",
   seoTitle = "Custom Website Design Seychelles | Horizon Digital",
   seoDescription = "Custom-built websites for Seychelles businesses, with responsive design, clear contact paths and technical SEO foundations.",
 }: HomeProps = {}) {
-  const shouldReduceMotion = useReducedMotion();
+  const pageRef = useRef<HTMLDivElement>(null);
   const allHomeFaqItems = homeFaqCategories.flatMap((category) => category.items);
-  const handleWorkScrollTop = () => scrollToTopSmooth();
 
-  const [activeProblem, setActiveProblem] = useState(0);
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia();
 
-  const problemScrollRef = useRef<HTMLDivElement>(null);
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        gsap.utils.toArray<HTMLElement>(".section-reveal").forEach((section) => {
+          const items = section.querySelectorAll(".reveal-item");
+          gsap.from(items.length ? items : section, {
+            opacity: 0,
+            y: 42,
+            duration: 0.85,
+            stagger: 0.1,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: section,
+              start: "top 82%",
+              once: true,
+            },
+          });
+        });
 
-  const handleProblemCardClick = (idx: number) => {
-    if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
-      setActiveProblem(idx);
-    }
-  };
+        gsap.from(".package-card", {
+          opacity: 0,
+          y: 55,
+          scale: 0.96,
+          duration: 0.85,
+          stagger: 0.12,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".pricing-grid",
+            start: "top 80%",
+            once: true,
+          },
+        });
 
-  const scrollCarouselTo = (ref: React.RefObject<HTMLDivElement>, targetIndex: number, totalSlides: number) => {
-    if (!ref.current) return;
-    const scrollContainer = ref.current;
-    
-    let index = targetIndex;
-    if (index >= totalSlides) {
-      index = 0;
-    }
-    if (index < 0) {
-      index = totalSlides - 1;
-    }
-    
-    const child = scrollContainer.children[index] as HTMLElement;
-    if (child) {
-      scrollContainer.scrollTo({
-        left: child.offsetLeft - parseInt(getComputedStyle(scrollContainer).paddingLeft || "20", 10),
-        behavior: "smooth"
+        gsap.from(".featured-package .pricing-feature", {
+          opacity: 0,
+          x: -14,
+          duration: 0.45,
+          stagger: 0.07,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: ".featured-package",
+            start: "top 75%",
+            once: true,
+          },
+        });
+
+        const processItems = gsap.utils.toArray<HTMLElement>(".home-process-step");
+        const processPath = pageRef.current?.querySelector<SVGLineElement>(
+          ".home-process-flow-path",
+        );
+
+        if (processPath && processItems.length > 1) {
+          const stages = buildHomeProcessFlowStages(processItems.length);
+          const setActiveStep = (activeIndex: number) => {
+            processItems.forEach((item, index) => {
+              item.classList.toggle("is-flow-active", index === activeIndex);
+            });
+          };
+          const flowTimeline = gsap.timeline({ repeat: -1, repeatDelay: 0.55 });
+
+          flowTimeline
+            .set(processPath, { scaleY: 0, opacity: 1 })
+            .call(() => setActiveStep(0))
+            .to({}, { duration: 0.65 });
+
+          stages.slice(1).forEach((stage) => {
+            flowTimeline
+              .to(processPath, {
+                scaleY: stage.progress,
+                duration: 0.72,
+                ease: "power1.inOut",
+              })
+              .call(() => setActiveStep(stage.index))
+              .to({}, { duration: 0.62 });
+          });
+
+          flowTimeline
+            .to(processPath, { opacity: 0.18, duration: 0.28, ease: "power1.out" })
+            .call(() => setActiveStep(-1))
+            .set(processPath, { scaleY: 0 })
+            .to(processPath, { opacity: 1, duration: 0.22 })
+            .to({}, { duration: 0.35 })
+            .pause(0);
+
+          const resetFlow = () => {
+            flowTimeline.pause(0);
+            gsap.set(processPath, { scaleY: 0, opacity: 1 });
+            setActiveStep(-1);
+          };
+          const processTrigger = ScrollTrigger.create({
+            trigger: ".home-process-flow-wrap",
+            start: "top 92%",
+            end: "bottom 8%",
+            onEnter: () => flowTimeline.restart(),
+            onEnterBack: () => flowTimeline.restart(),
+            onLeave: resetFlow,
+            onLeaveBack: resetFlow,
+          });
+
+          return () => {
+            processTrigger.kill();
+            flowTimeline.kill();
+            processItems.forEach((item) => item.classList.remove("is-flow-active"));
+          };
+        }
       });
-    }
-  };
 
-  const handleProblemScroll = (e: React.UIEvent<HTMLDivElement>) => {
-    const scrollLeft = e.currentTarget.scrollLeft;
-    const width = e.currentTarget.clientWidth;
-    const index = Math.round(scrollLeft / width);
-    setActiveProblem(index);
-  };
+      mm.add("(prefers-reduced-motion: no-preference) and (min-width: 768px)", () => {
+        gsap.utils.toArray<HTMLElement>(".ambient-blob").forEach((blob, index) => {
+          gsap.to(blob, {
+            xPercent: index % 2 === 0 ? 16 : -14,
+            yPercent: index % 3 === 0 ? -12 : 14,
+            scale: index % 2 === 0 ? 1.12 : 0.92,
+            duration: 9 + index * 1.4,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut",
+          });
+        });
+
+        gsap.utils.toArray<HTMLElement>(".section-art").forEach((art, index) => {
+          const paths = art.querySelectorAll(".section-art-path");
+          gsap.from(paths, {
+            opacity: 0,
+            strokeDashoffset: 110,
+            duration: 1.4,
+            stagger: 0.12,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: art.parentElement,
+              start: "top 84%",
+              once: true,
+            },
+          });
+          gsap.to(art, {
+            xPercent: index % 2 === 0 ? 2.5 : -2.5,
+            yPercent: index % 2 === 0 ? -3 : 3,
+            rotation: index % 2 === 0 ? 1.5 : -1.5,
+            duration: 7 + index,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut",
+          });
+        });
+      });
+
+      mm.add("(prefers-reduced-motion: reduce)", () => {
+        gsap.set(".home-process-flow-path", { scaleY: 1, opacity: 1 });
+        gsap.utils
+          .toArray<HTMLElement>(".home-process-step")
+          .forEach((item) => item.classList.remove("is-flow-active"));
+      });
+
+      return () => mm.revert();
+    },
+    { scope: pageRef }
+  );
 
   const faqSchema = {
     "@context": "https://schema.org",
@@ -256,62 +307,44 @@ export default function Home({
     mainEntity: allHomeFaqItems.map((faq) => ({
       "@type": "Question",
       name: faq.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: faq.answer,
-      },
+      acceptedAnswer: { "@type": "Answer", text: faq.answer },
     })),
-    mainEntityOfPage: new URL("/", siteConfig.url).toString(),
+    mainEntityOfPage: new URL(seoPath, siteConfig.url).toString(),
   };
 
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
-    "serviceType": "Custom Web Development",
-    "provider": {
+    serviceType: "Custom Web Development",
+    provider: {
       "@type": "Organization",
-      "name": siteConfig.name,
-      "url": siteConfig.url,
-      "email": siteConfig.email,
-      "telephone": siteConfig.phone,
-      "image": new URL("/og-image.png", siteConfig.url).toString()
+      name: siteConfig.name,
+      url: siteConfig.url,
+      email: siteConfig.email,
+      telephone: siteConfig.phone,
+      image: new URL("/og-image.png", siteConfig.url).toString(),
     },
-    "description": "Custom web design and development for Seychelles businesses, with responsive layouts and technical SEO foundations.",
-    "areaServed": {
-      "@type": "Country",
-      "name": "Seychelles"
-    },
-    "hasOfferCatalog": {
+    description: "Custom web design and development for Seychelles businesses, with responsive layouts and technical SEO foundations.",
+    areaServed: { "@type": "Country", name: "Seychelles" },
+    hasOfferCatalog: {
       "@type": "OfferCatalog",
-      "name": "Web Design Packages",
-      "itemListElement": [
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Foundation Package"
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Starter Package"
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Growth Package"
-          }
-        }
-      ]
-    }
+      name: "Web Design Packages",
+      itemListElement: packages.map((item) => ({
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: `${item.title} Package` },
+      })),
+    },
   };
 
+  const trackCta = (name: string) =>
+    trackEvent("cta_click", { cta_name: name, page_path: window.location.pathname });
+
   return (
-    <div className="bg-[#0A0A0C] text-white">
+    <div
+      ref={pageRef}
+      className="bg-bg text-text"
+      onPointerUpCapture={replayTouchIconEffect}
+    >
       <Seo
         title={seoTitle}
         description={seoDescription}
@@ -321,693 +354,437 @@ export default function Home({
       />
 
       <Hero
-        trustBadge={{ text: "Custom Web Design Studio • Seychelles" }}
+        websiteBuildStory
+        trustBadge={{ text: "Web design in Mahé, Seychelles" }}
         headline={{
-          lines: [
-            "CUSTOM STUNNING WEBSITES"
-          ],
-          rotatingWords: ["STUNNING", "PROFESSIONAL", "FAST", "MOBILE READY"]
+          lines: ["CUSTOM STUNNING WEBSITES"],
+          rotatingWords: ["STUNNING", "PROFESSIONAL", "FAST", "MOBILE-READY"],
         }}
-        subtitle="A website that presents your business clearly, works across common devices, and makes it easy for customers to contact you."
+        subtitle="We plan, design and build your site with you, so you know what is happening, what it costs and what comes next."
         tags={[
-          { text: "BUILT AROUND YOU", icon: (
-            <svg className="h-3 w-3 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-              <polyline points="20 6 9 17 4 12" />
-            </svg>
-          )},
-          { text: "PERFORMANCE-AWARE", icon: (
-            <svg className="h-3 w-3 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
-            </svg>
-          )},
-          { text: "LOOKS GREAT ON ANY PHONE", icon: (
-            <svg className="h-3 w-3 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
-              <line x1="12" y1="18" x2="12.01" y2="18" />
-            </svg>
-          )},
-          { text: "CUSTOMERS CAN FIND YOU", icon: (
-            <svg className="h-3 w-3 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-              <circle cx="11" cy="11" r="8" />
-              <line x1="21" y1="21" x2="16.65" y2="16.65" />
-            </svg>
-          )},
+          {
+            text: "Made for your business",
+            icon: <InteractiveSvgIcon kind="check" effect="trace" className="h-4 w-4" strokeWidth={2.4} />,
+          },
+          {
+            text: "Works on mobile",
+            icon: <InteractiveSvgIcon kind="devices" effect="pop" className="h-4 w-4" />,
+          },
+          {
+            text: "Ready for search",
+            icon: <InteractiveSvgIcon kind="search" effect="glow" className="h-4 w-4" />,
+          },
         ]}
         buttons={{
           primary: {
-            text: "Book a free call",
+            text: siteConfig.primaryCtaLabel,
             link: "/contact",
-            onClick: () =>
-              trackEvent("cta_click", {
-                cta_name: "hero_book_call",
-                page_path: window.location.pathname,
-              }),
+            onClick: () => trackCta("hero_book_call"),
           },
           secondary: {
             text: "See our work",
             link: "/work",
-            onClick: () => {
-              trackEvent("cta_click", {
-                cta_name: "hero_see_work",
-                page_path: window.location.pathname,
-              });
-              handleWorkScrollTop();
-            },
+            onClick: () => trackCta("hero_see_work"),
           },
         }}
-
       />
-      <TrustSignalsBar />
 
-      <section className="relative z-20 bg-[#0A0A0C] py-20 md:py-32">
-        <div className="mx-auto max-w-7xl px-6">
-          <motion.div
-            initial={shouldReduceMotion ? undefined : { opacity: 0, y: 24, filter: 'blur(10px)' }}
-            whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: 'blur(0px)' }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="mb-20 text-center"
-          >
-            <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">Sound Familiar?</span>
-            <h2 className="font-display mx-auto max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl">
-              Most businesses in Seychelles face the same problems <span className="text-cyan font-semibold">online.</span>
-            </h2>
-          </motion.div>
+      <section className="trust-ribbon border-b border-white/10" aria-label="What you can verify">
+        <div className="container-wide grid sm:grid-cols-2 lg:grid-cols-4">
+          {homeProofPoints.map((item, index) => {
+            const row = (
+              <>
+                <span className="font-mono text-[0.65rem] tracking-[0.14em] text-cyan-100">0{index + 1}</span>
+                <span className="flex flex-col">
+                  <span className="text-[0.66rem] font-semibold uppercase tracking-[0.12em] text-white/55">{item.label}</span>
+                  <span className="text-sm font-semibold text-white/90">{item.value}</span>
+                </span>
+              </>
+            );
+            const rowClassName =
+              "flex min-h-20 items-center gap-4 border-b border-white/10 py-5 text-white sm:border-r sm:px-5 lg:border-b-0 lg:px-6 first:pl-0 last:border-r-0 last:pr-0";
+            if (item.href) {
+              return (
+                <ProjectLink
+                  key={item.label}
+                  url={item.href}
+                  onClick={() => trackCta("proof_rail_drake_seaside")}
+                  className={`${rowClassName} focus-ring transition-colors duration-200 hover:text-cyan-100`}
+                >
+                  {row}
+                </ProjectLink>
+              );
+            }
+            return (
+              <div key={item.label} className={rowClassName}>
+                {row}
+              </div>
+            );
+          })}
+        </div>
+      </section>
 
-          <div
-            ref={problemScrollRef}
-            className="mb-8 md:mb-16 flex items-stretch gap-5 overflow-x-auto snap-x snap-mandatory pb-4 -mx-5 px-5 md:mx-0 md:px-0 md:grid md:grid-cols-2 md:gap-6 md:overflow-visible md:snap-none md:pb-0 lg:grid-cols-4 scrollbar-hide touch-pan-y touch-pan-x"
-            onScroll={handleProblemScroll}
-          >
-            {problemCards.map((card, idx) => (
-              <TracingCard
-                key={card.title}
-                active={activeProblem === idx}
-                onClick={() => handleProblemCardClick(idx)}
-                initial={shouldReduceMotion ? undefined : { opacity: 0, y: 16, filter: 'blur(8px)' }}
-                whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: 'blur(0px)' }}
-                viewport={{ once: true, amount: 0.1 }}
-                transition={{ duration: 0.6, delay: 0.05 * idx, ease: [0.16, 1, 0.3, 1] }}
-                className="p-5 sm:p-6 min-w-[calc(100vw-40px)] w-[calc(100vw-40px)] max-w-[calc(100vw-40px)] snap-center snap-always shrink-0 md:w-auto md:max-w-none md:min-w-0 md:shrink self-stretch md:cursor-pointer"
+      <section className="section-light section-reveal section-space relative overflow-hidden border-b border-border" id="fit">
+        <div className="ambient-blob absolute -right-24 top-12 h-80 w-80 rounded-full bg-cyan-300/25 blur-[90px]" aria-hidden="true" />
+        <SectionArt tone="light" side="right" />
+        <div className="ambient-blob absolute -left-20 bottom-0 h-72 w-72 rounded-full bg-emerald-200/30 blur-[95px]" aria-hidden="true" />
+        <div className="container-standard relative">
+          <div className="grid gap-12 lg:grid-cols-12 lg:gap-8">
+            <header className="reveal-item lg:col-span-5">
+              <p className="section-eyebrow">When your website feels behind</p>
+              <h2 className="mt-5 text-balance text-[clamp(2.4rem,4.2vw,4.5rem)] font-bold leading-[1.03] tracking-[-0.04em]">
+                Bring your website <span className="text-gradient-deep">up to date.</span>
+              </h2>
+              <p className="mt-6 max-w-lg text-pretty text-base leading-relaxed text-text-muted sm:text-lg">
+                If your current site feels dated, hard to use on mobile or no longer matches the business, we can help you work out what to change.
+              </p>
+              <Link
+                to="/what-you-need"
+                className="reactive-cta focus-ring group mt-8 inline-flex min-h-12 items-center gap-2 rounded-full bg-[#0b2830] px-6 py-3 text-sm font-bold text-white shadow-[0_12px_32px_rgba(10,51,61,0.16)] transition-[transform,box-shadow,background-color] duration-300 hover:-translate-y-1 hover:bg-[#0f3a42] hover:shadow-[0_16px_38px_rgba(10,51,61,0.24)]"
               >
-                <InteractiveIcon shouldReduceMotion={shouldReduceMotion || undefined}>
-                  <AnimatedIcon type={card.type} active={activeProblem === idx} />
-                </InteractiveIcon>
+                Work out what you need
+                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1.5" aria-hidden="true" />
+              </Link>
+            </header>
 
-                <h3 className="font-display mb-2 text-lg semibold-underline text-white">{card.title}</h3>
-                <p className="text-sm leading-relaxed text-text-muted flex-1">{card.body}</p>
-                {card.link && (
-                  <Link
-                    to={card.link.to}
-                    className="group/link mt-6 inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.2em] text-cyan transition-colors hover:text-white"
-                  >
-                    {card.link.text}
-                    <motion.span
-                      className="inline-flex"
-                      whileHover={{ x: 4 }}
-                      transition={{ type: "spring", stiffness: 400, damping: 15 }}
-                    >
-                      <ArrowRight className="h-3 w-3" />
-                    </motion.span>
-                  </Link>
-                )}
-              </TracingCard>
-            ))}
-          </div>
-
-          <div className="flex justify-center items-center gap-4 mb-16 md:hidden">
-            <motion.button
-              whileTap={{ scale: 0.9 }}
-              whileHover={{ scale: 1.08 }}
-              onClick={() => scrollCarouselTo(problemScrollRef, activeProblem - 1, problemCards.length)}
-              className="flex items-center justify-center p-3 text-cyan transition-all bg-[#131315] shadow-[0_2px_8px_rgba(0,0,0,0.3)] rounded-full"
-              aria-label="Previous problem"
-            >
-              <ChevronLeft className="w-5 h-5" />
-            </motion.button>
-            <div className="flex justify-center gap-3">
-              {problemCards.map((_, i) => (
-                <div 
-                  key={i} 
-                  className={`h-2 rounded-full transition-all duration-300 ${activeProblem === i ? "w-8 bg-cyan" : "w-2 bg-white/20 hover:bg-white/40 cursor-pointer"}`}
-                  onClick={() => scrollCarouselTo(problemScrollRef, i, problemCards.length)}
-                />
+            <div className="reveal-item grid gap-4 lg:col-span-6 lg:col-start-7">
+              {buyerFits.map((item) => (
+                <article key={item.number} className="group grid gap-4 rounded-2xl border border-border bg-white/70 p-5 shadow-[0_12px_40px_rgba(15,61,68,0.07)] backdrop-blur-sm transition-[border-color,box-shadow,transform] duration-300 hover:-translate-y-1 hover:border-cyan-600/25 hover:shadow-[0_18px_46px_rgba(15,61,68,0.12)] sm:grid-cols-[3.5rem_1fr] sm:gap-6 sm:p-6">
+                  <div className="reactive-icon flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-[#d7f7f5] to-[#cbe9f5] text-[#0c6973] shadow-inner" aria-hidden="true">
+                    <InteractiveSvgIcon kind={item.icon} effect={item.effect} className="h-7 w-7" />
+                  </div>
+                  <div>
+                    <span className="font-mono text-[0.66rem] tracking-[0.14em] text-accent-strong">{item.number}</span>
+                    <h3 className="mt-2 text-balance text-xl font-semibold tracking-[-0.02em] text-text sm:text-2xl">{item.title}</h3>
+                    <p className="mt-3 text-pretty text-sm leading-relaxed text-text-muted sm:text-base">{item.body}</p>
+                  </div>
+                </article>
               ))}
             </div>
-            <motion.button
-              whileTap={{ scale: 0.9 }}
-              whileHover={{ scale: 1.08 }}
-              onClick={() => scrollCarouselTo(problemScrollRef, activeProblem + 1, problemCards.length)}
-              className="flex items-center justify-center p-3 text-cyan transition-all bg-[#131315] shadow-[0_2px_8px_rgba(0,0,0,0.3)] rounded-full"
-              aria-label="Next problem"
-            >
-              <ChevronRight className="w-5 h-5" />
-            </motion.button>
           </div>
 
-          <motion.div
-            className="text-center"
-            initial={shouldReduceMotion ? undefined : { opacity: 0, scale: 0.9 }}
-            whileInView={shouldReduceMotion ? undefined : { opacity: 1, scale: 1 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <p className="font-display inline-flex items-center gap-4 text-2xl font-bold uppercase tracking-[0.2em] text-cyan">
-              <motion.span
-                initial={shouldReduceMotion ? undefined : { scaleX: 0 }}
-                whileInView={shouldReduceMotion ? undefined : { scaleX: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                style={{ originX: 1 }}
-                className="h-px w-12 bg-cyan/50 block"
-              />
-              A clearer way forward.
-              <motion.span
-                initial={shouldReduceMotion ? undefined : { scaleX: 0 }}
-                whileInView={shouldReduceMotion ? undefined : { scaleX: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                style={{ originX: 0 }}
-                className="h-px w-12 bg-cyan/50 block"
-              />
+          <div className="sector-trust-band reveal-item mt-16">
+            <p className="sr-only">Businesses we design for</p>
+            <div className="sector-marquee" role="region" aria-label="Businesses we design for">
+              <div className="sector-marquee-track">
+                {[false, true].map((duplicate) => (
+                  <ul key={duplicate ? "duplicate" : "primary"} className="sector-marquee-group" aria-hidden={duplicate || undefined}>
+                    <li className="sector-marquee-label">
+                      <span className="sector-marquee-signal" aria-hidden="true" />
+                      Businesses we design for
+                    </li>
+                    {businessFacts.business.industries.map((industry, index) => (
+                      <li key={`${duplicate ? "duplicate-" : ""}${industry}`} className="sector-marquee-item">
+                        <span className="sector-marquee-icon" aria-hidden="true">
+                          <SectorStoryMark kind={sectorKinds[index]} className="h-9 w-12" />
+                        </span>
+                        <span>{industry}</span>
+                      </li>
+                    ))}
+                  </ul>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-reveal section-space relative overflow-hidden border-b border-border bg-[#0b161b]" id="featured-work">
+        <div className="ambient-blob absolute -left-36 top-1/3 h-96 w-96 rounded-full bg-cyan-600/10 blur-[110px]" aria-hidden="true" />
+        <SectionArt tone="dark" side="left" />
+        <div className="container-wide relative">
+          <header className="reveal-item grid gap-5 lg:grid-cols-12">
+            <div className="lg:col-span-7">
+              <p className="section-eyebrow">Selected work</p>
+              <h2 className="mt-5 text-balance text-[clamp(2.4rem,4.2vw,4.5rem)] font-semibold leading-[1.03] tracking-[-0.04em]">
+                Work you can <span className="text-gradient-tropical">explore.</span>
+              </h2>
+            </div>
+            <p className="max-w-lg text-pretty text-base leading-relaxed text-text-muted lg:col-span-4 lg:col-start-9 lg:self-end">
+              Each project is marked as live client work, a concept or a demonstration.
             </p>
-          </motion.div>
-        </div>
-      </section>
+          </header>
 
-      <section className="relative z-20 overflow-hidden border-y border-[#1a2c33] bg-[#0d1a1f] py-5 sm:py-6">
-        <div className="hd-marquee-track flex items-center gap-20 whitespace-nowrap text-[11px] font-medium uppercase tracking-[0.3em] text-[#8fa7b4]">
-          {[...marqueeItems, ...marqueeItems].map((item, i) => (
-            <span key={`${item}-${i}`} className="inline-flex items-center gap-20">
-              <span>{item}</span>
-              <span className="h-2 w-2 rounded-full bg-[#6f8891]" />
-            </span>
-          ))}
-        </div>
-      </section>
-
-      <section id="services" className="relative z-20 bg-[#0A0A0C] py-20 md:py-32">
-        <div className="mx-auto max-w-7xl px-6">
-          <motion.div
-            className="mb-20 text-center"
-            initial={shouldReduceMotion ? undefined : { opacity: 0, y: 24, filter: 'blur(10px)' }}
-            whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: 'blur(0px)' }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">Our Services</span>
-            <h2 className="font-display mx-auto max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl">
-              Websites built around how your business <span className="text-cyan font-semibold">actually works.</span>
-            </h2>
-          </motion.div>
-
-          <motion.div
-            className="mt-16 w-full"
-            initial={shouldReduceMotion ? undefined : { opacity: 0, y: 20, filter: 'blur(8px)' }}
-            whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: 'blur(0px)' }}
-            viewport={{ once: true, amount: 0.1 }}
-            transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <OurServicesSlideshow />
-          </motion.div>
-        </div>
-      </section>
-
-      <section id="difference" className="border-t border-white/5 bg-black py-24 md:py-32">
-        <div className="mx-auto max-w-5xl px-5 sm:px-6 lg:px-8 text-center">
-          <motion.span
-            className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow"
-            initial={shouldReduceMotion ? undefined : { opacity: 0, y: 10 }}
-            whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          >How We're Different</motion.span>
-          <motion.h2 
-            initial={shouldReduceMotion ? undefined : { opacity: 0, scale: 0.95, filter: 'blur(8px)' }}
-            whileInView={shouldReduceMotion ? undefined : { opacity: 1, scale: 1, filter: 'blur(0px)' }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
-            className="font-display mx-auto max-w-3xl text-3xl font-semibold leading-tight tracking-tight text-white md:text-4xl"
-          >
-            A different kind of <span className="text-cyan font-semibold">digital partner.</span>
-          </motion.h2>
-          <div className="mt-10 md:mt-14 grid gap-8 md:grid-cols-2 lg:grid-cols-4 md:gap-10">
-            {[
-              {
-                label: "Transparency",
-                text: (<>Each project starts with a <span className="text-gradient-cyan font-semibold">clear written scope</span> that records the agreed direction before implementation begins.</>),
-              },
-              {
-                label: "Local & honest",
-                text: (<>Based locally in Seychelles, we publish starting prices in <span className="semibold-underline text-white">SCR</span> and confirm project-specific costs in the written proposal.</>),
-              },
-              {
-                label: "Performance first",
-                text: (<>We test performance before launch and optimize the agreed pages and media. Results vary by content, integrations, devices, and network conditions.</>),
-              },
-              {
-                label: "Easy updates",
-                text: (<>Content management is included from Starter upward for agreed fields and can be added to Foundation when required.</>),
-              },
-            ].map((item, idx) => (
-              <motion.div
-                key={item.label}
-                initial={shouldReduceMotion ? undefined : { opacity: 0, y: 20, filter: 'blur(8px)' }}
-                whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: 'blur(0px)' }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.75, delay: 0.15 + idx * 0.12, ease: [0.16, 1, 0.3, 1] }}
-                className="relative pl-6 text-left"
-              >
-                <motion.span
-                  initial={shouldReduceMotion ? undefined : { scaleY: 0 }}
-                  whileInView={shouldReduceMotion ? undefined : { scaleY: 1 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  transition={{ duration: 0.55, delay: 0.2 + idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                  style={{ originY: 0 }}
-                  className="absolute left-0 top-0 bottom-0 w-0.5 bg-cyan/40 rounded-full"
-                />
-                <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-deep-teal">{item.label}</p>
-                <p className="text-text-muted leading-relaxed text-base md:text-lg font-normal md:leading-[1.8]">{item.text}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Industries We Serve ─────────────────────────────────────────── */}
-      <section className="border-t border-white/[0.04] bg-[#0A0A0C] py-20 md:py-28 px-6">
-        <div className="mx-auto max-w-7xl">
-          <motion.div
-            className="mb-16 text-center"
-            initial={shouldReduceMotion ? undefined : { opacity: 0, y: 20, filter: "blur(8px)" }}
-            whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: "blur(0px)" }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">
-              Who we work with
-            </span>
-            <h2 className="font-display mx-auto max-w-3xl text-3xl font-semibold leading-tight tracking-tight text-white md:text-4xl">
-              Websites built for the businesses that <span className="text-cyan font-semibold">make Seychelles run.</span>
-            </h2>
-          </motion.div>
-
-          <div className="grid gap-6 md:gap-8 lg:grid-cols-3">
-            {[
-              {
-                eyebrow: "Hospitality & Tourism",
-                title: "Hotels, Guesthouses & Villas",
-                body: "We build websites for Seychelles accommodation businesses with clear property information, responsive layouts, and direct enquiry or booking paths.",
-                keywords: ["Hotel website Seychelles", "Guesthouse website Seychelles", "Villa rental website"],
-              },
-              {
-                eyebrow: "Food & Beverage",
-                title: "Restaurants, Cafés & Bars",
-                body: "A great restaurant deserves an online presence that does it justice. We create food and beverage websites with clear menus, opening hours, reservations, and the visual quality to match your actual experience.",
-                keywords: ["Restaurant website Seychelles", "Café website Seychelles", "Menu website"],
-              },
-              {
-                eyebrow: "Services & Professional",
-                title: "Trades, Clinics & Agencies",
-                body: "For trades, professional services, and agencies, we structure the site to explain the offer, answer common questions, and provide a clear route to contact the business.",
-                keywords: ["Professional services website", "Business website Seychelles", "Small business web design"],
-              },
-            ].map((industry, idx) => (
-              <motion.div
-                key={industry.eyebrow}
-                initial={shouldReduceMotion ? undefined : { opacity: 0, y: 20, filter: "blur(8px)" }}
-                whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: "blur(0px)" }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.75, delay: 0.1 + idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="relative pl-6"
-              >
-                <motion.span
-                  initial={shouldReduceMotion ? undefined : { scaleY: 0 }}
-                  whileInView={shouldReduceMotion ? undefined : { scaleY: 1 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  transition={{ duration: 0.55, delay: 0.18 + idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                  style={{ originY: 0 }}
-                  className="absolute left-0 top-0 bottom-0 w-0.5 bg-cyan/30 rounded-full"
-                />
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan/10 border border-cyan/20">
-                    {industry.eyebrow?.includes("Tourism") ? (
-                      <svg className="h-5 w-5 text-cyan" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
-                    ) : industry.eyebrow?.includes("Food") ? (
-                      <svg className="h-5 w-5 text-cyan" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
-                    ) : (
-                      <svg className="h-5 w-5 text-cyan" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
-                    )}
-                  </div>
-                  <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-deep-teal leading-none">{industry.eyebrow}</p>
-                </div>
-                <h3 className="font-display mb-4 text-xl font-semibold text-white">{industry.title}</h3>
-                <p className="text-sm leading-relaxed text-text-muted md:text-base">{industry.body}</p>
-                <ul className="mt-5 flex flex-wrap gap-2">
-                  {industry.keywords.map((kw) => (
-                    <li key={kw} className="rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1 text-[11px] font-medium uppercase tracking-[0.14em] text-text-muted/70">
-                      {kw}
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="process" className="border-t border-white/5 bg-[#0A0A0C] py-20 px-6 xl:px-12 relative z-10">
-        <div className="mx-auto max-w-[92rem] min-h-svh place-content-center text-white">
-          <div className="grid md:grid-cols-2 md:gap-8 xl:gap-24">
-            
-            {/* Left side text sticky wrapper */}
-            <div className="h-full w-full">
-              <div className="md:sticky md:top-32 w-full max-w-xl left-0 md:py-12 z-10">
-                <motion.div
-                  initial={shouldReduceMotion ? undefined : { opacity: 0, y: 24, filter: 'blur(10px)' }}
-                  whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: 'blur(0px)' }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                >
-                  <span className="mb-6 block text-[12px] font-bold uppercase tracking-[0.3em] leading-none text-cyan section-eyebrow-glow">Our Process</span>
-                  <h2 className="font-display mb-8 max-w-3xl text-4xl sm:text-5xl lg:text-7xl font-bold leading-[1.1] tracking-tight">
-                    Here's exactly what we do together—<span className="text-deep-teal">step by step.</span>
-                  </h2>
-                  <p className="max-w-prose text-base md:text-xl leading-relaxed text-text-muted font-normal">
-                    We've made our process as simple as possible. We handle all the technical parts so you can focus on your business, keeping you involved and informed every step of the way.
-                  </p>
-                </motion.div>
-              </div>
+          <article className="reveal-item group mt-12 grid overflow-hidden rounded-[1.4rem] border border-border bg-bg-panel shadow-[0_24px_70px_rgba(0,0,0,0.26)] lg:grid-cols-12">
+            <div className="relative min-h-[320px] lg:col-span-7 lg:min-h-[520px]">
+              <img
+                src={workItems[0].imageWebp800 || workItems[0].imageWebp || workItems[0].image}
+                alt={`${workItems[0].title} website preview`}
+                width="800"
+                height="600"
+                loading="lazy"
+                decoding="async"
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.025]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-bg/80 via-transparent to-transparent" aria-hidden="true" />
             </div>
+            <div className="flex flex-col justify-between p-7 sm:p-9 lg:col-span-5 lg:p-12">
+              <div>
+                <p className="font-mono text-[0.68rem] uppercase tracking-[0.16em] text-accent">{workItems[0].status}</p>
+                <h3 className="mt-5 text-balance text-3xl font-semibold tracking-[-0.035em] text-text sm:text-4xl">{workItems[0].title}</h3>
+                <p className="mt-5 text-pretty leading-relaxed text-text-muted">{workItems[0].outcome}</p>
+              </div>
+              <ProjectLink
+                url={workItems[0].url}
+                onClick={() => trackCta("selected_work_drake_seaside")}
+                className="focus-ring group mt-10 inline-flex min-h-11 items-center gap-2 rounded-lg text-sm font-bold text-accent"
+              >
+                Visit the live website
+                <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
+              </ProjectLink>
+            </div>
+          </article>
 
-            {/* Right side ContainerScroll area */}
-            <ContainerScroll
-              className="space-y-[35vh] md:space-y-[70vh] pb-[30vh] md:pb-[60vh] pt-6 md:pt-32 z-20"
-              style={{
-                '--sticky-increment': '32px',
-                '--sticky-top': '15vh'
-              } as React.CSSProperties}
-            >
-              {projectSteps.slice(0, 5).map((step, idx) => (
-                <CardSticky
-                  key={step.title}
-                  index={idx}
-                  incrementY={32}
-                  style={{ '--sticky-increment': '32px', '--sticky-top': '15vh' } as React.CSSProperties}
-                  className="group hd-card rounded-[2rem] shadow-[0_-8px_24px_rgba(0,0,0,0.35)] w-full"
-                >
-                  <div className="relative overflow-hidden rounded-[2rem] bg-[#111113] border border-white/10 p-8 sm:p-12 h-full w-full">
-                    <div className={`absolute right-0 top-0 h-40 w-40 sm:h-64 sm:w-64 rounded-bl-full ${idx % 2 === 0 ? "bg-cyan/5" : "bg-teal/5"} pointer-events-none transition-transform duration-1000 group-hover:scale-110`} />
-                    <div className="absolute inset-0 bg-gradient-to-br from-white/[0.01] to-transparent pointer-events-none" />
+          <div className="reveal-item mt-5 grid gap-5 md:grid-cols-2">
+            {workItems.slice(1, 3).map((project) => (
+              <article key={project.id} className="group grid gap-6 rounded-[1.1rem] border border-border bg-bg-panel p-6 transition-[border-color,transform,box-shadow] duration-300 hover:-translate-y-1 hover:border-border-strong hover:shadow-[0_18px_42px_rgba(0,0,0,0.22)] sm:grid-cols-[9rem_1fr] sm:items-center">
+                <img
+                  src={project.imageWebp800 || project.imageWebp || project.image}
+                  alt={`${project.title} website preview`}
+                  width="360"
+                  height="260"
+                  loading="eager"
+                  decoding="async"
+                  className="aspect-[4/3] w-full rounded-xl object-cover transition-transform duration-500 group-hover:scale-[1.025]"
+                  style={{ objectPosition: project.imagePosition }}
+                />
+                <div>
+                  <p className="font-mono text-[0.65rem] uppercase tracking-[0.14em] text-accent-2">{project.status}</p>
+                  <h3 className="mt-3 text-xl font-semibold tracking-[-0.02em]">{project.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-text-muted">{project.outcome}</p>
+                  <ProjectLink
+                    url={project.url}
+                    onClick={() => trackCta(`selected_work_${project.id}`)}
+                    className="focus-ring mt-4 inline-flex min-h-11 items-center gap-2 rounded-lg text-sm font-bold text-accent"
+                  >
+                    Explore project <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                  </ProjectLink>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
 
-                    <div className="relative z-10 flex flex-col h-full gap-6">
-                      <div className="flex items-start justify-between gap-4">
-                        <h2 className="font-display text-2xl sm:text-4xl font-bold tracking-tight text-white mb-2 max-w-[80%]">
-                          {step.title}
-                        </h2>
-                        <h3 className="font-display text-4xl sm:text-6xl font-black text-cyan drop-shadow-[0_2px_10px_rgba(94,209,222,0.2)]">
-                          {String(idx + 1).padStart(2, "0")}
-                        </h3>
-                      </div>
+      <section className="section-light section-reveal section-space relative overflow-hidden border-b border-border" id="services">
+        <div className="ambient-blob absolute -right-24 bottom-0 h-96 w-96 rounded-full bg-blue-200/40 blur-[120px]" aria-hidden="true" />
+        <SectionArt tone="light" side="right" />
+        <div className="container-standard relative grid gap-12 lg:grid-cols-12 lg:gap-8">
+          <header className="reveal-item lg:col-span-5">
+            <p className="section-eyebrow">Services</p>
+            <h2 className="mt-5 text-balance text-[clamp(2.4rem,4.2vw,4.5rem)] font-bold leading-[1.03] tracking-[-0.04em]">
+              How we can <span className="text-gradient-deep">help.</span>
+            </h2>
+            <p className="mt-6 max-w-lg text-pretty text-base leading-relaxed text-text-muted sm:text-lg">
+              Build something new, refresh what you have or add the search and contact tools your customers need.
+            </p>
+            <Link to="/pricing" className="reactive-cta focus-ring group mt-8 inline-flex min-h-12 items-center gap-2 rounded-full bg-gradient-to-r from-[#0e6671] to-[#128f89] px-6 py-3 text-sm font-bold text-white shadow-[0_12px_32px_rgba(14,102,113,0.2)] transition-[transform,box-shadow,filter] duration-300 hover:-translate-y-1 hover:brightness-105 hover:shadow-[0_18px_38px_rgba(14,102,113,0.28)]">
+              Explore services and pricing
+              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1.5" aria-hidden="true" />
+            </Link>
+          </header>
 
-                      <p className="text-base sm:text-xl text-text-muted font-normal leading-relaxed">
-                        {step.description}
-                      </p>
+          <div className="reveal-item grid gap-3 lg:col-span-6 lg:col-start-7">
+            {services.map((service, index) => {
+              const icon = serviceIcons[index] || "browser";
+              const effect = serviceEffects[index] || "trace";
+              return (
+                <article key={service.title} className="group grid gap-4 rounded-2xl border border-transparent p-4 transition-[background-color,border-color,transform] duration-300 hover:translate-x-1 hover:border-cyan-700/15 hover:bg-white/70 sm:grid-cols-[3.5rem_1fr] sm:gap-5 sm:p-5">
+                  <div className="reactive-icon flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-[#d2f4f1] to-[#dbeafa] text-[#0a6872] shadow-[0_8px_24px_rgba(20,106,117,0.12)]" aria-hidden="true">
+                    <InteractiveSvgIcon kind={icon} effect={effect} className="h-6 w-6" />
+                  </div>
+                  <div>
+                    <span className="font-mono text-[0.66rem] text-accent-strong">0{index + 1}</span>
+                    <h3 className="mt-1 text-xl font-semibold tracking-[-0.02em] text-text">{service.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-text-muted sm:text-base">{service.description}</p>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-lagoon section-reveal section-space relative overflow-hidden border-b border-white/10" id="process">
+        <div className="ambient-blob absolute -left-24 top-20 h-80 w-80 rounded-full bg-cyan-200/18 blur-[100px]" aria-hidden="true" />
+        <div className="ambient-blob absolute -right-24 bottom-0 h-96 w-96 rounded-full bg-emerald-200/16 blur-[110px]" aria-hidden="true" />
+        <SectionArt tone="lagoon" side="left" />
+        <div className="container-standard relative">
+          <header className="reveal-item max-w-3xl">
+            <p className="section-eyebrow">How it works</p>
+            <h2 className="mt-5 text-balance text-[clamp(2.4rem,4.2vw,4.5rem)] font-bold leading-[1.03] tracking-[-0.04em]">
+              From first chat <span className="text-gradient-lagoon">to launch.</span>
+            </h2>
+            <p className="mt-6 max-w-2xl text-pretty text-base leading-relaxed text-text-muted sm:text-lg">
+              You will know what we are working on, what we need from you and what comes next.
+            </p>
+          </header>
+
+          <div className="home-process-flow-wrap reveal-item relative mt-12">
+            <svg className="home-process-flow" viewBox="0 0 48 100" preserveAspectRatio="none" aria-hidden="true">
+              <line className="home-process-flow-base" x1="24" y1="0" x2="24" y2="100" pathLength="100" />
+              <line className="home-process-flow-path" x1="24" y1="0" x2="24" y2="100" pathLength="100" />
+            </svg>
+            <ol className="relative border-t border-white/14">
+              {projectSteps.map((step, index) => {
+                const icon = processIcons[index] || "message";
+                const effect = processEffects[index] || "trace";
+                return (
+                  <li key={step.title} className="home-process-step group grid grid-cols-[3rem_minmax(0,1fr)] gap-x-4 gap-y-3 border-b border-white/14 py-7 sm:grid-cols-[4rem_minmax(0,1fr)] lg:grid-cols-12 lg:items-center lg:gap-8">
+                    <div className="reactive-icon relative z-10 flex h-12 w-12 items-center justify-center rounded-2xl border border-white/14 bg-[#12333a] text-cyan-100 shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_0_22px_rgba(88,213,227,0.08)]" aria-hidden="true">
+                      <InteractiveSvgIcon kind={icon} effect={effect} className="h-6 w-6" strokeWidth={1.8} />
                     </div>
-                  </div>
-                </CardSticky>
-              ))}
-            </ContainerScroll>
-
+                    <h3 className="col-start-2 text-xl font-semibold tracking-[-0.02em] text-white lg:col-span-3 lg:col-start-auto">
+                      <span className="mr-3 font-mono text-[0.65rem] font-normal text-cyan-100/70">0{index + 1}</span>
+                      {step.title}
+                    </h3>
+                    <p className="col-start-2 max-w-2xl text-sm leading-relaxed text-text-muted sm:text-base lg:col-span-6 lg:col-start-6">{step.description}</p>
+                  </li>
+                );
+              })}
+            </ol>
           </div>
         </div>
       </section>
 
-      <WorkShowcase />
-
-      <section id="packages" className="py-24 md:py-40 bg-black border-t border-white/[0.05]">
-        <div className="mx-auto w-full max-w-[92rem] px-6 md:px-10 lg:px-14">
-          <motion.div
-            className="mb-20 text-center"
-            initial={shouldReduceMotion ? undefined : { opacity: 0, y: 24, filter: 'blur(10px)' }}
-            whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: 'blur(0px)' }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">Find your fit</span>
-            <h2 className="font-display mx-auto max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl">
-              A home online, built for where you are right now
-            </h2>
-          </motion.div>
-
-          <div className="w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 xl:gap-8 items-stretch pt-8">
-            {[
-              { ...foundationPackage, featured: false, budgetParam: "7500-12500" },
-              { ...starterPackage, featured: true, budgetParam: "12500-25000" },
-              { ...growthPackage, featured: false, budgetParam: "25000-plus" },
-              { ...customPackage, featured: false, budgetParam: "custom" }
-            ].map((pkg, idx) => (
-              <motion.div
-                key={pkg.title}
-                initial={shouldReduceMotion ? undefined : { opacity: 0, y: 24, filter: 'blur(12px)' }}
-                whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: 'blur(0px)' }}
-                viewport={{ once: true, amount: 0.15 }}
-                transition={{ duration: 0.85, delay: 0.1 + idx * 0.12, ease: [0.16, 1, 0.3, 1] }}
-                whileHover={!pkg.featured && !shouldReduceMotion ? { y: -6 } : undefined}
-                className={`flex flex-col relative p-8 lg:px-10 lg:py-9 rounded-[2rem] transition-all duration-500 ${
-                  pkg.featured
-                    ? "bg-[#131315] featured-pkg-pulse xl:-translate-y-4 z-20"
-                    : "bg-[#111113] shadow-[0_4px_16px_rgba(0,0,0,0.3)] z-10"
-                }`}
-              >
-                {pkg.featured && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-cyan px-6 py-[6px] rounded-full text-[11px] font-black uppercase tracking-[0.2em] text-[#0A0A0C] whitespace-nowrap">
-                    Most Popular
-                  </div>
-                )}
-
-                <div className="mb-6">
-                  <p className="mb-3 ml-0.5 inline-flex w-fit items-center rounded-full border border-cyan/35 bg-cyan/10 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.2em] text-cyan">
-                    {pkg.title === "Foundation" ? "Essentials" : pkg.title === "Starter" ? "Scalable" : pkg.title === "Growth" ? "Full Scale" : "One-of-a-kind"}
-                  </p>
-                  <h3 className="text-4xl font-bold text-white mb-3 pr-4 leading-tight tracking-tight font-display">{pkg.title}</h3>
-                  <p className="text-2xl font-medium text-cyan/90 font-display mb-4 leading-tight">
-                    {pkg.price}
-                  </p>
-                </div>
-
-                <ul className="space-y-3 lg:space-y-3.5 mb-8 lg:mb-10 flex-grow">
-                  {pkg.includes.map((item, includeIdx) => (
-                    <li key={`${item.title}-${includeIdx}`} className="flex items-start gap-4">
-                      <motion.span
-                        initial={shouldReduceMotion ? undefined : { scale: 0, opacity: 0 }}
-                        whileInView={shouldReduceMotion ? undefined : { scale: 1, opacity: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.35, delay: 0.15 + includeIdx * 0.04, ease: [0.34, 1.56, 0.64, 1] }}
-                        className="mt-[3px] shrink-0 text-deep-teal"
-                      >
-                        <Check className="h-4 w-4" strokeWidth={3} />
-                      </motion.span>
-                      <span className="text-sm text-white/80 leading-relaxed">{item.title}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="mt-auto pt-4">
-                  <Link to={`/contact?budget=${pkg.budgetParam}`} className="block w-full">
-                    <button
-                      className={`w-full py-5 rounded-xl text-[11px] font-black uppercase tracking-[0.2em] transition-all transform active:scale-95 ${
-                        pkg.featured
-                          ? "bg-cyan text-[#0A0A0C] hover:brightness-110"
-                          : "bg-[#0A0A0C] text-cyan hover:bg-[#0e1a1f] hover:text-white"
-                      }`}
-                      onClick={() =>
-                        trackEvent("cta_click", {
-                          cta_name: `package_get_started_${pkg.title.toLowerCase()}`,
-                          page_path: window.location.pathname,
-                        })
-                      }
-                    >
-                      {pkg.title === "Custom" ? "Get a quote" : "Start with " + pkg.title}
-                    </button>
-                  </Link>
-
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="insights" className="py-20 md:py-32">
-        <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
-          <motion.div
-            initial={shouldReduceMotion ? undefined : { opacity: 0, scale: 0.97, filter: 'blur(10px)' }}
-            whileInView={shouldReduceMotion ? undefined : { opacity: 1, scale: 1, filter: 'blur(0px)' }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            className="group relative overflow-hidden rounded-3xl bg-[#131315] shadow-[0_8px_32px_rgba(0,0,0,0.35)]"
-          >
-            <div className="grid lg:grid-cols-12">
-              <div className="relative z-20 flex flex-col justify-center p-6 sm:p-10 md:p-16 lg:col-span-7">
-                <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">Stay in the know</span>
-                <h2 className="font-display mt-4 text-3xl sm:text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl">The digital world, <span className="text-cyan font-semibold">explained simply.</span></h2>
-                <p className="mt-5 text-base leading-relaxed text-white/80 md:text-lg">
-                  No jargon. No fluff. Just the things worth knowing for your business.
-                </p>
-
-                <ul className="mt-8 space-y-4 text-sm text-text-muted md:text-base">
-                  {[
-                    { text: "Digital trends affecting small businesses", to: "/insights/digital-trends-small-businesses" },
-                    { text: "Understanding AI chatbots", to: "/insights/understanding-ai-chatbots" },
-                    { text: "Why data and analytics matter", to: "/insights/why-data-analytics-matter" },
-                    { text: "How automation saves time", to: "/insights/automation-save-time-businesses" },
-                  ].map((item, i) => (
-                    <motion.li
-                      key={item.to}
-                      initial={shouldReduceMotion ? undefined : { opacity: 0, x: -12 }}
-                      whileInView={shouldReduceMotion ? undefined : { opacity: 1, x: 0 }}
-                      viewport={{ once: true, amount: 0.5 }}
-                      transition={{ duration: 0.5, delay: 0.1 + i * 0.07, ease: [0.16, 1, 0.3, 1] }}
-                      className="group/item"
-                    >
-                      <Link to={item.to} className="flex items-center gap-3 hover:text-white transition-colors duration-200">
-                        <motion.span
-                          whileHover={shouldReduceMotion ? undefined : { x: 2, y: -2 }}
-                          transition={{ type: "spring", stiffness: 500, damping: 15 }}
-                          className="shrink-0 text-deep-teal"
-                        >
-                          <ArrowUpRight className="h-4 w-4" />
-                        </motion.span>
-                        {item.text}
-                      </Link>
-                    </motion.li>
-                  ))}
-                </ul>
-
-                <div className="mt-10 flex justify-start">
-                  <Link to="/insights">
-                    <ShimmerButton shimmerColor="#0A0A0C" shimmerDuration="4.2s" background="var(--accent)" className="px-6 py-3 text-sm font-semibold tracking-[0.1em] text-black">
-                      Read digital insights
-                    </ShimmerButton>
-                  </Link>
-                </div>
-              </div>
-
-              <div className="relative flex min-h-[300px] sm:min-h-[350px] items-center justify-center overflow-hidden lg:overflow-visible p-6 sm:p-8 lg:col-span-5 lg:min-h-full lg:p-12">
-                <div className="absolute left-1/2 top-1/2 z-0 h-full w-full -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan/10 blur-[120px] lg:h-[120%] lg:w-[150%]" />
-
-                <div className="relative z-10 flex h-full w-full max-w-[380px] items-center justify-center lg:absolute lg:-left-24 lg:top-1/2 lg:w-[160%] lg:max-w-none lg:-translate-y-1/2 lg:pr-0 pointer-events-none">
-                  <motion.div className="absolute left-[0%] top-1/2 z-10 w-32 sm:w-44 -translate-y-[45%] rounded-[1.25rem] border border-cyan/20 shadow-[0_4px_16px_rgba(0,0,0,0.35)] lg:w-[15rem]" animate={shouldReduceMotion ? undefined : { y: [0, -10, 0] }} transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}>
-                    <ImageWithSkeleton 
-                      src="/digital_trends_1.webp" 
-                      alt="Digital trends for small business" 
-                      width="400" 
-                      height="300" 
-                      containerClassName="rounded-xl overflow-hidden aspect-[4/3]"
-                      className="h-auto w-full object-cover" 
-                      loading="lazy" 
-                      decoding="async" 
-                    />
-                  </motion.div>
-
-                  <motion.div className="absolute left-[20%] sm:left-[22%] top-1/2 z-20 w-40 sm:w-52 -translate-y-[48%] rounded-[1.25rem] border border-cyan/30 shadow-[0_4px_24px_rgba(0,0,0,0.4)] lg:left-[22%] lg:w-[18rem]" animate={shouldReduceMotion ? undefined : { y: [-8, 8, -8] }} transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut" }}>
-                    <ImageWithSkeleton 
-                      src="/digital_trends_2.webp" 
-                      alt="Understanding AI chatbots" 
-                      width="400" 
-                      height="300" 
-                      containerClassName="rounded-xl overflow-hidden aspect-[4/3]"
-                      className="h-auto w-full object-cover" 
-                      loading="lazy" 
-                      decoding="async" 
-                    />
-                  </motion.div>
-
-                  <motion.div className="absolute left-[35%] sm:left-[42%] top-1/2 z-30 w-48 sm:w-56 -translate-y-[52%] rounded-[1.25rem] border border-cyan/40 shadow-[0_8px_32px_rgba(0,0,0,0.45)] lg:left-[45%] lg:w-[22rem]" animate={shouldReduceMotion ? undefined : { y: [-6, 10, -6] }} transition={{ duration: 6.2, repeat: Infinity, ease: "easeInOut" }}>
-                    <ImageWithSkeleton 
-                      src="/digital_trends_3.webp" 
-                      alt="Why data and analytics matter" 
-                      width="400" 
-                      height="300" 
-                      containerClassName="rounded-xl overflow-hidden aspect-[4/3]"
-                      className="h-auto w-full object-cover" 
-                      loading="lazy" 
-                      decoding="async" 
-                    />
-                  </motion.div>
-                </div>
-              </div>
+      <section className="pricing-section section-space relative overflow-hidden border-b border-white/10" id="packages">
+        <div className="ambient-blob absolute -left-32 top-20 h-[30rem] w-[30rem] rounded-full bg-cyan-500/14 blur-[120px]" aria-hidden="true" />
+        <div className="ambient-blob absolute -right-32 bottom-0 h-[34rem] w-[34rem] rounded-full bg-emerald-400/12 blur-[130px]" aria-hidden="true" />
+        <div className="container-wide relative">
+          <header className="section-reveal grid gap-5 lg:grid-cols-12">
+            <div className="reveal-item lg:col-span-7">
+              <p className="section-eyebrow">Starting prices</p>
+              <h2 className="mt-5 text-balance text-[clamp(2.4rem,4.2vw,4.5rem)] font-bold leading-[1.03] tracking-[-0.04em]">
+                Find the right <span className="text-gradient-tropical">starting point.</span>
+              </h2>
             </div>
-          </motion.div>
-        </div>
-      </section>
+            <p className="reveal-item max-w-lg text-pretty leading-relaxed text-text-muted lg:col-span-4 lg:col-start-9 lg:self-end">
+              These are starting prices. Your proposal will confirm the work, final cost and anything not included.
+            </p>
+          </header>
 
-      <section id="faq" className="py-20 md:py-28">
-        <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
-          <motion.div
-            className="mb-20 text-center"
-            initial={shouldReduceMotion ? undefined : { opacity: 0, y: 24, filter: 'blur(10px)' }}
-            whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: 'blur(0px)' }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">You probably have questions</span>
-            <h2 className="font-display mx-auto max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl">We have answered the ones we hear most</h2>
-            <p className="mx-auto mt-4 max-w-3xl text-text-muted">Honest, plain-language answers so you feel confident before we begin.</p>
-          </motion.div>
+          <div className="pricing-grid mt-16 grid items-stretch gap-6 lg:grid-cols-[0.9fr_1.18fr_0.9fr] lg:gap-5 lg:pt-10">
+            {packages.map((pkg, index) => {
+              const featured = pkg.id === "starter";
+              return (
+                <article
+                  key={pkg.id}
+                  className={`package-card group relative flex flex-col overflow-hidden rounded-[1.75rem] border p-7 transition-[border-color,box-shadow,transform,filter] duration-500 sm:p-9 ${
+                    featured
+                      ? "featured-package border-cyan-100/55 bg-[#102b31] shadow-[0_38px_120px_rgba(39,208,218,0.32)] sm:p-10"
+                      : "package-card-muted border-white/9 bg-white/[0.035] shadow-[0_16px_48px_rgba(0,0,0,0.22)] hover:-translate-y-2 hover:border-cyan-200/25 hover:bg-white/[0.06]"
+                  }`}
+                >
+                  {featured ? (
+                    <>
+                      <div className="featured-package-border absolute inset-0 z-20 rounded-[inherit]" aria-hidden="true" />
+                      <div className="featured-package-aura absolute inset-0 z-0" aria-hidden="true" />
+                      <div className="featured-package-shine absolute inset-y-0 -left-1/2 w-1/3 -skew-x-12 bg-gradient-to-r from-transparent via-white/18 to-transparent" aria-hidden="true" />
+                      <div className="featured-package-glint featured-package-glint-a absolute" aria-hidden="true" />
+                      <div className="featured-package-glint featured-package-glint-b absolute" aria-hidden="true" />
+                      <div className="absolute left-1/2 top-0 z-30 flex -translate-x-1/2 items-center gap-2 rounded-b-2xl bg-gradient-to-r from-[#8cf1ed] via-[#61dce6] to-[#78dfa9] px-6 py-2.5 text-[0.68rem] font-black uppercase tracking-[0.17em] text-[#061518] shadow-[0_12px_34px_rgba(88,213,227,0.38)]">
+                        <Sparkles className="h-3.5 w-3.5" strokeWidth={2.4} aria-hidden="true" />
+                        Best Value
+                      </div>
+                    </>
+                  ) : null}
 
-          <HomeFaq categories={homeFaqCategories} />
+                  <div className={`relative z-10 flex items-center justify-between gap-4 ${featured ? "pt-9" : "pt-2"}`}>
+                    <p className={`font-mono uppercase tracking-[0.16em] ${featured ? "text-[0.76rem] font-bold text-cyan-50" : "text-[0.68rem] text-accent"}`}>{pkg.title}</p>
+                    <span className="font-mono text-[0.65rem] text-text-dim">0{index + 1}</span>
+                  </div>
+                  <p className={`relative z-10 mt-7 font-display font-bold tabular-nums tracking-[-0.045em] ${featured ? "text-gradient-tropical text-[2.75rem] sm:text-[3.4rem]" : "text-3xl text-text sm:text-[2rem]"}`}>{pkg.price}</p>
+                  <p className={`relative z-10 mt-4 text-sm leading-relaxed text-text-muted sm:text-base ${featured ? "min-h-[4.75rem] text-white/78" : "min-h-[4.5rem]"}`}>{pkg.description}</p>
+                  <ul className={`relative z-10 mt-7 grid border-t pt-6 ${featured ? "gap-4 border-cyan-100/20" : "gap-3.5 border-white/10"}`}>
+                    {pkg.includes.slice(0, featured ? 6 : 4).map((item) => (
+                      <li key={item.title} className="pricing-feature flex gap-3 text-sm text-text-muted">
+                        <span className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full ${featured ? "featured-check bg-cyan-100/18 text-cyan-50 shadow-[0_0_16px_rgba(108,230,232,0.18)]" : "bg-white/7 text-accent"}`} aria-hidden="true">
+                          <InteractiveSvgIcon kind="check" effect="trace" className="h-3.5 w-3.5" strokeWidth={2.6} />
+                        </span>
+                        {item.title}
+                      </li>
+                    ))}
+                  </ul>
+                  <Link
+                    to={`/contact?package=${pkg.id}`}
+                    onClick={() => trackCta(`package_${pkg.id}`)}
+                    className={`reactive-cta focus-ring group/cta relative z-10 mt-8 inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-center font-black uppercase tracking-[0.14em] transition-[transform,box-shadow,background-color,border-color,filter] duration-300 hover:-translate-y-1 active:translate-y-0 active:scale-[0.98] ${
+                      featured
+                        ? "featured-package-cta min-h-14 bg-gradient-to-r from-[#8cf1ed] via-[#5edbe5] to-[#78dfa9] text-sm text-[#061518] shadow-[0_16px_44px_rgba(72,210,214,0.36)] hover:brightness-105 hover:shadow-[0_22px_58px_rgba(72,210,214,0.5)]"
+                        : "min-h-12 border border-white/14 bg-white/[0.055] text-xs text-white hover:border-cyan-200/35 hover:bg-white/[0.09]"
+                    }`}
+                  >
+                    Discuss {pkg.title}
+                    <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover/cta:translate-x-1.5" aria-hidden="true" />
+                  </Link>
+                </article>
+              );
+            })}
+          </div>
 
-          <motion.div
-            className="mt-10 flex flex-col items-center gap-6 rounded-3xl bg-[#131315] shadow-[0_4px_24px_rgba(0,0,0,0.45)] px-6 py-8 text-center md:flex-row md:justify-between md:text-left"
-            initial={shouldReduceMotion ? undefined : { opacity: 0, y: 16 }}
-            whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <p className="text-sm text-text-muted">Still have questions? We can walk you through it.</p>
-            <Link to="/contact">
-              <ShimmerButton shimmerColor="#0A0A0C" shimmerDuration="4.2s" background="var(--accent)" className="px-6 py-3 text-sm font-semibold tracking-[0.1em] text-black">
-                Contact us
-              </ShimmerButton>
-            </Link>
-          </motion.div>
-        </div>
-      </section>
-
-      <section id="ready" className="bg-gradient-to-b from-transparent to-black/20 py-24 md:py-36">
-        <motion.div
-          className="mx-auto w-full max-w-4xl px-5 text-center sm:px-8"
-          initial={shouldReduceMotion ? undefined : { opacity: 0, y: 30, filter: 'blur(10px)' }}
-          whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: 'blur(0px)' }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <h2 className="font-display mb-8 text-4xl font-semibold text-white md:text-7xl">
-            Let us build something
-            <br />
-            <span className="text-cyan font-semibold">you are proud of</span>
-          </h2>
-          <p className="mx-auto mb-12 max-w-2xl text-lg font-normal leading-relaxed text-text-muted md:text-2xl">
-            A short, free call is all it takes to get started. No pressure. Just a conversation.
-          </p>
-          <div className="flex justify-center">
-            <Link 
-              to="/contact"
-              className="px-8 py-4 sm:px-10 sm:py-5 text-black rounded-full font-black uppercase tracking-[0.2em] text-xs sm:text-sm transition-all duration-300 hover:scale-[1.02] hover:brightness-110 active:scale-95 text-center flex items-center justify-center w-full sm:w-auto sm:min-w-[240px] cta-gradient-anim"
-              style={{ backgroundImage: 'linear-gradient(90deg, var(--accent), var(--accent-2), #0C7CC4, var(--accent))', backgroundSize: '300% 100%' }}
-              onClick={() =>
-                trackEvent("cta_click", {
-                  cta_name: "bottom_ready_book_call",
-                  page_path: window.location.pathname,
-                })
-              }
-            >
-              Book a discovery call
+          <div className="mt-10 text-center">
+            <Link to="/pricing" className="reactive-cta focus-ring group inline-flex min-h-11 items-center gap-2 rounded-full px-5 text-sm font-bold text-cyan-100 transition-[background-color,transform] duration-300 hover:-translate-y-0.5 hover:bg-white/[0.06]">
+              Compare full package details
+              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1.5" aria-hidden="true" />
             </Link>
           </div>
-        </motion.div>
+        </div>
+      </section>
+
+      <section className="section-light section-reveal section-space relative overflow-hidden border-b border-border" id="faq">
+        <div className="ambient-blob absolute -left-24 bottom-0 h-80 w-80 rounded-full bg-emerald-200/30 blur-[100px]" aria-hidden="true" />
+        <SectionArt tone="light" side="right" />
+        <div className="container-standard relative">
+          <header className="reveal-item mx-auto max-w-3xl text-center">
+            <p className="section-eyebrow">Before you decide</p>
+            <h2 className="mt-5 text-balance text-[clamp(2.4rem,4.2vw,4.5rem)] font-bold leading-[1.03] tracking-[-0.04em]">
+              A few <span className="text-gradient-deep">useful answers.</span>
+            </h2>
+          </header>
+          <div className="reveal-item mt-10">
+            <HomeFaq categories={homeFaqCategories} />
+          </div>
+        </div>
+      </section>
+
+      <section className="final-cta-section section-reveal section-space relative overflow-hidden" id="ready">
+        <div className="ambient-blob absolute -left-24 top-0 h-96 w-96 rounded-full bg-cyan-400/16 blur-[110px]" aria-hidden="true" />
+        <div className="ambient-blob absolute -right-20 bottom-0 h-[28rem] w-[28rem] rounded-full bg-emerald-400/14 blur-[120px]" aria-hidden="true" />
+        <div className="hero-cinematic-grid absolute inset-0 opacity-35" aria-hidden="true" />
+        <div className="container-standard relative grid gap-10 lg:grid-cols-12 lg:items-end">
+          <div className="reveal-item lg:col-span-8">
+            <p className="section-eyebrow">Start a conversation</p>
+            <h2 className="mt-5 text-balance text-[clamp(2.6rem,5vw,5.5rem)] font-bold leading-[0.98] tracking-[-0.045em]">
+              Tell us <span className="text-gradient-tropical">what you need.</span>
+            </h2>
+            <p className="mt-6 max-w-2xl text-pretty text-base leading-relaxed text-text-muted sm:text-lg">
+              Share a little about your business, your current website and when you would like to start. We aim to reply {siteConfig.responseTime}.
+            </p>
+          </div>
+          <div className="reveal-item flex flex-col gap-3 sm:flex-row lg:col-span-4 lg:flex-col lg:items-stretch">
+            <Link
+              to="/contact"
+              onClick={() => trackCta("final_book_call")}
+              className="reactive-cta focus-ring group relative inline-flex min-h-14 items-center justify-center overflow-hidden rounded-full bg-gradient-to-r from-[#70e5e7] to-[#69d9ae] px-7 py-4 text-center text-[0.72rem] font-black uppercase tracking-[0.18em] text-[#071518] shadow-[0_16px_42px_rgba(72,210,214,0.26)] transition-[transform,box-shadow,filter] duration-300 hover:-translate-y-1 hover:brightness-105 hover:shadow-[0_22px_52px_rgba(72,210,214,0.38)] active:translate-y-0 active:scale-[0.98]"
+            >
+              <span className="cta-shine" aria-hidden="true" />
+              <span className="relative z-10 flex items-center gap-2">
+                {siteConfig.primaryCtaLabel}
+                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1.5" aria-hidden="true" />
+              </span>
+            </Link>
+            <a
+              href={siteConfig.whatsappUrl}
+              target="_blank"
+              rel="noreferrer noopener"
+              onClick={() => trackContactIntent({ method: "whatsapp", source: "home_final_cta" })}
+              className="reactive-cta focus-ring group inline-flex min-h-14 items-center justify-center gap-2 rounded-full border border-white/18 bg-white/[0.055] px-7 py-4 text-center text-[0.72rem] font-black uppercase tracking-[0.18em] text-white transition-[border-color,background-color,transform] duration-300 hover:-translate-y-1 hover:border-[#56de8a]/60 hover:bg-[#25D366]/10 active:translate-y-0 active:scale-[0.98]"
+            >
+              <WhatsAppIcon className="h-4 w-4 text-[#25D366]" />
+              WhatsApp
+            </a>
+          </div>
+        </div>
       </section>
     </div>
   );

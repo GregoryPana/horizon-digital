@@ -6,23 +6,23 @@ Horizon Digital is a web design and development studio based on Mahé, Seychelle
 
 ## What Horizon Digital offers
 
-### New Website Build
+### New website
 
 Planning, custom design, development and launch for a new business website.
 
-### Website Refresh
+### Website refresh
 
 A redesign or rebuild for an existing website that needs clearer content, better mobile use or a more current visual direction.
 
-### Search Visibility Setup
+### Search setup
 
 Technical and on-page SEO foundations that help search engines crawl and understand the website. Search positions are not guaranteed.
 
-### Mobile-responsive Design
+### Mobile-friendly design
 
 Layouts are designed and tested for phones, tablets and desktop screens.
 
-### Customer Contact Tools
+### Contact tools
 
 Contact forms, WhatsApp links and agreed booking or enquiry integrations.
 

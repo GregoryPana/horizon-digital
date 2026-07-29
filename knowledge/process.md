@@ -2,23 +2,23 @@
 
 # Project process
 
-## 1. Our First Chat
+## 1. First chat
 
 We discuss your business, customers and goals, then agree what the website needs to do.
 
-## 2. Design & Review
+## 2. Plan and design
 
 We prepare the structure and visual direction for review before development begins.
 
-## 3. Building Your Site
+## 3. Build and test
 
 After the direction is approved, we build and test the website across supported screen sizes and browsers.
 
-## 4. Going Live
+## 4. Go live
 
 We complete final checks and launch once the agreed scope is ready.
 
-## 5. Support After Launch
+## 5. Support after launch
 
 Post-launch support lasts 30, 45 or 60 days depending on the selected package.
 

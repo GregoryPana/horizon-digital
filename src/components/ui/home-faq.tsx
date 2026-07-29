@@ -134,7 +134,7 @@ export default function HomeFaq({ categories }: HomeFaqProps) {
       </div>
 
       <p className="mt-5 text-sm text-text-muted">
-        Still unsure? Reach out and we will explain what fits your business best.
+        Still unsure? Send us a message. We will help you work out which option makes sense.
       </p>
     </div>
   );

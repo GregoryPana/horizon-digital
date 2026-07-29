@@ -1,111 +1,32 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
-import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
-} from "./navigation-menu";
-import { navLinks, workItems } from "../../data/site";
+import { NavLink, useLocation } from "react-router-dom";
+import { ArrowRight, X } from "lucide-react";
+import { navLinks, siteConfig } from "../../data/site";
 import { cn, scrollToTopSmooth } from "../../lib/utils";
 
-type MobileMenuItem = {
-  id: string;
-  label: string;
-  to?: string;
-  children?: Array<{ label: string; to: string }>;
-};
-
-const mobileMenuItems: MobileMenuItem[] = [
-  { id: "home", label: "Home", to: "/" },
-  {
-    id: "pricing",
-    label: "Services & Pricing",
-    to: "/pricing",
-    children: [
-      { label: "Overview", to: "/pricing#overview" },
-      { label: "Packages", to: "/pricing#packages" },
-      { label: "Hosting", to: "/pricing#hosting" },
-      { label: "Add-ons", to: "/pricing#addons" },
-    ],
-  },
-  { id: "work", label: "Our Work", to: "/work" },
-  { id: "need", label: "What You Need", to: "/what-you-need" },
-  {
-    id: "insights",
-    label: "Digital Insights",
-    to: "/insights"
-  },
-  { id: "about", label: "About", to: "/about" },
-  { id: "contact", label: "Contact", to: "/contact" },
-];
-
-const desktopDropdowns: Record<string, Array<{ label: string; to: string }>> = {
-  "/": [
-    { label: "Services", to: "/#services" },
-    { label: "Featured Work", to: "/#featured-work" },
-    { label: "Process", to: "/#process" },
-    { label: "Packages", to: "/#packages" },
-    { label: "FAQ", to: "/#faq" },
-    { label: "Ready", to: "/#ready" },
-  ],
-  "/pricing": [
-    { label: "Overview", to: "/pricing#overview" },
-    { label: "Process", to: "/pricing#process" },
-    { label: "Packages", to: "/pricing#packages" },
-    { label: "Hosting", to: "/pricing#hosting" },
-    { label: "Add-ons", to: "/pricing#addons" },
-    { label: "Visibility", to: "/pricing#visibility" },
-  ],
-};
+// Compact/mobile menu only: the desktop nav relies on the logo as the Home link,
+// but the full-screen mobile menu needs an explicit Home entry of its own.
+export const mobileNavLinks = [{ label: "Home", path: "/" }, ...navLinks];
 
 export default function NavMenu({
   isMenuOpen,
   setIsMenuOpen,
 }: {
   isMenuOpen: boolean;
-  setIsMenuOpen: (val: boolean | ((p: boolean) => boolean)) => void;
+  setIsMenuOpen: (value: boolean | ((current: boolean) => boolean)) => void;
 }) {
   const location = useLocation();
-  const navigate = useNavigate();
-  const [expandedGroups, setExpandedGroups] = useState<string[]>([]);
-  const scrollLockRef = useRef(0);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const scrollPositionRef = useRef(0);
 
-  const closeMenu = () => setIsMenuOpen(false);
-
-  const toggleGroup = (groupId: string) => {
-    setExpandedGroups((current) =>
-      current.includes(groupId) ? current.filter((item) => item !== groupId) : [...current, groupId]
-    );
-  };
-
-  const handleDesktopPrimaryNavClick = (path: string) => {
-    navigate(path);
-    if (path === "/work") {
-      scrollToTopSmooth();
-      return;
+  const closeMenu = (restoreFocus = false) => {
+    setIsMenuOpen(false);
+    if (restoreFocus) {
+      window.requestAnimationFrame(() => triggerRef.current?.focus());
     }
-    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-  };
-
-  const normalizePath = (value: string) => {
-    if (value === "/") return "/";
-    return value.replace(/\/+$/, "") || "/";
-  };
-
-  const isDesktopItemActive = (path: string) => {
-    const currentPath = normalizePath(location.pathname);
-    const itemPath = normalizePath(path);
-
-    if (itemPath === "/") return currentPath === "/";
-    if (path === "/insights") {
-      return currentPath === "/insights" || currentPath.startsWith("/insights");
-    }
-    return currentPath === itemPath;
   };
 
   useEffect(() => {
@@ -113,287 +34,166 @@ export default function NavMenu({
   }, [location.pathname, location.hash]);
 
   useEffect(() => {
-    if (!isMenuOpen) {
-      document.body.style.overflow = "";
-      document.body.style.position = "";
-      document.body.style.top = "";
-      document.body.style.width = "";
-      document.documentElement.style.overflow = "";
-      document.body.classList.remove("menu-open");
-      return;
-    }
+    if (!isMenuOpen) return;
 
-    scrollLockRef.current = window.scrollY;
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        closeMenu(true);
+        return;
+      }
+
+      if (event.key === "Tab" && menuRef.current) {
+        const focusable = Array.from(
+          menuRef.current.querySelectorAll<HTMLElement>(
+            'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+          )
+        ).filter((element) => !element.hasAttribute("hidden"));
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (!first || !last) return;
+        if (!menuRef.current.contains(document.activeElement)) {
+          event.preventDefault();
+          (event.shiftKey ? last : first).focus();
+        } else if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
+    };
+
+    scrollPositionRef.current = window.scrollY;
     document.body.style.overflow = "hidden";
-    document.body.style.position = "fixed";
-    document.body.style.top = `-${scrollLockRef.current}px`;
-    document.body.style.width = "100%";
-    document.documentElement.style.overflow = "hidden";
     document.body.classList.add("menu-open");
+    document.addEventListener("keydown", handleKeyDown);
+    const focusTimer = window.setTimeout(() => closeButtonRef.current?.focus({ preventScroll: true }), 50);
 
     return () => {
       document.body.style.overflow = "";
-      document.body.style.position = "";
-      document.body.style.top = "";
-      document.body.style.width = "";
-      document.documentElement.style.overflow = "";
       document.body.classList.remove("menu-open");
-      window.scrollTo(0, scrollLockRef.current);
+      document.removeEventListener("keydown", handleKeyDown);
+      window.clearTimeout(focusTimer);
     };
   }, [isMenuOpen]);
 
+  const linkClassName = ({ isActive }: { isActive: boolean }) =>
+    cn(
+      "focus-ring relative inline-flex min-h-11 items-center rounded-lg px-2 text-[0.68rem] font-bold uppercase tracking-[0.13em] transition-colors duration-200",
+      isActive ? "text-accent" : "text-text-muted hover:text-text"
+    );
+
   return (
-    <div className="nav-menu-container flex items-center">
-      {/* Mobile Menu Button - only visible on mobile */}
+    <div className="flex items-center">
       <button
+        ref={triggerRef}
         type="button"
-        onClick={() => setIsMenuOpen((prev) => !prev)}
-        className="nav-menu-button header-control-dark focus-ring relative z-[210] lg:hidden inline-flex h-11 w-11 items-center justify-center rounded-full border shadow-[0_0_12px_var(--glow)]"
+        onClick={() => setIsMenuOpen((current) => !current)}
+        className="header-control-dark focus-ring relative z-[210] inline-flex h-11 w-11 items-center justify-center rounded-xl border xl:hidden"
         aria-label={isMenuOpen ? "Close menu" : "Open menu"}
         aria-expanded={isMenuOpen}
         aria-controls="mobile-site-menu"
       >
-        <span className="relative inline-flex h-5 w-5 items-center justify-center" aria-hidden="true">
-          <span
-            className={`absolute h-[2px] w-4 rounded-full bg-current transition-all duration-300 ${
-              isMenuOpen ? "translate-y-0 rotate-45" : "-translate-y-[5px] rotate-0"
-            }`.trim()}
-          />
-          <span
-            className={`absolute h-[2px] w-4 rounded-full bg-current transition-all duration-200 ${
-              isMenuOpen ? "opacity-0" : "opacity-100"
-            }`.trim()}
-          />
-          <span
-            className={`absolute h-[2px] w-4 rounded-full bg-current transition-all duration-300 ${
-              isMenuOpen ? "translate-y-0 -rotate-45" : "translate-y-[5px] rotate-0"
-            }`.trim()}
-          />
+        <span className="sr-only">{isMenuOpen ? "Close menu" : "Open menu"}</span>
+        <span className="grid gap-1.5" aria-hidden="true">
+          <span className={cn("block h-px w-5 bg-current transition-transform duration-200", isMenuOpen && "translate-y-[3.5px] rotate-45")} />
+          <span className={cn("block h-px w-5 bg-current transition-transform duration-200", isMenuOpen && "-translate-y-[3.5px] -rotate-45")} />
         </span>
       </button>
 
+      <nav className="hidden xl:block" aria-label="Primary navigation">
+        <ul className="flex items-center gap-3 2xl:gap-5">
+          {navLinks.map((item) => (
+            <li key={item.path}>
+              <NavLink
+                to={item.path}
+                className={linkClassName}
+                onClick={() => {
+                  if (item.path === "/work") scrollToTopSmooth();
+                }}
+              >
+                {item.label}
+              </NavLink>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
       {createPortal(
         <div
+          ref={menuRef}
           id="mobile-site-menu"
-          className={`fixed inset-0 z-[200] h-[100dvh] w-screen overflow-y-auto overscroll-contain blue-menu-fade text-[#e8edf5] transition-all duration-500 ease-in-out lg:hidden ${
-            isMenuOpen ? "pointer-events-auto translate-x-0 opacity-100" : "pointer-events-none translate-x-full opacity-0"
-          }`.trim()}
+          className={cn(
+            "fixed inset-0 z-[200] h-[100dvh] overflow-y-auto bg-bg-elev text-text transition-[opacity,visibility] duration-300 xl:hidden",
+            isMenuOpen ? "visible opacity-100" : "invisible pointer-events-none opacity-0"
+          )}
+          aria-hidden={!isMenuOpen}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Site navigation"
+          onTransitionEnd={(event) => {
+            if (isMenuOpen && event.propertyName === "opacity") {
+              closeButtonRef.current?.focus();
+            }
+          }}
         >
-          <div className="relative z-[1] mx-auto flex min-h-full w-full max-w-3xl flex-col px-6 pb-10 pt-20">
-            <div className="flex items-center justify-between">
-              <p className="text-xs uppercase tracking-[0.34em] text-[#a8bfd4]">Navigation</p>
+          <div className="hero-editorial-grid absolute inset-0 opacity-40" aria-hidden="true" />
+          <div className="relative mx-auto flex min-h-full w-full max-w-3xl flex-col px-5 pb-[calc(2rem+env(safe-area-inset-bottom))] pt-[calc(1.25rem+env(safe-area-inset-top))] sm:px-8 sm:pt-[calc(1.75rem+env(safe-area-inset-top))]">
+            <div className="flex items-center justify-between border-b border-border pb-5">
+              <p className="font-mono text-[0.68rem] uppercase tracking-[0.18em] text-text-dim">Navigate Horizon Digital</p>
+              <button
+                ref={closeButtonRef}
+                type="button"
+                onClick={() => closeMenu(true)}
+                className="focus-ring inline-flex h-11 w-11 items-center justify-center rounded-xl border border-border text-text-muted transition-colors hover:border-accent hover:text-accent"
+                aria-label="Close menu"
+              >
+                <X className="h-5 w-5" aria-hidden="true" />
+              </button>
             </div>
 
-            <ul className="mt-8 flex-1">
-              {mobileMenuItems.map((item) => {
-                const isExpanded = expandedGroups.includes(item.id);
-                return (
-                  <li key={item.id} className="border-b border-[#28415a]">
-                    <div className="flex items-center justify-between gap-3">
-                      {item.to ? (
-                        <NavLink
-                          to={item.to}
-                          onClick={() => {
-                            if (item.to === "/work") scrollToTopSmooth();
-                            closeMenu();
-                          }}
-                          className={({ isActive }) =>
-                            `focus-ring block w-full py-5 text-sm font-semibold uppercase tracking-[0.14em] transition ${
-                              isActive ? "text-accent" : "text-[#e8edf5]"
-                            }`
-                          }
-                        >
-                          {item.label}
-                        </NavLink>
-                      ) : (
-                        <p className="text-sm font-semibold uppercase tracking-[0.14em] text-[#e8edf5]">
-                          {item.label}
-                        </p>
-                      )}
-
-                      {item.children?.length ? (
-                        <button
-                          type="button"
-                          onClick={() => toggleGroup(item.id)}
-                          className="focus-ring inline-flex h-7 w-7 items-center justify-center rounded-full border border-[#36506b] text-sm text-[#a8bfd4]"
-                          aria-expanded={isExpanded}
-                          aria-controls={`mobile-submenu-${item.id}`}
-                          aria-label={isExpanded ? `Hide ${item.label} options` : `Show ${item.label} options`}
-                        >
-                          <svg
-                            viewBox="0 0 20 20"
-                            aria-hidden="true"
-                            className={`h-4 w-4 transition-transform duration-200 ${
-                              isExpanded ? "rotate-90" : "rotate-0"
-                            }`.trim()}
-                          >
-                            <path
-                              d="M7 4l6 6-6 6"
-                              fill="none"
-                              stroke="currentColor"
-                              strokeWidth="1.8"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                            />
-                          </svg>
-                        </button>
-                      ) : null}
-                    </div>
-
-                    {item.children?.length ? (
-                      <div
-                        id={`mobile-submenu-${item.id}`}
-                        className={`grid overflow-hidden transition-[grid-template-rows,opacity,margin] duration-300 ${
-                          isExpanded ? "mt-3 grid-rows-[1fr] opacity-100" : "mt-0 grid-rows-[0fr] opacity-0"
-                        }`.trim()}
-                      >
-                        <ul className="overflow-hidden border-l border-[#36506b] pl-3">
-                          {item.children.map((subItem) => (
-                            <li key={subItem.to}>
-                              <NavLink
-                                to={subItem.to}
-                                onClick={closeMenu}
-                                className={({ isActive }) =>
-                                  `focus-ring block w-full py-4 text-xs uppercase tracking-[0.13em] transition ${
-                                    isActive ? "text-[#ff8f5a]" : "text-[#bfd0de] hover:text-accent"
-                                  }`
-                                }
-                              >
-                                {subItem.label}
-                              </NavLink>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    ) : null}
+            <nav className="flex-none py-6 sm:py-7" aria-label="Compact navigation">
+              <ul className="w-full">
+                {mobileNavLinks.map((item, index) => (
+                  <li key={item.path} className="border-b border-border first:border-t">
+                    <NavLink
+                      to={item.path}
+                      end={item.path === "/"}
+                      onClick={() => {
+                        if (item.path === "/work") scrollToTopSmooth();
+                        closeMenu();
+                      }}
+                      className={({ isActive }) =>
+                        cn(
+                          "focus-ring group flex min-h-16 items-center justify-between rounded-sm py-4 text-xl font-semibold tracking-[-0.02em] sm:text-2xl",
+                          isActive ? "text-accent" : "text-text hover:text-accent"
+                        )
+                      }
+                    >
+                      <span className="flex items-baseline gap-4">
+                        <span className="font-mono text-[0.65rem] tracking-[0.12em] text-text-dim">0{index + 1}</span>
+                        {item.label}
+                      </span>
+                      <ArrowRight className="h-5 w-5 text-text-dim transition-transform duration-200 group-hover:translate-x-1 group-hover:text-accent" aria-hidden="true" />
+                    </NavLink>
                   </li>
-                );
-              })}
-            </ul>
+                ))}
+              </ul>
+            </nav>
 
-            <div className="horizon-line mt-6" />
+            <NavLink
+              to="/contact"
+              onClick={() => closeMenu()}
+              className="focus-ring mt-auto inline-flex min-h-12 items-center justify-center rounded-xl bg-accent px-7 py-4 text-[0.72rem] font-black uppercase tracking-[0.18em] text-[#071013] transition-colors hover:bg-accent-strong"
+            >
+              {siteConfig.primaryCtaLabel}
+            </NavLink>
           </div>
         </div>,
         document.body
       )}
-
-      {/* Desktop Menu - only visible on lg and up */}
-      <div className="hidden lg:block ml-auto">
-        <NavigationMenu viewport={false} className="relative">
-          <NavigationMenuList className="gap-3 xl:gap-5">
-            {navLinks.map((item) => {
-              const hasSectionDropdown = Object.prototype.hasOwnProperty.call(desktopDropdowns, item.path);
-              const hasWorkDropdown = item.path === "/work";
-              const hasDropdown = hasSectionDropdown || hasWorkDropdown;
-              const isInsightsMenu = item.path === "/insights";
-              const isActive = isDesktopItemActive(item.path);
-
-              if (!hasDropdown) {
-                return (
-                  <NavigationMenuItem key={item.path}>
-                    <NavigationMenuLink asChild>
-                      <NavLink
-                        to={item.path}
-                        className={cn(
-                          navigationMenuTriggerStyle(),
-                          isActive ? "nav-active-page !text-accent" : "hover:border-accent/18"
-                        )}
-                      >
-                        {item.label}
-                      </NavLink>
-                    </NavigationMenuLink>
-                  </NavigationMenuItem>
-                );
-              }
-
-              return (
-                <NavigationMenuItem key={item.path}>
-                  <NavigationMenuTrigger
-                    onClick={() => handleDesktopPrimaryNavClick(item.path)}
-                    className={cn(
-                      isActive ? "nav-active-page !text-accent" : "hover:border-accent/18"
-                    )}
-                  >
-                    {item.label}
-                  </NavigationMenuTrigger>
-
-                  <NavigationMenuContent className={isInsightsMenu ? "nav-dropdown-insights" : undefined}>
-                    {hasWorkDropdown ? (
-                      <div className="grid min-w-[170px] grid-cols-1 gap-2">
-                        {workItems.map((work) => {
-                          const isExternal = work.url?.startsWith("http");
-                          const linkClassName = "group flex items-center gap-2 rounded-lg border border-border bg-bg-panel/80 p-1.5 transition hover:border-accent/50";
-                          const content = (
-                            <>
-                              <img
-                                src={work.imageWebp800 || work.imageWebp || work.image}
-                                alt={work.title}
-                                width={52}
-                                height={68}
-                                loading="lazy"
-                                decoding="async"
-                                className="h-[68px] w-[52px] rounded-md object-cover"
-                              />
-                              <p className="line-clamp-2 text-[0.62rem] font-semibold uppercase tracking-[0.11em] text-accent-2">
-                                {work.title}
-                              </p>
-                            </>
-                          );
-
-                          if (isExternal) {
-                            return (
-                              <a
-                                key={work.title}
-                                href={work.url ?? "/work"}
-                                target="_blank"
-                                rel="noreferrer"
-                                className={linkClassName}
-                              >
-                                {content}
-                              </a>
-                            );
-                          }
-
-                          return (
-                            <Link
-                              key={work.title}
-                              to={work.url ?? "/work"}
-                              className={linkClassName}
-                              onClick={() => {
-                                if (work.url === "/work") scrollToTopSmooth();
-                                closeMenu();
-                              }}
-                            >
-                              {content}
-                            </Link>
-                          );
-                        })}
-                      </div>
-                    ) : (
-                      <div className="grid min-w-[460px] grid-cols-2 gap-x-8 gap-y-2">
-                        {desktopDropdowns[item.path].map((sectionLink) => (
-                          <Link
-                            key={`${item.path}-${sectionLink.to}`}
-                            to={sectionLink.to}
-                            className={cn(
-                              "nav-dropdown-link rounded-md px-1.5 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.12em] transition",
-                              isInsightsMenu
-                                ? "nav-dropdown-link-insights"
-                                : "text-text hover:bg-accent-soft hover:text-accent"
-                            )}
-                          >
-                            {sectionLink.label}
-                          </Link>
-                        ))}
-                      </div>
-                    )}
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
-              );
-            })}
-          </NavigationMenuList>
-        </NavigationMenu>
-      </div>
     </div>
   );
 }

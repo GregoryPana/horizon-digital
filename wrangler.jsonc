@@ -2,9 +2,16 @@
   "name": "horizon-digital",
   "compatibility_date": "2026-02-21",
   "main": "./src/worker.ts",
-  "vars": {
-    "CHAT_API_BASE": "https://chat.horizondigitalsey.com/webhook"
-  },
+  "routes": [
+    {
+      "pattern": "horizondigitalsey.com/*",
+      "zone_name": "horizondigitalsey.com"
+    },
+    {
+      "pattern": "www.horizondigitalsey.com/*",
+      "zone_name": "horizondigitalsey.com"
+    }
+  ],
   "assets": {
     "directory": "./dist",
     "binding": "ASSETS",

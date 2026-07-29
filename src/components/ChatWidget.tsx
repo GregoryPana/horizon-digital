@@ -62,6 +62,7 @@ export default function ChatWidget() {
     setInputValue("");
     setMessages((prev) => [...prev, { role: "user", content: userMessage }]);
     setIsLoading(true);
+    trackEvent("chat_message_sent", { page_path: window.location.pathname });
 
     try {
       const response = await fetch(`${API_BASE}/chat`, {
@@ -120,6 +121,11 @@ export default function ChatWidget() {
         }),
       });
       if (!response.ok) throw new Error(`Lead request failed with ${response.status}`);
+      trackEvent("generate_lead", {
+        lead_source: "chat_widget",
+        page_path: window.location.pathname,
+        transport_type: "beacon",
+      });
       setLeadSubmitted(true);
       setTimeout(() => {
         setShowLeadForm(false);
@@ -133,7 +139,7 @@ export default function ChatWidget() {
   };
 
   return (
-    <div className="fixed bottom-[4.75rem] right-4 sm:bottom-20 sm:right-6 z-[100] font-sans">
+    <div className="fixed bottom-[4.75rem] right-4 z-[300] hidden font-sans sm:bottom-20 sm:right-6 sm:block">
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -141,7 +147,9 @@ export default function ChatWidget() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 12 }}
             transition={{ type: "spring", damping: 24, stiffness: 320 }}
-            className="fixed inset-x-4 bottom-[8.5rem] top-4 z-[100] flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-bg-elev/80 shadow-2xl backdrop-blur-xl sm:bottom-36 sm:right-6 sm:left-auto sm:top-auto sm:h-[520px] sm:w-[380px] md:h-[560px]"
+            className="chat-widget-panel fixed inset-x-4 bottom-[8.5rem] top-4 z-[100] flex flex-col overflow-hidden rounded-2xl sm:bottom-36 sm:right-6 sm:left-auto sm:top-auto sm:h-[min(560px,calc(100dvh-10rem))] sm:w-[380px]"
+            role="dialog"
+            aria-label="Horizon Digital chat assistant"
           >
             {/* Header */}
             <div className="flex items-center justify-between border-b border-white/5 bg-accent/10 px-6 py-4">
@@ -168,6 +176,8 @@ export default function ChatWidget() {
             <div 
               ref={scrollRef}
               className="flex-1 overflow-y-auto p-4 space-y-4 scroll-smooth overscroll-contain"
+              role="log"
+              aria-live="polite"
             >
               {messages.map((msg, idx) => (
                 <div 
@@ -213,7 +223,7 @@ export default function ChatWidget() {
                         type="text" 
                         placeholder="Your Name" 
                         required
-                        className="w-full rounded-lg border border-white/10 bg-bg px-3 py-2 text-xs text-text focus:border-accent focus:outline-none"
+                        className="w-full rounded-lg border border-white/10 bg-bg px-3 py-2 text-xs text-text placeholder:text-text-dim focus:border-accent focus:outline-none"
                         value={leadData.name}
                         onChange={(e) => setLeadData({...leadData, name: e.target.value})}
                       />
@@ -221,21 +231,21 @@ export default function ChatWidget() {
                         type="email" 
                         placeholder="Email Address" 
                         required
-                        className="w-full rounded-lg border border-white/10 bg-bg px-3 py-2 text-xs text-text focus:border-accent focus:outline-none"
+                        className="w-full rounded-lg border border-white/10 bg-bg px-3 py-2 text-xs text-text placeholder:text-text-dim focus:border-accent focus:outline-none"
                         value={leadData.email}
                         onChange={(e) => setLeadData({...leadData, email: e.target.value})}
                       />
                       <input 
                         type="tel" 
                         placeholder="Phone (Optional)" 
-                        className="w-full rounded-lg border border-white/10 bg-bg px-3 py-2 text-xs text-text focus:border-accent focus:outline-none"
+                        className="w-full rounded-lg border border-white/10 bg-bg px-3 py-2 text-xs text-text placeholder:text-text-dim focus:border-accent focus:outline-none"
                         value={leadData.phone}
                         onChange={(e) => setLeadData({...leadData, phone: e.target.value})}
                       />
                       <button 
                         type="submit"
                         disabled={isLoading}
-                        className="w-full rounded-lg bg-accent py-2 text-xs font-semibold text-white transition-opacity hover:opacity-90 disabled:opacity-50"
+                        className="w-full rounded-lg bg-accent py-2 text-xs font-semibold text-[#071013] transition-opacity hover:opacity-90 disabled:opacity-50"
                       >
                         Request Connection
                       </button>
@@ -267,7 +277,7 @@ export default function ChatWidget() {
                   onClick={handleSendMessage}
                   disabled={!inputValue.trim() || isLoading}
                   aria-label="Send message"
-                  className="absolute right-2 flex h-10 w-10 items-center justify-center rounded-lg bg-accent text-white transition-all hover:opacity-90 active:scale-90 disabled:opacity-40 sm:h-8 sm:w-8"
+                  className="absolute right-2 flex h-10 w-10 items-center justify-center rounded-lg bg-accent text-[#071013] transition-all hover:opacity-90 active:scale-90 disabled:opacity-40 sm:h-8 sm:w-8"
                 >
                   <Send size={16} />
                 </button>
@@ -299,7 +309,7 @@ export default function ChatWidget() {
           {isOpen ? <X className="w-5 h-5" /> : <MessageSquare className="w-5 h-5" />}
           {!isOpen && shouldPrompt && (
             <span className="absolute -right-0.5 -top-0.5 flex h-3 w-3">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60"></span>
+              <span className="absolute inline-flex h-full w-full rounded-full bg-accent opacity-30"></span>
               <span className="relative inline-flex h-3 w-3 rounded-full bg-accent"></span>
             </span>
           )}
@@ -312,10 +322,10 @@ export default function ChatWidget() {
               animate={{ opacity: 1, x: 0, scale: 1 }}
               exit={{ opacity: 0, x: 16, scale: 0.92 }}
               transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
-              className="relative rounded-xl border border-border bg-bg-elev/95 px-4 py-2.5 text-xs font-semibold text-text shadow-lg backdrop-blur-xl whitespace-nowrap pointer-events-none"
+              className="chat-prompt-nudge relative whitespace-nowrap rounded-xl px-4 py-2.5 text-xs font-semibold pointer-events-none"
             >
               Got questions?
-              <span className="absolute -right-[5px] top-1/2 h-2.5 w-2.5 -translate-y-1/2 rotate-45 border-r border-t border-border bg-bg-elev/95" />
+              <span className="chat-prompt-nudge-arrow absolute -right-[5px] top-1/2 h-2.5 w-2.5 -translate-y-1/2 rotate-45" />
             </motion.div>
           )}
         </AnimatePresence>

@@ -13,7 +13,8 @@
     "serviceArea": "Seychelles",
     "pricingPath": "/pricing",
     "contactPath": "/contact",
-    "responseTime": "within 24 hours"
+    "responseTime": "within 24 hours",
+    "primaryCtaLabel": "Request a free consult"
   },
   "business": {
     "description": "Horizon Digital is a web design and development studio based on Mahé, Seychelles. We plan, design and build custom websites for local businesses.",
@@ -29,23 +30,23 @@
     ],
     "services": [
       {
-        "title": "New Website Build",
+        "title": "New website",
         "description": "Planning, custom design, development and launch for a new business website."
       },
       {
-        "title": "Website Refresh",
+        "title": "Website refresh",
         "description": "A redesign or rebuild for an existing website that needs clearer content, better mobile use or a more current visual direction."
       },
       {
-        "title": "Search Visibility Setup",
+        "title": "Search setup",
         "description": "Technical and on-page SEO foundations that help search engines crawl and understand the website. Search positions are not guaranteed."
       },
       {
-        "title": "Mobile-responsive Design",
+        "title": "Mobile-friendly design",
         "description": "Layouts are designed and tested for phones, tablets and desktop screens."
       },
       {
-        "title": "Customer Contact Tools",
+        "title": "Contact tools",
         "description": "Contact forms, WhatsApp links and agreed booking or enquiry integrations."
       }
     ]
@@ -58,23 +59,23 @@
   ],
   "projectSteps": [
     {
-      "title": "Our First Chat",
+      "title": "First chat",
       "description": "We discuss your business, customers and goals, then agree what the website needs to do."
     },
     {
-      "title": "Design & Review",
+      "title": "Plan and design",
       "description": "We prepare the structure and visual direction for review before development begins."
     },
     {
-      "title": "Building Your Site",
+      "title": "Build and test",
       "description": "After the direction is approved, we build and test the website across supported screen sizes and browsers."
     },
     {
-      "title": "Going Live",
+      "title": "Go live",
       "description": "We complete final checks and launch once the agreed scope is ready."
     },
     {
-      "title": "Support After Launch",
+      "title": "Support after launch",
       "description": "Post-launch support lasts 30, 45 or 60 days depending on the selected package."
     }
   ],

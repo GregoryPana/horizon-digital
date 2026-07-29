@@ -10,6 +10,7 @@ type SectionProps = {
   className?: string;
   containerClassName?: string;
   initialAnimate?: boolean;
+  headingLevel?: "h1" | "h2";
 };
 
 export default function Section({
@@ -21,9 +22,11 @@ export default function Section({
   className,
   containerClassName,
   initialAnimate = true,
+  headingLevel = "h2",
 }: SectionProps) {
   const shouldReduceMotion = useReducedMotion();
   const skipAnimation = !initialAnimate || shouldReduceMotion;
+  const Heading = headingLevel;
 
   return (
     <section
@@ -45,9 +48,9 @@ export default function Section({
               </span>
             )}
             {title && (
-              <h2 className="font-display mx-auto max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl">
+              <Heading className="font-display mx-auto max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl">
                 {title}
-              </h2>
+              </Heading>
             )}
             {description && (
               <p className="section-description mx-auto mt-5 max-w-2xl text-[1.05rem] leading-[1.65] text-text-muted md:text-[1.1rem] md:leading-[1.62]">{description}</p>

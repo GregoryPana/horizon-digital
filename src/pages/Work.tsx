@@ -148,7 +148,7 @@ function LaptopMockupVisual({
              ) : (
                <picture className="block w-full h-full">
                  <source srcSet={webpSrc} type="image/webp" />
-                 <img src={fallbackSrc} alt={alt} width={800} height={500} loading={isEager ? 'eager' : 'lazy'} fetchPriority={isEager ? 'high' : 'auto'} decoding="async" className="w-full h-full object-cover object-top" />
+                 <img src={fallbackSrc} alt={alt} width={800} height={500} loading={isEager ? 'eager' : 'lazy'} decoding="async" className="w-full h-full object-cover object-top" />
                </picture>
              )}
            </div>

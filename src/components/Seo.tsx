@@ -43,6 +43,7 @@ export default function Seo({
     url: siteConfig.url,
     email: siteConfig.email,
     telephone: siteConfig.phone,
+    areaServed: siteConfig.serviceArea,
     logo: ogImageUrl,
     sameAs: [
       siteConfig.instagramUrl,

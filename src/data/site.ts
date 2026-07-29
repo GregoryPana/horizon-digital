@@ -40,13 +40,11 @@ Looking forward to your reply.`,
 };
 
 export const navLinks = [
-  { label: "Home", path: "/" },
-  { label: "Services & Pricing", path: businessFacts.site.pricingPath },
-  { label: "Our Work", path: "/work" },
+  { label: "Services", path: businessFacts.site.pricingPath },
+  { label: "Work", path: "/work" },
   { label: "What You Need", path: "/what-you-need" },
-  { label: "Digital Insights", path: "/insights" },
+  { label: "Insights", path: "/insights" },
   { label: "About", path: "/about" },
-  { label: "Contact", path: businessFacts.site.contactPath },
 ];
 
 export const trustItems = businessFacts.trustItems;
@@ -112,3 +110,36 @@ export const workItems = businessFacts.portfolio.map((item) => ({
   ...item,
   ...portfolioAssets[item.id],
 }));
+
+export const liveClientProject = workItems.find((item) => item.id === "drake-seaside")!;
+
+const supportDaysFromPackage = (pkg: { includes: { title: string }[] }) => {
+  const entry = pkg.includes.find((item) => /post-launch support/i.test(item.title));
+  const days = entry ? Number(entry.title.match(/\d+/)?.[0]) : undefined;
+  return days;
+};
+
+export const supportDaysRange = {
+  min: supportDaysFromPackage(foundationPackage),
+  max: supportDaysFromPackage(growthPackage),
+};
+
+export const homeProofPoints = [
+  {
+    label: "Live client work",
+    value: liveClientProject.title,
+    href: liveClientProject.url,
+  },
+  {
+    label: "Published pricing",
+    value: foundationPackage.price,
+  },
+  {
+    label: "Our process",
+    value: `${projectSteps.length}-stage process`,
+  },
+  {
+    label: "Post-launch support",
+    value: `${supportDaysRange.min}–${supportDaysRange.max} days`,
+  },
+];
