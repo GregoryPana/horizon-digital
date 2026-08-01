@@ -6,6 +6,7 @@ import { STATIC_ROUTES, REDIRECTS, DYNAMIC_ROUTES } from "./config/routes";
 
 import Home from "./pages/Home";
 const WhatYouNeed = lazy(() => import("./pages/WhatYouNeed"));
+const Services = lazy(() => import("./pages/Services"));
 const Pricing = lazy(() => import("./pages/Pricing"));
 const Process = lazy(() => import("./pages/Process"));
 const Work = lazy(() => import("./pages/Work"));
@@ -16,6 +17,8 @@ const InsightArticle = lazy(() => import("./pages/InsightArticle"));
 const ShowcaseFormaStudio = lazy(() => import("./pages/ShowcaseFormaStudio"));
 const ShowcaseTakamakaHouse = lazy(() => import("./pages/ShowcaseTakamakaHouse"));
 const WebDesignSeychelles = lazy(() => import("./pages/WebDesignSeychelles"));
+const SeoServicesSeychelles = lazy(() => import("./pages/SeoServicesSeychelles"));
+const AnalyticsDigitalPresenceSeychelles = lazy(() => import("./pages/AnalyticsDigitalPresenceSeychelles"));
 const ShowcaseDrakeSeaside = lazy(() => import("./pages/ShowcaseDrakeSeaside"));
 const TourismWebsiteDesignSeychelles = lazy(() => import("./pages/TourismWebsiteDesignSeychelles"));
 const FAndBWebsiteDesignSeychelles = lazy(() => import("./pages/FAndBWebsiteDesignSeychelles"));
@@ -23,6 +26,14 @@ const ProfessionalServicesWebsiteDesignSeychelles = lazy(
   () => import("./pages/ProfessionalServicesWebsiteDesignSeychelles"),
 );
 const NotFound = lazy(() => import("./pages/NotFound"));
+
+// Dev-only headline reveal comparison harness. Never linked from navigation,
+// never part of STATIC_ROUTES/sitemap. import.meta.env.DEV is statically
+// false in production builds, so this route never resolves outside `npm run
+// dev` -- see src/pages/dev/HeroHeadlinePreview.tsx for details.
+const HeroHeadlinePreview = import.meta.env.DEV
+  ? lazy(() => import("./pages/dev/HeroHeadlinePreview"))
+  : null;
 
 // Component references cannot live in the Worker-safe route registry
 // (JSX + lazy imports pull in the full client bundle), so path/redirect/SEO
@@ -32,6 +43,7 @@ const componentByPath: Record<string, ReactElement> = {
   "/": <Home />,
   "/what-you-need": <WhatYouNeed />,
   "/work": <Work />,
+  "/services": <Services />,
   "/pricing": <Pricing />,
   "/process": <Process />,
   "/insights": <Insights />,
@@ -41,6 +53,8 @@ const componentByPath: Record<string, ReactElement> = {
   "/showcase/takamaka-house": <ShowcaseTakamakaHouse />,
   "/showcase/drake-seaside": <ShowcaseDrakeSeaside />,
   "/web-design-seychelles": <WebDesignSeychelles />,
+  "/seo-services-seychelles": <SeoServicesSeychelles />,
+  "/analytics-and-digital-presence-seychelles": <AnalyticsDigitalPresenceSeychelles />,
   "/tourism-website-design-seychelles": <TourismWebsiteDesignSeychelles />,
   "/f-and-b-website-design-seychelles": <FAndBWebsiteDesignSeychelles />,
   "/professional-services-website-design-seychelles": <ProfessionalServicesWebsiteDesignSeychelles />,
@@ -78,6 +92,9 @@ export default function App() {
           {REDIRECTS.map((redirect) => (
             <Route key={redirect.path} path={redirect.path} element={<Navigate to={redirect.to} replace />} />
           ))}
+          {HeroHeadlinePreview ? (
+            <Route path="/dev/headline-preview" element={<HeroHeadlinePreview />} />
+          ) : null}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>

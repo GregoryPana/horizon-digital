@@ -20,7 +20,7 @@ export default function Footer() {
             </p>
           </div>
 
-          <nav className="lg:col-span-3 lg:col-start-7" aria-label="Footer navigation">
+          <nav className="lg:col-span-3 lg:col-start-7" aria-label="Footer services and site navigation">
             <p className="font-mono text-[0.68rem] uppercase tracking-[0.18em] text-text-dim">Explore</p>
             <ul className="mt-4 grid gap-1">
               {navLinks.map((link) => (

@@ -1,0 +1,423 @@
+/*
+  DEV-ONLY PREVIEW STYLES
+  Isolated comparison harness for homepage headline entrance effects.
+  Not imported by any production route. Safe to delete along with
+  HeroHeadlinePreview.tsx once Gregory has picked a direction.
+
+  Motion budget: Family A only (one-shot on-mount reveal, 0.6-1.0s,
+  cubic-bezier(0.16,1,0.3,1)-style easing). No scroll-scrubbing, no
+  looping animation after the reveal completes.
+
+  Reduced-motion strategy: default (unqualified) rules represent the
+  FINAL settled state -- fully visible, static gradient, no blur, no
+  transform, no cursor. Motion is only ever added inside
+  `@media (prefers-reduced-motion: no-preference)`, mirroring the
+  gsap.matchMedia() pattern already used in animated-shader-hero.tsx.
+  This means a user with reduce set simply never sees the hidden/
+  intermediate state -- there is nothing to "cancel".
+*/
+
+.hp-stage {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  min-height: 60vh;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background:
+    radial-gradient(68% 72% at 63% 45%, rgba(22, 96, 106, 0.16), transparent 70%),
+    linear-gradient(145deg, #03090c 0%, #07171c 46%, #040e12 100%);
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+
+.hp-headline {
+  position: relative;
+  max-width: 24ch;
+  margin: 0 auto;
+}
+
+.hp-line {
+  display: block;
+  background-image: linear-gradient(to bottom, #ffffff 0%, #eefcff 46%, #b8d6da 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ---------------------------------------------------------------- */
+/* A -- Blur to focus (Family A baseline)                            */
+/* ---------------------------------------------------------------- */
+
+.hp-blur .hp-line {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hp-blur .hp-line {
+    animation: hp-blur-in 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: calc(var(--hp-i, 0) * 0.12s + 0.05s);
+  }
+}
+
+@keyframes hp-blur-in {
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+    filter: blur(9px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+/* ---------------------------------------------------------------- */
+/* Shared tropical gradient text (actual character fill, not an       */
+/* overlay) -- used by the sweep variants (looping) and the shine     */
+/* variant (static base underneath the one-shot sheen pass).          */
+/* ---------------------------------------------------------------- */
+
+.hp-gradient-text {
+  background-image: linear-gradient(
+    100deg,
+    #8bf2ed 0%,
+    #53d7e8 25%,
+    #78dea9 50%,
+    #53d7e8 75%,
+    #8bf2ed 100%
+  );
+  background-size: 200% 100%;
+  background-position: 0% 0;
+}
+
+/* ---------------------------------------------------------------- */
+/* B -- Gradient sweep, line by line                                  */
+/* Reveal per line, then the colour itself keeps travelling across    */
+/* the letters on a continuous loop (not a one-shot flash) -- this    */
+/* is a deliberate exception to the Family A "no looping" budget,     */
+/* called out in the report; reduced-motion still freezes it.         */
+/* ---------------------------------------------------------------- */
+
+.hp-sweep-line .hp-line {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hp-sweep-line .hp-line {
+    animation:
+      hp-line-rise 0.6s cubic-bezier(0.16, 1, 0.3, 1) both,
+      hp-gradient-loop 4.5s linear infinite;
+    animation-delay: calc(var(--hp-i, 0) * 0.16s), calc(var(--hp-i, 0) * -0.6s);
+  }
+}
+
+@keyframes hp-line-rise {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hp-gradient-loop {
+  from {
+    background-position: 0% 0;
+  }
+  to {
+    /*
+      Seamless-loop math: with background-size 200% (image is 2x the
+      element width) and default background-repeat: repeat, a net
+      shift of exactly one tile-width (200% of the element) makes the
+      end frame pixel-identical to the start frame, so linear+infinite
+      wraps with no visible reset. Per the CSS background-position
+      percentage formula, pos(p) = (container - size) * (p/100); for
+      size=200% that resolves to exactly -200% giving the needed
+      one-tile shift. The old 260%-size/-260%-position pairing did NOT
+      satisfy this (net shift overshot one tile-width), which is what
+      caused the visible reset/snap Gregory saw on the single-pass
+      variant.
+    */
+    background-position: -200% 0;
+  }
+}
+
+/* ---------------------------------------------------------------- */
+/* C -- Gradient sweep, single left-to-right pass over full block     */
+/* Same looping colour travel, but as one shared background across    */
+/* the whole two-line block rather than restarting per line.          */
+/* ---------------------------------------------------------------- */
+
+.hp-sweep-single {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hp-sweep-single {
+    animation:
+      hp-block-rise 0.6s cubic-bezier(0.16, 1, 0.3, 1) both,
+      hp-gradient-loop 5.5s linear infinite;
+    animation-delay: 0s, 0.4s;
+  }
+}
+
+@keyframes hp-block-rise {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------------------------------------------------------------- */
+/* D -- Shine/sheen pass + sparkle at tail                            */
+/* ---------------------------------------------------------------- */
+
+.hp-shine-wrap {
+  position: relative;
+  opacity: 1;
+  transform: none;
+}
+
+.hp-shine-wrap .hp-line {
+  background-position: 30% 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hp-shine-wrap {
+    animation: hp-block-rise 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+}
+
+.hp-shine-band {
+  position: absolute;
+  inset: -25% -10%;
+  width: 26%;
+  transform: skewX(-18deg) translateX(-180%);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+  mix-blend-mode: overlay;
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hp-shine-band {
+    animation: hp-shine-pass 1s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    animation-delay: 0.45s;
+  }
+}
+
+@keyframes hp-shine-pass {
+  0% {
+    opacity: 0;
+    transform: skewX(-18deg) translateX(-180%);
+  }
+  15% {
+    opacity: 0.85;
+  }
+  100% {
+    opacity: 0;
+    transform: skewX(-18deg) translateX(420%);
+  }
+}
+
+.hp-sparkle {
+  position: absolute;
+  right: 6%;
+  bottom: 8%;
+  color: #82edf2;
+  opacity: 0;
+  transform: scale(0.4) rotate(-15deg);
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hp-sparkle {
+    animation: hp-sparkle-twinkle 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: 1.3s;
+  }
+}
+
+@keyframes hp-sparkle-twinkle {
+  0% {
+    opacity: 0;
+    transform: scale(0.4) rotate(-15deg);
+  }
+  45% {
+    opacity: 1;
+    transform: scale(1.15) rotate(6deg);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.9) rotate(0deg);
+  }
+}
+
+/* ---------------------------------------------------------------- */
+/* E -- Typewriter with blinking cursor (optional / lower priority)   */
+/* ---------------------------------------------------------------- */
+
+.hp-typewriter .hp-line {
+  opacity: 1;
+}
+
+.hp-char {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hp-char {
+    opacity: 0;
+    animation: hp-char-in 0.05s linear both;
+    animation-delay: calc(var(--hp-c, 0) * 28ms + var(--hp-i, 0) * 0.5s);
+  }
+}
+
+@keyframes hp-char-in {
+  to {
+    opacity: 1;
+  }
+}
+
+.hp-cursor {
+  display: inline-block;
+  width: 0.06em;
+  margin-left: 0.05em;
+  background: #82edf2;
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hp-cursor {
+    opacity: 1;
+    animation:
+      hp-cursor-blink 0.7s step-end 4,
+      hp-cursor-hide 0.01s linear forwards;
+    animation-delay: var(--hp-cursor-delay, 1.2s), calc(var(--hp-cursor-delay, 1.2s) + 2.8s);
+  }
+}
+
+@keyframes hp-cursor-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes hp-cursor-hide {
+  to {
+    opacity: 0;
+  }
+}
+
+/* ---------------------------------------------------------------- */
+/* Switcher chrome                                                    */
+/* ---------------------------------------------------------------- */
+
+.hp-page {
+  min-height: 100dvh;
+  background: #050b0d;
+  color: #fff;
+  padding: 2rem 1.25rem 4rem;
+}
+
+.hp-banner {
+  max-width: 60rem;
+  margin: 0 auto 1.5rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255, 196, 0, 0.35);
+  background: rgba(255, 196, 0, 0.08);
+  padding: 0.9rem 1.1rem;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: #ffe28a;
+}
+
+.hp-tabs {
+  max-width: 60rem;
+  margin: 0 auto 1.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.hp-tab {
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.75);
+  padding: 0.5rem 1rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.hp-tab:hover {
+  border-color: rgba(130, 237, 242, 0.4);
+  color: #fff;
+}
+
+.hp-tab[aria-pressed="true"] {
+  background: rgba(130, 237, 242, 0.16);
+  border-color: rgba(130, 237, 242, 0.55);
+  color: #fff;
+}
+
+.hp-meta {
+  max-width: 60rem;
+  margin: 1.25rem auto 0;
+  display: grid;
+  gap: 0.75rem;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.hp-meta dt {
+  font-weight: 700;
+  color: #82edf2;
+  text-transform: uppercase;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+}
+
+.hp-replay {
+  border-radius: 999px;
+  border: 1px solid rgba(130, 237, 242, 0.4);
+  background: rgba(130, 237, 242, 0.12);
+  color: #fff;
+  padding: 0.5rem 1.1rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+}
+
+@media (max-width: 640px) {
+  .hp-headline {
+    font-size: 2.1rem;
+  }
+}

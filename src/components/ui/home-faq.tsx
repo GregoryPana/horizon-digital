@@ -1,5 +1,8 @@
-import { useMemo, useState } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { useId, useMemo, useState } from "react";
+import {
+  resolveHomeFaqCategoryKey,
+  getNextHomeFaqItemOpenState,
+} from "./homeFaqState";
 
 export type HomeFaqItem = {
   question: string;
@@ -18,119 +21,100 @@ type HomeFaqProps = {
 
 function FaqAccordionItem({ item }: { item: HomeFaqItem }) {
   const [isOpen, setIsOpen] = useState(false);
-  const shouldReduceMotion = useReducedMotion();
+  const itemId = useId();
+  const triggerId = `home-faq-trigger-${itemId}`;
+  const panelId = `home-faq-panel-${itemId}`;
 
   return (
-    <motion.div
-      animate={isOpen ? "open" : "closed"}
-      className={`rounded-xl border border-border bg-bg-elev transition-colors ${isOpen ? "bg-bg-panel" : ""}`.trim()}
+    <div
+      className={`home-faq-item rounded-xl border border-border bg-bg-elev transition-colors ${isOpen ? "is-open bg-bg-panel" : ""}`.trim()}
     >
       <button
+        id={triggerId}
         type="button"
-        onClick={() => setIsOpen((current) => !current)}
+        onClick={() => setIsOpen((current) => getNextHomeFaqItemOpenState(current))}
         className="flex w-full items-center justify-between gap-4 px-4 py-4 text-left md:px-6"
         aria-expanded={isOpen}
+        aria-controls={panelId}
       >
         <span className={`text-sm font-semibold md:text-base ${isOpen ? "text-text" : "text-text-muted"}`.trim()}>
           {item.question}
         </span>
-        <motion.span
-          variants={{ open: { rotate: "45deg" }, closed: { rotate: "0deg" } }}
-          transition={{ duration: 0.2 }}
-          className={`inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-accent/45 text-accent ${
+        <span
+          className={`home-faq-plus inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-accent/45 text-accent ${
             isOpen ? "bg-accent/12" : ""
           }`.trim()}
           aria-hidden="true"
         >
           +
-        </motion.span>
+        </span>
       </button>
-      <motion.div
-        initial={false}
-        animate={{
-          height: isOpen ? "auto" : "0px",
-          marginBottom: isOpen ? "16px" : "0px",
-        }}
-        transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
-        className="overflow-hidden px-4 md:px-6"
+      <div
+        id={panelId}
+        role="region"
+        aria-labelledby={triggerId}
+        aria-hidden={!isOpen}
+        className="home-faq-disclosure px-4 md:px-6"
       >
-        <motion.p
-          initial={false}
-          animate={isOpen ? { opacity: 1, y: 0, filter: shouldReduceMotion ? undefined : 'blur(0px)' } : { opacity: 0, y: -4, filter: shouldReduceMotion ? undefined : 'blur(4px)' }}
-          transition={{ duration: 0.28, delay: isOpen ? 0.1 : 0, ease: [0.16, 1, 0.3, 1] }}
-          className="pb-1 text-sm text-text-muted"
-        >
-          {item.answer}
-        </motion.p>
-      </motion.div>
-    </motion.div>
+        <div className="home-faq-disclosure-inner">
+          <div className="home-faq-disclosure-content">
+            <p className="text-sm text-text-muted">{item.answer}</p>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 
 export default function HomeFaq({ categories }: HomeFaqProps) {
   const safeCategories = useMemo(() => categories.slice(0, 4), [categories]);
-  const [selectedKey, setSelectedKey] = useState(safeCategories[0]?.key ?? "");
-
-  const selectedCategory =
-    safeCategories.find((category) => category.key === selectedKey) ?? safeCategories[0];
+  const [requestedCategoryKey, setRequestedCategoryKey] = useState(
+    safeCategories[0]?.key ?? "",
+  );
+  const selectedCategoryKey = resolveHomeFaqCategoryKey(
+    requestedCategoryKey,
+    safeCategories.map((category) => category.key),
+  );
+  const selectedCategory = safeCategories.find(
+    (category) => category.key === selectedCategoryKey,
+  );
 
   return (
     <div className="mx-auto w-full max-w-4xl">
       <div className="mb-6 flex flex-wrap items-center justify-center gap-2 md:gap-3">
         {safeCategories.map((category) => {
-          const isActive = category.key === selectedCategory?.key;
+          const isActive = category.key === selectedCategoryKey;
 
           return (
-            <motion.button
+            <button
               key={category.key}
               type="button"
-              whileTap={{ scale: 0.95 }}
-              onClick={() => setSelectedKey(category.key)}
-              className={`relative overflow-hidden rounded-full border px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.12em] transition-colors md:px-4 md:py-2 ${
+              aria-pressed={isActive}
+              onClick={() => setRequestedCategoryKey(category.key)}
+              className={`home-faq-category relative overflow-hidden rounded-full border px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.12em] md:px-4 md:py-2 ${
                 isActive
-                  ? "border-accent text-black"
+                  ? "is-active border-accent text-black"
                   : "border-border bg-bg-elev text-text-muted hover:text-text"
               }`.trim()}
             >
               <span className="relative z-10">{category.label}</span>
-              <AnimatePresence>
-                {isActive && (
-                  <motion.span
-                    initial={{ y: "100%" }}
-                    animate={{ y: "0%" }}
-                    exit={{ y: "100%" }}
-                    transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
-                    className="absolute inset-0 z-0 bg-gradient-to-r from-accent to-accent-2"
-                  />
-                )}
-              </AnimatePresence>
-            </motion.button>
+              <span
+                className="home-faq-category-fill absolute inset-0 z-0 bg-gradient-to-r from-accent to-accent-2"
+                aria-hidden="true"
+              />
+            </button>
           );
         })}
       </div>
 
       <div className="faq-surface rounded-2xl border border-border p-3 md:p-4">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={selectedCategory?.key ?? "none"}
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 16 }}
-            transition={{ duration: 0.24, ease: "easeOut" }}
-            className="space-y-3"
-          >
-            {selectedCategory?.items.map((item, idx) => (
-               <motion.div
-                 key={item.question}
-                 initial={{ opacity: 0, x: -10 }}
-                 animate={{ opacity: 1, x: 0 }}
-                 transition={{ duration: 0.3, delay: idx * 0.05 }}
-               >
-                 <FaqAccordionItem item={item} />
-               </motion.div>
+        {selectedCategory && (
+          <div key={selectedCategory.key} className="home-faq-category-panel space-y-3">
+            {selectedCategory.items.map((item) => (
+              <FaqAccordionItem key={item.question} item={item} />
             ))}
-          </motion.div>
-        </AnimatePresence>
+          </div>
+        )}
       </div>
 
       <p className="mt-5 text-sm text-text-muted">

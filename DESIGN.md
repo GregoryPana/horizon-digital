@@ -2,7 +2,7 @@
 
 **Status:** Session 3 visual authority
 **Applies to:** Horizon Digital public website and shared page shell
-**Last reviewed:** 2026-07-27
+**Last reviewed:** 2026-07-30
 
 `DESIGN.md` is the current visual authority. `brand-design-guidelines.md` remains historical brand context; where its palette, fonts, spacing or component rules differ, this file wins. Content and public facts remain governed separately by `docs/CONTENT_AUTHORITY.md`.
 
@@ -90,31 +90,38 @@ Rules:
 
 Self-hosted fonts remain:
 
-- Display: `Satoshi`, 700–900 for prominent hero and section headlines.
+- Display: `Satoshi`, normally 600–700 for prominent hero and section headlines.
 - Body/UI: `Switzer`, 400–600.
 - Mono: system monospace for small evidence/status labels only.
 - Homepage section titles stay short, concrete and inviting. Prefer a plain phrase that a cautious first-time visitor understands immediately over agency slogans or explanatory headlines.
 
-Use responsive scales rather than isolated page values:
+Use one role-based responsive scale across routes rather than isolated page values:
 
 ```css
---text-display: clamp(3rem, 7.4vw, 7.25rem);
---text-h1: clamp(2.75rem, 6vw, 6rem);
---text-h2: clamp(2.15rem, 4vw, 4.5rem);
---text-h3: clamp(1.35rem, 2vw, 2rem);
---text-lead: clamp(1.05rem, 1.45vw, 1.3rem);
+--text-display: clamp(3rem, 6.25vw, 6.5rem); /* homepage or cinematic work only */
+--text-h1: clamp(2.25rem, 4.4vw, 3.75rem);   /* standard route hero: 36–60px */
+--text-h2: clamp(1.75rem, 3vw, 3rem);        /* section heading: 28–48px */
+--text-h3: clamp(1.25rem, 1.6vw, 1.75rem);   /* card/subsection: 20–28px */
+--text-lead: clamp(1.05rem, 1.3vw, 1.2rem);  /* 16.8–19.2px */
 --text-body: 1rem;
---text-meta: 0.72rem;
+--text-support: 0.875rem;
+--text-meta: 0.75rem;
 ```
 
 Rules:
 
+- Standard content routes use the H1 token. The larger display token is reserved for the homepage or an evidence-backed cinematic Work treatment, not chosen page by page.
+- Use one visible H1 per route. Do not hide the semantic H1 while styling an H2 as the page headline.
+- H1 and H2 use Satoshi 700; H3 uses 600–700. Avoid 800–900 weights as a substitute for hierarchy.
+- H1 line-height is `1.0–1.05`; H2 is `1.04–1.1`; H3 is `1.15–1.25`.
 - Headings use `text-wrap: balance`; body copy may use `text-wrap: pretty`.
-- Display tracking: `-0.045em` to `-0.025em`.
-- Body line-height: `1.55–1.7`.
+- Display tracking: `-0.045em` to `-0.025em`; section headings normally use `-0.035em` to `-0.02em`.
+- Keep standard route headlines near 12–18 words and constrain them to roughly 12–16 characters per visual line where layout permits.
+- Body line-height: `1.55–1.7`; support copy never drops below 14px.
 - Metadata is uppercase only at `0.12em–0.20em`; avoid excessive `0.3em+` tracking.
 - Do not place long sentences in uppercase.
 - Prices and numbers use tabular numerals.
+- Compactness comes from fewer words, controlled line length, smaller gaps and reduced card/section padding—not undersized body copy.
 
 ### Spacing
 
@@ -124,11 +131,11 @@ Use an 8px base rhythm with primary steps:
 4, 8, 12, 16, 24, 32, 48, 64, 80, 96, 128, 160
 ```
 
-- Mobile section padding: 72–88px.
-- Tablet section padding: 88–112px.
-- Desktop section padding: 112–152px.
+- Mobile section padding: 64–80px.
+- Tablet section padding: 72–96px.
+- Desktop section padding: 80–112px; reserve 128px only for an evidence-backed cinematic section.
 - Heading-to-body gap: 16–24px.
-- Section-intro-to-content gap: 40–64px.
+- Section-intro-to-content gap: 24–40px.
 - No section should be tall merely to display effects or empty space.
 
 ### Containers and grid
@@ -154,7 +161,7 @@ Use an 8px base rhythm with primary steps:
 ### Header and navigation
 
 - Logo is the home link.
-- Desktop primary navigation contains five items: **Services, Work, What You Need, Insights, About**.
+- Desktop primary navigation contains five items: **Services, Work, Pricing, Insights, About**.
 - Contact is represented by the dominant **Request a free consult** CTA, not a duplicate nav item.
 - Desktop navigation must fit without clipping at 1280 and 1440.
 - Compact menu is used below the desktop fit threshold and must be keyboard accessible.
@@ -173,7 +180,7 @@ Desktop and tablet composition:
 - The signature hero artwork is a representational website-build story rather than abstract spectacle. A browser canvas progresses through **Plan → Design → Build → Test → Live** using wireframe blocks, colour application, code tracing, responsive device checks and a restrained live state.
 - The browser story is decorative and `aria-hidden`; the real headline, explanation and CTAs remain semantic HTML in the adjacent left column. The story may never intercept pointer or keyboard input.
 - After the completed live state holds, the story deconstructs in reverse order—live marker, checks, device, code, design, wireframe and browser frame—before rebuilding. Do not cover or abruptly clear the scene with a solid reset wipe.
-- Desktop receives the complete sequence. Tablet removes fine detail. Mobile omits the code rail, cursor detail and small check labels. Reduced motion displays the polished completed website and live state immediately without looping.
+- Desktop receives the complete sequence. Tablet removes fine detail. Narrow mobile (below 640px) never builds or loops the animated timeline — like reduced motion, it displays the polished completed website and live state immediately, so the story can never surface as a late Largest Contentful Paint candidate while off-screen. Reduced motion displays the polished completed website and live state immediately without looping.
 - Keep the dark marine base, low-opacity grid, blurred light fields and vignette. Do not restore the retired orbit, shard or full-screen flowing-current artwork as a second hero narrative. A maximum of three masked, low-opacity directional process traces and a few restrained nodes may sit in the right two-thirds as atmospheric support; they must remain visually subordinate to the website-build story and disappear on mobile.
 - One dominant CTA: **Request a free consult**.
 - Secondary path: text/outlined link to selected work.

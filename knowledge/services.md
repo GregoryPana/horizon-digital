@@ -4,7 +4,7 @@
 
 Horizon Digital is a web design and development studio based on Mahé, Seychelles. We plan, design and build custom websites for local businesses.
 
-## What Horizon Digital offers
+## Website capabilities
 
 ### New website
 
@@ -25,6 +25,132 @@ Layouts are designed and tested for phones, tablets and desktop screens.
 ### Contact tools
 
 Contact forms, WhatsApp links and agreed booking or enquiry integrations.
+
+## Complete service catalogue
+
+### New custom websites
+
+- **Pathway:** Build or improve your website
+- **Type:** website-project
+- **Price:** See current website packages and pricing
+
+Planning, custom design, development and launch for a new business website built around the agreed goals and content.
+
+### Website redesigns and rebuilds
+
+- **Pathway:** Build or improve your website
+- **Type:** website-project
+- **Price:** See current website packages and pricing
+
+A redesign or refresh for an existing website when clearer content, better mobile use or a more current direction calls for a rebuild.
+
+### Contact, enquiry and agreed integrations
+
+- **Pathway:** Build or improve your website
+- **Type:** website-feature
+- **Price:** See current website packages and pricing
+
+Contact forms and WhatsApp links are included in website packages. Booking, enquiry and other suitable integrations can be agreed in the project scope.
+
+### Managed hosting
+
+- **Pathway:** Build or improve your website
+- **Type:** managed-service
+- **Price:** SCR 2,500 per year
+
+Hosting configuration, SSL setup, regular backups, routine stability and security updates, basic availability checks and a simple monthly website activity update.
+
+Large or complex builds may need a different hosting plan and price. An agreed alternative provider can also be used.
+
+### Post-launch support
+
+- **Pathway:** Build or improve your website
+- **Type:** support
+- **Price:** See current website packages and pricing
+
+Website packages include 30, 45 or 60 days of support after launch, depending on the selected package. Custom support is defined in the proposal.
+
+### SEO consultation and review
+
+- **Pathway:** Improve visibility and measurement
+- **Type:** consultation-review
+- **Price:** Scoped after an initial discussion
+
+We can review an existing or third-party website and explain practical technical and on-page SEO priorities. A Horizon Digital website redesign is not required. Search positions are not guaranteed.
+
+### SEO implementation support
+
+- **Pathway:** Improve visibility and measurement
+- **Type:** implementation
+- **Price:** Scoped after an initial discussion
+
+We can separately scope agreed technical and on-page SEO changes on an existing or third-party website. A Horizon Digital website redesign is not required.
+
+Implementation requires the necessary third-party access and authority to make the agreed changes.
+
+### Analytics and measurement setup
+
+- **Pathway:** Improve visibility and measurement
+- **Type:** implementation
+- **Price:** Scoped after an initial discussion
+
+We can set up agreed website measurement so you can understand basic visitor activity, subject to suitable account access and consent requirements.
+
+Implementation requires the necessary account access and authority.
+
+### Google Business Profile setup and optimisation
+
+- **Pathway:** Improve visibility and measurement
+- **Type:** implementation
+- **Price:** Scoped after an initial discussion
+
+We can help set up or improve a Google Business Profile using accurate business information and available profile features.
+
+Implementation requires the necessary profile access, authority and verified business details.
+
+## Existing-website support flow
+
+### 1. Review the current setup
+
+We look at the agreed website, search, measurement or business-profile issue.
+
+### 2. Explain findings and priorities
+
+We set out what we found in plain language and identify practical priorities.
+
+### 3. Choose advice or implementation
+
+You choose whether to use the advice yourself or ask us to scope implementation separately.
+
+### 4. Verify and hand over
+
+For agreed implementation, we verify the completed changes and hand over the relevant information.
+
+## Scope boundaries
+
+### Advice and implementation are separate
+
+A consultation or review explains findings and priorities. Any hands-on implementation is agreed and scoped separately unless it is already part of a website package.
+
+### You keep ownership and control
+
+Domains and business accounts should remain in the client's name. Work in a website or third-party account requires the necessary access and authority.
+
+### Existing providers can stay involved
+
+If another provider manages the website, we can explain the requested work and coordinate agreed changes, subject to their process, cooperation and access.
+
+### Analytics needs an agreed privacy approach
+
+The client is responsible for deciding the privacy and consent requirements that apply to the business. We can implement the agreed measurement setup when the required access and consent configuration are available; this is not legal advice.
+
+### Results are not guaranteed
+
+Search rankings, traffic, enquiries, bookings, conversions and revenue depend on factors outside this work and are not guaranteed.
+
+### Google Ads management is not included
+
+Google Ads campaign setup and ongoing advertising management are outside the services advertised here.
 
 ## Industries served
 

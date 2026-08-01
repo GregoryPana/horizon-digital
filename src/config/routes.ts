@@ -67,6 +67,40 @@ export const INSIGHT_NOT_FOUND_SEO: RouteSeo = {
   ogType: "website",
 };
 
+export const SERVICES_SEO: RouteSeo = {
+  title: "Website, SEO & Analytics Services Seychelles | Horizon Digital",
+  description:
+    "Explore custom website design, SEO review and implementation, analytics setup and Google Business Profile support for Seychelles businesses.",
+  keywords:
+    "website services Seychelles, SEO consultation Seychelles, analytics setup Seychelles, Google Business Profile Seychelles",
+  robots: DEFAULT_ROBOTS,
+  ogType: "website",
+};
+
+export const WEB_DESIGN_SEO: RouteSeo = {
+  title: "Web Design Seychelles | Custom Websites | Horizon Digital",
+  description: "Custom website planning, design and development for Seychelles businesses, including new websites, redesigns, responsive layouts and technical SEO foundations.",
+  keywords: "web design Seychelles, custom websites Seychelles, website redesign Seychelles",
+  robots: DEFAULT_ROBOTS,
+  ogType: "website",
+};
+
+export const SEO_SERVICES_SEO: RouteSeo = {
+  title: "SEO Review & Implementation Seychelles | Horizon Digital",
+  description: "Practical technical and on-page SEO review for Seychelles businesses, with clear recommendations and separately scoped implementation support.",
+  keywords: "SEO services Seychelles, SEO consultation Seychelles, website SEO review Seychelles, technical SEO Seychelles",
+  robots: DEFAULT_ROBOTS,
+  ogType: "website",
+};
+
+export const ANALYTICS_PRESENCE_SEO: RouteSeo = {
+  title: "Analytics & Google Business Profile Seychelles | Horizon Digital",
+  description: "Basic website analytics setup and Google Business Profile support for Seychelles businesses, subject to access, consent and verified business details.",
+  keywords: "website analytics setup Seychelles, Google Analytics setup Seychelles, Google Business Profile Seychelles, digital presence Seychelles",
+  robots: DEFAULT_ROBOTS,
+  ogType: "website",
+};
+
 export const STATIC_ROUTES: StaticRoute[] = [
   {
     kind: "static",
@@ -111,6 +145,12 @@ export const STATIC_ROUTES: StaticRoute[] = [
   },
   {
     kind: "static",
+    path: "/services",
+    seo: SERVICES_SEO,
+    sitemap: { priority: "0.9", changefreq: "monthly" },
+  },
+  {
+    kind: "static",
     path: "/pricing",
     seo: {
       title: "Custom Website Packages & Pricing in Seychelles | Horizon Digital",
@@ -129,7 +169,7 @@ export const STATIC_ROUTES: StaticRoute[] = [
     seo: {
       title: "How We Build Your Website | Horizon Digital",
       description:
-        "A clear, step-by-step look at how Horizon Digital takes your website from discovery to launch. No surprises, no guesswork — just a process you'll actually enjoy.",
+        "A clear, step-by-step look at how Horizon Digital takes your website from the first chat through launch and package-based support.",
       keywords: "website build process Seychelles, how to build a website, web design timeline, website project steps",
       robots: DEFAULT_ROBOTS,
       ogType: "website",
@@ -156,7 +196,7 @@ export const STATIC_ROUTES: StaticRoute[] = [
     seo: {
       title: "Custom Website Design Studio Seychelles | About Horizon Digital",
       description:
-        "Horizon Digital is a local studio specialized in custom website design for Seychelles businesses. We build beautiful, fast websites that actually bring customers.",
+        "Horizon Digital is a Mahé-based studio that plans, designs and builds custom websites for Seychelles businesses.",
       keywords:
         "about Horizon Digital, custom web design studio Seychelles, bespoke website designer Seychelles, custom web development",
       robots: DEFAULT_ROBOTS,
@@ -216,16 +256,20 @@ export const STATIC_ROUTES: StaticRoute[] = [
   {
     kind: "static",
     path: "/web-design-seychelles",
-    seo: {
-      title: "Web Design Seychelles | Custom Websites | Horizon Digital",
-      description:
-        "Custom website planning, design and development for Seychelles businesses, with responsive layouts and technical SEO foundations.",
-      keywords:
-        "web design seychelles, web designer mahé, seychelles website development, custom web design seychelles, local web agency seychelles",
-      robots: DEFAULT_ROBOTS,
-      ogType: "website",
-    },
+    seo: WEB_DESIGN_SEO,
     sitemap: { priority: "1.0", changefreq: "monthly" },
+  },
+  {
+    kind: "static",
+    path: "/seo-services-seychelles",
+    seo: SEO_SERVICES_SEO,
+    sitemap: { priority: "0.8", changefreq: "monthly" },
+  },
+  {
+    kind: "static",
+    path: "/analytics-and-digital-presence-seychelles",
+    seo: ANALYTICS_PRESENCE_SEO,
+    sitemap: { priority: "0.8", changefreq: "monthly" },
   },
   {
     kind: "static",
@@ -261,7 +305,7 @@ export const STATIC_ROUTES: StaticRoute[] = [
     seo: {
       title: "Professional Services Web Design Seychelles | Agency & Consultant Websites",
       description:
-        "Horizon Digital creates high-authority websites for Seychelles professional services. Custom web design for lawyers, accountants, and consultants built for trust and leads.",
+        "Custom websites for Seychelles professional services, with clear service information, responsive layouts and direct enquiry paths.",
       keywords:
         "professional services web design seychelles, lawyer website mahé, accountant web design victoria, consultant website praslin, real estate website seychelles",
       robots: DEFAULT_ROBOTS,

@@ -38,9 +38,21 @@ const services = `${generatedHeader}# Horizon Digital services
 
 ${facts.business.description}
 
-## What Horizon Digital offers
+## Website capabilities
 
 ${facts.business.services.map((service) => `### ${service.title}\n\n${service.description}`).join("\n\n")}
+
+## Complete service catalogue
+
+${facts.serviceCatalogue.map((service) => `### ${service.title}\n\n- **Pathway:** ${service.pathway}\n- **Type:** ${service.serviceType}\n- **Price:** ${service.price}\n\n${service.description}${service.accessRequirement ? `\n\n${service.accessRequirement}` : ""}`).join("\n\n")}
+
+## Existing-website support flow
+
+${facts.existingWebsiteFlow.map((step, index) => `### ${index + 1}. ${step.title}\n\n${step.description}`).join("\n\n")}
+
+## Scope boundaries
+
+${facts.serviceScopeBoundaries.map((boundary) => `### ${boundary.title}\n\n${boundary.description}`).join("\n\n")}
 
 ## Industries served
 

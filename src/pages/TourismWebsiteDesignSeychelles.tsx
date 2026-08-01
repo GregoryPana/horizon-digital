@@ -47,7 +47,7 @@ const homeFaqCategories: HomeFaqCategory[] = [
       {
         question: "What is a typical timeline for a hotel site?",
         answer:
-          "A professional hospitality site typically takes 4 to 8 weeks, depending on the number of room types, activity pages, and booking system complexity.",
+          "Timing depends on the number of room types, content readiness and any booking-system work. The proposal confirms the estimate for the agreed scope.",
       },
       {
         question: "Is the site mobile-friendly for travelers?",
@@ -60,10 +60,10 @@ const homeFaqCategories: HomeFaqCategory[] = [
 
 const marqueeItems = [
   "Clear direct booking paths",
-  "High-resolution island storytelling",
-  "Mobile-first guest experience",
-  "Performance-aware island delivery",
-  "Integrated Seychelles booking tech",
+  "Responsive property imagery",
+  "Mobile-friendly guest information",
+  "Performance-aware delivery",
+  "Supported booking integrations",
 ];
 
 const tourismProblemCards: Array<{
@@ -80,8 +80,8 @@ const tourismProblemCards: Array<{
     type: "zero",
   },
   {
-    title: "Invisible to Travelers",
-    body: "When guests search for 'Villas in Mahé' or 'Boutique Hotels Praslin', they don't find you. Competitors are capturing your traffic.",
+    title: "Search Foundations",
+    body: "Clear property information, page structure and metadata help search engines understand the website. Rankings and visibility are not guaranteed.",
     color: "cyan",
     type: "found",
   },
@@ -92,11 +92,11 @@ const tourismProblemCards: Array<{
     type: "outdated",
   },
   {
-    title: "Not Enough Enquiries",
-    body: "Visitors land on your page but don't take action. Your site lacks the trust and clarity needed to close the deal.",
+    title: "Unclear Next Step",
+    body: "When booking and enquiry options are difficult to find, visitors have to work harder to contact the property. We make those paths clearer.",
     color: "cyan",
     type: "start",
-    link: { text: "Fix it now", to: "/contact" },
+    link: { text: "Discuss the website", to: "/contact" },
   },
 ];
 
@@ -191,7 +191,7 @@ export default function TourismWebsiteDesignSeychelles() {
       <Hero
         trustBadge={{ text: "Direct-First Tourism Design • Seychelles" }}
         headline={{
-          lines: ["STUNNING", "TOURISM WEBSITES"],
+          lines: ["CUSTOM", "TOURISM WEBSITES"],
           rotatingWords: ["HOTEL", "VILLA", "CHARTER", "RESORT"],
         }}
         subtitle="We build custom websites for Seychelles hospitality businesses with clear property information and direct booking or enquiry paths."
@@ -238,7 +238,7 @@ export default function TourismWebsiteDesignSeychelles() {
           >
             <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">Review Your Booking Path</span>
             <h2 className="font-display mx-auto max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl">
-              Is your property losing out to <span className="text-cyan font-semibold">third-party platforms?</span>
+              Make direct booking and enquiry options <span className="text-cyan font-semibold">easier to find.</span>
             </h2>
           </motion.div>
 
@@ -264,13 +264,13 @@ export default function TourismWebsiteDesignSeychelles() {
           </div>
 
           <div className="flex justify-center items-center gap-4 mb-16 md:hidden">
-            <motion.button onClick={() => scrollCarouselTo(problemScrollRef, activeProblem - 1, tourismProblemCards.length)} className="p-3 text-cyan bg-[#131315] rounded-full"><ChevronLeft className="w-5 h-5" /></motion.button>
+            <motion.button aria-label="Previous tourism website challenge" onClick={() => scrollCarouselTo(problemScrollRef, activeProblem - 1, tourismProblemCards.length)} className="p-3 text-cyan bg-[#131315] rounded-full"><ChevronLeft className="w-5 h-5" /></motion.button>
             <div className="flex gap-3">
               {tourismProblemCards.map((_, i) => (
                 <div key={i} className={`h-2 rounded-full transition-all duration-300 ${activeProblem === i ? "w-8 bg-cyan" : "w-2 bg-white/20"}`} />
               ))}
             </div>
-            <motion.button onClick={() => scrollCarouselTo(problemScrollRef, activeProblem + 1, tourismProblemCards.length)} className="p-3 text-cyan bg-[#131315] rounded-full"><ChevronRight className="w-5 h-5" /></motion.button>
+            <motion.button aria-label="Next tourism website challenge" onClick={() => scrollCarouselTo(problemScrollRef, activeProblem + 1, tourismProblemCards.length)} className="p-3 text-cyan bg-[#131315] rounded-full"><ChevronRight className="w-5 h-5" /></motion.button>
           </div>
         </div>
       </section>
@@ -288,7 +288,7 @@ export default function TourismWebsiteDesignSeychelles() {
 
       <section className="bg-black py-24 md:py-32">
         <div className="mx-auto max-w-5xl px-6 text-center">
-          <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] text-deep-teal section-eyebrow-glow">Direct First Architecture</span>
+          <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] text-deep-teal section-eyebrow-glow">Direct booking paths</span>
           <h2 className="font-display mx-auto max-w-3xl text-3xl font-semibold text-white md:text-4xl">
             Websites designed around <span className="text-cyan font-semibold">clear direct booking paths.</span>
           </h2>
@@ -314,7 +314,9 @@ export default function TourismWebsiteDesignSeychelles() {
           <p className="mb-10 text-lg text-text-muted">Discuss a custom hospitality website that works alongside your existing sales channels.</p>
           <div className="flex flex-col gap-4 sm:flex-row justify-center">
              <Link to="/contact">
-                <ShimmerButton className="px-10 py-4 font-bold uppercase tracking-widest">Start the transformation</ShimmerButton>
+                <ShimmerButton as="span" foreground="#ffffff" className="px-10 py-4 font-bold uppercase tracking-widest">
+                  Discuss a tourism website
+                </ShimmerButton>
              </Link>
           </div>
         </div>

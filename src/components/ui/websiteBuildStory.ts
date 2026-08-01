@@ -16,6 +16,7 @@ export const WEBSITE_BUILD_ACTIVE_DURATION = Math.max(
 export function shouldAnimateWebsiteBuildStory(input: {
   reducedMotion: boolean;
   inViewport: boolean;
+  mobile: boolean;
 }): boolean {
-  return !input.reducedMotion && input.inViewport;
+  return !input.reducedMotion && input.inViewport && !input.mobile;
 }

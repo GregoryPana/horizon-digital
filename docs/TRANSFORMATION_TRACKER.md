@@ -167,6 +167,20 @@
 - **Production verification:** all primary route probes returned 200; arbitrary route returned true 404/noindex; retired `/api/chat` returned 404; `www` preserved path/query in its 301 redirect; apex raw response retained canonical/index metadata. Production Playwright passed the same 36/36 mobile/reduced-motion/desktop interaction and rendering checks as local.
 - **Post-deploy Lighthouse:** three mobile homepage runs produced stable 83/100/100/92 scores; median LCP 3,378ms, CLS 0 and TBT 214ms. The LCP candidate remained `WebsiteBuildStory .story-stage-design`, so performance-plan Task 3 remains open and no ≥90/≤2.5s claim is made.
 
+### Session 5 — 2026-07-31 — Services hub and service pillars
+
+- **Agent/harness:** Hermes Agent with bounded delegated implementation/correction, two-stage independent review, Vitest/jsdom component interaction tests and Playwright/Axe rendered QA.
+- **Mission:** implement the approved Services decision hub, website/SEO/analytics pillars, Services navigation and compact package artwork without publishing the work.
+- **Starting branch/HEAD:** existing cumulative dirty `transformation/local-redesign` worktree preserved; no reset, clean, stash or unrelated-file restore.
+- **Implementation:** added canonical `/services`, `/web-design-seychelles`, `/seo-services-seychelles` and `/analytics-and-digital-presence-seychelles` architecture; authority-projected page/navigation labels; route/Worker/sitemap/breadcrumb coverage; manual website comparison; package-fit progression; desktop/mobile Services disclosure; and compact Pricing art. Home received only a bounded CTA correction from Pricing to the Services hub.
+- **Checks passed:** 286/286 tests across 24 files; eight knowledge outputs current; TypeScript/Vite production build with 2,318 modules; `git diff --check`; mounted navigation interactions; 24 route/viewport checks plus 1440/short-height edges; closed/open-menu Axe scans with zero serious findings; independent final specification and code-quality reviews both PASS.
+- **Browser/routes inspected:** all four Services routes and Pricing at 320, 390, 768 and 1280 widths; 1440 and short-height controls; desktop/mobile navigation, reduced motion, comparison state and Pricing artwork.
+- **Public/deployment impact:** none; no commit, push, PR, deployment, DNS, Cloudflare or analytics configuration change.
+- **Proof/copy decisions:** public service copy and visual/navigation labels project from `businessFacts.json`; no guaranteed rankings, traffic, enquiries, bookings, conversions or revenue; Google Ads management remains excluded; existing/third-party websites do not require redesign.
+- **Remaining risks:** existing Vite/esbuild-to-oxc deprecation warnings and dependency-audit findings remain outside this bounded Services slice; owner review and explicit publication approval remain required.
+- **Commit:** none; local cumulative dirty worktree preserved.
+- **Next bounded action:** Gregory reviews the local routes, then separately approves or declines commit/push/deployment.
+
 ### Session N — YYYY-MM-DD
 
 - **Agent/harness:**

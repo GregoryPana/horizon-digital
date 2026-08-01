@@ -29,11 +29,11 @@ const fAndBFaqCategories: HomeFaqCategory[] = [
       },
       {
         question: "Do you build digital QR menus?",
-        answer: "Absolutely. We can create high-performance, mobile-first digital menus that are easy to update and lightning-fast to load, reducing printing costs and improving the guest experience."
+        answer: "We can create responsive digital menus designed for common phone, tablet and desktop sizes. How updates are handled is confirmed in the project scope."
       },
       {
         question: "How long does a restaurant website take?",
-        answer: "Our hospitality-optimized builds typically take 3-5 weeks depending on the complexity of the menu integrations and high-fidelity photography requirements."
+        answer: "Timing depends on the number of pages, content readiness, menu requirements and any reservation-system work. The proposal confirms the estimate for the agreed scope."
       }
     ]
   }
@@ -51,22 +51,22 @@ const fbProblemCards = [
     type: "zero" as const
   },
   {
-    title: "Hidden from Search",
-    body: "Incomplete business information and weak page structure can limit search visibility. We provide practical technical and on-page SEO foundations without guaranteeing rankings.",
+    title: "Search Foundations",
+    body: "Clear business information, page structure and metadata help search engines understand the website. Rankings and visibility are not guaranteed.",
     type: "found" as const
   },
   {
-    title: "Old Visuals",
-    body: "Food is visual. We design layouts that celebrate your culinary craftsmanship and turn 'browsing' into 'ordering'.",
+    title: "Outdated Presentation",
+    body: "Current menus, venue information and photography should be easy to browse. We organise them in a clear, responsive layout.",
     type: "start" as const
   }
 ];
 
 const marqueeItems = [
-  "MOBILE-FIRST DIGITAL MENUS",
-  "RESERVATIONS INTEGRATED",
-  "LOCAL SEO FOR RESTAURANTS",
-  "LUXURY F&B BRANDING",
+  "RESPONSIVE DIGITAL MENUS",
+  "SUPPORTED RESERVATION PATHS",
+  "SEARCH-READY STRUCTURE",
+  "CUSTOM RESTAURANT DESIGN",
   "PERFORMANCE-AWARE DELIVERY",
   "GOOGLE BUSINESS PROFILE SUPPORT",
 ];
@@ -143,7 +143,7 @@ export default function FAndBWebsiteDesignSeychelles() {
         "addressCountry": "SC"
       }
     },
-    "description": "Premium website design for Seychelles restaurants, cafes, and bars. Mobile-first digital menus, reservation integrations, and SEO for local culinary discovery.",
+    "description": "Custom website design for Seychelles restaurants, cafés and bars, with responsive menus, clear venue information and supported reservation or enquiry paths.",
     "areaServed": [
       { "@type": "AdministrativeArea", "name": "Mahé" },
       { "@type": "AdministrativeArea", "name": "Praslin" },
@@ -169,10 +169,10 @@ export default function FAndBWebsiteDesignSeychelles() {
       <Hero
         trustBadge={{ text: "Digital Menus • Seychelles Restaurants" }}
         headline={{
-          lines: ["STUNNING", "F&B WEBSITES"],
+          lines: ["CUSTOM", "RESTAURANT WEBSITES"],
           rotatingWords: ["DINING", "LOUNGE", "CAFE", "BISTRO"],
         }}
-        subtitle="We build appetite-inducing websites for Seychelles restaurants that turn hungry tourists into confirmed reservations."
+        subtitle="We build custom websites for Seychelles restaurants, cafés and bars, with responsive menus, clear venue information and practical reservation or enquiry paths."
         tags={[
           { text: "Smart Digital Menus", icon: (
             <svg className="h-3 w-3 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
@@ -187,7 +187,7 @@ export default function FAndBWebsiteDesignSeychelles() {
               <line x1="3" y1="10" x2="21" y2="10" />
             </svg>
           )},
-          { text: "Local Discovery SEO", icon: (
+          { text: "Search-Ready Structure", icon: (
             <svg className="h-3 w-3 sm:h-3.5 sm:w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
               <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
               <circle cx="12" cy="10" r="3" />
@@ -196,7 +196,7 @@ export default function FAndBWebsiteDesignSeychelles() {
         ]}
         buttons={{
           primary: {
-            text: "Elevate Your Restaurant",
+            text: "Discuss Your Website",
             link: "/contact",
             onClick: () => trackEvent("cta_click", { cta_name: "hero_fb_cta", page_path: window.location.pathname }),
           },
@@ -217,9 +217,9 @@ export default function FAndBWebsiteDesignSeychelles() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="mb-20 text-center"
           >
-            <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">The Guest Experience Starts Online</span>
+            <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">Menus and reservations</span>
             <h2 className="font-display mx-auto max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl">
-              Is your digital presence as good as your <span className="text-cyan font-semibold">cuisine?</span>
+              Make menus and reservation information <span className="text-cyan font-semibold">easier to use.</span>
             </h2>
           </motion.div>
 
@@ -245,13 +245,13 @@ export default function FAndBWebsiteDesignSeychelles() {
           </div>
 
           <div className="flex justify-center items-center gap-4 mb-16 md:hidden">
-            <motion.button onClick={() => scrollCarouselTo(problemScrollRef, activeProblem - 1, fbProblemCards.length)} className="p-3 text-cyan bg-[#131315] rounded-full"><ChevronLeft className="w-5 h-5" /></motion.button>
+            <motion.button aria-label="Previous food and beverage website challenge" onClick={() => scrollCarouselTo(problemScrollRef, activeProblem - 1, fbProblemCards.length)} className="p-3 text-cyan bg-[#131315] rounded-full"><ChevronLeft className="w-5 h-5" /></motion.button>
             <div className="flex gap-3">
               {fbProblemCards.map((_, i) => (
                 <div key={i} className={`h-2 rounded-full transition-all duration-300 ${activeProblem === i ? "w-8 bg-cyan" : "w-2 bg-white/20"}`} />
               ))}
             </div>
-            <motion.button onClick={() => scrollCarouselTo(problemScrollRef, activeProblem + 1, fbProblemCards.length)} className="p-3 text-cyan bg-[#131315] rounded-full"><ChevronRight className="w-5 h-5" /></motion.button>
+            <motion.button aria-label="Next food and beverage website challenge" onClick={() => scrollCarouselTo(problemScrollRef, activeProblem + 1, fbProblemCards.length)} className="p-3 text-cyan bg-[#131315] rounded-full"><ChevronRight className="w-5 h-5" /></motion.button>
           </div>
         </div>
       </section>
@@ -269,9 +269,9 @@ export default function FAndBWebsiteDesignSeychelles() {
 
       <section className="bg-black py-24 md:py-32">
         <div className="mx-auto max-w-5xl px-6 text-center">
-          <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] text-deep-teal section-eyebrow-glow">Built for Gastronomy</span>
+          <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] text-deep-teal section-eyebrow-glow">Built around the dining experience</span>
           <h2 className="font-display mx-auto max-w-3xl text-3xl font-semibold text-white md:text-4xl">
-            Experience-driven design for <span className="text-cyan font-semibold">modern dining.</span>
+            Clear menus, venue information and <span className="text-cyan font-semibold">reservation paths.</span>
           </h2>
           <div className="mt-14 grid gap-10 md:grid-cols-3">
             {[
@@ -291,11 +291,13 @@ export default function FAndBWebsiteDesignSeychelles() {
       {/* CTA Section */}
       <section className="bg-[#0A0A0C] py-20 px-6">
         <div className="mx-auto max-w-4xl rounded-[3rem] border border-white/5 bg-gradient-to-b from-white/[0.03] to-transparent p-12 text-center">
-          <h2 className="font-display mb-6 text-3xl font-bold text-white md:text-5xl">Ready to serve more guests?</h2>
+          <h2 className="font-display mb-6 text-3xl font-bold text-white md:text-5xl">Discuss a restaurant website.</h2>
           <p className="mb-10 text-lg text-text-muted">Present your menu, venue information, and reservation options clearly with a custom restaurant website.</p>
           <div className="flex flex-col gap-4 sm:flex-row justify-center">
              <Link to="/contact">
-                <ShimmerButton className="px-10 py-4 font-bold uppercase tracking-widest">Start the design</ShimmerButton>
+                <ShimmerButton as="span" foreground="#ffffff" className="px-10 py-4 font-bold uppercase tracking-widest">
+                  Start the design
+                </ShimmerButton>
              </Link>
           </div>
         </div>

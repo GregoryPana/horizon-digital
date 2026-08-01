@@ -41,7 +41,7 @@ export function WebsiteBuildStory() {
 
       const sync = () => {
         if (!variant) return;
-        if (shouldAnimateWebsiteBuildStory({ reducedMotion, inViewport })) {
+        if (shouldAnimateWebsiteBuildStory({ reducedMotion, inViewport, mobile: variant.mobile })) {
           if (!timeline) {
             buildTimeline(variant.compact, variant.mobile);
           }

@@ -38,25 +38,37 @@ describe("website build story configuration", () => {
 describe("shouldAnimateWebsiteBuildStory", () => {
   it("never animates when the user prefers reduced motion, even in viewport", () => {
     expect(
-      shouldAnimateWebsiteBuildStory({ reducedMotion: true, inViewport: true })
+      shouldAnimateWebsiteBuildStory({ reducedMotion: true, inViewport: true, mobile: false })
     ).toBe(false);
   });
 
   it("does not animate while off-screen", () => {
     expect(
-      shouldAnimateWebsiteBuildStory({ reducedMotion: false, inViewport: false })
+      shouldAnimateWebsiteBuildStory({ reducedMotion: false, inViewport: false, mobile: false })
     ).toBe(false);
   });
 
   it("does not animate when both reduced motion and off-screen apply", () => {
     expect(
-      shouldAnimateWebsiteBuildStory({ reducedMotion: true, inViewport: false })
+      shouldAnimateWebsiteBuildStory({ reducedMotion: true, inViewport: false, mobile: false })
     ).toBe(false);
   });
 
-  it("animates only when motion is allowed and the story is in viewport", () => {
+  it("animates on desktop/tablet when motion is allowed and the story is in viewport", () => {
     expect(
-      shouldAnimateWebsiteBuildStory({ reducedMotion: false, inViewport: true })
+      shouldAnimateWebsiteBuildStory({ reducedMotion: false, inViewport: true, mobile: false })
     ).toBe(true);
+  });
+
+  it("never animates on narrow mobile, even when in viewport and motion is allowed", () => {
+    expect(
+      shouldAnimateWebsiteBuildStory({ reducedMotion: false, inViewport: true, mobile: true })
+    ).toBe(false);
+  });
+
+  it("never animates on narrow mobile while off-screen either", () => {
+    expect(
+      shouldAnimateWebsiteBuildStory({ reducedMotion: false, inViewport: false, mobile: true })
+    ).toBe(false);
   });
 });

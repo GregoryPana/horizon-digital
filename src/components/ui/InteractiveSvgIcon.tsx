@@ -1,5 +1,8 @@
 import type { CSSProperties } from "react";
+import { shouldAutoplayViewportIcon } from "../../hooks/inViewportPolicy";
+import { useInViewport } from "../../hooks/useInViewport";
 import { cn } from "../../lib/utils";
+import { useInputMotionPreferences } from "./inputMotionPreferences";
 import {
   interactiveSvgIconData,
   type InteractiveSvgIconEffect,
@@ -20,10 +23,22 @@ export function InteractiveSvgIcon({
   strokeWidth = 1.9,
 }: InteractiveSvgIconProps) {
   const icon = interactiveSvgIconData[kind];
+  const [iconRef, isNearViewport] = useInViewport<SVGSVGElement>();
+  const preferences = useInputMotionPreferences();
+  const shouldAutoplay = shouldAutoplayViewportIcon({
+    isNearViewport,
+    ...preferences,
+  });
 
   return (
     <svg
-      className={cn("interactive-svg-icon", `interactive-svg-icon--${effect}`, className)}
+      ref={iconRef}
+      className={cn(
+        "interactive-svg-icon",
+        `interactive-svg-icon--${effect}`,
+        shouldAutoplay && "is-viewport-active",
+        className,
+      )}
       viewBox={icon.viewBox}
       fill="none"
       stroke="currentColor"

@@ -11,10 +11,10 @@ All prices are in Seychelles rupees (SCR). Package prices are starting points. T
 A focused custom website for a business establishing or replacing a basic online presence.
 
 - **Up to 3 pages:** Usually Home, About and Contact, adjusted to the agreed scope.
-- **Custom layout for your business:** Designed around your brand and content rather than a pre-made customer-facing template.
+- **Custom design:** A visual system and page layouts shaped around the business.
 - **Mobile-responsive build:** Designed and tested for common phone, tablet and desktop sizes.
 - **Contact form and WhatsApp link:** Clear ways for visitors to contact your business.
-- **Technical SEO foundation:** Page metadata, crawlable structure and sitemap setup; rankings are not guaranteed.
+- **SEO (Search Engine Optimisation):** Page-level metadata, internal structure, crawlable pages, sitemap setup and technical search foundations; rankings are not guaranteed.
 - **30 days of post-launch support:** Bug fixes and minor agreed adjustments during the support window.
 - **1 revision round:** One defined round of consolidated feedback.
 
@@ -27,8 +27,9 @@ A larger custom website for a growing business with more services or content.
 - **Up to 5–6 pages:** Suitable for service pages, galleries and more detailed business information.
 - **Custom design:** A visual system and page layouts shaped around the business.
 - **Mobile-responsive build:** Designed and tested for common phone, tablet and desktop sizes.
+- **Contact form and WhatsApp link:** Clear ways for visitors to contact your business.
 - **Google Analytics setup:** Basic visitor measurement when the required account access and consent setup are available.
-- **Expanded on-page SEO setup:** Page-level metadata, internal structure and technical search foundations; rankings are not guaranteed.
+- **SEO (Search Engine Optimisation):** Page-level metadata, internal structure, crawlable pages, sitemap setup and technical search foundations; rankings are not guaranteed.
 - **45 days of post-launch support:** Bug fixes and minor agreed adjustments during the support window.
 - **2 revision rounds:** Two defined rounds of consolidated feedback.
 - **Content management:** A configured editing interface for agreed text and image fields.
@@ -42,8 +43,9 @@ A more extensive website for businesses with deeper content, service lines or in
 - **Up to 10–12 pages:** A broader site structure for multiple services, audiences or content areas.
 - **Custom design:** A visual system and page layouts shaped around the business.
 - **Mobile-responsive build:** Designed and tested for common phone, tablet and desktop sizes.
-- **Google Business Profile setup:** Setup or configuration support when the business provides the required verified details and access.
-- **Expanded technical and on-page SEO:** Metadata, internal structure, sitemap and technical search foundations; rankings are not guaranteed.
+- **Contact form and WhatsApp link:** Clear ways for visitors to contact your business.
+- **Google Analytics and Google Business Profile setup:** Basic visitor measurement plus Google Business Profile setup or configuration support when the required account access, consent setup and verified business details are available.
+- **SEO (Search Engine Optimisation):** Page-level metadata, internal structure, crawlable pages, sitemap setup and technical search foundations; rankings are not guaranteed.
 - **60 days of post-launch support:** Bug fixes and minor agreed adjustments during the support window.
 - **2 revision rounds:** Two defined rounds of consolidated feedback.
 - **Content management:** A configured editing interface for agreed text and image fields.

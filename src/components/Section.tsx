@@ -38,7 +38,7 @@ export default function Section({
           <motion.div
             initial={{ opacity: skipAnimation ? 1 : 0, y: skipAnimation ? 0 : 24, filter: skipAnimation ? 'none' : 'blur(8px)' }}
             whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: skipAnimation ? 0 : 0.7, ease: [0.16, 1, 0.3, 1] }}
             className="mb-10 text-center"
           >
@@ -48,7 +48,7 @@ export default function Section({
               </span>
             )}
             {title && (
-              <Heading className="font-display mx-auto max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl">
+               <Heading style={{fontSize: headingLevel === "h1" ? 'var(--text-h1)' : 'var(--text-h2)', fontWeight: 700, lineHeight: headingLevel === "h1" ? 1.03 : 1.07, letterSpacing: headingLevel === "h1" ? '-0.04em' : '-0.03em', textWrap: 'balance'}}>
                 {title}
               </Heading>
             )}
@@ -60,7 +60,7 @@ export default function Section({
         <motion.div
           initial={{ opacity: skipAnimation ? 1 : 0, y: skipAnimation ? 0 : 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.05, margin: "0px 0px -80px 0px" }}
+          viewport={{ once: false, amount: 0.05, margin: "0px 0px -80px 0px" }}
           transition={{ duration: skipAnimation ? 0 : 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
         >
           {children}

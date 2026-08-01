@@ -7,7 +7,7 @@ Portfolio labels must distinguish live client work from concepts and demonstrati
 ## Drake Seaside Apartments
 
 - **Status:** Live client project
-- **Description:** A live redesign with new pages, updated content and a faster-loading structure.
+- **Description:** A live redesign with updated pages, clearer property information and responsive layouts.
 - **URL:** https://thedrake-seaside.com/
 
 ## Forma Studio

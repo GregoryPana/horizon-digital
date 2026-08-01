@@ -11,6 +11,7 @@
     "url": "https://horizondigitalsey.com",
     "location": "Mahé, Seychelles",
     "serviceArea": "Seychelles",
+    "servicesPath": "/services",
     "pricingPath": "/pricing",
     "contactPath": "/contact",
     "responseTime": "within 24 hours",
@@ -84,6 +85,647 @@
     "subtitle": "Websites built around how your business actually works — not copied from a template.",
     "summary": "Every website is planned around your services, customers and goals. Package prices are starting points; the written scope confirms the final price and deliverables."
   },
+  "serviceCatalogue": [
+    {
+      "id": "new-custom-websites",
+      "pathway": "Build or improve your website",
+      "serviceType": "website-project",
+      "title": "New custom websites",
+      "description": "Planning, custom design, development and launch for a new business website built around the agreed goals and content.",
+      "price": "See current website packages and pricing",
+      "pricingPath": "/pricing",
+      "websiteRedesignRequired": false
+    },
+    {
+      "id": "website-redesigns-rebuilds",
+      "pathway": "Build or improve your website",
+      "serviceType": "website-project",
+      "title": "Website redesigns and rebuilds",
+      "description": "A redesign or refresh for an existing website when clearer content, better mobile use or a more current direction calls for a rebuild.",
+      "price": "See current website packages and pricing",
+      "pricingPath": "/pricing",
+      "websiteRedesignRequired": true
+    },
+    {
+      "id": "contact-enquiry-integrations",
+      "pathway": "Build or improve your website",
+      "serviceType": "website-feature",
+      "title": "Contact, enquiry and agreed integrations",
+      "description": "Contact forms and WhatsApp links are included in website packages. Booking, enquiry and other suitable integrations can be agreed in the project scope.",
+      "price": "See current website packages and pricing",
+      "pricingPath": "/pricing",
+      "websiteRedesignRequired": false
+    },
+    {
+      "id": "managed-hosting",
+      "pathway": "Build or improve your website",
+      "serviceType": "managed-service",
+      "title": "Managed hosting",
+      "description": "Hosting configuration, SSL setup, regular backups, routine stability and security updates, basic availability checks and a simple monthly website activity update.",
+      "price": "SCR 2,500 per year",
+      "websiteRedesignRequired": false,
+      "accessRequirement": "Large or complex builds may need a different hosting plan and price. An agreed alternative provider can also be used."
+    },
+    {
+      "id": "post-launch-support",
+      "pathway": "Build or improve your website",
+      "serviceType": "support",
+      "title": "Post-launch support",
+      "description": "Website packages include 30, 45 or 60 days of support after launch, depending on the selected package. Custom support is defined in the proposal.",
+      "price": "See current website packages and pricing",
+      "pricingPath": "/pricing",
+      "websiteRedesignRequired": false
+    },
+    {
+      "id": "seo-review-consultation",
+      "pathway": "Improve visibility and measurement",
+      "serviceType": "consultation-review",
+      "title": "SEO consultation and review",
+      "description": "We can review an existing or third-party website and explain practical technical and on-page SEO priorities. A Horizon Digital website redesign is not required. Search positions are not guaranteed.",
+      "price": "Scoped after an initial discussion",
+      "websiteRedesignRequired": false
+    },
+    {
+      "id": "seo-implementation",
+      "pathway": "Improve visibility and measurement",
+      "serviceType": "implementation",
+      "title": "SEO implementation support",
+      "description": "We can separately scope agreed technical and on-page SEO changes on an existing or third-party website. A Horizon Digital website redesign is not required.",
+      "price": "Scoped after an initial discussion",
+      "websiteRedesignRequired": false,
+      "accessRequirement": "Implementation requires the necessary third-party access and authority to make the agreed changes."
+    },
+    {
+      "id": "analytics-measurement-setup",
+      "pathway": "Improve visibility and measurement",
+      "serviceType": "implementation",
+      "title": "Analytics and measurement setup",
+      "description": "We can set up agreed website measurement so you can understand basic visitor activity, subject to suitable account access and consent requirements.",
+      "price": "Scoped after an initial discussion",
+      "websiteRedesignRequired": false,
+      "accessRequirement": "Implementation requires the necessary account access and authority."
+    },
+    {
+      "id": "google-business-profile",
+      "pathway": "Improve visibility and measurement",
+      "serviceType": "implementation",
+      "title": "Google Business Profile setup and optimisation",
+      "description": "We can help set up or improve a Google Business Profile using accurate business information and available profile features.",
+      "price": "Scoped after an initial discussion",
+      "websiteRedesignRequired": false,
+      "accessRequirement": "Implementation requires the necessary profile access, authority and verified business details."
+    }
+  ],
+  "existingWebsiteFlow": [
+    {
+      "title": "Review the current setup",
+      "description": "We look at the agreed website, search, measurement or business-profile issue."
+    },
+    {
+      "title": "Explain findings and priorities",
+      "description": "We set out what we found in plain language and identify practical priorities."
+    },
+    {
+      "title": "Choose advice or implementation",
+      "description": "You choose whether to use the advice yourself or ask us to scope implementation separately."
+    },
+    {
+      "title": "Verify and hand over",
+      "description": "For agreed implementation, we verify the completed changes and hand over the relevant information."
+    }
+  ],
+  "serviceScopeBoundaries": [
+    {
+      "id": "advice-versus-implementation",
+      "title": "Advice and implementation are separate",
+      "description": "A consultation or review explains findings and priorities. Any hands-on implementation is agreed and scoped separately unless it is already part of a website package."
+    },
+    {
+      "id": "account-ownership-access",
+      "title": "You keep ownership and control",
+      "description": "Domains and business accounts should remain in the client's name. Work in a website or third-party account requires the necessary access and authority."
+    },
+    {
+      "id": "existing-provider-coordination",
+      "title": "Existing providers can stay involved",
+      "description": "If another provider manages the website, we can explain the requested work and coordinate agreed changes, subject to their process, cooperation and access."
+    },
+    {
+      "id": "analytics-privacy-consent",
+      "title": "Analytics needs an agreed privacy approach",
+      "description": "The client is responsible for deciding the privacy and consent requirements that apply to the business. We can implement the agreed measurement setup when the required access and consent configuration are available; this is not legal advice."
+    },
+    {
+      "id": "no-results-guarantees",
+      "title": "Results are not guaranteed",
+      "description": "Search rankings, traffic, enquiries, bookings, conversions and revenue depend on factors outside this work and are not guaranteed."
+    },
+    {
+      "id": "google-ads-excluded",
+      "title": "Google Ads management is not included",
+      "description": "Google Ads campaign setup and ongoing advertising management are outside the services advertised here."
+    }
+  ],
+  "servicePages": {
+    "navigation": [
+      {
+        "title": "Services overview",
+        "support": "Choose the right starting point.",
+        "path": "/services"
+      },
+      {
+        "title": "Website design and development",
+        "support": "New websites, redesigns and rebuilds.",
+        "path": "/web-design-seychelles"
+      },
+      {
+        "title": "SEO review and implementation",
+        "support": "Review priorities or scope agreed changes.",
+        "path": "/seo-services-seychelles"
+      },
+      {
+        "title": "Analytics and digital presence",
+        "support": "Measurement setup and Google Business Profile.",
+        "path": "/analytics-and-digital-presence-seychelles"
+      }
+    ],
+    "hub": {
+      "eyebrow": "Services",
+      "title": "Choose the right support for your website and digital presence.",
+      "lead": "Start with a new or improved website, or get help with search, website measurement or your Google Business Profile. Each service page explains where the work starts and what we need to agree.",
+      "primary": {
+        "label": "Explore website services",
+        "path": "/web-design-seychelles"
+      },
+      "secondary": {
+        "label": "I already have a website",
+        "path": "#existing-website-support"
+      },
+      "routePrompts": {
+        "label": "Choose a service starting point",
+        "items": [
+          {
+            "index": "01",
+            "label": "Build or improve a website.",
+            "path": "/web-design-seychelles"
+          },
+          {
+            "index": "02",
+            "label": "Improve visibility or measurement.",
+            "path": "#existing-website-support"
+          }
+        ]
+      },
+      "selectorEyebrow": "Where to start",
+      "selectorTitle": "Start with what you need to improve.",
+      "selectorIntro": "The detailed pages explain what each service covers, where the work begins and what needs to be agreed before implementation.",
+      "families": [
+        {
+          "id": "website",
+          "title": "Website design and development",
+          "fit": "New website or redesign",
+          "body": "Plan and build a custom website around your business, customers and goals, or rebuild an existing site that needs clearer content, better mobile use or a more current direction.",
+          "pricing": "Website packages have published starting prices.",
+          "cta": "Explore website design",
+          "path": "/web-design-seychelles"
+        },
+        {
+          "id": "seo",
+          "title": "SEO review and implementation",
+          "fit": "Existing or new website",
+          "body": "Understand practical technical and on-page SEO priorities, then use the recommendations independently or ask us to scope agreed implementation.",
+          "pricing": "Standalone work is scoped after an initial discussion.",
+          "cta": "Explore SEO services",
+          "path": "/seo-services-seychelles"
+        },
+        {
+          "id": "analytics",
+          "title": "Analytics and digital presence",
+          "fit": "Measurement and Google presence",
+          "body": "Set up basic website measurement or get help creating or improving a Google Business Profile, subject to the right access, consent setup and verified business details.",
+          "pricing": "Standalone work is scoped after an initial discussion.",
+          "cta": "Explore analytics and digital presence",
+          "path": "/analytics-and-digital-presence-seychelles"
+        }
+      ],
+      "existingEyebrow": "Existing websites welcome",
+      "existingFlowLabel": "Existing website support flow",
+      "existingTitle": "You do not need a redesign to get practical support.",
+      "existingBody": "We can review an existing or third-party website, explain agreed SEO priorities, separately scope implementation, set up basic measurement or help with a Google Business Profile. The starting point is the issue you want to understand or improve.",
+      "principlesTitle": "Clear ownership, access and scope.",
+      "principlesEyebrow": "Before work begins",
+      "detailsLabel": "More scope details",
+      "primaryBoundaryIds": [
+        "advice-versus-implementation",
+        "account-ownership-access",
+        "no-results-guarantees"
+      ],
+      "final": {
+        "eyebrow": "Not sure where to start?",
+        "title": "Tell us what you want to improve.",
+        "body": "We will discuss your current setup, the access available and whether the next step is advice, implementation or a website project.",
+        "primary": {
+          "label": "Request a free consult",
+          "path": "/contact"
+        },
+        "secondary": {
+          "label": "View website pricing",
+          "path": "/pricing"
+        }
+      }
+    },
+    "web": {
+      "eyebrow": "Website design and development",
+      "title": "Custom websites planned around your business.",
+      "lead": "We plan, design and build custom websites for Seychelles businesses, from focused new sites to larger rebuilds with deeper content or agreed integrations.",
+      "primary": {
+        "label": "View website packages",
+        "path": "/pricing"
+      },
+      "secondary": {
+        "label": "Discuss a website project",
+        "path": "/contact"
+      },
+      "trust": [
+        "Custom design",
+        "Mobile-responsive build",
+        "Search-ready structure"
+      ],
+      "heroVisualLabels": ["Information", "Structure", "Responsive page"],
+      "packageFitLabel": "Website package fit progression",
+      "sections": [
+        {
+          "eyebrow": "Start with the business",
+          "title": "A website should make the next step clear.",
+          "body": "Before design begins, we discuss your business, customers, services and goals. That gives the website a useful structure: what people need to understand, which pages support that decision and how they should contact you.",
+          "note": "Page count, functionality, content responsibilities and integrations are confirmed in the written scope."
+        },
+        {
+          "eyebrow": "Two common starting points",
+          "title": "Build from the beginning or rethink what is already there.",
+          "items": [
+            {
+              "title": "New custom website",
+              "body": "A new website starts with the business rather than a template. We agree the pages, content direction, contact paths and any suitable integrations, then prepare the visual direction for review before development begins.",
+              "cta": {
+                "label": "Compare website packages",
+                "path": "/pricing"
+              }
+            },
+            {
+              "title": "Website redesign or rebuild",
+              "body": "An existing website may need more than a visual refresh. We can reorganise content, improve mobile use and rebuild the experience around a clearer structure and current direction. The agreed scope determines what is retained, rewritten or replaced.",
+              "cta": {
+                "label": "Discuss a redesign",
+                "path": "/contact"
+              }
+            }
+          ],
+          "comparison": [
+            {
+              "id": "starting-point",
+              "label": "Starting point",
+              "caption": "A basic structure that does not yet reflect the business."
+            },
+            {
+              "id": "horizon-outcome",
+              "label": "Horizon Digital outcome",
+              "caption": "A custom website with clearer information, a stronger visual direction and an obvious next step."
+            }
+          ]
+        },
+        {
+          "eyebrow": "Website scope",
+          "title": "The parts of a complete website project.",
+          "intro": "Packages define the standard page ranges, revisions and support periods. The written scope confirms the exact pages, responsibilities, functionality and any project-specific additions.",
+          "items": [
+            {
+              "title": "Structure and content direction",
+              "body": "We plan the page hierarchy around the agreed services, audiences and goals. Messaging guidance is part of the process, and page content writing can be added where required."
+            },
+            {
+              "title": "Custom visual design and responsive development",
+              "body": "The website receives a custom visual system and page layouts shaped around the business. We build and test the agreed experience across common phone, tablet and desktop sizes."
+            },
+            {
+              "title": "Contact paths and agreed integrations",
+              "body": "Website packages include a contact form and WhatsApp link. Booking, enquiry, payment or other suitable integrations are agreed separately when the provider, access and project scope support them."
+            },
+            {
+              "title": "Search and measurement foundations",
+              "body": "Website packages include page-level metadata, internal structure, crawlable pages, sitemap setup and technical search foundations. Starter includes basic Google Analytics setup, while Growth also includes Google Business Profile setup or configuration support, subject to access, consent and verified business details."
+            },
+            {
+              "title": "Content management where included",
+              "body": "Starter and Growth include a configured editing interface for agreed text and image fields. It can be added to Foundation or scoped for a Custom project."
+            },
+            {
+              "title": "Testing, launch and handover",
+              "body": "Once the approved scope is built, we test the website across the supported range, complete final checks and launch when the agreed work is ready. The handover covers the relevant website information and agreed editing guidance."
+            }
+          ]
+        },
+        {
+          "eyebrow": "Choosing a scope",
+          "title": "Start with the size and depth of the website.",
+          "body": "Foundation suits a focused online presence. Starter supports more services or content. Growth is for broader structures, deeper content or agreed integrations. Custom covers work that does not fit a standard page range or feature set.",
+          "fits": [
+            {
+              "title": "Foundation",
+              "description": "Foundation suits a focused online presence."
+            },
+            {
+              "title": "Starter",
+              "description": "Starter supports more services or content."
+            },
+            {
+              "title": "Growth",
+              "description": "Growth is for broader structures, deeper content or agreed integrations."
+            },
+            {
+              "title": "Custom",
+              "description": "Custom covers work that does not fit a standard page range or feature set."
+            }
+          ],
+          "primary": {
+            "label": "View package details and starting prices",
+            "path": "/pricing"
+          },
+          "secondary": {
+            "label": "See how the project runs",
+            "path": "/process"
+          }
+        },
+        {
+          "eyebrow": "After launch",
+          "title": "Support is included. Hosting remains a choice.",
+          "items": [
+            {
+              "title": "Post-launch support",
+              "body": "Foundation includes 30 days of post-launch support, Starter 45 days and Growth 60 days. The support window covers bugs, visual issues within scope, supported browser or device issues, minor copy corrections and guidance on using the website. Custom support is confirmed in the proposal."
+            },
+            {
+              "title": "Managed hosting",
+              "body": "Managed hosting is available separately. It covers hosting configuration and SSL setup, regular backups, routine stability and security updates, basic availability checks and a simple monthly website activity update. Large or complex builds may need a different plan."
+            },
+            {
+              "title": "Ownership and provider choice",
+              "body": "The domain remains registered in the client's name, and website files remain the client's property while Horizon Digital manages the agreed hosting environment. You can use Horizon Digital managed hosting or an agreed alternative provider."
+            }
+          ],
+          "cta": {
+            "label": "Compare packages and hosting",
+            "path": "/pricing"
+          }
+        }
+      ],
+      "relatedLinks": {
+        "eyebrow": "Related next steps",
+        "title": "See the work or explore search support.",
+        "links": [
+          {
+            "label": "View selected work",
+            "path": "/work"
+          },
+          {
+            "label": "Explore SEO services",
+            "path": "/seo-services-seychelles"
+          }
+        ]
+      },
+      "final": {
+        "eyebrow": "Have a website in mind?",
+        "title": "Start with the business, scope and next action.",
+        "body": "Share your current website or project idea, the pages or features you expect and the timeline you are considering. We will use that to discuss the right starting scope.",
+        "primary": {
+          "label": "Discuss a website project",
+          "path": "/contact"
+        },
+        "secondary": {
+          "label": "View website packages",
+          "path": "/pricing"
+        }
+      }
+    },
+    "seo": {
+      "eyebrow": "SEO review and implementation",
+      "title": "Understand what your website needs for search.",
+      "lead": "We review the website's technical and on-page SEO, explain what we find in plain language and quote separately if you want us to make the changes.",
+      "primary": {
+        "label": "Discuss an SEO review",
+        "path": "/contact"
+      },
+      "secondary": {
+        "label": "Planning a new website?",
+        "path": "/web-design-seychelles"
+      },
+      "boundary": "Search positions and business outcomes are not guaranteed.",
+      "heroVisualLabels": [
+        { "index": "01", "label": "Review" },
+        { "index": "02", "label": "Understand" },
+        { "index": "03", "label": "Choose" }
+      ],
+      "sections": [
+        {
+          "eyebrow": "New and existing websites",
+          "title": "SEO starts differently depending on the website.",
+          "items": [
+            {
+              "title": "SEO foundations in a new Horizon Digital website",
+              "body": "Foundation, Starter and Growth include page-level metadata, internal structure, crawlable pages, sitemap setup and technical search foundations. These elements help search engines access and understand the website, but they do not guarantee a position in search results.",
+              "cta": {
+                "label": "Explore website design",
+                "path": "/web-design-seychelles"
+              }
+            },
+            {
+              "title": "SEO review for an existing or third-party website",
+              "body": "A redesign is not required. We can review the website and explain its technical and on-page SEO priorities. You can use the recommendations yourself, share them with your existing provider or ask us to quote for the changes.",
+              "cta": {
+                "label": "Start with a review",
+                "path": "/contact"
+              }
+            }
+          ]
+        },
+        {
+          "eyebrow": "Separate scopes",
+          "title": "Review and recommendations are one service. Implementation is another.",
+          "items": [
+            {
+              "title": "Review and recommendations",
+              "body": "We examine the technical and on-page areas included in the review, explain what we find and identify what to address first. The recommendations are yours to use internally or share with another provider."
+            },
+            {
+              "title": "Separately scoped implementation",
+              "body": "If you want Horizon Digital to make the changes, we confirm that work separately. What we can implement depends on the website platform, the access available and any process controlled by an existing provider."
+            }
+          ],
+          "note": "Standalone review and implementation work is scoped after an initial discussion."
+        },
+        {
+          "eyebrow": "Review areas",
+          "title": "Technical and on-page areas we can review.",
+          "items": [
+            {
+              "title": "Page structure and crawlability",
+              "body": "Whether agreed pages and internal structure give search engines a clear route through the website."
+            },
+            {
+              "title": "Page-level metadata",
+              "body": "Whether the agreed pages use suitable titles and descriptions to explain their subject."
+            },
+            {
+              "title": "Sitemap and technical foundations",
+              "body": "Whether the agreed search setup includes the expected sitemap and crawlable technical structure."
+            },
+            {
+              "title": "On-page priorities",
+              "body": "Practical page-level issues that affect how the agreed content and services are understood."
+            }
+          ],
+          "note": "This is not a promise that every possible SEO issue is included. The initial discussion and written scope define the areas reviewed."
+        },
+        {
+          "eyebrow": "How support begins",
+          "title": "A clear route from review to handover.",
+          "flow": true
+        },
+        {
+          "eyebrow": "Scope boundaries",
+          "title": "What needs to be clear before implementation.",
+          "boundaryIds": [
+            "existing-provider-coordination",
+            "account-ownership-access",
+            "no-results-guarantees",
+            "google-ads-excluded"
+          ]
+        }
+      ],
+      "relatedLinks": {
+        "label": "Related services",
+        "eyebrow": "Services overview",
+        "title": "Not sure which service family fits?",
+        "links": [
+          {
+            "label": "View all services",
+            "path": "/services"
+          }
+        ]
+      },
+      "final": {
+        "eyebrow": "Start with the website you have",
+        "title": "Share the issue you want us to review.",
+        "body": "Send the website address and a short description of what you want to understand. We will discuss the review scope, available access and whether implementation may be needed later.",
+        "primary": {
+          "label": "Discuss an SEO review",
+          "path": "/contact"
+        },
+        "secondary": {
+          "label": "Explore website services",
+          "path": "/web-design-seychelles"
+        }
+      }
+    },
+    "analytics": {
+      "eyebrow": "Analytics and digital presence",
+      "title": "Understand website activity and improve your Google business presence.",
+      "lead": "We can set up basic website measurement and help create or improve your Google Business Profile. Before we begin, we confirm the account access, consent setup and verified business details needed for the work.",
+      "primary": {
+        "label": "Discuss your current setup",
+        "path": "/contact"
+      },
+      "secondary": {
+        "label": "Explore website services",
+        "path": "/web-design-seychelles"
+      },
+      "heroVisualLabels": [
+        { "index": "Website", "label": "Basic measurement" },
+        { "index": "Business information", "label": "Google Business Profile" }
+      ],
+      "sections": [
+        {
+          "eyebrow": "Website measurement",
+          "title": "Set up useful website measurement.",
+          "body": "We can configure the agreed website measurement so you can understand basic visitor activity. Before implementation, we confirm the website and account access together with the consent setup chosen for the business.",
+          "note": "This service does not imply an advanced dashboard, attribution model, recurring analysis or a guaranteed business outcome. The written scope confirms the measurement setup included.",
+          "support": "Basic Google Analytics setup is included in Starter. Growth also includes Google Business Profile setup or configuration support when the required access, consent setup and verified details are available.",
+          "cta": {
+            "label": "Discuss analytics setup",
+            "path": "/contact"
+          },
+          "flow": [
+            "Access",
+            "Agreed consent setup",
+            "Measurement configured",
+            "Verify"
+          ]
+        },
+        {
+          "eyebrow": "Google business presence",
+          "title": "Keep the profile accurate and under your control.",
+          "body": "We can help set up a Google Business Profile or improve an existing profile using accurate business information and the features available to that business. Work depends on the necessary profile access, authority and verified business details.",
+          "note": "The business profile should remain under the client's ownership and control. Google controls verification and feature availability, so those steps cannot be guaranteed or bypassed.",
+          "cta": {
+            "label": "Discuss profile support",
+            "path": "/contact"
+          },
+          "flow": ["Business information", "Access", "Verification"]
+        },
+        {
+          "eyebrow": "Starting scope",
+          "title": "Measurement and profile support can begin separately.",
+          "body": "You may need analytics setup, Google Business Profile support or an initial discussion covering both areas. The written scope keeps the accounts, access requirements and deliverables clear.",
+          "note": "Standalone work is scoped after an initial discussion."
+        },
+        {
+          "eyebrow": "How support begins",
+          "title": "Confirm the setup before implementation.",
+          "steps": [
+            {
+              "title": "Review the current setup",
+              "body": "We look at the agreed measurement or business-profile issue."
+            },
+            {
+              "title": "Confirm access and requirements",
+              "body": "We identify the accounts, authority, consent setup or verified details needed."
+            },
+            {
+              "title": "Agree the implementation scope",
+              "body": "The written scope confirms what will be configured and what remains the client's responsibility."
+            },
+            {
+              "title": "Verify and hand over",
+              "body": "We verify the agreed setup and hand over the relevant information."
+            }
+          ]
+        },
+        {
+          "eyebrow": "Scope boundaries",
+          "title": "Accounts, consent and verification stay clear.",
+          "boundaryIds": [
+            "account-ownership-access",
+            "analytics-privacy-consent",
+            "no-results-guarantees",
+            "google-ads-excluded"
+          ]
+        }
+      ],
+      "final": {
+        "eyebrow": "Start with the current setup",
+        "title": "Tell us what you want to measure or improve.",
+        "body": "Share the website or profile involved and what you need help understanding. We will discuss the available access, required details and a suitable starting scope.",
+        "primary": {
+          "label": "Discuss your current setup",
+          "path": "/contact"
+        },
+        "secondary": {
+          "label": "View all services",
+          "path": "/services"
+        }
+      }
+    }
+  },
   "packages": [
     {
       "id": "foundation",
@@ -91,13 +733,34 @@
       "price": "From SCR 7,500",
       "description": "A focused custom website for a business establishing or replacing a basic online presence.",
       "includes": [
-        { "title": "Up to 3 pages", "description": "Usually Home, About and Contact, adjusted to the agreed scope." },
-        { "title": "Custom layout for your business", "description": "Designed around your brand and content rather than a pre-made customer-facing template." },
-        { "title": "Mobile-responsive build", "description": "Designed and tested for common phone, tablet and desktop sizes." },
-        { "title": "Contact form and WhatsApp link", "description": "Clear ways for visitors to contact your business." },
-        { "title": "Technical SEO foundation", "description": "Page metadata, crawlable structure and sitemap setup; rankings are not guaranteed." },
-        { "title": "30 days of post-launch support", "description": "Bug fixes and minor agreed adjustments during the support window." },
-        { "title": "1 revision round", "description": "One defined round of consolidated feedback." }
+        {
+          "title": "Up to 3 pages",
+          "description": "Usually Home, About and Contact, adjusted to the agreed scope."
+        },
+        {
+          "title": "Custom design",
+          "description": "A visual system and page layouts shaped around the business."
+        },
+        {
+          "title": "Mobile-responsive build",
+          "description": "Designed and tested for common phone, tablet and desktop sizes."
+        },
+        {
+          "title": "Contact form and WhatsApp link",
+          "description": "Clear ways for visitors to contact your business."
+        },
+        {
+          "title": "SEO (Search Engine Optimisation)",
+          "description": "Page-level metadata, internal structure, crawlable pages, sitemap setup and technical search foundations; rankings are not guaranteed."
+        },
+        {
+          "title": "30 days of post-launch support",
+          "description": "Bug fixes and minor agreed adjustments during the support window."
+        },
+        {
+          "title": "1 revision round",
+          "description": "One defined round of consolidated feedback."
+        }
       ]
     },
     {
@@ -106,14 +769,42 @@
       "price": "From SCR 12,500",
       "description": "A larger custom website for a growing business with more services or content.",
       "includes": [
-        { "title": "Up to 5–6 pages", "description": "Suitable for service pages, galleries and more detailed business information." },
-        { "title": "Custom design", "description": "A visual system and page layouts shaped around the business." },
-        { "title": "Mobile-responsive build", "description": "Designed and tested for common phone, tablet and desktop sizes." },
-        { "title": "Google Analytics setup", "description": "Basic visitor measurement when the required account access and consent setup are available." },
-        { "title": "Expanded on-page SEO setup", "description": "Page-level metadata, internal structure and technical search foundations; rankings are not guaranteed." },
-        { "title": "45 days of post-launch support", "description": "Bug fixes and minor agreed adjustments during the support window." },
-        { "title": "2 revision rounds", "description": "Two defined rounds of consolidated feedback." },
-        { "title": "Content management", "description": "A configured editing interface for agreed text and image fields." }
+        {
+          "title": "Up to 5–6 pages",
+          "description": "Suitable for service pages, galleries and more detailed business information."
+        },
+        {
+          "title": "Custom design",
+          "description": "A visual system and page layouts shaped around the business."
+        },
+        {
+          "title": "Mobile-responsive build",
+          "description": "Designed and tested for common phone, tablet and desktop sizes."
+        },
+        {
+          "title": "Contact form and WhatsApp link",
+          "description": "Clear ways for visitors to contact your business."
+        },
+        {
+          "title": "Google Analytics setup",
+          "description": "Basic visitor measurement when the required account access and consent setup are available."
+        },
+        {
+          "title": "SEO (Search Engine Optimisation)",
+          "description": "Page-level metadata, internal structure, crawlable pages, sitemap setup and technical search foundations; rankings are not guaranteed."
+        },
+        {
+          "title": "45 days of post-launch support",
+          "description": "Bug fixes and minor agreed adjustments during the support window."
+        },
+        {
+          "title": "2 revision rounds",
+          "description": "Two defined rounds of consolidated feedback."
+        },
+        {
+          "title": "Content management",
+          "description": "A configured editing interface for agreed text and image fields."
+        }
       ]
     },
     {
@@ -122,14 +813,42 @@
       "price": "From SCR 25,000",
       "description": "A more extensive website for businesses with deeper content, service lines or integrations.",
       "includes": [
-        { "title": "Up to 10–12 pages", "description": "A broader site structure for multiple services, audiences or content areas." },
-        { "title": "Custom design", "description": "A visual system and page layouts shaped around the business." },
-        { "title": "Mobile-responsive build", "description": "Designed and tested for common phone, tablet and desktop sizes." },
-        { "title": "Google Business Profile setup", "description": "Setup or configuration support when the business provides the required verified details and access." },
-        { "title": "Expanded technical and on-page SEO", "description": "Metadata, internal structure, sitemap and technical search foundations; rankings are not guaranteed." },
-        { "title": "60 days of post-launch support", "description": "Bug fixes and minor agreed adjustments during the support window." },
-        { "title": "2 revision rounds", "description": "Two defined rounds of consolidated feedback." },
-        { "title": "Content management", "description": "A configured editing interface for agreed text and image fields." }
+        {
+          "title": "Up to 10–12 pages",
+          "description": "A broader site structure for multiple services, audiences or content areas."
+        },
+        {
+          "title": "Custom design",
+          "description": "A visual system and page layouts shaped around the business."
+        },
+        {
+          "title": "Mobile-responsive build",
+          "description": "Designed and tested for common phone, tablet and desktop sizes."
+        },
+        {
+          "title": "Contact form and WhatsApp link",
+          "description": "Clear ways for visitors to contact your business."
+        },
+        {
+          "title": "Google Analytics and Google Business Profile setup",
+          "description": "Basic visitor measurement plus Google Business Profile setup or configuration support when the required account access, consent setup and verified business details are available."
+        },
+        {
+          "title": "SEO (Search Engine Optimisation)",
+          "description": "Page-level metadata, internal structure, crawlable pages, sitemap setup and technical search foundations; rankings are not guaranteed."
+        },
+        {
+          "title": "60 days of post-launch support",
+          "description": "Bug fixes and minor agreed adjustments during the support window."
+        },
+        {
+          "title": "2 revision rounds",
+          "description": "Two defined rounds of consolidated feedback."
+        },
+        {
+          "title": "Content management",
+          "description": "A configured editing interface for agreed text and image fields."
+        }
       ]
     },
     {
@@ -138,12 +857,30 @@
       "price": "Scoped per project",
       "description": "For projects whose page count, functionality or integration needs do not fit a standard package.",
       "includes": [
-        { "title": "A written scope", "description": "Deliverables, responsibilities, assumptions and exclusions agreed before work begins." },
-        { "title": "Direct communication", "description": "Work directly with the person responsible for the build." },
-        { "title": "A project-specific plan", "description": "Architecture, milestones and timeline based on the agreed requirements." },
-        { "title": "Relevant integrations", "description": "Functionality and third-party services agreed in the project scope." },
-        { "title": "Post-launch support", "description": "The support period and coverage are defined in the proposal." },
-        { "title": "Content management when required", "description": "Editing tools can be included where they fit the project requirements." }
+        {
+          "title": "A written scope",
+          "description": "Deliverables, responsibilities, assumptions and exclusions agreed before work begins."
+        },
+        {
+          "title": "Direct communication",
+          "description": "Work directly with the person responsible for the build."
+        },
+        {
+          "title": "A project-specific plan",
+          "description": "Architecture, milestones and timeline based on the agreed requirements."
+        },
+        {
+          "title": "Relevant integrations",
+          "description": "Functionality and third-party services agreed in the project scope."
+        },
+        {
+          "title": "Post-launch support",
+          "description": "The support period and coverage are defined in the proposal."
+        },
+        {
+          "title": "Content management when required",
+          "description": "Editing tools can be included where they fit the project requirements."
+        }
       ]
     }
   ],
@@ -152,8 +889,14 @@
     { "title": "Page content writing support", "price": "SCR 600 per page" },
     { "title": "Custom booking or enquiry form", "price": "SCR 2,000" },
     { "title": "Google Business Profile setup", "price": "SCR 2,200" },
-    { "title": "Rush delivery", "price": "+40% of project cost, subject to availability" },
-    { "title": "Content management for Foundation", "price": "SCR 2,500; included in Starter and Growth" }
+    {
+      "title": "Rush delivery",
+      "price": "+40% of project cost, subject to availability"
+    },
+    {
+      "title": "Content management for Foundation",
+      "price": "SCR 2,500; included in Starter and Growth"
+    }
   ],
   "paymentTerms": [
     "Foundation and Starter: 50% deposit to start, 50% before launch",
@@ -199,7 +942,7 @@
       "status": "Live client project",
       "label": "Guesthouse · Growth Tier · Live client project",
       "title": "Drake Seaside Apartments",
-      "outcome": "A live redesign with new pages, updated content and a faster-loading structure.",
+      "outcome": "A live redesign with updated pages, clearer property information and responsive layouts.",
       "url": "https://thedrake-seaside.com/"
     },
     {
@@ -266,36 +1009,72 @@
       "key": "services",
       "label": "Services",
       "items": [
-        { "question": "What kind of websites do you build?", "answer": "Custom business websites and redesigns focused on clear information, responsive use, performance and straightforward enquiry paths." },
-        { "question": "Can you add payments or bookings?", "answer": "Payment, booking and enquiry integrations can be scoped when the required provider supports the business and the necessary account access is available." },
-        { "question": "Do you help with content?", "answer": "Yes. Page structure and messaging guidance are included, and page content writing is available as an add-on." }
+        {
+          "question": "What kind of websites do you build?",
+          "answer": "Custom business websites and redesigns focused on clear information, responsive use, performance and straightforward enquiry paths."
+        },
+        {
+          "question": "Can you add payments or bookings?",
+          "answer": "Payment, booking and enquiry integrations can be scoped when the required provider supports the business and the necessary account access is available."
+        },
+        {
+          "question": "Do you help with content?",
+          "answer": "Yes. Page structure and messaging guidance are included, and page content writing is available as an add-on."
+        }
       ]
     },
     {
       "key": "process",
       "label": "Process",
       "items": [
-        { "question": "What is a typical timeline?", "answer": "Many standard projects take around 3 to 6 weeks. The proposal confirms the estimate for your scope." },
-        { "question": "How many revisions are included?", "answer": "Foundation includes one revision round. Starter and Growth include two. Custom revision terms are confirmed in the proposal." },
-        { "question": "How involved do I need to be?", "answer": "You provide business information and content, review milestone drafts and approve the direction. Horizon Digital handles the design and technical work." }
+        {
+          "question": "What is a typical timeline?",
+          "answer": "Many standard projects take around 3 to 6 weeks. The proposal confirms the estimate for your scope."
+        },
+        {
+          "question": "How many revisions are included?",
+          "answer": "Foundation includes one revision round. Starter and Growth include two. Custom revision terms are confirmed in the proposal."
+        },
+        {
+          "question": "How involved do I need to be?",
+          "answer": "You provide business information and content, review milestone drafts and approve the direction. Horizon Digital handles the design and technical work."
+        }
       ]
     },
     {
       "key": "self-management",
       "label": "Updates & Support",
       "items": [
-        { "question": "Can I update the website myself?", "answer": "Content management is included in Starter and Growth for agreed fields, can be added to Foundation, and can be scoped for Custom projects." },
-        { "question": "What support is provided after launch?", "answer": "Foundation includes 30 days, Starter 45 days and Growth 60 days of post-launch support. Custom support is defined in the proposal." },
-        { "question": "What if I need help later?", "answer": "Later changes can be quoted separately or covered through an agreed ongoing support arrangement." }
+        {
+          "question": "Can I update the website myself?",
+          "answer": "Content management is included in Starter and Growth for agreed fields, can be added to Foundation, and can be scoped for Custom projects."
+        },
+        {
+          "question": "What support is provided after launch?",
+          "answer": "Foundation includes 30 days, Starter 45 days and Growth 60 days of post-launch support. Custom support is defined in the proposal."
+        },
+        {
+          "question": "What if I need help later?",
+          "answer": "Later changes can be quoted separately or covered through an agreed ongoing support arrangement."
+        }
       ]
     },
     {
       "key": "hosting",
       "label": "Hosting & Ownership",
       "items": [
-        { "question": "Do I own the website?", "answer": "The final approved website files and assets transfer as agreed when the project closes. The domain remains in your registrar account." },
-        { "question": "Can you help with business email?", "answer": "Business email setup can be scoped using a suitable email provider and an address on your domain." },
-        { "question": "Where is my website hosted?", "answer": "Managed hosting is available for SCR 2,500 per year, or an alternative provider can be agreed. Large or complex builds may require a different plan." }
+        {
+          "question": "Do I own the website?",
+          "answer": "The final approved website files and assets transfer as agreed when the project closes. The domain remains in your registrar account."
+        },
+        {
+          "question": "Can you help with business email?",
+          "answer": "Business email setup can be scoped using a suitable email provider and an address on your domain."
+        },
+        {
+          "question": "Where is my website hosted?",
+          "answer": "Managed hosting is available for SCR 2,500 per year, or an alternative provider can be agreed. Large or complex builds may require a different plan."
+        }
       ]
     }
   ]

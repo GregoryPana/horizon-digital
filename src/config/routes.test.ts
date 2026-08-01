@@ -1,3 +1,4 @@
+import { readFileSync } from "node:fs";
 import { describe, it, expect } from "vitest";
 import {
   STATIC_ROUTES,
@@ -10,8 +11,25 @@ import {
   normalizePathname,
   buildFullTitle,
   SITE_NAME,
+  SITE_URL,
+  DEFAULT_ROBOTS,
+  SERVICES_SEO,
+  WEB_DESIGN_SEO,
+  SEO_SERVICES_SEO,
+  ANALYTICS_PRESENCE_SEO,
 } from "./routes";
 import { insightArticlesMeta } from "../data/insightsMeta";
+
+const appSource = readFileSync(new URL("../App.tsx", import.meta.url), "utf8");
+const servicePillars = [
+  ["/web-design-seychelles", WEB_DESIGN_SEO, 'import("./pages/WebDesignSeychelles")'],
+  ["/seo-services-seychelles", SEO_SERVICES_SEO, 'import("./pages/SeoServicesSeychelles")'],
+  [
+    "/analytics-and-digital-presence-seychelles",
+    ANALYTICS_PRESENCE_SEO,
+    'import("./pages/AnalyticsDigitalPresenceSeychelles")',
+  ],
+] as const;
 
 describe("route registry uniqueness", () => {
   it("has no duplicate static route paths", () => {
@@ -40,11 +58,76 @@ describe("route registry uniqueness", () => {
 });
 
 describe("canonical and redirect logic", () => {
+  it("treats /services as its own canonical and indexable route", () => {
+    const route = findStaticRoute("/services");
+    expect(route).toBeDefined();
+    expect(route?.path).toBe("/services");
+    expect(route?.seo).toBe(SERVICES_SEO);
+    expect(route?.seo).toEqual({
+      title: "Website, SEO & Analytics Services Seychelles | Horizon Digital",
+      description:
+        "Explore custom website design, SEO review and implementation, analytics setup and Google Business Profile support for Seychelles businesses.",
+      keywords:
+        "website services Seychelles, SEO consultation Seychelles, analytics setup Seychelles, Google Business Profile Seychelles",
+      robots: "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1",
+      ogType: "website",
+    });
+    expect(buildFullTitle(route!.seo.title)).toBe(route!.seo.title);
+    expect(new URL(route!.path, SITE_URL).toString()).toBe("https://horizondigitalsey.com/services");
+    expect(route?.seo.robots).toContain("index,follow");
+    expect(route?.sitemap).not.toBeNull();
+    expect(findRedirect("/services")).toBeUndefined();
+  });
+
+  it("registers all three root-level service pillars with exact metadata", () => {
+    expect([
+      WEB_DESIGN_SEO.title,
+      SEO_SERVICES_SEO.title,
+      ANALYTICS_PRESENCE_SEO.title,
+    ]).toEqual([
+      "Web Design Seychelles | Custom Websites | Horizon Digital",
+      "SEO Review & Implementation Seychelles | Horizon Digital",
+      "Analytics & Google Business Profile Seychelles | Horizon Digital",
+    ]);
+    for (const [path, seo] of servicePillars) {
+      const route = findStaticRoute(path);
+      expect(route?.seo).toEqual(seo);
+      expect(route?.seo.title).toBe(seo.title);
+      expect(route?.seo.description).toBe(seo.description);
+      expect(route?.seo.robots).toBe(DEFAULT_ROBOTS);
+      expect(route?.sitemap).not.toBeNull();
+    }
+    expect(STATIC_ROUTES.some((route) => route.path.startsWith("/services/"))).toBe(false);
+  });
+
+  it("registers every pillar in the lazy client route map", () => {
+    for (const [path, , lazyImport] of servicePillars) {
+      expect(appSource).toContain(lazyImport);
+      expect(appSource).toContain(`"${path}":`);
+    }
+  });
+
+  it("does not register unknown nested Services aliases", () => {
+    for (const path of ["/services/web-design", "/services/seo", "/services/analytics"]) {
+      expect(findStaticRoute(path)).toBeUndefined();
+      expect(findRedirect(path)).toBeUndefined();
+      expect(matchDynamicRoute(path)).toBeUndefined();
+    }
+  });
+
   it("treats /pricing as canonical and indexable", () => {
     const route = findStaticRoute("/pricing");
     expect(route).toBeDefined();
     expect(route?.seo.robots).toContain("index,follow");
     expect(route?.sitemap).not.toBeNull();
+  });
+
+  it("registers the truthful Process description", () => {
+    const route = findStaticRoute("/process");
+    expect(route?.seo.description).toBe(
+      "A clear, step-by-step look at how Horizon Digital takes your website from the first chat through launch and package-based support.",
+    );
+    expect(route?.seo.description).not.toContain("actually enjoy");
   });
 
   it("redirects /services-pricing to /pricing permanently", () => {
@@ -99,6 +182,18 @@ describe("sitemap membership", () => {
 
   it("includes canonical /pricing", () => {
     expect(paths).toContain("/pricing");
+  });
+
+  it("includes canonical /services separately from /pricing", () => {
+    expect(paths).toContain("/services");
+    expect(paths).toContain("/pricing");
+    expect(paths.filter((path) => path === "/services")).toHaveLength(1);
+  });
+
+  it("includes every service pillar exactly once", () => {
+    for (const [path] of servicePillars) {
+      expect(paths.filter((entry) => entry === path)).toHaveLength(1);
+    }
   });
 
   it("excludes the /services-pricing redirect source", () => {

@@ -1,9 +1,21 @@
 import { useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import Seo from "../components/Seo";
 // Removed Breadcrumbs import to fix build error
-import guesthouseHero from "../assets/work/drake-seaside/hero-bg.webp";
-import guesthousePreview from "../assets/work/drake-seaside/drake-seaside.jpg";
+import guesthouseHeroAvif400 from "../assets/work/drake-seaside/hero-bg-400.avif";
+import guesthouseHeroAvif800 from "../assets/work/drake-seaside/hero-bg-800.avif";
+import guesthouseHeroAvif1200 from "../assets/work/drake-seaside/hero-bg-1200.avif";
+import guesthouseHeroWebp400 from "../assets/work/drake-seaside/hero-bg-400.webp";
+import guesthouseHeroWebp800 from "../assets/work/drake-seaside/hero-bg-800.webp";
+import guesthouseHeroWebp1200 from "../assets/work/drake-seaside/hero-bg-1200.webp";
+import guesthouseHeroFallback from "../assets/work/drake-seaside/hero-bg-1200.jpg";
+import guesthousePreviewAvif400 from "../assets/work/drake-seaside/drake-seaside-400.avif";
+import guesthousePreviewAvif800 from "../assets/work/drake-seaside/drake-seaside-800.avif";
+import guesthousePreviewAvif1200 from "../assets/work/drake-seaside/drake-seaside-1200.avif";
+import guesthousePreviewWebp400 from "../assets/work/drake-seaside/drake-seaside-400.webp";
+import guesthousePreviewWebp800 from "../assets/work/drake-seaside/drake-seaside-800.webp";
+import guesthousePreviewWebp1200 from "../assets/work/drake-seaside/drake-seaside-1200.webp";
+import guesthousePreviewFallback from "../assets/work/drake-seaside/drake-seaside-1200.jpg";
 import { ArrowUpRight, CheckCircle2, Zap, Target, MousePointer2 } from "lucide-react";
 
 const metrics = [
@@ -28,13 +40,18 @@ const metrics = [
 ];
 
 const solutions = [
-  "Visual Storytelling: High-resolution room galleries and immersive video backgrounds.",
+  "Property Presentation: Room galleries, accommodation information and video where appropriate.",
   "Booking Path: Direct access to the existing booking engine and WhatsApp contact.",
   "SEO Foundation: Page structure and metadata for relevant Seychelles self-catering searches.",
   "Responsive Design: Layouts tested across common phone, tablet, and desktop sizes."
 ];
 
+const responsiveSrcSet = (small: string, medium: string, large: string) =>
+  `${small} 400w, ${medium} 800w, ${large} 1200w`;
+
 export default function ShowcaseDrakeSeaside() {
+  const shouldReduceMotion = useReducedMotion();
+
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "instant" as ScrollBehavior });
   }, []);
@@ -53,25 +70,31 @@ export default function ShowcaseDrakeSeaside() {
 
       {/* Hero Section */}
       <section className="relative h-[85vh] w-full flex items-center justify-center overflow-hidden">
-        <motion.div 
-          initial={{ scale: 1.1, opacity: 0 }}
+        <motion.div
+          initial={{ scale: shouldReduceMotion ? 1 : 1.1, opacity: shouldReduceMotion ? 1 : 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 1.5, ease: "easeOut" }}
+          transition={{ duration: shouldReduceMotion ? 0 : 1.5, ease: "easeOut" }}
           className="absolute inset-0 z-0"
         >
-          <img 
-            src={guesthouseHero} 
-            alt="Drake Seaside Hero" 
-            className="w-full h-full object-cover opacity-40 grayscale-[20%]"
-          />
+          <picture className="block h-full w-full">
+            <source srcSet={responsiveSrcSet(guesthouseHeroAvif400, guesthouseHeroAvif800, guesthouseHeroAvif1200)} sizes="100vw" type="image/avif" />
+            <source srcSet={responsiveSrcSet(guesthouseHeroWebp400, guesthouseHeroWebp800, guesthouseHeroWebp1200)} sizes="100vw" type="image/webp" />
+            <img
+              src={guesthouseHeroFallback}
+              alt="Drake Seaside Apartments exterior"
+              width="1200"
+              height="900"
+              className="w-full h-full object-cover opacity-40 grayscale-[20%]"
+            />
+          </picture>
           <div className="absolute inset-0 bg-gradient-to-b from-bg/20 via-transparent to-bg" />
         </motion.div>
 
         <div className="container relative z-10 px-6 text-center">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+            transition={{ duration: shouldReduceMotion ? 0 : 0.8, ease: "easeOut", delay: shouldReduceMotion ? 0 : 0.2 }}
           >
             <span className="inline-block px-3 py-1 rounded-full bg-accent/10 border border-accent/20 text-accent text-[11px] font-medium uppercase tracking-[0.2em] mb-6">
               Tourism & Hospitality
@@ -87,9 +110,9 @@ export default function ShowcaseDrakeSeaside() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0 }}
+            initial={{ opacity: shouldReduceMotion ? 1 : 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.8 }}
+            transition={{ delay: shouldReduceMotion ? 0 : 0.8 }}
             className="mt-12"
           >
             <a 
@@ -112,10 +135,10 @@ export default function ShowcaseDrakeSeaside() {
             {metrics.map((metric, idx) => (
               <motion.div
                 key={metric.label}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.8, ease: "easeOut", delay: idx * 0.1 }}
+                viewport={{ once: false, amount: 0.2 }}
+                transition={{ duration: shouldReduceMotion ? 0 : 0.8, ease: "easeOut", delay: shouldReduceMotion ? 0 : idx * 0.1 }}
                 className="relative p-8 rounded-2xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] transition-colors group"
               >
                 <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
@@ -135,25 +158,21 @@ export default function ShowcaseDrakeSeaside() {
         <div className="container px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
+              initial={{ opacity: shouldReduceMotion ? 1 : 0, x: shouldReduceMotion ? 0 : -30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
+              viewport={{ once: false }}
+              transition={{ duration: shouldReduceMotion ? 0 : 0.8, ease: "easeOut" }}
             >
               <h2 className="text-3xl md:text-5xl font-bold mb-8 leading-tight">
-                From a static brochure to a <br />
-                <span className="text-accent italic">clear booking path.</span>
+                Clearer property information and <br />
+                <span className="text-accent italic">direct booking paths.</span>
               </h2>
               <div className="space-y-6 text-text/70 text-lg">
                 <p>
-                  Drake Seaside Apartments offered luxury accommodation but lacked a 
-                  digital experience that matched their physical standard. Their previous 
-                  site was slow, outdated, and required guests to call or email for every enquiry.
+                  The redesign reorganised the property's accommodation information, updated the page layouts and gave visitors clearer routes to the existing booking engine and WhatsApp contact.
                 </p>
                 <p>
-                  The redesign emphasizes visual storytelling while guiding visitors
-                  toward the property's existing booking process. No booking, revenue,
-                  or operational outcome is asserted without measured evidence.
+                  Responsive imagery and clearer page structure support that journey across common screen sizes. This case study describes the delivered website changes; it does not claim a booking, revenue or operational result without measured evidence.
                 </p>
               </div>
               
@@ -168,17 +187,25 @@ export default function ShowcaseDrakeSeaside() {
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: shouldReduceMotion ? 1 : 0, scale: shouldReduceMotion ? 1 : 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1, ease: "easeOut" }}
+              viewport={{ once: false }}
+              transition={{ duration: shouldReduceMotion ? 0 : 1, ease: "easeOut" }}
               className="relative aspect-square rounded-3xl overflow-hidden shadow-2xl shadow-accent/5"
             >
-              <img 
-                src={guesthousePreview} 
-                alt="Project Preview" 
-                className="w-full h-full object-cover"
-              />
+              <picture className="block h-full w-full">
+                <source srcSet={responsiveSrcSet(guesthousePreviewAvif400, guesthousePreviewAvif800, guesthousePreviewAvif1200)} sizes="(min-width: 1024px) 50vw, 100vw" type="image/avif" />
+                <source srcSet={responsiveSrcSet(guesthousePreviewWebp400, guesthousePreviewWebp800, guesthousePreviewWebp1200)} sizes="(min-width: 1024px) 50vw, 100vw" type="image/webp" />
+                <img
+                  src={guesthousePreviewFallback}
+                  alt="Drake Seaside Apartments website interface"
+                  width="1200"
+                  height="628"
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-full object-cover"
+                />
+              </picture>
               <div className="absolute inset-0 bg-gradient-to-tr from-accent/20 to-transparent pointer-events-none" />
             </motion.div>
           </div>
@@ -192,13 +219,13 @@ export default function ShowcaseDrakeSeaside() {
         
         <div className="container px-6 text-center max-w-4xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: false }}
+            transition={{ duration: shouldReduceMotion ? 0 : 0.8, ease: "easeOut" }}
           >
             <p className="text-3xl md:text-5xl font-medium text-white mb-8 leading-[1.3] tracking-tight">
-              A live client redesign with new pages, updated content, and a faster-loading structure.
+              A live client redesign with updated pages, clearer property information, and responsive layouts.
             </p>
             <p className="text-text-muted uppercase tracking-widest text-xs">Project classification: live client work</p>
           </motion.div>
@@ -209,10 +236,10 @@ export default function ShowcaseDrakeSeaside() {
       <section className="py-40 text-center">
         <div className="container px-6">
           <motion.div
-            initial={{ opacity: 0 }}
+            initial={{ opacity: shouldReduceMotion ? 1 : 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: false }}
+            transition={{ duration: shouldReduceMotion ? 0 : 0.8, ease: "easeOut" }}
           >
             <h2 className="text-4xl md:text-6xl font-bold mb-12">
               Ready to discuss a similar approach?

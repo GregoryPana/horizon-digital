@@ -1,12 +1,12 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { applySectionReveals } from "../hooks/useProceduralReveal";
 import {
   ArrowRight,
   ArrowUpRight,
   Sparkles,
 } from "lucide-react";
-import { useRef, type PointerEvent as ReactPointerEvent, type ReactNode } from "react";
+import { useEffect, useRef, useState, type PointerEvent as ReactPointerEvent, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import Seo from "../components/Seo";
 import { InteractiveSvgIcon } from "../components/ui/InteractiveSvgIcon";
@@ -16,6 +16,10 @@ import HomeFaq from "../components/ui/home-faq";
 import Hero from "../components/ui/animated-shader-hero";
 import { trackContactIntent, trackEvent } from "../lib/analytics";
 import WhatsAppIcon from "../components/ui/WhatsAppIcon";
+import {
+  HOME_SCROLL_PRELOAD_MARGIN,
+  shouldLoadHomeScrollMotion,
+} from "./homeScrollMotionPolicy";
 import {
   businessFacts,
   foundationPackage,
@@ -35,7 +39,14 @@ type HomeProps = {
   seoDescription?: string;
 };
 
-gsap.registerPlugin(ScrollTrigger, useGSAP);
+gsap.registerPlugin(useGSAP);
+
+async function loadHomeScrollTrigger() {
+  const { ScrollTrigger } = await import("gsap/ScrollTrigger");
+  return ScrollTrigger;
+}
+
+type HomeScrollTrigger = Awaited<ReturnType<typeof loadHomeScrollTrigger>>;
 
 const buyerFits = [
   {
@@ -139,57 +150,98 @@ export default function Home({
   seoDescription = "Custom-built websites for Seychelles businesses, with responsive design, clear contact paths and technical SEO foundations.",
 }: HomeProps = {}) {
   const pageRef = useRef<HTMLDivElement>(null);
+  const firstMotionSectionRef = useRef<HTMLElement>(null);
+  const [scrollTriggerPlugin, setScrollTriggerPlugin] = useState<HomeScrollTrigger | null>(null);
   const allHomeFaqItems = homeFaqCategories.flatMap((category) => category.items);
+
+  useEffect(() => {
+    const firstMotionSection = firstMotionSectionRef.current;
+    if (!firstMotionSection) return;
+
+    let active = true;
+    let observer: IntersectionObserver | null = null;
+    let hasStartedLoading = false;
+    const loadScrollTrigger = () => {
+      if (hasStartedLoading) return;
+      hasStartedLoading = true;
+      observer?.disconnect();
+      void loadHomeScrollTrigger()
+        .then((plugin) => {
+          if (!active) return;
+          gsap.registerPlugin(plugin);
+          setScrollTriggerPlugin(() => plugin);
+        })
+        .catch((error: unknown) => {
+          if (active) console.error("Unable to load homepage scroll motion", error);
+        });
+    };
+
+    if (typeof window === "undefined" || typeof window.IntersectionObserver === "undefined") {
+      loadScrollTrigger();
+    } else {
+      const isAtOrPastPreloadBoundary = (sectionTop: number) => shouldLoadHomeScrollMotion({
+        sectionTop,
+        viewportHeight: window.innerHeight,
+        preloadMargin: HOME_SCROLL_PRELOAD_MARGIN,
+      });
+      observer = new window.IntersectionObserver(
+        (entries) => {
+          if (entries.some((entry) =>
+            entry.isIntersecting || isAtOrPastPreloadBoundary(entry.boundingClientRect.top))) {
+            loadScrollTrigger();
+          }
+        },
+        { rootMargin: `${HOME_SCROLL_PRELOAD_MARGIN}px 0px`, threshold: 0.01 },
+      );
+      if (isAtOrPastPreloadBoundary(firstMotionSection.getBoundingClientRect().top)) {
+        loadScrollTrigger();
+      } else {
+        observer.observe(firstMotionSection);
+      }
+    }
+
+    return () => {
+      active = false;
+      observer?.disconnect();
+    };
+  }, []);
 
   useGSAP(
     () => {
+      if (!scrollTriggerPlugin) return;
+
       const mm = gsap.matchMedia();
 
-      mm.add("(prefers-reduced-motion: no-preference)", () => {
-        gsap.utils.toArray<HTMLElement>(".section-reveal").forEach((section) => {
-          const items = section.querySelectorAll(".reveal-item");
-          gsap.from(items.length ? items : section, {
-            opacity: 0,
-            y: 42,
-            duration: 0.85,
-            stagger: 0.1,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: section,
-              start: "top 82%",
-              once: true,
-            },
+      mm.add(
+        {
+          motionOk: "(prefers-reduced-motion: no-preference)",
+          isDesktop: "(min-width: 1024px)",
+        },
+        (context) => {
+          const { motionOk, isDesktop } = context.conditions as {
+            motionOk: boolean;
+            isDesktop: boolean;
+          };
+          if (!motionOk) return;
+
+          applySectionReveals(pageRef.current ?? document, isDesktop);
+
+          gsap.utils.toArray<HTMLElement>(".work-reveal-card").forEach((card) => {
+            const fromX = card.dataset.revealSide === "right" ? 72 : -72;
+            gsap.from(card, {
+              x: isDesktop ? fromX : fromX * 0.6,
+              opacity: 0,
+              duration: 0.85,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: card,
+                start: "top 85%",
+                toggleActions: "play reverse play reverse",
+              },
+            });
           });
-        });
 
-        gsap.from(".package-card", {
-          opacity: 0,
-          y: 55,
-          scale: 0.96,
-          duration: 0.85,
-          stagger: 0.12,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: ".pricing-grid",
-            start: "top 80%",
-            once: true,
-          },
-        });
-
-        gsap.from(".featured-package .pricing-feature", {
-          opacity: 0,
-          x: -14,
-          duration: 0.45,
-          stagger: 0.07,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: ".featured-package",
-            start: "top 75%",
-            once: true,
-          },
-        });
-
-        const processItems = gsap.utils.toArray<HTMLElement>(".home-process-step");
+          const processItems = gsap.utils.toArray<HTMLElement>(".home-process-step");
         const processPath = pageRef.current?.querySelector<SVGLineElement>(
           ".home-process-flow-path",
         );
@@ -232,7 +284,7 @@ export default function Home({
             gsap.set(processPath, { scaleY: 0, opacity: 1 });
             setActiveStep(-1);
           };
-          const processTrigger = ScrollTrigger.create({
+          const processTrigger = scrollTriggerPlugin.create({
             trigger: ".home-process-flow-wrap",
             start: "top 92%",
             end: "bottom 8%",
@@ -298,7 +350,7 @@ export default function Home({
 
       return () => mm.revert();
     },
-    { scope: pageRef }
+    { scope: pageRef, dependencies: [scrollTriggerPlugin], revertOnUpdate: true }
   );
 
   const faqSchema = {
@@ -357,10 +409,9 @@ export default function Home({
         websiteBuildStory
         trustBadge={{ text: "Web design in Mahé, Seychelles" }}
         headline={{
-          lines: ["CUSTOM STUNNING WEBSITES"],
-          rotatingWords: ["STUNNING", "PROFESSIONAL", "FAST", "MOBILE-READY"],
+          lines: ["Your Web Designer of Choice in Seychelles"],
         }}
-        subtitle="We plan, design and build your site with you, so you know what is happening, what it costs and what comes next."
+        subtitle="Built with you, in Seychelles — made custom for your business, not a template."
         tags={[
           {
             text: "Made for your business",
@@ -389,7 +440,7 @@ export default function Home({
         }}
       />
 
-      <section className="trust-ribbon border-b border-white/10" aria-label="What you can verify">
+      <section className="trust-ribbon section-reveal border-b border-white/10" aria-label="What you can verify">
         <div className="container-wide grid sm:grid-cols-2 lg:grid-cols-4">
           {homeProofPoints.map((item, index) => {
             const row = (
@@ -402,7 +453,7 @@ export default function Home({
               </>
             );
             const rowClassName =
-              "flex min-h-20 items-center gap-4 border-b border-white/10 py-5 text-white sm:border-r sm:px-5 lg:border-b-0 lg:px-6 first:pl-0 last:border-r-0 last:pr-0";
+              "reveal-item flex min-h-20 items-center gap-4 border-b border-white/10 py-5 text-white sm:border-r sm:px-5 lg:border-b-0 lg:px-6 first:pl-0 last:border-r-0 last:pr-0";
             if (item.href) {
               return (
                 <ProjectLink
@@ -424,13 +475,13 @@ export default function Home({
         </div>
       </section>
 
-      <section className="section-light section-reveal section-space relative overflow-hidden border-b border-border" id="fit">
+      <section ref={firstMotionSectionRef} className="section-light section-reveal section-space relative overflow-hidden border-b border-border" id="fit">
         <div className="ambient-blob absolute -right-24 top-12 h-80 w-80 rounded-full bg-cyan-300/25 blur-[90px]" aria-hidden="true" />
         <SectionArt tone="light" side="right" />
         <div className="ambient-blob absolute -left-20 bottom-0 h-72 w-72 rounded-full bg-emerald-200/30 blur-[95px]" aria-hidden="true" />
         <div className="container-standard relative">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-8">
-            <header className="reveal-item lg:col-span-5">
+            <header className="reveal-heading lg:col-span-5">
               <p className="section-eyebrow">When your website feels behind</p>
               <h2 className="mt-5 text-balance text-[clamp(2.4rem,4.2vw,4.5rem)] font-bold leading-[1.03] tracking-[-0.04em]">
                 Bring your website <span className="text-gradient-deep">up to date.</span>
@@ -447,9 +498,9 @@ export default function Home({
               </Link>
             </header>
 
-            <div className="reveal-item grid gap-4 lg:col-span-6 lg:col-start-7">
+            <div className="grid gap-4 lg:col-span-6 lg:col-start-7">
               {buyerFits.map((item) => (
-                <article key={item.number} className="group grid gap-4 rounded-2xl border border-border bg-white/70 p-5 shadow-[0_12px_40px_rgba(15,61,68,0.07)] backdrop-blur-sm transition-[border-color,box-shadow,transform] duration-300 hover:-translate-y-1 hover:border-cyan-600/25 hover:shadow-[0_18px_46px_rgba(15,61,68,0.12)] sm:grid-cols-[3.5rem_1fr] sm:gap-6 sm:p-6">
+                <article key={item.number} className="reveal-item group grid gap-4 rounded-2xl border border-border bg-white/70 p-5 shadow-[0_12px_40px_rgba(15,61,68,0.07)] backdrop-blur-sm transition-[border-color,box-shadow,transform] duration-300 hover:-translate-y-1 hover:border-cyan-600/25 hover:shadow-[0_18px_46px_rgba(15,61,68,0.12)] sm:grid-cols-[3.5rem_1fr] sm:gap-6 sm:p-6">
                   <div className="reactive-icon flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-[#d7f7f5] to-[#cbe9f5] text-[#0c6973] shadow-inner" aria-hidden="true">
                     <InteractiveSvgIcon kind={item.icon} effect={item.effect} className="h-7 w-7" />
                   </div>
@@ -493,7 +544,7 @@ export default function Home({
         <div className="ambient-blob absolute -left-36 top-1/3 h-96 w-96 rounded-full bg-cyan-600/10 blur-[110px]" aria-hidden="true" />
         <SectionArt tone="dark" side="left" />
         <div className="container-wide relative">
-          <header className="reveal-item grid gap-5 lg:grid-cols-12">
+          <header className="reveal-heading grid gap-5 lg:grid-cols-12">
             <div className="lg:col-span-7">
               <p className="section-eyebrow">Selected work</p>
               <h2 className="mt-5 text-balance text-[clamp(2.4rem,4.2vw,4.5rem)] font-semibold leading-[1.03] tracking-[-0.04em]">
@@ -505,17 +556,24 @@ export default function Home({
             </p>
           </header>
 
-          <article className="reveal-item group mt-12 grid overflow-hidden rounded-[1.4rem] border border-border bg-bg-panel shadow-[0_24px_70px_rgba(0,0,0,0.26)] lg:grid-cols-12">
+          <article
+            className="work-reveal-card group mt-12 grid overflow-hidden rounded-[1.4rem] border border-border bg-bg-panel shadow-[0_24px_70px_rgba(0,0,0,0.26)] lg:grid-cols-12"
+            data-reveal-side="left"
+          >
             <div className="relative min-h-[320px] lg:col-span-7 lg:min-h-[520px]">
-              <img
-                src={workItems[0].imageWebp800 || workItems[0].imageWebp || workItems[0].image}
-                alt={`${workItems[0].title} website preview`}
-                width="800"
-                height="600"
-                loading="lazy"
-                decoding="async"
-                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.025]"
-              />
+              <picture className="absolute inset-0 block h-full w-full">
+                <source srcSet={workItems[0].imageAvifSrcSet} sizes={workItems[0].imageSizes} type="image/avif" />
+                <source srcSet={workItems[0].imageSrcSet} sizes={workItems[0].imageSizes} type="image/webp" />
+                <img
+                  src={workItems[0].image}
+                  alt={`${workItems[0].title} website preview`}
+                  width="800"
+                  height="600"
+                  loading="lazy"
+                  decoding="async"
+                  className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.025]"
+                />
+              </picture>
               <div className="absolute inset-0 bg-gradient-to-t from-bg/80 via-transparent to-transparent" aria-hidden="true" />
             </div>
             <div className="flex flex-col justify-between p-7 sm:p-9 lg:col-span-5 lg:p-12">
@@ -535,19 +593,27 @@ export default function Home({
             </div>
           </article>
 
-          <div className="reveal-item mt-5 grid gap-5 md:grid-cols-2">
-            {workItems.slice(1, 3).map((project) => (
-              <article key={project.id} className="group grid gap-6 rounded-[1.1rem] border border-border bg-bg-panel p-6 transition-[border-color,transform,box-shadow] duration-300 hover:-translate-y-1 hover:border-border-strong hover:shadow-[0_18px_42px_rgba(0,0,0,0.22)] sm:grid-cols-[9rem_1fr] sm:items-center">
-                <img
-                  src={project.imageWebp800 || project.imageWebp || project.image}
-                  alt={`${project.title} website preview`}
-                  width="360"
-                  height="260"
-                  loading="eager"
-                  decoding="async"
-                  className="aspect-[4/3] w-full rounded-xl object-cover transition-transform duration-500 group-hover:scale-[1.025]"
-                  style={{ objectPosition: project.imagePosition }}
-                />
+          <div className="mt-5 grid gap-5 md:grid-cols-2">
+            {workItems.slice(1, 3).map((project, index) => (
+              <article
+                key={project.id}
+                className="work-reveal-card group grid gap-6 rounded-[1.1rem] border border-border bg-bg-panel p-6 transition-[border-color,transform,box-shadow] duration-300 hover:-translate-y-1 hover:border-border-strong hover:shadow-[0_18px_42px_rgba(0,0,0,0.22)] sm:grid-cols-[9rem_1fr] sm:items-center"
+                data-reveal-side={index % 2 === 0 ? "right" : "left"}
+              >
+                <picture className="block">
+                  <source srcSet={project.imageAvifSrcSet} sizes={project.imageSizes} type="image/avif" />
+                  <source srcSet={project.imageSrcSet} sizes={project.imageSizes} type="image/webp" />
+                  <img
+                    src={project.image}
+                    alt={`${project.title} website preview`}
+                    width="360"
+                    height="270"
+                    loading="eager"
+                    decoding="async"
+                    className="aspect-[4/3] w-full rounded-xl object-cover transition-transform duration-500 group-hover:scale-[1.025]"
+                    style={{ objectPosition: project.imagePosition }}
+                  />
+                </picture>
                 <div>
                   <p className="font-mono text-[0.65rem] uppercase tracking-[0.14em] text-accent-2">{project.status}</p>
                   <h3 className="mt-3 text-xl font-semibold tracking-[-0.02em]">{project.title}</h3>
@@ -570,7 +636,7 @@ export default function Home({
         <div className="ambient-blob absolute -right-24 bottom-0 h-96 w-96 rounded-full bg-blue-200/40 blur-[120px]" aria-hidden="true" />
         <SectionArt tone="light" side="right" />
         <div className="container-standard relative grid gap-12 lg:grid-cols-12 lg:gap-8">
-          <header className="reveal-item lg:col-span-5">
+          <header className="reveal-heading lg:col-span-5">
             <p className="section-eyebrow">Services</p>
             <h2 className="mt-5 text-balance text-[clamp(2.4rem,4.2vw,4.5rem)] font-bold leading-[1.03] tracking-[-0.04em]">
               How we can <span className="text-gradient-deep">help.</span>
@@ -578,18 +644,18 @@ export default function Home({
             <p className="mt-6 max-w-lg text-pretty text-base leading-relaxed text-text-muted sm:text-lg">
               Build something new, refresh what you have or add the search and contact tools your customers need.
             </p>
-            <Link to="/pricing" className="reactive-cta focus-ring group mt-8 inline-flex min-h-12 items-center gap-2 rounded-full bg-gradient-to-r from-[#0e6671] to-[#128f89] px-6 py-3 text-sm font-bold text-white shadow-[0_12px_32px_rgba(14,102,113,0.2)] transition-[transform,box-shadow,filter] duration-300 hover:-translate-y-1 hover:brightness-105 hover:shadow-[0_18px_38px_rgba(14,102,113,0.28)]">
-              Explore services and pricing
+            <Link to="/services" className="reactive-cta focus-ring group mt-8 inline-flex min-h-12 items-center gap-2 rounded-full bg-gradient-to-r from-[#0e6671] to-[#128f89] px-6 py-3 text-sm font-bold text-white shadow-[0_12px_32px_rgba(14,102,113,0.2)] transition-[transform,box-shadow,filter] duration-300 hover:-translate-y-1 hover:brightness-105 hover:shadow-[0_18px_38px_rgba(14,102,113,0.28)]">
+              Explore all services
               <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1.5" aria-hidden="true" />
             </Link>
           </header>
 
-          <div className="reveal-item grid gap-3 lg:col-span-6 lg:col-start-7">
+          <div className="grid gap-3 lg:col-span-6 lg:col-start-7">
             {services.map((service, index) => {
               const icon = serviceIcons[index] || "browser";
               const effect = serviceEffects[index] || "trace";
               return (
-                <article key={service.title} className="group grid gap-4 rounded-2xl border border-transparent p-4 transition-[background-color,border-color,transform] duration-300 hover:translate-x-1 hover:border-cyan-700/15 hover:bg-white/70 sm:grid-cols-[3.5rem_1fr] sm:gap-5 sm:p-5">
+                <article key={service.title} className="reveal-item group grid gap-4 rounded-2xl border border-transparent p-4 transition-[background-color,border-color,transform] duration-300 hover:translate-x-1 hover:border-cyan-700/15 hover:bg-white/70 sm:grid-cols-[3.5rem_1fr] sm:gap-5 sm:p-5">
                   <div className="reactive-icon flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-[#d2f4f1] to-[#dbeafa] text-[#0a6872] shadow-[0_8px_24px_rgba(20,106,117,0.12)]" aria-hidden="true">
                     <InteractiveSvgIcon kind={icon} effect={effect} className="h-6 w-6" />
                   </div>
@@ -610,7 +676,7 @@ export default function Home({
         <div className="ambient-blob absolute -right-24 bottom-0 h-96 w-96 rounded-full bg-emerald-200/16 blur-[110px]" aria-hidden="true" />
         <SectionArt tone="lagoon" side="left" />
         <div className="container-standard relative">
-          <header className="reveal-item max-w-3xl">
+          <header className="reveal-heading max-w-3xl">
             <p className="section-eyebrow">How it works</p>
             <h2 className="mt-5 text-balance text-[clamp(2.4rem,4.2vw,4.5rem)] font-bold leading-[1.03] tracking-[-0.04em]">
               From first chat <span className="text-gradient-lagoon">to launch.</span>
@@ -647,18 +713,18 @@ export default function Home({
         </div>
       </section>
 
-      <section className="pricing-section section-space relative overflow-hidden border-b border-white/10" id="packages">
+      <section className="pricing-section section-space section-reveal relative overflow-hidden border-b border-white/10" id="packages">
         <div className="ambient-blob absolute -left-32 top-20 h-[30rem] w-[30rem] rounded-full bg-cyan-500/14 blur-[120px]" aria-hidden="true" />
         <div className="ambient-blob absolute -right-32 bottom-0 h-[34rem] w-[34rem] rounded-full bg-emerald-400/12 blur-[130px]" aria-hidden="true" />
         <div className="container-wide relative">
-          <header className="section-reveal grid gap-5 lg:grid-cols-12">
-            <div className="reveal-item lg:col-span-7">
+          <header className="reveal-heading grid gap-5 lg:grid-cols-12">
+            <div className="lg:col-span-7">
               <p className="section-eyebrow">Starting prices</p>
               <h2 className="mt-5 text-balance text-[clamp(2.4rem,4.2vw,4.5rem)] font-bold leading-[1.03] tracking-[-0.04em]">
                 Find the right <span className="text-gradient-tropical">starting point.</span>
               </h2>
             </div>
-            <p className="reveal-item max-w-lg text-pretty leading-relaxed text-text-muted lg:col-span-4 lg:col-start-9 lg:self-end">
+            <p className="max-w-lg text-pretty leading-relaxed text-text-muted lg:col-span-4 lg:col-start-9 lg:self-end">
               These are starting prices. Your proposal will confirm the work, final cost and anything not included.
             </p>
           </header>
@@ -669,7 +735,7 @@ export default function Home({
               return (
                 <article
                   key={pkg.id}
-                  className={`package-card group relative flex flex-col overflow-hidden rounded-[1.75rem] border p-7 transition-[border-color,box-shadow,transform,filter] duration-500 sm:p-9 ${
+                  className={`package-card reveal-item group relative flex flex-col overflow-hidden rounded-[1.75rem] border p-7 transition-[border-color,box-shadow,transform,filter] duration-500 sm:p-9 ${
                     featured
                       ? "featured-package border-cyan-100/55 bg-[#102b31] shadow-[0_38px_120px_rgba(39,208,218,0.32)] sm:p-10"
                       : "package-card-muted border-white/9 bg-white/[0.035] shadow-[0_16px_48px_rgba(0,0,0,0.22)] hover:-translate-y-2 hover:border-cyan-200/25 hover:bg-white/[0.06]"
@@ -722,7 +788,7 @@ export default function Home({
             })}
           </div>
 
-          <div className="mt-10 text-center">
+          <div className="reveal-item mt-10 text-center">
             <Link to="/pricing" className="reactive-cta focus-ring group inline-flex min-h-11 items-center gap-2 rounded-full px-5 text-sm font-bold text-cyan-100 transition-[background-color,transform] duration-300 hover:-translate-y-0.5 hover:bg-white/[0.06]">
               Compare full package details
               <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1.5" aria-hidden="true" />
@@ -735,7 +801,7 @@ export default function Home({
         <div className="ambient-blob absolute -left-24 bottom-0 h-80 w-80 rounded-full bg-emerald-200/30 blur-[100px]" aria-hidden="true" />
         <SectionArt tone="light" side="right" />
         <div className="container-standard relative">
-          <header className="reveal-item mx-auto max-w-3xl text-center">
+          <header className="reveal-heading mx-auto max-w-3xl text-center">
             <p className="section-eyebrow">Before you decide</p>
             <h2 className="mt-5 text-balance text-[clamp(2.4rem,4.2vw,4.5rem)] font-bold leading-[1.03] tracking-[-0.04em]">
               A few <span className="text-gradient-deep">useful answers.</span>
@@ -752,7 +818,7 @@ export default function Home({
         <div className="ambient-blob absolute -right-20 bottom-0 h-[28rem] w-[28rem] rounded-full bg-emerald-400/14 blur-[120px]" aria-hidden="true" />
         <div className="hero-cinematic-grid absolute inset-0 opacity-35" aria-hidden="true" />
         <div className="container-standard relative grid gap-10 lg:grid-cols-12 lg:items-end">
-          <div className="reveal-item lg:col-span-8">
+          <div className="reveal-heading lg:col-span-8">
             <p className="section-eyebrow">Start a conversation</p>
             <h2 className="mt-5 text-balance text-[clamp(2.6rem,5vw,5.5rem)] font-bold leading-[0.98] tracking-[-0.045em]">
               Tell us <span className="text-gradient-tropical">what you need.</span>

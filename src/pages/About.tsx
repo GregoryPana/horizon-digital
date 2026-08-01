@@ -13,13 +13,14 @@ export default function About() {
   const fadeInUp = {
     initial: shouldReduceMotion ? undefined : { opacity: 0, y: 22, filter: 'blur(8px)' },
     whileInView: shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: 'blur(0px)' },
-    viewport: { once: true, amount: 0.15 },
+    viewport: { once: false, amount: 0.15 },
     transition: { duration: 0.75, ease: [0.16, 1, 0.3, 1] as const },
   };
 
   return (
     <div className="overflow-hidden">
       <h1 className="sr-only">About Horizon Digital - Custom Website Design studio</h1>
+      <h1 id="about-title" style={{fontSize: 'var(--text-h1)', fontWeight: 700, lineHeight: 1.03, letterSpacing: '-0.04em', textWrap: 'balance', position: 'absolute', width: 1, height: 1, padding: 0, margin: '-1px', overflow: 'hidden', clip: 'rect(0, 0, 0, 0)', whiteSpace: 'nowrap', border: 0}}>About Horizon Digital — Custom Website Design Studio</h1>
       <Seo
         title="Custom Website Design Studio Seychelles | About Horizon Digital"
         description="Horizon Digital is a Mahé-based studio that plans, designs and builds custom websites for Seychelles businesses."
@@ -51,8 +52,8 @@ export default function About() {
         <div className="mx-auto w-full max-w-[92rem] px-6 sm:px-10 lg:px-14">
           <motion.div {...fadeInUp} className="mb-12">
             <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">WHO WE ARE</span>
-            <h2 className="font-display max-w-4xl text-4xl font-semibold leading-tight tracking-tight text-white md:text-6xl">
-              A Seychelles studio built on one belief — your website should <span className="text-cyan font-semibold">work as hard as you do</span>
+            <h2 style={{fontSize: 'var(--text-h2)', fontWeight: 700, lineHeight: 1.07, letterSpacing: '-0.03em', textWrap: 'balance'}}>
+              A Seychelles studio building websites around <span className="text-cyan font-semibold">how local businesses work.</span>
             </h2>
           </motion.div>
 
@@ -66,7 +67,7 @@ export default function About() {
                 <motion.picture
                   initial={shouldReduceMotion ? undefined : { scale: 1.1, opacity: 0 }}
                   whileInView={shouldReduceMotion ? undefined : { scale: 1, opacity: 0.8 }}
-                  viewport={{ once: true, amount: 0.3 }}
+                  viewport={{ once: false, amount: 0.3 }}
                   transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
                 >
                   <source media="(min-width: 1024px)" srcSet="/studio-desktop.webp" />
@@ -88,13 +89,13 @@ export default function About() {
             >
               <div className="space-y-6 text-lg text-text-muted leading-relaxed">
                 <p>
-                  We started Horizon Digital because we kept seeing the same problem — good Seychelles businesses with <span className="semibold-underline text-white">bad websites.</span> Guesthouses that looked worse online than they were in person. Restaurants with no online presence at all. Shops that couldn't be found on Google.
+                  Horizon Digital plans, designs and builds custom websites for Seychelles businesses. We started the studio to offer a more considered alternative to generic website packages.
                 </p>
                 <p>
-                  We build websites for local businesses that look <span className="text-gradient-cyan font-semibold">genuinely professional</span>, work across common screen sizes, and make the business easier to understand and contact. Not templates with your name dropped in. Custom sites, built around how your business works.
+                  We focus on <span className="text-gradient-cyan font-semibold">clear information and custom design</span>, with layouts that work across common screen sizes and make the business easier to understand and contact.
                 </p>
                 <p>
-                  We're <span className="semibold-underline text-white">based on Mahé.</span> We speak to every client directly. And we're <span className="text-cyan font-semibold">available on WhatsApp</span> when you need us.
+                  We're <span className="semibold-underline text-white">based on Mahé.</span> Clients speak directly with the person responsible for the work, and we remain <span className="text-cyan font-semibold">available on WhatsApp</span> throughout the project.
                 </p>
               </div>
 
@@ -109,7 +110,7 @@ export default function About() {
                  </div>
                  <div className="flex items-center gap-2.5">
                    <div className="h-1.5 w-1.5 rounded-full bg-cyan" />
-                   <span className="text-cyan">Personal Service</span>
+                   <span className="text-cyan">Direct communication</span>
                  </div>
               </div>
             </motion.div>
@@ -122,11 +123,11 @@ export default function About() {
         <div className="mx-auto w-full max-w-5xl px-5 sm:px-8">
           <motion.div {...fadeInUp} className="max-w-4xl">
             <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">WHY LOCAL MATTERS</span>
-            <h2 className="font-display text-3xl font-semibold leading-tight tracking-tight text-white md:text-5xl mb-8">
-              Most web agencies don't know what <span className="text-white">"guesthouse seychelles"</span> means to someone searching from abroad
+            <h2 style={{fontSize: 'var(--text-h2)', fontWeight: 700, lineHeight: 1.07, letterSpacing: '-0.03em', marginBottom: '2rem', textWrap: 'balance'}}>
+              Local context helps us ask <span className="text-white">better questions.</span>
             </h2>
             <p className="text-lg text-text-muted leading-relaxed mb-16">
-              <span className="text-gradient-cyan font-bold uppercase">WE do.</span> We understand the search terms your customers use, the platforms they book through, and what Seychelles travellers and locals are <span className="semibold-underline text-white">actually looking for</span> when they find your site. An overseas agency builds a generic website. We build a website for your <span className="text-white">specific business</span>, in your specific market.
+              Being based in Seychelles does not replace research. It gives us useful context when we discuss your customers, services, booking or enquiry process and the practical constraints around content, access and timing. The website is still planned around your <span className="text-white">specific business</span>, not assumptions about the market.
             </p>
           </motion.div>
 
@@ -137,26 +138,26 @@ export default function About() {
               className="space-y-8"
               initial={shouldReduceMotion ? undefined : { opacity: 0, x: -24, filter: 'blur(8px)' }}
               whileInView={shouldReduceMotion ? undefined : { opacity: 1, x: 0, filter: 'blur(0px)' }}
-              viewport={{ once: true, amount: 0.15 }}
+              viewport={{ once: false, amount: 0.15 }}
               transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
             >
-               <h3 className="text-sm font-black uppercase tracking-[0.2em] text-red-400/60">Any agency</h3>
+               <h3 className="text-sm font-black uppercase tracking-[0.2em] text-red-400/60">What we learn</h3>
                <ul className="space-y-5 text-base text-text-dim leading-relaxed">
                   <li className="flex items-start gap-4">
                      <span className="mt-2.5 w-1.5 h-1.5 rounded-full bg-red-400/40" />
-                     <span>Generic layouts built for <span className="text-text-dim">any market</span></span>
+                     <span>Who the website needs to serve</span>
                   </li>
                   <li className="flex items-start gap-4">
                      <span className="mt-2.5 w-1.5 h-1.5 rounded-full bg-red-400/40" />
-                     <span>No understanding of Seychelles search behaviour</span>
+                     <span>What customers need to understand before they contact you</span>
                   </li>
                   <li className="flex items-start gap-4">
                      <span className="mt-2.5 w-1.5 h-1.5 rounded-full bg-red-400/40" />
-                     <span>Communication across time zones for foreign studios</span>
+                     <span>How bookings, enquiries or other contact paths currently work</span>
                   </li>
                   <li className="flex items-start gap-4">
                      <span className="mt-2.5 w-1.5 h-1.5 rounded-full bg-red-400/40" />
-                     <span>No accountability once the project closes</span>
+                     <span>Which content, accounts and approvals the project depends on</span>
                   </li>
                </ul>
             </motion.div>
@@ -165,26 +166,26 @@ export default function About() {
               className="space-y-8"
               initial={shouldReduceMotion ? undefined : { opacity: 0, x: 24, filter: 'blur(8px)' }}
               whileInView={shouldReduceMotion ? undefined : { opacity: 1, x: 0, filter: 'blur(0px)' }}
-              viewport={{ once: true, amount: 0.15 }}
+              viewport={{ once: false, amount: 0.15 }}
               transition={{ duration: 0.75, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
             >
                <h3 className="text-sm font-black uppercase tracking-[0.2em] text-deep-teal">Horizon Digital</h3>
                <ul className="space-y-5 text-base text-text-muted leading-relaxed">
                   <li className="flex items-start gap-4">
                      <span className="mt-2.5 w-1.5 h-1.5 rounded-full bg-deep-teal" />
-                     <span>Custom high quality layouts built <span className="text-cyan font-semibold">around your business</span></span>
+                     <span>Custom layouts built <span className="text-cyan font-semibold">around your business</span></span>
                   </li>
                   <li className="flex items-start gap-4">
                      <span className="mt-2.5 w-1.5 h-1.5 rounded-full bg-deep-teal" />
-                     <span>Designed for how Seychelles customers search and browse</span>
+                     <span>Responsive design for common phones, tablets and desktop screens</span>
                   </li>
                   <li className="flex items-start gap-4">
                      <span className="mt-2.5 w-1.5 h-1.5 rounded-full bg-deep-teal" />
-                     <span>Same timezone, <span className="text-cyan font-semibold">available on WhatsApp</span></span>
+                     <span>Direct communication in the same timezone, including <span className="text-cyan font-semibold">WhatsApp</span></span>
                   </li>
                   <li className="flex items-start gap-4">
                      <span className="mt-2.5 w-1.5 h-1.5 rounded-full bg-deep-teal" />
-                     <span>Ongoing support from the <span className="semibold-underline text-white">person who built your site</span></span>
+                     <span>Clear ownership and package-based support after launch</span>
                   </li>
                </ul>
             </motion.div>
@@ -197,7 +198,7 @@ export default function About() {
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
           <motion.div className="mb-16 md:mb-24 text-center" {...fadeInUp}>
             <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow text-center">HOW WE WORK</span>
-            <h2 className="font-display mx-auto max-w-3xl text-3xl font-semibold leading-tight tracking-tight text-white md:text-5xl">A few things we believe about building websites</h2>
+            <h2 style={{fontSize: 'var(--text-h2)', fontWeight: 700, lineHeight: 1.07, letterSpacing: '-0.03em', textWrap: 'balance'}}>A few things we believe about building websites</h2>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
@@ -205,37 +206,37 @@ export default function About() {
             {[
               {
                 num: "01",
-                title: "Your website should explain your business in seconds, not paragraphs",
+                title: "Make the business clear quickly",
                 desc: (
                   <>
-                    When someone lands on your site they decide within a few seconds whether to stay or leave. We design every page so the most important thing — <span className="text-gradient-cyan font-semibold">what you do and why to choose you</span> — is impossible to miss.
+                    We organise each page around the information people need first: <span className="text-gradient-cyan font-semibold">what the business offers, who it is for and how to make contact.</span>
                   </>
                 )
               },
               {
                 num: "02",
-                title: "A beautiful website that nobody can find is a waste of your money",
+                title: "Give search engines a clear structure",
                 desc: (
                   <>
-                    We set up every site so Google understands what your business is and where you are. That means when someone searches for what you offer in Seychelles, your site has a <span className="text-gradient-cyan font-semibold">real chance of appearing.</span>
+                    Website packages include page-level metadata, internal structure, crawlable pages and sitemap setup. These foundations help search engines understand the site, but <span className="text-gradient-cyan font-semibold">rankings are not guaranteed.</span>
                   </>
                 )
               },
               {
                 num: "03",
-                title: "You should always own your personal website completely",
+                title: "Keep ownership clear",
                 desc: (
                   <>
-                    When your project closes, the finished site <span className="text-gradient-cyan font-semibold">belongs to you.</span> Not us. If you ever want to move to a different host or work with someone else, there is nothing stopping you. We believe that's how it should be.
+                    The domain remains in your registrar account. Final approved website files and assets transfer as agreed when the project closes, while third-party services remain subject to <span className="text-gradient-cyan font-semibold">their own terms.</span>
                   </>
                 )
               },
               {
                 num: "04",
-                title: "You shouldn't need a degree to understand the process",
+                title: "Explain decisions in plain language",
                 desc: (
                   <>
-                    We explain everything in <span className="text-gradient-cyan font-semibold">plain language.</span> No jargon, no acronyms you have to Google, no decisions you feel unprepared to make. If something is confusing, that's our failure, not yours.
+                    We explain the scope, review points and technical choices in <span className="text-gradient-cyan font-semibold">plain language.</span> If something is unclear, we pause and explain it before the work moves forward.
                   </>
                 )
               }
@@ -245,14 +246,14 @@ export default function About() {
                 className="flex flex-col gap-6"
                 initial={shouldReduceMotion ? undefined : { opacity: 0, x: i % 2 === 0 ? -28 : 28, filter: 'blur(8px)' }}
                 whileInView={shouldReduceMotion ? undefined : { opacity: 1, x: 0, filter: 'blur(0px)' }}
-                viewport={{ once: true, amount: 0.15 }}
+                viewport={{ once: false, amount: 0.15 }}
                 transition={{ duration: 0.75, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
               >
                 <span className="text-4xl md:text-5xl font-black text-deep-teal opacity-80 leading-none">
                   {item.num}
                 </span>
                 <div>
-                  <h3 className="text-xl md:text-2xl font-bold text-text mb-4 leading-tight">{item.title}</h3>
+                  <h3 style={{fontSize: 'var(--text-h3)', fontWeight: 700, lineHeight: 1.2, marginBottom: '1rem'}}>{item.title}</h3>
                   <p className="text-base text-text-muted leading-relaxed max-w-xl">
                     {item.desc}
                   </p>
@@ -267,16 +268,16 @@ export default function About() {
       <section className="py-24 border-t border-border bg-bg-panel/10">
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
            <motion.div className="mb-16 md:mb-20 text-center" {...fadeInUp}>
-              <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">WHAT THIS LOOKS LIKE IN PRACTICE</span>
-              <h2 className="font-display mx-auto max-w-3xl text-3xl font-semibold leading-tight tracking-tight text-white md:text-5xl">One live client project, alongside two concept showcases.</h2>
-           </motion.div>
+                       <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">WHAT THIS LOOKS LIKE IN PRACTICE</span>
+                       <h2 style={{fontSize: 'var(--text-h2)', fontWeight: 700, lineHeight: 1.07, letterSpacing: '-0.03em', textWrap: 'balance'}}>One live client project, alongside two concept showcases.</h2>
+                     </motion.div>
 
            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
               {[
                 {
                   name: "Drake Seaside Apartments",
                   tier: "LIVE CLIENT PROJECT · GROWTH TIER",
-                  outcome: "A live redesign with new pages, updated content, and a faster-loading structure.",
+                  outcome: "A live redesign with updated pages, clearer property information, and responsive layouts.",
                   url: "https://thedrake-seaside.com/"
                 },
                 {
@@ -329,7 +330,7 @@ export default function About() {
              className="text-center"
              initial={shouldReduceMotion ? undefined : { opacity: 0, y: 10 }}
              whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
-             viewport={{ once: true, amount: 0.15 }}
+             viewport={{ once: false, amount: 0.15 }}
              transition={{ duration: 0.5, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
            >
               <Link to="/work" className="text-sm font-bold uppercase tracking-widest text-cyan hover:text-white transition-colors underline decoration-cyan/30 underline-offset-8">
@@ -354,7 +355,7 @@ export default function About() {
                   className="flex flex-col md:flex-row items-center gap-5 text-center md:text-left h-full"
                   initial={shouldReduceMotion ? undefined : { opacity: 0, y: 16, filter: 'blur(6px)' }}
                   whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: 'blur(0px)' }}
-                  viewport={{ once: true, amount: 0.15 }}
+                  viewport={{ once: false, amount: 0.15 }}
                   transition={{ duration: 0.55, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
                 >
                   <div className="hidden lg:block w-px h-8 bg-border/50" />
@@ -373,11 +374,11 @@ export default function About() {
            <motion.div {...fadeInUp} className="space-y-12">
              <div>
                <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">LET'S TALK</span>
-               <h2 className="font-display text-4xl font-semibold leading-tight tracking-tight text-white md:text-6xl mb-8">
-                 Ready to find out what the right website could do for your business?
+               <h2 style={{fontSize: 'var(--text-h2)', fontWeight: 700, lineHeight: 1.07, letterSpacing: '-0.03em', textWrap: 'balance', marginBottom: '2rem'}}>
+                 Discuss what your website needs to do.
                </h2>
                <p className="text-lg text-text-muted leading-relaxed max-w-2xl mx-auto">
-                 You will speak directly with the person who will build your site — not a sales team, not an account manager. Just an honest conversation about what your business needs.
+                 You will speak directly with the person responsible for the work. We can discuss your current website, the information customers need and a suitable starting scope.
                </p>
              </div>
 

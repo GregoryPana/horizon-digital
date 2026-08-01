@@ -1,28 +1,85 @@
-import { useRef } from "react";
-import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { useRef, useState } from "react";
+import {
+  Code2,
+  MessageSquare,
+  Palette,
+  Rocket,
+  ShieldCheck,
+  type LucideIcon,
+} from "lucide-react";
+import {
+  motion,
+  useMotionValueEvent,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 import { Link } from "react-router-dom";
 import Seo from "../components/Seo";
-import { projectSteps } from "../data/site";
 import { ShimmerButton } from "../components/ui/shimmer-button";
-import { ContainerScroll, CardSticky } from "../components/ui/cards-stack";
+import { siteConfig } from "../data/site";
 import { trackEvent } from "../lib/analytics";
+import { useProceduralReveal } from "../hooks/useProceduralReveal";
+import {
+  PROCESS_DETAIL_KEYS,
+  PROCESS_PHASES,
+  shouldShowProcessPhase,
+  type ProcessIconName,
+} from "./processFlow";
+
+const iconByName: Record<ProcessIconName, LucideIcon> = {
+  MessageSquare,
+  Palette,
+  Code2,
+  Rocket,
+  ShieldCheck,
+};
+
+const detailLabels = {
+  clientInput: "Your input",
+  horizonActivity: "Horizon activity",
+  reviewPoint: "Review point",
+  deliverable: "Deliverable",
+  nextStep: "What happens next",
+} as const;
 
 export default function Process() {
   const shouldReduceMotion = useReducedMotion();
-  const containerRef = useRef<HTMLDivElement>(null);
-  
+  const pageRef = useRef<HTMLDivElement>(null);
+  const processRef = useRef<HTMLElement>(null);
+  useProceduralReveal(pageRef);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [revealedThroughIndex, setRevealedThroughIndex] = useState(0);
   const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start center", "end end"]
+    target: processRef,
+    offset: ["start 70%", "end 70%"],
+  });
+  const connectorScale = useTransform(scrollYProgress, [0, 1], [0, 1]);
+
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    if (shouldReduceMotion) return;
+    const nextIndex = Math.max(
+      0,
+      Math.min(PROCESS_PHASES.length - 1, Math.floor(latest * PROCESS_PHASES.length)),
+    );
+    setActiveIndex((current) => (current === nextIndex ? current : nextIndex));
+    setRevealedThroughIndex((current) => Math.max(current, nextIndex));
   });
 
-  const pathLength = useTransform(scrollYProgress, [0, 1], [0, 1]);
+  const visibleActiveIndex = shouldReduceMotion ? PROCESS_PHASES.length - 1 : activeIndex;
+
+  const trackCta = (ctaName: string) => {
+    trackEvent("cta_click", {
+      cta_name: ctaName,
+      page_path: window.location.pathname,
+    });
+  };
 
   return (
-    <div className="bg-bg text-white overflow-x-hidden">
+    <div className="process-page" ref={pageRef}>
       <Seo
         title="How We Build Your Website | Horizon Digital"
-        description="A clear, step-by-step look at how Horizon Digital takes your website from discovery to launch. No surprises, no guesswork — just a process you'll actually enjoy."
+        description="A clear, step-by-step look at how Horizon Digital takes your website from the first chat through launch and package-based support."
         path="/process"
         keywords="website build process Seychelles, how to build a website, web design timeline, website project steps"
         breadcrumbs={[
@@ -34,207 +91,160 @@ export default function Process() {
             "@context": "https://schema.org",
             "@type": "HowTo",
             name: "How Horizon Digital builds your website",
-            description: "A clear, step-by-step look at how we take your website from first conversation to launch — with no surprises and your approval at every stage.",
-            step: [
-              {
-                "@type": "HowToStep",
-                position: 1,
-                name: "Discovery",
-                text: "You tell us about your business, your goals, and your customers. We listen carefully before anything else happens.",
-              },
-              {
-                "@type": "HowToStep",
-                position: 2,
-                name: "Design",
-                text: "We create the visual layout and page structure. You review it and approve the direction before we write a single line of code.",
-              },
-              {
-                "@type": "HowToStep",
-                position: 3,
-                name: "Build",
-                text: "We engineer the full site, optimised for speed, mobile, and search.",
-              },
-              {
-                "@type": "HowToStep",
-                position: 4,
-                name: "Launch",
-                text: "We go live — and stay close for 30 days to make sure everything runs perfectly.",
-              },
-              {
-                "@type": "HowToStep",
-                position: 5,
-                name: "Grow",
-                text: "We keep your site healthy, fast, and supported whenever you need us.",
-              },
-            ],
+            description: "The five stages from the first chat through package-based post-launch support.",
+            step: PROCESS_PHASES.map((phase, index) => ({
+              "@type": "HowToStep",
+              position: index + 1,
+              name: phase.title,
+              text: phase.description,
+            })),
           },
         ]}
       />
 
-      <section id="hero" className="relative pt-32 pb-20 px-6 xl:px-12 border-b border-white/5">
-        <div className="mx-auto max-w-[92rem]">
+      <section className="process-hero" aria-labelledby="process-title">
+        <div className="process-shell process-hero-grid">
           <motion.div
-            initial={shouldReduceMotion ? undefined : { opacity: 0, y: 20 }}
+            className="process-hero-copy"
+            initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="max-w-4xl"
+            transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
           >
-            <span className="mb-6 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">How we get there</span>
-            <h1 className="font-display mb-8 text-5xl sm:text-7xl lg:text-8xl font-semibold leading-[1.05] tracking-tight">
-              A simple path to your <br />
-              <span className="text-cyan italic">new website.</span>
-            </h1>
-            <p className="max-w-2xl text-lg sm:text-2xl leading-relaxed text-text-muted font-normal">
-              We make the process clear, simple, and stress-free—from our first chat to the day your site goes live.
+            <p className="process-eyebrow">How we get there</p>
+            <h1 id="process-title" style={{fontSize: 'var(--text-h1)', fontWeight: 700, lineHeight: 1.03, letterSpacing: '-0.04em', textWrap: 'balance'}}>A clear path to your new website.</h1>
+            <p className="process-hero-lead">
+              Five stages, with a clear review before the project moves forward.
             </p>
-          </motion.div>
-        </div>
-      </section>
-
-      <section id="steps" ref={containerRef} className="py-20 px-6 xl:px-12 relative z-10 bg-[#0A0A0C]">
-        <div className="mx-auto max-w-[92rem] min-h-svh place-content-center relative">
-          
-          {/* Scroll-linked dashed line between columns on Desktop */}
-          <div className="absolute left-1/2 top-20 bottom-0 w-8 -translate-x-1/2 pointer-events-none hidden md:block z-0">
-            <svg
-              className="h-full w-full"
-              preserveAspectRatio="none"
-              viewBox="0 0 10 100"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
+            <Link
+              className="process-primary-cta consultation-attraction"
+              to="/contact"
+              onClick={() => trackCta("process_hero_consult")}
             >
-              <line
-                x1="5"
-                y1="0"
-                x2="5"
-                y2="100"
-                stroke="rgba(255, 255, 255, 0.05)"
-                strokeWidth="2"
-                strokeDasharray="4 4"
-                vectorEffect="non-scaling-stroke"
-              />
-              <motion.line
-                x1="5"
-                y1="0"
-                x2="5"
-                y2="100"
-                stroke="#5ED1DE"
-                strokeWidth="2"
-                style={shouldReduceMotion ? {} : { pathLength }}
-                vectorEffect="non-scaling-stroke"
-                className="drop-shadow-[0_0_8px_rgba(94,209,222,0.6)]"
-              />
-            </svg>
-          </div>
-
-          <div className="grid md:grid-cols-2 md:gap-8 xl:gap-24">
-            
-            {/* Left side text sticky wrapper */}
-            <div className="h-full w-full">
-              <div className="md:sticky md:top-32 w-full max-w-xl left-0 pb-10 md:pb-0 md:py-12 z-10">
-                <motion.div
-                  initial={shouldReduceMotion ? undefined : { opacity: 0, y: 24, filter: 'blur(10px)' }}
-                  whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: 'blur(0px)' }}
-                  viewport={{ once: true, amount: 0.15 }}
-                  transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                >
-                  <h2 className="font-display mb-8 text-3xl sm:text-5xl font-semibold leading-tight tracking-tight">
-                    From discovery to <span className="text-cyan">deployment.</span>
-                  </h2>
-                  <p className="max-w-prose text-base md:text-xl leading-relaxed text-text-muted font-normal mb-10">
-                    A clear sequence. No guesswork. You know exactly what's happening at every step of your project.
-                  </p>
-                  
-                  <div className="grid grid-cols-2 md:grid-cols-1 gap-3 md:gap-5">
-                    {[
-                      "Transparent pricing",
-                      "Weekly progress updates",
-                      "Direct access to builders",
-                      "Clear milestone approvals"
-                    ].map((feature, i) => (
-                      <div key={i} className="flex items-center gap-3 text-sm text-text-dim font-medium tracking-wide">
-                        <div className="h-1.5 w-1.5 shrink-0 rounded-full bg-cyan shadow-[0_0_8px_rgba(94,209,222,0.6)]" />
-                        {feature}
-                      </div>
-                    ))}
-                  </div>
-                </motion.div>
-              </div>
-            </div>
-
-            {/* Right side ContainerScroll area */}
-            <ContainerScroll
-              className="space-y-[35vh] md:space-y-[70vh] pb-[30vh] md:pb-[60vh] pt-6 md:pt-32 z-20"
-              style={{
-                '--sticky-increment': '32px',
-                '--sticky-top': '15vh'
-              } as React.CSSProperties}
-            >
-              {projectSteps.map((step, idx) => (
-                <CardSticky
-                  key={step.title}
-                  index={idx}
-                  incrementY={32}
-                  style={{ '--sticky-increment': '32px', '--sticky-top': '15vh' } as React.CSSProperties}
-                  className="group hd-card rounded-[1.5rem] shadow-[0_-8px_24px_rgba(0,0,0,0.35)] w-full"
-                >
-                  <div className="relative overflow-hidden rounded-[1.5rem] bg-[#111113] border border-white/10 p-8 sm:p-12 h-full w-full">
-                    <div className={`absolute right-0 top-0 h-40 w-40 sm:h-64 sm:w-64 rounded-bl-full ${idx % 2 === 0 ? "bg-cyan/5" : "bg-teal/5"} pointer-events-none transition-transform duration-1000 group-hover:scale-110`} />
-                    <div className="absolute inset-0 bg-gradient-to-br from-white/[0.01] to-transparent pointer-events-none" />
-
-                    <div className="relative z-10 flex flex-col h-full gap-6">
-                      <div className="flex items-start justify-between gap-4">
-                        <h2 className="font-display text-2xl sm:text-4xl font-bold tracking-tight text-white mb-2 max-w-[80%]">
-                          {step.title}
-                        </h2>
-                        <h3 className="font-display text-4xl sm:text-6xl font-black text-cyan/20 group-hover:text-cyan transition-colors duration-700 drop-shadow-[0_2px_10px_rgba(94,209,222,0.1)]">
-                          {String(idx + 1).padStart(2, "0")}
-                        </h3>
-                      </div>
-
-                      <p className="text-base sm:text-xl text-text-muted font-normal leading-relaxed">
-                        {step.description}
-                      </p>
-                    </div>
-                  </div>
-                </CardSticky>
-              ))}
-            </ContainerScroll>
-
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-bg py-40 border-t border-white/5">
-        <div className="mx-auto w-full max-w-[92rem] px-6">
-          <motion.div
-            className="flex flex-col items-center text-center"
-            initial={shouldReduceMotion ? undefined : { opacity: 0, y: 24, filter: 'blur(8px)' }}
-            whileInView={shouldReduceMotion ? undefined : { opacity: 1, y: 0, filter: 'blur(0px)' }}
-            viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <p className="mb-6 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">Ready to start?</p>
-            <h2 className="font-display mb-10 text-4xl sm:text-6xl font-semibold leading-tight tracking-tight text-white">
-              Let's build something <span className="text-cyan italic">exceptional.</span>
-            </h2>
-            <Link to="/contact">
-              <ShimmerButton
-                shimmerColor="#ffffff"
-                shimmerDuration="3s"
-                background="var(--accent)"
-                className="px-10 py-5 text-lg font-bold tracking-widest text-black uppercase"
-                onClick={() =>
-                  trackEvent("cta_click", {
-                    cta_name: "process_bottom_start_project",
-                    page_path: window.location.pathname,
-                  })
-                }
-              >
-                Start your project
-              </ShimmerButton>
+              {siteConfig.primaryCtaLabel}
             </Link>
           </motion.div>
+
+          <div className="process-map section-reveal" aria-label="The five website project phases">
+            <div className="process-map-heading reveal-heading">
+              <span>Project map</span>
+              <span>01—05</span>
+            </div>
+            <ol>
+              {PROCESS_PHASES.map((phase, index) => {
+                const Icon = iconByName[phase.icon];
+                return (
+                  <li key={phase.id} className={`reveal-item${index === PROCESS_PHASES.length - 1 ? " is-support" : ""}`}>
+                    <span className="process-map-number">{String(index + 1).padStart(2, "0")}</span>
+                    <span className="process-map-icon" aria-hidden="true">
+                      <Icon size={17} strokeWidth={1.8} />
+                    </span>
+                    <span>{phase.title}</span>
+                  </li>
+                );
+              })}
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <section className="process-body" ref={processRef} aria-labelledby="process-body-title">
+        <div className="process-shell">
+          <div className="process-body-intro section-reveal">
+            <p className="process-eyebrow reveal-heading">One connected process</p>
+             <h2 id="process-body-title" className="reveal-heading" style={{fontSize: 'var(--text-h2)', fontWeight: 700, lineHeight: 1.07, letterSpacing: '-0.03em', textWrap: 'balance'}}>Know what each stage asks of you.</h2>
+             <p className="reveal-item">
+              The process runs from the first conversation through launch and the support included with your package.
+            </p>
+          </div>
+
+          <div className="process-spine-layout">
+            <aside className="process-phase-index" aria-label="Current project phase">
+              <p>Phase index</p>
+              <ol>
+                {PROCESS_PHASES.map((phase, index) => {
+                  const Icon = iconByName[phase.icon];
+                  const state = index < visibleActiveIndex ? "complete" : index === visibleActiveIndex ? "current" : "upcoming";
+                  return (
+                    <li key={phase.id} data-state={state} aria-current={state === "current" ? "step" : undefined}>
+                      <span aria-hidden="true"><Icon size={17} strokeWidth={1.8} /></span>
+                      <span>{phase.title}</span>
+                      <span>{String(index + 1).padStart(2, "0")}</span>
+                    </li>
+                  );
+                })}
+              </ol>
+            </aside>
+
+            <div className="process-phase-list-wrap">
+              <div className="process-connector-base" aria-hidden="true" />
+              <motion.div
+                className="process-connector-progress"
+                aria-hidden="true"
+                style={{ scaleY: shouldReduceMotion ? 1 : connectorScale }}
+              />
+              <ol className="process-phase-list">
+                {PROCESS_PHASES.map((phase, index) => {
+                  const Icon = iconByName[phase.icon];
+                  const state = index < visibleActiveIndex ? "complete" : index === visibleActiveIndex ? "current" : "upcoming";
+                  return (
+                    <li key={phase.id} id={phase.id} data-state={state}>
+                      <span className="process-phase-node" aria-hidden="true">
+                        <Icon size={20} strokeWidth={1.8} />
+                      </span>
+                      <motion.article
+                        initial={shouldReduceMotion ? false : { opacity: 0, y: 22 }}
+                        animate={shouldShowProcessPhase(index, revealedThroughIndex, shouldReduceMotion === true)
+                          ? { opacity: 1, y: 0 }
+                          : { opacity: 0, y: 22 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        onViewportEnter={() => {
+                          setRevealedThroughIndex((current) => Math.max(current, index));
+                        }}
+                        viewport={{ once: true, amount: 0.22 }}
+                        transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+                      >
+                        <header>
+                          <span>Phase {String(index + 1).padStart(2, "0")}</span>
+                          <h3>{phase.title}</h3>
+                          <p>{phase.description}</p>
+                        </header>
+                        <dl>
+                          {PROCESS_DETAIL_KEYS.map((key) => (
+                            <div key={key}>
+                              <dt>{detailLabels[key]}</dt>
+                              <dd>{phase.details[key]}</dd>
+                            </div>
+                          ))}
+                        </dl>
+                      </motion.article>
+                    </li>
+                  );
+                })}
+              </ol>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="process-consultation section-reveal" aria-labelledby="process-cta-title">
+      <div className="process-shell">
+      <p className="process-eyebrow reveal-heading">Ready to begin?</p>
+       <h2 id="process-cta-title" className="reveal-heading" style={{fontSize: 'var(--text-h2)', fontWeight: 700, lineHeight: 1.07, letterSpacing: '-0.03em', textWrap: 'balance'}}>Start with a clear first conversation.</h2>
+       <p className="reveal-item">Tell us about your business, customers and what the website needs to do.</p>
+          <Link
+            className="process-cta-link reveal-item"
+            to="/contact"
+            onClick={() => trackCta("process_bottom_start_project")}
+          >
+            <ShimmerButton
+              as="span"
+              background="var(--accent)"
+              foreground="#071216"
+              className="process-primary-cta consultation-attraction"
+            >
+              {siteConfig.primaryCtaLabel}
+            </ShimmerButton>
+          </Link>
         </div>
       </section>
     </div>
