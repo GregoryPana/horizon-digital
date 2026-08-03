@@ -138,11 +138,11 @@ export function WebsiteBuildStory({
               stagger: 0.05,
               ease: "power2.out",
             })
-            .to(query(".story-finished-page"), { opacity: 1, duration: 0.45 })
+            .to({}, { duration: 0.45 })
             .to({}, { duration: 0.4 })
             .to(query(".story-stage-build"), { opacity: 0, y: -5, duration: 0.18 });
         } else {
-          tl.to(query(".story-finished-page"), { opacity: 1, duration: 0.5 });
+          tl.to({}, { duration: 0.5 });
         }
 
         tl

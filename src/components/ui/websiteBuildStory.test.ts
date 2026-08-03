@@ -1,3 +1,5 @@
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   WEBSITE_BUILD_ACTIVE_DURATION,
@@ -6,6 +8,11 @@ import {
 } from "./websiteBuildStory";
 
 describe("website build story configuration", () => {
+  it("does not animate the removed finished-page target", () => {
+    const source = readFileSync(resolve(process.cwd(), "src/components/ui/WebsiteBuildStory.tsx"), "utf8");
+    expect(source).not.toContain('query(".story-finished-page")');
+  });
+
   it("uses the approved website lifecycle order", () => {
     expect(WEBSITE_BUILD_STAGES.map((stage) => stage.id)).toEqual([
       "plan",
