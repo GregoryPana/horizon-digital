@@ -4,12 +4,7 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 import { ShimmerButton } from "../components/ui/shimmer-button";
 
-const ROUTES_WITH_LINK_SHIMMER_CTA = [
-  "../pages/TourismWebsiteDesignSeychelles.tsx",
-  "../pages/FAndBWebsiteDesignSeychelles.tsx",
-  "../pages/ProfessionalServicesWebsiteDesignSeychelles.tsx",
-  "../pages/Process.tsx",
-] as const;
+const ROUTES_WITH_LINK_SHIMMER_CTA = ["../pages/Process.tsx"] as const;
 
 describe("ShimmerButton interactive markup", () => {
   it("supports a visual-only span inside a single anchor interaction", () => {
@@ -40,6 +35,6 @@ describe("ShimmerButton interactive markup", () => {
         expect(opening, `${relativePath}: ${opening}`).toContain('as="span"');
       }
     }
-    expect(count).toBe(4);
+    expect(count).toBe(1);
   });
 });

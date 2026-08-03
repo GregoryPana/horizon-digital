@@ -20,11 +20,6 @@ const WebDesignSeychelles = lazy(() => import("./pages/WebDesignSeychelles"));
 const SeoServicesSeychelles = lazy(() => import("./pages/SeoServicesSeychelles"));
 const AnalyticsDigitalPresenceSeychelles = lazy(() => import("./pages/AnalyticsDigitalPresenceSeychelles"));
 const ShowcaseDrakeSeaside = lazy(() => import("./pages/ShowcaseDrakeSeaside"));
-const TourismWebsiteDesignSeychelles = lazy(() => import("./pages/TourismWebsiteDesignSeychelles"));
-const FAndBWebsiteDesignSeychelles = lazy(() => import("./pages/FAndBWebsiteDesignSeychelles"));
-const ProfessionalServicesWebsiteDesignSeychelles = lazy(
-  () => import("./pages/ProfessionalServicesWebsiteDesignSeychelles"),
-);
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 // Dev-only headline reveal comparison harness. Never linked from navigation,
@@ -33,6 +28,19 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 // dev` -- see src/pages/dev/HeroHeadlinePreview.tsx for details.
 const HeroHeadlinePreview = import.meta.env.DEV
   ? lazy(() => import("./pages/dev/HeroHeadlinePreview"))
+  : null;
+
+// Dev-only Phase 2 motion-primitives preview (site-wide redesign plan).
+// Same gating as HeroHeadlinePreview above -- never linked, never in
+// STATIC_ROUTES, statically false in production builds.
+const MotionPrimitivesPreview = import.meta.env.DEV
+  ? lazy(() => import("./pages/dev/MotionPrimitivesPreview"))
+  : null;
+
+// Dev-only Gate A visual-acceptance route. The static DEV guard keeps this
+// acceptance wrapper/route out of production; its approved hero is now shared.
+const HeroBuildExtractionPreview = import.meta.env.DEV
+  ? lazy(() => import("./pages/dev/HeroBuildExtractionPreview"))
   : null;
 
 // Component references cannot live in the Worker-safe route registry
@@ -55,9 +63,6 @@ const componentByPath: Record<string, ReactElement> = {
   "/web-design-seychelles": <WebDesignSeychelles />,
   "/seo-services-seychelles": <SeoServicesSeychelles />,
   "/analytics-and-digital-presence-seychelles": <AnalyticsDigitalPresenceSeychelles />,
-  "/tourism-website-design-seychelles": <TourismWebsiteDesignSeychelles />,
-  "/f-and-b-website-design-seychelles": <FAndBWebsiteDesignSeychelles />,
-  "/professional-services-website-design-seychelles": <ProfessionalServicesWebsiteDesignSeychelles />,
 };
 
 export default function App() {
@@ -94,6 +99,12 @@ export default function App() {
           ))}
           {HeroHeadlinePreview ? (
             <Route path="/dev/headline-preview" element={<HeroHeadlinePreview />} />
+          ) : null}
+          {MotionPrimitivesPreview ? (
+            <Route path="/dev/motion-primitives-preview" element={<MotionPrimitivesPreview />} />
+          ) : null}
+          {HeroBuildExtractionPreview ? (
+            <Route path="/dev/hero-build-extraction" element={<HeroBuildExtractionPreview />} />
           ) : null}
           <Route path="*" element={<NotFound />} />
         </Routes>

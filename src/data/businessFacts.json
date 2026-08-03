@@ -20,15 +20,6 @@
   "business": {
     "description": "Horizon Digital is a web design and development studio based on Mahé, Seychelles. We plan, design and build custom websites for local businesses.",
     "positioning": "Custom websites built around each business, its customers and its goals.",
-    "industries": [
-      "Hospitality and tourism",
-      "Food and beverage",
-      "Retail",
-      "Professional services",
-      "Wellness and beauty",
-      "Tour operators and water sports",
-      "Creative studios"
-    ],
     "services": [
       {
         "title": "New website",
@@ -252,7 +243,7 @@
     "hub": {
       "eyebrow": "Services",
       "title": "Choose the right support for your website and digital presence.",
-      "lead": "Start with a new or improved website, or get help with search, website measurement or your Google Business Profile. Each service page explains where the work starts and what we need to agree.",
+      "lead": "Start with a new or improved website, or get help with search, measurement or your Google Business Profile.",
       "primary": {
         "label": "Explore website services",
         "path": "/web-design-seychelles"
@@ -265,12 +256,10 @@
         "label": "Choose a service starting point",
         "items": [
           {
-            "index": "01",
             "label": "Build or improve a website.",
             "path": "/web-design-seychelles"
           },
           {
-            "index": "02",
             "label": "Improve visibility or measurement.",
             "path": "#existing-website-support"
           }
@@ -278,13 +267,13 @@
       },
       "selectorEyebrow": "Where to start",
       "selectorTitle": "Start with what you need to improve.",
-      "selectorIntro": "The detailed pages explain what each service covers, where the work begins and what needs to be agreed before implementation.",
+      "selectorIntro": "Each page explains what's covered, where work begins and what needs to be agreed.",
       "families": [
         {
           "id": "website",
           "title": "Website design and development",
           "fit": "New website or redesign",
-          "body": "Plan and build a custom website around your business, customers and goals, or rebuild an existing site that needs clearer content, better mobile use or a more current direction.",
+          "body": "Plan and build a custom website around your business and customers, or rebuild a site that needs clearer content or better mobile use.",
           "pricing": "Website packages have published starting prices.",
           "cta": "Explore website design",
           "path": "/web-design-seychelles"
@@ -293,7 +282,7 @@
           "id": "seo",
           "title": "SEO review and implementation",
           "fit": "Existing or new website",
-          "body": "Understand practical technical and on-page SEO priorities, then use the recommendations independently or ask us to scope agreed implementation.",
+          "body": "Understand practical SEO priorities, then use them yourself or ask us to scope implementation.",
           "pricing": "Standalone work is scoped after an initial discussion.",
           "cta": "Explore SEO services",
           "path": "/seo-services-seychelles"
@@ -302,7 +291,7 @@
           "id": "analytics",
           "title": "Analytics and digital presence",
           "fit": "Measurement and Google presence",
-          "body": "Set up basic website measurement or get help creating or improving a Google Business Profile, subject to the right access, consent setup and verified business details.",
+          "body": "Set up basic website measurement, or get help with your Google Business Profile, subject to the right access and consent.",
           "pricing": "Standalone work is scoped after an initial discussion.",
           "cta": "Explore analytics and digital presence",
           "path": "/analytics-and-digital-presence-seychelles"
@@ -311,19 +300,18 @@
       "existingEyebrow": "Existing websites welcome",
       "existingFlowLabel": "Existing website support flow",
       "existingTitle": "You do not need a redesign to get practical support.",
-      "existingBody": "We can review an existing or third-party website, explain agreed SEO priorities, separately scope implementation, set up basic measurement or help with a Google Business Profile. The starting point is the issue you want to understand or improve.",
+      "existingBody": "We can review an existing website, explain SEO priorities, set up basic measurement or help with your Google Business Profile — starting from the issue you want to improve.",
       "principlesTitle": "Clear ownership, access and scope.",
       "principlesEyebrow": "Before work begins",
       "detailsLabel": "More scope details",
       "primaryBoundaryIds": [
         "advice-versus-implementation",
-        "account-ownership-access",
-        "no-results-guarantees"
+        "account-ownership-access"
       ],
       "final": {
         "eyebrow": "Not sure where to start?",
         "title": "Tell us what you want to improve.",
-        "body": "We will discuss your current setup, the access available and whether the next step is advice, implementation or a website project.",
+        "body": "We will discuss your setup, access and the right next step.",
         "primary": {
           "label": "Request a free consult",
           "path": "/contact"
@@ -956,9 +944,9 @@
     {
       "id": "takamaka-house",
       "status": "Concept showcase",
-      "label": "Hospitality · Foundation Tier · Concept showcase",
+      "label": "Foundation Tier · Concept showcase",
       "title": "Takamaka House",
-      "outcome": "A hospitality concept focused on accommodation details, visual storytelling and direct booking intent.",
+      "outcome": "An accommodation concept focused on property details, visual storytelling and direct booking intent.",
       "url": "/showcase/takamaka-house"
     },
     {

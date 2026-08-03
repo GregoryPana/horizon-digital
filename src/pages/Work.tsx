@@ -160,7 +160,7 @@ const fallbackProjects: WorkProject[] = [
     title: "Takamaka House",
     status: "Concept showcase",
     tier: "Foundation Tier",
-    body: "A hospitality concept focused on accommodation details, visual storytelling, and direct booking intent.",
+    body: "An accommodation concept focused on property details, visual storytelling, and direct booking intent.",
     link: "https://horizondigitalsey.com/showcase/takamaka-house",
     cta: "View showcase →",
     reqCta: "Request similar site",

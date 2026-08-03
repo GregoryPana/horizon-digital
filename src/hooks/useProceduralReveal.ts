@@ -23,13 +23,14 @@ export type { ScrollTriggerPlugin };
  * heading leads, then `.reveal-item` cards/images cascade in, toggling
  * both ways as `.section-reveal` sections enter/leave the viewport
  * (per DESIGN.md §6). Every page — including Home.tsx's own lazily-loaded
- * ScrollTrigger setup — must call this function rather than re-implement
- * the tween values, so the reveal is identical everywhere.
+ * ScrollTrigger setup — must call this function rather than re-implement the
+ * tween values, so the reveal is identical everywhere.
  */
 export function applySectionReveals(scope: HTMLElement | Document, isDesktop: boolean) {
   gsap.utils.toArray<HTMLElement>(".section-reveal", scope).forEach((section) => {
     const headings = section.querySelectorAll<HTMLElement>(".reveal-heading");
-    const items = section.querySelectorAll<HTMLElement>(".reveal-item");
+    const items = Array.from(section.querySelectorAll<HTMLElement>(".reveal-item"));
+
     if (!headings.length && !items.length) return;
 
     // Two mirrored timelines so the cascade direction always matches scroll

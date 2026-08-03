@@ -8,7 +8,7 @@ This repository is the Horizon Digital public website and client-showcase codeba
 2. `OPENCODE.md` or `CLAUDE.md` — tool-specific adapter for the current agent.
 3. `docs/AGENT_DESIGN_SKILLS.md` before substantial UI/design work.
 4. `DESIGN.md` before substantial UI work. It is the current visual authority; `brand-design-guidelines.md` is historical context where the two differ.
-5. `docs/TRANSFORMATION_BRIEF.md`, `docs/plans/2026-07-26-horizon-digital-transformation-master-plan.md`, and the active session in `docs/TRANSFORMATION_TRACKER.md` for this local transformation.
+5. `docs/plans/2026-08-03-cross-route-redesign-system-and-rollout-plan.md` and the active evidence in `docs/TRANSFORMATION_TRACKER.md`. Treat the 2026-07-26 master plan as historical transformation context where it differs.
 6. `docs/CONTENT_AUTHORITY.md` and `src/data/businessFacts.json` before changing public copy, positioning, pricing, services, portfolio status, chatbot knowledge or proof.
 7. Treat `master_brief.md`, `brand_interview.md`, and `docs/00-*` through `docs/05-*` as historical research when they conflict with the current content authority. Generated `knowledge/*.md` files are chatbot retrieval outputs, not independent sources.
 8. `.opencode/skills/hermes-update-pack/SKILL.md` or `.claude/commands/hermes-handoff.md` when logging or flushing a Hermes Update Pack.
@@ -16,7 +16,8 @@ This repository is the Horizon Digital public website and client-showcase codeba
 ## Business boundaries
 
 - Do not mix CWS/internal-development assumptions into Horizon Digital.
-- Preserve the dark Tropical Precision premium positioning, SCR pricing context, WhatsApp CTA, and custom-code/no-template stance unless Gregory explicitly changes direction.
+- Preserve the Tropical Precision premium positioning, controlled ink/paper/marine surface system, exactly three public service families (Website Design, SEO and Analytics), SCR pricing context, WhatsApp CTA, and custom-code/no-template stance unless Gregory explicitly changes direction.
+- Do not restore the retired Tourism, Food & Beverage or Professional Services route families.
 - Do not invent testimonials, clients, awards, metrics, case studies, logos, or proof.
 - Treat public website copy, pricing, analytics, lead flow, WhatsApp/contact CTA, and Cloudflare/hosting settings as business-sensitive.
 

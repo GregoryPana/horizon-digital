@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { buildHomeProcessFlowStages } from "./homeProcessFlow";
+import { buildHomeProcessFlowStages, getHomeProcessActiveIndex } from "./homeProcessFlow";
 
 describe("buildHomeProcessFlowStages", () => {
   it("spaces a five-stage flow from the first node to the completed path", () => {
@@ -16,5 +16,15 @@ describe("buildHomeProcessFlowStages", () => {
     expect(() => buildHomeProcessFlowStages(1)).toThrow(
       "Home process flow requires at least two stages",
     );
+  });
+});
+
+describe("getHomeProcessActiveIndex", () => {
+  it("maps scroll progress cumulatively using the same stepped policy as service journeys", () => {
+    expect(getHomeProcessActiveIndex(-0.01, 5)).toBe(-1);
+    expect(getHomeProcessActiveIndex(0, 5)).toBe(0);
+    expect(getHomeProcessActiveIndex(0.39, 5)).toBe(1);
+    expect(getHomeProcessActiveIndex(0.8, 5)).toBe(4);
+    expect(getHomeProcessActiveIndex(1, 5)).toBe(4);
   });
 });

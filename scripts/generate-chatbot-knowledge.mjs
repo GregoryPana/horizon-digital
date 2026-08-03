@@ -54,10 +54,6 @@ ${facts.existingWebsiteFlow.map((step, index) => `### ${index + 1}. ${step.title
 
 ${facts.serviceScopeBoundaries.map((boundary) => `### ${boundary.title}\n\n${boundary.description}`).join("\n\n")}
 
-## Industries served
-
-${bullet(facts.business.industries)}
-
 Package details and current starting prices are published at ${absoluteUrl(facts.site.pricingPath)}.
 `;
 

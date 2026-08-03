@@ -199,7 +199,7 @@ describe("NavMenu mobile Services behavior", () => {
     expect(document.activeElement).toBe(trigger);
 
     fireEvent.keyDown(document, { key: "Escape" });
-    act(() => vi.runAllTimers());
+    act(() => vi.advanceTimersByTime(50));
     expect(dialog.getAttribute("aria-hidden")).toBe("true");
     expect(document.activeElement).toBe(trigger);
   });

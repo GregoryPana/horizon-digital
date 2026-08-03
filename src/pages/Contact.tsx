@@ -180,7 +180,7 @@ Looking forward to your reply.`;
                   type="text"
                   name="industry"
                   className="contact-input mt-2.5 w-full rounded-xl border border-white/20 bg-white/5 hover:border-white/30 px-4 py-3 text-sm text-text placeholder:text-text-muted focus-ring"
-                  placeholder="e.g. Hospitality, Services, Retail"
+                  placeholder="e.g. Tell us what your business does"
                 />
               </label>
               <label className="text-[13px] text-text-muted">

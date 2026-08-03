@@ -1,9 +1,38 @@
 export const GA_MEASUREMENT_ID = 'G-Z79X024S87';
+const GA_SCRIPT_SRC = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
 
 declare global {
   interface Window {
     gtag?: (...args: any[]) => void;
     dataLayer?: any[];
+  }
+}
+
+export function shouldInitializeAnalytics(isProduction: boolean): boolean {
+  return isProduction;
+}
+
+function hasAnalyticsConfig(dataLayer: any[]): boolean {
+  return dataLayer.some((entry) => entry?.[0] === 'config' && entry?.[1] === GA_MEASUREMENT_ID);
+}
+
+export function initializeAnalytics(): void {
+  window.dataLayer ??= [];
+
+  if (hasAnalyticsConfig(window.dataLayer)) return;
+
+  window.gtag ??= function gtag(...args: any[]) {
+    window.dataLayer!.push(args);
+  };
+
+  window.gtag('js', new Date());
+  window.gtag('config', GA_MEASUREMENT_ID, { send_page_view: false });
+
+  if (!document.querySelector(`script[src="${GA_SCRIPT_SRC}"]`)) {
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = GA_SCRIPT_SRC;
+    document.head.appendChild(script);
   }
 }
 

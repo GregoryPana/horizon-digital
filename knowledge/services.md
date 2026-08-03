@@ -152,14 +152,4 @@ Search rankings, traffic, enquiries, bookings, conversions and revenue depend on
 
 Google Ads campaign setup and ongoing advertising management are outside the services advertised here.
 
-## Industries served
-
-- Hospitality and tourism
-- Food and beverage
-- Retail
-- Professional services
-- Wellness and beauty
-- Tour operators and water sports
-- Creative studios
-
 Package details and current starting prices are published at https://horizondigitalsey.com/pricing.

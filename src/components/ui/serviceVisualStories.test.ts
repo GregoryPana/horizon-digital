@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   getServiceStoryDelay,
   getServiceStoryDuration,
+  SERVICE_STORY_PRIMARY_COLOURS,
   SERVICE_STORY_STAGES,
 } from "./serviceVisualStories";
 
@@ -18,6 +19,16 @@ describe("service visual story timing", () => {
       expect(getServiceStoryDuration(kind as keyof typeof SERVICE_STORY_STAGES)).toBeLessThanOrEqual(5);
     },
   );
+
+  it("assigns a distinct brand-compatible dominant colour to each service story", () => {
+    const palettes = Object.values(SERVICE_STORY_PRIMARY_COLOURS);
+    expect(new Set(palettes.map((palette) => palette.primary)).size).toBe(3);
+    expect(palettes.map((palette) => palette.name)).toEqual([
+      "lagoon cyan",
+      "tropical green",
+      "signal blue",
+    ]);
+  });
 
   it("keeps the approved narrative boundaries explicit", () => {
     expect(SERVICE_STORY_STAGES.seo.map((stage) => stage.label)).toEqual([

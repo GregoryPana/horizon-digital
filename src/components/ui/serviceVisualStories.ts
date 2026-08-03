@@ -1,3 +1,9 @@
+export const SERVICE_STORY_PRIMARY_COLOURS = {
+  atelier: { primary: "#58d5e3", soft: "#83e5e7", rgb: "88, 213, 227", name: "lagoon cyan" },
+  seo: { primary: "#57d297", soft: "#91e8b9", rgb: "87, 210, 151", name: "tropical green" },
+  analytics: { primary: "#70a7ff", soft: "#a9c9ff", rgb: "112, 167, 255", name: "signal blue" },
+} as const;
+
 export const SERVICE_STORY_STAGES = {
   atelier: [
     { id: "brief", label: "Brief", start: 0, duration: 0.8 },

@@ -283,7 +283,7 @@ export default function About() {
                 {
                   name: "Takamaka House",
                   tier: "CONCEPT SHOWCASE · FOUNDATION TIER",
-                  outcome: "A hospitality concept focused on accommodation details, visual storytelling, and direct booking intent.",
+                  outcome: "An accommodation concept focused on property details, visual storytelling, and direct booking intent.",
                   url: "https://horizondigitalsey.com/showcase/takamaka-house"
                 },
                 {

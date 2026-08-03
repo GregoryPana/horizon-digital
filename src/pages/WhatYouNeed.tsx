@@ -117,8 +117,8 @@ export default function WhatYouNeed() {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-bg-panel/10 to-transparent pointer-events-none" />
         <div className="mx-auto w-full max-w-7xl relative z-10 px-5 sm:px-8">
           <motion.div className="mb-12 md:mb-16 text-center" {...fadeInUp}>
-            <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow text-center">WHAT KIND OF BUSINESS DO YOU HAVE?</span>
-            <h2 className="font-display mx-auto max-w-4xl text-3xl font-semibold leading-tight tracking-tight text-white md:text-5xl">Most businesses in Seychelles fall into one of these three types</h2>
+            <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow text-center">WHAT SHOULD THE WEBSITE HELP WITH?</span>
+            <h2 className="font-display mx-auto max-w-4xl text-3xl font-semibold leading-tight tracking-tight text-white md:text-5xl">Start with the job the website needs to do</h2>
           </motion.div>
 
           {/* Swipeable Carousel on Mobile, Grid on Desktop */}
@@ -140,9 +140,9 @@ export default function WhatYouNeed() {
                 <InteractiveIcon shouldReduceMotion={shouldReduceMotion || undefined}>
                   <AnimatedIcon type="briefcase" active={activeCarousel === 0} />
                 </InteractiveIcon>
-                <h3 className="font-display mb-3 text-xl semibold-underline text-white mt-2">Service Business</h3>
+                <h3 className="font-display mb-3 text-xl semibold-underline text-white mt-2">Explain your offer</h3>
                 <p className="mt-3 text-sm text-white/80 leading-relaxed flex-1">
-                  You offer a service — like a salon, a clinic, a repair shop, or a consultancy. Your website's job is to explain <span className="text-cyan font-semibold">what you do clearly</span> and make it easy for customers to get in touch.
+                  Your website should explain <span className="text-cyan font-semibold">what you do clearly</span>, answer the questions that matter and make it easy for customers to get in touch.
                 </p>
               </div>
             </TracingCard>
@@ -160,9 +160,9 @@ export default function WhatYouNeed() {
                 <InteractiveIcon shouldReduceMotion={shouldReduceMotion || undefined}>
                   <AnimatedIcon type="shopping" active={activeCarousel === 1} />
                 </InteractiveIcon>
-                <h3 className="font-display mb-3 text-xl semibold-underline text-white mt-2">Retail Showcase</h3>
+                <h3 className="font-display mb-3 text-xl semibold-underline text-white mt-2">Present what you sell</h3>
                 <p className="mt-3 text-sm text-white/80 leading-relaxed flex-1">
-                  You sell physical products — like a boutique, a bakery, or a gift shop. Your website should show what you stock, <span className="text-cyan font-semibold">at what price</span>, and make it simple for customers to order or visit.
+                  Your website should make products, options and <span className="text-cyan font-semibold">pricing information</span> easy to review, then guide customers towards ordering, visiting or enquiring.
                 </p>
               </div>
             </TracingCard>
@@ -180,9 +180,9 @@ export default function WhatYouNeed() {
                 <InteractiveIcon shouldReduceMotion={shouldReduceMotion || undefined}>
                   <AnimatedIcon type="bed" active={activeCarousel === 2} />
                 </InteractiveIcon>
-                <h3 className="font-display mb-3 text-xl semibold-underline text-white mt-2">Hospitality</h3>
+                <h3 className="font-display mb-3 text-xl semibold-underline text-white mt-2">Guide an enquiry or booking</h3>
                 <p className="mt-3 text-sm text-white/80 leading-relaxed flex-1">
-                  You run a guesthouse, villa, restaurant, or tour operation. Your website should make guests <span className="text-cyan font-semibold">feel the experience</span> before they arrive — and make booking as easy as one tap.
+                  Your website should set expectations, show the important details and make the <span className="text-cyan font-semibold">next action easy</span>—whether that is a booking, an enquiry or a call.
                 </p>
               </div>
             </TracingCard>

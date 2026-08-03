@@ -192,9 +192,8 @@ export default function WebDesignSeychelles() {
           </div>
           <div className="service-two-column mt-10">
             <div className="service-editorial-list">
-              {startingPoints.items.map((item, index) => (
+              {startingPoints.items.map((item) => (
                 <article className="service-editorial-item reveal-item" key={item.title}>
-                  <span>0{index + 1}</span>
                   <div>
                     <h3>{item.title}</h3>
                     <p>{item.body}</p>
@@ -260,15 +259,14 @@ export default function WebDesignSeychelles() {
               </div>
             </div>
           </div>
-          <ol className="service-package-fit" aria-label={page.packageFitLabel}>
-            {packageFit.fits.map((fit, index) => (
+          <ul className="service-package-fit" aria-label={page.packageFitLabel}>
+            {packageFit.fits.map((fit) => (
               <li key={fit.title} className="reveal-item">
-                <span>{String(index + 1).padStart(2, "0")}</span>
                 <h3>{fit.title}</h3>
                 <p>{fit.description}</p>
               </li>
             ))}
-          </ol>
+          </ul>
         </div>
       </section>
 
@@ -279,9 +277,8 @@ export default function WebDesignSeychelles() {
             <h2 className="reveal-heading">{afterLaunch.title}</h2>
           </div>
           <div className="service-editorial-list">
-            {afterLaunch.items.map((item, index) => (
+            {afterLaunch.items.map((item) => (
               <article className="service-editorial-item reveal-item" key={item.title}>
-                <span>0{index + 1}</span>
                 <div>
                   <h3>{item.title}</h3>
                   <p>{item.body}</p>

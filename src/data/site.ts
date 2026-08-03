@@ -166,12 +166,12 @@ export const supportDaysRange = {
 export const homeProofPoints = [
   {
     label: "Live client work",
-    value: liveClientProject.title,
-    href: liveClientProject.url,
+    value: "Live client project",
+    href: "/work",
   },
   {
-    label: "Published pricing",
-    value: foundationPackage.price,
+    label: "Seychelles-based studio",
+    value: "Mahé, Seychelles",
   },
   {
     label: "Our process",

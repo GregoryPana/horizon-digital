@@ -18,17 +18,14 @@ Canonical/application candidates observed in production-source `src/App.tsx`:
 /about
 /ai-digital-tools
 /contact
-/f-and-b-website-design-seychelles
 /insights
 /insights/:slug
 /pricing
 /process
-/professional-services-website-design-seychelles
 /services-pricing
 /showcase/drake-seaside
 /showcase/forma-studio
 /showcase/takamaka-house
-/tourism-website-design-seychelles
 /web-design-seychelles
 /what-you-need
 /work

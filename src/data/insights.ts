@@ -133,10 +133,10 @@ const insightAssets: Record<
           "Practical trends include better local SEO structure, lightweight websites that load quickly on mobile networks, and clearer enquiry journeys with fewer steps.",
       },
       {
-        heading: "Different sectors have different opportunities",
+        heading: "Different businesses have different opportunities",
         body: [
-          "Hospitality businesses may benefit most from stronger booking paths and multilingual content support. Retail businesses may benefit from product clarity and faster customer messaging.",
-          "Professional services can benefit from clearer trust signals, educational content, and better lead qualification before consultations.",
+          "A business that depends on enquiries may benefit most from clearer conversion paths and multilingual content support. A business with products to explain may benefit from stronger information hierarchy and faster customer messaging.",
+          "Other organisations may benefit from clearer trust signals, educational content, and better lead qualification before consultations.",
         ],
         subheading: "Adopt trends with a clear priority",
         subBody:
@@ -186,7 +186,7 @@ const insightAssets: Record<
         heading: "AI-Driven Personalization",
         body: [
           "Websites are becoming more than static brochures; they are evolving into responsive entities that adapt to user behaviour in real-time.",
-          "In 2026, we expect to see more Seychelles tourism and service sites using AI to tailor content based on whether a visitor is a returning local client or an international traveler.",
+          "In 2026, we expect to see more Seychelles business websites using AI to tailor content based on whether a visitor is a returning local client or a first-time visitor.",
         ],
         subheading: "Dynamic User Journeys",
         subBody:
@@ -201,7 +201,7 @@ const insightAssets: Record<
         heading: "Lowering Client Acquisition Costs",
         body: [
           "A high-ranking website reduces your reliance on paid advertising. By capturing organic search traffic, you lower the cost of acquiring every new lead.",
-          "For Seychelles businesses, this is particularly powerful in the tourism and professional services sectors where competition for visibility is high.",
+          "For Seychelles businesses, this can be especially valuable where competition for relevant search visibility is high.",
         ],
         subheading: "The Power of Organic Reach",
         subBody:
@@ -224,7 +224,7 @@ const insightAssets: Record<
       {
         heading: "Security is the Foundation of Trust",
         body: [
-          "In professional services, your clients trust you with sensitive information. A security breach doesn't just lose data; it destroys your reputation.",
+          "When clients trust a business with sensitive information, a security breach does not just lose data; it damages reputation.",
           "Implementing SSL certificates, secure hosting, and encrypted contact forms are the minimum requirements for any serious Seychelles business.",
         ],
         subheading: "Protecting Your Reputation",

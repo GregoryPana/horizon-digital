@@ -13,6 +13,10 @@ yarn-debug.log*
 pnpm-debug.log*
 
 lighthouse-*.html
+/lighthouse*.json
+*lighthouse.*/
+*:Zone.Identifier
+/nul
 session-ses_*.md
 deep-research-report.md
 

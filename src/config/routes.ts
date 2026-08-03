@@ -235,7 +235,7 @@ export const STATIC_ROUTES: StaticRoute[] = [
     seo: {
       title: "Takamaka House Showcase",
       description:
-        "Explore the Takamaka House showcase by Horizon Digital, focused on hospitality storytelling and clear booking intent.",
+        "Explore the Takamaka House showcase by Horizon Digital, focused on accommodation storytelling and clear booking intent.",
       robots: "noindex,nofollow",
       ogType: "website",
     },
@@ -269,48 +269,6 @@ export const STATIC_ROUTES: StaticRoute[] = [
     kind: "static",
     path: "/analytics-and-digital-presence-seychelles",
     seo: ANALYTICS_PRESENCE_SEO,
-    sitemap: { priority: "0.8", changefreq: "monthly" },
-  },
-  {
-    kind: "static",
-    path: "/tourism-website-design-seychelles",
-    seo: {
-      title: "Tourism Website Design Seychelles | Hotel & Villa Websites",
-      description:
-        "Custom websites for Seychelles hotels, guesthouses and villas, with responsive layouts, accommodation information and direct enquiry paths.",
-      keywords:
-        "tourism website design seychelles, hotel web design mahé, villa booking website seychelles, luxury resort web design praslin, direct bookings seychelles",
-      robots: DEFAULT_ROBOTS,
-      ogType: "website",
-    },
-    sitemap: { priority: "0.8", changefreq: "monthly" },
-  },
-  {
-    kind: "static",
-    path: "/f-and-b-website-design-seychelles",
-    seo: {
-      title: "F&B Website Design Seychelles | Restaurant & Bar Websites",
-      description:
-        "Custom websites for Seychelles restaurants and cafes, including responsive digital menus and agreed reservation or enquiry integrations.",
-      keywords:
-        "restaurant website design seychelles, cafe web design mahé, digital menu seychelles, bar website design praslin, food delivery website victoria",
-      robots: DEFAULT_ROBOTS,
-      ogType: "website",
-    },
-    sitemap: { priority: "0.8", changefreq: "monthly" },
-  },
-  {
-    kind: "static",
-    path: "/professional-services-website-design-seychelles",
-    seo: {
-      title: "Professional Services Web Design Seychelles | Agency & Consultant Websites",
-      description:
-        "Custom websites for Seychelles professional services, with clear service information, responsive layouts and direct enquiry paths.",
-      keywords:
-        "professional services web design seychelles, lawyer website mahé, accountant web design victoria, consultant website praslin, real estate website seychelles",
-      robots: DEFAULT_ROBOTS,
-      ogType: "website",
-    },
     sitemap: { priority: "0.8", changefreq: "monthly" },
   },
 ];

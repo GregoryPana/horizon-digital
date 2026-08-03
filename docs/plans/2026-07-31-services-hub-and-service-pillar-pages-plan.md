@@ -244,13 +244,6 @@ Test:
 - normal and reduced motion;
 - no panel clipping, horizontal overflow, hidden-focus targets or console errors.
 
-The existing sector routes remain audience-specific landing pages and must not be confused with service pillars:
-
-- `/tourism-website-design-seychelles`
-- `/f-and-b-website-design-seychelles`
-- `/professional-services-website-design-seychelles`
-
-They should link to the website pillar and Pricing, while retaining distinct sector search intent.
 
 ---
 

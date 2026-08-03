@@ -19,7 +19,7 @@ Portfolio labels must distinguish live client work from concepts and demonstrati
 ## Takamaka House
 
 - **Status:** Concept showcase
-- **Description:** A hospitality concept focused on accommodation details, visual storytelling and direct booking intent.
+- **Description:** An accommodation concept focused on property details, visual storytelling and direct booking intent.
 - **URL:** https://horizondigitalsey.com/showcase/takamaka-house
 
 ## Beauty Demo

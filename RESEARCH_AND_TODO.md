@@ -433,9 +433,6 @@ Replaced all flex-centering row wrappers in both the slot and non-slot h1 paths 
 | Page | Target Keyword | Intent | Status |
 |------|---------------|--------|----------|
 | `/web-design-seychelles` | web design Seychelles | TRANS | ✅ Done |
-| `/tourism-website-design-seychelles` | hotel/guesthouse website Seychelles | VERTICAL | ✅ Done |
-| `/f-and-b-website-design-seychelles` | restaurant/cafe website Seychelles | VERTICAL | ✅ Done |
-| `/professional-services-website-design-seychelles` | law/accounting website Seychelles | VERTICAL | ✅ Done |
 | `/seo-seychelles` | SEO Seychelles | TRANS | ⬜ |
 | `/website-cost-seychelles` | how much does a website cost Seychelles | INFO/COMM | ⬜ |
 
@@ -575,9 +572,6 @@ Replaced all flex-centering row wrappers in both the slot and non-slot h1 paths 
 | # | Action | Type | File/Area | Status |
 |---|--------|------|-----------|--------|
 | L1 | Create `/web-design-seychelles` landing page targeting head term | SEO/Content | New page | ✅ Done |
-| L2 | Create `/tourism-website-design-seychelles` vertical page | SEO/Content | New page | ✅ Done |
-| L12 | Create `/f-and-b-website-design-seychelles` vertical page | SEO/Content | New page | ✅ Done |
-| L13 | Create `/professional-services-website-design-seychelles` vertical page | SEO/Content | New page | ✅ Done |
 | L3 | Add Service schema with SCR price range to Pricing page | SEO | `Pricing.tsx` | ✅ Done |
 | L4 | Add auto-advance timer to Services Slideshow (3s, pause on hover) | UX | slideshow component | ✅ Done |
 | L5 | Add `AboutPage` + `Person` schema to About page | SEO | `About.tsx` | ✅ Done |

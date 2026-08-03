@@ -1,267 +1,140 @@
-# CLAUDE.md — Horizon Digital Local Agent Adapter
+# CLAUDE.md — Horizon Digital Claude Code Adapter
 
-This file is the **Claude Code adapter** for the repo-local agent harness.
-It mirrors `OPENCODE.md` and `AGENTS.md` so a fresh Claude Code session starts with identical context.
+This is the Claude Code adapter. Use Headroom-wrapped Claude where available for delegated coding/review, then independently verify its output.
 
----
+**Last reconciled:** 2026-08-03
 
-## 1. Immediate Reading Order
+## 1. Required reading
 
-**Read these before any implementation:**
+Read before implementation, in order:
 
-```text
-1. AGENTS.md               — cross-agent operating contract
-2. CLAUDE.md               — this file (tool-specific adapter)
-3. docs/AGENT_DESIGN_SKILLS.md  — design-skill routing manifest
-4. DESIGN.md               — current visual authority (Tropical Precision)
-5. docs/TRANSFORMATION_BRIEF.md
-6. docs/plans/2026-07-26-horizon-digital-transformation-master-plan.md
-7. docs/TRANSFORMATION_TRACKER.md  — active session evidence log
-8. docs/CONTENT_AUTHORITY.md
-9. src/data/businessFacts.json  — single source of public facts, prices, packages
-```
+1. `AGENTS.md` — cross-agent operating contract.
+2. This tool adapter.
+3. `docs/AGENT_DESIGN_SKILLS.md` before UI/design work.
+4. `DESIGN.md` — current cross-route Tropical Precision visual authority.
+5. `docs/CONTENT_AUTHORITY.md` and `src/data/businessFacts.json` before public-content changes.
+6. `docs/plans/2026-08-03-cross-route-redesign-system-and-rollout-plan.md` — current future-route rollout plan.
+7. `docs/TRANSFORMATION_TRACKER.md` — cumulative verified implementation evidence.
+8. `docs/TRANSFORMATION_BRIEF.md` and the 2026-07-26 master plan for historical transformation context.
 
----
+Older plans remain historical evidence only when explicitly marked superseded. Generated `knowledge/*.md` files are retrieval outputs, not independent authority.
 
-## 2. Business & Safety Boundaries
+## 2. Business and publication boundaries
 
-- **Separate from CWS work.** Do not mix internal-development assumptions.
-- **Preserve:** Tropical Precision dark premium positioning, SCR pricing, WhatsApp CTA, custom-code/no-template stance.
-- **Never invent:** testimonials, clients, awards, metrics, case studies, logos, or proof.
-- **Business-sensitive (require Gregory approval):** public copy, pricing, analytics IDs, lead flow, WhatsApp/contact CTA, Cloudflare/hosting settings, DNS, production routing, deployment.
-- **Repo safety:** keep dirty worktree; do not stage `node_modules/`, caches, generated artifacts, secrets, or unrelated dirty files. No commits/pushes without approval.
+- Horizon Digital is separate from CWS work.
+- The public offer has exactly three service families: **Website Design, SEO and Analytics**.
+- Retired Tourism, Food & Beverage and Professional Services route families must not be restored.
+- Preserve SCR pricing, WhatsApp-first contact, custom-code/no-template positioning and verified portfolio boundaries.
+- Never invent testimonials, clients, awards, rankings, metrics, case studies, logos or proof.
+- Public copy, pricing, analytics, lead flow, contact behavior, Cloudflare/DNS, Worker routing and deployment require Gregory's approval.
+- No commit, push or deployment without explicit approval for that action. Stage by explicit path and verify the cached diff before committing.
+- Never inspect or print secret values, tokens, cookies, private keys or local environment files.
 
----
-
-## 3. Design Route for This Project
+## 3. Design route
 
 ```text
-Design route
-- Domain/product skill: Horizon Digital premium website
-- Visual direction: established (DESIGN.md)
-- Component/implementation skill: React + Tailwind + inline SVG/DOM
-- Motion: CSS/restraint + GSAP for choreographed stories; reduced-motion mandatory
-- Interface polish: required (interface-polish-engineering)
-- Final verification: frontend-design-quality-gate
+Domain/product: Horizon Digital premium website
+Visual authority: DESIGN.md
+Implementation: React + TypeScript + Tailwind/plain CSS + inline SVG/DOM
+Motion: restrained CSS/GSAP; representational rather than decorative
+Interface polish: required
+Acceptance: frontend-design-quality-gate plus repository tests/build/browser evidence
 ```
 
-### Default Bundle for Horizon Digital Premium Websites
+Key visual rules:
 
-1. **Horizon Digital Premium Websites** — brand rules, conversion hierarchy, no fake proof
-2. **Creative Web Artifacts** — HTML mockups, prototypes, design studies
-3. **Web Design Style Library** — visual direction families
-4. **Interface Polish Engineering** — static/structural craft and evidence-based polish
-5. **Frontend Design Quality Gate** — build/browser/responsive/console checks
+- Deep navy continuity with controlled paper and marine chapters; no dark-only blanket rule.
+- Homepage has the richest representational motion. Other routes receive at most one subject-specific explanatory narrative.
+- No pinned wheel-owned storytelling, decorative particle fields, generic blobs or duplicated route-local atmospheres.
+- Reduced motion must render a meaningful final state with no autonomous animation.
+- Mobile is an intentionally simplified composition, not scaled desktop.
 
-**Optional when needed:**
-- **Emil Kowalski Motion Polish** — interaction states, interruption, enter/exit behavior
-- **GSAP Web Animation** — scroll storytelling, timelines, ScrollTrigger, performance
-- **Mobile App UI Design** — thumb-zone UX if site behaves like mobile app
+## 4. Current repository state
 
----
+The cumulative local redesign now includes:
 
-## 4. Hermes Skills — Local Full Sources
+- responsive homepage build-extraction hero with separate desktop/mobile SVG stories;
+- compact mobile headline sequence and richer desktop/tablet final composition;
+- one shared site atmosphere and restrained pointer response;
+- native `scrollLeft` Work marquee and non-pinned floating service carousel;
+- Services hub and three retained service pillars with asymmetric editorial layouts and representational stories;
+- retired sector routes removed from client routes, Worker registry, sitemap, knowledge and tests;
+- current analytics listener and intent tracking;
+- cross-route design grammar and rollout plan for remaining pages.
 
-When a task needs a capability, read **only the relevant file**:
+Homepage and Services are reference implementations, not templates to copy literally. Remaining page redesigns are pending owner route selection. The recommended first route is Pricing, but the plan does not authorize implementation by itself.
 
-| Capability | Hermes-local full source |
-|------------|-------------------------|
-| Domain, conversion, proof, HD boundaries | `/home/gpanagary/.hermes/skills/creative/horizon-digital-premium-websites/SKILL.md` |
-| Visual direction / token exploration | `/home/gpanagary/.hermes/skills/creative/web-design-style-library/SKILL.md` |
-| Static interface craft / polish review | `/home/gpanagary/.hermes/skills/creative/interface-polish-engineering/SKILL.md` |
-| Motion, micro-interactions, GSAP | `/home/gpanagary/.hermes/skills/software-development/gsap-web-animation/SKILL.md` |
-| Final QA / browser/console/responsive | `/home/gpanagary/.hermes/skills/software-development/frontend-design-quality-gate/SKILL.md` |
-| Design-skill routing | `/home/gpanagary/.hermes/skills/creative/design-skill-stack/SKILL.md` |
+`src/components/ChatWidget.tsx` is deliberately dormant source. It must not be mounted or bundled while no governed backend exists; retain it for a possible separately approved reintroduction.
 
-**Central agent skill roots** (for cross-repo work):
+## 5. Key paths
+
 ```text
-WSL:     /mnt/c/Users/gpanagary/central-agent-skills
-Windows: C:\Users\gpanagary\central-agent-skills
+DESIGN.md
+src/App.tsx
+src/config/routes.ts
+src/data/businessFacts.json
+src/data/site.ts
+src/pages/Home.tsx
+src/pages/Services.tsx
+src/pages/ServicePillarPage.tsx
+src/components/ui/BuildExtractionHero.tsx
+src/components/ui/HeroBuildExtractionStory.tsx
+src/components/ui/ServicesFamilyShowcase.tsx
+src/components/ui/ServiceVisualStories.tsx
+src/components/ui/FloatingCarousel.tsx
+src/components/ui/WorkMarquee.tsx
+src/components/ui/menu-hover-effects.tsx
+src/index.css
+docs/plans/2026-08-03-cross-route-redesign-system-and-rollout-plan.md
+.opencode/hermes-pending-updates.md
 ```
 
-If a named source cannot be read, apply this project's embedded minimum, report the missing source, and **do not claim its full checklist was performed**.
+Cloudflare Worker entry: `src/worker.ts`, configured by `wrangler.jsonc`. Do not infer Worker reachability from a Vite build.
 
----
+## 6. Commands and verification
 
-## 5. Repository Context
-
-### Key Paths
-
-```
-/home/gpanagary/projects/horizon-digital-services-rollout-20260730/
-├── AGENTS.md                           ← this project's operating contract
-├── CLAUDE.md                           ← this file
-├── OPENCODE.md                         ← OpenCode adapter (mirrored here)
-├── DESIGN.md                           ← visual authority (Tropical Precision)
-├── package.json
-├── vite.config.ts
-├── src/
-│   ├── pages/
-│   │   ├── Home.tsx                    ← HERO FROZEN — do not change
-│   │   ├── Services.tsx                ← Services hub with Atelier story
-│   │   ├── WebDesignSeychelles.tsx     ← rebuilt comparison + scope journey
-│   │   ├── SeoServicesSeychelles.tsx   ← SEO Review Story
-│   │   ├── AnalyticsDigitalPresenceSeychelles.tsx  ← Analytics story
-│   │   ├── ServicePillarPage.tsx       ← shared SEO/Analytics template
-│   │   ├── Pricing.tsx
-│   │   ├── Process.tsx, About.tsx, Work.tsx, ...
-│   ├── components/
-│   │   ├── Navbar.tsx                  ← stable logo, morphing toggle
-│   │   ├── ui/
-│   │   │   ├── menu-hover-effects.tsx  ← mobile menu overlay
-│   │   │   ├── ServiceVisualStories.tsx  ← reusable representational stories
-│   │   │   ├── WebsiteBuildStory.tsx   ← existing hero story
-│   │   │   ├── menu-hover-effects.interaction.test.tsx
-│   │   │   └── serviceVisualStories.test.ts
-│   ├── data/
-│   │   ├── businessFacts.json          ← authoritative copy/prices/packages
-│   │   └── site.ts                     ← service pages catalogue
-│   ├── config/routes.ts                ← SEO, metadata, structured data
-│   ├── lib/                            ← analytics, utils, viewport observer
-│   └── index.css                       ← design tokens, global styles
-├── docs/
-│   ├── CONTENT_AUTHORITY.md
-│   ├── TRANSFORMATION_BRIEF.md
-│   ├── TRANSFORMATION_TRACKER.md
-│   ├── AGENT_DESIGN_SKILLS.md
-│   └── plans/
-│       └── 2026-07-31-service-visuals-and-mobile-menu-implementation.md
-├── .opencode/hermes-pending-updates.md  ← running Hermes change log
-└── dist/                                ← production build output
-```
-
-### Current Transformation Session
-
-**Plan:** `docs/plans/2026-07-31-service-visuals-and-mobile-menu-implementation.md`
-
-**Completed (2026-07-31):**
-- Stable masked mobile menu overlay (logo fixed, single morphing toggle)
-- Services hub: Website Build Atelier (6-stage) + compact SEO/Analytics stories
-- Website Design: rebuilt comparison (stripped-back → Horizon outcome), CTAs after proof
-- Six-step scope journey with icons + connector rail
-- SEO page: SEO Review Story (crawl→priorities→review/implementation boundary)
-- Analytics page: Signal→Useful Measurement + client-owned GBP treatment
-- Homepage hero **frozen** — "CUSTOM STUNNING WEBSITES" unchanged
-
-**Verification:**
-- 292/292 tests passing
-- Production build passing (2,320 modules)
-- Knowledge drift check 8/8
-- `git diff --check` clean
-- Responsive QA at 320/390/844×390/768/1280 — no overflow, no JS errors
-- Reduced-motion: 0 running animations on story roots
-- Homepage hero checksum unchanged: `69304f1374fed671ed251ca71a379a102f06f703c9d7c3bfe1e04e0078b35c41`
-
----
-
-## 6. Local Review Servers
-
-| Server | URL | Purpose |
-|--------|-----|---------|
-| **Dev (hot reload)** | http://localhost:5173/ | Active development, Vite HMR |
-| **Preview (built bundle)** | http://localhost:4178/ | Production bundle verification |
-
-Both are currently running.
-
----
-
-## 7. Commands Reference
+No local server should be assumed to be running.
 
 ```bash
-# Development
+npm test
+npm run build
+npm run knowledge:check
+npx wrangler deploy --dry-run
+git diff --check
+
 npm run dev -- --host 0.0.0.0 --port 5173 --strictPort
-
-# Full verification pipeline
-npm test                    # knowledge check + vitest (292 tests)
-npm run build               # tsc -b + vite build
-npm run knowledge:check     # chatbot knowledge drift check (8 files)
-git diff --check            # no whitespace/merge conflicts
-
-# Preview production build
 npm run preview -- --host 127.0.0.1 --port 4178
-
-# Focused test suites
-npx vitest run src/components/Navbar.test.ts src/components/ui/menu-hover-effects.interaction.test.tsx
-npx vitest run src/pages/servicePillarPages.test.tsx src/pages/servicesCatalogue.test.ts
-npx vitest run src/components/ui/serviceVisualStories.test.ts src/pages/websiteComparisonState.test.ts
 ```
 
----
+For implemented UI, verify at minimum:
 
-## 8. Completion Standard for UI Work
+- 320px and 390px phone widths;
+- 768px tablet;
+- 1280px desktop;
+- relevant short-height landscape/laptop cases;
+- keyboard navigation, focus return and touch targets;
+- no horizontal overflow;
+- clean browser console;
+- reduced-motion completed states;
+- visible H1/heading semantics and CTA availability.
 
-Before claiming completion:
+A build is not browser QA. A visual-only Vite check is not Worker route/status proof.
 
-- [ ] Run `npm test` (full) and `npm run build`
-- [ ] Inspect key routes in browser at minimum: mobile (320/390), tablet (768), desktop (1280)
-- [ ] Check console for errors/warnings/hydration issues
-- [ ] Verify reduced-motion: meaningful final state, zero autonomous animation
-- [ ] Verify no horizontal overflow (`document.documentElement.scrollWidth === clientWidth`)
-- [ ] No fake proof/placeholders in production-intended content
-- [ ] Record: files changed, commands/results, checks NOT run and why, remaining risks
-- [ ] Append compact entry to `.opencode/hermes-pending-updates.md`
+## 7. Repo hygiene and handoff
 
----
+- Preserve intentional work; never use broad reset or clean commands on an unexplained dirty tree.
+- Do not stage `node_modules`, `dist`, caches, raw Lighthouse work directories, OS metadata, secrets or duplicate full plan copies. Lightweight `.hermes/plans` routing pointers may link to canonical durable plans under `docs/plans/`.
+- Append meaningful work to `.opencode/hermes-pending-updates.md`.
+- Update `docs/TRANSFORMATION_TRACKER.md` with verified evidence for implementation or release work.
+- Report exact checks run, actual results, unrun gates and whether commit/push/deploy occurred.
 
-## 9. Deployment Context (Reference Only — No Auto-Deploy)
+## 8. Next work
 
-| Target | Details |
-|--------|---------|
-| **Production** | Cloudflare Worker `horizon-digital` on `horizondigitalsey.com/*` + `www.horizondigitalsey.com/*` |
-| **DNS** | Apex detached from legacy Pages; Worker is origin; permanent `www` → apex redirect |
-| **Worker KV/Assets** | `ASSETS` binding only (chatbot retired) |
-| **Analytics** | GA4 SPA page views + `contact_intent` (WhatsApp/email/phone/mailto-form); no PII |
-| **Rollback** | Prior Worker version preserved; no commit/push for local work |
-| **Performance backlog** | `docs/plans/2026-07-27-performance-optimization-plan.md` (deferred) |
+Do not resume obsolete pinned-carousel, sector-route or old homepage-hero plans. For another page redesign:
 
-**Do not:** change DNS, Worker config, analytics IDs, Cloudflare settings, or deploy without Gregory's explicit approval.
-
----
-
-## 10. Vault Mirror (Obsidian)
-
-Durable notes mirrored to:
-```
-/mnt/c/Users/gpanagary/Hermes Knowledge Vault/04 - Projects/Horizon Digital/
-```
-
-Key files there:
-- `Horizon Digital - Service Visuals and Mobile Menu Implementation.md`
-- `Horizon Digital - Services Copy and Layout Review Pack.md`
-- `Horizon Digital - Overview.md`
-- `Horizon Digital - Design and Workflow R&D Backlog.md`
-
----
-
-## 11. Next Work — Suggested Prompt for This Session
-
-> **Goal:** Extend and refine the representational visual system on the **core service pages** that are live and linked.
->
-> **Context:**
-> - Services hub, Website Design, SEO, Analytics pages now have the premium visual system (Atelier, Comparison, Journey, SEO Review, Analytics Pipeline stories).
-> - Homepage hero remains frozen.
-> - Mobile menu is stable.
-> - The three sector pages (Tourism, F&B, Professional Services) and Drake Seaside exist in the codebase but are **not linked from navigation** — deferred per Gregory.
-> - `ServiceVisualStories.tsx` exports: `ServiceFamilyVisual`, `ServiceJourney`, `WebsiteComparison`, `SeoReviewStory`, `AnalyticsPipelineStory`, `WebsiteBuildAtelier`.
-> - `ServicePages.css` has responsive rules for `.service-story`, `.atelier-story`, `.seo-review-story`, `.analytics-story`, `.service-journey-frame`, `.website-comparison-art`.
->
-> **Potential next tasks (to be confirmed):**
-> 1. **Pricing page** — add visual cadence/journey to package comparison and FAQ sections.
-> 2. **Process page** — add animated journey rail to the five-stage flow.
-> 3. **About page** — add visual story for the studio narrative (replacing generic content).
-> 4. **Work page** — add representational treatment for project classifications.
-> 5. **Drake Seaside showcase** — add project-specific transformation story (when linked).
-> 6. **Services hub** — refine Atelier story timing and mobile composition.
->
-> **Constraints:**
-> - No changes to homepage hero (frozen).
-> - Preserve all approved copy and business facts from `businessFacts.json`.
-> - Use existing `ServiceVisualStories.tsx` components; do not create new one-off visual systems.
-> - No autoplay video/MP4.
-> - Local only — no commit/push/deploy.
->
-> **Deliverable:** Agreed core page(s) with representational stories; full test/build pass; browser evidence at 320/390/768/1280; updated `.opencode/hermes-pending-updates.md`.
-
----
-
-Start the next session with the above prompt. The agent will have full context from this CLAUDE.md and the repository files.
+1. Select one route family with Gregory.
+2. Create and approve its design card from the 2026-08-03 rollout plan.
+3. Protect shared/frozen files in the cumulative tree.
+4. Implement one bounded route slice.
+5. Run focused tests, full tests, build and browser/responsive/reduced-motion QA.
+6. Present locally for owner review before any publication action.

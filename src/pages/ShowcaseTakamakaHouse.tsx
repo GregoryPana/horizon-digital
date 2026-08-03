@@ -20,7 +20,7 @@ export default function ShowcaseTakamakaHouse() {
     <>
       <Seo
         title="Takamaka House Showcase"
-        description="Explore the Takamaka House showcase by Horizon Digital, focused on hospitality storytelling and clear booking intent."
+        description="Explore the Takamaka House showcase by Horizon Digital, focused on accommodation storytelling and clear booking intent."
         path="/showcase/takamaka-house"
         robots="noindex,nofollow"
       />

@@ -30,38 +30,59 @@ import {
   useScroll,
   useTransform,
 } from "framer-motion";
-import { getServiceStoryDelay } from "./serviceVisualStories";
+import {
+  getServiceStoryDelay,
+  SERVICE_STORY_PRIMARY_COLOURS,
+  type ServiceStoryKind,
+} from "./serviceVisualStories";
 
 type StoryFrameProps = {
   children: ReactNode;
   className: string;
+  kind: ServiceStoryKind;
   decorative?: boolean;
 };
 
-function StoryFrame({ children, className, decorative = true }: StoryFrameProps) {
+function StoryFrame({ children, className, kind, decorative = true }: StoryFrameProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const [active, setActive] = useState(false);
+  const [inViewport, setInViewport] = useState(false);
+  const [pageVisible, setPageVisible] = useState(
+    () => typeof document === "undefined" || document.visibilityState === "visible",
+  );
+  const palette = SERVICE_STORY_PRIMARY_COLOURS[kind];
+  const paletteStyle = {
+    "--story-accent": palette.primary,
+    "--story-accent-soft": palette.soft,
+    "--story-accent-rgb": palette.rgb,
+  } as CSSProperties;
 
   useEffect(() => {
     const element = ref.current;
     if (!element) return;
     if (typeof IntersectionObserver === "undefined") {
-      setActive(true);
+      setInViewport(true);
       return;
     }
     const observer = new IntersectionObserver(
-      ([entry]) => setActive(Boolean(entry?.isIntersecting)),
-      { rootMargin: "120px 0px", threshold: 0.16 },
+      ([entry]) => setInViewport(Boolean(entry?.isIntersecting)),
+      { rootMargin: "0px", threshold: 0.2 },
     );
     observer.observe(element);
     return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const onVisibilityChange = () => setPageVisible(document.visibilityState === "visible");
+    document.addEventListener("visibilitychange", onVisibilityChange);
+    return () => document.removeEventListener("visibilitychange", onVisibilityChange);
   }, []);
 
   return (
     <div
       ref={ref}
       className={`service-story ${className}`}
-      data-story-active={active}
+      style={paletteStyle}
+      data-story-active={inViewport && pageVisible}
       aria-hidden={decorative ? true : undefined}
     >
       {children}
@@ -74,7 +95,7 @@ const delay = (kind: "atelier" | "seo" | "analytics", stage: string) =>
 
 export function WebsiteBuildAtelier({ compact = false }: { compact?: boolean }) {
   return (
-    <StoryFrame className={`atelier-story${compact ? " is-compact" : ""}`}>
+    <StoryFrame kind="atelier" className={`atelier-story${compact ? " is-compact" : ""}`}>
       <div className="atelier-blueprint">
         <span />
         <span />
@@ -128,7 +149,7 @@ export function WebsiteBuildAtelier({ compact = false }: { compact?: boolean }) 
 
 export function SeoReviewStory({ compact = false }: { compact?: boolean }) {
   return (
-    <StoryFrame className={`seo-review-story${compact ? " is-compact" : ""}`}>
+    <StoryFrame kind="seo" className={`seo-review-story${compact ? " is-compact" : ""}`}>
       <svg className="story-connector" viewBox="0 0 560 250" preserveAspectRatio="none">
         <path d="M70 62H180c30 0 34 54 66 54h80c34 0 34-48 68-48h94" pathLength="1" />
         <path d="M326 116c38 0 42 72 80 72h82" pathLength="1" />
@@ -157,7 +178,7 @@ export function SeoReviewStory({ compact = false }: { compact?: boolean }) {
 
 export function AnalyticsMeasurementStory({ compact = false }: { compact?: boolean }) {
   return (
-    <StoryFrame className={`analytics-story${compact ? " is-compact" : ""}`}>
+    <StoryFrame kind="analytics" className={`analytics-story${compact ? " is-compact" : ""}`}>
       <svg className="story-connector" viewBox="0 0 620 270" preserveAspectRatio="none">
         <path d="M58 74H520" pathLength="1" />
         <path d="M414 74c0 76 52 76 96 76" pathLength="1" />

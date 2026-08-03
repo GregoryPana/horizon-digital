@@ -489,9 +489,8 @@ export default function Pricing() {
             description="Optional work is priced clearly and agreed before it is added to the written scope."
           />
           <div className="pricing-addon-list" role="list">
-            {addOnItems.map((item, index) => (
+            {addOnItems.map((item) => (
               <div key={item.title} className="pricing-addon-row reveal-item" role="listitem">
-                <span aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
                 <h3>{item.title}</h3>
                 <p>{item.price}</p>
               </div>

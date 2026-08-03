@@ -11,7 +11,7 @@ import { cn, scrollToTopSmooth } from "../../lib/utils";
 // ScrollTrigger recalculations) steal main-thread frames and stall the fade's
 // start for ~150-200ms if left ticking, so GSAP stays paused for the open
 // duration and for one transition length after close.
-const MENU_CLOSE_TRANSITION_MS = 420;
+const MENU_CLOSE_TRANSITION_MS = 700;
 
 export const mobileNavLinks = [{ label: "Home", path: "/" }, ...navLinks];
 export const serviceNavItems = serviceNavigation;

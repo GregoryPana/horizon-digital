@@ -2,9 +2,11 @@ import { useRef } from "react";
 import { Link } from "react-router-dom";
 import Seo from "../components/Seo";
 import {
-  ServiceFamilyVisual,
   ServiceJourney,
 } from "../components/ui/ServiceVisualStories";
+import { ServicesFamilyShowcase } from "../components/ui/ServicesFamilyShowcase";
+import { ServicesHeroHeadline } from "../components/ui/ServicesHeroHeadline";
+import { updateSiteAtmospherePointer } from "../components/ui/siteAtmosphere";
 import { SERVICES_SEO } from "../config/routes";
 import {
   existingWebsiteFlow,
@@ -28,7 +30,11 @@ export default function Services() {
   ]);
 
   return (
-    <div className="service-page service-hub" ref={pageRef}>
+    <div
+      className="service-page service-hub site-atmosphere"
+      ref={pageRef}
+      onPointerMove={updateSiteAtmospherePointer}
+    >
       <Seo
         {...SERVICES_SEO}
         path="/services"
@@ -52,7 +58,7 @@ export default function Services() {
         <div className="service-container service-hero-grid">
           <div className="service-hero-copy">
             <p className="service-eyebrow">{page.eyebrow}</p>
-            <h1>{page.title}</h1>
+            <ServicesHeroHeadline title={page.title} />
             <p className="service-lead">{page.lead}</p>
             <div className="service-actions">
               <Link
@@ -68,30 +74,28 @@ export default function Services() {
                 {page.secondary.label}
               </a>
             </div>
+            <nav
+              className="service-route-prompts"
+              aria-label={page.routePrompts.label}
+            >
+              {page.routePrompts.items.map((item) =>
+                item.path.startsWith("#") ? (
+                  <a key={item.path} href={item.path}>
+                    {item.label}
+                  </a>
+                ) : (
+                  <Link key={item.path} to={item.path}>
+                    {item.label}
+                  </Link>
+                ),
+              )}
+            </nav>
           </div>
-          <nav
-            className="service-route-prompts"
-            aria-label={page.routePrompts.label}
-          >
-            {page.routePrompts.items.map((item) =>
-              item.path.startsWith("#") ? (
-                <a key={item.path} href={item.path}>
-                  <span>{item.index}</span>
-                  {item.label}
-                </a>
-              ) : (
-                <Link key={item.path} to={item.path}>
-                  <span>{item.index}</span>
-                  {item.label}
-                </Link>
-              ),
-            )}
-          </nav>
         </div>
       </header>
 
       <section
-        className="service-section service-section-light section-reveal"
+        className="service-section services-family-showcase-section section-reveal"
         aria-labelledby="family-title"
       >
         <div className="service-container">
@@ -102,27 +106,8 @@ export default function Services() {
             </h2>
             <p className="reveal-heading">{page.selectorIntro}</p>
           </div>
-          <div className="service-family-layout">
-            {page.families.map((family, index) => (
-              <article
-                key={family.id}
-                className="service-family reveal-item"
-                data-featured={index === 0}
-              >
-                <span className="service-family-index" aria-hidden="true">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <p className="service-fit">{family.fit}</p>
-                <h3>{family.title}</h3>
-                <p>{family.body}</p>
-                <ServiceFamilyVisual kind={family.id} />
-                <p className="service-price-line">{family.pricing}</p>
-                <Link to={family.path}>
-                  {family.cta}
-                  <span aria-hidden="true"> →</span>
-                </Link>
-              </article>
-            ))}
+          <div className="reveal-item">
+            <ServicesFamilyShowcase />
           </div>
         </div>
       </section>

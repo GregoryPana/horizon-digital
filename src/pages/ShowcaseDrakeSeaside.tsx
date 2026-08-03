@@ -97,7 +97,7 @@ export default function ShowcaseDrakeSeaside() {
             transition={{ duration: shouldReduceMotion ? 0 : 0.8, ease: "easeOut", delay: shouldReduceMotion ? 0 : 0.2 }}
           >
             <span className="inline-block px-3 py-1 rounded-full bg-accent/10 border border-accent/20 text-accent text-[11px] font-medium uppercase tracking-[0.2em] mb-6">
-              Tourism & Hospitality
+              Website concept
             </span>
             <h1 className="text-5xl md:text-8xl font-bold tracking-tight mb-8">
               Drake Seaside <br />

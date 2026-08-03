@@ -1,19 +1,29 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { applySectionReveals } from "../hooks/useProceduralReveal";
+import {
+  applySectionReveals,
+  loadScrollTrigger as loadSharedScrollTrigger,
+  type ScrollTriggerPlugin,
+} from "../hooks/useProceduralReveal";
 import {
   ArrowRight,
   ArrowUpRight,
   Sparkles,
 } from "lucide-react";
 import { useEffect, useRef, useState, type PointerEvent as ReactPointerEvent, type ReactNode } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Seo from "../components/Seo";
+import "./ServicePages.css";
 import { InteractiveSvgIcon } from "../components/ui/InteractiveSvgIcon";
-import { SectorStoryMark, type SectorStoryKind } from "../components/ui/SectorStoryMark";
-import { buildHomeProcessFlowStages } from "../components/ui/homeProcessFlow";
+import { ServiceFamilyVisual } from "../components/ui/ServiceVisualStories";
+import { getHomeProcessActiveIndex } from "../components/ui/homeProcessFlow";
 import HomeFaq from "../components/ui/home-faq";
 import Hero from "../components/ui/animated-shader-hero";
+import { ScrollRevealText } from "../components/ui/ScrollRevealText";
+import { FloatingCarousel } from "../components/ui/FloatingCarousel";
+import { WorkMarquee } from "../components/ui/WorkMarquee";
+import { MagneticButton } from "../components/ui/MagneticButton";
+import { updateSiteAtmospherePointer } from "../components/ui/siteAtmosphere";
 import { trackContactIntent, trackEvent } from "../lib/analytics";
 import WhatsAppIcon from "../components/ui/WhatsAppIcon";
 import {
@@ -21,13 +31,12 @@ import {
   shouldLoadHomeScrollMotion,
 } from "./homeScrollMotionPolicy";
 import {
-  businessFacts,
   foundationPackage,
   growthPackage,
   homeFaqCategories,
   homeProofPoints,
   projectSteps,
-  services,
+  servicePages,
   siteConfig,
   starterPackage,
   workItems,
@@ -41,30 +50,20 @@ type HomeProps = {
 
 gsap.registerPlugin(useGSAP);
 
-async function loadHomeScrollTrigger() {
-  const { ScrollTrigger } = await import("gsap/ScrollTrigger");
-  return ScrollTrigger;
-}
-
-type HomeScrollTrigger = Awaited<ReturnType<typeof loadHomeScrollTrigger>>;
-
 const buyerFits = [
   {
-    number: "01",
     icon: "refresh" as const,
     effect: "trace" as const,
     title: "Your website feels out of date",
     body: "Your business has moved on, but the website is still difficult to share or use on a phone.",
   },
   {
-    number: "02",
     icon: "compass" as const,
     effect: "glow" as const,
     title: "You are not sure where to start",
     body: "We can help you work out the pages, content, cost and next steps before anything is built.",
   },
   {
-    number: "03",
     icon: "expand" as const,
     effect: "pop" as const,
     title: "Your business has outgrown the website",
@@ -73,19 +72,66 @@ const buyerFits = [
 ];
 
 const packages = [foundationPackage, starterPackage, growthPackage];
-const serviceIcons = ["browser", "refresh", "search", "devices", "message"] as const;
-const serviceEffects = ["trace", "colour", "glow", "pop", "glow"] as const;
 const processIcons = ["message", "palette", "code", "launch", "support"] as const;
 const processEffects = ["trace", "colour", "trace", "pop", "glow"] as const;
-const sectorKinds: SectorStoryKind[] = [
-  "hospitality",
-  "food",
-  "retail",
-  "professional",
-  "wellness",
-  "tours",
-  "creative",
-];
+const trustProofDetails = [
+  "See the live client project in our Work.",
+  "Local planning, design and direct communication.",
+  "Follow the path from first chat to launch.",
+  "Included after handover on website packages.",
+] as const;
+const trustProofVisualKinds = ["live", "local", "process", "support"] as const;
+
+type TrustProofVisualKind = "live" | "local" | "process" | "support";
+
+function TrustProofVisual({ kind, value }: { kind: TrustProofVisualKind; value: string }) {
+  if (kind === "live") {
+    return (
+      <div className="home-trust-proof-visual" data-proof-visual="live" aria-hidden="true">
+        <span className="home-trust-live-browser">
+          <span className="home-trust-live-toolbar"><i /><i /><i /></span>
+          <span className="home-trust-live-canvas"><i /><i /><i /></span>
+          <span className="home-trust-live-status"><i /> Live</span>
+        </span>
+      </div>
+    );
+  }
+
+  if (kind === "local") {
+    return (
+      <div className="home-trust-proof-visual" data-proof-visual="local" aria-hidden="true">
+        <span className="home-trust-local-signal">
+          <i className="home-trust-local-marker"><i /></i>
+          <span>
+            <strong>{value.split(",")[0]}</strong>
+            <i>Seychelles</i>
+          </span>
+        </span>
+      </div>
+    );
+  }
+
+  if (kind === "process") {
+    const stageCount = Math.min(Number.parseInt(value, 10) || 5, 6);
+    return (
+      <div className="home-trust-proof-visual" data-proof-visual="process" aria-hidden="true">
+        <span className="home-trust-process-nodes">
+          {Array.from({ length: stageCount }, (_, index) => index + 1).map((step) => <i key={step}>{step}</i>)}
+        </span>
+      </div>
+    );
+  }
+
+  return (
+    <div className="home-trust-proof-visual" data-proof-visual="support" aria-hidden="true">
+      <span className="home-trust-support-calendar">
+        <i className="home-trust-support-rings" />
+        <strong>{value.replace(/\s*days$/i, "")}</strong>
+        <span>days</span>
+      </span>
+    </div>
+  );
+}
 
 function replayTouchIconEffect(event: ReactPointerEvent<HTMLDivElement>) {
   if (event.pointerType !== "touch") return;
@@ -151,8 +197,9 @@ export default function Home({
 }: HomeProps = {}) {
   const pageRef = useRef<HTMLDivElement>(null);
   const firstMotionSectionRef = useRef<HTMLElement>(null);
-  const [scrollTriggerPlugin, setScrollTriggerPlugin] = useState<HomeScrollTrigger | null>(null);
+  const [scrollTriggerPlugin, setScrollTriggerPlugin] = useState<ScrollTriggerPlugin | null>(null);
   const allHomeFaqItems = homeFaqCategories.flatMap((category) => category.items);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const firstMotionSection = firstMotionSectionRef.current;
@@ -165,7 +212,7 @@ export default function Home({
       if (hasStartedLoading) return;
       hasStartedLoading = true;
       observer?.disconnect();
-      void loadHomeScrollTrigger()
+      void loadSharedScrollTrigger()
         .then((plugin) => {
           if (!active) return;
           gsap.registerPlugin(plugin);
@@ -247,56 +294,36 @@ export default function Home({
         );
 
         if (processPath && processItems.length > 1) {
-          const stages = buildHomeProcessFlowStages(processItems.length);
-          const setActiveStep = (activeIndex: number) => {
+          const setFlowProgress = (progress: number) => {
+            const activeIndex = getHomeProcessActiveIndex(
+              progress,
+              processItems.length,
+            );
             processItems.forEach((item, index) => {
-              item.classList.toggle("is-flow-active", index === activeIndex);
+              item.classList.toggle("is-flow-active", index <= activeIndex);
             });
           };
-          const flowTimeline = gsap.timeline({ repeat: -1, repeatDelay: 0.55 });
 
-          flowTimeline
-            .set(processPath, { scaleY: 0, opacity: 1 })
-            .call(() => setActiveStep(0))
-            .to({}, { duration: 0.65 });
+          gsap.set(processPath, { scaleY: 0, opacity: 1 });
+          setFlowProgress(0);
 
-          stages.slice(1).forEach((stage) => {
-            flowTimeline
-              .to(processPath, {
-                scaleY: stage.progress,
-                duration: 0.72,
-                ease: "power1.inOut",
-              })
-              .call(() => setActiveStep(stage.index))
-              .to({}, { duration: 0.62 });
-          });
-
-          flowTimeline
-            .to(processPath, { opacity: 0.18, duration: 0.28, ease: "power1.out" })
-            .call(() => setActiveStep(-1))
-            .set(processPath, { scaleY: 0 })
-            .to(processPath, { opacity: 1, duration: 0.22 })
-            .to({}, { duration: 0.35 })
-            .pause(0);
-
-          const resetFlow = () => {
-            flowTimeline.pause(0);
-            gsap.set(processPath, { scaleY: 0, opacity: 1 });
-            setActiveStep(-1);
-          };
-          const processTrigger = scrollTriggerPlugin.create({
-            trigger: ".home-process-flow-wrap",
-            start: "top 92%",
-            end: "bottom 8%",
-            onEnter: () => flowTimeline.restart(),
-            onEnterBack: () => flowTimeline.restart(),
-            onLeave: resetFlow,
-            onLeaveBack: resetFlow,
+          const flowTween = gsap.to(processPath, {
+            scaleY: 1,
+            opacity: 1,
+            ease: "none",
+            scrollTrigger: {
+              trigger: ".home-process-flow-wrap",
+              start: "top 82%",
+              end: "bottom 60%",
+              scrub: true,
+              onUpdate: (self) => setFlowProgress(self.progress),
+              onLeaveBack: () => setFlowProgress(-1),
+            },
           });
 
           return () => {
-            processTrigger.kill();
-            flowTimeline.kill();
+            flowTween.scrollTrigger?.kill();
+            flowTween.kill();
             processItems.forEach((item) => item.classList.remove("is-flow-active"));
           };
         }
@@ -345,7 +372,7 @@ export default function Home({
         gsap.set(".home-process-flow-path", { scaleY: 1, opacity: 1 });
         gsap.utils
           .toArray<HTMLElement>(".home-process-step")
-          .forEach((item) => item.classList.remove("is-flow-active"));
+          .forEach((item) => item.classList.add("is-flow-active"));
       });
 
       return () => mm.revert();
@@ -394,7 +421,8 @@ export default function Home({
   return (
     <div
       ref={pageRef}
-      className="bg-bg text-text"
+      className="site-atmosphere home-neutral-prototype bg-bg text-text"
+      onPointerMove={updateSiteAtmospherePointer}
       onPointerUpCapture={replayTouchIconEffect}
     >
       <Seo
@@ -440,38 +468,44 @@ export default function Home({
         }}
       />
 
-      <section className="trust-ribbon section-reveal border-b border-white/10" aria-label="What you can verify">
-        <div className="container-wide grid sm:grid-cols-2 lg:grid-cols-4">
+      <section className="trust-ribbon home-trust-section section-reveal border-b border-white/10" aria-labelledby="home-trust-title">
+        <div className="home-trust-shell container-wide">
+          <header className="home-trust-intro reveal-heading">
+            <p className="home-trust-eyebrow">What you can verify</p>
+            <h2 id="home-trust-title">Clear proof, before a sales call.</h2>
+            <p>See live work, know who you are working with and follow the route from first chat through after-launch support.</p>
+          </header>
+          <div className="home-trust-grid">
           {homeProofPoints.map((item, index) => {
-            const row = (
+            const proof = (
               <>
-                <span className="font-mono text-[0.65rem] tracking-[0.14em] text-cyan-100">0{index + 1}</span>
-                <span className="flex flex-col">
-                  <span className="text-[0.66rem] font-semibold uppercase tracking-[0.12em] text-white/55">{item.label}</span>
-                  <span className="text-sm font-semibold text-white/90">{item.value}</span>
+                <TrustProofVisual kind={trustProofVisualKinds[index] ?? "support"} value={item.value} />
+                <span className="home-trust-proof-copy">
+                  <span className="home-trust-proof-label">{item.label}</span>
+                  <strong className="home-trust-proof-value">{item.value}</strong>
+                  <span className="home-trust-proof-detail">{trustProofDetails[index]}</span>
                 </span>
               </>
             );
-            const rowClassName =
-              "reveal-item flex min-h-20 items-center gap-4 border-b border-white/10 py-5 text-white sm:border-r sm:px-5 lg:border-b-0 lg:px-6 first:pl-0 last:border-r-0 last:pr-0";
             if (item.href) {
               return (
                 <ProjectLink
                   key={item.label}
                   url={item.href}
                   onClick={() => trackCta("proof_rail_drake_seaside")}
-                  className={`${rowClassName} focus-ring transition-colors duration-200 hover:text-cyan-100`}
+                  className="home-trust-proof focus-ring"
                 >
-                  {row}
+                  {proof}
                 </ProjectLink>
               );
             }
             return (
-              <div key={item.label} className={rowClassName}>
-                {row}
+              <div key={item.label} className="home-trust-proof">
+                {proof}
               </div>
             );
           })}
+          </div>
         </div>
       </section>
 
@@ -482,12 +516,11 @@ export default function Home({
         <div className="container-standard relative">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-8">
             <header className="reveal-heading lg:col-span-5">
-              <p className="section-eyebrow">When your website feels behind</p>
-              <h2 className="mt-5 text-balance text-[clamp(2.4rem,4.2vw,4.5rem)] font-bold leading-[1.03] tracking-[-0.04em]">
+              <h2 className="text-balance text-[clamp(2.4rem,4.2vw,4.5rem)] font-bold leading-[1.03] tracking-[-0.04em]">
                 Bring your website <span className="text-gradient-deep">up to date.</span>
               </h2>
-              <p className="mt-6 max-w-lg text-pretty text-base leading-relaxed text-text-muted sm:text-lg">
-                If your current site feels dated, hard to use on mobile or no longer matches the business, we can help you work out what to change.
+              <p className="mt-5 max-w-lg text-pretty text-base leading-relaxed text-text-muted sm:text-lg">
+                If your site feels dated or hard to use on mobile, we will help you work out what to change.
               </p>
               <Link
                 to="/what-you-need"
@@ -500,41 +533,16 @@ export default function Home({
 
             <div className="grid gap-4 lg:col-span-6 lg:col-start-7">
               {buyerFits.map((item) => (
-                <article key={item.number} className="reveal-item group grid gap-4 rounded-2xl border border-border bg-white/70 p-5 shadow-[0_12px_40px_rgba(15,61,68,0.07)] backdrop-blur-sm transition-[border-color,box-shadow,transform] duration-300 hover:-translate-y-1 hover:border-cyan-600/25 hover:shadow-[0_18px_46px_rgba(15,61,68,0.12)] sm:grid-cols-[3.5rem_1fr] sm:gap-6 sm:p-6">
+                <article key={item.title} className="reveal-item group grid gap-4 rounded-2xl border border-border bg-white/70 p-5 shadow-[0_12px_40px_rgba(15,61,68,0.07)] backdrop-blur-sm transition-[border-color,box-shadow,transform] duration-300 hover:-translate-y-1 hover:border-cyan-600/25 hover:shadow-[0_18px_46px_rgba(15,61,68,0.12)] sm:grid-cols-[3.5rem_1fr] sm:gap-6 sm:p-6">
                   <div className="reactive-icon flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-[#d7f7f5] to-[#cbe9f5] text-[#0c6973] shadow-inner" aria-hidden="true">
                     <InteractiveSvgIcon kind={item.icon} effect={item.effect} className="h-7 w-7" />
                   </div>
                   <div>
-                    <span className="font-mono text-[0.66rem] tracking-[0.14em] text-accent-strong">{item.number}</span>
                     <h3 className="mt-2 text-balance text-xl font-semibold tracking-[-0.02em] text-text sm:text-2xl">{item.title}</h3>
                     <p className="mt-3 text-pretty text-sm leading-relaxed text-text-muted sm:text-base">{item.body}</p>
                   </div>
                 </article>
               ))}
-            </div>
-          </div>
-
-          <div className="sector-trust-band reveal-item mt-16">
-            <p className="sr-only">Businesses we design for</p>
-            <div className="sector-marquee" role="region" aria-label="Businesses we design for">
-              <div className="sector-marquee-track">
-                {[false, true].map((duplicate) => (
-                  <ul key={duplicate ? "duplicate" : "primary"} className="sector-marquee-group" aria-hidden={duplicate || undefined}>
-                    <li className="sector-marquee-label">
-                      <span className="sector-marquee-signal" aria-hidden="true" />
-                      Businesses we design for
-                    </li>
-                    {businessFacts.business.industries.map((industry, index) => (
-                      <li key={`${duplicate ? "duplicate-" : ""}${industry}`} className="sector-marquee-item">
-                        <span className="sector-marquee-icon" aria-hidden="true">
-                          <SectorStoryMark kind={sectorKinds[index]} className="h-9 w-12" />
-                        </span>
-                        <span>{industry}</span>
-                      </li>
-                    ))}
-                  </ul>
-                ))}
-              </div>
             </div>
           </div>
         </div>
@@ -544,90 +552,53 @@ export default function Home({
         <div className="ambient-blob absolute -left-36 top-1/3 h-96 w-96 rounded-full bg-cyan-600/10 blur-[110px]" aria-hidden="true" />
         <SectionArt tone="dark" side="left" />
         <div className="container-wide relative">
-          <header className="reveal-heading grid gap-5 lg:grid-cols-12">
-            <div className="lg:col-span-7">
-              <p className="section-eyebrow">Selected work</p>
-              <h2 className="mt-5 text-balance text-[clamp(2.4rem,4.2vw,4.5rem)] font-semibold leading-[1.03] tracking-[-0.04em]">
-                Work you can <span className="text-gradient-tropical">explore.</span>
-              </h2>
-            </div>
-            <p className="max-w-lg text-pretty text-base leading-relaxed text-text-muted lg:col-span-4 lg:col-start-9 lg:self-end">
+          <header className="reveal-heading max-w-2xl">
+            <ScrollRevealText
+              as="h2"
+              text="Work you can explore."
+              className="text-balance text-[clamp(2.4rem,4.2vw,4.5rem)] font-semibold leading-[1.03] tracking-[-0.04em]"
+            />
+            <p className="mt-5 max-w-lg text-pretty text-base leading-relaxed text-text-muted sm:text-lg">
               Each project is marked as live client work, a concept or a demonstration.
             </p>
           </header>
 
-          <article
-            className="work-reveal-card group mt-12 grid overflow-hidden rounded-[1.4rem] border border-border bg-bg-panel shadow-[0_24px_70px_rgba(0,0,0,0.26)] lg:grid-cols-12"
-            data-reveal-side="left"
-          >
-            <div className="relative min-h-[320px] lg:col-span-7 lg:min-h-[520px]">
-              <picture className="absolute inset-0 block h-full w-full">
-                <source srcSet={workItems[0].imageAvifSrcSet} sizes={workItems[0].imageSizes} type="image/avif" />
-                <source srcSet={workItems[0].imageSrcSet} sizes={workItems[0].imageSizes} type="image/webp" />
-                <img
-                  src={workItems[0].image}
-                  alt={`${workItems[0].title} website preview`}
-                  width="800"
-                  height="600"
-                  loading="lazy"
-                  decoding="async"
-                  className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.025]"
-                />
-              </picture>
-              <div className="absolute inset-0 bg-gradient-to-t from-bg/80 via-transparent to-transparent" aria-hidden="true" />
-            </div>
-            <div className="flex flex-col justify-between p-7 sm:p-9 lg:col-span-5 lg:p-12">
-              <div>
-                <p className="font-mono text-[0.68rem] uppercase tracking-[0.16em] text-accent">{workItems[0].status}</p>
-                <h3 className="mt-5 text-balance text-3xl font-semibold tracking-[-0.035em] text-text sm:text-4xl">{workItems[0].title}</h3>
-                <p className="mt-5 text-pretty leading-relaxed text-text-muted">{workItems[0].outcome}</p>
-              </div>
-              <ProjectLink
-                url={workItems[0].url}
-                onClick={() => trackCta("selected_work_drake_seaside")}
-                className="focus-ring group mt-10 inline-flex min-h-11 items-center gap-2 rounded-lg text-sm font-bold text-accent"
-              >
-                Visit the live website
-                <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
-              </ProjectLink>
-            </div>
-          </article>
-
-          <div className="mt-5 grid gap-5 md:grid-cols-2">
-            {workItems.slice(1, 3).map((project, index) => (
-              <article
-                key={project.id}
-                className="work-reveal-card group grid gap-6 rounded-[1.1rem] border border-border bg-bg-panel p-6 transition-[border-color,transform,box-shadow] duration-300 hover:-translate-y-1 hover:border-border-strong hover:shadow-[0_18px_42px_rgba(0,0,0,0.22)] sm:grid-cols-[9rem_1fr] sm:items-center"
-                data-reveal-side={index % 2 === 0 ? "right" : "left"}
-              >
-                <picture className="block">
-                  <source srcSet={project.imageAvifSrcSet} sizes={project.imageSizes} type="image/avif" />
-                  <source srcSet={project.imageSrcSet} sizes={project.imageSizes} type="image/webp" />
-                  <img
-                    src={project.image}
-                    alt={`${project.title} website preview`}
-                    width="360"
-                    height="270"
-                    loading="eager"
-                    decoding="async"
-                    className="aspect-[4/3] w-full rounded-xl object-cover transition-transform duration-500 group-hover:scale-[1.025]"
-                    style={{ objectPosition: project.imagePosition }}
-                  />
-                </picture>
-                <div>
-                  <p className="font-mono text-[0.65rem] uppercase tracking-[0.14em] text-accent-2">{project.status}</p>
-                  <h3 className="mt-3 text-xl font-semibold tracking-[-0.02em]">{project.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-text-muted">{project.outcome}</p>
-                  <ProjectLink
-                    url={project.url}
-                    onClick={() => trackCta(`selected_work_${project.id}`)}
-                    className="focus-ring mt-4 inline-flex min-h-11 items-center gap-2 rounded-lg text-sm font-bold text-accent"
-                  >
-                    Explore project <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                  </ProjectLink>
+          <div className="reveal-item mt-12">
+            <WorkMarquee label="Selected work">
+              {workItems.slice(0, 3).map((project) => (
+                <div key={project.id} className="home-work-card card flex h-full flex-col overflow-hidden p-0">
+                  <picture className="home-work-card-media block">
+                    <source srcSet={project.imageAvifSrcSet} sizes={project.imageSizes} type="image/avif" />
+                    <source srcSet={project.imageSrcSet} sizes={project.imageSizes} type="image/webp" />
+                    <img
+                      src={project.image}
+                      alt={`${project.title} website preview`}
+                      width="560"
+                      height="360"
+                      loading="lazy"
+                      decoding="async"
+                      className="aspect-[4/3] w-full object-cover"
+                      style={{ objectPosition: project.imagePosition }}
+                    />
+                  </picture>
+                  <div className="home-work-card-copy flex flex-1 flex-col justify-between p-7">
+                    <div>
+                      <p className="font-mono text-[0.65rem] uppercase tracking-[0.14em] text-accent-2">{project.status}</p>
+                      <h3 className="mt-3 text-xl font-semibold tracking-[-0.02em] text-text">{project.title}</h3>
+                      <p className="home-work-card-outcome mt-2 text-sm leading-relaxed text-text-muted">{project.outcome}</p>
+                    </div>
+                    <ProjectLink
+                      url={project.url}
+                      onClick={() => trackCta(`selected_work_${project.id}`)}
+                      className="home-work-card-link focus-ring mt-6 inline-flex min-h-11 items-center gap-2 rounded-lg text-sm font-bold text-accent"
+                    >
+                      {project.url?.startsWith("http") ? "Visit the live website" : "Explore project"}
+                      <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                    </ProjectLink>
+                  </div>
                 </div>
-              </article>
-            ))}
+              ))}
+            </WorkMarquee>
           </div>
         </div>
       </section>
@@ -635,38 +606,46 @@ export default function Home({
       <section className="section-light section-reveal section-space relative overflow-hidden border-b border-border" id="services">
         <div className="ambient-blob absolute -right-24 bottom-0 h-96 w-96 rounded-full bg-blue-200/40 blur-[120px]" aria-hidden="true" />
         <SectionArt tone="light" side="right" />
-        <div className="container-standard relative grid gap-12 lg:grid-cols-12 lg:gap-8">
-          <header className="reveal-heading lg:col-span-5">
-            <p className="section-eyebrow">Services</p>
-            <h2 className="mt-5 text-balance text-[clamp(2.4rem,4.2vw,4.5rem)] font-bold leading-[1.03] tracking-[-0.04em]">
+        <div className="container-wide relative">
+          <header className="reveal-heading max-w-2xl">
+            <h2 className="text-balance text-[clamp(2.4rem,4.2vw,4.5rem)] font-bold leading-[1.03] tracking-[-0.04em]">
               How we can <span className="text-gradient-deep">help.</span>
             </h2>
-            <p className="mt-6 max-w-lg text-pretty text-base leading-relaxed text-text-muted sm:text-lg">
-              Build something new, refresh what you have or add the search and contact tools your customers need.
+            <p className="mt-5 max-w-lg text-pretty text-base leading-relaxed text-text-muted sm:text-lg">
+              Build something new, refresh what you have or improve search and measurement.
             </p>
-            <Link to="/services" className="reactive-cta focus-ring group mt-8 inline-flex min-h-12 items-center gap-2 rounded-full bg-gradient-to-r from-[#0e6671] to-[#128f89] px-6 py-3 text-sm font-bold text-white shadow-[0_12px_32px_rgba(14,102,113,0.2)] transition-[transform,box-shadow,filter] duration-300 hover:-translate-y-1 hover:brightness-105 hover:shadow-[0_18px_38px_rgba(14,102,113,0.28)]">
+            <Link to="/services" className="reactive-cta focus-ring group mt-6 inline-flex min-h-12 items-center gap-2 rounded-full bg-gradient-to-r from-[#0e6671] to-[#128f89] px-6 py-3 text-sm font-bold text-white shadow-[0_12px_32px_rgba(14,102,113,0.2)] transition-[transform,box-shadow,filter] duration-300 hover:-translate-y-1 hover:brightness-105 hover:shadow-[0_18px_38px_rgba(14,102,113,0.28)]">
               Explore all services
               <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1.5" aria-hidden="true" />
             </Link>
           </header>
 
-          <div className="grid gap-3 lg:col-span-6 lg:col-start-7">
-            {services.map((service, index) => {
-              const icon = serviceIcons[index] || "browser";
-              const effect = serviceEffects[index] || "trace";
-              return (
-                <article key={service.title} className="reveal-item group grid gap-4 rounded-2xl border border-transparent p-4 transition-[background-color,border-color,transform] duration-300 hover:translate-x-1 hover:border-cyan-700/15 hover:bg-white/70 sm:grid-cols-[3.5rem_1fr] sm:gap-5 sm:p-5">
-                  <div className="reactive-icon flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-[#d2f4f1] to-[#dbeafa] text-[#0a6872] shadow-[0_8px_24px_rgba(20,106,117,0.12)]" aria-hidden="true">
-                    <InteractiveSvgIcon kind={icon} effect={effect} className="h-6 w-6" />
+          <div className="reveal-item mt-12">
+            <FloatingCarousel
+              label="Services"
+              className="services-floating-carousel"
+              tabs={["Website", "SEO", "Analytics"]}
+            >
+              {servicePages.hub.families.map((family) => (
+                <div key={family.id} className="service-carousel-item">
+                  <ServiceFamilyVisual kind={family.id} />
+                  <div className="service-carousel-copy">
+                    <p className="service-carousel-fit">{family.fit}</p>
+                    <h3 className="service-carousel-title">{family.title}</h3>
+                    <p className="service-carousel-body">{family.body}</p>
+                    <p className="service-carousel-pricing">{family.pricing}</p>
+                    <Link
+                      to={family.path}
+                      onClick={() => trackCta(`service_family_${family.id}`)}
+                      className="focus-ring mt-4 inline-flex min-h-11 items-center gap-2 rounded-lg text-sm font-bold text-accent"
+                    >
+                      {family.cta}
+                      <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                    </Link>
                   </div>
-                  <div>
-                    <span className="font-mono text-[0.66rem] text-accent-strong">0{index + 1}</span>
-                    <h3 className="mt-1 text-xl font-semibold tracking-[-0.02em] text-text">{service.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-text-muted sm:text-base">{service.description}</p>
-                  </div>
-                </article>
-              );
-            })}
+                </div>
+              ))}
+            </FloatingCarousel>
           </div>
         </div>
       </section>
@@ -677,12 +656,11 @@ export default function Home({
         <SectionArt tone="lagoon" side="left" />
         <div className="container-standard relative">
           <header className="reveal-heading max-w-3xl">
-            <p className="section-eyebrow">How it works</p>
-            <h2 className="mt-5 text-balance text-[clamp(2.4rem,4.2vw,4.5rem)] font-bold leading-[1.03] tracking-[-0.04em]">
+            <h2 className="text-balance text-[clamp(2.4rem,4.2vw,4.5rem)] font-bold leading-[1.03] tracking-[-0.04em]">
               From first chat <span className="text-gradient-lagoon">to launch.</span>
             </h2>
-            <p className="mt-6 max-w-2xl text-pretty text-base leading-relaxed text-text-muted sm:text-lg">
-              You will know what we are working on, what we need from you and what comes next.
+            <p className="mt-5 max-w-2xl text-pretty text-base leading-relaxed text-text-muted sm:text-lg">
+              You will always know what happens next.
             </p>
           </header>
 
@@ -713,31 +691,30 @@ export default function Home({
         </div>
       </section>
 
-      <section className="pricing-section section-space section-reveal relative overflow-hidden border-b border-white/10" id="packages">
+      <section className="pricing-section home-pricing-compact section-space section-reveal relative overflow-hidden border-b border-white/10" id="packages">
         <div className="ambient-blob absolute -left-32 top-20 h-[30rem] w-[30rem] rounded-full bg-cyan-500/14 blur-[120px]" aria-hidden="true" />
         <div className="ambient-blob absolute -right-32 bottom-0 h-[34rem] w-[34rem] rounded-full bg-emerald-400/12 blur-[130px]" aria-hidden="true" />
         <div className="container-wide relative">
           <header className="reveal-heading grid gap-5 lg:grid-cols-12">
             <div className="lg:col-span-7">
-              <p className="section-eyebrow">Starting prices</p>
-              <h2 className="mt-5 text-balance text-[clamp(2.4rem,4.2vw,4.5rem)] font-bold leading-[1.03] tracking-[-0.04em]">
+              <h2 className="text-balance text-[clamp(2.4rem,4.2vw,4.5rem)] font-bold leading-[1.03] tracking-[-0.04em]">
                 Find the right <span className="text-gradient-tropical">starting point.</span>
               </h2>
             </div>
             <p className="max-w-lg text-pretty leading-relaxed text-text-muted lg:col-span-4 lg:col-start-9 lg:self-end">
-              These are starting prices. Your proposal will confirm the work, final cost and anything not included.
+              Starting prices. Your proposal confirms the final cost.
             </p>
           </header>
 
-          <div className="pricing-grid mt-16 grid items-stretch gap-6 lg:grid-cols-[0.9fr_1.18fr_0.9fr] lg:gap-5 lg:pt-10">
+          <div className="pricing-grid mt-16 grid items-stretch gap-6 lg:mt-10 lg:grid-cols-[0.9fr_1.18fr_0.9fr] lg:gap-5 lg:pt-6">
             {packages.map((pkg, index) => {
               const featured = pkg.id === "starter";
               return (
                 <article
                   key={pkg.id}
-                  className={`package-card reveal-item group relative flex flex-col overflow-hidden rounded-[1.75rem] border p-7 transition-[border-color,box-shadow,transform,filter] duration-500 sm:p-9 ${
+                  className={`home-pricing-card package-card reveal-item group relative flex flex-col overflow-hidden rounded-[1.75rem] border p-7 transition-[border-color,box-shadow,transform,filter] duration-500 sm:p-9 lg:p-6 ${
                     featured
-                      ? "featured-package border-cyan-100/55 bg-[#102b31] shadow-[0_38px_120px_rgba(39,208,218,0.32)] sm:p-10"
+                      ? "home-pricing-card-featured featured-package border-cyan-100/55 bg-[#102b31] shadow-[0_38px_120px_rgba(39,208,218,0.32)] sm:p-9 lg:p-7"
                       : "package-card-muted border-white/9 bg-white/[0.035] shadow-[0_16px_48px_rgba(0,0,0,0.22)] hover:-translate-y-2 hover:border-cyan-200/25 hover:bg-white/[0.06]"
                   }`}
                 >
@@ -755,13 +732,13 @@ export default function Home({
                     </>
                   ) : null}
 
-                  <div className={`relative z-10 flex items-center justify-between gap-4 ${featured ? "pt-9" : "pt-2"}`}>
+                  <div className={`relative z-10 flex items-center justify-between gap-4 ${featured ? "pt-9 lg:pt-7" : "pt-2"}`}>
                     <p className={`font-mono uppercase tracking-[0.16em] ${featured ? "text-[0.76rem] font-bold text-cyan-50" : "text-[0.68rem] text-accent"}`}>{pkg.title}</p>
                     <span className="font-mono text-[0.65rem] text-text-dim">0{index + 1}</span>
                   </div>
-                  <p className={`relative z-10 mt-7 font-display font-bold tabular-nums tracking-[-0.045em] ${featured ? "text-gradient-tropical text-[2.75rem] sm:text-[3.4rem]" : "text-3xl text-text sm:text-[2rem]"}`}>{pkg.price}</p>
-                  <p className={`relative z-10 mt-4 text-sm leading-relaxed text-text-muted sm:text-base ${featured ? "min-h-[4.75rem] text-white/78" : "min-h-[4.5rem]"}`}>{pkg.description}</p>
-                  <ul className={`relative z-10 mt-7 grid border-t pt-6 ${featured ? "gap-4 border-cyan-100/20" : "gap-3.5 border-white/10"}`}>
+                  <p className={`relative z-10 mt-7 font-display font-bold tabular-nums tracking-[-0.045em] lg:mt-5 ${featured ? "text-gradient-tropical text-[2.75rem] sm:text-[3.4rem] lg:text-[3rem]" : "text-3xl text-text sm:text-[2rem]"}`}>{pkg.price}</p>
+                  <p className={`relative z-10 mt-4 text-sm leading-relaxed text-text-muted sm:text-base lg:min-h-[3.75rem] lg:text-sm ${featured ? "min-h-[4.75rem] text-white/78" : "min-h-[4.5rem]"}`}>{pkg.description}</p>
+                  <ul className={`relative z-10 mt-7 grid border-t pt-6 lg:mt-5 lg:pt-4 ${featured ? "gap-4 border-cyan-100/20 lg:gap-3" : "gap-3.5 border-white/10 lg:gap-3"}`}>
                     {pkg.includes.slice(0, featured ? 6 : 4).map((item) => (
                       <li key={item.title} className="pricing-feature flex gap-3 text-sm text-text-muted">
                         <span className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full ${featured ? "featured-check bg-cyan-100/18 text-cyan-50 shadow-[0_0_16px_rgba(108,230,232,0.18)]" : "bg-white/7 text-accent"}`} aria-hidden="true">
@@ -774,7 +751,7 @@ export default function Home({
                   <Link
                     to={`/contact?package=${pkg.id}`}
                     onClick={() => trackCta(`package_${pkg.id}`)}
-                    className={`reactive-cta focus-ring group/cta relative z-10 mt-8 inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-center font-black uppercase tracking-[0.14em] transition-[transform,box-shadow,background-color,border-color,filter] duration-300 hover:-translate-y-1 active:translate-y-0 active:scale-[0.98] ${
+                    className={`reactive-cta focus-ring group/cta relative z-10 mt-8 inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-center font-black uppercase tracking-[0.14em] transition-[transform,box-shadow,background-color,border-color,filter] duration-300 hover:-translate-y-1 active:translate-y-0 active:scale-[0.98] lg:mt-6 ${
                       featured
                         ? "featured-package-cta min-h-14 bg-gradient-to-r from-[#8cf1ed] via-[#5edbe5] to-[#78dfa9] text-sm text-[#061518] shadow-[0_16px_44px_rgba(72,210,214,0.36)] hover:brightness-105 hover:shadow-[0_22px_58px_rgba(72,210,214,0.5)]"
                         : "min-h-12 border border-white/14 bg-white/[0.055] text-xs text-white hover:border-cyan-200/35 hover:bg-white/[0.09]"
@@ -802,8 +779,7 @@ export default function Home({
         <SectionArt tone="light" side="right" />
         <div className="container-standard relative">
           <header className="reveal-heading mx-auto max-w-3xl text-center">
-            <p className="section-eyebrow">Before you decide</p>
-            <h2 className="mt-5 text-balance text-[clamp(2.4rem,4.2vw,4.5rem)] font-bold leading-[1.03] tracking-[-0.04em]">
+            <h2 className="text-balance text-[clamp(2.4rem,4.2vw,4.5rem)] font-bold leading-[1.03] tracking-[-0.04em]">
               A few <span className="text-gradient-deep">useful answers.</span>
             </h2>
           </header>
@@ -819,26 +795,30 @@ export default function Home({
         <div className="hero-cinematic-grid absolute inset-0 opacity-35" aria-hidden="true" />
         <div className="container-standard relative grid gap-10 lg:grid-cols-12 lg:items-end">
           <div className="reveal-heading lg:col-span-8">
-            <p className="section-eyebrow">Start a conversation</p>
-            <h2 className="mt-5 text-balance text-[clamp(2.6rem,5vw,5.5rem)] font-bold leading-[0.98] tracking-[-0.045em]">
-              Tell us <span className="text-gradient-tropical">what you need.</span>
-            </h2>
-            <p className="mt-6 max-w-2xl text-pretty text-base leading-relaxed text-text-muted sm:text-lg">
-              Share a little about your business, your current website and when you would like to start. We aim to reply {siteConfig.responseTime}.
+            <ScrollRevealText
+              as="h2"
+              text="Tell us what you need."
+              className="text-balance text-[clamp(2.6rem,5vw,5.5rem)] font-bold leading-[0.98] tracking-[-0.045em]"
+            />
+            <p className="mt-5 max-w-2xl text-pretty text-base leading-relaxed text-text-muted sm:text-lg">
+              We aim to reply {siteConfig.responseTime}.
             </p>
           </div>
           <div className="reveal-item flex flex-col gap-3 sm:flex-row lg:col-span-4 lg:flex-col lg:items-stretch">
-            <Link
-              to="/contact"
-              onClick={() => trackCta("final_book_call")}
-              className="reactive-cta focus-ring group relative inline-flex min-h-14 items-center justify-center overflow-hidden rounded-full bg-gradient-to-r from-[#70e5e7] to-[#69d9ae] px-7 py-4 text-center text-[0.72rem] font-black uppercase tracking-[0.18em] text-[#071518] shadow-[0_16px_42px_rgba(72,210,214,0.26)] transition-[transform,box-shadow,filter] duration-300 hover:-translate-y-1 hover:brightness-105 hover:shadow-[0_22px_52px_rgba(72,210,214,0.38)] active:translate-y-0 active:scale-[0.98]"
+            <MagneticButton
+              type="button"
+              onClick={() => {
+                trackCta("final_book_call");
+                navigate("/contact");
+              }}
+              className="reactive-cta focus-ring group relative inline-flex min-h-14 items-center justify-center overflow-hidden rounded-full bg-gradient-to-r from-[#70e5e7] to-[#69d9ae] px-7 py-4 text-center text-[0.72rem] font-black uppercase tracking-[0.18em] text-[#071518] shadow-[0_16px_42px_rgba(72,210,214,0.26)] transition-[transform,box-shadow,filter] duration-300 hover:brightness-105 hover:shadow-[0_22px_52px_rgba(72,210,214,0.38)] active:scale-[0.98]"
             >
               <span className="cta-shine" aria-hidden="true" />
               <span className="relative z-10 flex items-center gap-2">
                 {siteConfig.primaryCtaLabel}
                 <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1.5" aria-hidden="true" />
               </span>
-            </Link>
+            </MagneticButton>
             <a
               href={siteConfig.whatsappUrl}
               target="_blank"

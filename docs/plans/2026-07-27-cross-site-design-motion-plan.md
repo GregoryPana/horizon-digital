@@ -1,5 +1,7 @@
 # Horizon Digital Cross-Site Design and Motion Implementation Plan
 
+**Status:** Superseded as an execution plan; retained as route-audit evidence. Use `DESIGN.md` §11 and `docs/plans/2026-08-03-cross-route-redesign-system-and-rollout-plan.md` for current work. Sector-page tasks and older homepage/motion details below must not be executed.
+
 > **For Hermes:** Use subagent-driven-development skill to implement this plan task-by-task.
 
 **Goal:** Bring every public Horizon Digital route into the saved Tropical Precision design system while using SVG and scroll motion only where it explains a real flow, decision, proof relationship or reading progression.
@@ -25,9 +27,6 @@ Browser evidence gathered at `1366×768` for:
 - `/insights`
 - `/about`
 - `/contact`
-- `/tourism-website-design-seychelles`
-- `/f-and-b-website-design-seychelles`
-- `/professional-services-website-design-seychelles`
 
 All returned HTTP 200, had no horizontal overflow and produced no console errors. Source and browser review found significant variation in section length, motion density and hero composition.
 

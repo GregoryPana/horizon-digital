@@ -140,12 +140,11 @@ export default function ServicePillarPage({
 
               {section.items && (
                 <div className="service-editorial-list">
-                  {section.items.map((item, itemIndex) => (
+                  {section.items.map((item) => (
                     <article
                       className="service-editorial-item reveal-item"
                       key={item.title}
                     >
-                      <span>{String(itemIndex + 1).padStart(2, "0")}</span>
                       <div>
                         <h3>{item.title}</h3>
                         <p>{item.body}</p>

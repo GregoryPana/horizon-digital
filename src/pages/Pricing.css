@@ -1,6 +1,6 @@
 /* Pricing decision page — compact website-package comparison. */
 .pricing-page {
-  --pricing-shell: min(100% - 40px, 1200px);
+  --pricing-shell: var(--shell-legacy);
   --pricing-tabs-height: 4rem;
   --pricing-card-padding: 1.375rem;
   --pricing-card-gap: 1.5rem;
@@ -323,10 +323,9 @@
 .pricing-addons-section .pricing-eyebrow,
 .pricing-addons-section .pricing-decision-number { color: #087f8b; }
 .pricing-addon-list { border-top: 1px solid var(--border); }
-.pricing-addon-row { display: grid; grid-template-columns: 1.5rem minmax(0, 1fr); gap: 0.5rem 0.75rem; align-items: center; padding-block: 1rem; border-bottom: 1px solid var(--border); }
-.pricing-addon-row > span { color: var(--accent); font-size: var(--text-meta); font-weight: 700; font-variant-numeric: tabular-nums; }
+.pricing-addon-row { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0.5rem 0.75rem; align-items: center; padding-block: 1rem; border-bottom: 1px solid var(--border); }
 .pricing-addon-row h3 { margin: 0; color: var(--text); font-size: var(--text-body); font-weight: 600; }
-.pricing-addon-row p { grid-column: 2; margin: 0; color: var(--accent-strong); font-size: var(--text-body); font-weight: 700; font-variant-numeric: tabular-nums; }
+.pricing-addon-row p { margin: 0; color: var(--accent-strong); font-size: var(--text-body); font-weight: 700; font-variant-numeric: tabular-nums; }
 
 .pricing-hosting-section { background: #0a1b21; }
 .pricing-hosting-grid,
@@ -393,7 +392,7 @@
   .pricing-page { --pricing-shell: min(100% - 48px, 1200px); }
   .pricing-services-bridge,
   .pricing-custom-scope { grid-template-columns: minmax(0, 1fr) auto; padding: 1.25rem; }
-  .pricing-addon-row { grid-template-columns: 1.5rem minmax(0, 1fr) auto; }
+  .pricing-addon-row { grid-template-columns: minmax(0, 1fr) auto; }
   .pricing-addon-row p { grid-column: auto; text-align: right; }
   .pricing-support-columns { grid-template-columns: 1fr 1fr; }
 }
