@@ -1,4 +1,5 @@
 import { useGSAP } from "@gsap/react";
+import { MotionConfig } from "framer-motion";
 import gsap from "gsap";
 import {
   applySectionReveals,
@@ -419,12 +420,13 @@ export default function Home({
     trackEvent("cta_click", { cta_name: name, page_path: window.location.pathname });
 
   return (
-    <div
-      ref={pageRef}
-      className="site-atmosphere home-neutral-prototype bg-bg text-text"
-      onPointerMove={updateSiteAtmospherePointer}
-      onPointerUpCapture={replayTouchIconEffect}
-    >
+    <MotionConfig reducedMotion="user">
+      <div
+        ref={pageRef}
+        className="site-atmosphere home-neutral-prototype bg-bg text-text"
+        onPointerMove={updateSiteAtmospherePointer}
+        onPointerUpCapture={replayTouchIconEffect}
+      >
       <Seo
         title={seoTitle}
         description={seoDescription}
@@ -832,6 +834,7 @@ export default function Home({
           </div>
         </div>
       </section>
-    </div>
+      </div>
+    </MotionConfig>
   );
 }

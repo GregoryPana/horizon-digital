@@ -111,7 +111,6 @@ export function BuildExtractionHero({
         }
 
         gsap.set(words, {
-          autoAlpha: 0,
           y: 26,
           rotationX: 12,
           filter: "blur(14px)",
@@ -121,7 +120,6 @@ export function BuildExtractionHero({
 
         return gsap.timeline({ defaults: { ease: "power3.out" } })
           .to(words, {
-            autoAlpha: 1,
             y: 0,
             rotationX: 0,
             filter: "blur(0px)",
@@ -149,19 +147,18 @@ export function BuildExtractionHero({
           : 0;
 
         gsap.set(letters, {
-          autoAlpha: 0,
           y: 10,
           filter: "blur(10px)",
           transformOrigin: "50% 70%",
         });
-        // autoAlpha keeps concealed controls out of keyboard navigation.
+        // Only supporting copy/actions are concealed. The headline remains
+        // painted immediately so enhancement motion cannot delay text LCP.
         gsap.set(supportingElements, { autoAlpha: 0, y: 14 });
         setPhase("headline-reveal");
 
         return gsap.timeline({ defaults: { ease: "power2.out" } })
           .call(() => setPhase("headline-reveal"), [], headlineStage.start)
           .to(letters, {
-            autoAlpha: 1,
             y: 0,
             filter: "blur(0px)",
             duration: letterDuration,
@@ -229,7 +226,7 @@ export function BuildExtractionHero({
       <div className="hbe-preview-shell">
         <div className="hbe-copy-column">
           {kicker ? <p className="hbe-kicker">{kicker}</p> : null}
-          <h1 id={titleId} className="hbe-title">
+          <h1 id={titleId} className="hbe-title" data-critical-render="immediate">
             <span className="motion-headline-accessible">{headline}</span>
             <span className="hbe-title-visual" aria-hidden="true">
               <HeadlineLetters headline={headline} />

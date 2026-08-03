@@ -253,14 +253,14 @@ export function WorkMarquee({
 
   const renderItems = (duplicate = false) =>
     items.map((child, index) => (
-      <article
+      <div
         className="work-marquee-item"
         role={duplicate ? undefined : "listitem"}
         aria-label={duplicate ? undefined : `${index + 1} of ${items.length}`}
         key={`${duplicate ? "duplicate" : "primary"}-${index}`}
       >
         {child}
-      </article>
+      </div>
     ));
 
   return (

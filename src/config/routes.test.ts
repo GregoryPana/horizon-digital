@@ -1,5 +1,5 @@
-import { readFileSync } from "node:fs";
 import { describe, it, expect } from "vitest";
+import { clientRouteLoaders, type StaticClientRoutePath } from "./clientRouteLoaders";
 import {
   STATIC_ROUTES,
   REDIRECTS,
@@ -20,14 +20,12 @@ import {
 } from "./routes";
 import { insightArticlesMeta } from "../data/insightsMeta";
 
-const appSource = readFileSync(new URL("../App.tsx", import.meta.url), "utf8");
 const servicePillars = [
-  ["/web-design-seychelles", WEB_DESIGN_SEO, 'import("./pages/WebDesignSeychelles")'],
-  ["/seo-services-seychelles", SEO_SERVICES_SEO, 'import("./pages/SeoServicesSeychelles")'],
+  ["/web-design-seychelles", WEB_DESIGN_SEO],
+  ["/seo-services-seychelles", SEO_SERVICES_SEO],
   [
     "/analytics-and-digital-presence-seychelles",
     ANALYTICS_PRESENCE_SEO,
-    'import("./pages/AnalyticsDigitalPresenceSeychelles")',
   ],
 ] as const;
 
@@ -101,9 +99,8 @@ describe("canonical and redirect logic", () => {
   });
 
   it("registers every pillar in the lazy client route map", () => {
-    for (const [path, , lazyImport] of servicePillars) {
-      expect(appSource).toContain(lazyImport);
-      expect(appSource).toContain(`"${path}":`);
+    for (const [path] of servicePillars) {
+      expect(clientRouteLoaders.static[path as StaticClientRoutePath]).toBeTypeOf("function");
     }
   });
 

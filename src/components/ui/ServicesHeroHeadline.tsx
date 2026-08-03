@@ -43,10 +43,9 @@ export function ServicesHeroHeadline({ title }: { title: string }) {
 
       mm.add("(prefers-reduced-motion: reduce), (max-width: 767px)", setFinal);
       mm.add("(prefers-reduced-motion: no-preference) and (min-width: 768px)", () => {
-        gsap.set(words, { autoAlpha: 0, y: 20, filter: "blur(11px)" });
+        gsap.set(words, { y: 20, filter: "blur(11px)" });
         reveal = gsap.timeline({ defaults: { ease: "power3.out" } })
           .to(words, {
-            autoAlpha: 1,
             y: 0,
             filter: "blur(0px)",
             duration: 0.72,
@@ -74,7 +73,12 @@ export function ServicesHeroHeadline({ title }: { title: string }) {
   );
 
   return (
-    <h1 ref={rootRef} id={titleId} className="service-hero-title">
+    <h1
+      ref={rootRef}
+      id={titleId}
+      className="service-hero-title"
+      data-critical-render="immediate"
+    >
       <span className="motion-headline-accessible">{title}</span>
       <span className="service-hero-title-visual" aria-hidden="true">
         <SegmentedServiceTitle title={title} />

@@ -178,7 +178,7 @@ export function FloatingCarousel({
       >
         <div className="floating-carousel-track" role="list">
           {children.map((child, index) => (
-            <article
+            <div
               className="floating-carousel-panel"
               data-active={index === activeIndex}
               data-position={index === activeIndex ? "active" : index < activeIndex ? "previous" : "next"}
@@ -189,7 +189,7 @@ export function FloatingCarousel({
               key={index}
             >
               {child}
-            </article>
+            </div>
           ))}
         </div>
       </div>

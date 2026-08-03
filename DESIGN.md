@@ -336,7 +336,7 @@ Rules:
 - CSS transitions for immediate hover, focus, press, icon and accordion states.
 - GSAP is the primary system for hero choreography, scroll reveals, ambient movement and pricing entrances.
 - The desktop homepage headline separates two concerns: one finite word-level blur/rise entrance and a reusable character-level cyan-white shine timeline. The shine advances across non-space glyphs, returns every glyph to stable white, pauses for a quiet repeat interval and loops without replaying the entrance. It must not import a second motion system, duplicate the H1, use random motion or hide settled glyphs behind `background-clip: text`.
-- Animate transform and opacity first.
+- Animate transform and opacity first for non-critical enhancement content. A route H1, lead paragraph, article title or likely LCP image must be painted immediately; never begin critical content at `opacity: 0`, `visibility: hidden` or `autoAlpha: 0`.
 - No `transition: all`.
 - No layout-property animation for decorative effects.
 - Ambient loops are permitted for blurred light fields and the featured-card shine when slow, compositor-friendly and visually controlled.
@@ -359,7 +359,7 @@ Use these recipes as the Phase 4 reference. Copy the **logic and constraints**, 
 |---|---|---|---|---|
 | Hero browser build | Desktop and portrait-format website delivery are demonstrated together | `BuildExtractionHero.tsx`, `HeroBuildExtractionStory.tsx`, explicit `WebsiteBuildStory` landscape/portrait modes, `heroBuildExtraction.css` | Two desktop/tablet-only views with distinct choreography; actual mobile breakpoint has no SVG | Completed landscape live state and portrait mobile/contact-ready state; phone-free mobile copy/actions visible |
 | Desktop word resolve + character shine | Establish the proposition, then provide a restrained recurring signal | One semantic H1 with a screen-reader phrase and `aria-hidden` visual segments; word wrappers resolve once; `characterShine.ts` animates individual non-space paint spans | `14px → 0` blur and `26px → 0` lift once; then a `#aef8f2`/7px cyan pulse advances by character, restores stable white and repeats after a quiet delay | Plain evenly white H1 immediately; no entrance, shine loop, filter or delayed device state |
-| Mobile letter blur reveal | Establish the same proposition with a simpler phone-first sequence | The same H1's word-safe visual letter spans plus one accessible phrase; no second heading; GSAP `autoAlpha`, `filter`, `y` | `12px → 0`, `10px → 0`, all letters across approximately 2.8s, `power2.out`; no SVG or recurring desktop shine on mobile | Plain readable H1 immediately; no filter or transform |
+| Mobile letter blur reveal | Establish the same proposition with a simpler phone-first sequence | The same H1's word-safe visual letter spans plus one accessible phrase; no second heading; the headline remains painted while GSAP enhances `filter` and `y` | `10px → 0` blur/lift choreography across approximately 2.8s, `power2.out`; no headline opacity gate, SVG or recurring desktop shine on mobile | Plain readable H1 immediately; no filter or transform |
 | Services decision route | Help visitors choose among the three public service families | `ServicesHeroHeadline.tsx`, shared `characterShine.ts`, and decorative `ServicesDecisionStory.tsx`; governed visible copy remains normal HTML | Website Design, SEO and Analytics routes reveal and converge on the right start; route-specific loop does not copy the homepage build sequence | Stable complete decision diagram on desktop; diagram omitted on mobile; headline immediately readable |
 | Shared atmosphere | Connect dark homepage chapters | Fixed pseudo-element on `.home-neutral-prototype`; root pointer variables; no remote texture | Slow drift and fine-pointer position response | One static meaningful light state |
 | Native Work marquee | Make verified work discoverable without carousel controls | Real overflow and `scrollLeft`; one semantic plus two inert visual groups | 120px/s; cold-start/lifecycle re-arm; direct input pauses 650ms then resumes | No autoplay; primary group remains manually scrollable; duplicates hidden |
@@ -372,6 +372,7 @@ Use these recipes as the Phase 4 reference. Copy the **logic and constraints**, 
 Implementation rules:
 
 1. Start from a meaningful authored final state. JavaScript may prepare an entrance only after mount; it must never be required for readability.
+   Critical route content marked `data-critical-render="immediate"` must remain painted throughout enhancement setup. Motion may resolve transform, filter, colour or paint, but cannot gate its first render with opacity or visibility.
 2. Scope GSAP with `useGSAP({ scope })` or an equivalent context and revert it on cleanup. Kill delayed calls, observers and timelines when a breakpoint or route unmounts.
 3. Use `gsap.matchMedia()` for width, pointer and reduced-motion branches. Do not merely set animation duration to `0.01ms` while leaving JS loops alive.
 4. Keep one autonomous focal narrative per viewport. When the homepage hero runs, below-fold effects remain one-shot or scroll-linked. Route pages normally receive one subject-specific representational effect, not the homepage build story.
@@ -501,6 +502,12 @@ Every redesigned route must provide:
 - credible content in semantic HTML; decorative visuals never carry the only copy, price, proof or instruction;
 - a meaningful completed reduced-motion state with zero autonomous animation;
 - no horizontal overflow, hidden focus targets or CTA collision at the acceptance widths.
+- an immediately painted H1 and lead/LCP candidate; critical copy never waits for a reveal timeline, route effect or analytics bootstrap;
+- a registered route loader that preloads only the requested route before React renders, keeps route-only code/CSS outside the shared entry wherever practical, handles preload rejection, and provides a user-controlled retry state if a route chunk cannot load;
+- evidence that route splitting has not created a mobile critical-render waterfall. A client route loader is a JavaScript ownership and CPU contract, not a substitute for route-aware first-response delivery. If the initial SPA shell still delays the route chunk or critical text, solve that centrally with route-aware module discovery, prerendering, SSG or SSR before treating later route redesigns as performance-complete;
+- responsive route media with intrinsic dimensions, truthful `srcset`/`sizes`, and priority reserved only for the actual above-fold LCP resource;
+- analytics helpers that queue governed page/contact events before the vendor script loads, while the vendor script itself waits for interaction or an idle fallback. Events that may precede same-tab outbound navigation must persist without PII, restore idempotently, and clear only after the vendor script has successfully loaded;
+- readable text in every motion state. Progress, inactive and carousel states may quiet decorative icons or media, but must not reduce entire semantic content containers below WCAG contrast.
 
 Standard route heroes normally fit within the first `min(860px, 100svh)` rather than forcing homepage-scale `100svh`. The primary decision and action should be visible without scrolling at ordinary laptop and phone heights. A route may use a shorter editorial opening when a form, article or project image must appear immediately.
 
@@ -594,7 +601,8 @@ Budgets for all non-home routes:
 - direct hover/focus feedback uses CSS; choreographed explanatory motion uses scoped GSAP;
 - coarse-pointer layouts receive purposeful tap feedback or quiet contextual autoplay only where meaning would otherwise be lost;
 - offscreen, inactive-tab and inactive-carousel stories have no running timeline;
-- reduced motion immediately exposes authored final states and kills timelines, delayed calls, pointer tracking, autoplay and ambient drift—not merely their duration.
+- reduced motion immediately exposes authored final states and kills timelines, delayed calls, pointer tracking, autoplay and ambient drift—not merely their duration;
+- any route that loads Framer Motion owns a route-local `<MotionConfig reducedMotion="user">` boundary. Do not place Framer configuration in `App.tsx` or another shared-entry module merely for convenience.
 
 ### 11.7 Hero archetypes
 
@@ -700,4 +708,6 @@ Before any redesigned route family is presented as complete:
 - Keyboard focus and mobile menu interactions are exercised.
 - Reduced-motion rendering is checked.
 - Public facts and CTA destinations remain canonical.
+- Critical-render, route-loader and analytics scheduling contract tests pass; no redesigned route page is statically imported into the shared application entry.
+- Production build output is compared with the previous verified build so shared-entry growth, route chunks and CSS ownership are explicit rather than accidental.
 - No push or deployment occurs without separate authorization.

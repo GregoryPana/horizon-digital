@@ -223,9 +223,17 @@ async function fetchPortfolioResponse(upstreamFetch: typeof fetch): Promise<Resp
         throw new Error(`Sanity upstream responded with ${upstreamResponse.status}`);
       }
       const payload = await readBoundedJson(upstreamResponse);
-      return mapPortfolioResponse(
-        payload && typeof payload === "object" ? (payload as Record<string, unknown>).result : undefined,
-      );
+      const rawResult = payload && typeof payload === "object"
+        ? (payload as Record<string, unknown>).result
+        : undefined;
+      if (!Array.isArray(rawResult)) {
+        throw new Error("Sanity upstream returned an invalid result contract");
+      }
+      const projects = mapPortfolioResponse(rawResult);
+      if (rawResult.length > 0 && projects.length === 0) {
+        throw new Error("Sanity upstream returned no valid portfolio projects");
+      }
+      return projects;
     })();
     const timeoutWork = new Promise<never>((_resolve, reject) => {
       timeout = setTimeout(() => {
@@ -234,7 +242,6 @@ async function fetchPortfolioResponse(upstreamFetch: typeof fetch): Promise<Resp
       }, PORTFOLIO_UPSTREAM_TIMEOUT_MS);
     });
     const projects = await Promise.race([upstreamWork, timeoutWork]);
-    if (projects.length === 0) throw new Error("Sanity upstream returned no valid portfolio projects");
     return new Response(JSON.stringify({ projects }), {
       status: 200,
       headers: { ...JSON_HEADERS, "cache-control": PORTFOLIO_CACHE_CONTROL },
@@ -368,6 +375,11 @@ export function createWorker(
     const canonical = new URL(canonicalPath, canonicalOrigin).toString();
     const staticRoute = findStaticRoute(url.pathname);
     const dynamicMatch = !staticRoute ? matchDynamicRoute(url.pathname) : undefined;
+
+    if (!staticRoute && !dynamicMatch) {
+      const assetResponse = await env.ASSETS.fetch(request);
+      if (assetResponse.status !== 404) return assetResponse;
+    }
 
     let status: 200 | 404 = 404;
     let seo: RouteSeo = NOT_FOUND_SEO;

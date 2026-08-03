@@ -39,14 +39,18 @@ const servicePillars = [
 function makeEnv(): WorkerEnv {
   return {
     ASSETS: {
-      fetch: async () =>
-        new Response(SHELL_HTML, {
+      fetch: async (request) => {
+        if (new URL(request.url).pathname !== "/") {
+          return new Response("Not Found", { status: 404 });
+        }
+        return new Response(SHELL_HTML, {
           headers: {
             "content-type": "text/html",
             "cache-control": "public, max-age=60",
             etag: '"stale-shell-etag"',
           },
-        }),
+        });
+      },
     },
   };
 }
@@ -259,6 +263,68 @@ describe("worker fetch handler", () => {
     const response = await worker.fetch(new Request("https://horizondigitalsey.com/assets/index-abc123.js"), env);
     expect(passthroughCalled).toBe(true);
     expect(response.status).toBe(200);
+  });
+
+  it("preserves the HTML redirect and serves its extensionless standalone asset", async () => {
+    const requestedPaths: string[] = [];
+    const env: WorkerEnv = {
+      ASSETS: {
+        fetch: async (request) => {
+          const path = new URL(request.url).pathname;
+          requestedPaths.push(path);
+          if (path === "/forma-studio.html") {
+            return Response.redirect("https://horizondigitalsey.com/forma-studio", 307);
+          }
+          if (path === "/forma-studio") {
+            return new Response("standalone showcase", {
+              status: 200,
+              headers: { "content-type": "text/html" },
+            });
+          }
+          return new Response("Not Found", { status: 404 });
+        },
+      },
+    };
+
+    const artifactRedirect = await worker.fetch(
+      new Request("https://horizondigitalsey.com/forma-studio.html"),
+      env,
+    );
+    const artifact = await worker.fetch(
+      new Request("https://horizondigitalsey.com/forma-studio"),
+      env,
+    );
+
+    expect(artifactRedirect.status).toBe(307);
+    expect(artifactRedirect.headers.get("location")).toBe("https://horizondigitalsey.com/forma-studio");
+    expect(await artifact.text()).toBe("standalone showcase");
+    expect(requestedPaths).toEqual(["/forma-studio.html", "/forma-studio"]);
+  });
+
+  it("keeps registered SPA routes ahead of matching extensionless assets", async () => {
+    const requestedPaths: string[] = [];
+    const env: WorkerEnv = {
+      ASSETS: {
+        fetch: async (request) => {
+          const path = new URL(request.url).pathname;
+          requestedPaths.push(path);
+          return path === "/"
+            ? new Response(SHELL_HTML, { headers: { "content-type": "text/html" } })
+            : new Response("shadow asset", { headers: { "content-type": "text/html" } });
+        },
+      },
+    };
+
+    const response = await worker.fetch(
+      new Request("https://horizondigitalsey.com/pricing"),
+      env,
+    );
+
+    expect(response.status).toBe(200);
+    const body = await response.text();
+    expect(body).toContain('rel="canonical" href="https://horizondigitalsey.com/pricing"');
+    expect(body).not.toContain("shadow asset");
+    expect(requestedPaths).toEqual(["/"]);
   });
 
   it("serves the sitemap from the registry excluding noindex showcase pages", async () => {
@@ -573,13 +639,52 @@ describe("/api/portfolio", () => {
     expect(body).toEqual({ projects: [] });
   });
 
-  it("never exposes a secret or token header to the browser", async () => {
-    const upstreamFetch = vi.fn(async () => new Response(JSON.stringify({ result: [] }), { status: 200 })) as unknown as typeof fetch;
+  it("treats a valid empty Sanity result as a cacheable success", async () => {
+    const upstreamFetch = vi.fn(async () =>
+      new Response(JSON.stringify({ result: [] }), { status: 200 }),
+    ) as unknown as typeof fetch;
+    const cache = makeCache();
+    const cachedWorker = createWorker(upstreamFetch, cache);
+    const tasks: Promise<unknown>[] = [];
+
+    const response = await cachedWorker.fetch(
+      new Request("https://horizondigitalsey.com/api/portfolio"),
+      makeEnv(),
+      { waitUntil: (promise) => tasks.push(promise) },
+    );
+
+    expect(response.status).toBe(200);
+    expect(response.headers.get("cache-control")).toBe(PORTFOLIO_CACHE_CONTROL);
+    expect(await response.json()).toEqual({ projects: [] });
+    expect(response.headers.get("authorization")).toBeNull();
+    expect(response.headers.has("set-cookie")).toBe(false);
+    await Promise.all(tasks);
+
+    const cached = await cachedWorker.fetch(
+      new Request("https://horizondigitalsey.com/api/portfolio"),
+      makeEnv(),
+    );
+    expect(cached.status).toBe(200);
+    expect(await cached.json()).toEqual({ projects: [] });
+    expect(upstreamFetch).toHaveBeenCalledTimes(1);
+  });
+
+  it.each([
+    ["missing result", {}],
+    ["non-array result", { result: {} }],
+    ["non-empty wholly invalid result", { result: [{ id: "invalid" }] }],
+  ])("keeps malformed Sanity contract %s on controlled failure", async (_label, payload) => {
+    const upstreamFetch = vi.fn(async () =>
+      new Response(JSON.stringify(payload), { status: 200 }),
+    ) as unknown as typeof fetch;
+
     const response = await createWorker(upstreamFetch).fetch(
       new Request("https://horizondigitalsey.com/api/portfolio"),
       makeEnv(),
     );
-    expect(response.headers.get("authorization")).toBeNull();
-    expect(response.headers.has("set-cookie")).toBe(false);
+
+    expect(response.status).toBe(502);
+    expect(response.headers.get("cache-control")).toBe(PORTFOLIO_FAILURE_CACHE_CONTROL);
+    expect(await response.json()).toEqual({ projects: [] });
   });
 });

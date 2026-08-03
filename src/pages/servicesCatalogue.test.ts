@@ -4,6 +4,7 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { HelmetProvider } from "react-helmet-async";
 import { StaticRouter } from "react-router-dom/server";
 import { describe, expect, it } from "vitest";
+import { clientRouteLoaders } from "../config/clientRouteLoaders";
 import {
   existingWebsiteFlow,
   serviceCatalogue,
@@ -12,7 +13,6 @@ import {
 } from "../data/site";
 import Services from "./Services";
 
-const appSource = readFileSync(new URL("../App.tsx", import.meta.url), "utf8");
 const homeSource = readFileSync(new URL("./Home.tsx", import.meta.url), "utf8");
 const servicesSource = readFileSync(
   new URL("./Services.tsx", import.meta.url),
@@ -169,8 +169,7 @@ describe("Services rendered route", () => {
   });
 
   it("is composed as a real lazy-loaded route", () => {
-    expect(appSource).toContain('import("./pages/Services")');
-    expect(appSource).toContain('"/services": <Services />');
+    expect(clientRouteLoaders.static["/services"]).toBeTypeOf("function");
   });
 
   it("renders the approved selector, three pillar destinations, flow and visible principles", () => {
