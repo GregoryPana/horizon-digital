@@ -202,6 +202,20 @@ describe("worker fetch handler", () => {
     expect(response.headers.get("location")).toBe("http://127.0.0.1:8787/pricing");
   });
 
+  it("preserves campaign parameters through the short restaurant redirect", async () => {
+    const response = await worker.fetch(
+      new Request(
+        "https://horizondigitalsey.com/restaurant-concept?utm_source=instagram&utm_medium=social&utm_campaign=restaurant_outreach_cycle02&utm_content=ig_carousel_restaurant_website_essentials",
+      ),
+      makeEnv(),
+    );
+
+    expect(response.status).toBe(301);
+    expect(response.headers.get("location")).toBe(
+      "https://horizondigitalsey.com/showcase/restaurant-website-concept?utm_source=instagram&utm_medium=social&utm_campaign=restaurant_outreach_cycle02&utm_content=ig_carousel_restaurant_website_essentials",
+    );
+  });
+
   it("permanently normalizes trailing slashes", async () => {
     const response = await worker.fetch(new Request("https://horizondigitalsey.com/pricing/"), makeEnv());
     expect(response.status).toBe(301);
@@ -686,5 +700,297 @@ describe("/api/portfolio", () => {
     expect(response.status).toBe(502);
     expect(response.headers.get("cache-control")).toBe(PORTFOLIO_FAILURE_CACHE_CONTROL);
     expect(await response.json()).toEqual({ projects: [] });
+  });
+});
+
+describe("/api/enquiry", () => {
+  const validPayload = () => ({
+    businessName: "Island Studio", name: "Ava Smith", email: "ava.visitor@example.com",
+    industry: "Hospitality", website: "https://example.com", packageInterest: "starter",
+    timeline: "1-2-months", message: "We need a clearer booking journey.", honeypot: "",
+    turnstileToken: "valid-turnstile-token",
+  });
+
+  const configuredEnv = (): WorkerEnv => ({
+    ...makeEnv(),
+    RESEND_API_KEY: "resend-secret-value",
+    TURNSTILE_SECRET_KEY: "turnstile-secret-value",
+    ENQUIRY_FROM_EMAIL: "Horizon Enquiries <enquiries@horizondigitalsey.com>",
+    ENQUIRY_TO_EMAIL: "owner@horizondigitalsey.com",
+  });
+
+  function enquiryRequest(
+    body = JSON.stringify(validPayload()), init: RequestInit = {},
+    url = "https://horizondigitalsey.com/api/enquiry",
+  ): Request {
+    return new Request(url, {
+      method: "POST",
+      body,
+      ...init,
+      headers: {
+        "content-type": "application/json",
+        origin: "https://horizondigitalsey.com",
+        ...init.headers,
+      },
+    });
+  }
+
+  function successfulUpstream() {
+    const order: string[] = [];
+    const upstreamFetch = vi.fn(async (input: RequestInfo | URL) => {
+      if (String(input).includes("turnstile")) {
+        order.push("turnstile");
+        return new Response(JSON.stringify({ success: true, hostname: "horizondigitalsey.com" }));
+      }
+      order.push("resend");
+      return new Response(JSON.stringify({ id: "email-id" }), { status: 200 });
+    }) as unknown as typeof fetch;
+    return { upstreamFetch, order };
+  }
+
+  async function expectSafeJson(response: Response, status: number) {
+    expect(response.status).toBe(status);
+    expect(response.headers.get("content-type")).toBe("application/json; charset=utf-8");
+    expect(response.headers.get("cache-control")).toBe("no-store");
+    expect(response.headers.get("access-control-allow-origin")).toBeNull();
+    const text = await response.text();
+    for (const forbidden of [
+      "ava.visitor@example.com", "Island Studio", "resend-secret-value",
+      "turnstile-secret-value", "RESEND_API_KEY", "TURNSTILE_SECRET_KEY", "provider exploded",
+    ]) expect(text).not.toContain(forbidden);
+    return JSON.parse(text) as unknown;
+  }
+
+  it("returns 405 with Allow POST and no-store before delivery", async () => {
+    const upstreamFetch = vi.fn() as unknown as typeof fetch;
+    const response = await createWorker(upstreamFetch).fetch(
+      new Request("https://horizondigitalsey.com/api/enquiry", { method: "GET" }), configuredEnv(),
+    );
+    await expectSafeJson(response, 405);
+    expect(response.headers.get("allow")).toBe("POST");
+    expect(upstreamFetch).not.toHaveBeenCalled();
+  });
+
+  it("returns 415 for non-JSON content types", async () => {
+    const upstreamFetch = vi.fn() as unknown as typeof fetch;
+    for (const contentType of ["text/plain", "application/x-www-form-urlencoded", ""]) {
+      const response = await createWorker(upstreamFetch).fetch(enquiryRequest("hello", {
+        headers: { "content-type": contentType, origin: "https://horizondigitalsey.com" },
+      }), configuredEnv());
+      await expectSafeJson(response, 415);
+    }
+    expect(upstreamFetch).not.toHaveBeenCalled();
+  });
+
+  it("returns 413 for a declared body larger than 12 KiB", async () => {
+    const upstreamFetch = vi.fn() as unknown as typeof fetch;
+    const response = await createWorker(upstreamFetch).fetch(enquiryRequest("{}", { headers: {
+      "content-type": "application/json", origin: "https://horizondigitalsey.com",
+      "content-length": String(12 * 1024 + 1),
+    } }), configuredEnv());
+    await expectSafeJson(response, 413);
+    expect(upstreamFetch).not.toHaveBeenCalled();
+  });
+
+  it("returns 413 while streaming a body larger than 12 KiB", async () => {
+    const upstreamFetch = vi.fn() as unknown as typeof fetch;
+    const stream = new ReadableStream<Uint8Array>({ start(controller) {
+      controller.enqueue(new TextEncoder().encode(`{"message":"${"x".repeat(12 * 1024)}"`));
+      controller.enqueue(new TextEncoder().encode("}"));
+      controller.close();
+    } });
+    const request = new Request("https://horizondigitalsey.com/api/enquiry", {
+      method: "POST", body: stream, duplex: "half",
+      headers: { "content-type": "application/json", origin: "https://horizondigitalsey.com" },
+    } as RequestInit & { duplex: "half" });
+    await expectSafeJson(await createWorker(upstreamFetch).fetch(request, configuredEnv()), 413);
+    expect(upstreamFetch).not.toHaveBeenCalled();
+  });
+
+  it("returns controlled 400 for malformed JSON or invalid closed-schema bodies", async () => {
+    const upstreamFetch = vi.fn() as unknown as typeof fetch;
+    for (const body of ["{", JSON.stringify({ ...validPayload(), unknown: "field" })]) {
+      await expectSafeJson(
+        await createWorker(upstreamFetch).fetch(enquiryRequest(body), configuredEnv()), 400,
+      );
+    }
+    expect(upstreamFetch).not.toHaveBeenCalled();
+  });
+
+  it("accepts the exact production Origin", async () => {
+    const { upstreamFetch } = successfulUpstream();
+    const response = await createWorker(upstreamFetch).fetch(enquiryRequest(), configuredEnv());
+    expect(await expectSafeJson(response, 201)).toEqual({ ok: true });
+    expect(upstreamFetch).toHaveBeenCalledTimes(2);
+  });
+
+  it("rejects localhost Origins on the production endpoint without an upstream call", async () => {
+    const upstreamFetch = vi.fn() as unknown as typeof fetch;
+    for (const origin of [
+      "http://localhost:8787", "http://127.0.0.1:8787", "http://[::1]:8787",
+    ]) {
+      const response = await createWorker(upstreamFetch).fetch(enquiryRequest(undefined, {
+        headers: { "content-type": "application/json", origin },
+      }), configuredEnv());
+      await expectSafeJson(response, 403);
+    }
+    expect(upstreamFetch).not.toHaveBeenCalled();
+  });
+
+  it("accepts each exact approved Wrangler endpoint and Origin pair", async () => {
+    for (const { origin, hostname } of [
+      { origin: "http://localhost:8787", hostname: "localhost" },
+      { origin: "http://127.0.0.1:8787", hostname: "127.0.0.1" },
+      { origin: "http://[::1]:8787", hostname: "[::1]" },
+    ]) {
+      const upstreamFetch = vi.fn(async (input: RequestInfo | URL) => (
+        String(input).includes("turnstile")
+          ? new Response(JSON.stringify({ success: true, hostname }))
+          : new Response("{}", { status: 201 })
+      )) as unknown as typeof fetch;
+      const response = await createWorker(upstreamFetch).fetch(enquiryRequest(undefined, {
+        headers: { "content-type": "application/json", origin },
+      }, `${origin}/api/enquiry`), configuredEnv());
+      expect(await expectSafeJson(response, 201)).toEqual({ ok: true });
+      expect(upstreamFetch).toHaveBeenCalledTimes(2);
+    }
+  });
+
+  it("rejects local aliases, different ports, and non-Wrangler local schemes", async () => {
+    const upstreamFetch = vi.fn() as unknown as typeof fetch;
+    for (const { endpoint, origin } of [
+      { endpoint: "http://localhost:8787", origin: "http://127.0.0.1:8787" },
+      { endpoint: "http://127.0.0.1:8787", origin: "http://[::1]:8787" },
+      { endpoint: "http://[::1]:8787", origin: "http://localhost:8787" },
+      { endpoint: "http://localhost:8787", origin: "http://localhost:5173" },
+      { endpoint: "http://localhost:8787", origin: "http://localhost:4173" },
+      { endpoint: "http://localhost:8787", origin: "https://localhost:8787" },
+    ]) {
+      const response = await createWorker(upstreamFetch).fetch(enquiryRequest(undefined, {
+        headers: { "content-type": "application/json", origin },
+      }, `${endpoint}/api/enquiry`), configuredEnv());
+      await expectSafeJson(response, 403);
+    }
+    expect(upstreamFetch).not.toHaveBeenCalled();
+  });
+
+  it("rejects missing, malformed, and syntactically parseable non-exact Origins", async () => {
+    const upstreamFetch = vi.fn() as unknown as typeof fetch;
+    const missingOriginRequest = new Request("https://horizondigitalsey.com/api/enquiry", {
+      method: "POST",
+      body: JSON.stringify(validPayload()),
+      headers: { "content-type": "application/json" },
+    });
+    await expectSafeJson(
+      await createWorker(upstreamFetch).fetch(missingOriginRequest, configuredEnv()), 403,
+    );
+
+    for (const origin of [
+      "", "null", "not an origin", "https://www.horizondigitalsey.com", "https://evil.example",
+      "https://horizondigitalsey.com/", "https://horizondigitalsey.com/path",
+      "https://horizondigitalsey.com?query=1", "https://horizondigitalsey.com#fragment",
+    ]) {
+      const response = await createWorker(upstreamFetch).fetch(enquiryRequest(undefined, {
+        headers: { "content-type": "application/json", origin },
+      }), configuredEnv());
+      await expectSafeJson(response, 403);
+    }
+    expect(upstreamFetch).not.toHaveBeenCalled();
+  });
+
+  it("returns 503 when any required delivery configuration is absent", async () => {
+    const upstreamFetch = vi.fn() as unknown as typeof fetch;
+    for (const key of ["RESEND_API_KEY", "TURNSTILE_SECRET_KEY", "ENQUIRY_FROM_EMAIL", "ENQUIRY_TO_EMAIL"] as const) {
+      const response = await createWorker(upstreamFetch).fetch(
+        enquiryRequest(), { ...configuredEnv(), [key]: undefined },
+      );
+      await expectSafeJson(response, 503);
+    }
+    expect(upstreamFetch).not.toHaveBeenCalled();
+  });
+
+  it("returns 403 for an invalid Turnstile result or wrong hostname", async () => {
+    for (const verification of [
+      { success: false, "error-codes": ["invalid-input-response"] },
+      { success: true, hostname: "evil.example" },
+    ]) {
+      const upstreamFetch = vi.fn(async () => new Response(JSON.stringify(verification))) as unknown as typeof fetch;
+      await expectSafeJson(
+        await createWorker(upstreamFetch).fetch(enquiryRequest(), configuredEnv()), 403,
+      );
+      expect(upstreamFetch).toHaveBeenCalledTimes(1);
+    }
+  });
+
+  it("keeps Turnstile network, non-2xx, and malformed failures controlled", async () => {
+    const behaviors = [
+      vi.fn(async () => { throw new Error("provider exploded"); }),
+      vi.fn(async () => new Response("provider exploded", { status: 500 })),
+      vi.fn(async () => new Response("not-json", { status: 200 })),
+    ];
+    for (const behavior of behaviors) {
+      await expectSafeJson(
+        await createWorker(behavior as unknown as typeof fetch).fetch(enquiryRequest(), configuredEnv()), 403,
+      );
+      expect(behavior).toHaveBeenCalledTimes(1);
+    }
+  });
+
+  it("verifies Turnstile before delivery and forwards optional connecting IP", async () => {
+    const { upstreamFetch, order } = successfulUpstream();
+    const response = await createWorker(upstreamFetch).fetch(enquiryRequest(undefined, { headers: {
+      "content-type": "application/json", origin: "https://horizondigitalsey.com",
+      "CF-Connecting-IP": "203.0.113.7",
+    } }), configuredEnv());
+    expect(response.status).toBe(201);
+    expect(order).toEqual(["turnstile", "resend"]);
+    expect(JSON.parse(String((upstreamFetch as ReturnType<typeof vi.fn>).mock.calls[0][1]?.body))).toEqual({
+      secret: "turnstile-secret-value", response: "valid-turnstile-token", remoteip: "203.0.113.7",
+    });
+  });
+
+  it("sends plain text through Resend with configured address boundaries", async () => {
+    const { upstreamFetch } = successfulUpstream();
+    const response = await createWorker(upstreamFetch).fetch(enquiryRequest(), configuredEnv());
+    expect(await expectSafeJson(response, 201)).toEqual({ ok: true });
+    const [url, init] = (upstreamFetch as ReturnType<typeof vi.fn>).mock.calls[1];
+    expect(String(url)).toBe("https://api.resend.com/emails");
+    expect(init).toMatchObject({ method: "POST", headers: {
+      authorization: "Bearer resend-secret-value", "content-type": "application/json",
+    } });
+    const delivery = JSON.parse(String(init?.body));
+    expect(delivery).toMatchObject({
+      from: "Horizon Enquiries <enquiries@horizondigitalsey.com>",
+      to: ["owner@horizondigitalsey.com"], reply_to: "ava.visitor@example.com",
+    });
+    expect(delivery.html).toBeUndefined();
+    expect(delivery.text).toContain("Island Studio");
+    expect(JSON.stringify({ from: delivery.from, to: delivery.to })).not.toContain("ava.visitor@example.com");
+  });
+
+  it("returns 502 when Resend returns non-2xx or throws", async () => {
+    for (const delivery of ["non-2xx", "throw"] as const) {
+      const upstreamFetch = vi.fn(async (input: RequestInfo | URL) => {
+        if (String(input).includes("turnstile")) {
+          return new Response(JSON.stringify({ success: true, hostname: "horizondigitalsey.com" }));
+        }
+        if (delivery === "throw") throw new Error("provider exploded");
+        return new Response("provider exploded", { status: 500 });
+      }) as unknown as typeof fetch;
+      await expectSafeJson(
+        await createWorker(upstreamFetch).fetch(enquiryRequest(), configuredEnv()), 502,
+      );
+      expect(upstreamFetch).toHaveBeenCalledTimes(2);
+    }
+  });
+
+  it("leaves retired /api/lead on existing page-route fallthrough", async () => {
+    const upstreamFetch = vi.fn() as unknown as typeof fetch;
+    const response = await createWorker(upstreamFetch).fetch(
+      new Request("https://horizondigitalsey.com/api/lead", { method: "POST" }), configuredEnv(),
+    );
+    expect(response.status).toBe(404);
+    expect(response.headers.get("content-type")).toBe("text/html; charset=utf-8");
+    expect(upstreamFetch).not.toHaveBeenCalled();
   });
 });

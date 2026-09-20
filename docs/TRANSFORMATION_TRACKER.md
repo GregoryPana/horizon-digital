@@ -21,6 +21,35 @@
 | 5 | Lead flow, accessibility, analytics and legal surfaces | Pending | — | — | Start only after Session 4 passes |
 | 6 | Full comparison and release-candidate QA | Pending | — | — | Start only after Session 5 passes |
 | C1 | Cumulative homepage/Services redesign, cross-route authority, repo cleanup and transfer checkpoint | Complete | This consolidation commit | 394 tests, build, knowledge drift, Worker dry-run, reference and diff gates passed | Select the next route from the cross-route plan; do not push/deploy |
+| P1–P4B | Route ownership, mobile comprehension, enquiry/Privacy, consent analytics, pricing/content consistency and restaurant outreach study | Verified locally | — | 513 tests; build with emitted-bundle price scan; Worker dry run; mobile/tablet/desktop browser gates; independent correction re-review passed | Provider/secrets, outreach and production release remain separately gated |
+
+## Integration candidate — 2026-09-19
+
+- Retains the accepted owner-keyed route foundation while excluding the rejected Worker preload experiment.
+- Integrates the previously reviewed mobile-comprehension slice, bounded `/api/enquiry` contract, Turnstile-before-Resend Worker flow, accessible Contact states and `/privacy` route.
+- Adds consent-first GA4: no queue, script or events before affirmative consent; production-only initialization; advertising storage/signals disabled; current page recorded on opt-in; revocation sends denied consent and reloads with analytics disabled; a persistent preference control remains available on all routes including showcases.
+- `generate_lead` occurs only after a server-confirmed `201`; no form fields enter analytics.
+- Repaired malformed Contact `request` query handling by removing a second URI decode.
+- Integrated package/content consistency: no public exact SCR figures or price schema, internal figures retained only in governed authority data, package CTAs use `?package=`, and the server-backed enquiry contract carries package interest rather than a price range.
+- Added a public-price regression guard covering visitor source, the generator and generated knowledge; regenerated all eight governed knowledge files without internal prices. Home package cards now use explicit scope descriptors without repeating the same inclusion.
+- Verification: 498/498 tests, TypeScript/Vite production build, Wrangler dry run, `git diff --check`, Playwright mobile consent/privacy/contact/showcase coverage, and mobile/desktop Pricing → Contact package-preselection/browser-schema checks.
+- Local limitations: no live Turnstile/Resend delivery or GA4 receipt was attempted because provider secrets/configuration and production operations are not authorised. No commit, push or deployment occurred.
+
+## Restaurant outreach concept — 2026-09-20
+
+- Added one bounded `/showcase/restaurant-website-concept` route rather than restoring a retired Food & Beverage service family or altering the homepage/navigation.
+- Clearly classifies the route as a concept showcase, not commissioned client work; uses no real prospect identity, fabricated proof, exact public prices or outcome claims.
+- Demonstrates menu, opening-hours, location and enquiry information; routes Contact through the safe `request` prefill and retains consent-gated analytics for Contact and WhatsApp intent.
+- Registered route ownership, lazy loading, noindex/nofollow metadata, sitemap exclusion, governed portfolio classification and a locally generated preview asset. Corrected Drake Seaside's hero badge from “Website concept” to “Live client project”.
+- Independent review corrections: generated browser-safe business facts now replace internal numeric SCR price values, browser modules no longer import the private authority, every production build scans emitted text assets for exact-price leakage, Takamaka concept rates were removed, the route no longer nests a second `main`, and Contact accepts only the bounded `restaurant-concept` prefill token.
+- Added the short `/restaurant-concept` campaign redirect to the governed noindex showcase. It is excluded from the sitemap and preserves UTM query parameters; the Worker contract and local runtime redirect were verified.
+- Owner-directed photo-led redesign: Island Table now uses licensed restaurant imagery, darker neutral surfaces, restrained Horizon accents, humanized copy and a balanced responsive gallery. Repeated concept badges were replaced by an early original-study label, contextual photo note and concise final classification.
+- Consent integrity remains intact: the floating showcase analytics control was replaced by a normal header-level Privacy & analytics control that opens the same preference panel, including on mobile. The panel now has dialog semantics, focus-on-open, Escape dismissal and focus restoration.
+- Added an internal asset manifest with source URLs, licence authority, truth boundaries, original/derived dimensions and SHA-256 records for all four restaurant photographs.
+- Verification: 513/513 tests, public-facts and eight-file knowledge generation/check, TypeScript/Vite build with emitted-bundle price scan, Wrangler dry run, `git diff --check`, and responsive browser QA with loaded images, no console errors or horizontal overflow. Keyboard browser QA confirmed the preference dialog focuses its first action and returns focus to the invoking control after Escape at 390px and 1440px. Final 390px visual correction check found no blockers.
+- No prospect contact, campaign publication, commit, push or deployment occurred. GA4 read-only reauthorisation remains deferred until Gregory is at the PC.
+- Independent correction review: **PASS**, with no remaining blocking findings.
+- Photo-led redesign correction re-review: **PASS** after provenance and analytics-dialog accessibility fixes.
 
 ## Current consolidation checkpoint — 2026-08-03
 

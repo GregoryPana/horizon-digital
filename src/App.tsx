@@ -1,21 +1,33 @@
-import { Suspense, lazy, type ReactElement } from "react";
+import { Suspense, createElement, lazy, type ComponentType } from "react";
 import { Route, Routes, Navigate, useLocation } from "react-router-dom";
 import Layout from "./components/Layout";
 import AnalyticsListener from "./components/AnalyticsListener";
-import { STATIC_ROUTES, REDIRECTS, DYNAMIC_ROUTES } from "./config/routes";
-import { clientRouteLoaders } from "./config/clientRouteLoaders";
+import {
+  STATIC_ROUTES,
+  REDIRECTS,
+  DYNAMIC_ROUTES,
+  NOT_FOUND_ROUTE_OWNER,
+  type ClientRouteOwner,
+} from "./config/routes";
+import {
+  clientRouteLoaders,
+  type RouteModuleLoader,
+} from "./config/clientRouteLoaders";
 import RouteLoadErrorBoundary from "./components/RouteLoadErrorBoundary";
 
 // React.lazy keeps every production page in its own route chunk. The same
 // loader functions are used by main.tsx to warm only the initial route chunk.
-const componentByPath = Object.fromEntries(
-  Object.entries(clientRouteLoaders.static).map(([path, loader]) => {
-    const Component = lazy(loader);
-    return [path, <Component />];
-  }),
-) as Record<string, ReactElement>;
-const InsightArticle = lazy(clientRouteLoaders.insightArticle);
-const NotFound = lazy(clientRouteLoaders.notFound);
+const ownerLoaderEntries = Object.entries(clientRouteLoaders) as [
+  ClientRouteOwner,
+  RouteModuleLoader,
+][];
+const componentByOwner = ownerLoaderEntries.reduce(
+  (components, [owner, loader]) => {
+    components[owner] = lazy(loader);
+    return components;
+  },
+  {} as Record<ClientRouteOwner, ComponentType>,
+);
 
 // Dev-only headline reveal comparison harness. Never linked from navigation,
 // never part of STATIC_ROUTES/sitemap. import.meta.env.DEV is statically
@@ -61,13 +73,17 @@ export default function App() {
         >
           <Routes>
           {STATIC_ROUTES.map((route) => (
-            <Route key={route.path} path={route.path} element={componentByPath[route.path]} />
+            <Route
+              key={route.owner}
+              path={route.path}
+              element={createElement(componentByOwner[route.owner])}
+            />
           ))}
           {DYNAMIC_ROUTES.map((route) => (
             <Route
-              key={route.basePath}
+              key={route.owner}
               path={`${route.basePath}/:${route.paramName}`}
-              element={<InsightArticle />}
+              element={createElement(componentByOwner[route.owner])}
             />
           ))}
           {REDIRECTS.map((redirect) => (
@@ -82,7 +98,10 @@ export default function App() {
           {HeroBuildExtractionPreview ? (
             <Route path="/dev/hero-build-extraction" element={<HeroBuildExtractionPreview />} />
           ) : null}
-          <Route path="*" element={<NotFound />} />
+          <Route
+            path="*"
+            element={createElement(componentByOwner[NOT_FOUND_ROUTE_OWNER])}
+          />
           </Routes>
         </Suspense>
       </RouteLoadErrorBoundary>

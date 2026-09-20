@@ -4,7 +4,6 @@ import gsap from "gsap";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { cn } from "../../lib/utils";
-import { createCharacterShineTimeline } from "./characterShine";
 import { ElegantDarkPattern } from "./ElegantDarkPattern";
 import { HeroBuildExtractionStory } from "./HeroBuildExtractionStory";
 import { useHeroStoryMount } from "./useHeroStoryMount";
@@ -73,7 +72,6 @@ export function BuildExtractionHero({
   const rootRef = useRef<HTMLElement>(null);
   const mountHeroStories = useHeroStoryMount();
   const titleId = `hbe-title-${useId().replace(/:/g, "")}`;
-  const supportStage = stage("support");
 
   useGSAP(
     () => {
@@ -82,9 +80,7 @@ export function BuildExtractionHero({
 
       const mm = gsap.matchMedia();
       const query = gsap.utils.selector(root);
-      const supportSelector = ".hbe-kicker, .hbe-copy-support, .hbe-actions, .hbe-trust-list";
       let timeline: gsap.core.Timeline | undefined;
-      let shineTimeline: gsap.core.Timeline | undefined;
 
       const setPhase = (phase: HeroBuildExtractionStageId | "final") => {
         root.dataset.hbePhase = phase;
@@ -96,9 +92,6 @@ export function BuildExtractionHero({
         });
         gsap.set(query(".hbe-title-letter"), {
           clearProps: "transform,opacity,visibility,filter,color,text-shadow",
-        });
-        gsap.set(query(supportSelector), {
-          clearProps: "transform,opacity,visibility",
         });
         setPhase("final");
       };
@@ -134,65 +127,41 @@ export function BuildExtractionHero({
 
       const buildMobileTimeline = () => {
         const letters = query<HTMLElement>(".hbe-title-letter");
-        const supportingElements = query<HTMLElement>(supportSelector);
         if (!letters.length) {
           setFinal();
           return undefined;
         }
 
         const headlineStage = stage("headline-reveal");
-        const letterDuration = 0.68;
+        const letterDuration = 0.45;
         const letterStagger = letters.length > 1
           ? (headlineStage.duration - letterDuration) / (letters.length - 1)
           : 0;
 
         gsap.set(letters, {
-          y: 10,
-          filter: "blur(10px)",
+          y: 4,
           transformOrigin: "50% 70%",
         });
-        // Only supporting copy/actions are concealed. The headline remains
-        // painted immediately so enhancement motion cannot delay text LCP.
-        gsap.set(supportingElements, { autoAlpha: 0, y: 14 });
         setPhase("headline-reveal");
 
         return gsap.timeline({ defaults: { ease: "power2.out" } })
           .call(() => setPhase("headline-reveal"), [], headlineStage.start)
           .to(letters, {
             y: 0,
-            filter: "blur(0px)",
             duration: letterDuration,
             stagger: { each: letterStagger },
             ease: "power2.out",
           }, headlineStage.start)
-          .call(() => setPhase("support"), [], supportStage.start)
-          .to(supportingElements, {
-            autoAlpha: 1,
-            y: 0,
-            duration: supportStage.duration,
-            stagger: 0.07,
-            ease: "power3.out",
-          }, supportStage.start)
-          .set(letters, { clearProps: "transform,opacity,visibility,filter" }, HERO_BUILD_EXTRACTION_POLICIES.mobile.totalDuration)
-          .set(supportingElements, { clearProps: "transform,opacity,visibility" }, HERO_BUILD_EXTRACTION_POLICIES.mobile.totalDuration)
+          .set(letters, { clearProps: "transform" }, HERO_BUILD_EXTRACTION_POLICIES.mobile.totalDuration)
           .call(() => setPhase("final"), [], HERO_BUILD_EXTRACTION_POLICIES.mobile.totalDuration);
       };
 
       mm.add("(prefers-reduced-motion: reduce)", setFinal);
       mm.add("(prefers-reduced-motion: no-preference) and (min-width: 768px)", () => {
         timeline = buildDesktopHeadlineTimeline();
-        const shineLetters = query<HTMLElement>(".hbe-title-letter");
-        shineTimeline = createCharacterShineTimeline(shineLetters, {
-          delay: HERO_DESKTOP_HEADLINE_EFFECT.shineDelay,
-          repeatDelay: HERO_DESKTOP_HEADLINE_EFFECT.shineRepeatDelay,
-          stagger: HERO_DESKTOP_HEADLINE_EFFECT.shineStagger,
-          pulseDuration: HERO_DESKTOP_HEADLINE_EFFECT.shineDuration,
-        });
         return () => {
           timeline?.kill();
-          shineTimeline?.kill();
           timeline = undefined;
-          shineTimeline = undefined;
         };
       });
       mm.add("(prefers-reduced-motion: no-preference) and (max-width: 767px)", () => {
@@ -205,7 +174,6 @@ export function BuildExtractionHero({
 
       return () => {
         timeline?.kill();
-        shineTimeline?.kill();
         mm.revert();
       };
     },

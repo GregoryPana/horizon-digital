@@ -16,6 +16,6 @@ Horizon Digital aims to reply within 24 hours. WhatsApp is the quickest direct c
 - What you need the website to help with
 - Your current website, if you have one
 - Your preferred timeline
-- Your approximate budget, if known
+- The package tier that interests you, or whether you need guidance
 
 The first conversation is free and does not commit you to a project.

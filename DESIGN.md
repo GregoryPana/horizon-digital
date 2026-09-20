@@ -2,7 +2,7 @@
 
 **Status:** Cross-route visual authority — homepage and Services reference approved; remaining route redesigns pending owner selection
 **Applies to:** Horizon Digital public website and shared page shell
-**Last reviewed:** 2026-08-03
+**Last reviewed:** 2026-08-05
 
 `DESIGN.md` is the current visual authority. `brand-design-guidelines.md` remains historical brand context; where its palette, fonts, spacing or component rules differ, this file wins. Content and public facts remain governed separately by `docs/CONTENT_AUTHORITY.md`.
 
@@ -185,15 +185,15 @@ Desktop and tablet composition:
 Mobile composition:
 
 - Mobile retains the same semantic H1 and word-safe letter hooks, but mounts no build window or `WebsiteBuildStory`. Its restored pre-SVG order is proposition → support → compact trust cues → CTAs, with no ghost story slot.
-- The headline reveal runs for 2.62s, followed by support at 2.86s. Its maximum blur is 10px rather than 12px. This is a deliberately slight acceleration/reduction, not a new choreography.
-- At heights no greater than 740px, the three compact trust tags are omitted so both CTAs remain inside the viewport. The 320×568 acceptance gate requires both actions to finish above the hero bottom and permits 48px targets only at that extreme; ordinary mobile actions remain 52px.
+- The semantic proposition, subtitle, trust cues and both CTAs are painted and usable from first render. Supporting content remains static while the fully opaque headline settles by approximately 4px from `0.05s` through `0.75s`; the mobile settle is transform-only and has no blur dependency.
+- At heights no greater than 740px, the three trust cues remain displayed but compact their spacing and type so both CTAs remain inside the viewport. The 320×568 acceptance gate requires both actions to finish above the hero bottom and permits 48px targets only at that extreme; ordinary mobile actions remain 52px.
 
 Timing, fallback and motion contract:
 
-- Desktop copy resolves once by word, then a separate character-level cyan-white shine advances in reading order with a quiet repeat interval. The entrance never replays with the shine. `WebsiteBuildStory` runs its representational loops independently. Reduced motion shows the meaningful completed headline and both browser states with zero running animations.
-- Mobile is an ordered **headline reveal → support/actions** sequence. Thirty-five headline letters resolve from `10px` blur during a `2.62s` stage beginning at `0.14s` with `power2.out`; support begins at `2.86s` and settles over `0.76s`.
-- The actual mobile breakpoint has no `WebsiteBuildStory`; supporting copy and actions remain `autoAlpha: 0` only until the accepted support stage and cannot retain keyboard focus while hidden.
-- Default/no-JS authored styles show the completed composition. Reduced motion bypasses the letter blur, displays the completed browser story and exposes support/actions immediately.
+- Desktop copy resolves once by word without a repeating homepage H1 shine. `WebsiteBuildStory` retains the independent dual-device representational build stories. The shared character-shine utility remains available to the Services headline, whose route-specific motion is unchanged. Reduced motion shows the meaningful completed headline and both browser states with zero running animations.
+- Mobile uses one brief, fully opaque transform-only headline settle. Thirty-five headline letters move from approximately `4px` to their authored position during a `0.7s` stage beginning at `0.05s` with `power2.out`; subtitle, trust and actions do not participate in the timeline.
+- The actual mobile breakpoint has no `WebsiteBuildStory`; supporting copy and actions remain visible, focusable and usable throughout enhancement setup.
+- Default/no-JS authored styles show the completed composition. Reduced motion bypasses the headline settle, displays the completed browser story and exposes support/actions immediately.
 - Use transform and opacity for movement; do not animate layout dimensions or coordinates. Do not add a second headline narrative inside either SVG window.
 
 Homepage pricing density:
@@ -312,6 +312,14 @@ Rejected without new evidence: ratings, review counts, number of clients, years 
 - Use **Built in Seychelles** as the durable local-origin line. Mahé may appear in accurate business-location copy, but the footer positioning should represent the national service area rather than one island.
 - WhatsApp surfaces use the full locally owned `WhatsAppIcon` glyph, not a generic chat bubble. Keep WhatsApp green for recognition while preserving accessible link text.
 
+### Contact enquiry and privacy utility surfaces
+
+- Contact remains a quiet form-first utility route with one visible H1 and no new route-local motion or CSS system.
+- Required field errors are associated with their controls; the first invalid field receives focus. Submit outcomes use explicit live status/error regions, and the confirmation region receives focus only after a confirmed `201 { ok: true }` response.
+- The primary submit target is at least 44px, disables while sending, and fails closed until the necessary Turnstile widget supplies a token. Turnstile status must not be described as analytics consent.
+- Delivery, verification and configuration uncertainty preserve entered values, reset the single-use verification token and keep email/WhatsApp fallbacks visible. Success copy must never appear optimistically.
+- `/privacy` is a stable, static, single-H1 operational page using the existing route shell. It introduces no legal-certification claim, no `/terms` route and no visual redesign.
+
 ### Deferred chatbot capability
 
 - The production site currently has no chatbot UI, chat proxy route, upstream binding or token secret. WhatsApp is the active fast-conversation path.
@@ -335,11 +343,11 @@ Rules:
 
 - CSS transitions for immediate hover, focus, press, icon and accordion states.
 - GSAP is the primary system for hero choreography, scroll reveals, ambient movement and pricing entrances.
-- The desktop homepage headline separates two concerns: one finite word-level blur/rise entrance and a reusable character-level cyan-white shine timeline. The shine advances across non-space glyphs, returns every glyph to stable white, pauses for a quiet repeat interval and loops without replaying the entrance. It must not import a second motion system, duplicate the H1, use random motion or hide settled glyphs behind `background-clip: text`.
+- The desktop homepage headline uses one finite word-level blur/rise entrance and no repeating character-shine invocation. The reusable character-shine utility remains scoped to the Services headline. Neither route may import a second motion system, duplicate the H1, use random motion or hide settled glyphs behind `background-clip: text`.
 - Animate transform and opacity first for non-critical enhancement content. A route H1, lead paragraph, article title or likely LCP image must be painted immediately; never begin critical content at `opacity: 0`, `visibility: hidden` or `autoAlpha: 0`.
 - No `transition: all`.
 - No layout-property animation for decorative effects.
-- Ambient loops are permitted for blurred light fields and the featured-card shine when slow, compositor-friendly and visually controlled.
+- Homepage `.ambient-blob` and `.section-art` layers remain static; section-art paths may reveal once when encountered. Other approved blurred light fields and the featured-card shine may animate only when slow, compositor-friendly and visually controlled.
 - Motion hierarchy is mandatory: the hero owns the richest continuous, business-relevant animation; later sections use lower-opacity current lines, nodes, restrained drift and one-shot reveals; no supporting section may compete with the first screen.
 - SVG motion must explain or reinforce a real relationship: inputs moving into a build, steps connecting in sequence, evidence linking to an outcome, or a clear reading/progress path. Decorative motion without a legible relationship is not a reusable pattern.
 - Route heroes do not all inherit the homepage build animation. Each route family receives at most one representational visual tied to its subject, or no hero animation where a form, article or evidence should lead.
@@ -358,8 +366,8 @@ Use these recipes as the Phase 4 reference. Copy the **logic and constraints**, 
 | Effect | Meaning | Implementation | Standard-motion behavior | Reduced-motion behavior |
 |---|---|---|---|---|
 | Hero browser build | Desktop and portrait-format website delivery are demonstrated together | `BuildExtractionHero.tsx`, `HeroBuildExtractionStory.tsx`, explicit `WebsiteBuildStory` landscape/portrait modes, `heroBuildExtraction.css` | Two desktop/tablet-only views with distinct choreography; actual mobile breakpoint has no SVG | Completed landscape live state and portrait mobile/contact-ready state; phone-free mobile copy/actions visible |
-| Desktop word resolve + character shine | Establish the proposition, then provide a restrained recurring signal | One semantic H1 with a screen-reader phrase and `aria-hidden` visual segments; word wrappers resolve once; `characterShine.ts` animates individual non-space paint spans | `14px → 0` blur and `26px → 0` lift once; then a `#aef8f2`/7px cyan pulse advances by character, restores stable white and repeats after a quiet delay | Plain evenly white H1 immediately; no entrance, shine loop, filter or delayed device state |
-| Mobile letter blur reveal | Establish the same proposition with a simpler phone-first sequence | The same H1's word-safe visual letter spans plus one accessible phrase; no second heading; the headline remains painted while GSAP enhances `filter` and `y` | `10px → 0` blur/lift choreography across approximately 2.8s, `power2.out`; no headline opacity gate, SVG or recurring desktop shine on mobile | Plain readable H1 immediately; no filter or transform |
+| Desktop word resolve | Establish the proposition without a competing recurring headline effect | One semantic H1 with a screen-reader phrase and `aria-hidden` visual segments; word wrappers resolve once; no homepage `characterShine.ts` invocation | `14px → 0` blur and `26px → 0` lift once; the title then remains stable while the dual-device story explains delivery | Plain evenly white H1 immediately; no entrance, shine loop, filter or delayed device state |
+| Mobile headline settle | Preserve first-paint comprehension while adding a restrained authored finish | The same H1's word-safe visual letter spans plus one accessible phrase; no second heading; support and actions remain ordinary static HTML | Fully opaque `4px → 0` transform-only settle from approximately `0.05s` to `0.75s`; no blur, support gate, SVG or recurring shine | Plain readable H1 immediately; no filter or transform |
 | Services decision route | Help visitors choose among the three public service families | `ServicesHeroHeadline.tsx`, shared `characterShine.ts`, and decorative `ServicesDecisionStory.tsx`; governed visible copy remains normal HTML | Website Design, SEO and Analytics routes reveal and converge on the right start; route-specific loop does not copy the homepage build sequence | Stable complete decision diagram on desktop; diagram omitted on mobile; headline immediately readable |
 | Shared atmosphere | Connect dark homepage chapters | Fixed pseudo-element on `.home-neutral-prototype`; root pointer variables; no remote texture | Slow drift and fine-pointer position response | One static meaningful light state |
 | Native Work marquee | Make verified work discoverable without carousel controls | Real overflow and `scrollLeft`; one semantic plus two inert visual groups | 120px/s; cold-start/lifecycle re-arm; direct input pauses 650ms then resumes | No autoplay; primary group remains manually scrollable; duplicates hidden |
@@ -484,7 +492,7 @@ This section governs the redesign of every route after Home and Services. It is 
 ### 11.1 Authority and inheritance
 
 1. Reuse the shared shell, typography roles, spacing tokens, focus treatment, CTA vocabulary, `.site-atmosphere`, paper surfaces, motion utilities and reduced-motion contract.
-2. Do **not** inherit the homepage composition wholesale. `WebsiteBuildStory`, the dual browser stage and the recurring desktop character shine remain homepage-specific.
+2. Do **not** inherit the homepage composition wholesale. `WebsiteBuildStory` and the dual browser stage remain homepage-specific; the recurring character shine is reserved for the Services headline.
 3. Services is the route-page reference for shared atmosphere, compact route motion, card-free editorial composition and mobile simplification. It is not a template to clone section by section.
 4. Route-specific CSS may compose shared tokens but may not recreate approximate local versions of the atmosphere, focus ring, button gradient, card shell, reveal engine or SVG palette.
 5. Existing public copy, prices, proof, classifications, canonical URLs and analytics semantics remain governed by their own authority files. Visual redesign does not authorise factual invention or route changes.
@@ -586,7 +594,7 @@ Illustration constraints:
 
 | Level | Routes | Allowed motion |
 |---|---|---|
-| A — signature | Home only | One rich representational hero, shared atmosphere, bounded recurring character shine, native Work autoplay and one scroll-driven process trace |
+| A — signature | Home only | One rich representational hero, shared atmosphere, finite headline entrance, native Work autoplay and one scroll-driven process trace |
 | B — explanatory | Services, service pillars, What You Need, Process, Pricing | One subject-specific SVG or decision system; at most one scroll-linked path; supporting content reveals once |
 | C — evidence/editorial | Work, showcase, About, Insights index | Media/reveal/reading feedback; no competing ambient hero narrative |
 | D — task/utility | Contact, Insight Article, Not Found | Immediate task state, progress or one-shot transition only; no autonomous spectacle |

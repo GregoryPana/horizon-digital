@@ -32,7 +32,6 @@ Contact forms, WhatsApp links and agreed booking or enquiry integrations.
 
 - **Pathway:** Build or improve your website
 - **Type:** website-project
-- **Price:** See current website packages and pricing
 
 Planning, custom design, development and launch for a new business website built around the agreed goals and content.
 
@@ -40,7 +39,6 @@ Planning, custom design, development and launch for a new business website built
 
 - **Pathway:** Build or improve your website
 - **Type:** website-project
-- **Price:** See current website packages and pricing
 
 A redesign or refresh for an existing website when clearer content, better mobile use or a more current direction calls for a rebuild.
 
@@ -48,7 +46,6 @@ A redesign or refresh for an existing website when clearer content, better mobil
 
 - **Pathway:** Build or improve your website
 - **Type:** website-feature
-- **Price:** See current website packages and pricing
 
 Contact forms and WhatsApp links are included in website packages. Booking, enquiry and other suitable integrations can be agreed in the project scope.
 
@@ -56,7 +53,6 @@ Contact forms and WhatsApp links are included in website packages. Booking, enqu
 
 - **Pathway:** Build or improve your website
 - **Type:** managed-service
-- **Price:** SCR 2,500 per year
 
 Hosting configuration, SSL setup, regular backups, routine stability and security updates, basic availability checks and a simple monthly website activity update.
 
@@ -66,7 +62,6 @@ Large or complex builds may need a different hosting plan and price. An agreed a
 
 - **Pathway:** Build or improve your website
 - **Type:** support
-- **Price:** See current website packages and pricing
 
 Website packages include 30, 45 or 60 days of support after launch, depending on the selected package. Custom support is defined in the proposal.
 
@@ -74,7 +69,6 @@ Website packages include 30, 45 or 60 days of support after launch, depending on
 
 - **Pathway:** Improve visibility and measurement
 - **Type:** consultation-review
-- **Price:** Scoped after an initial discussion
 
 We can review an existing or third-party website and explain practical technical and on-page SEO priorities. A Horizon Digital website redesign is not required. Search positions are not guaranteed.
 
@@ -82,7 +76,6 @@ We can review an existing or third-party website and explain practical technical
 
 - **Pathway:** Improve visibility and measurement
 - **Type:** implementation
-- **Price:** Scoped after an initial discussion
 
 We can separately scope agreed technical and on-page SEO changes on an existing or third-party website. A Horizon Digital website redesign is not required.
 
@@ -92,7 +85,6 @@ Implementation requires the necessary third-party access and authority to make t
 
 - **Pathway:** Improve visibility and measurement
 - **Type:** implementation
-- **Price:** Scoped after an initial discussion
 
 We can set up agreed website measurement so you can understand basic visitor activity, subject to suitable account access and consent requirements.
 
@@ -102,7 +94,6 @@ Implementation requires the necessary account access and authority.
 
 - **Pathway:** Improve visibility and measurement
 - **Type:** implementation
-- **Price:** Scoped after an initial discussion
 
 We can help set up or improve a Google Business Profile using accurate business information and available profile features.
 
@@ -152,4 +143,4 @@ Search rankings, traffic, enquiries, bookings, conversions and revenue depend on
 
 Google Ads campaign setup and ongoing advertising management are outside the services advertised here.
 
-Package details and current starting prices are published at https://horizondigitalsey.com/pricing.
+Package tiers and inclusions are published at https://horizondigitalsey.com/pricing. Exact quotes are confirmed after a free consultation.

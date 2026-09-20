@@ -30,8 +30,34 @@ export type SitemapMeta = {
   changefreq: string;
 };
 
+export const CLIENT_ROUTE_OWNERS = [
+  "home",
+  "what-you-need",
+  "work",
+  "services",
+  "pricing",
+  "process",
+  "insights",
+  "about",
+  "contact",
+  "privacy",
+  "showcase-forma-studio",
+  "showcase-takamaka-house",
+  "showcase-restaurant-concept",
+  "showcase-drake-seaside",
+  "web-design-seychelles",
+  "seo-services-seychelles",
+  "analytics-digital-presence-seychelles",
+  "insight-article",
+  "not-found",
+] as const;
+
+export type ClientRouteOwner = (typeof CLIENT_ROUTE_OWNERS)[number];
+export const NOT_FOUND_ROUTE_OWNER = "not-found" satisfies ClientRouteOwner;
+
 export type StaticRoute = {
   kind: "static";
+  owner: ClientRouteOwner;
   path: string;
   seo: RouteSeo;
   sitemap: SitemapMeta | null;
@@ -46,6 +72,7 @@ export type RedirectRoute = {
 
 export type DynamicRoute = {
   kind: "dynamic";
+  owner: ClientRouteOwner;
   basePath: string;
   paramName: string;
   sitemap: SitemapMeta;
@@ -104,6 +131,7 @@ export const ANALYTICS_PRESENCE_SEO: RouteSeo = {
 export const STATIC_ROUTES: StaticRoute[] = [
   {
     kind: "static",
+    owner: "home",
     path: "/",
     seo: {
       title: "Custom Website Design Seychelles | Horizon Digital",
@@ -118,6 +146,7 @@ export const STATIC_ROUTES: StaticRoute[] = [
   },
   {
     kind: "static",
+    owner: "what-you-need",
     path: "/what-you-need",
     seo: {
       title: "Choosing the Right Custom Website | Horizon Digital",
@@ -131,6 +160,7 @@ export const STATIC_ROUTES: StaticRoute[] = [
   },
   {
     kind: "static",
+    owner: "work",
     path: "/work",
     seo: {
       title: "Custom Website Portfolio Seychelles | Horizon Digital",
@@ -145,17 +175,19 @@ export const STATIC_ROUTES: StaticRoute[] = [
   },
   {
     kind: "static",
+    owner: "services",
     path: "/services",
     seo: SERVICES_SEO,
     sitemap: { priority: "0.9", changefreq: "monthly" },
   },
   {
     kind: "static",
+    owner: "pricing",
     path: "/pricing",
     seo: {
       title: "Custom Website Packages & Pricing in Seychelles | Horizon Digital",
       description:
-        "Website packages for Seychelles businesses, with published SCR starting prices, defined inclusions and custom design.",
+        "Tiered website packages for Seychelles businesses, with defined inclusions, custom design and a free consult to confirm your quote.",
       keywords:
         "custom website packages Seychelles, custom web design pricing Seychelles, bespoke website development Seychelles, tailored web solutions Seychelles",
       robots: DEFAULT_ROBOTS,
@@ -165,6 +197,7 @@ export const STATIC_ROUTES: StaticRoute[] = [
   },
   {
     kind: "static",
+    owner: "process",
     path: "/process",
     seo: {
       title: "How We Build Your Website | Horizon Digital",
@@ -178,6 +211,7 @@ export const STATIC_ROUTES: StaticRoute[] = [
   },
   {
     kind: "static",
+    owner: "insights",
     path: "/insights",
     seo: {
       title: "Digital Insights for Businesses in Seychelles",
@@ -192,6 +226,7 @@ export const STATIC_ROUTES: StaticRoute[] = [
   },
   {
     kind: "static",
+    owner: "about",
     path: "/about",
     seo: {
       title: "Custom Website Design Studio Seychelles | About Horizon Digital",
@@ -206,11 +241,12 @@ export const STATIC_ROUTES: StaticRoute[] = [
   },
   {
     kind: "static",
+    owner: "contact",
     path: "/contact",
     seo: {
       title: "Custom Website Project Seychelles | Horizon Digital",
       description:
-        "Discuss a custom website project for your Seychelles business, including scope, timeline, starting budget and contact requirements.",
+        "Discuss a custom website project for your Seychelles business, including scope, timeline, package interest and contact requirements.",
       keywords: "contact custom web designer Seychelles, start custom website project Seychelles, bespoke web solutions",
       robots: DEFAULT_ROBOTS,
       ogType: "website",
@@ -219,6 +255,20 @@ export const STATIC_ROUTES: StaticRoute[] = [
   },
   {
     kind: "static",
+    owner: "privacy",
+    path: "/privacy",
+    seo: {
+      title: "Privacy | Horizon Digital",
+      description:
+        "How Horizon Digital handles enquiry details, necessary security verification and optional analytics preferences.",
+      robots: DEFAULT_ROBOTS,
+      ogType: "website",
+    },
+    sitemap: { priority: "0.2", changefreq: "yearly" },
+  },
+  {
+    kind: "static",
+    owner: "showcase-forma-studio",
     path: "/showcase/forma-studio",
     seo: {
       title: "Forma Studio Showcase",
@@ -231,6 +281,7 @@ export const STATIC_ROUTES: StaticRoute[] = [
   },
   {
     kind: "static",
+    owner: "showcase-takamaka-house",
     path: "/showcase/takamaka-house",
     seo: {
       title: "Takamaka House Showcase",
@@ -243,6 +294,20 @@ export const STATIC_ROUTES: StaticRoute[] = [
   },
   {
     kind: "static",
+    owner: "showcase-restaurant-concept",
+    path: "/showcase/restaurant-website-concept",
+    seo: {
+      title: "Restaurant Website Study | Horizon Digital",
+      description:
+        "An original Horizon Digital restaurant website study showing how menus, opening hours, directions and enquiries can work together.",
+      robots: "noindex,nofollow",
+      ogType: "website",
+    },
+    sitemap: null,
+  },
+  {
+    kind: "static",
+    owner: "showcase-drake-seaside",
     path: "/showcase/drake-seaside",
     seo: {
       title: "Drake Seaside Apartments Website Project | Horizon Digital",
@@ -255,18 +320,21 @@ export const STATIC_ROUTES: StaticRoute[] = [
   },
   {
     kind: "static",
+    owner: "web-design-seychelles",
     path: "/web-design-seychelles",
     seo: WEB_DESIGN_SEO,
     sitemap: { priority: "1.0", changefreq: "monthly" },
   },
   {
     kind: "static",
+    owner: "seo-services-seychelles",
     path: "/seo-services-seychelles",
     seo: SEO_SERVICES_SEO,
     sitemap: { priority: "0.8", changefreq: "monthly" },
   },
   {
     kind: "static",
+    owner: "analytics-digital-presence-seychelles",
     path: "/analytics-and-digital-presence-seychelles",
     seo: ANALYTICS_PRESENCE_SEO,
     sitemap: { priority: "0.8", changefreq: "monthly" },
@@ -276,11 +344,18 @@ export const STATIC_ROUTES: StaticRoute[] = [
 export const REDIRECTS: RedirectRoute[] = [
   { kind: "redirect", path: "/services-pricing", to: "/pricing", status: 301 },
   { kind: "redirect", path: "/ai-digital-tools", to: "/insights", status: 301 },
+  {
+    kind: "redirect",
+    path: "/restaurant-concept",
+    to: "/showcase/restaurant-website-concept",
+    status: 301,
+  },
 ];
 
 export const DYNAMIC_ROUTES: DynamicRoute[] = [
   {
     kind: "dynamic",
+    owner: "insight-article",
     basePath: "/insights",
     paramName: "slug",
     sitemap: { priority: "0.7", changefreq: "monthly" },

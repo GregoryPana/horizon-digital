@@ -32,11 +32,11 @@ describe("Phase 3 homepage polish contract", () => {
     expect(heroStyles).toMatch(/\.hbe-visual-column \.hbe-actions\s*\{[^}]*margin-top:\s*var\(--hbe-story-action-gap\)/);
   });
 
-  it("runs the phone-free mobile headline faster before support", () => {
-    const [headline, support] = HERO_BUILD_EXTRACTION_POLICIES.mobile.stages;
-    expect(headline.duration).toBeGreaterThanOrEqual(2.55);
-    expect(headline.duration).toBeLessThanOrEqual(2.7);
-    expect(support.start).toBeGreaterThanOrEqual(headline.start + headline.duration);
+  it("runs one brief phone-free mobile headline settle with static support", () => {
+    const [headline] = HERO_BUILD_EXTRACTION_POLICIES.mobile.stages;
+    expect(HERO_BUILD_EXTRACTION_POLICIES.mobile.stages).toHaveLength(1);
+    expect(headline.start).toBeCloseTo(0.05, 2);
+    expect(headline.start + headline.duration).toBeLessThanOrEqual(0.8);
     expect(websiteStory).toContain("startDelay = 0.12");
     expect(hero).not.toContain("startDelay={supportStage.start}");
     expect(HERO_BUILD_EXTRACTION_POLICIES.mobile.finalState.device).toBe("absent");

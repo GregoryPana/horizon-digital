@@ -20,13 +20,20 @@ describe("next responsive hero and Services refinement", () => {
     expect(hero).toMatch(/mountHeroStories\s*\?[\s\S]*hbe-story-column[\s\S]*:\s*null/);
   });
 
-  it("restores a slightly faster and cleaner mobile text-only reveal", () => {
+  it("uses a brief transform-only mobile settle with static support", () => {
     expect(HERO_BUILD_EXTRACTION_POLICIES.mobile.stages).toEqual([
-      { id: "headline-reveal", start: 0.14, duration: 2.62 },
-      { id: "support", start: 2.86, duration: 0.76 },
+      { id: "headline-reveal", start: 0.05, duration: 0.7 },
     ]);
-    expect(hero).toContain('filter: "blur(10px)"');
-    expect(hero).not.toContain('filter: "blur(12px)"');
+    expect(hero).toContain("y: 4");
+    expect(hero).not.toMatch(/filter:\s*"blur\(10px\)"/);
+    expect(hero).not.toMatch(/autoAlpha:\s*0/);
+    expect(hero).not.toContain(".to(supportingElements");
+  });
+
+  it("keeps the Services headline motion and shared shine utility intact", () => {
+    expect(source("./ServicesHeroHeadline.tsx")).toContain("createCharacterShineTimeline");
+    expect(source("./characterShine.ts")).toContain("repeat: -1");
+    expect(hero).not.toContain("createCharacterShineTimeline");
   });
 
   it("removes obsolete device-extraction and miniature-site CSS", () => {

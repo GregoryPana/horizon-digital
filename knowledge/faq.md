@@ -4,7 +4,7 @@
 
 ## How much does a website cost?
 
-Packages start at SCR 7,500 for Foundation, SCR 12,500 for Starter and SCR 25,000 for Growth. Custom work is scoped separately. The written proposal confirms the final price.
+Foundation, Starter and Growth are tiered by scope, from a focused presence to a broader multi-service build. Custom work is scoped separately. Share your business and goals in a free consult, and the written proposal confirms your exact price.
 
 ## What is included in the price?
 

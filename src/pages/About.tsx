@@ -346,7 +346,7 @@ export default function About() {
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-10 gap-x-6 items-center">
               {[
                 "Performance tested before launch",
-                "Starting prices published in SCR",
+                "Tiered packages, quoted after a free consult",
                 "Built for Seychelles — in Seychelles",
                 "Structured for Google to understand"
               ].map((text, i) => (

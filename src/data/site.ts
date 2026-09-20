@@ -21,7 +21,8 @@ import takamakaHomeAvif400 from "../assets/work/takamaka-house/takamaka-400.avif
 import takamakaHomeAvif800 from "../assets/work/takamaka-house/takamaka-800.avif";
 import takamakaHomeAvif1200 from "../assets/work/takamaka-house/takamaka-1200.avif";
 import beautyPreviewWebp800 from "../assets/work/demo-beauty/demo-beauty 600.webp";
-import businessFacts from "./businessFacts.json";
+import restaurantConceptPreview from "../assets/work/restaurant-concept/restaurant-concept-1200.png";
+import businessFacts from "./publicBusinessFacts.json";
 
 export { businessFacts };
 
@@ -104,7 +105,7 @@ export const homeFaqCategories = businessFacts.homeFaqCategories;
 
 export const trustStatement = [
   "Clear scope",
-  "Published starting prices",
+  "Tiered packages, quoted after a consult",
   "Defined revisions",
   "Direct communication",
   "Written project terms",
@@ -142,6 +143,10 @@ const portfolioAssets: Record<
   },
   "beauty-demo": {
     image: beautyPreviewWebp800,
+  },
+  "restaurant-website-concept": {
+    image: restaurantConceptPreview,
+    imagePosition: "center top",
   },
 };
 

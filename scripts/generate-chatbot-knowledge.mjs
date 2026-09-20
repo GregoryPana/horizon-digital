@@ -28,7 +28,7 @@ ${bullet([
   "What you need the website to help with",
   "Your current website, if you have one",
   "Your preferred timeline",
-  "Your approximate budget, if known",
+  "The package tier that interests you, or whether you need guidance",
 ])}
 
 The first conversation is free and does not commit you to a project.
@@ -44,7 +44,7 @@ ${facts.business.services.map((service) => `### ${service.title}\n\n${service.de
 
 ## Complete service catalogue
 
-${facts.serviceCatalogue.map((service) => `### ${service.title}\n\n- **Pathway:** ${service.pathway}\n- **Type:** ${service.serviceType}\n- **Price:** ${service.price}\n\n${service.description}${service.accessRequirement ? `\n\n${service.accessRequirement}` : ""}`).join("\n\n")}
+${facts.serviceCatalogue.map((service) => `### ${service.title}\n\n- **Pathway:** ${service.pathway}\n- **Type:** ${service.serviceType}\n\n${service.description}${service.accessRequirement ? `\n\n${service.accessRequirement}` : ""}`).join("\n\n")}
 
 ## Existing-website support flow
 
@@ -54,14 +54,14 @@ ${facts.existingWebsiteFlow.map((step, index) => `### ${index + 1}. ${step.title
 
 ${facts.serviceScopeBoundaries.map((boundary) => `### ${boundary.title}\n\n${boundary.description}`).join("\n\n")}
 
-Package details and current starting prices are published at ${absoluteUrl(facts.site.pricingPath)}.
+Package tiers and inclusions are published at ${absoluteUrl(facts.site.pricingPath)}. Exact quotes are confirmed after a free consultation.
 `;
 
 const pricing = `${generatedHeader}# Website packages and pricing
 
-All prices are in Seychelles rupees (SCR). Package prices are starting points. The written proposal confirms the final scope, price, responsibilities and exclusions.
+Foundation, Starter and Growth are tiered by scope. Custom work is scoped separately. The written proposal, prepared after a free consultation, confirms the final scope, price, responsibilities and exclusions.
 
-${facts.packages.map((pkg) => `## ${pkg.title}\n\n**${pkg.price}**\n\n${pkg.description}\n\n${pkg.includes.map((item) => `- **${item.title}:** ${item.description}`).join("\n")}`).join("\n\n")}
+${facts.packages.map((pkg) => `## ${pkg.title}\n\n${pkg.description}\n\n${pkg.includes.map((item) => `- **${item.title}:** ${item.description}`).join("\n")}`).join("\n\n")}
 
 ## Payment terms
 
@@ -69,7 +69,7 @@ ${bullet(facts.paymentTerms)}
 
 ## Optional add-ons
 
-${facts.addOns.map((item) => `- **${item.title}:** ${item.price}`).join("\n")}
+${facts.addOns.map((item) => `- ${item.title}`).join("\n")}
 
 Search rankings, traffic, enquiries, bookings and revenue are not guaranteed.
 `;
@@ -90,7 +90,7 @@ Many standard projects take around 3 to 6 weeks. The estimate depends on scope, 
 
 const hosting = `${generatedHeader}# ${facts.hosting.title}
 
-**${facts.hosting.price}, ${facts.hosting.billing.toLowerCase()}**
+**${facts.hosting.billing}**
 
 ${facts.hosting.details.join("\n\n")}
 
@@ -110,7 +110,7 @@ ${facts.business.positioning}
 ## Working approach
 
 - Direct communication with the person responsible for the build
-- Starting prices published in SCR
+- Tiered packages with exact quotes confirmed after a free consultation
 - A written project scope before implementation
 - Responsive design and technical SEO foundations
 - Post-launch support based on the selected package

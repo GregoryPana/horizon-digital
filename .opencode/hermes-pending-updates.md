@@ -1,5 +1,19 @@
 # Hermes Pending Updates
 
+## 2026-09-19 — integrated enquiry, Privacy, consent analytics and pricing consistency candidate
+
+- Combined the accepted route-owner/mobile-comprehension foundation with the bounded `/api/enquiry` Worker flow, accessible Contact states and `/privacy` route in `/home/gpanagary/projects/horizon-digital-integration-candidate`.
+- Added production-only affirmative-consent GA4 with ad storage/signals denied, current-page capture after opt-in, reload-based runtime removal after revocation and a persistent preferences route on showcase pages.
+- Kept form PII out of analytics; `generate_lead` occurs only after server-confirmed `201`. Repaired malformed Contact `request` query handling.
+- Removed visitor-facing exact SCR figures and price schema while retaining governed internal figures; unified package CTAs and the server enquiry payload around package interest. Hardened the generator so public retrieval knowledge cannot reproduce internal prices, and removed repeated Home scope copy.
+- Verification passed: 498 tests, production build, Worker dry run, diff check, mobile consent/privacy/contact/showcase QA and mobile/desktop Pricing → Contact QA. No live provider delivery, commit, push or deployment occurred.
+- Added a noindex `/showcase/restaurant-website-concept` outreach destination with truthful concept classification, responsive desktop/mobile interface preview, package-fit wording, safe Contact prefill and governed Contact/WhatsApp analytics identifiers. It does not create a public sector service family or change navigation.
+- Added the governed restaurant concept portfolio record/preview, route/loader/source-contract tests and corrected Drake Seaside's hero badge to “Live client project”. Independent review then hardened the release: browser-safe generated facts replace internal numeric prices, browser modules cannot import private facts, builds scan emitted output for exact-price leaks, old Takamaka concept rates were removed, nested `main` markup was corrected and Contact now allowlists a bounded request token.
+- Verification now passes 513 tests, public-facts/knowledge drift checks, build plus production-output price scan, Worker dry run, diff check and responsive browser gates. Added a sitemap-excluded `/restaurant-concept` redirect that preserves UTM parameters into the noindex study. The restaurant route now follows the approved photo-led, dark-neutral direction with humanized copy and a normal header-level Privacy & analytics control instead of a floating overlay. Independent review blockers were corrected with an auditable photo provenance manifest and keyboard-complete preference-dialog focus handling. No outreach, publication or deployment occurred.
+- Independent correction review passed with no remaining blocking findings.
+- Independent re-review of the photo provenance and analytics-dialog accessibility corrections passed with no blocking findings.
+- Prepared `docs/handovers/2026-09-20-integration-release-readiness.md` with the exact source state, 513-test gate, production comparison, provider prerequisites, post-release checks and rollback evidence requirements. No commit, push or deployment occurred.
+
 ## 2026-08-03z — repository cleanup, transferability and consolidation commit preparation
 
 - Audited the full cumulative dirty tree with Knip, repository-wide reference scans, media-generator/optimizer checks and an independent fallback review after Headroom Claude was blocked by expired OAuth.

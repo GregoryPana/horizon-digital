@@ -5,6 +5,7 @@ import { HERO_DESKTOP_HEADLINE_EFFECT } from "./heroBuildExtraction";
 const hero = readFileSync(new URL("./BuildExtractionHero.tsx", import.meta.url), "utf8");
 const styles = readFileSync(new URL("./heroBuildExtraction.css", import.meta.url), "utf8");
 const shine = readFileSync(new URL("./characterShine.ts", import.meta.url), "utf8");
+const servicesHeadline = readFileSync(new URL("./ServicesHeroHeadline.tsx", import.meta.url), "utf8");
 
 
 describe("adapted desktop hero headline effects", () => {
@@ -17,9 +18,10 @@ describe("adapted desktop hero headline effects", () => {
     expect(hero).not.toContain("repeat: -1");
   });
 
-  it("adapts shimmer into a recurring character-level cyan-white pass", () => {
+  it("keeps the homepage reveal finite while Services consumes the shared shine utility", () => {
     expect(hero).toContain('query<HTMLElement>(".hbe-title-letter")');
-    expect(hero).toContain("createCharacterShineTimeline");
+    expect(hero).not.toContain("createCharacterShineTimeline");
+    expect(servicesHeadline).toContain("createCharacterShineTimeline");
     expect(shine).toContain("repeat: -1");
     expect(shine).toContain('shineColor: "#aef8f2"');
     expect(shine).toContain("repeatDelay");

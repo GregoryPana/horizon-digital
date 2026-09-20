@@ -115,7 +115,7 @@ describe("service pillar pages", () => {
       throw new Error("Missing authority-backed package fits");
     for (const fit of packageFit.fits ?? [])
       expect(html).toContain(fit.description);
-    expectLink(html, "View package details and starting prices", "/pricing");
+    expectLink(html, "View website packages", "/pricing");
     expectLink(html, "See how the project runs", "/process");
     expect(html).not.toContain("Best Value");
   });
@@ -124,9 +124,8 @@ describe("service pillar pages", () => {
     const html = renderRoute(<WebDesignSeychelles />, "/web-design-seychelles");
     expectLink(html, "View selected work", "/work");
     expectLink(html, "Explore SEO services", "/seo-services-seychelles");
-    expectLink(html, "Compare website packages", "/pricing");
+    expectLink(html, "View website packages", "/pricing");
     expectLink(html, "Discuss a redesign", "/contact");
-    expectLink(html, "Compare packages and hosting", "/pricing");
     expectLink(html, "Discuss a website project", "/contact");
   });
 

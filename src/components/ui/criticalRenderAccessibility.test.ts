@@ -24,12 +24,20 @@ describe("design-agnostic critical render and accessibility contract", () => {
     );
   });
 
-  it("preserves the approved transform, blur and shine enhancement language", () => {
+  it("keeps desktop depth while removing mobile blur and homepage shine", () => {
     expect(homeHero).toContain('filter: "blur(14px)"');
-    expect(homeHero).toContain('filter: "blur(10px)"');
+    expect(homeHero).not.toContain('filter: "blur(10px)"');
     expect(homeHero).toContain("rotationX: 12");
+    expect(homeHero).not.toContain("createCharacterShineTimeline");
     expect(servicesHeadline).toContain('filter: "blur(11px)"');
     expect(servicesHeadline).toContain("createCharacterShineTimeline");
+  });
+
+  it("renders ordinary semantic hero links before enhancement runs", () => {
+    expect(homeHero).toContain("<Link");
+    expect(homeHero).toContain('className="hbe-primary-action focus-ring"');
+    expect(homeHero).toContain('className="hbe-secondary-action focus-ring"');
+    expect(homeHero).not.toMatch(/tabIndex=\{-1\}|inert=/);
   });
 
   it("keeps the Home Framer runtime route-local and honours reduced motion", () => {

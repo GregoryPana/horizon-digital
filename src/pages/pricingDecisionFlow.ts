@@ -62,10 +62,6 @@ export function auditPricingPackageCueIndexes(
   return report;
 }
 
-export function formatPublishedStartingPrice(price: string): string {
-  return price;
-}
-
 export type PricingPackageFeatureRow = Readonly<{
   id?: PricingPackageFeatureRowId;
   label: string;

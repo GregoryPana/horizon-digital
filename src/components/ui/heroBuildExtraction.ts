@@ -1,7 +1,6 @@
 export type HeroBuildExtractionStageId =
   | "screen-build"
-  | "headline-reveal"
-  | "support";
+  | "headline-reveal";
 
 export type HeroBuildExtractionMode = "desktop" | "mobile";
 
@@ -53,8 +52,7 @@ const desktopStages: HeroBuildExtractionStage[] = [
 ];
 
 const mobileStages: HeroBuildExtractionStage[] = [
-  { id: "headline-reveal", start: 0.14, duration: 2.62 },
-  { id: "support", start: 2.86, duration: 0.76 },
+  { id: "headline-reveal", start: 0.05, duration: 0.7 },
 ];
 
 export function shouldMountHeroStories(viewportWidth: number): boolean {

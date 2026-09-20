@@ -1,7 +1,7 @@
 import { BarChart3, LayoutTemplate, SearchCheck, ArrowUpRight, type LucideIcon } from "lucide-react";
 import { useRef, useState, type KeyboardEvent } from "react";
 import { Link } from "react-router-dom";
-import { servicePages } from "../../data/businessFacts.json";
+import { servicePages } from "../../data/publicBusinessFacts.json";
 import { ServiceFamilyVisual } from "./ServiceVisualStories";
 import { useViewportAutoTabs } from "./useViewportAutoTabs";
 

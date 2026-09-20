@@ -39,4 +39,10 @@ describe("homepage atmospheric motion prototype", () => {
     expect(globalStyles).toMatch(/prefers-reduced-motion:\s*reduce[\s\S]*animation:\s*none/);
     expect(heroStyles).toMatch(/prefers-reduced-motion:\s*reduce[\s\S]*\.elegant-dark-pattern__streaks[\s\S]*animation:\s*none/);
   });
+
+  it("keeps decorative blobs and section art static while preserving the one-shot path reveal", () => {
+    expect(homeSource).not.toMatch(/gsap\.to\(blob,[\s\S]*?repeat:\s*-1/);
+    expect(homeSource).not.toMatch(/gsap\.to\(art,[\s\S]*?repeat:\s*-1/);
+    expect(homeSource).toMatch(/gsap\.from\(paths,[\s\S]*?once:\s*true/);
+  });
 });

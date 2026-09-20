@@ -14,13 +14,14 @@ const headlineMotion = source("./characterShine.ts");
 const websiteStory = source("./WebsiteBuildStory.tsx");
 const storyStyles = source("./heroBuildExtraction.css");
 const services = source("../../pages/Services.tsx");
+const servicesHeadline = source("./ServicesHeroHeadline.tsx");
 const servicesShowcase = source("./ServicesFamilyShowcase.tsx");
 const serviceStyles = source("../../pages/ServicePages.css");
 
 describe("transferable premium hero motion", () => {
-  it("loops a restrained character-level shine rather than illuminating words", () => {
-    expect(hero).toContain('query<HTMLElement>(".hbe-title-letter")');
-    expect(hero).toContain("createCharacterShineTimeline");
+  it("keeps the shared character shine valid for Services but not Home", () => {
+    expect(hero).not.toContain("createCharacterShineTimeline");
+    expect(servicesHeadline).toContain("createCharacterShineTimeline");
     expect(headlineMotion).toContain("repeat: -1");
     expect(headlineMotion).toContain("repeatDelay");
     expect(headlineMotion).toContain("stagger");
@@ -32,7 +33,8 @@ describe("transferable premium hero motion", () => {
     expect(hero).toContain('(prefers-reduced-motion: no-preference) and (min-width: 768px)');
     expect(hero).toContain('(prefers-reduced-motion: no-preference) and (max-width: 767px)');
     expect(hero).toContain('mm.add("(prefers-reduced-motion: reduce)", setFinal)');
-    expect(hero.match(/createCharacterShineTimeline/g)).toHaveLength(2);
+    expect(hero).not.toContain("createCharacterShineTimeline");
+    expect(servicesHeadline).toContain("createCharacterShineTimeline");
   });
 
   it("authors independent landscape and portrait SVG narratives", () => {

@@ -4,9 +4,10 @@
 
 The following files govern current public business facts, in this order:
 
-1. `src/data/businessFacts.json` — contact details, services, package prices and inclusions, payment terms, hosting, support periods, FAQs and portfolio classifications.
-2. `src/config/routes.ts` — route paths, redirects, indexability and server-visible metadata.
-3. Generated `knowledge/*.md` — chatbot retrieval documents produced from `businessFacts.json`.
+1. `src/data/businessFacts.json` — private authority for contact details, services, internal package prices and inclusions, payment terms, hosting, support periods, FAQs and portfolio classifications.
+2. Generated `src/data/publicBusinessFacts.json` — browser-safe projection used by client code; exact internal SCR price values are replaced during generation and must never be imported from the private authority by a browser module.
+3. `src/config/routes.ts` — route paths, redirects, indexability and server-visible metadata.
+4. Generated `knowledge/*.md` — chatbot retrieval documents produced from `businessFacts.json` without internal price fields.
 
 Run:
 
@@ -15,11 +16,11 @@ npm run knowledge:generate
 npm run knowledge:check
 ```
 
-Do not edit the eight generated knowledge documents directly.
+Do not edit the public facts projection or the eight generated knowledge documents directly. The production build scans emitted text assets and fails if an exact numeric SCR price is present.
 
 ## Controlled claims
 
-- Package prices are starting prices; the written proposal confirms final scope and price.
+- Package tiers (Foundation, Starter, Growth, Custom) and their inclusions are published; exact SCR figures are not shown on the public site. `businessFacts.json` retains the `price` fields on packages, add-ons and hosting as an internal reference for proposals — do not render them in any page, meta description, FAQ answer or structured-data field. The written proposal, prepared after a free consultation, confirms the final scope and price.
 - Foundation, Starter and Growth all include custom design, a mobile-responsive build, a contact form and WhatsApp link, and the same technical and on-page SEO foundation. Search positions are not guaranteed.
 - Starter includes Google Analytics setup. Growth builds on it with one combined Google Analytics and Google Business Profile setup inclusion, subject to the required access, consent setup and verified business details.
 - Standalone SEO consultation/review, separately scoped SEO implementation, analytics and measurement setup, and Google Business Profile setup/optimisation are current services. They can support existing or third-party websites without requiring a Horizon Digital redesign. Standalone implementation requires the necessary third-party access and authority.
@@ -27,7 +28,7 @@ Do not edit the eight generated knowledge documents directly.
 - PageSpeed scores, traffic, enquiries, bookings, conversions and revenue are not guaranteed.
 - Foundation, Starter and Growth include 30, 45 and 60 days of post-launch support respectively.
 - Content management is included for agreed fields in Starter and Growth, can be added to Foundation and can be scoped for Custom projects.
-- Portfolio entries must display their status. Drake Seaside is live client work; Forma Studio and Takamaka House are concept showcases; Beauty Demo is a demonstration site.
+- Portfolio entries must display their status. Drake Seaside is live client work; Forma Studio, Takamaka House and Restaurant Website Concept are concept showcases; Beauty Demo is a demonstration site. The restaurant concept is not commissioned client work and must not imply restaurant-specific results or endorsement.
 - Google Ads campaign setup and ongoing management are outside the advertised services.
 - The controlled service-page model is the four root routes `/services`, `/web-design-seychelles`, `/seo-services-seychelles` and `/analytics-and-digital-presence-seychelles`; do not create duplicate `/services/...` aliases.
 - `/services` is a concise selector. Website pages explain new builds and redesigns; SEO pages keep review/recommendations separate from implementation; analytics/digital-presence pages keep basic measurement and Google Business Profile support distinct but may scope an initial discussion across both.
@@ -35,6 +36,15 @@ Do not edit the eight generated knowledge documents directly.
 - Any website redesign comparison must use honest authored abstract structure or approved matched assets. It must not fabricate a client screenshot, logo, metric, dashboard, testimonial or readable business copy.
 - Do not publish testimonials or quantified outcomes without evidence and permission.
 - Do not invent a street address, rating, review count, award, ranking or client outcome.
+
+## Enquiry and privacy operations
+
+- The controlled Contact form posts JSON to same-origin `/api/enquiry`; direct email, WhatsApp and phone remain independent alternatives.
+- Cloudflare Turnstile is necessary anti-abuse verification and is independent of analytics consent. The public site key is supplied through `VITE_TURNSTILE_SITE_KEY`; no secret belongs in browser source.
+- Enquiry details are used to review and respond, not to subscribe someone to marketing. Cloudflare processes website/security traffic and Resend processes the owner notification. Google Analytics will run only after opt-in when the unreleased consent package is complete and verified; this must not be represented as released consent behavior yet.
+- Horizon Digital does not sell enquiry data. Unsuccessful enquiries may be retained for up to 12 months; project/client records are retained for the engagement and necessary business records.
+- `/privacy` is the controlled public operational privacy route. There is no controlled `/terms` route in this package.
+- Versioned local analytics preferences and controls for changing them will apply only when the unreleased consent package is complete and verified. Analytics preference controls and live delivery/provider verification remain separate release gates; local Task 2 implementation does not prove them.
 
 ## Historical documents
 

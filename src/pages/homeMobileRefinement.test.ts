@@ -23,15 +23,18 @@ describe("mobile density and controlled motion refinements", () => {
     expect(styles).toMatch(/floating-carousel-panel\[data-active="true"\] \.service-story[\s\S]*clip-path:\s*none/);
   });
 
-  it("contains no mobile phone mockup and reveals semantic headline letters before support", () => {
+  it("contains no mobile phone mockup and settles a fully opaque headline with static support", () => {
     expect(story).not.toContain("hbe-phone");
     expect(story).not.toContain('data-hbe-device="mobile"');
     expect(hero).not.toContain("hbe-phone");
     expect(heroStyles).not.toContain(".hbe-phone");
     expect(hero).toContain('className="hbe-title-letter"');
     expect(hero).toContain('query<HTMLElement>(".hbe-title-letter")');
-    expect(hero).toContain('filter: "blur(10px)"');
-    expect(hero).toMatch(/setPhase\("headline-reveal"\)[\s\S]*\.to\(letters[\s\S]*setPhase\("support"\)/);
+    expect(hero).not.toContain('filter: "blur(10px)"');
+    expect(hero).toContain("y: 4");
+    expect(hero).not.toContain("autoAlpha: 0");
+    expect(hero).not.toContain('stage("support")');
+    expect(hero).not.toContain('setPhase("support")');
   });
 
   it("uses a slower controlled menu close before page timelines resume", () => {

@@ -73,6 +73,11 @@ const buyerFits = [
 ];
 
 const packages = [foundationPackage, starterPackage, growthPackage];
+const packageScope = {
+  foundation: "Focused scope · up to 3 pages",
+  starter: "More content · up to 5–6 pages",
+  growth: "Deeper scope · up to 10–12 pages",
+} as const;
 const processIcons = ["message", "palette", "code", "launch", "support"] as const;
 const processEffects = ["trace", "colour", "trace", "pop", "glow"] as const;
 const trustProofDetails = [
@@ -331,19 +336,7 @@ export default function Home({
       });
 
       mm.add("(prefers-reduced-motion: no-preference) and (min-width: 768px)", () => {
-        gsap.utils.toArray<HTMLElement>(".ambient-blob").forEach((blob, index) => {
-          gsap.to(blob, {
-            xPercent: index % 2 === 0 ? 16 : -14,
-            yPercent: index % 3 === 0 ? -12 : 14,
-            scale: index % 2 === 0 ? 1.12 : 0.92,
-            duration: 9 + index * 1.4,
-            repeat: -1,
-            yoyo: true,
-            ease: "sine.inOut",
-          });
-        });
-
-        gsap.utils.toArray<HTMLElement>(".section-art").forEach((art, index) => {
+        gsap.utils.toArray<HTMLElement>(".section-art").forEach((art) => {
           const paths = art.querySelectorAll(".section-art-path");
           gsap.from(paths, {
             opacity: 0,
@@ -356,15 +349,6 @@ export default function Home({
               start: "top 84%",
               once: true,
             },
-          });
-          gsap.to(art, {
-            xPercent: index % 2 === 0 ? 2.5 : -2.5,
-            yPercent: index % 2 === 0 ? -3 : 3,
-            rotation: index % 2 === 0 ? 1.5 : -1.5,
-            duration: 7 + index,
-            repeat: -1,
-            yoyo: true,
-            ease: "sine.inOut",
           });
         });
       });
@@ -704,7 +688,7 @@ export default function Home({
               </h2>
             </div>
             <p className="max-w-lg text-pretty leading-relaxed text-text-muted lg:col-span-4 lg:col-start-9 lg:self-end">
-              Starting prices. Your proposal confirms the final cost.
+              Tiered packages. Your proposal confirms the exact cost.
             </p>
           </header>
 
@@ -738,10 +722,10 @@ export default function Home({
                     <p className={`font-mono uppercase tracking-[0.16em] ${featured ? "text-[0.76rem] font-bold text-cyan-50" : "text-[0.68rem] text-accent"}`}>{pkg.title}</p>
                     <span className="font-mono text-[0.65rem] text-text-dim">0{index + 1}</span>
                   </div>
-                  <p className={`relative z-10 mt-7 font-display font-bold tabular-nums tracking-[-0.045em] lg:mt-5 ${featured ? "text-gradient-tropical text-[2.75rem] sm:text-[3.4rem] lg:text-[3rem]" : "text-3xl text-text sm:text-[2rem]"}`}>{pkg.price}</p>
+                  <p className={`relative z-10 mt-7 font-display font-bold tracking-[-0.045em] lg:mt-5 ${featured ? "text-gradient-tropical text-[2rem] sm:text-[2.35rem] lg:text-[2.05rem]" : "text-xl text-text sm:text-2xl"}`}>{packageScope[pkg.id as keyof typeof packageScope]}</p>
                   <p className={`relative z-10 mt-4 text-sm leading-relaxed text-text-muted sm:text-base lg:min-h-[3.75rem] lg:text-sm ${featured ? "min-h-[4.75rem] text-white/78" : "min-h-[4.5rem]"}`}>{pkg.description}</p>
                   <ul className={`relative z-10 mt-7 grid border-t pt-6 lg:mt-5 lg:pt-4 ${featured ? "gap-4 border-cyan-100/20 lg:gap-3" : "gap-3.5 border-white/10 lg:gap-3"}`}>
-                    {pkg.includes.slice(0, featured ? 6 : 4).map((item) => (
+                    {pkg.includes.slice(1, featured ? 7 : 5).map((item) => (
                       <li key={item.title} className="pricing-feature flex gap-3 text-sm text-text-muted">
                         <span className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full ${featured ? "featured-check bg-cyan-100/18 text-cyan-50 shadow-[0_0_16px_rgba(108,230,232,0.18)]" : "bg-white/7 text-accent"}`} aria-hidden="true">
                           <InteractiveSvgIcon kind="check" effect="trace" className="h-3.5 w-3.5" strokeWidth={2.6} />
@@ -769,7 +753,7 @@ export default function Home({
 
           <div className="reveal-item mt-10 text-center">
             <Link to="/pricing" className="reactive-cta focus-ring group inline-flex min-h-11 items-center gap-2 rounded-full px-5 text-sm font-bold text-cyan-100 transition-[background-color,transform] duration-300 hover:-translate-y-0.5 hover:bg-white/[0.06]">
-              Compare full package details
+              View website packages
               <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1.5" aria-hidden="true" />
             </Link>
           </div>

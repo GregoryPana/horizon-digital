@@ -33,7 +33,6 @@ import {
   type PricingComparisonGroupState,
   type PricingDecisionId,
   type PricingPackageId,
-  formatPublishedStartingPrice,
   getPricingPackageComparisonDisplay,
   selectActivePricingDecision,
   togglePricingComparisonGroup,
@@ -56,12 +55,6 @@ const packageById: Record<PricingPackageId, PricingPackage> = {
   foundation: foundationPackage,
   starter: starterPackage,
   growth: growthPackage,
-};
-
-const packageContactPaths: Record<PricingPackageId, string> = {
-  foundation: "/contact?budget=7500-12500",
-  starter: "/contact?budget=12500-25000",
-  growth: "/contact?budget=25000-plus",
 };
 
 const packageProgression: Record<PricingPackageId, string> = {
@@ -272,8 +265,6 @@ export default function Pricing() {
   const packageOffers = PRICING_PACKAGE_ORDER.map((packageId) => packageById[packageId]).map((pkg) => ({
     "@type": "Offer" as const,
     name: pkg.title,
-    priceCurrency: "SCR",
-    price: pkg.price.replace(/[^\d]/g, ""),
     url: new URL("/pricing", siteConfig.url).toString(),
   }));
 
@@ -307,11 +298,6 @@ export default function Pricing() {
       itemListElement: packageOffers.map((offer) => ({
         "@type": "Offer",
         itemOffered: { "@type": "Service", name: offer.name },
-        priceSpecification: {
-          "@type": "PriceSpecification",
-          price: offer.price,
-          priceCurrency: offer.priceCurrency,
-        },
       })),
     },
   };
@@ -332,7 +318,7 @@ export default function Pricing() {
     <div className="pricing-page" ref={pageRef}>
       <Seo
         title="Custom Website Packages & Pricing in Seychelles | Horizon Digital"
-        description="Published SCR starting prices for custom website packages in Seychelles, with clear inclusions, hosting, support and payment terms."
+        description="Tiered custom website packages for Seychelles businesses, with clear inclusions, hosting, support and payment terms. Get a tailored quote in a free consult."
         path="/pricing"
         keywords="custom website packages Seychelles, custom web design pricing Seychelles, bespoke website development Seychelles, tailored web solutions Seychelles"
         breadcrumbs={[
@@ -392,13 +378,12 @@ export default function Pricing() {
                       <h2 id={`package-${packageId}`}>{pkg.title}</h2>
                       {isStarter && <span className="pricing-best-value">Best Value</span>}
                     </div>
+                    <p className="pricing-package-scope">{packageProgression[packageId]}</p>
                     <p className="pricing-package-fit">{pkg.description}</p>
-                    <p className="pricing-package-price">{formatPublishedStartingPrice(pkg.price)}</p>
-                    <p className="pricing-package-progression">{packageProgression[packageId]}</p>
                   </div>
 
                   <Link
-                    to={packageContactPaths[packageId]}
+                    to={`/contact?package=${packageId}`}
                     className="pricing-package-action focus-ring"
                     data-featured={isStarter}
                     onClick={() => trackPricingCta(`pricing_${packageId}_get_started`)}
@@ -430,7 +415,7 @@ export default function Pricing() {
           </div>
 
           <p className="pricing-package-disclaimer reveal-item">
-            All prices are starting points. The written proposal confirms final scope, deliverables, responsibilities, exclusions and price.
+            The written proposal, prepared after your free consultation, confirms final scope, deliverables, responsibilities, exclusions and price.
           </p>
 
           <div className="pricing-comparison-disclosure reveal-item">
@@ -466,11 +451,11 @@ export default function Pricing() {
           <aside className="pricing-custom-scope reveal-item" aria-labelledby="custom-scope-title">
             <div>
               <p className="pricing-eyebrow">Tailored scope</p>
-              <h3 id="custom-scope-title">{customPackage.title} · {customPackage.price}</h3>
+              <h3 id="custom-scope-title">{customPackage.title}</h3>
               <p>{customPackage.description}</p>
             </div>
             <Link
-              to="/contact"
+              to="/contact?package=custom"
               className="pricing-secondary-action focus-ring"
               onClick={() => trackPricingCta("pricing_custom_scope_request")}
             >
@@ -486,13 +471,12 @@ export default function Pricing() {
             number="02"
             eyebrow="Add-ons"
             title="Add only what the project needs."
-            description="Optional work is priced clearly and agreed before it is added to the written scope."
+            description="Optional work is priced individually and confirmed in your quote before it is added to the written scope."
           />
           <div className="pricing-addon-list" role="list">
             {addOnItems.map((item) => (
               <div key={item.title} className="pricing-addon-row reveal-item" role="listitem">
                 <h3>{item.title}</h3>
-                <p>{item.price}</p>
               </div>
             ))}
           </div>
@@ -513,8 +497,7 @@ export default function Pricing() {
               <div className="pricing-hosting-price-row">
                 <div>
                   <p className="pricing-eyebrow">{hostingPlan.title}</p>
-                  <h3>{hostingPlan.price}</h3>
-                  <p>{hostingPlan.billing}</p>
+                  <h3>{hostingPlan.billing}</h3>
                 </div>
               </div>
               <p className="pricing-hosting-summary">{hostingPlan.details[0]}</p>
@@ -602,7 +585,7 @@ export default function Pricing() {
               <h3>Typical project timing</h3>
               <p>{timelineFaq?.answer}</p>
               <p className="pricing-proposal-note">
-                Package prices are starting points. The written proposal confirms final scope, deliverables, timing and price.
+                Package tiers are shown above. The written proposal, confirmed after your free consultation, sets out final scope, deliverables, timing and price.
               </p>
             </aside>
           </div>

@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { clientRouteLoaders, type StaticClientRoutePath } from "./clientRouteLoaders";
+import { clientRouteLoaders } from "./clientRouteLoaders";
 import {
   STATIC_ROUTES,
   REDIRECTS,
@@ -17,19 +17,38 @@ import {
   WEB_DESIGN_SEO,
   SEO_SERVICES_SEO,
   ANALYTICS_PRESENCE_SEO,
+  CLIENT_ROUTE_OWNERS,
+  NOT_FOUND_ROUTE_OWNER,
+  type ClientRouteOwner,
 } from "./routes";
 import { insightArticlesMeta } from "../data/insightsMeta";
 
 const servicePillars = [
-  ["/web-design-seychelles", WEB_DESIGN_SEO],
-  ["/seo-services-seychelles", SEO_SERVICES_SEO],
+  ["/web-design-seychelles", "web-design-seychelles", WEB_DESIGN_SEO],
+  ["/seo-services-seychelles", "seo-services-seychelles", SEO_SERVICES_SEO],
   [
     "/analytics-and-digital-presence-seychelles",
+    "analytics-digital-presence-seychelles",
     ANALYTICS_PRESENCE_SEO,
   ],
-] as const;
+] as const satisfies readonly (readonly [string, ClientRouteOwner, typeof WEB_DESIGN_SEO])[];
 
 describe("route registry uniqueness", () => {
+  it("assigns a valid unique owner to every canonical static and dynamic route", () => {
+    const owners = [
+      ...STATIC_ROUTES.map((route) => route.owner),
+      ...DYNAMIC_ROUTES.map((route) => route.owner),
+    ];
+    expect(owners.every((owner) => CLIENT_ROUTE_OWNERS.includes(owner))).toBe(true);
+    expect(new Set(owners).size).toBe(owners.length);
+  });
+
+  it("exports the generic not-found owner outside canonical path records", () => {
+    expect(NOT_FOUND_ROUTE_OWNER).toBe("not-found");
+    expect(STATIC_ROUTES.some((route) => route.owner === NOT_FOUND_ROUTE_OWNER)).toBe(false);
+    expect(DYNAMIC_ROUTES.some((route) => route.owner === NOT_FOUND_ROUTE_OWNER)).toBe(false);
+  });
+
   it("has no duplicate static route paths", () => {
     const paths = STATIC_ROUTES.map((route) => route.path);
     expect(new Set(paths).size).toBe(paths.length);
@@ -87,8 +106,9 @@ describe("canonical and redirect logic", () => {
       "SEO Review & Implementation Seychelles | Horizon Digital",
       "Analytics & Google Business Profile Seychelles | Horizon Digital",
     ]);
-    for (const [path, seo] of servicePillars) {
+    for (const [path, owner, seo] of servicePillars) {
       const route = findStaticRoute(path);
+      expect(route?.owner).toBe(owner);
       expect(route?.seo).toEqual(seo);
       expect(route?.seo.title).toBe(seo.title);
       expect(route?.seo.description).toBe(seo.description);
@@ -99,8 +119,8 @@ describe("canonical and redirect logic", () => {
   });
 
   it("registers every pillar in the lazy client route map", () => {
-    for (const [path] of servicePillars) {
-      expect(clientRouteLoaders.static[path as StaticClientRoutePath]).toBeTypeOf("function");
+    for (const [, owner] of servicePillars) {
+      expect(clientRouteLoaders[owner]).toBeTypeOf("function");
     }
   });
 
@@ -110,6 +130,25 @@ describe("canonical and redirect logic", () => {
       expect(findRedirect(path)).toBeUndefined();
       expect(matchDynamicRoute(path)).toBeUndefined();
     }
+  });
+
+  it("registers /privacy with exact metadata and no /terms route", () => {
+    const privacy = findStaticRoute("/privacy");
+    expect(privacy).toEqual({
+      kind: "static",
+      owner: "privacy",
+      path: "/privacy",
+      seo: {
+        title: "Privacy | Horizon Digital",
+        description:
+          "How Horizon Digital handles enquiry details, necessary security verification and optional analytics preferences.",
+        robots: DEFAULT_ROBOTS,
+        ogType: "website",
+      },
+      sitemap: { priority: "0.2", changefreq: "yearly" },
+    });
+    expect(findStaticRoute("/terms")).toBeUndefined();
+    expect(findRedirect("/terms")).toBeUndefined();
   });
 
   it("treats /pricing as canonical and indexable", () => {
@@ -136,6 +175,15 @@ describe("canonical and redirect logic", () => {
     const redirect = findRedirect("/ai-digital-tools");
     expect(redirect?.to).toBe("/insights");
     expect(redirect?.status).toBe(301);
+  });
+
+  it("redirects the short restaurant campaign path to the noindex concept", () => {
+    expect(findRedirect("/restaurant-concept")).toEqual({
+      kind: "redirect",
+      path: "/restaurant-concept",
+      to: "/showcase/restaurant-website-concept",
+      status: 301,
+    });
   });
 
   it("does not find a redirect for an unrelated path", () => {
@@ -181,6 +229,18 @@ describe("sitemap membership", () => {
     expect(paths).toContain("/pricing");
   });
 
+  it("includes /privacy once with conservative sitemap metadata and no /terms", () => {
+    expect(entries.filter((entry) => entry.path === "/privacy")).toEqual([
+      {
+        path: "/privacy",
+        priority: "0.2",
+        changefreq: "yearly",
+        lastmod: "2026-07-26",
+      },
+    ]);
+    expect(paths).not.toContain("/terms");
+  });
+
   it("includes canonical /services separately from /pricing", () => {
     expect(paths).toContain("/services");
     expect(paths).toContain("/pricing");
@@ -195,6 +255,7 @@ describe("sitemap membership", () => {
 
   it("excludes the /services-pricing redirect source", () => {
     expect(paths).not.toContain("/services-pricing");
+    expect(paths).not.toContain("/restaurant-concept");
   });
 
   it("excludes noindex showcase demo routes", () => {

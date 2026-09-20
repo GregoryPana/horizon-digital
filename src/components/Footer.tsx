@@ -4,6 +4,7 @@ import { buildMailtoLink, scrollToTopSmooth } from "../lib/utils";
 import { emailTemplate, navLinks, siteConfig } from "../data/site";
 import { trackContactIntent } from "../lib/analytics";
 import WhatsAppIcon from "./ui/WhatsAppIcon";
+import { ANALYTICS_PREFERENCES_OPEN_EVENT } from "../lib/analytics";
 
 export default function Footer() {
   return (
@@ -83,6 +84,16 @@ export default function Footer() {
         <div className="flex flex-col gap-3 pt-7 text-[0.68rem] uppercase tracking-[0.13em] text-text-dim sm:flex-row sm:items-center sm:justify-between sm:pr-28">
           <p>© {new Date().getFullYear()} {siteConfig.name}. All rights reserved.</p>
           <p>Built in Seychelles · Custom code</p>
+          <div className="flex flex-wrap items-center gap-x-5">
+            <NavLink className="focus-ring inline-flex min-h-11 items-center rounded-lg hover:text-text" to="/privacy">Privacy</NavLink>
+            <button
+              type="button"
+              className="focus-ring inline-flex min-h-11 items-center rounded-lg hover:text-text"
+              onClick={() => window.dispatchEvent(new Event(ANALYTICS_PREFERENCES_OPEN_EVENT))}
+            >
+              Analytics choices
+            </button>
+          </div>
         </div>
       </div>
     </footer>

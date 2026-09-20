@@ -66,7 +66,7 @@ describe("canonical standalone service catalogue", () => {
     expect(websiteEntries["contact-enquiry-integrations"]?.description).toMatch(
       /Contact forms.*WhatsApp.*integrations/i,
     );
-    expect(websiteEntries["managed-hosting"]?.price).toBe("SCR 2,500 per year");
+    expect(websiteEntries["managed-hosting"]?.price).toBe("Scoped after an initial discussion");
     expect(websiteEntries["post-launch-support"]?.description).toMatch(
       /30, 45 or 60 days/i,
     );
@@ -169,7 +169,7 @@ describe("Services rendered route", () => {
   });
 
   it("is composed as a real lazy-loaded route", () => {
-    expect(clientRouteLoaders.static["/services"]).toBeTypeOf("function");
+    expect(clientRouteLoaders.services).toBeTypeOf("function");
   });
 
   it("renders the approved selector, three pillar destinations, flow and visible principles", () => {

@@ -2,11 +2,9 @@
 
 # Website packages and pricing
 
-All prices are in Seychelles rupees (SCR). Package prices are starting points. The written proposal confirms the final scope, price, responsibilities and exclusions.
+Foundation, Starter and Growth are tiered by scope. Custom work is scoped separately. The written proposal, prepared after a free consultation, confirms the final scope, price, responsibilities and exclusions.
 
 ## Foundation
-
-**From SCR 7,500**
 
 A focused custom website for a business establishing or replacing a basic online presence.
 
@@ -19,8 +17,6 @@ A focused custom website for a business establishing or replacing a basic online
 - **1 revision round:** One defined round of consolidated feedback.
 
 ## Starter
-
-**From SCR 12,500**
 
 A larger custom website for a growing business with more services or content.
 
@@ -36,8 +32,6 @@ A larger custom website for a growing business with more services or content.
 
 ## Growth
 
-**From SCR 25,000**
-
 A more extensive website for businesses with deeper content, service lines or integrations.
 
 - **Up to 10–12 pages:** A broader site structure for multiple services, audiences or content areas.
@@ -51,8 +45,6 @@ A more extensive website for businesses with deeper content, service lines or in
 - **Content management:** A configured editing interface for agreed text and image fields.
 
 ## Custom
-
-**Scoped per project**
 
 For projects whose page count, functionality or integration needs do not fit a standard package.
 
@@ -71,11 +63,11 @@ For projects whose page count, functionality or integration needs do not fit a s
 
 ## Optional add-ons
 
-- **Additional page:** SCR 2,500 per page
-- **Page content writing support:** SCR 600 per page
-- **Custom booking or enquiry form:** SCR 2,000
-- **Google Business Profile setup:** SCR 2,200
-- **Rush delivery:** +40% of project cost, subject to availability
-- **Content management for Foundation:** SCR 2,500; included in Starter and Growth
+- Additional page
+- Page content writing support
+- Custom booking or enquiry form
+- Google Business Profile setup
+- Rush delivery
+- Content management for Foundation
 
 Search rankings, traffic, enquiries, bookings and revenue are not guaranteed.

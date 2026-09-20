@@ -13,7 +13,7 @@ import {
 } from "./heroBuildExtraction";
 
 const DESKTOP_ORDER: HeroBuildExtractionStageId[] = ["screen-build"];
-const MOBILE_ORDER: HeroBuildExtractionStageId[] = ["headline-reveal", "support"];
+const MOBILE_ORDER: HeroBuildExtractionStageId[] = ["headline-reveal"];
 const previewSource = readFileSync(new URL("../../pages/dev/HeroBuildExtractionPreview.tsx", import.meta.url), "utf8");
 const sharedHeroSource = readFileSync(new URL("./BuildExtractionHero.tsx", import.meta.url), "utf8");
 const sharedHeroStyles = readFileSync(new URL("./heroBuildExtraction.css", import.meta.url), "utf8");
@@ -67,12 +67,14 @@ describe("shared BuildExtractionHero integration contract", () => {
     expect(html).not.toContain("aria-label=\"Made in Seychelles\"");
   });
 
-  it("runs a slow controlled mobile letter reveal before all supporting elements", () => {
+  it("keeps mobile support visible while the fully opaque headline settles", () => {
     expect(sharedHeroSource).toContain('query<HTMLElement>(".hbe-title-letter")');
-    expect(sharedHeroSource).toContain('filter: "blur(10px)"');
-    expect(sharedHeroSource).toContain('filter: "blur(0px)"');
+    expect(sharedHeroSource).toContain("y: 4");
     expect(sharedHeroSource).toContain('ease: "power2.out"');
-    expect(sharedHeroSource).toMatch(/setPhase\("headline-reveal"\)[\s\S]*\.to\(letters[\s\S]*setPhase\("support"\)/);
+    expect(sharedHeroSource).not.toContain('filter: "blur(10px)"');
+    expect(sharedHeroSource).not.toContain("gsap.set(supportingElements");
+    expect(sharedHeroSource).not.toContain(".to(supportingElements");
+    expect(sharedHeroSource).not.toMatch(/autoAlpha:\s*0/);
     expect(sharedHeroSource).not.toContain("elevatedTitleScale");
     expect(sharedHeroSource).not.toContain("data-hbe-headline-slot");
   });
@@ -142,14 +144,13 @@ describe("hero responsive timing policy", () => {
     expect(policy.totalDuration).toBeLessThanOrEqual(5.5);
   });
 
-  it("finishes every letter before support begins", () => {
-    const [headline, support] = HERO_BUILD_EXTRACTION_POLICIES.mobile.stages;
+  it("settles the fully painted mobile headline within 0.8 seconds", () => {
+    const [headline] = HERO_BUILD_EXTRACTION_POLICIES.mobile.stages;
     expect(headline.id).toBe("headline-reveal");
-    expect(headline.duration).toBeGreaterThanOrEqual(2.55);
-    expect(headline.duration).toBeLessThanOrEqual(2.7);
-    expect(support.start).toBeGreaterThanOrEqual(headline.start + headline.duration);
-    expect(support.duration).toBeGreaterThanOrEqual(0.7);
-    expect(support.duration).toBeLessThanOrEqual(0.8);
+    expect(headline.start).toBeGreaterThanOrEqual(0.04);
+    expect(headline.start).toBeLessThanOrEqual(0.08);
+    expect(headline.start + headline.duration).toBeLessThanOrEqual(0.8);
+    expect(HERO_BUILD_EXTRACTION_POLICIES.mobile.stages).toHaveLength(1);
   });
 
   it("settles mobile without a build SVG and shows an immediate reduced-motion final state", () => {

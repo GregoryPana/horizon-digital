@@ -5,11 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build && node scripts/check-public-bundle-pricing.mjs",
     "preview": "vite preview",
     "test": "npm run knowledge:check && vitest run",
-    "knowledge:generate": "node scripts/generate-chatbot-knowledge.mjs",
-    "knowledge:check": "node scripts/generate-chatbot-knowledge.mjs --check",
+    "facts:generate": "node scripts/generate-public-business-facts.mjs",
+    "facts:check": "node scripts/generate-public-business-facts.mjs --check",
+    "knowledge:generate": "npm run facts:generate && node scripts/generate-chatbot-knowledge.mjs",
+    "knowledge:check": "npm run facts:check && node scripts/generate-chatbot-knowledge.mjs --check",
     "media:generate": "node scripts/generate-responsive-images.mjs"
   },
   "dependencies": {

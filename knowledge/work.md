@@ -22,6 +22,12 @@ Portfolio labels must distinguish live client work from concepts and demonstrati
 - **Description:** An accommodation concept focused on property details, visual storytelling and direct booking intent.
 - **URL:** https://horizondigitalsey.com/showcase/takamaka-house
 
+## Island Table Restaurant Website Study
+
+- **Status:** Original website study
+- **Description:** An original restaurant website study bringing the menu, opening hours, directions and enquiry options into one mobile-friendly experience.
+- **URL:** https://horizondigitalsey.com/showcase/restaurant-website-concept
+
 ## Beauty Demo
 
 - **Status:** Demonstration site

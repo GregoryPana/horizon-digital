@@ -6,6 +6,7 @@ import { scrollToTopSmooth } from "../lib/utils";
 import { siteConfig } from "../data/site";
 import { trackContactIntent } from "../lib/analytics";
 import WhatsAppIcon from "./ui/WhatsAppIcon";
+import AnalyticsConsentControl from "./AnalyticsConsentControl";
 
 type LayoutProps = {
   children: ReactNode;
@@ -235,6 +236,7 @@ export default function Layout({ children }: LayoutProps) {
         {children}
       </main>
       {isShowcaseRoute ? null : <Footer />}
+      <AnalyticsConsentControl />
       {isShowcaseRoute ? null : (
         <button
           type="button"

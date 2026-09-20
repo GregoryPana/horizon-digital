@@ -74,7 +74,7 @@
   "servicesPricingIntro": {
     "title": "Services & Pricing",
     "subtitle": "Websites built around how your business actually works — not copied from a template.",
-    "summary": "Every website is planned around your services, customers and goals. Package prices are starting points; the written scope confirms the final price and deliverables."
+    "summary": "Every website is planned around your services, customers and goals. Explore the package tiers below, then get a tailored quote in your free consultation."
   },
   "serviceCatalogue": [
     {
@@ -274,7 +274,7 @@
           "title": "Website design and development",
           "fit": "New website or redesign",
           "body": "Plan and build a custom website around your business and customers, or rebuild a site that needs clearer content or better mobile use.",
-          "pricing": "Website packages have published starting prices.",
+          "pricing": "Website packages are tiered by scope; your quote is confirmed in a free consult.",
           "cta": "Explore website design",
           "path": "/web-design-seychelles"
         },
@@ -317,7 +317,7 @@
           "path": "/contact"
         },
         "secondary": {
-          "label": "View website pricing",
+          "label": "View website packages",
           "path": "/pricing"
         }
       }
@@ -356,7 +356,7 @@
               "title": "New custom website",
               "body": "A new website starts with the business rather than a template. We agree the pages, content direction, contact paths and any suitable integrations, then prepare the visual direction for review before development begins.",
               "cta": {
-                "label": "Compare website packages",
+                "label": "View website packages",
                 "path": "/pricing"
               }
             },
@@ -436,7 +436,7 @@
             }
           ],
           "primary": {
-            "label": "View package details and starting prices",
+            "label": "View website packages",
             "path": "/pricing"
           },
           "secondary": {
@@ -462,7 +462,7 @@
             }
           ],
           "cta": {
-            "label": "Compare packages and hosting",
+            "label": "View website packages",
             "path": "/pricing"
           }
         }
@@ -950,6 +950,14 @@
       "url": "/showcase/takamaka-house"
     },
     {
+      "id": "restaurant-website-concept",
+      "status": "Original website study",
+      "label": "Restaurant website · Original study",
+      "title": "Island Table Restaurant Website Study",
+      "outcome": "An original restaurant website study bringing the menu, opening hours, directions and enquiry options into one mobile-friendly experience.",
+      "url": "/showcase/restaurant-website-concept"
+    },
+    {
       "id": "beauty-demo",
       "status": "Demonstration site",
       "label": "Wellness and beauty · Foundation Tier · Demonstration site",
@@ -961,7 +969,7 @@
   "faqs": [
     {
       "question": "How much does a website cost?",
-      "answer": "Packages start at SCR 7,500 for Foundation, SCR 12,500 for Starter and SCR 25,000 for Growth. Custom work is scoped separately. The written proposal confirms the final price."
+      "answer": "Foundation, Starter and Growth are tiered by scope, from a focused presence to a broader multi-service build. Custom work is scoped separately. Share your business and goals in a free consult, and the written proposal confirms your exact price."
     },
     {
       "question": "What is included in the price?",
@@ -1061,7 +1069,7 @@
         },
         {
           "question": "Where is my website hosted?",
-          "answer": "Managed hosting is available for SCR 2,500 per year, or an alternative provider can be agreed. Large or complex builds may require a different plan."
+          "answer": "Managed hosting is available as an annual plan, or an alternative provider can be agreed. Large or complex builds may require a different plan; pricing is confirmed when we discuss your setup."
         }
       ]
     }

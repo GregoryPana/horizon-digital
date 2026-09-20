@@ -1,90 +1,332 @@
-import Button from "../components/Button";
 import Card from "../components/Card";
 import Section from "../components/Section";
 import Seo from "../components/Seo";
 import { emailTemplate, siteConfig } from "../data/site";
 import { buildMailtoLink } from "../lib/utils";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { trackContactIntent, trackEvent } from "../lib/analytics";
 import { Instagram, Facebook } from "lucide-react";
 import WhatsAppIcon from "../components/ui/WhatsAppIcon";
+import { useCallback, useEffect, useRef, useState } from "react";
+import {
+  ENQUIRY_PACKAGES,
+  ENQUIRY_FIELD_LIMITS,
+  ENQUIRY_TIMELINES,
+} from "../lib/enquiryContract";
 
+type EnquiryState =
+  | "idle"
+  | "submitting"
+  | "success"
+  | "validation-error"
+  | "server-validation-error"
+  | "verification-error"
+  | "delivery-error"
+  | "configuration-error";
+
+type FieldName = "businessName" | "email" | "message" | "website";
+type FieldErrors = Partial<Record<FieldName, string>>;
+
+type EnquiryPayload = {
+  businessName: string;
+  name: string;
+  email: string;
+  industry: string;
+  website: string;
+  packageInterest: string;
+  timeline: string;
+  message: string;
+  honeypot: string;
+  turnstileToken: string;
+};
+
+type TurnstileApi = {
+  render: (element: HTMLElement, options: {
+    sitekey: string;
+    callback: (token: string) => void;
+    "expired-callback": () => void;
+    "error-callback": () => void;
+  }) => string;
+  reset: (widgetId: string) => void;
+  remove: (widgetId: string) => void;
+};
+
+const TURNSTILE_SCRIPT_URL =
+  "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+const TURNSTILE_LOAD_TIMEOUT_MS = 8_000;
+const ENQUIRY_REQUEST_PREFILLS = {
+  "restaurant-concept":
+    "I'm interested in a website similar to the Restaurant Website Concept. Please let me know how we can get started.",
+} as const;
+
+const getTurnstile = () =>
+  (window as Window & { turnstile?: TurnstileApi }).turnstile;
+
+const statusCopy: Partial<Record<EnquiryState, string>> = {
+  "validation-error": "Please check the highlighted details and try again.",
+  "server-validation-error": "The form could not accept the enquiry details. Please review them and try again, or use the email option below.",
+  "verification-error": "Security verification expired or could not be confirmed. Please verify again before retrying.",
+  "delivery-error": "Delivery could not be confirmed. Please retry, email us, or use WhatsApp.",
+  "configuration-error": "The enquiry form is temporarily unavailable. Please email us or use WhatsApp instead.",
+};
+
+const buildEnquiryFallback = (payload: EnquiryPayload) => {
+  const optionalLines = [
+    payload.name && `Name: ${payload.name}`,
+    payload.industry && `Industry: ${payload.industry}`,
+    payload.website && `Website: ${payload.website}`,
+    payload.packageInterest && `Package interest: ${payload.packageInterest}`,
+    payload.timeline && `Timeline: ${payload.timeline}`,
+  ].filter(Boolean);
+  const body = [
+    "Hi Horizon Digital,",
+    "",
+    "The website form could not confirm delivery. Here are my retained enquiry details:",
+    "",
+    `Business name: ${payload.businessName}`,
+    `Email: ${payload.email}`,
+    ...optionalLines,
+    "",
+    "Message:",
+    payload.message,
+  ].join("\n");
+  return buildMailtoLink(
+    siteConfig.email,
+    `Website enquiry fallback — ${payload.businessName}`,
+    body,
+  );
+};
 
 export default function Contact() {
   const location = useLocation();
-  const mailtoHref = buildMailtoLink(
+  const genericMailtoHref = buildMailtoLink(
     siteConfig.email,
     emailTemplate.subject,
     emailTemplate.body
   );
 
-  const allowedBudgets = ["7500-12500", "12500-25000", "25000-plus", "not-sure"];
-  const budgetParam = new URLSearchParams(location.search).get("budget") ?? "";
+  const packageParam = new URLSearchParams(location.search).get("package") ?? "";
   const requestParam = new URLSearchParams(location.search).get("request") ?? "";
-  const defaultBudget = allowedBudgets.includes(budgetParam) ? budgetParam : "";
-  const defaultMessage = requestParam 
-    ? `I'm interested in a website similar to ${decodeURIComponent(requestParam)}. Please let me know how we can get started.`
+  const defaultPackage = ENQUIRY_PACKAGES.includes(packageParam as (typeof ENQUIRY_PACKAGES)[number])
+    ? packageParam
     : "";
+  const approvedRequestMessage = ENQUIRY_REQUEST_PREFILLS[
+    requestParam as keyof typeof ENQUIRY_REQUEST_PREFILLS
+  ];
+  const defaultMessage = approvedRequestMessage?.slice(0, ENQUIRY_FIELD_LIMITS.message) ?? "";
+  const siteKey = import.meta.env.VITE_TURNSTILE_SITE_KEY?.trim() ?? "";
+  const [enquiryState, setEnquiryState] = useState<EnquiryState>(siteKey ? "idle" : "configuration-error");
+  const [verificationStatus, setVerificationStatus] = useState(siteKey ? "Security verification is loading." : "Security verification is not configured.");
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
+  const [fallbackMailtoHref, setFallbackMailtoHref] = useState(genericMailtoHref);
+  const formRef = useRef<HTMLFormElement>(null);
+  const statusRef = useRef<HTMLDivElement>(null);
+  const turnstileContainerRef = useRef<HTMLDivElement>(null);
+  const widgetIdRef = useRef<string | null>(null);
+  const submittingRef = useRef(false);
+  const configurationLockedRef = useRef(!siteKey);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const resetVerification = useCallback(() => {
+    const remainLocked = configurationLockedRef.current;
+    configurationLockedRef.current = true;
+    setTurnstileToken("");
+    setVerificationStatus("Complete the security verification before sending.");
+    const turnstile = getTurnstile();
+    if (turnstile && widgetIdRef.current) turnstile.reset(widgetIdRef.current);
+    configurationLockedRef.current = remainLocked;
+  }, []);
+
+  useEffect(() => {
+    if (!siteKey || !turnstileContainerRef.current) return;
+    let disposed = false;
+    let ownedScript = false;
+    let loadTimeout: ReturnType<typeof setTimeout> | null = null;
+    const container = turnstileContainerRef.current;
+
+    const clearLoadTimeout = () => {
+      if (loadTimeout !== null) {
+        clearTimeout(loadTimeout);
+        loadTimeout = null;
+      }
+    };
+    const failConfiguration = (message: string) => {
+      if (disposed) return;
+      clearLoadTimeout();
+      configurationLockedRef.current = true;
+      setTurnstileToken("");
+      setEnquiryState("configuration-error");
+      setVerificationStatus(message);
+    };
+    const renderWidget = () => {
+      if (disposed || widgetIdRef.current) return;
+      clearLoadTimeout();
+      const turnstile = getTurnstile();
+      if (!turnstile) {
+        failConfiguration("Security verification could not be loaded.");
+        return;
+      }
+      try {
+        widgetIdRef.current = turnstile.render(container, {
+          sitekey: siteKey,
+          callback: (token) => {
+            if (disposed || configurationLockedRef.current) return;
+            setTurnstileToken(token);
+            setVerificationStatus("Security verification complete.");
+            setEnquiryState((current) => current === "verification-error" ? "idle" : current);
+          },
+          "expired-callback": () => {
+            if (disposed) return;
+            setEnquiryState("verification-error");
+            resetVerification();
+          },
+          "error-callback": () => {
+            if (disposed) return;
+            setEnquiryState("verification-error");
+            resetVerification();
+          },
+        });
+        configurationLockedRef.current = false;
+      } catch {
+        failConfiguration("Security verification could not be started.");
+      }
+    };
+    const handleScriptLoad = () => renderWidget();
+    const handleScriptError = () => failConfiguration("Security verification could not be loaded.");
+
+    let script = document.querySelector<HTMLScriptElement>(`script[src="${TURNSTILE_SCRIPT_URL}"]`);
+    if (!script) {
+      script = document.createElement("script");
+      script.src = TURNSTILE_SCRIPT_URL;
+      script.async = true;
+      script.defer = true;
+      ownedScript = true;
+    }
+    script.addEventListener("load", handleScriptLoad);
+    script.addEventListener("error", handleScriptError);
+    loadTimeout = setTimeout(
+      () => failConfiguration("Security verification timed out while loading."),
+      TURNSTILE_LOAD_TIMEOUT_MS,
+    );
+    if (ownedScript) document.head.appendChild(script);
+    if (getTurnstile()) renderWidget();
+
+    return () => {
+      disposed = true;
+      clearLoadTimeout();
+      script?.removeEventListener("load", handleScriptLoad);
+      script?.removeEventListener("error", handleScriptError);
+      const turnstile = getTurnstile();
+      if (turnstile && widgetIdRef.current) turnstile.remove(widgetIdRef.current);
+      widgetIdRef.current = null;
+      if (ownedScript) script?.remove();
+    };
+  }, [resetVerification, siteKey]);
+
+  useEffect(() => {
+    if (["success", "server-validation-error", "verification-error", "delivery-error", "configuration-error"].includes(enquiryState)) {
+      statusRef.current?.focus();
+    }
+  }, [enquiryState]);
+
+  const validate = (data: FormData): FieldErrors => {
+    const errors: FieldErrors = {};
+    const businessName = String(data.get("businessName") ?? "").trim();
+    const email = String(data.get("email") ?? "").trim();
+    const message = String(data.get("message") ?? "").trim();
+    const website = String(data.get("website") ?? "").trim();
+    if (!businessName) errors.businessName = "Enter your business name.";
+    if (!email) errors.email = "Enter your email address.";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.email = "Enter a valid email address.";
+    if (!message) errors.message = "Tell us briefly about your project.";
+    if (website) {
+      try {
+        const url = new URL(website);
+        if (!(["http:", "https:"] as string[]).includes(url.protocol)) throw new Error();
+      } catch {
+        errors.website = "Enter a full website address beginning with http:// or https://.";
+      }
+    }
+    return errors;
+  };
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (submittingRef.current) return;
     const form = event.currentTarget;
     const data = new FormData(form);
-
-    const businessName = String(data.get("businessName") ?? "").trim();
-    const name = String(data.get("name") ?? "").trim();
-    const email = String(data.get("email") ?? "").trim();
-    const industry = String(data.get("industry") ?? "").trim();
-    const website = String(data.get("website") ?? "").trim();
-    const budget = String(data.get("budget") ?? "").trim();
-    const timeline = String(data.get("timeline") ?? "").trim();
-    const message = String(data.get("message") ?? "").trim();
-
-    const budgetLabelMap: Record<string, string> = {
-      "7500-12500": "SCR 7,500-12,500",
-      "12500-25000": "SCR 12,500-25,000",
-      "25000-plus": "SCR 25,000+",
-      "25000+": "SCR 25,000+",
-      "not-sure": "Not sure yet - I'd like guidance",
-    };
-
-    const timelineLabelMap: Record<string, string> = {
-      asap: "ASAP",
-      "2-4-weeks": "2-4 weeks",
-      "1-2-months": "1-2 months",
-      "2-3-months": "2-3 months",
-      "not-sure": "Not sure yet - I'd like guidance",
-    };
-
-    const budgetLabel = budgetLabelMap[budget] ?? "";
-    const timelineLabel = timelineLabelMap[timeline] ?? "";
-
-    const subject = emailTemplate.subject.replace(
-      "[Business Name]",
-      businessName || "Business"
-    );
-
-    const body = `Hi Horizon Digital,
-
- I'd like to discuss a new website project.
-
-Business name: ${businessName}
-Your name: ${name}
-Industry: ${industry}
-Current website (if any): ${website}
-
-Estimated timeline: ${timelineLabel}
-Project budget range: ${budgetLabel}
-Contact email: ${email}
-
-Main goal details:
-${message}
-
-Looking forward to your reply.`;
+    const errors = validate(data);
+    setFieldErrors(errors);
+    if (Object.keys(errors).length > 0) {
+      setEnquiryState("validation-error");
+      const firstInvalid = (["businessName", "email", "website", "message"] as FieldName[])
+        .find((name) => errors[name]);
+      (form.elements.namedItem(firstInvalid ?? "") as HTMLElement | null)?.focus();
+      return;
+    }
+    if (!siteKey) {
+      setEnquiryState("configuration-error");
+      return;
+    }
+    if (!turnstileToken) {
+      setEnquiryState("verification-error");
+      return;
+    }
 
     trackContactIntent({ method: "contact_form", source: "contact_page_form" });
-
-    window.location.href = buildMailtoLink(siteConfig.email, subject, body);
+    submittingRef.current = true;
+    setEnquiryState("submitting");
+    const payload: EnquiryPayload = {
+      businessName: String(data.get("businessName") ?? "").trim(),
+      name: String(data.get("name") ?? "").trim(),
+      email: String(data.get("email") ?? "").trim(),
+      industry: String(data.get("industry") ?? "").trim(),
+      website: String(data.get("website") ?? "").trim(),
+      packageInterest: String(data.get("package") ?? "").trim(),
+      timeline: String(data.get("timeline") ?? "").trim(),
+      message: String(data.get("message") ?? "").trim(),
+      honeypot: String(data.get("honeypot") ?? ""),
+      turnstileToken,
+    };
+    setFallbackMailtoHref(buildEnquiryFallback(payload));
+    try {
+      const response = await fetch("/api/enquiry", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      let body: unknown = null;
+      try { body = await response.json(); } catch { body = null; }
+      if (response.status === 201 && (body as { ok?: unknown } | null)?.ok === true) {
+        trackEvent("generate_lead", {
+          source: "contact_page_form",
+          page_path: location.pathname,
+          transport_type: "beacon",
+        });
+        form.reset();
+        setFieldErrors({});
+        setEnquiryState("success");
+        resetVerification();
+      } else if (response.status === 400) {
+        setFieldErrors({});
+        setEnquiryState("server-validation-error");
+      } else if (response.status === 403) {
+        setEnquiryState("verification-error");
+        resetVerification();
+      } else if (response.status === 503) {
+        configurationLockedRef.current = true;
+        setEnquiryState("configuration-error");
+        resetVerification();
+      } else {
+        setEnquiryState("delivery-error");
+        resetVerification();
+      }
+    } catch {
+      setEnquiryState("delivery-error");
+      resetVerification();
+    } finally {
+      submittingRef.current = false;
+    }
   };
 
 
@@ -92,7 +334,7 @@ Looking forward to your reply.`;
     <div>
       <Seo
         title="Custom Website Project Seychelles | Horizon Digital"
-        description="Start your custom website project in Seychelles today. We focus on conversion-led design, fixed pricing, and weekly updates to help your business grow online."
+        description="Start your custom website project in Seychelles. Share your goals, preferred timeline and package interest, then receive a tailored scope and quote after a free consultation."
         path="/contact"
         keywords="contact custom web designer Seychelles, start custom website project Seychelles, bespoke web solutions"
         breadcrumbs={[
@@ -141,7 +383,13 @@ Looking forward to your reply.`;
         </div>
         <div className="mx-auto grid w-full max-w-2xl min-w-0 items-start gap-10 lg:max-w-none lg:grid-cols-[1.2fr_0.8fr]">
           <Card className="min-w-0 order-last lg:order-first">
-            <form className="grid gap-7" onSubmit={handleSubmit}>
+            <form
+              ref={formRef}
+              className="grid gap-7"
+              onSubmit={handleSubmit}
+              noValidate
+              aria-label="Project enquiry"
+            >
               <label className="text-sm font-semibold text-text">
                 Business name
                 <input
@@ -149,9 +397,13 @@ Looking forward to your reply.`;
                   name="businessName"
                   autoComplete="organization"
                   required
+                  maxLength={ENQUIRY_FIELD_LIMITS.businessName}
+                  aria-invalid={fieldErrors.businessName ? "true" : undefined}
+                  aria-describedby={fieldErrors.businessName ? "businessName-error" : undefined}
                   className="contact-input mt-3 w-full rounded-xl border border-white/20 bg-white/5 hover:border-white/30 px-4 py-3 text-sm text-text placeholder:text-text-muted focus-ring"
                   placeholder="Your business name"
                 />
+                {fieldErrors.businessName ? <span id="businessName-error" className="mt-2 block text-sm text-text">{fieldErrors.businessName}</span> : null}
               </label>
               <label className="text-[13px] text-text-muted">
                 Your name
@@ -159,6 +411,7 @@ Looking forward to your reply.`;
                   type="text"
                   name="name"
                   autoComplete="name"
+                  maxLength={ENQUIRY_FIELD_LIMITS.name}
                   className="contact-input mt-2.5 w-full rounded-xl border border-white/20 bg-white/5 hover:border-white/30 px-4 py-3 text-sm text-text placeholder:text-text-muted focus-ring"
                   placeholder="Your name"
                 />
@@ -170,15 +423,20 @@ Looking forward to your reply.`;
                   name="email"
                   autoComplete="email"
                   required
+                  maxLength={ENQUIRY_FIELD_LIMITS.email}
+                  aria-invalid={fieldErrors.email ? "true" : undefined}
+                  aria-describedby={fieldErrors.email ? "email-error" : undefined}
                   className="contact-input mt-3 w-full rounded-xl border border-white/20 bg-white/5 hover:border-white/30 px-4 py-3 text-sm text-text placeholder:text-text-muted focus-ring"
                   placeholder="you@example.com"
                 />
+                {fieldErrors.email ? <span id="email-error" className="mt-2 block text-sm text-text">{fieldErrors.email}</span> : null}
               </label>
               <label className="text-[13px] text-text-muted">
                 Industry
                 <input
                   type="text"
                   name="industry"
+                  maxLength={ENQUIRY_FIELD_LIMITS.industry}
                   className="contact-input mt-2.5 w-full rounded-xl border border-white/20 bg-white/5 hover:border-white/30 px-4 py-3 text-sm text-text placeholder:text-text-muted focus-ring"
                   placeholder="e.g. Tell us what your business does"
                 />
@@ -188,24 +446,31 @@ Looking forward to your reply.`;
                 <input
                   type="url"
                   name="website"
+                  maxLength={ENQUIRY_FIELD_LIMITS.website}
+                  aria-invalid={fieldErrors.website ? "true" : undefined}
+                  aria-describedby={fieldErrors.website ? "website-error" : undefined}
                   className="contact-input mt-2.5 w-full rounded-xl border border-white/20 bg-white/5 hover:border-white/30 px-4 py-3 text-sm text-text placeholder:text-text-muted focus-ring"
                   placeholder="https://"
                 />
+                {fieldErrors.website ? <span id="website-error" className="mt-2 block text-sm text-text">{fieldErrors.website}</span> : null}
               </label>
               <label className="text-[13px] text-text-muted">
-                Project budget range
+                Which package interests you?
                 <select
-                  name="budget"
+                  name="package"
                   className="contact-input mt-2.5 w-full rounded-xl border border-white/20 bg-white/5 hover:border-white/30 px-4 py-3 text-sm text-text placeholder:text-text-muted focus-ring"
-                  defaultValue={defaultBudget}
+                  defaultValue={defaultPackage}
                 >
-                  <option value="" disabled>
-                    Select a range
-                  </option>
-                  <option value="7500-12500">SCR 7,500-12,500</option>
-                  <option value="12500-25000">SCR 12,500-25,000</option>
-                  <option value="25000-plus">SCR 25,000+</option>
-                  <option value="not-sure">Not sure yet - I'd like guidance</option>
+                  <option value="" disabled>Select a package</option>
+                  {ENQUIRY_PACKAGES.map((packageId) => (
+                    <option key={packageId} value={packageId}>{({
+                      foundation: "Foundation",
+                      starter: "Starter",
+                      growth: "Growth",
+                      custom: "Custom project",
+                      "not-sure": "Not sure yet - I'd like guidance",
+                    } as const)[packageId]}</option>
+                  ))}
                 </select>
               </label>
               <label className="text-[13px] text-text-muted">
@@ -215,14 +480,16 @@ Looking forward to your reply.`;
                   className="contact-input mt-2.5 w-full rounded-xl border border-white/20 bg-white/5 hover:border-white/30 px-4 py-3 text-sm text-text placeholder:text-text-muted focus-ring"
                   defaultValue=""
                 >
-                  <option value="" disabled>
-                    Select a timeline
-                  </option>
-                  <option value="asap">ASAP</option>
-                  <option value="2-4-weeks">2-4 weeks</option>
-                  <option value="1-2-months">1-2 months</option>
-                  <option value="2-3-months">2-3 months</option>
-                  <option value="not-sure">Not sure yet - I'd like guidance</option>
+                  <option value="" disabled>Select a timeline</option>
+                  {ENQUIRY_TIMELINES.map((timeline) => (
+                    <option key={timeline} value={timeline}>{({
+                      asap: "ASAP",
+                      "2-4-weeks": "2-4 weeks",
+                      "1-2-months": "1-2 months",
+                      "2-3-months": "2-3 months",
+                      "not-sure": "Not sure yet - I'd like guidance",
+                    } as const)[timeline]}</option>
+                  ))}
                 </select>
               </label>
               <label className="text-sm font-semibold text-text">
@@ -231,17 +498,77 @@ Looking forward to your reply.`;
                   name="message"
                   rows={5}
                   required
+                  maxLength={ENQUIRY_FIELD_LIMITS.message}
                   defaultValue={defaultMessage}
+                  aria-invalid={fieldErrors.message ? "true" : undefined}
+                  aria-describedby={fieldErrors.message ? "message-error" : undefined}
                   className="contact-input mt-3 w-full rounded-xl border border-white/20 bg-white/5 hover:border-white/30 px-4 py-3 text-sm text-text placeholder:text-text-muted focus-ring"
                   placeholder="Tell us about your project"
                 />
+                {fieldErrors.message ? <span id="message-error" className="mt-2 block text-sm text-text">{fieldErrors.message}</span> : null}
               </label>
-              <div className="flex flex-col gap-4">
-                <Button label="Send message" type="submit" size="lg" className="w-full md:w-fit" />
-                <p className="pl-1 text-sm text-text-muted">
-                  We reply within 24 hours — usually sooner.
-                </p>
+              <input
+                type="text"
+                name="honeypot"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                maxLength={ENQUIRY_FIELD_LIMITS.honeypot}
+                style={{ position: "absolute", width: 1, height: 1, overflow: "hidden", clipPath: "inset(50%)" }}
+              />
+              <div>
+                <p className="text-sm font-semibold text-text">Security verification</p>
+                <p className="mt-2 text-sm text-text-muted" aria-live="polite">{verificationStatus}</p>
+                <div
+                  ref={turnstileContainerRef}
+                  aria-label="Security verification"
+                  className="mt-3 min-h-11"
+                />
               </div>
+              {enquiryState === "submitting" ? (
+                <div role="status" aria-live="polite" className="text-sm text-text">Sending your enquiry. Please wait.</div>
+              ) : null}
+              {enquiryState === "success" ? (
+                <div ref={statusRef} role="status" aria-live="polite" aria-label="Enquiry sent" tabIndex={-1} className="rounded-xl border border-border p-4 text-sm text-text">
+                  Your enquiry has been received. We will review it and reply using the email you provided.
+                </div>
+              ) : null}
+              {statusCopy[enquiryState] ? (
+                <div ref={statusRef} role="alert" aria-live="assertive" tabIndex={-1} data-enquiry-state={enquiryState} className="rounded-xl border border-border p-4 text-sm text-text">
+                  <p>{statusCopy[enquiryState]}</p>
+                  <div className="mt-3 flex flex-wrap gap-3">
+                    {["verification-error", "delivery-error", "configuration-error"].includes(enquiryState) ? (
+                      <button type="button" className="focus-ring min-h-11 rounded-lg border border-border px-4" onClick={() => {
+                        const turnstile = getTurnstile();
+                        if (!siteKey || !turnstile || !widgetIdRef.current) {
+                          configurationLockedRef.current = true;
+                          setEnquiryState("configuration-error");
+                          return;
+                        }
+                        configurationLockedRef.current = false;
+                        resetVerification();
+                        setEnquiryState("idle");
+                      }}>Retry verification</button>
+                    ) : null}
+                    <a className="focus-ring inline-flex min-h-11 items-center" href={fallbackMailtoHref}>Email {siteConfig.email}</a>
+                    <a className="focus-ring inline-flex min-h-11 items-center" href={siteConfig.whatsappUrl} target="_blank" rel="noreferrer noopener">Use WhatsApp</a>
+                  </div>
+                </div>
+              ) : null}
+              <div className="flex flex-col gap-4">
+                <button
+                  type="submit"
+                  disabled={enquiryState === "submitting" || enquiryState === "configuration-error" || !turnstileToken || !siteKey}
+                  aria-disabled={enquiryState === "submitting" || enquiryState === "configuration-error" || !turnstileToken || !siteKey}
+                  className="btn btn-primary focus-ring inline-flex min-h-11 w-full items-center justify-center rounded-[9px] bg-accent px-6 py-3 text-base font-medium text-black disabled:cursor-not-allowed disabled:opacity-60 md:w-fit"
+                >
+                  {enquiryState === "submitting" ? "Sending…" : "Send message"}
+                </button>
+                <p className="pl-1 text-sm text-text-muted">We reply within 24 hours — usually sooner.</p>
+              </div>
+              <p className="text-sm text-text-muted">
+                Enquiry details are used to review and respond to your request, not to subscribe you to marketing. See our <Link className="focus-ring text-accent" to="/privacy">privacy information</Link>.
+              </p>
             </form>
             <p className="mt-6 text-sm text-text-muted">
               We respect your time. No spam. No obligation.
@@ -270,7 +597,7 @@ Looking forward to your reply.`;
             <div className="space-y-5">
               <a
                 className="flex items-center gap-4 break-all text-lg font-semibold text-text transition hover:text-cyan group"
-                href={mailtoHref}
+                href={genericMailtoHref}
                 onClick={() => trackContactIntent({ method: "email", source: "contact_page_link" })}
               >
 
@@ -357,7 +684,7 @@ Looking forward to your reply.`;
                 type="button"
                 onClick={() => {
                   trackContactIntent({ method: "email", source: "contact_page_consult" });
-                  window.location.href = mailtoHref;
+                  window.location.href = genericMailtoHref;
                 }}
               >
                 {siteConfig.primaryCtaLabel}

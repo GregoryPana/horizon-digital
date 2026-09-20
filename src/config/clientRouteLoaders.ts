@@ -1,71 +1,58 @@
 import type { ComponentType } from "react";
-import { findRedirect, matchDynamicRoute, normalizePathname } from "./routes";
+import {
+  NOT_FOUND_ROUTE_OWNER,
+  findRedirect,
+  findStaticRoute,
+  matchDynamicRoute,
+  type ClientRouteOwner,
+} from "./routes";
 
 export type RouteModule = { default: ComponentType };
 export type RouteModuleLoader = () => Promise<RouteModule>;
+export type ClientRouteLoaderRegistry = Record<ClientRouteOwner, RouteModuleLoader>;
 
-export type StaticClientRoutePath =
-  | "/"
-  | "/what-you-need"
-  | "/work"
-  | "/services"
-  | "/pricing"
-  | "/process"
-  | "/insights"
-  | "/about"
-  | "/contact"
-  | "/showcase/forma-studio"
-  | "/showcase/takamaka-house"
-  | "/showcase/drake-seaside"
-  | "/web-design-seychelles"
-  | "/seo-services-seychelles"
-  | "/analytics-and-digital-presence-seychelles";
-
-export type ClientRouteLoaderRegistry = {
-  static: Record<StaticClientRoutePath, RouteModuleLoader>;
-  insightArticle: RouteModuleLoader;
-  notFound: RouteModuleLoader;
-};
-
+// Keep every import target literal so Vite can discover and split each route module.
 export const clientRouteLoaders = {
-  static: {
-    "/": () => import("../pages/Home"),
-    "/what-you-need": () => import("../pages/WhatYouNeed"),
-    "/work": () => import("../pages/Work"),
-    "/services": () => import("../pages/Services"),
-    "/pricing": () => import("../pages/Pricing"),
-    "/process": () => import("../pages/Process"),
-    "/insights": () => import("../pages/Insights"),
-    "/about": () => import("../pages/About"),
-    "/contact": () => import("../pages/Contact"),
-    "/showcase/forma-studio": () => import("../pages/ShowcaseFormaStudio"),
-    "/showcase/takamaka-house": () => import("../pages/ShowcaseTakamakaHouse"),
-    "/showcase/drake-seaside": () => import("../pages/ShowcaseDrakeSeaside"),
-    "/web-design-seychelles": () => import("../pages/WebDesignSeychelles"),
-    "/seo-services-seychelles": () => import("../pages/SeoServicesSeychelles"),
-    "/analytics-and-digital-presence-seychelles": () =>
-      import("../pages/AnalyticsDigitalPresenceSeychelles"),
-  },
-  insightArticle: () => import("../pages/InsightArticle"),
-  notFound: () => import("../pages/NotFound"),
+  "home": () => import("../pages/Home"),
+  "what-you-need": () => import("../pages/WhatYouNeed"),
+  "work": () => import("../pages/Work"),
+  "services": () => import("../pages/Services"),
+  "pricing": () => import("../pages/Pricing"),
+  "process": () => import("../pages/Process"),
+  "insights": () => import("../pages/Insights"),
+  "about": () => import("../pages/About"),
+  "contact": () => import("../pages/Contact"),
+  "privacy": () => import("../pages/Privacy"),
+  "showcase-forma-studio": () => import("../pages/ShowcaseFormaStudio"),
+  "showcase-takamaka-house": () => import("../pages/ShowcaseTakamakaHouse"),
+  "showcase-restaurant-concept": () => import("../pages/ShowcaseRestaurantConcept"),
+  "showcase-drake-seaside": () => import("../pages/ShowcaseDrakeSeaside"),
+  "web-design-seychelles": () => import("../pages/WebDesignSeychelles"),
+  "seo-services-seychelles": () => import("../pages/SeoServicesSeychelles"),
+  "analytics-digital-presence-seychelles": () =>
+    import("../pages/AnalyticsDigitalPresenceSeychelles"),
+  "insight-article": () => import("../pages/InsightArticle"),
+  "not-found": () => import("../pages/NotFound"),
 } satisfies ClientRouteLoaderRegistry;
+
+export function selectCurrentRouteOwner(pathname: string): ClientRouteOwner {
+  const staticRoute = findStaticRoute(pathname);
+  if (staticRoute) return staticRoute.owner;
+
+  const dynamicMatch = matchDynamicRoute(pathname);
+  if (dynamicMatch) return dynamicMatch.route.owner;
+
+  const redirect = findRedirect(pathname);
+  if (redirect) return findStaticRoute(redirect.to)?.owner ?? NOT_FOUND_ROUTE_OWNER;
+
+  return NOT_FOUND_ROUTE_OWNER;
+}
 
 export function selectCurrentRouteLoader(
   pathname: string,
   registry: ClientRouteLoaderRegistry = clientRouteLoaders,
 ): RouteModuleLoader {
-  const normalized = normalizePathname(pathname);
-  const staticLoader = registry.static[normalized as StaticClientRoutePath];
-  if (staticLoader) return staticLoader;
-
-  if (matchDynamicRoute(normalized)) return registry.insightArticle;
-
-  const redirect = findRedirect(normalized);
-  if (redirect) {
-    return registry.static[redirect.to as StaticClientRoutePath] ?? registry.notFound;
-  }
-
-  return registry.notFound;
+  return registry[selectCurrentRouteOwner(pathname)];
 }
 
 export function preloadCurrentRoute(

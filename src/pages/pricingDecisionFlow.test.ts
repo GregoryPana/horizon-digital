@@ -2,12 +2,12 @@ import { readFileSync } from "node:fs";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vitest";
+import privateFacts from "../data/businessFacts.json";
 import {
-  addOnItems,
   faqs,
   foundationPackage,
   growthPackage,
-  hostingPlan,
+
   paymentTerms,
   stabilisationPlan,
   starterPackage,
@@ -23,7 +23,6 @@ import {
   auditPricingPackageFeatureCoverage,
   auditPricingPackageCueIndexes,
   classifyPricingPackageFeatureRow,
-  formatPublishedStartingPrice,
   getPricingPackageComparisonDisplay,
   selectActivePricingDecision,
   togglePricingComparisonGroup,
@@ -35,11 +34,6 @@ const decisionFlowSource = readFileSync(new URL("./pricingDecisionFlow.ts", impo
 const pricingCss = readFileSync(new URL("./Pricing.css", import.meta.url), "utf8");
 const servicesSource = readFileSync(new URL("./Services.tsx", import.meta.url), "utf8");
 
-const packages = {
-  foundation: foundationPackage,
-  starter: starterPackage,
-  growth: growthPackage,
-};
 const inclusions = {
   foundation: foundationPackage.includes,
   starter: starterPackage.includes,
@@ -138,11 +132,11 @@ describe("package-card decision contract", () => {
     expect(pricingCss).toMatch(/\.pricing-package-title-row h2\s*\{[\s\S]*font-size:\s*var\(--text-h3\)/);
   });
 
-  it("places the published price and primary CTA before progressive inclusions", () => {
+  it("places the scope descriptor and primary CTA before progressive inclusions", () => {
     expect(sourceIndex("<PricingPackageGraphic")).toBeLessThan(
       sourceIndex('className="pricing-package-title-row"'),
     );
-    expect(sourceIndex('className="pricing-package-price"')).toBeLessThan(
+    expect(sourceIndex('className="pricing-package-scope"')).toBeLessThan(
       sourceIndex('className="pricing-package-action focus-ring"'),
     );
     expect(sourceIndex('className="pricing-package-action focus-ring"')).toBeLessThan(
@@ -197,13 +191,6 @@ describe("package-card decision contract", () => {
     ]);
   });
 
-  it.each([
-    ["From SCR 7,500", "From SCR 7,500"],
-    ["From SCR 12,500", "From SCR 12,500"],
-    ["From SCR 25,000", "From SCR 25,000"],
-  ])("keeps the starting-price qualification (%s)", (price, expected) => {
-    expect(formatPublishedStartingPrice(price)).toBe(expected);
-  });
 });
 
 describe("one-DOM responsive comparison", () => {
@@ -366,12 +353,13 @@ describe("authoritative comparison mapping", () => {
 
 describe("approved secondary facts and service boundary", () => {
   it("keeps approved package prices, add-ons, hosting, support and payment facts unchanged", () => {
-    expect(PRICING_PACKAGE_ORDER.map((id) => packages[id].price)).toEqual([
+    const privatePackages = Object.fromEntries(privateFacts.packages.map((item) => [item.id, item]));
+    expect(PRICING_PACKAGE_ORDER.map((id) => privatePackages[id].price)).toEqual([
       "From SCR 7,500",
       "From SCR 12,500",
       "From SCR 25,000",
     ]);
-    expect(addOnItems.map(({ title, price }) => [title, price])).toEqual([
+    expect(privateFacts.addOns.map(({ title, price }) => [title, price])).toEqual([
       ["Additional page", "SCR 2,500 per page"],
       ["Page content writing support", "SCR 600 per page"],
       ["Custom booking or enquiry form", "SCR 2,000"],
@@ -379,7 +367,7 @@ describe("approved secondary facts and service boundary", () => {
       ["Rush delivery", "+40% of project cost, subject to availability"],
       ["Content management for Foundation", "SCR 2,500; included in Starter and Growth"],
     ]);
-    expect(hostingPlan.price).toBe("SCR 2,500 per year");
+    expect(privateFacts.hosting.price).toBe("SCR 2,500 per year");
     expect(stabilisationPlan.title).toBe("At least 30 days of support after launch");
     expect(paymentTerms).toEqual([
       "Foundation and Starter: 50% deposit to start, 50% before launch",
@@ -415,11 +403,6 @@ describe("approved secondary facts and service boundary", () => {
 });
 
 describe("defensive pricing data guards", () => {
-  it.each(["SCR 7,500", "Custom quote", "From only SCR 12,500", "from SCR 25,000"])(
-    "does not rewrite a published price string (%s)",
-    (price) => expect(formatPublishedStartingPrice(price)).toBe(price),
-  );
-
   it("reports missing, duplicate and out-of-range feature indexes by package", () => {
     const report = auditPricingPackageFeatureCoverage(
       [

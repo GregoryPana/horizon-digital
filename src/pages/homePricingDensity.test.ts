@@ -12,6 +12,7 @@ describe("homepage desktop pricing density", () => {
     expect(homeSource).toContain("sm:p-9 lg:p-7");
     expect(homeSource).toContain("lg:mt-5 lg:pt-4");
     expect(homeSource).toContain("lg:mt-6");
-    expect(homeSource).toContain("pkg.includes.slice(0, featured ? 6 : 4)");
+    expect(homeSource).toContain("packageScope[pkg.id as keyof typeof packageScope]");
+    expect(homeSource).toContain("pkg.includes.slice(1, featured ? 7 : 5)");
   });
 });

@@ -25,9 +25,14 @@ import {
   buildSanityPortfolioUrl,
   mapPortfolioResponse,
 } from "./lib/portfolioApi";
+import { parseEnquiry, type EnquiryInput } from "./lib/enquiryContract";
 
 export type WorkerEnv = {
   ASSETS: { fetch: (request: Request) => Promise<Response> };
+  RESEND_API_KEY?: string;
+  TURNSTILE_SECRET_KEY?: string;
+  ENQUIRY_FROM_EMAIL?: string;
+  ENQUIRY_TO_EMAIL?: string;
 };
 
 export type WorkerExecutionContext = {
@@ -305,6 +310,173 @@ export async function handlePortfolioRequest(
   }
 }
 
+const ENQUIRY_MAX_BODY_BYTES = 12 * 1024;
+const ENQUIRY_HEADERS = {
+  ...JSON_HEADERS,
+  "cache-control": "no-store",
+};
+
+function enquiryResponse(status: number, error?: string, extraHeaders?: HeadersInit): Response {
+  return new Response(JSON.stringify(error ? { ok: false, error } : { ok: true }), {
+    status,
+    headers: { ...ENQUIRY_HEADERS, ...extraHeaders },
+  });
+}
+
+const APPROVED_LOCAL_ENQUIRY_ORIGINS = new Set([
+  "http://localhost:8787",
+  "http://127.0.0.1:8787",
+  "http://[::1]:8787",
+]);
+
+function allowedEnquiryOrigin(request: Request): URL | null {
+  const rawOrigin = request.headers.get("origin");
+  if (!rawOrigin) return null;
+
+  const requestOrigin = new URL(request.url).origin;
+  const approvedEndpoint = requestOrigin === SITE_URL
+    || APPROVED_LOCAL_ENQUIRY_ORIGINS.has(requestOrigin);
+  if (!approvedEndpoint || rawOrigin !== requestOrigin) return null;
+
+  return new URL(rawOrigin);
+}
+
+async function readEnquiryBody(request: Request): Promise<{ oversized: boolean; text?: string }> {
+  const rawLength = request.headers.get("content-length");
+  if (rawLength !== null) {
+    const declaredLength = Number(rawLength);
+    if (Number.isFinite(declaredLength) && declaredLength > ENQUIRY_MAX_BODY_BYTES) {
+      return { oversized: true };
+    }
+  }
+
+  if (!request.body) return { oversized: false, text: "" };
+  const reader = request.body.getReader();
+  const chunks: Uint8Array[] = [];
+  let totalBytes = 0;
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    totalBytes += value.byteLength;
+    if (totalBytes > ENQUIRY_MAX_BODY_BYTES) {
+      await reader.cancel().catch(() => undefined);
+      return { oversized: true };
+    }
+    chunks.push(value);
+  }
+
+  const bytes = new Uint8Array(totalBytes);
+  let offset = 0;
+  for (const chunk of chunks) {
+    bytes.set(chunk, offset);
+    offset += chunk.byteLength;
+  }
+  return { oversized: false, text: new TextDecoder().decode(bytes) };
+}
+
+function enquiryPlainText(enquiry: EnquiryInput): string {
+  return [
+    "New website enquiry",
+    "",
+    `Business name: ${enquiry.businessName}`,
+    `Name: ${enquiry.name ?? "Not provided"}`,
+    `Email: ${enquiry.email}`,
+    `Industry: ${enquiry.industry ?? "Not provided"}`,
+    `Website: ${enquiry.website ?? "Not provided"}`,
+    `Package interest: ${enquiry.packageInterest ?? "Not provided"}`,
+    `Timeline: ${enquiry.timeline ?? "Not provided"}`,
+    "",
+    "Message:",
+    enquiry.message,
+  ].join("\n");
+}
+
+export async function handleEnquiryRequest(
+  request: Request,
+  env: WorkerEnv,
+  upstreamFetch: typeof fetch = fetch,
+): Promise<Response> {
+  if (request.method !== "POST") {
+    return enquiryResponse(405, "method_not_allowed", { allow: "POST" });
+  }
+
+  const contentType = request.headers.get("content-type")?.split(";", 1)[0].trim().toLowerCase();
+  if (contentType !== "application/json") return enquiryResponse(415, "unsupported_media_type");
+
+  let boundedBody: { oversized: boolean; text?: string };
+  try {
+    boundedBody = await readEnquiryBody(request);
+  } catch {
+    return enquiryResponse(400, "invalid_request");
+  }
+  if (boundedBody.oversized) return enquiryResponse(413, "payload_too_large");
+
+  let payload: unknown;
+  try {
+    payload = JSON.parse(boundedBody.text ?? "");
+  } catch {
+    return enquiryResponse(400, "invalid_request");
+  }
+  const parsed = parseEnquiry(payload);
+  if (!parsed.ok) return enquiryResponse(400, "invalid_request");
+
+  const origin = allowedEnquiryOrigin(request);
+  if (!origin) return enquiryResponse(403, "forbidden");
+
+  const { RESEND_API_KEY, TURNSTILE_SECRET_KEY, ENQUIRY_FROM_EMAIL, ENQUIRY_TO_EMAIL } = env;
+  if (![RESEND_API_KEY, TURNSTILE_SECRET_KEY, ENQUIRY_FROM_EMAIL, ENQUIRY_TO_EMAIL]
+    .every((value) => typeof value === "string" && value.trim() !== "")) {
+    return enquiryResponse(503, "service_unavailable");
+  }
+
+  const remoteIp = request.headers.get("CF-Connecting-IP")?.trim();
+  const verificationBody: Record<string, string> = {
+    secret: TURNSTILE_SECRET_KEY as string,
+    response: parsed.value.turnstileToken,
+  };
+  if (remoteIp && remoteIp.length <= 64) verificationBody.remoteip = remoteIp;
+
+  try {
+    const verificationResponse = await upstreamFetch(
+      "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+      {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(verificationBody),
+      },
+    );
+    if (!verificationResponse.ok) return enquiryResponse(403, "verification_failed");
+    const verification = await verificationResponse.json() as { success?: unknown; hostname?: unknown };
+    if (verification.success !== true || verification.hostname !== origin.hostname) {
+      return enquiryResponse(403, "verification_failed");
+    }
+  } catch {
+    return enquiryResponse(403, "verification_failed");
+  }
+
+  try {
+    const deliveryResponse = await upstreamFetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        authorization: `Bearer ${RESEND_API_KEY}`,
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        from: ENQUIRY_FROM_EMAIL,
+        to: [ENQUIRY_TO_EMAIL],
+        reply_to: parsed.value.email,
+        subject: "New website enquiry",
+        text: enquiryPlainText(parsed.value),
+      }),
+    });
+    if (!deliveryResponse.ok) return enquiryResponse(502, "delivery_failed");
+  } catch {
+    return enquiryResponse(502, "delivery_failed");
+  }
+
+  return enquiryResponse(201);
+}
+
 export function createWorker(
   upstreamFetch: typeof fetch = fetch,
   portfolioCache?: PortfolioCache,
@@ -357,13 +529,19 @@ export function createWorker(
       );
     }
 
+    if (url.pathname === "/api/enquiry") {
+      return handleEnquiryRequest(request, env, upstreamFetch);
+    }
+
     if (isAssetRequest) {
       return env.ASSETS.fetch(request);
     }
 
     const redirect = findRedirect(url.pathname);
     if (redirect) {
-      return Response.redirect(new URL(redirect.to, url.origin).toString(), redirect.status);
+      const redirectUrl = new URL(redirect.to, url.origin);
+      redirectUrl.search = url.search;
+      return Response.redirect(redirectUrl.toString(), redirect.status);
     }
 
     const canonicalPath = normalizePathname(url.pathname);
