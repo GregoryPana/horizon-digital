@@ -27,8 +27,9 @@ describe("getAnalyticsPageTitle", () => {
     expect(getAnalyticsPageTitle("/services-pricing")).toBe("Custom Website Packages & Pricing in Seychelles | Horizon Digital");
   });
 
-  it("uses article and not-found metadata deterministically", () => {
+  it("uses article-specific, insight-not-found and generic not-found metadata", () => {
     expect(getAnalyticsPageTitle("/insights/ai-small-business-seychelles")).toBe("What AI Means for Small Businesses in Seychelles | Horizon Digital");
+    expect(getAnalyticsPageTitle("/insights/missing-article")).toBe("Insight Not Found | Horizon Digital");
     expect(getAnalyticsPageTitle("/missing")).toBe("Page Not Found | Horizon Digital");
   });
 });

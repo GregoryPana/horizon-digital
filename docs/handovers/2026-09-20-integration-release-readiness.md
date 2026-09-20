@@ -25,7 +25,7 @@ This note is not authorization to commit, push or deploy.
 
 ## Verified release gate
 
-- `npm test`: **516/516 passed**.
+- `npm test`: **517/517 passed**.
 - Public facts and eight generated knowledge files: generated and drift-checked.
 - `npm run build`: passed.
 - Production build exact-numeric-SCR scan: passed.
@@ -36,7 +36,7 @@ This note is not authorization to commit, push or deploy.
 - Restaurant study updated to the approved photo-led direction with dark neutral surfaces, restrained Horizon accents, humanized copy, licensed image provenance and responsive mobile/desktop QA.
 - Photograph provenance is recorded in `src/assets/work/restaurant-concept/photos/README.md`, including source pages, licence authority, truth boundaries, original/derived dimensions and SHA-256 hashes.
 - Analytics preferences now expose dialog semantics, focus-on-open, Escape dismissal and focus restoration; Playwright verified the keyboard flow at 390px and 1440px.
-- GA4 attribution hardening: contact-intent placement uses `cta_location` rather than reserved `source`, and page-view titles resolve from the governed route registry rather than timing-sensitive `document.title`.
+- GA4 attribution hardening: contact intent uses `cta_location`, successful forms use `lead_source`, generic events prevent reserved `source` from reaching GA4, and every page-view path—including immediate post-consent and missing insight routes—resolves its title from governed route metadata.
 - Independent restaurant integration correction review: **PASS**.
 - Independent photo-led redesign correction re-review: **PASS**.
 - Independent Cycle 1 carousel correction review: **PASS**.

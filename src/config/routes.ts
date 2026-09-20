@@ -432,3 +432,17 @@ export function getSitemapEntries(todayIso: string): SitemapEntry[] {
 export function buildFullTitle(title: string): string {
   return title.includes(SITE_NAME) ? title : `${title} | ${SITE_NAME}`;
 }
+
+export function getRoutePageTitle(pathname: string): string {
+  const redirect = findRedirect(pathname);
+  const resolvedPath = redirect?.to ?? pathname;
+  const staticRoute = findStaticRoute(resolvedPath);
+  if (staticRoute) return buildFullTitle(staticRoute.seo.title);
+
+  const dynamicRoute = matchDynamicRoute(resolvedPath);
+  if (dynamicRoute) {
+    return buildFullTitle(dynamicRoute.article?.seoTitle ?? INSIGHT_NOT_FOUND_SEO.title);
+  }
+
+  return buildFullTitle(NOT_FOUND_SEO.title);
+}

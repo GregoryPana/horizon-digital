@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { getRoutePageTitle } from "../config/routes";
 import {
   ANALYTICS_CONSENT_EVENT,
   ANALYTICS_PREFERENCES_OPEN_EVENT,
@@ -82,7 +83,7 @@ export default function AnalyticsConsentControl({
     if (next === "granted") {
       initializeAnalytics(isProduction);
       trackPageView({
-        page_title: document.title,
+        page_title: getRoutePageTitle(window.location.pathname),
         page_location: window.location.href,
         page_path: window.location.pathname + window.location.search,
       }, isProduction);

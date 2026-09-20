@@ -395,7 +395,7 @@ describe("Contact enquiry form", () => {
     expect(source).toContain("ENQUIRY_TIMELINES");
     expect(source).not.toMatch(/TURNSTILE_SECRET|0x[A-Za-z0-9_-]{20,}/);
     expect(source).not.toMatch(/form_start|form_error/);
-    expect(source).toContain('trackEvent("generate_lead"');
+    expect(source).toMatch(/trackEvent\("generate_lead",\s*{\s*lead_source:\s*"contact_page_form"/);
     expect(source.indexOf('response.status === 201')).toBeLessThan(
       source.indexOf('trackEvent("generate_lead"'),
     );

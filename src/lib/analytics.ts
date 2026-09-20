@@ -162,7 +162,9 @@ export function trackEvent(
   isProduction = import.meta.env.PROD,
 ) {
   if (!analyticsReady(isProduction)) return;
-  window.gtag!("event", eventName, params);
+  const { source, ...safeParams } = params;
+  if (source !== undefined) safeParams.event_source = source;
+  window.gtag!("event", eventName, safeParams);
 }
 
 export type ContactIntentMethod = "whatsapp" | "email" | "phone" | "contact_form";

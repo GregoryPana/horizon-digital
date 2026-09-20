@@ -61,6 +61,7 @@ describe("AnalyticsConsentControl", () => {
       entry[0] === "event"
       && entry[1] === "page_view"
       && entry[2]?.page_path === window.location.pathname + window.location.search
+      && entry[2]?.page_title === "Custom Website Design Seychelles | Horizon Digital"
     ))).toBe(true);
   });
 

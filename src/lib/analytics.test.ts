@@ -126,6 +126,18 @@ describe("consent-first analytics", () => {
     ]);
   });
 
+  it("prevents reserved source parameters from reaching GA4", () => {
+    setAnalyticsConsent("granted");
+    trackEvent("custom_action", { source: "legacy_label", page_path: "/" }, true);
+
+    const lastEntry = window.dataLayer?.[(window.dataLayer?.length ?? 1) - 1] ?? [];
+    expect(Array.from(lastEntry)).toEqual([
+      "event",
+      "custom_action",
+      { event_source: "legacy_label", page_path: "/" },
+    ]);
+  });
+
   it("revocation removes the current analytics runtime and blocks future events", () => {
     setAnalyticsConsent("granted");
     initializeAnalytics(true);

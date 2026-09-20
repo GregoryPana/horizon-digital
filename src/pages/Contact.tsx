@@ -299,7 +299,7 @@ export default function Contact() {
       try { body = await response.json(); } catch { body = null; }
       if (response.status === 201 && (body as { ok?: unknown } | null)?.ok === true) {
         trackEvent("generate_lead", {
-          source: "contact_page_form",
+          lead_source: "contact_page_form",
           page_path: location.pathname,
           transport_type: "beacon",
         });
