@@ -178,7 +178,8 @@ export function trackContactIntent({
 }, isProduction = import.meta.env.PROD) {
   trackEvent("contact_intent", {
     method,
-    source,
+    // `source` is reserved by GA4 attribution and can overwrite session source.
+    cta_location: source,
     page_path: pagePath,
     transport_type: "beacon",
   }, isProduction);

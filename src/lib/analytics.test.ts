@@ -119,7 +119,7 @@ describe("consent-first analytics", () => {
       }],
       ["event", "contact_intent", {
         method: "email",
-        source: "footer",
+        cta_location: "footer",
         page_path: "/contact",
         transport_type: "beacon",
       }],
