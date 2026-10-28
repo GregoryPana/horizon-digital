@@ -1,0 +1,1606 @@
+{
+  "engine": "firefox",
+  "cases": [
+    {
+      "id": "drake",
+      "viewport": [
+        320,
+        568
+      ],
+      "motion": "reduce",
+      "devices": 2,
+      "screens": [
+        {
+          "width": 251.13333129882812,
+          "height": 156.9666748046875,
+          "imageWidth": 251.13333129882812,
+          "naturalWidth": 1200,
+          "naturalHeight": 2250,
+          "x": 24.633331298828125,
+          "right": 275.76666259765625
+        },
+        {
+          "width": 67.4666748046875,
+          "height": 146,
+          "imageWidth": 67.4666748046875,
+          "naturalWidth": 390,
+          "naturalHeight": 2532,
+          "x": 228.46665954589844,
+          "right": 295.93333435058594
+        }
+      ],
+      "overflow": 0,
+      "h1": 1,
+      "passed": true
+    },
+    {
+      "id": "horizon-auto",
+      "viewport": [
+        320,
+        568
+      ],
+      "motion": "reduce",
+      "devices": 2,
+      "screens": [
+        {
+          "width": 251.13333129882812,
+          "height": 156.9666748046875,
+          "imageWidth": 251.13333129882812,
+          "naturalWidth": 1200,
+          "naturalHeight": 2250,
+          "x": 24.633331298828125,
+          "right": 275.76666259765625
+        },
+        {
+          "width": 67.4666748046875,
+          "height": 146,
+          "imageWidth": 67.4666748046875,
+          "naturalWidth": 390,
+          "naturalHeight": 2532,
+          "x": 228.46665954589844,
+          "right": 295.93333435058594
+        }
+      ],
+      "overflow": 0,
+      "h1": 1,
+      "passed": true
+    },
+    {
+      "id": "takamaka",
+      "viewport": [
+        320,
+        568
+      ],
+      "motion": "reduce",
+      "devices": 2,
+      "screens": [
+        {
+          "width": 251.13333129882812,
+          "height": 156.9666748046875,
+          "imageWidth": 251.13333129882812,
+          "naturalWidth": 1200,
+          "naturalHeight": 1500,
+          "x": 24.633331298828125,
+          "right": 275.76666259765625
+        },
+        {
+          "width": 67.4666748046875,
+          "height": 146,
+          "imageWidth": 67.4666748046875,
+          "naturalWidth": 390,
+          "naturalHeight": 2200,
+          "x": 228.46665954589844,
+          "right": 295.93333435058594
+        }
+      ],
+      "overflow": 0,
+      "h1": 1,
+      "passed": true
+    },
+    {
+      "id": "forma",
+      "viewport": [
+        320,
+        568
+      ],
+      "motion": "reduce",
+      "devices": 2,
+      "screens": [
+        {
+          "width": 251.13333129882812,
+          "height": 156.9666748046875,
+          "imageWidth": 251.13333129882812,
+          "naturalWidth": 1200,
+          "naturalHeight": 1417,
+          "x": 24.633331298828125,
+          "right": 275.76666259765625
+        },
+        {
+          "width": 67.4666748046875,
+          "height": 146,
+          "imageWidth": 67.4666748046875,
+          "naturalWidth": 390,
+          "naturalHeight": 1900,
+          "x": 228.46665954589844,
+          "right": 295.93333435058594
+        }
+      ],
+      "overflow": 0,
+      "h1": 1,
+      "passed": true
+    },
+    {
+      "id": "beauty",
+      "viewport": [
+        320,
+        568
+      ],
+      "motion": "reduce",
+      "devices": 2,
+      "screens": [
+        {
+          "width": 251.13333129882812,
+          "height": 156.96665954589844,
+          "imageWidth": 251.13333129882812,
+          "naturalWidth": 1200,
+          "naturalHeight": 2250,
+          "x": 24.633331298828125,
+          "right": 275.76666259765625
+        },
+        {
+          "width": 67.4666748046875,
+          "height": 146,
+          "imageWidth": 67.4666748046875,
+          "naturalWidth": 390,
+          "naturalHeight": 2532,
+          "x": 228.46665954589844,
+          "right": 295.93333435058594
+        }
+      ],
+      "overflow": 0,
+      "h1": 1,
+      "passed": true
+    },
+    {
+      "id": "drake",
+      "viewport": [
+        390,
+        844
+      ],
+      "motion": "reduce",
+      "devices": 2,
+      "screens": [
+        {
+          "width": 314.3999938964844,
+          "height": 196.5,
+          "imageWidth": 314.3999938964844,
+          "naturalWidth": 1200,
+          "naturalHeight": 2250,
+          "x": 25.550003051757812,
+          "right": 339.9499969482422
+        },
+        {
+          "width": 84.79998779296875,
+          "height": 183.51666259765625,
+          "imageWidth": 84.79998779296875,
+          "naturalWidth": 390,
+          "naturalHeight": 2532,
+          "x": 280.3500061035156,
+          "right": 365.1499938964844
+        }
+      ],
+      "overflow": 0,
+      "h1": 1,
+      "passed": true
+    },
+    {
+      "id": "horizon-auto",
+      "viewport": [
+        390,
+        844
+      ],
+      "motion": "reduce",
+      "devices": 2,
+      "screens": [
+        {
+          "width": 314.3999938964844,
+          "height": 196.5,
+          "imageWidth": 314.3999938964844,
+          "naturalWidth": 1200,
+          "naturalHeight": 2250,
+          "x": 25.550003051757812,
+          "right": 339.9499969482422
+        },
+        {
+          "width": 84.79998779296875,
+          "height": 183.51666259765625,
+          "imageWidth": 84.79998779296875,
+          "naturalWidth": 390,
+          "naturalHeight": 2532,
+          "x": 280.3500061035156,
+          "right": 365.1499938964844
+        }
+      ],
+      "overflow": 0,
+      "h1": 1,
+      "passed": true
+    },
+    {
+      "id": "takamaka",
+      "viewport": [
+        390,
+        844
+      ],
+      "motion": "reduce",
+      "devices": 2,
+      "screens": [
+        {
+          "width": 314.3999938964844,
+          "height": 196.5,
+          "imageWidth": 314.3999938964844,
+          "naturalWidth": 1200,
+          "naturalHeight": 1500,
+          "x": 25.550003051757812,
+          "right": 339.9499969482422
+        },
+        {
+          "width": 84.79998779296875,
+          "height": 183.51666259765625,
+          "imageWidth": 84.79998779296875,
+          "naturalWidth": 390,
+          "naturalHeight": 2200,
+          "x": 280.3500061035156,
+          "right": 365.1499938964844
+        }
+      ],
+      "overflow": 0,
+      "h1": 1,
+      "passed": true
+    },
+    {
+      "id": "forma",
+      "viewport": [
+        390,
+        844
+      ],
+      "motion": "reduce",
+      "devices": 2,
+      "screens": [
+        {
+          "width": 314.3999938964844,
+          "height": 196.5,
+          "imageWidth": 314.3999938964844,
+          "naturalWidth": 1200,
+          "naturalHeight": 1417,
+          "x": 25.550003051757812,
+          "right": 339.9499969482422
+        },
+        {
+          "width": 84.79998779296875,
+          "height": 183.51666259765625,
+          "imageWidth": 84.79998779296875,
+          "naturalWidth": 390,
+          "naturalHeight": 1900,
+          "x": 280.3500061035156,
+          "right": 365.1499938964844
+        }
+      ],
+      "overflow": 0,
+      "h1": 1,
+      "passed": true
+    },
+    {
+      "id": "beauty",
+      "viewport": [
+        390,
+        844
+      ],
+      "motion": "reduce",
+      "devices": 2,
+      "screens": [
+        {
+          "width": 314.3999938964844,
+          "height": 196.5,
+          "imageWidth": 314.3999938964844,
+          "naturalWidth": 1200,
+          "naturalHeight": 2250,
+          "x": 25.550003051757812,
+          "right": 339.9499969482422
+        },
+        {
+          "width": 84.79998779296875,
+          "height": 183.51666259765625,
+          "imageWidth": 84.79998779296875,
+          "naturalWidth": 390,
+          "naturalHeight": 2532,
+          "x": 280.3500061035156,
+          "right": 365.1499938964844
+        }
+      ],
+      "overflow": 0,
+      "h1": 1,
+      "passed": true
+    },
+    {
+      "id": "drake",
+      "viewport": [
+        768,
+        1024
+      ],
+      "motion": "reduce",
+      "devices": 2,
+      "screens": [
+        {
+          "width": 634.433349609375,
+          "height": 396.51666259765625,
+          "imageWidth": 634.433349609375,
+          "naturalWidth": 1200,
+          "naturalHeight": 2250,
+          "x": 42.149993896484375,
+          "right": 676.5833435058594
+        },
+        {
+          "width": 166.96665954589844,
+          "height": 361.3333435058594,
+          "imageWidth": 166.96665954589844,
+          "naturalWidth": 390,
+          "naturalHeight": 2532,
+          "x": 561,
+          "right": 727.9666595458984
+        }
+      ],
+      "overflow": 0,
+      "h1": 1,
+      "passed": true
+    },
+    {
+      "id": "horizon-auto",
+      "viewport": [
+        768,
+        1024
+      ],
+      "motion": "reduce",
+      "devices": 2,
+      "screens": [
+        {
+          "width": 634.433349609375,
+          "height": 396.51666259765625,
+          "imageWidth": 634.433349609375,
+          "naturalWidth": 1200,
+          "naturalHeight": 2250,
+          "x": 42.149993896484375,
+          "right": 676.5833435058594
+        },
+        {
+          "width": 166.96665954589844,
+          "height": 361.33331298828125,
+          "imageWidth": 166.96665954589844,
+          "naturalWidth": 390,
+          "naturalHeight": 2532,
+          "x": 561,
+          "right": 727.9666595458984
+        }
+      ],
+      "overflow": 0,
+      "h1": 1,
+      "passed": true
+    },
+    {
+      "id": "takamaka",
+      "viewport": [
+        768,
+        1024
+      ],
+      "motion": "reduce",
+      "devices": 2,
+      "screens": [
+        {
+          "width": 634.433349609375,
+          "height": 396.51666259765625,
+          "imageWidth": 634.433349609375,
+          "naturalWidth": 1200,
+          "naturalHeight": 1500,
+          "x": 42.149993896484375,
+          "right": 676.5833435058594
+        },
+        {
+          "width": 166.96665954589844,
+          "height": 361.3333435058594,
+          "imageWidth": 166.96665954589844,
+          "naturalWidth": 390,
+          "naturalHeight": 2200,
+          "x": 561,
+          "right": 727.9666595458984
+        }
+      ],
+      "overflow": 0,
+      "h1": 1,
+      "passed": true
+    },
+    {
+      "id": "forma",
+      "viewport": [
+        768,
+        1024
+      ],
+      "motion": "reduce",
+      "devices": 2,
+      "screens": [
+        {
+          "width": 634.433349609375,
+          "height": 396.51666259765625,
+          "imageWidth": 634.433349609375,
+          "naturalWidth": 1200,
+          "naturalHeight": 1417,
+          "x": 42.149993896484375,
+          "right": 676.5833435058594
+        },
+        {
+          "width": 166.96665954589844,
+          "height": 361.33331298828125,
+          "imageWidth": 166.96665954589844,
+          "naturalWidth": 390,
+          "naturalHeight": 1900,
+          "x": 561,
+          "right": 727.9666595458984
+        }
+      ],
+      "overflow": 0,
+      "h1": 1,
+      "passed": true
+    },
+    {
+      "id": "beauty",
+      "viewport": [
+        768,
+        1024
+      ],
+      "motion": "reduce",
+      "devices": 2,
+      "screens": [
+        {
+          "width": 634.433349609375,
+          "height": 396.51666259765625,
+          "imageWidth": 634.433349609375,
+          "naturalWidth": 1200,
+          "naturalHeight": 2250,
+          "x": 42.149993896484375,
+          "right": 676.5833435058594
+        },
+        {
+          "width": 166.96665954589844,
+          "height": 361.3333435058594,
+          "imageWidth": 166.96665954589844,
+          "naturalWidth": 390,
+          "naturalHeight": 2532,
+          "x": 561,
+          "right": 727.9666595458984
+        }
+      ],
+      "overflow": 0,
+      "h1": 1,
+      "passed": true
+    },
+    {
+      "id": "drake",
+      "viewport": [
+        1280,
+        700
+      ],
+      "motion": "reduce",
+      "devices": 2,
+      "screens": [
+        {
+          "width": 609.0833129882812,
+          "height": 380.683349609375,
+          "imageWidth": 609.0833129882812,
+          "naturalWidth": 1200,
+          "naturalHeight": 2250,
+          "x": 581.7999877929688,
+          "right": 1190.88330078125
+        },
+        {
+          "width": 160.25,
+          "height": 346.79998779296875,
+          "imageWidth": 160.25,
+          "naturalWidth": 390,
+          "naturalHeight": 2532,
+          "x": 1080,
+          "right": 1240.25
+        }
+      ],
+      "overflow": 0,
+      "h1": 1,
+      "passed": true
+    },
+    {
+      "id": "horizon-auto",
+      "viewport": [
+        1280,
+        700
+      ],
+      "motion": "reduce",
+      "devices": 2,
+      "screens": [
+        {
+          "width": 609.0833129882812,
+          "height": 380.683349609375,
+          "imageWidth": 609.0833129882812,
+          "naturalWidth": 1200,
+          "naturalHeight": 2250,
+          "x": 41.80000305175781,
+          "right": 650.8833160400391
+        },
+        {
+          "width": 160.25,
+          "height": 346.79998779296875,
+          "imageWidth": 160.25,
+          "naturalWidth": 390,
+          "naturalHeight": 2532,
+          "x": 540,
+          "right": 700.25
+        }
+      ],
+      "overflow": 0,
+      "h1": 1,
+      "passed": true
+    },
+    {
+      "id": "takamaka",
+      "viewport": [
+        1280,
+        700
+      ],
+      "motion": "reduce",
+      "devices": 2,
+      "screens": [
+        {
+          "width": 609.0833129882812,
+          "height": 380.683349609375,
+          "imageWidth": 609.0833129882812,
+          "naturalWidth": 1200,
+          "naturalHeight": 1500,
+          "x": 581.7999877929688,
+          "right": 1190.88330078125
+        },
+        {
+          "width": 160.25,
+          "height": 346.79998779296875,
+          "imageWidth": 160.25,
+          "naturalWidth": 390,
+          "naturalHeight": 2200,
+          "x": 1080,
+          "right": 1240.25
+        }
+      ],
+      "overflow": 0,
+      "h1": 1,
+      "passed": true
+    },
+    {
+      "id": "forma",
+      "viewport": [
+        1280,
+        700
+      ],
+      "motion": "reduce",
+      "devices": 2,
+      "screens": [
+        {
+          "width": 609.0833129882812,
+          "height": 380.683349609375,
+          "imageWidth": 609.0833129882812,
+          "naturalWidth": 1200,
+          "naturalHeight": 1417,
+          "x": 41.80000305175781,
+          "right": 650.8833160400391
+        },
+        {
+          "width": 160.25,
+          "height": 346.79998779296875,
+          "imageWidth": 160.25,
+          "naturalWidth": 390,
+          "naturalHeight": 1900,
+          "x": 540,
+          "right": 700.25
+        }
+      ],
+      "overflow": 0,
+      "h1": 1,
+      "passed": true
+    },
+    {
+      "id": "beauty",
+      "viewport": [
+        1280,
+        700
+      ],
+      "motion": "reduce",
+      "devices": 2,
+      "screens": [
+        {
+          "width": 609.0833129882812,
+          "height": 380.683349609375,
+          "imageWidth": 609.0833129882812,
+          "naturalWidth": 1200,
+          "naturalHeight": 2250,
+          "x": 581.7999877929688,
+          "right": 1190.88330078125
+        },
+        {
+          "width": 160.25,
+          "height": 346.79998779296875,
+          "imageWidth": 160.25,
+          "naturalWidth": 390,
+          "naturalHeight": 2532,
+          "x": 1080,
+          "right": 1240.25
+        }
+      ],
+      "overflow": 0,
+      "h1": 1,
+      "passed": true
+    },
+    {
+      "id": "drake",
+      "viewport": [
+        1440,
+        900
+      ],
+      "motion": "reduce",
+      "devices": 2,
+      "screens": [
+        {
+          "width": 609.0833129882812,
+          "height": 380.683349609375,
+          "imageWidth": 609.0833129882812,
+          "naturalWidth": 1200,
+          "naturalHeight": 2250,
+          "x": 661.7999877929688,
+          "right": 1270.88330078125
+        },
+        {
+          "width": 160.25,
+          "height": 346.79998779296875,
+          "imageWidth": 160.25,
+          "naturalWidth": 390,
+          "naturalHeight": 2532,
+          "x": 1160,
+          "right": 1320.25
+        }
+      ],
+      "overflow": 0,
+      "h1": 1,
+      "passed": true
+    },
+    {
+      "id": "horizon-auto",
+      "viewport": [
+        1440,
+        900
+      ],
+      "motion": "reduce",
+      "devices": 2,
+      "screens": [
+        {
+          "width": 609.0833129882812,
+          "height": 380.683349609375,
+          "imageWidth": 609.0833129882812,
+          "naturalWidth": 1200,
+          "naturalHeight": 2250,
+          "x": 121.80000305175781,
+          "right": 730.8833160400391
+        },
+        {
+          "width": 160.25,
+          "height": 346.79998779296875,
+          "imageWidth": 160.25,
+          "naturalWidth": 390,
+          "naturalHeight": 2532,
+          "x": 620,
+          "right": 780.25
+        }
+      ],
+      "overflow": 0,
+      "h1": 1,
+      "passed": true
+    },
+    {
+      "id": "takamaka",
+      "viewport": [
+        1440,
+        900
+      ],
+      "motion": "reduce",
+      "devices": 2,
+      "screens": [
+        {
+          "width": 609.0833129882812,
+          "height": 380.683349609375,
+          "imageWidth": 609.0833129882812,
+          "naturalWidth": 1200,
+          "naturalHeight": 1500,
+          "x": 661.7999877929688,
+          "right": 1270.88330078125
+        },
+        {
+          "width": 160.25,
+          "height": 346.79998779296875,
+          "imageWidth": 160.25,
+          "naturalWidth": 390,
+          "naturalHeight": 2200,
+          "x": 1160,
+          "right": 1320.25
+        }
+      ],
+      "overflow": 0,
+      "h1": 1,
+      "passed": true
+    },
+    {
+      "id": "forma",
+      "viewport": [
+        1440,
+        900
+      ],
+      "motion": "reduce",
+      "devices": 2,
+      "screens": [
+        {
+          "width": 609.0833129882812,
+          "height": 380.683349609375,
+          "imageWidth": 609.0833129882812,
+          "naturalWidth": 1200,
+          "naturalHeight": 1417,
+          "x": 121.80000305175781,
+          "right": 730.8833160400391
+        },
+        {
+          "width": 160.25,
+          "height": 346.79998779296875,
+          "imageWidth": 160.25,
+          "naturalWidth": 390,
+          "naturalHeight": 1900,
+          "x": 620,
+          "right": 780.25
+        }
+      ],
+      "overflow": 0,
+      "h1": 1,
+      "passed": true
+    },
+    {
+      "id": "beauty",
+      "viewport": [
+        1440,
+        900
+      ],
+      "motion": "reduce",
+      "devices": 2,
+      "screens": [
+        {
+          "width": 609.0833129882812,
+          "height": 380.683349609375,
+          "imageWidth": 609.0833129882812,
+          "naturalWidth": 1200,
+          "naturalHeight": 2250,
+          "x": 661.7999877929688,
+          "right": 1270.88330078125
+        },
+        {
+          "width": 160.25,
+          "height": 346.79998779296875,
+          "imageWidth": 160.25,
+          "naturalWidth": 390,
+          "naturalHeight": 2532,
+          "x": 1160,
+          "right": 1320.25
+        }
+      ],
+      "overflow": 0,
+      "h1": 1,
+      "passed": true
+    },
+    {
+      "id": "drake",
+      "viewport": [
+        320,
+        568
+      ],
+      "motion": "no-preference",
+      "devices": 2,
+      "screens": [
+        {
+          "width": 251.13333129882812,
+          "height": 156.9666748046875,
+          "imageWidth": 251.13333129882812,
+          "naturalWidth": 1200,
+          "naturalHeight": 2250,
+          "x": 24.633331298828125,
+          "right": 275.76666259765625
+        },
+        {
+          "width": 67.4666748046875,
+          "height": 146,
+          "imageWidth": 67.4666748046875,
+          "naturalWidth": 390,
+          "naturalHeight": 2532,
+          "x": 228.46665954589844,
+          "right": 295.93333435058594
+        }
+      ],
+      "overflow": 0,
+      "h1": 1,
+      "passed": true
+    },
+    {
+      "id": "horizon-auto",
+      "viewport": [
+        320,
+        568
+      ],
+      "motion": "no-preference",
+      "devices": 2,
+      "screens": [
+        {
+          "width": 251.13333129882812,
+          "height": 156.9666748046875,
+          "imageWidth": 251.13333129882812,
+          "naturalWidth": 1200,
+          "naturalHeight": 2250,
+          "x": 24.633331298828125,
+          "right": 275.76666259765625
+        },
+        {
+          "width": 67.4666748046875,
+          "height": 146,
+          "imageWidth": 67.4666748046875,
+          "naturalWidth": 390,
+          "naturalHeight": 2532,
+          "x": 228.46665954589844,
+          "right": 295.93333435058594
+        }
+      ],
+      "overflow": 0,
+      "h1": 1,
+      "passed": true
+    },
+    {
+      "id": "takamaka",
+      "viewport": [
+        320,
+        568
+      ],
+      "motion": "no-preference",
+      "devices": 2,
+      "screens": [
+        {
+          "width": 251.13333129882812,
+          "height": 156.9666748046875,
+          "imageWidth": 251.13333129882812,
+          "naturalWidth": 1200,
+          "naturalHeight": 1500,
+          "x": 24.633331298828125,
+          "right": 275.76666259765625
+        },
+        {
+          "width": 67.4666748046875,
+          "height": 146,
+          "imageWidth": 67.4666748046875,
+          "naturalWidth": 390,
+          "naturalHeight": 2200,
+          "x": 228.46665954589844,
+          "right": 295.93333435058594
+        }
+      ],
+      "overflow": 0,
+      "h1": 1,
+      "passed": true
+    },
+    {
+      "id": "forma",
+      "viewport": [
+        320,
+        568
+      ],
+      "motion": "no-preference",
+      "devices": 2,
+      "screens": [
+        {
+          "width": 251.13333129882812,
+          "height": 156.9666748046875,
+          "imageWidth": 251.13333129882812,
+          "naturalWidth": 1200,
+          "naturalHeight": 1417,
+          "x": 24.633331298828125,
+          "right": 275.76666259765625
+        },
+        {
+          "width": 67.4666748046875,
+          "height": 146,
+          "imageWidth": 67.4666748046875,
+          "naturalWidth": 390,
+          "naturalHeight": 1900,
+          "x": 228.46665954589844,
+          "right": 295.93333435058594
+        }
+      ],
+      "overflow": 0,
+      "h1": 1,
+      "passed": true
+    },
+    {
+      "id": "beauty",
+      "viewport": [
+        320,
+        568
+      ],
+      "motion": "no-preference",
+      "devices": 2,
+      "screens": [
+        {
+          "width": 251.13333129882812,
+          "height": 156.96665954589844,
+          "imageWidth": 251.13333129882812,
+          "naturalWidth": 1200,
+          "naturalHeight": 2250,
+          "x": 24.633331298828125,
+          "right": 275.76666259765625
+        },
+        {
+          "width": 67.4666748046875,
+          "height": 146,
+          "imageWidth": 67.4666748046875,
+          "naturalWidth": 390,
+          "naturalHeight": 2532,
+          "x": 228.46665954589844,
+          "right": 295.93333435058594
+        }
+      ],
+      "overflow": 0,
+      "h1": 1,
+      "passed": true
+    },
+    {
+      "id": "drake",
+      "viewport": [
+        390,
+        844
+      ],
+      "motion": "no-preference",
+      "devices": 2,
+      "screens": [
+        {
+          "width": 314.3999938964844,
+          "height": 196.5,
+          "imageWidth": 314.3999938964844,
+          "naturalWidth": 1200,
+          "naturalHeight": 2250,
+          "x": 25.550003051757812,
+          "right": 339.9499969482422
+        },
+        {
+          "width": 84.79998779296875,
+          "height": 183.51666259765625,
+          "imageWidth": 84.79998779296875,
+          "naturalWidth": 390,
+          "naturalHeight": 2532,
+          "x": 280.3500061035156,
+          "right": 365.1499938964844
+        }
+      ],
+      "overflow": 0,
+      "h1": 1,
+      "passed": true
+    },
+    {
+      "id": "horizon-auto",
+      "viewport": [
+        390,
+        844
+      ],
+      "motion": "no-preference",
+      "devices": 2,
+      "screens": [
+        {
+          "width": 314.3999938964844,
+          "height": 196.5,
+          "imageWidth": 314.3999938964844,
+          "naturalWidth": 1200,
+          "naturalHeight": 2250,
+          "x": 25.550003051757812,
+          "right": 339.9499969482422
+        },
+        {
+          "width": 84.79998779296875,
+          "height": 183.51666259765625,
+          "imageWidth": 84.79998779296875,
+          "naturalWidth": 390,
+          "naturalHeight": 2532,
+          "x": 280.3500061035156,
+          "right": 365.1499938964844
+        }
+      ],
+      "overflow": 0,
+      "h1": 1,
+      "passed": true
+    },
+    {
+      "id": "takamaka",
+      "viewport": [
+        390,
+        844
+      ],
+      "motion": "no-preference",
+      "devices": 2,
+      "screens": [
+        {
+          "width": 314.3999938964844,
+          "height": 196.5,
+          "imageWidth": 314.3999938964844,
+          "naturalWidth": 1200,
+          "naturalHeight": 1500,
+          "x": 25.550003051757812,
+          "right": 339.9499969482422
+        },
+        {
+          "width": 84.79998779296875,
+          "height": 183.51666259765625,
+          "imageWidth": 84.79998779296875,
+          "naturalWidth": 390,
+          "naturalHeight": 2200,
+          "x": 280.3500061035156,
+          "right": 365.1499938964844
+        }
+      ],
+      "overflow": 0,
+      "h1": 1,
+      "passed": true
+    },
+    {
+      "id": "forma",
+      "viewport": [
+        390,
+        844
+      ],
+      "motion": "no-preference",
+      "devices": 2,
+      "screens": [
+        {
+          "width": 314.3999938964844,
+          "height": 196.5,
+          "imageWidth": 314.3999938964844,
+          "naturalWidth": 1200,
+          "naturalHeight": 1417,
+          "x": 25.550003051757812,
+          "right": 339.9499969482422
+        },
+        {
+          "width": 84.79998779296875,
+          "height": 183.51666259765625,
+          "imageWidth": 84.79998779296875,
+          "naturalWidth": 390,
+          "naturalHeight": 1900,
+          "x": 280.3500061035156,
+          "right": 365.1499938964844
+        }
+      ],
+      "overflow": 0,
+      "h1": 1,
+      "passed": true
+    },
+    {
+      "id": "beauty",
+      "viewport": [
+        390,
+        844
+      ],
+      "motion": "no-preference",
+      "devices": 2,
+      "screens": [
+        {
+          "width": 314.3999938964844,
+          "height": 196.5,
+          "imageWidth": 314.3999938964844,
+          "naturalWidth": 1200,
+          "naturalHeight": 2250,
+          "x": 25.550003051757812,
+          "right": 339.9499969482422
+        },
+        {
+          "width": 84.79998779296875,
+          "height": 183.51666259765625,
+          "imageWidth": 84.79998779296875,
+          "naturalWidth": 390,
+          "naturalHeight": 2532,
+          "x": 280.3500061035156,
+          "right": 365.1499938964844
+        }
+      ],
+      "overflow": 0,
+      "h1": 1,
+      "passed": true
+    },
+    {
+      "id": "drake",
+      "viewport": [
+        768,
+        1024
+      ],
+      "motion": "no-preference",
+      "devices": 2,
+      "screens": [
+        {
+          "width": 634.433349609375,
+          "height": 396.51666259765625,
+          "imageWidth": 634.433349609375,
+          "naturalWidth": 1200,
+          "naturalHeight": 2250,
+          "x": 42.149993896484375,
+          "right": 676.5833435058594
+        },
+        {
+          "width": 166.96665954589844,
+          "height": 361.33331298828125,
+          "imageWidth": 166.96665954589844,
+          "naturalWidth": 390,
+          "naturalHeight": 2532,
+          "x": 561,
+          "right": 727.9666595458984
+        }
+      ],
+      "overflow": 0,
+      "h1": 1,
+      "passed": true
+    },
+    {
+      "id": "horizon-auto",
+      "viewport": [
+        768,
+        1024
+      ],
+      "motion": "no-preference",
+      "devices": 2,
+      "screens": [
+        {
+          "width": 634.433349609375,
+          "height": 396.51666259765625,
+          "imageWidth": 634.433349609375,
+          "naturalWidth": 1200,
+          "naturalHeight": 2250,
+          "x": 42.149993896484375,
+          "right": 676.5833435058594
+        },
+        {
+          "width": 166.96665954589844,
+          "height": 361.33331298828125,
+          "imageWidth": 166.96665954589844,
+          "naturalWidth": 390,
+          "naturalHeight": 2532,
+          "x": 561,
+          "right": 727.9666595458984
+        }
+      ],
+      "overflow": 0,
+      "h1": 1,
+      "passed": true
+    },
+    {
+      "id": "takamaka",
+      "viewport": [
+        768,
+        1024
+      ],
+      "motion": "no-preference",
+      "devices": 2,
+      "screens": [
+        {
+          "width": 634.433349609375,
+          "height": 396.51666259765625,
+          "imageWidth": 634.433349609375,
+          "naturalWidth": 1200,
+          "naturalHeight": 1500,
+          "x": 42.149993896484375,
+          "right": 676.5833435058594
+        },
+        {
+          "width": 166.96665954589844,
+          "height": 361.33331298828125,
+          "imageWidth": 166.96665954589844,
+          "naturalWidth": 390,
+          "naturalHeight": 2200,
+          "x": 561,
+          "right": 727.9666595458984
+        }
+      ],
+      "overflow": 0,
+      "h1": 1,
+      "passed": true
+    },
+    {
+      "id": "forma",
+      "viewport": [
+        768,
+        1024
+      ],
+      "motion": "no-preference",
+      "devices": 2,
+      "screens": [
+        {
+          "width": 634.433349609375,
+          "height": 396.51666259765625,
+          "imageWidth": 634.433349609375,
+          "naturalWidth": 1200,
+          "naturalHeight": 1417,
+          "x": 42.149993896484375,
+          "right": 676.5833435058594
+        },
+        {
+          "width": 166.96665954589844,
+          "height": 361.33331298828125,
+          "imageWidth": 166.96665954589844,
+          "naturalWidth": 390,
+          "naturalHeight": 1900,
+          "x": 561,
+          "right": 727.9666595458984
+        }
+      ],
+      "overflow": 0,
+      "h1": 1,
+      "passed": true
+    },
+    {
+      "id": "beauty",
+      "viewport": [
+        768,
+        1024
+      ],
+      "motion": "no-preference",
+      "devices": 2,
+      "screens": [
+        {
+          "width": 634.433349609375,
+          "height": 396.51666259765625,
+          "imageWidth": 634.433349609375,
+          "naturalWidth": 1200,
+          "naturalHeight": 2250,
+          "x": 42.149993896484375,
+          "right": 676.5833435058594
+        },
+        {
+          "width": 166.96665954589844,
+          "height": 361.33331298828125,
+          "imageWidth": 166.96665954589844,
+          "naturalWidth": 390,
+          "naturalHeight": 2532,
+          "x": 561,
+          "right": 727.9666595458984
+        }
+      ],
+      "overflow": 0,
+      "h1": 1,
+      "passed": true
+    },
+    {
+      "id": "drake",
+      "viewport": [
+        1280,
+        700
+      ],
+      "motion": "no-preference",
+      "devices": 2,
+      "screens": [
+        {
+          "width": 609.0833129882812,
+          "height": 380.683349609375,
+          "imageWidth": 609.0833129882812,
+          "naturalWidth": 1200,
+          "naturalHeight": 2250,
+          "x": 581.7999877929688,
+          "right": 1190.88330078125
+        },
+        {
+          "width": 160.25,
+          "height": 346.79998779296875,
+          "imageWidth": 160.25,
+          "naturalWidth": 390,
+          "naturalHeight": 2532,
+          "x": 1080,
+          "right": 1240.25
+        }
+      ],
+      "overflow": 0,
+      "h1": 1,
+      "passed": true
+    },
+    {
+      "id": "horizon-auto",
+      "viewport": [
+        1280,
+        700
+      ],
+      "motion": "no-preference",
+      "devices": 2,
+      "screens": [
+        {
+          "width": 609.0833129882812,
+          "height": 380.683349609375,
+          "imageWidth": 609.0833129882812,
+          "naturalWidth": 1200,
+          "naturalHeight": 2250,
+          "x": 41.80000305175781,
+          "right": 650.8833160400391
+        },
+        {
+          "width": 160.25,
+          "height": 346.79998779296875,
+          "imageWidth": 160.25,
+          "naturalWidth": 390,
+          "naturalHeight": 2532,
+          "x": 540,
+          "right": 700.25
+        }
+      ],
+      "overflow": 0,
+      "h1": 1,
+      "passed": true
+    },
+    {
+      "id": "takamaka",
+      "viewport": [
+        1280,
+        700
+      ],
+      "motion": "no-preference",
+      "devices": 2,
+      "screens": [
+        {
+          "width": 609.0833129882812,
+          "height": 380.683349609375,
+          "imageWidth": 609.0833129882812,
+          "naturalWidth": 1200,
+          "naturalHeight": 1500,
+          "x": 581.7999877929688,
+          "right": 1190.88330078125
+        },
+        {
+          "width": 160.25,
+          "height": 346.79998779296875,
+          "imageWidth": 160.25,
+          "naturalWidth": 390,
+          "naturalHeight": 2200,
+          "x": 1080,
+          "right": 1240.25
+        }
+      ],
+      "overflow": 0,
+      "h1": 1,
+      "passed": true
+    },
+    {
+      "id": "forma",
+      "viewport": [
+        1280,
+        700
+      ],
+      "motion": "no-preference",
+      "devices": 2,
+      "screens": [
+        {
+          "width": 609.0833129882812,
+          "height": 380.683349609375,
+          "imageWidth": 609.0833129882812,
+          "naturalWidth": 1200,
+          "naturalHeight": 1417,
+          "x": 41.80000305175781,
+          "right": 650.8833160400391
+        },
+        {
+          "width": 160.25,
+          "height": 346.79998779296875,
+          "imageWidth": 160.25,
+          "naturalWidth": 390,
+          "naturalHeight": 1900,
+          "x": 540,
+          "right": 700.25
+        }
+      ],
+      "overflow": 0,
+      "h1": 1,
+      "passed": true
+    },
+    {
+      "id": "beauty",
+      "viewport": [
+        1280,
+        700
+      ],
+      "motion": "no-preference",
+      "devices": 2,
+      "screens": [
+        {
+          "width": 609.0833129882812,
+          "height": 380.683349609375,
+          "imageWidth": 609.0833129882812,
+          "naturalWidth": 1200,
+          "naturalHeight": 2250,
+          "x": 581.7999877929688,
+          "right": 1190.88330078125
+        },
+        {
+          "width": 160.25,
+          "height": 346.79998779296875,
+          "imageWidth": 160.25,
+          "naturalWidth": 390,
+          "naturalHeight": 2532,
+          "x": 1080,
+          "right": 1240.25
+        }
+      ],
+      "overflow": 0,
+      "h1": 1,
+      "passed": true
+    },
+    {
+      "id": "drake",
+      "viewport": [
+        1440,
+        900
+      ],
+      "motion": "no-preference",
+      "devices": 2,
+      "screens": [
+        {
+          "width": 609.0833129882812,
+          "height": 380.683349609375,
+          "imageWidth": 609.0833129882812,
+          "naturalWidth": 1200,
+          "naturalHeight": 2250,
+          "x": 661.7999877929688,
+          "right": 1270.88330078125
+        },
+        {
+          "width": 160.25,
+          "height": 346.79998779296875,
+          "imageWidth": 160.25,
+          "naturalWidth": 390,
+          "naturalHeight": 2532,
+          "x": 1160,
+          "right": 1320.25
+        }
+      ],
+      "overflow": 0,
+      "h1": 1,
+      "passed": true
+    },
+    {
+      "id": "horizon-auto",
+      "viewport": [
+        1440,
+        900
+      ],
+      "motion": "no-preference",
+      "devices": 2,
+      "screens": [
+        {
+          "width": 609.0833129882812,
+          "height": 380.683349609375,
+          "imageWidth": 609.0833129882812,
+          "naturalWidth": 1200,
+          "naturalHeight": 2250,
+          "x": 121.80000305175781,
+          "right": 730.8833160400391
+        },
+        {
+          "width": 160.25,
+          "height": 346.79998779296875,
+          "imageWidth": 160.25,
+          "naturalWidth": 390,
+          "naturalHeight": 2532,
+          "x": 620,
+          "right": 780.25
+        }
+      ],
+      "overflow": 0,
+      "h1": 1,
+      "passed": true
+    },
+    {
+      "id": "takamaka",
+      "viewport": [
+        1440,
+        900
+      ],
+      "motion": "no-preference",
+      "devices": 2,
+      "screens": [
+        {
+          "width": 609.0833129882812,
+          "height": 380.683349609375,
+          "imageWidth": 609.0833129882812,
+          "naturalWidth": 1200,
+          "naturalHeight": 1500,
+          "x": 661.7999877929688,
+          "right": 1270.88330078125
+        },
+        {
+          "width": 160.25,
+          "height": 346.79998779296875,
+          "imageWidth": 160.25,
+          "naturalWidth": 390,
+          "naturalHeight": 2200,
+          "x": 1160,
+          "right": 1320.25
+        }
+      ],
+      "overflow": 0,
+      "h1": 1,
+      "passed": true
+    },
+    {
+      "id": "forma",
+      "viewport": [
+        1440,
+        900
+      ],
+      "motion": "no-preference",
+      "devices": 2,
+      "screens": [
+        {
+          "width": 609.0833129882812,
+          "height": 380.683349609375,
+          "imageWidth": 609.0833129882812,
+          "naturalWidth": 1200,
+          "naturalHeight": 1417,
+          "x": 121.80000305175781,
+          "right": 730.8833160400391
+        },
+        {
+          "width": 160.25,
+          "height": 346.79998779296875,
+          "imageWidth": 160.25,
+          "naturalWidth": 390,
+          "naturalHeight": 1900,
+          "x": 620,
+          "right": 780.25
+        }
+      ],
+      "overflow": 0,
+      "h1": 1,
+      "passed": true
+    },
+    {
+      "id": "beauty",
+      "viewport": [
+        1440,
+        900
+      ],
+      "motion": "no-preference",
+      "devices": 2,
+      "screens": [
+        {
+          "width": 609.0833129882812,
+          "height": 380.683349609375,
+          "imageWidth": 609.0833129882812,
+          "naturalWidth": 1200,
+          "naturalHeight": 2250,
+          "x": 661.7999877929688,
+          "right": 1270.88330078125
+        },
+        {
+          "width": 160.25,
+          "height": 346.79998779296875,
+          "imageWidth": 160.25,
+          "naturalWidth": 390,
+          "naturalHeight": 2532,
+          "x": 1160,
+          "right": 1320.25
+        }
+      ],
+      "overflow": 0,
+      "h1": 1,
+      "passed": true
+    }
+  ],
+  "journeys": []
+}

@@ -1,0 +1,22 @@
+[
+  {
+    "url": "https://horizondigitalsey.com/work",
+    "headers": "HTTP/2 200 \ndate: Wed, 28 Oct 2026 14:29:10 GMT\ncontent-type: text/html; charset=utf-8\ncf-cache-status: HIT\ncache-control: public, max-age=0, must-revalidate\nreport-to: {\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=TKlKMgafdE2uPfqCAdg%2FrOLqsBp1eRfhuYQYtjrXFH8K8LjYZm1FX45XkXN4MdiJiC5rFdd9ctoaE3o0JNH5ZTvqU4toWRUQ%2BPt55is61Jv3wvYXZTzMvwNnYcjycgbE9%2Fx7gT3MG6c%3D\"}]}\nnel: {\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}\nserver: cloudflare\ncf-ray: a51aa191ff215de5-JNB\nalt-svc: h3=\":443\"; ma=86400\n\n"
+  },
+  {
+    "url": "https://www.horizondigitalsey.com/work?portfolio=approved",
+    "headers": "HTTP/2 301 \ndate: Wed, 28 Oct 2026 14:29:10 GMT\nlocation: https://horizondigitalsey.com/work?portfolio=approved\nreport-to: {\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=hm7JkICCSAqNl4SLj%2BKaeE9ODRG413iSwUjKa3mjOSGGMzq5BunvplY5gPrl1jR54nIXIUHfSym8wCvPf16fkN0l8j7492k55%2B6ptKZLz%2BbE6XX8K3F5jOFDeL3ymC9TFkDvNk866PDAxrmO\"}]}\nnel: {\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}\nserver: cloudflare\ncf-ray: a51aa1943ee4b910-JNB\nalt-svc: h3=\":443\"; ma=86400\n\n"
+  },
+  {
+    "url": "https://horizondigitalsey.com/this-route-does-not-exist-portfolio-release",
+    "headers": "HTTP/2 404 \ndate: Wed, 28 Oct 2026 14:29:10 GMT\ncontent-type: text/html; charset=utf-8\ncf-cache-status: HIT\ncache-control: public, max-age=0, must-revalidate\nx-robots-tag: noindex, follow\nreport-to: {\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=e8lDrpJucQlKv3uhwUrs%2BrVPFigeYKEvdd%2F9kzV%2BZC1K83V5UW2T%2B455tMoxWyuEgHD8Bl0yX0%2BDBrCdsHl7BqmD8WeZR9uNAlrbX5Yedw0RaXEgi4QB8QvxSlsDVNxyde3X9kKlZtI%3D\"}]}\nnel: {\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}\nserver: cloudflare\ncf-ray: a51aa1961e68f478-JNB\nalt-svc: h3=\":443\"; ma=86400\n\n"
+  },
+  {
+    "url": "https://auto.horizondigitalsey.com/",
+    "headers": "HTTP/2 200 \ndate: Wed, 28 Oct 2026 14:29:11 GMT\ncontent-type: text/html\ncf-cache-status: HIT\ncache-control: no-store\npermissions-policy: camera=(), microphone=(), geolocation=()\nreferrer-policy: strict-origin-when-cross-origin\nx-content-type-options: nosniff\nx-robots-tag: noindex, nofollow\nreport-to: {\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=i1B4ut13aFtJOysHYF7J99nmsn0%2FeV%2B3DkXkyezp4ZEWzaqrddfGQ5vUYj2RtuQyTTkH0ITWHB5pD%2BKGsKaN5r4v%2Fzw0f6LexpuhKCK79%2FeQn9s2xV0O00WX6HDmpwZ7fC8F6sxysx30nd9Nww%3D%3D\"}]}\nnel: {\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}\nserver: cloudflare\ncf-ray: a51aa197edddde16-JNB\nalt-svc: h3=\":443\"; ma=86400\n\n"
+  },
+  {
+    "url": "https://demo-beauty.horizondigitalsey.com/",
+    "headers": "HTTP/2 200 \ndate: Wed, 28 Oct 2026 14:29:11 GMT\ncontent-type: text/html\ncf-cache-status: HIT\ncache-control: public, max-age=0, must-revalidate\nreport-to: {\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=YEsNEFkM6VxtD7gwv1uq5JNMtWkXPSMBpqWI1nb44%2BXVYg80x%2BKJ6CyJhICTCqqbQe3TAEtRN8SYVVwCK0vJbiRJJ1EW3fDFMRtYN%2FUoJk8485bRtzpF2WUntXLQhy9X3wQwscgyfa60qVZrlhfTluYdjXQ%3D\"}]}\nnel: {\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}\nserver: cloudflare\ncf-ray: a51aa199bab61380-JNB\nalt-svc: h3=\":443\"; ma=86400\n\n"
+  }
+]

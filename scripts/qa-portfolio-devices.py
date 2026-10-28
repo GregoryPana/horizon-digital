@@ -10,7 +10,9 @@ ids=['drake','horizon-auto','takamaka','forma','beauty'];titles=['Drake Seaside'
 def save(): (out/'report.json').write_text(json.dumps({'engine':args.engine,'cases':cases,'journeys':journeys},indent=2))
 def setup(browser,w,h,motion):
  c=browser.new_context(viewport={'width':w,'height':h},reduced_motion=motion)
- for pattern in ['**/*.googletagmanager.com/**','**/*.google-analytics.com/**','**/static.cloudflareinsights.com/**','**/cloudflareinsights.com/**']:c.route(pattern,lambda r:r.fulfill(status=204,body=''))
+ # Let the genuine integrity-protected Cloudflare beacon script load; suppress only
+ # its reporting endpoint in the isolated QA browser, not the script or production config.
+ for pattern in ['**/*.googletagmanager.com/**','**/*.google-analytics.com/**','**/cdn-cgi/rum*','**/cloudflareinsights.com/**']:c.route(pattern,lambda r:r.fulfill(status=204,body=''))
  pg=c.new_page();return c,pg
 def activate(pg,index,motion,width,height):
  if motion=='reduce' or width<768:
