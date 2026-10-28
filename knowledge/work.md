@@ -28,4 +28,10 @@ Portfolio labels must distinguish live client work from concepts and demonstrati
 - **Description:** A demonstration of a focused service-business website with clear services, pricing and contact paths.
 - **URL:** https://demo-beauty.horizondigitalsey.com/
 
+## Horizon Auto
+
+- **Status:** Concept showcase
+- **Description:** A fictional dealership website with vehicle filters, model comparisons and simulated enquiries for cars, servicing and parts.
+- **URL:** https://auto.horizondigitalsey.com/
+
 Do not describe a concept or demonstration as client work. Do not claim business outcomes unless Horizon Digital has evidence and permission to publish them.

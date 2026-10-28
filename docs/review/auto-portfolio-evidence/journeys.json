@@ -1,0 +1,104 @@
+[
+  {
+    "engine": "chromium",
+    "check": "text CTA",
+    "destination": "https://auto.horizondigitalsey.com/",
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "check": "visual link",
+    "destination": "https://auto.horizondigitalsey.com/",
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "check": "request-similar contact navigation",
+    "url": "http://127.0.0.1:4188/contact?request=Horizon%20Auto",
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "check": "Back restores portfolio",
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "check": "unrelated route smoke",
+    "route": "/",
+    "h1": "Your Web Designer of Choice in Seychelles\nYour Web Designer of Choice in Seychelles",
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "check": "unrelated route smoke",
+    "route": "/pricing",
+    "h1": "Choose the right website package.",
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "check": "unrelated route smoke",
+    "route": "/services",
+    "h1": "Choose the right support for your website and digital presence.\nChoose the right support for your website and digital presence.",
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "check": "unrelated route smoke",
+    "route": "/contact",
+    "h1": "Let's figure out the right website for you",
+    "passed": true
+  },
+  {
+    "engine": "firefox",
+    "check": "text CTA",
+    "destination": "https://auto.horizondigitalsey.com/",
+    "passed": true
+  },
+  {
+    "engine": "firefox",
+    "check": "visual link",
+    "destination": "https://auto.horizondigitalsey.com/",
+    "passed": true
+  },
+  {
+    "engine": "firefox",
+    "check": "request-similar contact navigation",
+    "url": "http://127.0.0.1:4188/contact?request=Horizon%20Auto",
+    "passed": true
+  },
+  {
+    "engine": "firefox",
+    "check": "Back restores portfolio",
+    "passed": true
+  },
+  {
+    "engine": "firefox",
+    "check": "unrelated route smoke",
+    "route": "/",
+    "h1": "Your Web Designer of Choice in Seychelles\nYour Web Designer of Choice in Seychelles",
+    "passed": true
+  },
+  {
+    "engine": "firefox",
+    "check": "unrelated route smoke",
+    "route": "/pricing",
+    "h1": "Choose the right website package.",
+    "passed": true
+  },
+  {
+    "engine": "firefox",
+    "check": "unrelated route smoke",
+    "route": "/services",
+    "h1": "Choose the right support for your website and digital presence.\nChoose the right support for your website and digital presence.",
+    "passed": true
+  },
+  {
+    "engine": "firefox",
+    "check": "unrelated route smoke",
+    "route": "/contact",
+    "h1": "Let's figure out the right website for you",
+    "passed": true
+  }
+]

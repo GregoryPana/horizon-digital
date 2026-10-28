@@ -1,0 +1,500 @@
+{
+  "engine": "firefox",
+  "base": "http://127.0.0.1:4188",
+  "cases": [
+    {
+      "viewport": [
+        320,
+        568
+      ],
+      "motion": "reduce",
+      "h1": 1,
+      "overflow": 0,
+      "text": "CONCEPT SHOWCASE \u00b7 GROWTH TIER\n\nHorizon Auto\n\nA fictional dealership website with vehicle filters, model comparisons and simulated enquiries for cars, servicing and parts.\n\nVIEW DEMO\nREQUEST SIMILAR SITE",
+      "textBounds": {
+        "x": 20,
+        "y": 122.33333587646484,
+        "width": 280,
+        "height": 323.2999954223633
+      },
+      "visualBounds": {
+        "x": 20,
+        "y": 493.6333312988281,
+        "width": 280,
+        "height": 193.99996948242188
+      },
+      "keyboard": "demo CTA \u2192 request-similar link",
+      "images": [
+        {
+          "src": "http://127.0.0.1:4188/assets/home-400-iOTCR1Tq.avif",
+          "displayed": true,
+          "loaded": true,
+          "width": 280
+        },
+        {
+          "src": "data:image/avif;base64,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",
+          "displayed": false,
+          "loaded": false,
+          "width": 0
+        }
+      ],
+      "errors": [],
+      "httpFailures": [],
+      "interceptedAnalytics": [
+        "https://www.googletagmanager.com/gtag/js?id=G-Z79X024S87"
+      ],
+      "passed": true
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "motion": "reduce",
+      "h1": 1,
+      "overflow": 0,
+      "text": "CONCEPT SHOWCASE \u00b7 GROWTH TIER\n\nHorizon Auto\n\nA fictional dealership website with vehicle filters, model comparisons and simulated enquiries for cars, servicing and parts.\n\nVIEW DEMO\nREQUEST SIMILAR SITE",
+      "textBounds": {
+        "x": 20,
+        "y": 300.6499938964844,
+        "width": 350,
+        "height": 243.64999389648438
+      },
+      "visualBounds": {
+        "x": 20,
+        "y": 592.2999877929688,
+        "width": 350,
+        "height": 231.5
+      },
+      "keyboard": "demo CTA \u2192 request-similar link",
+      "images": [
+        {
+          "src": "http://127.0.0.1:4188/assets/home-400-iOTCR1Tq.avif",
+          "displayed": true,
+          "loaded": true,
+          "width": 340
+        },
+        {
+          "src": "data:image/avif;base64,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",
+          "displayed": false,
+          "loaded": false,
+          "width": 0
+        }
+      ],
+      "errors": [],
+      "httpFailures": [],
+      "interceptedAnalytics": [
+        "https://www.googletagmanager.com/gtag/js?id=G-Z79X024S87"
+      ],
+      "passed": true
+    },
+    {
+      "viewport": [
+        768,
+        1024
+      ],
+      "motion": "reduce",
+      "h1": 1,
+      "overflow": 0,
+      "text": "CONCEPT SHOWCASE \u00b7 GROWTH TIER\n\nHorizon Auto\n\nA fictional dealership website with vehicle filters, model comparisons and simulated enquiries for cars, servicing and parts.\n\nVIEW DEMO\nREQUEST SIMILAR SITE",
+      "textBounds": {
+        "x": 160,
+        "y": 375.3166809082031,
+        "width": 448,
+        "height": 273.7000427246094
+      },
+      "visualBounds": {
+        "x": 32,
+        "y": 697.0166625976562,
+        "width": 704,
+        "height": 314.23333740234375
+      },
+      "keyboard": "demo CTA \u2192 request-similar link",
+      "images": [
+        {
+          "src": "http://127.0.0.1:4188/assets/home-800-Bzp9_0g7.avif",
+          "displayed": true,
+          "loaded": true,
+          "width": 460
+        },
+        {
+          "src": "data:image/avif;base64,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",
+          "displayed": true,
+          "loaded": true,
+          "width": 246
+        }
+      ],
+      "errors": [],
+      "httpFailures": [],
+      "interceptedAnalytics": [
+        "https://www.googletagmanager.com/gtag/js?id=G-Z79X024S87"
+      ],
+      "passed": true
+    },
+    {
+      "viewport": [
+        1280,
+        700
+      ],
+      "motion": "reduce",
+      "h1": 1,
+      "overflow": 0,
+      "text": "CONCEPT SHOWCASE \u00b7 GROWTH TIER\n\nHorizon Auto\n\nA fictional dealership website with vehicle filters, model comparisons and simulated enquiries for cars, servicing and parts.\n\nVIEW DEMO\nREQUEST SIMILAR SITE",
+      "textBounds": {
+        "x": 32,
+        "y": 201.51666259765625,
+        "width": 460,
+        "height": 297.70001220703125
+      },
+      "visualBounds": {
+        "x": 572,
+        "y": 59.20000076293945,
+        "width": 676,
+        "height": 582.333324432373
+      },
+      "keyboard": "demo CTA \u2192 request-similar link",
+      "images": [
+        {
+          "src": "http://127.0.0.1:4188/assets/home-800-Bzp9_0g7.avif",
+          "displayed": true,
+          "loaded": true,
+          "width": 676
+        },
+        {
+          "src": "http://127.0.0.1:4188/assets/models-800-PT0Raivw.avif",
+          "displayed": true,
+          "loaded": true,
+          "width": 419
+        }
+      ],
+      "errors": [],
+      "httpFailures": [],
+      "interceptedAnalytics": [
+        "https://www.googletagmanager.com/gtag/js?id=G-Z79X024S87"
+      ],
+      "passed": true
+    },
+    {
+      "viewport": [
+        1440,
+        900
+      ],
+      "motion": "reduce",
+      "h1": 1,
+      "overflow": 0,
+      "text": "CONCEPT SHOWCASE \u00b7 GROWTH TIER\n\nHorizon Auto\n\nA fictional dealership website with vehicle filters, model comparisons and simulated enquiries for cars, servicing and parts.\n\nVIEW DEMO\nREQUEST SIMILAR SITE",
+      "textBounds": {
+        "x": 112,
+        "y": 301.1166687011719,
+        "width": 460,
+        "height": 297.6999816894531
+      },
+      "visualBounds": {
+        "x": 652,
+        "y": 158.8000030517578,
+        "width": 676,
+        "height": 582.3332977294922
+      },
+      "keyboard": "demo CTA \u2192 request-similar link",
+      "images": [
+        {
+          "src": "http://127.0.0.1:4188/assets/home-800-Bzp9_0g7.avif",
+          "displayed": true,
+          "loaded": true,
+          "width": 676
+        },
+        {
+          "src": "http://127.0.0.1:4188/assets/models-800-PT0Raivw.avif",
+          "displayed": true,
+          "loaded": true,
+          "width": 419
+        }
+      ],
+      "errors": [],
+      "httpFailures": [],
+      "interceptedAnalytics": [
+        "https://www.googletagmanager.com/gtag/js?id=G-Z79X024S87"
+      ],
+      "passed": true
+    },
+    {
+      "viewport": [
+        320,
+        568
+      ],
+      "motion": "no-preference",
+      "h1": 1,
+      "overflow": 0,
+      "text": "CONCEPT SHOWCASE \u00b7 GROWTH TIER\n\nHorizon Auto\n\nA fictional dealership website with vehicle filters, model comparisons and simulated enquiries for cars, servicing and parts.\n\nVIEW DEMO\nREQUEST SIMILAR SITE",
+      "textBounds": {
+        "x": 20,
+        "y": 44.133331298828125,
+        "width": 280,
+        "height": 355.29998779296875
+      },
+      "visualBounds": {
+        "x": 20,
+        "y": 431.4333190917969,
+        "width": 280,
+        "height": 194.00003051757812
+      },
+      "keyboard": "demo CTA \u2192 request-similar link",
+      "images": [
+        {
+          "src": "http://127.0.0.1:4188/assets/home-400-iOTCR1Tq.avif",
+          "displayed": true,
+          "loaded": true,
+          "width": 280
+        },
+        {
+          "src": "data:image/avif;base64,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",
+          "displayed": false,
+          "loaded": false,
+          "width": 0
+        }
+      ],
+      "badgeBounds": {
+        "x": 20,
+        "y": 76.13333129882812,
+        "width": 280,
+        "height": 50.30000305175781
+      },
+      "headerBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 65
+      },
+      "errors": [],
+      "httpFailures": [],
+      "interceptedAnalytics": [
+        "https://www.googletagmanager.com/gtag/js?id=G-Z79X024S87"
+      ],
+      "passed": true
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "motion": "no-preference",
+      "h1": 1,
+      "overflow": 0,
+      "text": "CONCEPT SHOWCASE \u00b7 GROWTH TIER\n\nHorizon Auto\n\nA fictional dealership website with vehicle filters, model comparisons and simulated enquiries for cars, servicing and parts.\n\nVIEW DEMO\nREQUEST SIMILAR SITE",
+      "textBounds": {
+        "x": 20,
+        "y": 137.35000610351562,
+        "width": 350,
+        "height": 243.64999389648438
+      },
+      "visualBounds": {
+        "x": 20,
+        "y": 413,
+        "width": 350,
+        "height": 231.5
+      },
+      "keyboard": "demo CTA \u2192 request-similar link",
+      "images": [
+        {
+          "src": "http://127.0.0.1:4188/assets/home-400-iOTCR1Tq.avif",
+          "displayed": true,
+          "loaded": true,
+          "width": 340
+        },
+        {
+          "src": "data:image/avif;base64,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",
+          "displayed": false,
+          "loaded": false,
+          "width": 0
+        }
+      ],
+      "badgeBounds": {
+        "x": 20,
+        "y": 137.35000610351562,
+        "width": 289.8166809082031,
+        "height": 32.149993896484375
+      },
+      "headerBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 65
+      },
+      "errors": [],
+      "httpFailures": [],
+      "interceptedAnalytics": [
+        "https://www.googletagmanager.com/gtag/js?id=G-Z79X024S87"
+      ],
+      "passed": true
+    },
+    {
+      "viewport": [
+        768,
+        1024
+      ],
+      "motion": "no-preference",
+      "h1": 1,
+      "overflow": 0,
+      "text": "CONCEPT SHOWCASE \u00b7 GROWTH TIER\n\nHorizon Auto\n\nA fictional dealership website with vehicle filters, model comparisons and simulated enquiries for cars, servicing and parts.\n\nVIEW DEMO\nREQUEST SIMILAR SITE",
+      "textBounds": {
+        "x": 160,
+        "y": 215.9666748046875,
+        "width": 448,
+        "height": 273.70001220703125
+      },
+      "visualBounds": {
+        "x": 32,
+        "y": 537.6666870117188,
+        "width": 704,
+        "height": 314.23333740234375
+      },
+      "keyboard": "demo CTA \u2192 request-similar link",
+      "images": [
+        {
+          "src": "http://127.0.0.1:4188/assets/home-800-Bzp9_0g7.avif",
+          "displayed": true,
+          "loaded": true,
+          "width": 460
+        },
+        {
+          "src": "data:image/avif;base64,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",
+          "displayed": true,
+          "loaded": true,
+          "width": 246
+        }
+      ],
+      "badgeBounds": {
+        "x": 160,
+        "y": 215.9666748046875,
+        "width": 313.79998779296875,
+        "height": 30
+      },
+      "headerBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 768,
+        "height": 73
+      },
+      "errors": [],
+      "httpFailures": [],
+      "interceptedAnalytics": [
+        "https://www.googletagmanager.com/gtag/js?id=G-Z79X024S87"
+      ],
+      "passed": true
+    },
+    {
+      "viewport": [
+        1280,
+        700
+      ],
+      "motion": "no-preference",
+      "h1": 1,
+      "overflow": 0,
+      "text": "CONCEPT SHOWCASE \u00b7 GROWTH TIER\n\nHorizon Auto\n\nA fictional dealership website with vehicle filters, model comparisons and simulated enquiries for cars, servicing and parts.\n\nVIEW DEMO\nREQUEST SIMILAR SITE",
+      "textBounds": {
+        "x": 32,
+        "y": 276.1499938964844,
+        "width": 460,
+        "height": 297.6999816894531
+      },
+      "visualBounds": {
+        "x": 572,
+        "y": 133.83334350585938,
+        "width": 676,
+        "height": 582.3332824707031
+      },
+      "keyboard": "demo CTA \u2192 request-similar link",
+      "images": [
+        {
+          "src": "http://127.0.0.1:4188/assets/home-800-Bzp9_0g7.avif",
+          "displayed": true,
+          "loaded": true,
+          "width": 676
+        },
+        {
+          "src": "http://127.0.0.1:4188/assets/models-800-PT0Raivw.avif",
+          "displayed": true,
+          "loaded": true,
+          "width": 419
+        }
+      ],
+      "badgeBounds": {
+        "x": 32,
+        "y": 276.1499938964844,
+        "width": 313.79998779296875,
+        "height": 30
+      },
+      "headerBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 73
+      },
+      "errors": [],
+      "httpFailures": [],
+      "interceptedAnalytics": [
+        "https://www.googletagmanager.com/gtag/js?id=G-Z79X024S87"
+      ],
+      "passed": true
+    },
+    {
+      "viewport": [
+        1440,
+        900
+      ],
+      "motion": "no-preference",
+      "h1": 1,
+      "overflow": 0,
+      "text": "CONCEPT SHOWCASE \u00b7 GROWTH TIER\n\nHorizon Auto\n\nA fictional dealership website with vehicle filters, model comparisons and simulated enquiries for cars, servicing and parts.\n\nVIEW DEMO\nREQUEST SIMILAR SITE",
+      "textBounds": {
+        "x": 112,
+        "y": 385.75,
+        "width": 460,
+        "height": 297.70001220703125
+      },
+      "visualBounds": {
+        "x": 652,
+        "y": 243.433349609375,
+        "width": 676,
+        "height": 582.3333129882812
+      },
+      "keyboard": "demo CTA \u2192 request-similar link",
+      "images": [
+        {
+          "src": "http://127.0.0.1:4188/assets/home-800-Bzp9_0g7.avif",
+          "displayed": true,
+          "loaded": true,
+          "width": 676
+        },
+        {
+          "src": "http://127.0.0.1:4188/assets/models-800-PT0Raivw.avif",
+          "displayed": true,
+          "loaded": true,
+          "width": 419
+        }
+      ],
+      "badgeBounds": {
+        "x": 112,
+        "y": 385.75,
+        "width": 313.79998779296875,
+        "height": 30
+      },
+      "headerBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 73
+      },
+      "errors": [],
+      "httpFailures": [],
+      "interceptedAnalytics": [
+        "https://www.googletagmanager.com/gtag/js?id=G-Z79X024S87"
+      ],
+      "passed": true
+    }
+  ],
+  "journeys": [],
+  "expected": 10,
+  "collected": 10,
+  "passed": 10
+}

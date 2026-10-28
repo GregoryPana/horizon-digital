@@ -1,0 +1,193 @@
+[
+  {
+    "engine": "chromium",
+    "id": "drake",
+    "check": "actual visual link opens target",
+    "url": "https://thedrake-seaside.com/?utm_source=horizondigitalsey.com&utm_medium=referral&utm_campaign=portfolio_showcase",
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "id": "drake",
+    "check": "request-similar and Back",
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "id": "horizon-auto",
+    "check": "actual visual link opens target",
+    "url": "https://auto.horizondigitalsey.com/",
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "id": "horizon-auto",
+    "check": "request-similar and Back",
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "id": "takamaka",
+    "check": "actual visual link opens target",
+    "url": "http://127.0.0.1:4188/showcase/takamaka-house",
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "id": "takamaka",
+    "check": "request-similar and Back",
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "id": "forma",
+    "check": "actual visual link opens target",
+    "url": "http://127.0.0.1:4188/showcase/forma-studio",
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "id": "forma",
+    "check": "request-similar and Back",
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "id": "beauty",
+    "check": "actual visual link opens target",
+    "url": "https://demo-beauty.horizondigitalsey.com/",
+    "passed": true
+  },
+  {
+    "engine": "chromium",
+    "id": "beauty",
+    "check": "request-similar and Back",
+    "passed": true
+  },
+  {
+    "engine": "firefox",
+    "id": "drake",
+    "check": "actual visual link opens target",
+    "url": "https://thedrake-seaside.com/?utm_source=horizondigitalsey.com&utm_medium=referral&utm_campaign=portfolio_showcase",
+    "passed": true
+  },
+  {
+    "engine": "firefox",
+    "id": "drake",
+    "check": "request-similar and Back",
+    "passed": true
+  },
+  {
+    "engine": "firefox",
+    "id": "horizon-auto",
+    "check": "actual visual link opens target",
+    "url": "https://auto.horizondigitalsey.com/",
+    "passed": true
+  },
+  {
+    "engine": "firefox",
+    "id": "horizon-auto",
+    "check": "request-similar and Back",
+    "passed": true
+  },
+  {
+    "engine": "firefox",
+    "id": "takamaka",
+    "check": "actual visual link opens target",
+    "url": "http://127.0.0.1:4188/showcase/takamaka-house",
+    "passed": true
+  },
+  {
+    "engine": "firefox",
+    "id": "takamaka",
+    "check": "request-similar and Back",
+    "passed": true
+  },
+  {
+    "engine": "firefox",
+    "id": "forma",
+    "check": "actual visual link opens target",
+    "url": "http://127.0.0.1:4188/showcase/forma-studio",
+    "passed": true
+  },
+  {
+    "engine": "firefox",
+    "id": "forma",
+    "check": "request-similar and Back",
+    "passed": true
+  },
+  {
+    "engine": "firefox",
+    "id": "beauty",
+    "check": "actual visual link opens target",
+    "url": "https://demo-beauty.horizondigitalsey.com/",
+    "passed": true
+  },
+  {
+    "engine": "firefox",
+    "id": "beauty",
+    "check": "request-similar and Back",
+    "passed": true
+  },
+  {
+    "id": "drake",
+    "engine": "chromium",
+    "check": "keyboard focus pauses both",
+    "passed": true
+  },
+  {
+    "id": "horizon-auto",
+    "engine": "chromium",
+    "check": "keyboard focus pauses both",
+    "passed": true
+  },
+  {
+    "id": "takamaka",
+    "engine": "chromium",
+    "check": "keyboard focus pauses both",
+    "passed": true
+  },
+  {
+    "id": "forma",
+    "engine": "chromium",
+    "check": "keyboard focus pauses both",
+    "passed": true
+  },
+  {
+    "id": "beauty",
+    "engine": "chromium",
+    "check": "keyboard focus pauses both",
+    "passed": true
+  },
+  {
+    "id": "horizon-auto",
+    "engine": "chromium",
+    "check": "warm selected background",
+    "colour": "rgba(72, 66, 58, 0.92)",
+    "passed": true
+  },
+  {
+    "id": "drake",
+    "engine": "chromium",
+    "check": "inactive playback stopped",
+    "passed": true
+  },
+  {
+    "id": "takamaka",
+    "engine": "chromium",
+    "check": "inactive playback stopped",
+    "passed": true
+  },
+  {
+    "id": "forma",
+    "engine": "chromium",
+    "check": "inactive playback stopped",
+    "passed": true
+  },
+  {
+    "id": "beauty",
+    "engine": "chromium",
+    "check": "inactive playback stopped",
+    "passed": true
+  }
+]

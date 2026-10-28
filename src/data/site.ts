@@ -22,6 +22,7 @@ import takamakaHomeAvif800 from "../assets/work/takamaka-house/takamaka-800.avif
 import takamakaHomeAvif1200 from "../assets/work/takamaka-house/takamaka-1200.avif";
 import beautyPreviewWebp800 from "../assets/work/demo-beauty/demo-beauty 600.webp";
 import businessFacts from "./businessFacts.json";
+import horizonAutoHome800 from "../assets/work/horizon-auto/home-800.webp";
 
 export { businessFacts };
 
@@ -142,6 +143,9 @@ const portfolioAssets: Record<
   },
   "beauty-demo": {
     image: beautyPreviewWebp800,
+  },
+  "horizon-auto": {
+    image: horizonAutoHome800,
   },
 };
 

@@ -931,6 +931,7 @@
       "label": "Guesthouse · Growth Tier · Live client project",
       "title": "Drake Seaside Apartments",
       "outcome": "A live redesign with updated pages, clearer property information and responsive layouts.",
+      "portfolioDescription": "A family-run seaside guesthouse in Bel Ombre, Mahé, with self-catering apartments, a pool and the beach just steps away.",
       "url": "https://thedrake-seaside.com/"
     },
     {
@@ -939,6 +940,7 @@
       "label": "Creative studio · Foundation Tier · Concept showcase",
       "title": "Forma Studio",
       "outcome": "A portfolio-led concept with an editorial layout and a clear enquiry path.",
+      "portfolioDescription": "Architecture and interior design for homes, hospitality and commercial spaces, with a focus on light, materials and lasting character.",
       "url": "/showcase/forma-studio"
     },
     {
@@ -947,6 +949,7 @@
       "label": "Foundation Tier · Concept showcase",
       "title": "Takamaka House",
       "outcome": "An accommodation concept focused on property details, visual storytelling and direct booking intent.",
+      "portfolioDescription": "A boutique villa retreat on the south coast of Mahé, where tropical forest meets the sea and private stays unfold at an island pace.",
       "url": "/showcase/takamaka-house"
     },
     {
@@ -955,7 +958,17 @@
       "label": "Wellness and beauty · Foundation Tier · Demonstration site",
       "title": "Beauty Demo",
       "outcome": "A demonstration of a focused service-business website with clear services, pricing and contact paths.",
+      "portfolioDescription": "Beauty and wellness with a warm, unhurried feel. Explore skin treatments, manicure and pedicure services, and makeup in a range of shades.",
       "url": "https://demo-beauty.horizondigitalsey.com/"
+    },
+    {
+      "id": "horizon-auto",
+      "status": "Concept showcase",
+      "label": "Automotive · Growth Tier · Concept showcase",
+      "title": "Horizon Auto",
+      "outcome": "A fictional dealership website with vehicle filters, model comparisons and simulated enquiries for cars, servicing and parts.",
+      "portfolioDescription": "Meet the Corvane range of electric and plug-in hybrid cars. Find a model for your everyday journeys, compare versions and explore servicing and parts.",
+      "url": "https://auto.horizondigitalsey.com/"
     }
   ],
   "faqs": [

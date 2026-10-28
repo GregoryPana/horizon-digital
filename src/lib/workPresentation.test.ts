@@ -14,6 +14,7 @@ import {
 } from "./workPresentation";
 
 const workSource = readFileSync(new URL("../pages/Work.tsx", import.meta.url), "utf8");
+const deviceCss = readFileSync(new URL("../components/ui/PortfolioDeviceShowcase.css", import.meta.url), "utf8");
 
 afterEach(() => {
   vi.restoreAllMocks();
@@ -118,15 +119,15 @@ describe("Work responsive geometry", () => {
     expect(WORK_PRIMARY_SIZES).toBe(
       "(min-width: 1280px) 676px, (min-width: 1024px) calc(100vw - 64px), (min-width: 640px) 460px, (min-width: 380px) 340px, calc(100vw - 40px)",
     );
-    expect(workSource).toContain("sizes={WORK_PRIMARY_SIZES}");
+    expect(deviceCss).toContain("aspect-ratio:1440/900");
   });
 
   it("advertises secondary slots for the xl grid, lg viewport, md cap, and hidden mobile range", () => {
     expect(WORK_SECONDARY_SIZES).toBe(
       "(min-width: 1280px) 419px, (min-width: 1024px) calc(62vw - 39.68px), (min-width: 768px) 246px, 0px",
     );
-    expect(workSource).toContain("sizes={WORK_SECONDARY_SIZES}");
-    expect(workSource).toContain("sm:px-8 lg:px-0");
+    expect(deviceCss).toContain("aspect-ratio:390/844");
+    expect(workSource).toContain("<PortfolioDeviceShowcase");
   });
 });
 
