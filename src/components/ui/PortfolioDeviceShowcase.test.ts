@@ -25,19 +25,34 @@ describe("Portfolio device previews", () => {
     expect(css).not.toContain("object-fit:cover");
   });
   it("pauses the shared timeline on hover/focus/touch pause, hidden tabs and inactive projects", () => {
-    expect(component).toContain("!active || reducedMotion || hover.current || focus.current || manual.current || !visible.current || document.hidden");
+    expect(component).toContain("getPortfolioPauseReason({ active: activeRef.current");
+    expect(component).toContain("hidden: document.hidden");
+    expect(component).toContain("visible: visible.current");
     expect(component).toContain('el.addEventListener("pointerenter", enter)');
     expect(component).toContain('el.addEventListener("focusin", focusIn)');
     expect(component).toContain("aria-pressed={paused}");
     expect(component).toContain("timeline.current?.paused(stop)");
     expect(component).toContain("timeline.current?.kill()");
+    expect(component).toContain('el.addEventListener("portfolio-activity-change", sync)');
+    expect(component).toContain("}, [id, reducedMotion, loadMedia])");
   });
   it("blurs before resetting to the top and clears blur before repeating", () => {
     expect(component).toContain('filter: "blur(7px)"');
-    expect(component).toContain('duration: 13, ease: "none"');
-    expect(component).toContain('.set(images, { y: 0 }, 16.05)');
+    expect(component).toContain('duration: 11.5, ease: "none"');
+    expect(component).toContain('.set(images, { y: 0 }, 14.55)');
     expect(component).toContain('filter: "blur(0px)", opacity: 1, duration: 0.65');
     expect(component).toContain("repeat: -1");
     expect(component).toContain('if (reducedMotion || disposed)');
+  });
+  it("loads only the first/active/warmed pair and serves responsive derivatives", () => {
+    expect(component).toContain('useState(id === "drake")');
+    expect(component).toContain('if (!el || !loadMedia) return');
+    expect(component).toContain('srcSet={loadMedia ? media.desktop.srcSet : undefined}');
+    expect(component).toContain('srcSet={loadMedia ? media.mobile.srcSet : undefined}');
+    expect(component).toContain('if (decoded) build()');
+    for (const media of Object.values(portfolioDeviceMedia)) {
+      expect(media.desktop.srcSet).toContain('640w');
+      expect(media.mobile.srcSet).toContain('260w');
+    }
   });
 });

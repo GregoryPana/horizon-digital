@@ -13,6 +13,7 @@ import { mergePortfolioProjects, normalizePortfolioProject, type LocalPortfolioP
 import { InertDiv } from "../components/ui/InertDiv";
 import { PortfolioDeviceShowcase, type PortfolioDeviceId } from "../components/ui/PortfolioDeviceShowcase";
 import { getActiveWorkProjectAtTime, getWorkProjectAccessibility } from "../lib/workPresentation";
+import "./Work.css";
 
 gsap.registerPlugin(ScrollTrigger);
 interface WorkProject extends LocalPortfolioProject { mediaId: PortfolioDeviceId; }
@@ -34,19 +35,14 @@ const fallbackProjects: WorkProject[] = order.map((id, index) => {
 
 export default function Work() {
   const shouldReduceMotion = useReducedMotion();
-  const [compactViewport, setCompactViewport] = useState(() => typeof window !== "undefined" && window.matchMedia("(max-width: 767px)").matches);
-  const staticPresentation = Boolean(shouldReduceMotion) || compactViewport;
-  useEffect(() => {
-    const query = window.matchMedia("(max-width: 767px)");
-    const update = () => setCompactViewport(query.matches);
-    query.addEventListener("change", update); update();
-    return () => query.removeEventListener("change", update);
-  }, []);
+  const staticPresentation = Boolean(shouldReduceMotion);
   const containerRef = useRef<HTMLDivElement>(null);
   const pinRef = useRef<HTMLDivElement>(null);
   const bgRef = useRef<HTMLDivElement>(null);
   const activeProjectRef = useRef(0);
   const [activeProject, setActiveProject] = useState(0);
+  const warmThroughRef = useRef(0);
+  const [warmThrough, setWarmThrough] = useState(0);
 
   const [projects, setProjects] = useState<RenderableWorkProject[]>(
     fallbackProjects.map(normalizePortfolioProject)
@@ -87,14 +83,14 @@ export default function Work() {
   useGSAP(() => {
     if (staticPresentation || !containerRef.current || !pinRef.current || !bgRef.current || projects.length === 0) return;
     
-    // Set initial transparent bg
-    gsap.set(bgRef.current, { backgroundColor: 'transparent' });
+    // The first project is the initial scene, not a reveal waiting for scroll.
+    gsap.set(bgRef.current, { backgroundColor: projects[0].bgColor });
 
     // Create master timeline
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: containerRef.current,
-        start: 'top 5%', // Start pinning when top of container hits near top of viewport
+        start: 'top top', // One edge-to-edge scene on every viewport, including phones.
         end: `+=${projects.length * 130}%`, // Extend scrollable area to allow deep scrolling
         pin: pinRef.current,
         scrub: 2, // Slower, more liquid catch-up
@@ -113,7 +109,7 @@ export default function Work() {
 
       // Ensure specific elements are explicitly interactive only when active
       if (i > 0) {
-        tl.fromTo(`.project-text-${i}`,
+        tl.fromTo(`.project-text-${i}, .project-actions-${i}`,
           { y: 30, opacity: 0, pointerEvents: 'none' },
           { 
             y: 0, 
@@ -121,16 +117,16 @@ export default function Work() {
             pointerEvents: 'auto',
             duration: 2.2, 
             ease: 'expo.out', 
-            onStart: () => { gsap.set(`.project-text-${i}`, { zIndex: 10 }) }
+            onStart: () => { gsap.set(`.project-text-${i}, .project-actions-${i}`, { zIndex: 10 }) }
           },
           revealLabel
         );
       } else {
-        gsap.set(`.project-text-0`, { opacity: 1, y: 0, pointerEvents: 'auto', zIndex: 10 });
+        gsap.set(`.project-text-0, .project-actions-0`, { opacity: 1, y: 0, pointerEvents: 'auto', zIndex: 10 });
       }
 
       tl.fromTo(`.project-visual-${i}`,
-        { y: '60vh', scale: 0.85, opacity: 0, pointerEvents: 'none' },
+        { y: i === 0 ? '0vh' : '60vh', scale: i === 0 ? 1 : 0.85, opacity: i === 0 ? 1 : 0, pointerEvents: i === 0 ? 'auto' : 'none' },
         { 
           y: '0vh', 
           scale: 1, 
@@ -144,8 +140,22 @@ export default function Work() {
       );
       
       tl.fromTo(`.project-visual-${i} .portfolio-laptop`,
-        { rotateX: 0, rotateY: 0, scale: 0.92 },
-        { rotateX: 0, rotateY: 0, scale: 1, duration: 3.8, ease: 'expo.out' },
+        { rotateY: i === 0 ? 0 : -3, scale: i === 0 ? 1 : 0.92 },
+        { rotateY: 0, scale: 1, duration: 3.8, ease: 'expo.out' },
+        "<"
+      );
+
+      // Tilt the screen around its hinge, not the laptop base. Positive X puts
+      // the top edge farther away, matching an open laptop on every viewport.
+      tl.fromTo(`.project-visual-${i} .portfolio-laptop-lid`,
+        { "--lid-angle": i === 0 ? "10deg" : "20deg" },
+        { "--lid-angle": "10deg", duration: 3.8, ease: 'expo.out' },
+        "<"
+      );
+
+      tl.fromTo(`.project-visual-${i} .portfolio-phone`,
+        { y: i === 0 ? 0 : 18, rotateX: i === 0 ? 0 : -6, rotateY: i === 0 ? 0 : 8, scale: i === 0 ? 1 : 0.92 },
+        { y: 0, rotateX: 0, rotateY: 0, scale: 1, duration: 3.8, ease: 'expo.out' },
         "<"
       );
 
@@ -170,7 +180,7 @@ export default function Work() {
           }, 
           `exit-${i}`
         );
-        tl.to(`.project-text-${i}`, 
+        tl.to(`.project-text-${i}, .project-actions-${i}`,
           { 
             y: -20, 
             opacity: 0, 
@@ -178,7 +188,7 @@ export default function Work() {
             pointerEvents: 'none',
             duration: 3.0, 
             ease: 'power1.inOut',
-            onComplete: () => { gsap.set(`.project-text-${i}`, { zIndex: 1 }) }
+            onComplete: () => { gsap.set(`.project-text-${i}, .project-actions-${i}`, { zIndex: 1 }) }
           }, 
           `exit-${i}+=0.1`
         );
@@ -188,6 +198,13 @@ export default function Work() {
     const activationBoundaries = projects.map((_, index) => tl.labels[`activate-${index}`]);
     const syncActiveProject = () => {
       const nextProject = getActiveWorkProjectAtTime(tl.time(), activationBoundaries);
+      // Warm the next pair only after browsing begins, never all ten images
+      // during the first paint. Previously visited media stays cached on reverse.
+      const toWarm = Math.min(projects.length - 1, nextProject + 1);
+      if (tl.time() > 0.05 && toWarm > warmThroughRef.current) {
+        warmThroughRef.current = toWarm;
+        setWarmThrough(toWarm);
+      }
       if (nextProject === activeProjectRef.current) return;
 
       activeProjectRef.current = nextProject;
@@ -202,7 +219,7 @@ export default function Work() {
   }, { scope: containerRef, dependencies: [staticPresentation, projects], revertOnUpdate: true });
 
   return (
-    <div className="overflow-hidden bg-gradient-to-b from-bg-main to-bg-panel/20 relative">
+    <div className="work-page overflow-hidden bg-bg-main relative" data-work-static={staticPresentation}>
       <Seo
         title="Custom Website Portfolio Seychelles | Horizon Digital"
         description="Explore the Horizon Digital website portfolio. We build custom websites designed to communicate clearly, perform fast, and support real business needs in Seychelles."
@@ -232,7 +249,7 @@ export default function Work() {
         ]}
       />
 
-      <section className="pt-12 pb-8 md:pt-24 md:pb-16 text-center px-5 sm:px-8 max-w-5xl mx-auto relative z-20 bg-bg-main/80 backdrop-blur-sm">
+      <section className="sr-only" aria-label="Portfolio introduction">
         <div className="mb-8 text-center">
           <span className="mb-5 block text-[11px] font-medium uppercase tracking-[0.2em] leading-none text-cyan section-eyebrow-glow">Selected work and concepts</span>
           <h1 style={{fontSize: 'var(--text-h1)', fontWeight: 700, lineHeight: 1.03, letterSpacing: '-0.04em', textWrap: 'balance'}}>
@@ -245,28 +262,29 @@ export default function Work() {
       </section>
 
       {/* PINNED MASTER CONTINER */}
-      <div ref={containerRef} className={`relative w-full z-10 ${staticPresentation ? "py-12 md:py-20" : ""}`}>
+      <div ref={containerRef} className="relative w-full z-10">
         <div ref={pinRef} className={staticPresentation
           ? "w-full relative z-10"
-          : "h-[100dvh] w-full relative flex flex-col justify-center overflow-hidden z-10 pt-16 sm:pt-20"}>
-          <div ref={bgRef} className={`absolute inset-0 w-full h-full pointer-events-none -z-10 ${staticPresentation ? "hidden" : ""}`} />
+          : "work-stage w-full relative overflow-hidden z-10"}>
+          <div ref={bgRef} style={{ backgroundColor: projects[0].bgColor }} className={`absolute inset-0 w-full h-full pointer-events-none -z-10 ${staticPresentation ? "hidden" : ""}`} />
           <div className={staticPresentation
-            ? "relative w-full mx-auto max-w-7xl grid gap-12 md:gap-20"
-            : "relative w-full h-[85vh] min-h-[600px] flex mx-auto max-w-7xl items-center justify-center"}>
+            ? "work-static-projects relative w-full"
+            : "work-presentation relative w-full h-full mx-auto max-w-7xl"}>
             {projects.map((proj, i) => {
               const accessibility = getWorkProjectAccessibility(i, activeProject, Boolean(staticPresentation));
               return (
               <InertDiv
                 key={proj.id}
+                data-align={proj.align}
                 aria-hidden={accessibility.ariaHidden}
                 inert={accessibility.inert}
                 className={staticPresentation
-                  ? "relative w-full px-5 sm:px-8 py-10 md:py-14 flex flex-col lg:grid lg:grid-cols-12 gap-8 lg:gap-20 items-center rounded-3xl"
-                  : "absolute inset-0 w-full h-full px-5 sm:px-8 flex flex-col lg:grid lg:grid-cols-12 gap-4 sm:gap-8 lg:gap-20 items-center justify-start lg:justify-center pointer-events-none pt-0 sm:pt-12 lg:pt-0"}
+                  ? "work-project work-project-static relative w-full"
+                  : "work-project absolute inset-0 w-full h-full pointer-events-none"}
                 style={staticPresentation ? { backgroundColor: proj.bgColor } : undefined}
               >
                 
-                <div className={`project-text-${i} lg:col-span-12 xl:col-span-5 flex flex-col justify-start lg:justify-center text-left ${proj.id === "horizon-auto" && !staticPresentation ? "max-[379px]:pt-8" : ""} ${staticPresentation ? "pointer-events-auto opacity-100" : "pointer-events-none"} ${proj.align === 'right' ? 'xl:order-2' : 'xl:order-1'} ${!staticPresentation && i !== 0 ? 'opacity-0' : 'opacity-100'}`}>
+                <div className={`work-copy project-text-${i} flex flex-col text-left ${staticPresentation ? "pointer-events-auto opacity-100" : "pointer-events-none"} ${!staticPresentation && i !== 0 ? 'opacity-0' : 'opacity-100'}`}>
                   <p className="text-[11px] md:text-xs font-medium uppercase tracking-[0.2em] text-cyan mb-3 md:mb-5 bg-cyan/10 inline-block px-3 py-1.5 rounded-full border border-cyan/20 self-start">
                     {proj.status} · {proj.tier}
                   </p>
@@ -277,13 +295,27 @@ export default function Work() {
                     {proj.body}
                   </p>
                   {proj.id === "horizon-auto" && <p className="mb-5 text-xs text-text-muted">Fictional dealership concept. Enquiries are simulated.</p>}
-                  <div className="flex flex-wrap items-center gap-4 lg:gap-8 justify-start mt-2">
+                </div>
+
+                <div className={`work-visual project-visual-${i} flex flex-col justify-center pointer-events-auto ${staticPresentation || i === 0 ? "opacity-100" : "opacity-0"} w-full`}>
+                  <PortfolioDeviceShowcase
+                    id={proj.mediaId}
+                    title={proj.title}
+                    href={proj.link}
+                    active={Boolean(staticPresentation) || activeProject === i}
+                    preload={!staticPresentation && i <= warmThrough}
+                    reducedMotion={Boolean(shouldReduceMotion)}
+                    onVisit={() => trackEvent("cta_click", { cta_name: `work_visual_click_${proj.id}`, page_path: window.location.pathname })}
+                  />
+                </div>
+
+                  <div className={`work-actions project-actions-${i} ${staticPresentation || i === 0 ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"}`}>
                     <a 
                       href={proj.link}
                       target="_blank" 
                       rel="noreferrer" 
                       tabIndex={accessibility.tabIndex}
-                      className="group relative flex items-center gap-2 px-6 py-3 rounded-full border border-white/10 bg-white/5 text-xs md:text-sm font-medium uppercase tracking-[0.2em] text-white transition-all duration-300 hover:border-cyan/50 hover:bg-cyan/10 hover:shadow-[0_0_20px_rgba(34,211,238,0.15)] overflow-hidden pointer-events-auto"
+                      className="group relative flex items-center gap-2 px-6 py-3 rounded-full border border-white/10 bg-white/5 text-xs md:text-sm font-medium uppercase tracking-[0.2em] text-white transition-colors duration-300 hover:border-cyan/50 hover:bg-cyan/10 hover:shadow-[0_0_20px_rgba(34,211,238,0.15)] overflow-hidden pointer-events-auto"
                       onClick={() => trackEvent("cta_click", { cta_name: `work_view_live_${proj.id}`, page_path: window.location.pathname })}
                     >
                       <span className="relative z-10">{proj.cta.replace(' →', '')}</span>
@@ -300,18 +332,6 @@ export default function Work() {
                       {proj.reqCta}
                     </Link>
                   </div>
-                </div>
-                
-                <div className={`project-visual-${i} lg:col-span-12 xl:col-span-7 flex flex-col justify-center pointer-events-auto ${staticPresentation ? "opacity-100" : "opacity-0"} ${proj.align === 'right' ? 'xl:order-1' : 'xl:order-2'} w-full mt-4 lg:mt-0`}>
-                  <PortfolioDeviceShowcase
-                    id={proj.mediaId}
-                    title={proj.title}
-                    href={proj.link}
-                    active={Boolean(staticPresentation) || activeProject === i}
-                    reducedMotion={Boolean(shouldReduceMotion)}
-                    onVisit={() => trackEvent("cta_click", { cta_name: `work_visual_click_${proj.id}`, page_path: window.location.pathname })}
-                  />
-                </div>
                 
               </InertDiv>
               );
