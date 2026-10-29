@@ -24,6 +24,31 @@ Generated QA screenshots, JSON sweeps, raw Lighthouse traces/zip, local caches a
 
 See `portfolio-mobile-balance-performance-review.md`: 444 unit tests, build/knowledge/dry run and 510 reconciled browser cases/journeys passed. Initial preview data 1,097,236→135,936 bytes; three-run mobile lab score 81→86 and LCP 4.342→3.701s, with zero CLS. Remaining LCP and untested physical-device/Safari/field metrics remain explicit limitations, not a green performance certification.
 
-## Release progress
+## Verified publication
 
-Preflight complete; source commit, exact remote/CI verification, deployment, live artifact and public behavior readback are not yet complete. Do not infer publication from this preflight note. Publish only from a separate clean committed-source worktree after a reproducible build and exact-head CI success, using existing Wrangler 4.154.0 with autoconfiguration disabled, strict remote-change checks, vars retained and source-map upload disabled.
+- Published application commit: **`ac3f28e8a2c5e7702847330ae969f3645c6e690e`**, committed on the correction branch and pushed to remote main, then read back exactly.
+- Clean release checkout: `/home/gpanagary/projects/horizon-digital-portfolio-release`, `release/portfolio-correction`. Fresh install, all **444 tests/53 files**, knowledge check, TypeScript/build, whitespace and Worker dry run passed. Its **123-file build matched every accepted local SHA-256**; frozen inventory digest `420ef1787740d638495d547db7cf1bc839017191e8f25909da4131f9ae42f909`.
+- Exact application-head CI: [run 40805396270](https://github.com/GregoryPana/horizon-digital/actions/runs/40805396270), successful Build job `123223005425`. This existing hosted workflow installs/builds; the full test/browser suites were run separately, not claimed as CI jobs.
+- Wrangler 4.154.0 deployed only `horizon-digital`, autoconfiguration disabled, strict remote checks, vars retained and source maps not uploaded. It reported 52 new/modified files uploaded, 71 reused, ASSETS only. No target-demo/DNS/dependency change.
+- Wrangler reported uploaded version **`7e9676c2-f271-4fd0-9cb6-5548ac0161a4`**, deployment `47a10c60-39c6-4e97-b9b4-14603e978eea`, with the accepted correction/source message. The authoritative API subsequently reports a later Wrangler-sourced activation: **active version `cd3eb8e6-834d-4820-9d1b-87535646d842`**, deployment **`25d27cc3-5e95-46e3-9735-11118a077a3d`**, at **100%**, created `2026-10-29T02:18:12.357607Z`. Do not misreport the CLI-uploaded ID as the current active ID. Current frontend provenance is independently proved by emitted-byte and public behavior readback below; the later activation's cause is not inferred from its blank message.
+- Public route: **https://horizondigitalsey.com/work**. Actual HTML references the accepted `/assets/index-hV-5gJfw.js`.
+
+## Public verification
+
+**373/373 public browser cases/journeys passed:** 96 mobile balance/cold-loading/keyboard/real-touch cases, 100 responsive/reduced-motion image-fit cases, 72 continuous-scene/forward-reverse animation checks, 80 inactive/offscreen/re-entry lifecycle checks, and 25 actual hover/resume/blur-reset/manual-pause journeys. Chromium and Firefox cover the live hostname. The original 510 local checks, including native hidden-tab behavior and model angles, remain separate local evidence rather than being relabelled as live checks.
+
+- **104/104 emitted asset SHA-256 values match** the frozen accepted build. Initial Drake, mobile CTAs below the approved models, foreground phone, full-viewport palettes, reversible project handoffs, 11.5-second preview travel, pause and loop behavior are live.
+- Home, Services, Pricing, Contact and About each match pre-release status/title/headings/body/links/canonical/robots snapshots exactly. `/work` returns 200; www redirects with 301 preserving path/query; an unknown route returns genuine 404 and noindex.
+- Current settings preserve compatibility `2026-02-21`, empty flags, standard usage, ASSETS only and logpush false. Route resource IDs were recreated: www `7c1accc141e24ccaa183efcc79406909`, apex `baecf3d58f284ce3a654afb98be48e44`. Patterns, script target and fail-open false are unchanged.
+- Auto and Beauty active deployment/version IDs still equal their respective preflight values above; both target sites' entry asset lists are unchanged. No target-demo source or service was redeployed.
+- The unrelated integration and canonical worktree status digests still match preflight. Neither checkout was edited or advanced.
+
+Public reports, frozen inventory, asset parity, snapshots and CI readback were copied out of temporary scratch to `/home/gpanagary/projects/horizon-digital-auto-portfolio/docs/review/portfolio-correction-live-evidence/` (131 evidence files plus a preservation manifest); generated outputs are intentionally not source-controlled. Original accepted local evidence remains in the correction worktree's review evidence directories. Source and reproducible scripts plus compact Markdown receipts are committed; raw traces/screenshots/caches are not.
+
+## Remaining limitations and rollback
+
+Remaining local mobile lab LCP is 3.701s; no all-green CWV, field INP, physical-device/Safari, full accessibility or battery certification is claimed. Analytics, consent, lead-flow behavior and public claims are unchanged. Public analytics collection endpoints were intercepted only in QA browsers, not changed in production.
+
+For an approved rollback, target **only the agency Worker**, to the pre-release active version **`7b2ea163-3a08-42d1-86f3-92a1948ea226`**, after checking current state and installed rollback workflow. Verify public assets/behavior and current API deployment afterward; do not alter Auto/Beauty.
+
+A production Hermes Update Pack is generated at `docs/handovers/portfolio-correction-production-hermes-update.md`. Vault ingestion is not claimed. Any subsequent receipt-only source commit does not represent a new deployed application artifact or require a redeployment; the published application identity remains `ac3f28e` above.

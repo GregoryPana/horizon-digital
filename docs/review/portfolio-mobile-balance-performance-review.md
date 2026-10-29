@@ -2,7 +2,7 @@
 
 ## Status
 
-**Owner visually accepted this candidate and explicitly authorised its bounded commit, push and deployment. Release verification is in progress; this review alone does not prove publication.** Current candidate: `fix/portfolio-viewport-motion`, base `52c0104`. Preview: http://localhost:4188/work. Windows and Linux readbacks confirm HTTP 200 and current entry `/assets/index-hV-5gJfw.js`.
+**Owner accepted and authorised this candidate; production publication is independently verified in `portfolio-correction-release.md`.** Current candidate: `fix/portfolio-viewport-motion`, base `52c0104`. Preview: http://localhost:4188/work. Windows and Linux readbacks confirm HTTP 200 and current entry `/assets/index-hV-5gJfw.js`.
 
 Linux project: `/home/gpanagary/projects/horizon-digital-auto-portfolio`
 Windows project: `\\wsl.localhost\Ubuntu\home\gpanagary\projects\horizon-digital-auto-portfolio`
@@ -75,7 +75,7 @@ Final viewport captures confirm balanced copy/model/bottom actions on ordinary a
 
 Home, Pricing, Contact, Layout, analytics, routes, Worker, Wrangler config, package manifest and lockfile were diff-checked unchanged. Protected business copy/order/palettes, original capture bytes and target demos are unchanged. Only Work presentation, preview load lifecycle, generated responsive media, tests and evidence are in scope.
 
-Scoped verdict: requested layout and loading changes implemented, exercised and visually accepted by the owner. Separate commit/push/deployment approval has now been given; actual publication is tracked in `portfolio-correction-release.md`. Performance improved, but the remaining 3.70s lab LCP is explicit. Safari/physical devices and full accessibility/field performance are not claimed. No production publication occurred.
+Scoped verdict: requested layout and loading changes implemented, exercised and visually accepted by the owner. Separate commit/push/deployment approval has now been given; actual publication is tracked in `portfolio-correction-release.md`. Performance improved, but the remaining 3.70s lab LCP is explicit. Safari/physical devices and full accessibility/field performance are not claimed. Production publication and actual live checks are recorded separately in `portfolio-correction-release.md`.
 
 ## Re-run and handoff
 
@@ -86,4 +86,4 @@ python scripts/qa-portfolio-mobile-balance.py --engine chromium --output /absolu
 python scripts/qa-portfolio-mobile-balance.py --engine firefox --output /absolute/evidence/balance-firefox
 ```
 
-Retain the existing model, scene, initial/layering, devices/interactions and playback/native-hidden scripts for the full matrix. Regenerate media with `node scripts/generate-portfolio-device-images.mjs`; stop/rebuild/restart the local Worker and assert served entry parity before a full sweep. After review, commit/push/deployment still require scoped approval and separate production readback. The baseline Worker and isolated lab Chrome were stopped after measurements; the current 4188 preview is intentionally left running.
+Retain the existing model, scene, initial/layering, devices/interactions and playback/native-hidden scripts for the full matrix. Regenerate media with `node scripts/generate-portfolio-device-images.mjs`; stop/rebuild/restart the local Worker and assert served entry parity before a full sweep. Scoped approval was received and the correction was committed, pushed and deployed; see `portfolio-correction-release.md` for source/CI, active version and live readback. Do not redeploy a receipt-only change. The baseline Worker and isolated lab Chrome were stopped after measurements; the current 4188 preview is intentionally left running.
