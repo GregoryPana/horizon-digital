@@ -106,11 +106,17 @@ function persistPendingEvent(command: any[]): void {
   }
 }
 
-function restorePendingEvents(dataLayer: any[]): void {
+// The vendor consumes native Arguments, not Arrays. Keep persisted JSON separate.
+function enqueueAnalyticsCommand(..._args: any[]): void {
+  window.dataLayer!.push(arguments);
+}
+
+function restorePendingEvents(): void {
   if (!hasAnalyticsConsent()) return;
   for (const pending of readPendingEvents()) {
     if (representedPendingEventIds.has(pending.id)) continue;
-    dataLayer.push(pending.command);
+    // Replay after config through the same native adapter, without persisting anew.
+    enqueueAnalyticsCommand(...pending.command);
     representedPendingEventIds.add(pending.id);
   }
 }
@@ -198,7 +204,7 @@ function startConsentedAnalytics(): void {
   window.dataLayer ??= [];
   window.gtag ??= function gtag(...args: any[]) {
     if (args[0] !== 'consent' && !hasAnalyticsConsent()) return;
-    window.dataLayer!.push(args);
+    enqueueAnalyticsCommand(...args);
     if (args[0] === 'event') persistPendingEvent(args);
   };
 
@@ -207,7 +213,7 @@ function startConsentedAnalytics(): void {
     window.gtag('config', GA_MEASUREMENT_ID, { send_page_view: false });
   }
 
-  restorePendingEvents(window.dataLayer);
+  restorePendingEvents();
 
   if (!hasAnalyticsScript()) scheduleAnalyticsScript();
 }

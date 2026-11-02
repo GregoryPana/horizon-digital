@@ -1,5 +1,34 @@
 # Owner-approved production release source
 
+## Scoped GA4 command-format repair — local candidate, publication held
+
+The owner authorized the minimal analytics queue/replay repair without measurement-ID,
+consent, identity, typography or design changes. Commands now enter the real vendor as
+native Arguments; persisted JSON remains arrays and replays after config through the
+same adapter without creating duplicate persistence records. Two intended-RED
+regressions now pass (571 application cases, plus the unchanged 11 packaging cases).
+
+`docs/release/analytics-repaired-build-sha256.json` is the explicitly superseding
+137-file **candidate** identity used by the exact postbuild gate. The historical
+`accepted-build-sha256.json` is preserved byte-for-byte, not overwritten or silently
+reaccepted. `analytics-repair-artifact-delta.json` bounds the change: 103 files identical,
+all CSS/fonts/media unchanged, index HTML reference changes and 33 JS hash cascades;
+only the main entry has a semantic JS change after normalizing bundle references.
+Exact hashes verify reproducibility, not owner approval or analytics correctness.
+
+Genuine vendor execution now emits intercepted collection for the original ID and
+restored events. Default/deny make no Google requests and revoke removes analytics.
+However, the native SPA acceptance gate remains **failed**: real vendor enhanced
+measurement also emits automatic history page views in addition to the one explicit
+application event per route. This was invisible while the old malformed queue was
+ignored. No property/admin change, undocumented vendor override, consent bypass or
+manual-event deletion was made to hide it. Parent review/decision is required before
+publication. Collection was intercepted locally; GA property receipt is not verified.
+
+All byte-identical output claims below refer to the pre-repair packaging checkpoint,
+not this new analytics candidate. No push, upload or deployment is permitted pending
+parent review of this artifact and the unresolved native SPA gate.
+
 ## Current authority and font packaging
 
 The owner subsequently approved the accepted production release (not staging), the recorded mobile-performance limitation, and this source-packaging remediation. Historical hold/staging paragraphs below describe earlier decisions and are superseded only within that explicit scope. No typography/design change, repository visibility change, history rewrite or unrelated deployment is authorized.
@@ -35,7 +64,7 @@ npm run build
 node scripts/verify-accepted-release.mjs dist
 ```
 
-Required result: knowledge check 8 files; 569 tests / 74 files; TypeScript/Vite build; exactly 137 files with no missing, extra or changed SHA-256 values. No private evidence directory is required. Build verification is independent of a shared entry filename, because the approved change is image-only. Native Worker/physical-browser/performance checks remain separate from this source reproduction.
+Required current result: knowledge check 8 files; 571 tests / 74 files; TypeScript/Vite build; exactly 137 files matching the frozen analytics-repaired manifest with no missing, extra or changed SHA-256 values. No private evidence directory is required. The old accepted manifest remains historical. Native Worker/physical-browser/performance checks and publication approval remain separate from source reproduction.
 
 ## Preserved originals, outside build output
 

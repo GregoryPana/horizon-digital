@@ -1,11 +1,14 @@
 #!/usr/bin/env node
-/** Read-only exact accepted-artifact gate; never refreshes expected hashes. */
+/** Read-only exact frozen-artifact gate; never refreshes expected hashes.
+ * Analytics repair supersedes build bytes only; release approval remains separate.
+ * Historical accepted-build-sha256.json is preserved unchanged.
+ */
 import { readFileSync, readdirSync, lstatSync } from 'node:fs';
 import { resolve, relative, join } from 'node:path';
 import { createHash } from 'node:crypto';
 
 const root = resolve(process.argv[2] || 'dist');
-const expected = JSON.parse(readFileSync(new URL('../docs/release/accepted-build-sha256.json', import.meta.url), 'utf8'));
+const expected = JSON.parse(readFileSync(new URL('../docs/release/analytics-repaired-build-sha256.json', import.meta.url), 'utf8'));
 const actual = {};
 function walk(directory) {
   for (const name of readdirSync(directory).sort()) {

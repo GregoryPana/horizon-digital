@@ -60,6 +60,36 @@ describe('initializeAnalytics', () => {
     window.sessionStorage.clear();
   });
 
+  it('uses native Arguments for every vendor command while persisting JSON arrays', () => {
+    initializeAnalytics();
+    trackPageView({ page_path: '/contact' });
+    trackContactIntent({ method: 'email', source: 'footer', pagePath: '/contact' });
+    expect(window.dataLayer).toHaveLength(4);
+    for (const command of window.dataLayer!) {
+      expect(Object.prototype.toString.call(command)).toBe('[object Arguments]');
+      expect(Array.isArray(command)).toBe(false);
+    }
+    const pending = JSON.parse(window.sessionStorage.getItem('horizon.analytics.pending-events.v2')!);
+    expect(pending).toHaveLength(2);
+    expect(pending.every((record: { command: unknown }) => Array.isArray(record.command))).toBe(true);
+  });
+
+  it('replays serialized arrays as native Arguments after config without repersisting or duplicating', () => {
+    const pending = [{ id: 'prior-document-event', capturedAt: Date.now(), command: ['event', 'cta_click', { cta_name: 'consult' }] }];
+    const serialized = JSON.stringify(pending);
+    window.sessionStorage.setItem('horizon.analytics.pending-events.v2', serialized);
+    const cleanup = initializeAnalytics();
+    cleanup();
+    initializeAnalytics();
+    expect(window.dataLayer?.map(command => Array.from(command))).toEqual([
+      ['js', expect.any(Date)],
+      ['config', GA_MEASUREMENT_ID, { send_page_view: false }],
+      pending[0].command,
+    ]);
+    expect(Object.prototype.toString.call(window.dataLayer![2])).toBe('[object Arguments]');
+    expect(window.sessionStorage.getItem('horizon.analytics.pending-events.v2')).toBe(serialized);
+  });
+
   it('primes the queue immediately without injecting gtag.js', () => {
     initializeAnalytics();
 

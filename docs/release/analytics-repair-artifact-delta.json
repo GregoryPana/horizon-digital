@@ -1,0 +1,263 @@
+{
+  "baseSource": "bbda1dd3e91fb066c6b31a29e30a96389ec528cd",
+  "historicalManifest": "docs/release/accepted-build-sha256.json",
+  "candidateManifest": "docs/release/analytics-repaired-build-sha256.json",
+  "expectedCount": 137,
+  "actualCount": 137,
+  "byteUnchangedCount": 103,
+  "allNonJsExceptHtmlByteIdentical": true,
+  "htmlOnlyReferenceCascade": true,
+  "normalizedEqualJs": [
+    {
+      "old": "assets/WebDesignSeychelles-C9kpe1TQ.js",
+      "new": "assets/WebDesignSeychelles-BZa_g9Ut.js",
+      "normalizedEqual": true
+    },
+    {
+      "old": "assets/proxy-BgjfwjNb.js",
+      "new": "assets/proxy-BAMPy4ec.js",
+      "normalizedEqual": true
+    },
+    {
+      "old": "assets/NotFound-cTdwk2hd.js",
+      "new": "assets/NotFound-YAUHuOzq.js",
+      "normalizedEqual": true
+    },
+    {
+      "old": "assets/useProceduralReveal-C7LGt-oF.js",
+      "new": "assets/useProceduralReveal-Druoc8Ei.js",
+      "normalizedEqual": true
+    },
+    {
+      "old": "assets/Services-4OV7p8WO.js",
+      "new": "assets/Services-oyJzmmM6.js",
+      "normalizedEqual": true
+    },
+    {
+      "old": "assets/ShowcaseFormaStudio-CYBcdDmp.js",
+      "new": "assets/ShowcaseFormaStudio-BSoPSTcY.js",
+      "normalizedEqual": true
+    },
+    {
+      "old": "assets/InsightsHero-C5eJDgO2.js",
+      "new": "assets/InsightsHero-CNDfIPnZ.js",
+      "normalizedEqual": true
+    },
+    {
+      "old": "assets/message-circle-B2bkfn0G.js",
+      "new": "assets/message-circle-C5yMvhHL.js",
+      "normalizedEqual": true
+    },
+    {
+      "old": "assets/use-reduced-motion-C4f5vubD.js",
+      "new": "assets/use-reduced-motion-DgX-0cKS.js",
+      "normalizedEqual": true
+    },
+    {
+      "old": "assets/Work-D4IOF4vb.js",
+      "new": "assets/Work-B7rrQGEi.js",
+      "normalizedEqual": true
+    },
+    {
+      "old": "assets/ScrollTrigger-Heh74mPD.js",
+      "new": "assets/ScrollTrigger-Heh74mPD.js",
+      "normalizedEqual": true
+    },
+    {
+      "old": "assets/Process-BWkfeRZx.js",
+      "new": "assets/Process-CeXikqhC.js",
+      "normalizedEqual": true
+    },
+    {
+      "old": "assets/arrow-up-right-C9McPQKJ.js",
+      "new": "assets/arrow-up-right-Cs3IsTcB.js",
+      "normalizedEqual": true
+    },
+    {
+      "old": "assets/ServicePillarPage-Cqd2IbKj.js",
+      "new": "assets/ServicePillarPage-B7cjKS09.js",
+      "normalizedEqual": true
+    },
+    {
+      "old": "assets/Card-H7zMRBWE.js",
+      "new": "assets/Card-BDj2vmXk.js",
+      "normalizedEqual": true
+    },
+    {
+      "old": "assets/WhatYouNeed-BTMl45S3.js",
+      "new": "assets/WhatYouNeed-B2MGnm1s.js",
+      "normalizedEqual": true
+    },
+    {
+      "old": "assets/SeoServicesSeychelles-DhYvmHIt.js",
+      "new": "assets/SeoServicesSeychelles-DK_cvzto.js",
+      "normalizedEqual": true
+    },
+    {
+      "old": "assets/About-BUcJxbTh.js",
+      "new": "assets/About-C54f8G4I.js",
+      "normalizedEqual": true
+    },
+    {
+      "old": "assets/index-DDlvirwQ.js",
+      "new": "assets/index-DDlvirwQ.js",
+      "normalizedEqual": true
+    },
+    {
+      "old": "assets/index-BCjhTBkL.js",
+      "new": "assets/index-D0BIrfko.js",
+      "normalizedEqual": true
+    },
+    {
+      "old": "assets/Seo-CLsJAPmO.js",
+      "new": "assets/Seo-DRAJA29L.js",
+      "normalizedEqual": true
+    },
+    {
+      "old": "assets/check-MpLb9Yyp.js",
+      "new": "assets/check-S36B3blL.js",
+      "normalizedEqual": true
+    },
+    {
+      "old": "assets/ShowcaseTakamakaHouse-CEFkXUrV.js",
+      "new": "assets/ShowcaseTakamakaHouse-VdMLS1UC.js",
+      "normalizedEqual": true
+    },
+    {
+      "old": "assets/Contact-BLxRgMzQ.js",
+      "new": "assets/Contact-Ce86OFHa.js",
+      "normalizedEqual": true
+    },
+    {
+      "old": "assets/InsightArticle-BrjmKOXI.js",
+      "new": "assets/InsightArticle-DqTtTFRp.js",
+      "normalizedEqual": true
+    },
+    {
+      "old": "assets/message-square-BLMZGRF_.js",
+      "new": "assets/message-square-D0etAjO-.js",
+      "normalizedEqual": true
+    },
+    {
+      "old": "assets/Insights-CZoRfG2b.js",
+      "new": "assets/Insights-C1syIGkq.js",
+      "normalizedEqual": true
+    },
+    {
+      "old": "assets/AnalyticsDigitalPresenceSeychelles-Cu0PjvMM.js",
+      "new": "assets/AnalyticsDigitalPresenceSeychelles-B1pBM4BK.js",
+      "normalizedEqual": true
+    },
+    {
+      "old": "assets/createLucideIcon-B2Prd6cJ.js",
+      "new": "assets/createLucideIcon-CR-r_QQW.js",
+      "normalizedEqual": true
+    },
+    {
+      "old": "assets/Home-Csr9I4rR.js",
+      "new": "assets/Home-Cy_r87rJ.js",
+      "normalizedEqual": true
+    },
+    {
+      "old": "assets/Pricing-DONb42uD.js",
+      "new": "assets/Pricing-DkkzTv8R.js",
+      "normalizedEqual": true
+    },
+    {
+      "old": "assets/mouse-pointer-2-FbhfpBoX.js",
+      "new": "assets/mouse-pointer-2-BW8ZXCex.js",
+      "normalizedEqual": true
+    },
+    {
+      "old": "assets/ServicePages-CQnK6vk3.js",
+      "new": "assets/ServicePages-IbRzZatd.js",
+      "normalizedEqual": true
+    },
+    {
+      "old": "assets/ShowcaseDrakeSeaside-BZEVexrP.js",
+      "new": "assets/ShowcaseDrakeSeaside-TiQljbpg.js",
+      "normalizedEqual": true
+    }
+  ],
+  "onlySemanticJsDelta": [
+    {
+      "old": "assets/index-CgHPoE--.js",
+      "alias": "index.js",
+      "new": "assets/index-Cn_o3K-T.js"
+    }
+  ],
+  "missing": [
+    "assets/About-BUcJxbTh.js",
+    "assets/AnalyticsDigitalPresenceSeychelles-Cu0PjvMM.js",
+    "assets/Card-H7zMRBWE.js",
+    "assets/Contact-BLxRgMzQ.js",
+    "assets/Home-Csr9I4rR.js",
+    "assets/InsightArticle-BrjmKOXI.js",
+    "assets/Insights-CZoRfG2b.js",
+    "assets/InsightsHero-C5eJDgO2.js",
+    "assets/NotFound-cTdwk2hd.js",
+    "assets/Pricing-DONb42uD.js",
+    "assets/Process-BWkfeRZx.js",
+    "assets/Seo-CLsJAPmO.js",
+    "assets/SeoServicesSeychelles-DhYvmHIt.js",
+    "assets/ServicePages-CQnK6vk3.js",
+    "assets/ServicePillarPage-Cqd2IbKj.js",
+    "assets/Services-4OV7p8WO.js",
+    "assets/ShowcaseDrakeSeaside-BZEVexrP.js",
+    "assets/ShowcaseFormaStudio-CYBcdDmp.js",
+    "assets/ShowcaseTakamakaHouse-CEFkXUrV.js",
+    "assets/WebDesignSeychelles-C9kpe1TQ.js",
+    "assets/WhatYouNeed-BTMl45S3.js",
+    "assets/Work-D4IOF4vb.js",
+    "assets/arrow-up-right-C9McPQKJ.js",
+    "assets/check-MpLb9Yyp.js",
+    "assets/createLucideIcon-B2Prd6cJ.js",
+    "assets/index-BCjhTBkL.js",
+    "assets/index-CgHPoE--.js",
+    "assets/message-circle-B2bkfn0G.js",
+    "assets/message-square-BLMZGRF_.js",
+    "assets/mouse-pointer-2-FbhfpBoX.js",
+    "assets/proxy-BgjfwjNb.js",
+    "assets/use-reduced-motion-C4f5vubD.js",
+    "assets/useProceduralReveal-C7LGt-oF.js"
+  ],
+  "extra": [
+    "assets/About-C54f8G4I.js",
+    "assets/AnalyticsDigitalPresenceSeychelles-B1pBM4BK.js",
+    "assets/Card-BDj2vmXk.js",
+    "assets/Contact-Ce86OFHa.js",
+    "assets/Home-Cy_r87rJ.js",
+    "assets/InsightArticle-DqTtTFRp.js",
+    "assets/Insights-C1syIGkq.js",
+    "assets/InsightsHero-CNDfIPnZ.js",
+    "assets/NotFound-YAUHuOzq.js",
+    "assets/Pricing-DkkzTv8R.js",
+    "assets/Process-CeXikqhC.js",
+    "assets/Seo-DRAJA29L.js",
+    "assets/SeoServicesSeychelles-DK_cvzto.js",
+    "assets/ServicePages-IbRzZatd.js",
+    "assets/ServicePillarPage-B7cjKS09.js",
+    "assets/Services-oyJzmmM6.js",
+    "assets/ShowcaseDrakeSeaside-TiQljbpg.js",
+    "assets/ShowcaseFormaStudio-BSoPSTcY.js",
+    "assets/ShowcaseTakamakaHouse-VdMLS1UC.js",
+    "assets/WebDesignSeychelles-BZa_g9Ut.js",
+    "assets/WhatYouNeed-B2MGnm1s.js",
+    "assets/Work-B7rrQGEi.js",
+    "assets/arrow-up-right-Cs3IsTcB.js",
+    "assets/check-S36B3blL.js",
+    "assets/createLucideIcon-CR-r_QQW.js",
+    "assets/index-Cn_o3K-T.js",
+    "assets/index-D0BIrfko.js",
+    "assets/message-circle-C5yMvhHL.js",
+    "assets/message-square-D0etAjO-.js",
+    "assets/mouse-pointer-2-BW8ZXCex.js",
+    "assets/proxy-BAMPy4ec.js",
+    "assets/use-reduced-motion-DgX-0cKS.js",
+    "assets/useProceduralReveal-Druoc8Ei.js"
+  ],
+  "samePathChanged": [
+    "index.html"
+  ],
+  "deploymentStatus": "HELD: native collector reveals enhanced-measurement duplicate SPA page_view; parent review required; no GA admin changes authorized"
+}
