@@ -66,9 +66,60 @@ body[data-menu-open] .analytics-preferences-strip { display: none !important; }
   background: transparent;
 }
 .analytics-preferences-strip span { font-size: 12px; color: #d7dfe0; }
+.analytics-consent-panel--compact {
+  /* A first-load utility, not a modal or an in-flow banner. The top anchor
+     clears the shared header and leaves the approved hero action rail alone. */
+  inset-inline: auto 16px;
+  top: calc(var(--analytics-header-height, var(--header-height, 88px)) + 8px + env(safe-area-inset-top, 0px));
+  bottom: auto;
+  width: min(384px, calc(100% - 32px));
+  max-height: calc(100dvh - var(--header-height, 88px) - 24px - env(safe-area-inset-top, 0px));
+  margin-inline: 0;
+  padding: 12px;
+  border-radius: 14px;
+  box-shadow: 0 4px 18px #0003;
+}
+.analytics-consent-panel--compact h2 { font-size: 16px; }
+.analytics-consent-panel--compact p { margin: 6px 0 0; }
+.analytics-consent-panel--compact .analytics-consent-actions { margin-top: 8px; gap: 8px; }
+/* Match the shared editorial bar before its effect measures --header-height.
+   Otherwise the inherited 64/72px legacy token moves this notice on first paint.
+   Independent showcase shells keep the measured/fallback token above. */
+body:has([data-site-header]) .analytics-consent-panel--compact { --analytics-header-height: 88px; }
+@media (max-width: 600px) {
+  body:has([data-site-header]) .analytics-consent-panel--compact { --analytics-header-height: 76px; }
+}
 @media (max-width: 480px) {
   .analytics-consent-panel { padding: 16px; }
+  .analytics-consent-panel--compact { padding: 12px; }
   .analytics-consent-actions { gap: 8px; }
   .analytics-consent-actions button { padding-inline: 8px; }
   .analytics-preferences-strip { padding-inline: 72px; }
+}
+
+/* On the narrowest portrait, reserve the missing headline clearance rather
+   than shrinking the 14px copy or 44px choices. Normal document scroll remains. */
+@media (max-width: 340px) and (min-height: 501px) {
+  body:has(.analytics-consent-panel--compact:not([hidden])) #root { padding-top: 24px; }
+}
+
+/* Short landscape has no unused hero quadrant. Reserve a shallow choice row
+   below the fixed header instead of covering the headline or moving its CTA
+   within the composition. This space exists only while a choice is required;
+   choosing deliberately returns the document to its ordinary scroll layout. */
+@media (max-height: 500px) and (min-width: 601px) {
+  body:has(.analytics-consent-panel--compact:not([hidden])) #root {
+    padding-top: 120px;
+  }
+  body:has([data-site-header]) .analytics-consent-panel--compact {
+    width: calc(100% - 32px);
+    max-width: none;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(260px, .8fr);
+    gap: 0 20px;
+    align-items: center;
+  }
+  .analytics-consent-panel--compact .analytics-consent-heading-row { grid-column: 1; }
+  .analytics-consent-panel--compact #analytics-consent-description { grid-column: 1; }
+  .analytics-consent-panel--compact .analytics-consent-actions { grid-column: 2; grid-row: 1 / 3; margin-top: 0; }
 }

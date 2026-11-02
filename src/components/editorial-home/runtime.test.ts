@@ -36,6 +36,23 @@ beforeEach(()=>{
 afterEach(()=>{dispose?.();dispose=undefined;root.remove();vi.unstubAllGlobals();});
 const flush=async()=>{await Promise.resolve();await Promise.resolve();};
 describe('editorial home lifecycle resource ownership',()=>{
+  it('owns async decoded-preview continuation and refuses it after route unmount',async()=>{
+    let ready!:()=>void;
+    const decoded=new Promise<void>(resolve=>{ready=resolve});
+    dispose=mountEditorialHome(root);
+    const env=h.environments[0],build=vi.fn();
+    const pending=decoded.then(()=>env.runOwned(build));
+    dispose();dispose=undefined;ready();await pending;
+    expect(build).not.toHaveBeenCalled();
+    expect(h.contexts[0].revert).toHaveBeenCalledOnce();
+    expect(h.tickers.size).toBe(0);
+  });
+  it('runs decoded-preview creation inside only the current owned context',()=>{
+    dispose=mountEditorialHome(root);
+    const build=vi.fn(()=>42);
+    expect(h.environments[0].runOwned(build)).toBe(42);
+    expect(build).toHaveBeenCalledOnce();
+  });
   it('registers the shared plugin before Home DOM mount and never re-registers on remount',async()=>{
     expect(gsap.registerPlugin).toHaveBeenCalledOnce();
     Object.defineProperty(document,'fonts',{configurable:true,value:{ready:Promise.resolve()}});

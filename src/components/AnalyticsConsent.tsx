@@ -13,6 +13,7 @@ export default function AnalyticsConsent() {
   const preferencesRef = useRef<HTMLButtonElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const visible = choice === 'unknown' || expanded;
+  const compact = choice === 'unknown' && !expanded && !error;
 
   useEffect(() => subscribeAnalyticsConsent(() => setChoice(getAnalyticsConsent())), []);
   useEffect(() => {
@@ -56,20 +57,22 @@ export default function AnalyticsConsent() {
   return <>
     {preferenceTarget ? createPortal(preferences, preferenceTarget) : preferences}
     {typeof document !== 'undefined' && createPortal(
-      <section id="analytics-consent-panel" className="analytics-consent-panel" hidden={!visible || menuOpen}
+      <section id="analytics-consent-panel" className={`analytics-consent-panel${compact ? ' analytics-consent-panel--compact' : ''}`} data-lenis-prevent hidden={!visible || menuOpen}
         aria-labelledby="analytics-consent-title" aria-describedby="analytics-consent-description"
         onKeyDown={(event) => { if (event.key === 'Escape' && expanded) { event.preventDefault(); close(); } }}>
         <div className="analytics-consent-heading-row">
           <h2 id="analytics-consent-title" tabIndex={-1} ref={headingRef}>Your analytics choice</h2>
           {expanded && choice !== 'unknown' && <button type="button" className="analytics-consent-close" onClick={close}>Close</button>}
         </div>
-        <p id="analytics-consent-description">With your permission, Google Analytics helps us understand page visits and contact-button use. It is off until you allow it. Your choice does not affect contacting us.</p>
+        <p id="analytics-consent-description">{compact
+          ? 'Optional Google Analytics measures visits and contact clicks. Off unless you allow it.'
+          : 'With your permission, Google Analytics helps us understand page visits and contact-button use. It is off until you allow it. Your choice does not affect contacting us.'}</p>
         {choice === 'granted' && <p>Choosing No thanks turns analytics off and reloads this page.</p>}
         <div className="analytics-consent-actions">
           <button type="button" onClick={() => choose('granted')}>Allow analytics</button>
           <button type="button" onClick={() => choose('denied')}>No thanks</button>
         </div>
-        <p className="analytics-consent-note">Change your choice anytime using Analytics preferences at the bottom of every page.</p>
+        {!compact && <p className="analytics-consent-note">Change your choice anytime using Analytics preferences at the bottom of every page.</p>}
         {error && <p role="status">Your browser could not save this choice. Analytics is off on this page. Please try again to save your preference before leaving.</p>}
       </section>, document.body)}
   </>;

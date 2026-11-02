@@ -2,7 +2,7 @@
 /* Faithful legacy choreography. Generated from v13b; scoped APIs are lifecycle-owned.
  * Copyright (c) 2026 8B, MIT. No eval, script injection or document-global selectors. */
 export function mountOriginalScenes(env) {
-const {document,window,browser,gsap,ScrollTrigger,queueMotion,refreshScroll,matchMedia,IntersectionObserver,ResizeObserver,MutationObserver,listen,alive,diagnostics}=env;
+const {document,window,browser,gsap,ScrollTrigger,queueMotion,refreshScroll,matchMedia,IntersectionObserver,ResizeObserver,MutationObserver,listen,alive,runOwned,diagnostics}=env;
 
 // Original section-script:opening
 
@@ -273,12 +273,26 @@ queueMotion(()=>gsap.matchMedia().add('(prefers-reduced-motion: no-preference)',
  const settleFocus=event=>{const owner=event.target.closest?.('.co-person>a,.ds-tile--link,.mt-foot a');if(!owner||!window.gsap)return;const targets=owner.matches('.co-person>a')?[owner.querySelector('.co-photo'),...owner.querySelector('figcaption').children]:[owner];gsap.killTweensOf(targets);gsap.set(targets,{y:0,opacity:1,filter:'blur(0px)'})};
  listen(document,'focusin',settleFocus);Promise.resolve(window.motionReady).then(()=>{entrances();settleFocus({target:document.activeElement})});
  const models=[];
- const update=()=>models.forEach(m=>{const allowed=!reduced.matches&&!document.hidden&&!document.body.hasAttribute('data-ambient-paused')&&!document.body.hasAttribute('data-menu-open')&&m.visible&&m.hovered;m.el.dataset.previewPlaying=String(allowed);if(m.tl)allowed?m.tl.resume():m.tl.pause()});
+ const update=()=>models.forEach(m=>{const allowed=m.ready&&m.tl&&!reduced.matches&&!document.hidden&&!document.body.hasAttribute('data-ambient-paused')&&!document.body.hasAttribute('data-menu-open')&&m.visible&&m.hovered;m.el.dataset.previewPlaying=String(!!allowed);if(m.tl)allowed?m.tl.resume():m.tl.pause()});
  document.querySelectorAll('[data-work-preview]').forEach(el=>{
-  const image=el.querySelector('img'),link=el.closest('a'),m={el,image,visible:false,hovered:false,focused:false,tl:null,travel:0};models.push(m);
+  const image=el.querySelector('img'),link=el.closest('a'),m={el,image,visible:false,hovered:false,focused:false,ready:false,pending:false,tl:null,travel:0};models.push(m);
   const measure=()=>{m.travel=Math.max(0,Math.min(image.clientHeight-el.clientHeight,el.clientHeight*1.75));if(m.tl){const t=m.tl.time();m.tl.invalidate();m.tl.time(t)}};
-  const init=()=>{if(!alive()||m.tl||!window.gsap)return;measure();const phase=p=>()=>{el.dataset.previewPhase=p};m.tl=gsap.timeline({paused:true,repeat:-1,onRepeat:()=>{el.dataset.previewLoop=String(m.tl.iteration())}}).call(phase('hold')).to(image,{y:()=>-m.travel,duration:10,ease:'none'},1.2).call(phase('blur')).to(image,{filter:'blur(11px)',opacity:0,duration:.45},'>+=.7').set(image,{y:0}).call(phase('reset')).to(image,{filter:'blur(0px)',opacity:1,duration:.6}).call(phase('hold')).to({},{duration:1.1});el.__preview=m;update()};
-  listen(image,'load',init,{once:true});if(image.complete&&image.naturalWidth)init();new ResizeObserver(measure).observe(el);
+  const build=()=>{if(!alive()||m.tl||!window.gsap)return;measure();const phase=p=>()=>{el.dataset.previewPhase=p};m.tl=gsap.timeline({paused:true,repeat:-1,onRepeat:()=>{el.dataset.previewLoop=String(m.tl.iteration())}}).call(phase('hold')).to(image,{y:()=>-m.travel,duration:10,ease:'none'},1.2).call(phase('blur')).to(image,{filter:'blur(11px)',opacity:0,duration:.45},'>+=.7').set(image,{y:0}).call(phase('reset')).to(image,{filter:'blur(0px)',opacity:1,duration:.6}).call(phase('hold')).to({},{duration:1.1});m.ready=true;el.__preview=m;update()};
+  const init=(()=>{let generation=0;return ()=>{
+   if(!alive()||m.tl)return;generation++;
+   if(m.pending||!image.complete||!image.naturalWidth)return;
+   m.pending=true;const requested=generation,source=image.currentSrc||image.src;
+   // Coalesce loads received during decode; only the latest source may build.
+   // No new load means no retry after a persistent decode failure.
+   const settle=ok=>{m.pending=false;if(!alive())return;
+    if(requested!==generation){init();return;}
+    if(ok&&source===(image.currentSrc||image.src))runOwned(build);
+   };
+   try{const decoded=typeof image.decode==='function'?image.decode():Promise.resolve();
+    Promise.resolve(decoded).then(()=>settle(true),()=>settle(false));
+   }catch{settle(false);}
+  };})();
+  listen(image,'load',init);if(image.complete&&image.naturalWidth)init();new ResizeObserver(measure).observe(el);
   listen(el,'pointerenter',e=>{m.hovered=e.pointerType!=='touch'&&matchMedia('(hover:hover)').matches;update()});listen(el,'pointerleave',()=>{m.hovered=false;update()});listen(link,'focusin',()=>{m.focused=true;update()});listen(link,'focusout',()=>{m.focused=false;update()});
   new IntersectionObserver(es=>{m.visible=es[0].intersectionRatio>.2;update()},{threshold:[0,.2,.5]}).observe(el);
  });

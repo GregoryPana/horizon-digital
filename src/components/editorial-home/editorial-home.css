@@ -1,7 +1,7 @@
 /* v13b layout/styles, 8B MIT; route-scoped deterministic migration. */
-/* The accepted viewport reserves a native scrollbar gutter. Presence-scoped
- * on html (not the clipped route div), so it automatically reverts on SPA exit. */
-html:has(.editorial-home){scrollbar-gutter:stable;scroll-padding-top:90px}
+/* Root gutter is reserved by initial shell CSS; only Home anchor clearance is
+ * route-scoped, so lazy route insertion cannot shift the shared navigation. */
+html:has(.editorial-home){scroll-padding-top:90px}
 /* Defeat inherited host-only metric adjustment and Tailwind SVG alignment. */
 .editorial-home{font-size-adjust:none;color-scheme:normal;tab-size:8}
 .editorial-home svg{vertical-align:baseline}
@@ -943,7 +943,8 @@ html:has(.editorial-home){scrollbar-gutter:stable;scroll-padding-top:90px}
   mask-image: radial-gradient(145% 118% at 0% 0%, black 0%, rgba(0, 0, 0, 0.82) 70%, rgba(0, 0, 0, 0.38) 92%, transparent 100%);
   transform: translate3d(-1.5%, -1%, 0) scale(1.02);
   transform-origin: 0 0;
-  animation: home-continuous-atmosphere 14s ease-in-out infinite alternate;
+  /* Owner-approved stationary lighting; ::after remains pointer-following. */
+  animation: none;
 }
 
 .editorial-home:not(#editorial-home-specificity#editorial-home-specificity)::after {

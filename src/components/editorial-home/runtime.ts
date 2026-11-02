@@ -108,6 +108,7 @@ export function mountEditorialHome(root: HTMLElement) {
       MutationObserver: observeClass(MutationObserver),
       listen,
       alive: () => active,
+      runOwned: own,
       diagnostics,
       refreshScroll,
       queueMotion: (setup: () => void) => jobs.push(setup),

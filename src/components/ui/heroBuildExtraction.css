@@ -42,7 +42,8 @@
   opacity: 0.18;
   transform: translate3d(-1.5%, -1%, 0);
   transform-origin: 0 0;
-  animation: elegant-dark-pattern-drift 11s ease-in-out infinite alternate;
+  /* Static top-left light streaks; retain their authored gradient/masks. */
+  animation: none;
 }
 
 .elegant-dark-pattern__streak {
