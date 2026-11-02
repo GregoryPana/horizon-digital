@@ -9,9 +9,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      # Existing generator fixtures require an explicit owned temp directory.
-      TMPDIR: ${{ runner.temp }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -26,6 +23,9 @@ jobs:
         run: npm ci
 
       - name: Test application and font source packaging
+        env:
+          # runner context is available at step scope, not job-level env.
+          TMPDIR: ${{ runner.temp }}
         run: npm test
 
       - name: Build
