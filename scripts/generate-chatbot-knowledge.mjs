@@ -54,12 +54,12 @@ ${facts.existingWebsiteFlow.map((step, index) => `### ${index + 1}. ${step.title
 
 ${facts.serviceScopeBoundaries.map((boundary) => `### ${boundary.title}\n\n${boundary.description}`).join("\n\n")}
 
-Package details and current starting prices are published at ${absoluteUrl(facts.site.pricingPath)}.
+Compare package details and request a free quote at ${absoluteUrl(facts.site.pricingPath)}.
 `;
 
 const pricing = `${generatedHeader}# Website packages and pricing
 
-All prices are in Seychelles rupees (SCR). Package prices are starting points. The written proposal confirms the final scope, price, responsibilities and exclusions.
+Website projects are quoted after a free consultation. Do not provide fixed or starting package prices. Invite the visitor to call, use WhatsApp or request a free quote. The written proposal confirms scope, price, responsibilities and exclusions.
 
 ${facts.packages.map((pkg) => `## ${pkg.title}\n\n**${pkg.price}**\n\n${pkg.description}\n\n${pkg.includes.map((item) => `- **${item.title}:** ${item.description}`).join("\n")}`).join("\n\n")}
 
@@ -110,7 +110,7 @@ ${facts.business.positioning}
 ## Working approach
 
 - Direct communication with the person responsible for the build
-- Starting prices published in SCR
+- Free consultation and a written quote
 - A written project scope before implementation
 - Responsive design and technical SEO foundations
 - Post-launch support based on the selected package

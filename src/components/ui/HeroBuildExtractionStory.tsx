@@ -1,4 +1,4 @@
-import { WebsiteBuildStory } from "./WebsiteBuildStory";
+import { HeroLightWorkspace } from "./HeroLightWorkspace";
 
 export interface HeroBuildExtractionStoryProps {
   className?: string;
@@ -28,16 +28,16 @@ export function HeroBuildExtractionStory({
         <div className={`hbe-build-window hbe-build-window-${variant}`} data-hbe-window={variant}>
           <div className="hbe-build-window-toolbar">
             <span className="hbe-build-window-controls"><i /><i /><i /></span>
-            <span className="hbe-build-window-address">{addressLabel}</span>
+            <span className="hbe-build-window-address" data-address-label={addressLabel} />
           </div>
           <div className="hbe-build-window-canvas">
             <div
               className={`hbe-build-story hbe-${variant}-build-story`}
               {...(variant === "desktop" ? { "data-hbe-desktop-build-story": true } : {})}
             >
-              <WebsiteBuildStory
+              <HeroLightWorkspace
                 startDelay={startDelay}
-                mode={variant === "mobile" ? "portrait" : "landscape"}
+                variant={variant}
               />
             </div>
           </div>

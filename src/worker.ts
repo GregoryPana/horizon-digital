@@ -415,7 +415,25 @@ export function createWorker(
 
     const shellResponse = await env.ASSETS.fetch(new Request(new URL("/", url).toString(), request));
     const shellHtml = await shellResponse.text();
-    const html = injectRouteHtml(shellHtml, { seo, canonical, schemas });
+    let html = injectRouteHtml(shellHtml, { seo, canonical, schemas });
+    // Build-generated URLs remain inert on static previews and other routes.
+    // Root discovery avoids waiting for the entry JS to find Home's dependencies;
+    // modulepreload fetches/compiles but does not execute or change route ownership.
+    html = html.replace(/<!--horizon-home-preloads:([\s\S]*?)-->/g,
+      (_comment, hints: string) => canonicalPath === "/" && status === 200 ? hints : "");
+    // Match the opening <picture> exactly, without fetching homepage media on
+    // other routes. Discovery starts in HTML, before the lazy Home JS/CSS chain.
+    if (canonicalPath === "/" && status === 200) {
+      // Responsive preload media must follow viewport metadata: placing it at
+      // <head> makes the speculative scanner fetch the desktop fallback on phones.
+      const heroPreloads = `
+    <link rel="preload" as="image" type="image/webp" href="/editorial-home/brand-hero-mobile.webp" media="(max-width: 767px)" fetchpriority="high" />
+    <link rel="preload" as="image" type="image/webp" href="/editorial-home/brand-hero.webp" media="not all and (max-width: 767px)" fetchpriority="high" />`;
+      const viewport = /<meta\s+name="viewport"[^>]*>/;
+      html = viewport.test(html)
+        ? html.replace(viewport, (tag) => `${tag}${heroPreloads}`)
+        : html.replace("</head>", `${heroPreloads}\n</head>`);
+    }
 
     const headers = new Headers(shellResponse.headers);
     headers.set("content-type", "text/html; charset=utf-8");

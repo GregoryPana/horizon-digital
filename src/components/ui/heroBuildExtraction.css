@@ -170,9 +170,6 @@
   white-space: nowrap;
 }
 
-.hbe-title-letter {
-  display: inline-block;
-}
 
 .hbe-title {
   position: relative;
@@ -751,3 +748,80 @@
     transform: none;
   }
 }
+
+
+/* Local abstract website-build candidate; surrounding brand remains unchanged. */
+.hbe-title-visual { display:block; line-height:1.19; }
+.hbe-title-line { display:block; line-height:1.12; white-space:nowrap; padding-block:.035em; }
+.hbe-context-home { height:auto; min-height:100dvh; overflow:clip; }
+.hbe-context-home .hbe-preview-shell { height:auto; min-height:calc(100dvh - var(--header-height,72px)); }
+.hbe-context-home .hbe-title { line-height:1.12; letter-spacing:-.043em; padding-block:.06em; }
+.hbe-build-window { grid-template-rows:minmax(0,1fr); border-color:rgba(255,255,255,.65); background:#fff; box-shadow:0 24px 64px #0005; }
+.hbe-build-window-toolbar { display:none; }
+.hbe-build-window-canvas { background:#fff; }
+.hbe-desktop-build-story { filter:none; }
+.hbe-desktop-build-story::before { display:none; }
+.hbe-desktop-story-mobile-preview .hbe-build-window-mobile { grid-template-rows:minmax(0,1fr); background:#fff; border-color:#dbe5e7; }
+@media (min-width:768px) {
+  .hbe-context-home .hbe-title { font-size:clamp(3rem,min(6.1vw,9.4vh),6.5rem); }
+  .hbe-context-home .hbe-copy-column { padding-bottom:16px; }
+}
+@media (min-width:768px) and (max-width:1023px) {
+  .hbe-context-home .hbe-preview-shell { grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); gap:24px; }
+  .hbe-context-home .hbe-title { font-size:clamp(2.7rem,6vw,4rem); }
+}
+@media (max-width:767px) {
+  .hbe-context-home .hbe-preview-shell { display:flex; flex-direction:column; gap:32px; padding-block:28px max(64px,env(safe-area-inset-bottom)); min-height:calc(100dvh - var(--header-height,64px)); }
+  .hbe-context-home .hbe-copy-column { flex:none; }
+  .hbe-context-home .hbe-title { font-size:clamp(2.25rem,11.3vw,3.6rem); max-width:11.5ch; }
+  .hbe-context-home .hbe-visual-column { display:block; margin-top:auto; }
+  .hbe-context-home .hbe-actions { margin-top:0; }
+  .hbe-context-home .hbe-copy-support { margin-top:24px; }
+}
+@media (max-width:767px) and (max-height:620px) {
+  .hbe-context-home .hbe-preview-shell { padding-block:16px max(36px,env(safe-area-inset-bottom)); gap:24px; }
+  .hbe-context-home .hbe-title { font-size:clamp(2rem,10.4vw,2.7rem); }
+  .hbe-context-home .hbe-copy-support { margin-top:16px; }
+}
+@media (max-width:767px) and (orientation:landscape) {
+  .hbe-context-home .hbe-title { max-width:20ch; font-size:2.6rem; }
+  .hbe-context-home .hbe-actions { max-width:calc(100% - 72px); }
+}
+
+@media (min-width:768px) and (max-width:1023px) {
+  .hbe-context-home .hbe-copy-column { align-self:center; padding-bottom:0; }
+}
+
+.hbe-preview-stage { position:relative; min-width:0; padding-bottom:28px; }
+.hbe-playback-rail { position:absolute; left:0; bottom:0; z-index:5; }
+.hbe-preview-playback { width:44px; height:44px; display:grid; place-items:center; border:1px solid rgba(183,218,219,.6); border-radius:50%; background:#10272d; color:#f1faf9; box-shadow:0 3px 12px #0003; line-height:1; cursor:pointer; transition:background-color 160ms var(--ease-standard); }
+.hbe-preview-playback svg { display:block; width:20px; height:20px; }
+.hbe-preview-playback[aria-pressed="true"] { background:#1d3e45; }
+@media (prefers-reduced-motion:reduce) { .hbe-playback-rail { display:none; } }
+.hbe-preview-playback:hover { background:var(--bg-panel); }
+.hbe-preview-playback:active { transform:translateY(1px); }
+.hbe-mobile-guides { display:none; opacity:0; pointer-events:none; }
+.hbe-action-resolve { position:absolute; inset:0; border:1px solid #a9f3dd; border-radius:inherit; opacity:0; pointer-events:none; }
+.hbe-primary-action { position:relative; }
+/* Phone construction uses measured actual-content slots, not a second mock website. */
+.hbe-construction-overlay { position:absolute; inset:0; z-index:8; pointer-events:none; }
+.hbe-blueprint-slot { position:absolute; display:flex; align-items:center; padding-inline:2px; outline:1px solid #8dded580; background:#133237; }
+.hbe-blueprint-slot::before,.hbe-blueprint-slot::after { content:""; position:absolute; width:5px; height:5px; border:1px solid #a4eee1; top:-3px; }
+.hbe-blueprint-slot::before { left:-3px; }
+.hbe-blueprint-slot::after { right:-3px; }
+.hbe-blueprint-slot b { display:block; width:82%; height:30%; max-height:14px; background:#8baead; opacity:.8; }
+.hbe-blueprint-button { background:#16353a; border-radius:999px; outline-color:#b0ece0; justify-content:center; }
+.hbe-blueprint-button b { width:46%; height:5px; }
+@media (prefers-reduced-motion:reduce) { .hbe-construction-overlay { display:none; } }
+@media (max-width:767px) {
+  /* Font-ready measured boxes have no surface fill: fine crossed planning geometry. */
+  .hbe-blueprint-slot { padding:0; outline:none; border:1px solid #8dded566; background:transparent; }
+  .hbe-blueprint-slot::before,.hbe-blueprint-slot::after { inset:0; width:auto; height:auto; border:0; background:linear-gradient(to top right,transparent calc(50% - .5px),#8dded53d 50%,transparent calc(50% + .5px)); }
+  .hbe-blueprint-slot::after { background:linear-gradient(to bottom right,transparent calc(50% - .5px),#8dded53d 50%,transparent calc(50% + .5px)); }
+  .hbe-blueprint-slot .hbe-laser-edge { position:absolute; left:-1px; top:0; bottom:0; width:1px; height:auto; max-height:none; opacity:0; background:#b9fff1; box-shadow:-3px 0 0 #70e5dc75,-6px 0 0 #70e5dc20; }
+  .hbe-laser-edge::after { content:""; position:absolute; width:5px; height:5px; left:-2px; top:48%; border-radius:50%; background:#defff9; box-shadow:0 0 5px #7ef4e9; }
+  .hbe-blueprint-button { border:1px dashed #b0ece0; background:transparent; }
+  .hbe-blueprint-button::before,.hbe-blueprint-button::after,.hbe-blueprint-button .hbe-laser-edge { display:none; }
+  .hbe-mobile-guides { display:block; position:absolute; inset:80px 20px 36px; border-inline:1px solid #8ce0d42b; background:linear-gradient(transparent 12%,#8ce0d426 12.1%,transparent 12.3%,transparent 82%,#8ce0d426 82.1%,transparent 82.3%); }
+}
+@media (prefers-reduced-motion:reduce) { .hbe-mobile-guides,.hbe-action-resolve { display:none; } .hbe-preview-playback { display:none; } }

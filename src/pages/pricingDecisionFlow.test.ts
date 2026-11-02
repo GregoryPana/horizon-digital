@@ -110,13 +110,12 @@ describe("compact pricing information architecture", () => {
     expect(pricingCss).not.toMatch(/pricing-project-flow|pricing-flow-sequence/);
   });
 
-  it("uses the role typography tokens, content-sized hero and compact responsive spacing", () => {
-    expect(pricingCss).toContain("font-size: var(--text-h1)");
-    expect(pricingCss).toContain("font-size: var(--text-h2)");
-    expect(pricingCss).toContain("font-size: var(--text-h3)");
-    expect(pricingCss).toContain("font-size: var(--text-body)");
-    expect(pricingCss).toContain("font-size: var(--text-support)");
-    expect(pricingCss).toContain("font-size: var(--text-meta)");
+  it("uses responsive editorial role scales, a content-sized hero and compact spacing", () => {
+    // Owner-approved package-name emphasis supersedes the inherited h3 scale.
+    expect(pricingCss).toMatch(/\.pricing-hero-copy h1\s*\{[^}]*font-size:\s*clamp\(2\.5rem, 4\.3vw, 3\.9rem\)/);
+    expect(pricingCss).toMatch(/\.pricing-decision-heading h2\s*\{[^}]*font-size:\s*clamp\(1\.8rem, 3vw, 2\.7rem\)/);
+    expect(pricingCss).toContain("font-family: var(--font-display)");
+    expect(pricingCss).toContain("font-family: var(--font-body)");
     expect(pricingCss).not.toMatch(/font-weight:\s*(?:800|900)/);
     expect(pricingCss.match(/\.pricing-hero\s*\{[\s\S]*?\}/)?.[0]).not.toContain("min-height");
     expect(pricingCss).not.toContain("100svh");
@@ -128,23 +127,26 @@ describe("package-card decision contract", () => {
   it("keeps Foundation, Starter and Growth order with restrained Starter emphasis", () => {
     expect(PRICING_PACKAGE_ORDER).toEqual(["foundation", "starter", "growth"]);
     expect(PRICING_STARTER_PACKAGE_ID).toBe("starter");
-    expect(pricingSource).toContain("Best Value");
+    expect(pricingSource).toContain('isStarter && <span className="pricing-recommended">Recommended</span>');
+    expect(pricingSource).not.toContain("Best Value");
     expect(pricingSource).not.toMatch(/ShieldCheck|pricing-starter-shine|pricing-starter-edge/);
   });
 
-  it("uses semantic h2 package names without changing their visual role or labelling IDs", () => {
+  it("uses prominent semantic h2 package names and preserves labelling IDs", () => {
     expect(pricingSource).toContain('<h2 id={`package-${packageId}`}>{pkg.title}</h2>');
     expect(pricingSource).not.toContain('<h3 id={`package-${packageId}`}>{pkg.title}</h3>');
-    expect(pricingCss).toMatch(/\.pricing-package-title-row h2\s*\{[\s\S]*font-size:\s*var\(--text-h3\)/);
+    expect(pricingCss).toMatch(/\.pricing-package-title-row h2\s*\{[^}]*font-size:\s*clamp\(1\.8rem, 2\.5vw, 2\.4rem\)/);
   });
 
-  it("places the published price and primary CTA before progressive inclusions", () => {
-    expect(sourceIndex("<PricingPackageGraphic")).toBeLessThan(
-      sourceIndex('className="pricing-package-title-row"'),
+  it("leads with package names and fit before the quote CTA and progressive inclusions", () => {
+    expect(sourceIndex('className="pricing-package-title-row"')).toBeLessThan(
+      sourceIndex('className="pricing-package-fit"'),
     );
-    expect(sourceIndex('className="pricing-package-price"')).toBeLessThan(
+    expect(sourceIndex('className="pricing-package-fit"')).toBeLessThan(
       sourceIndex('className="pricing-package-action focus-ring"'),
     );
+    expect(pricingSource).not.toContain('className="pricing-package-price"');
+    expect(pricingSource).not.toContain("<PricingPackageGraphic");
     expect(sourceIndex('className="pricing-package-action focus-ring"')).toBeLessThan(
       sourceIndex('className="pricing-package-inheritance"'),
     );
@@ -154,9 +156,11 @@ describe("package-card decision contract", () => {
   });
 
   it("keeps all package CTAs equally selectable while Starter alone receives the focal treatment", () => {
-    expect(pricingSource).toContain("Discuss {pkg.title}");
+    expect(pricingSource).toContain("Request a free quote");
+    expect(pricingSource).toContain("to={packageContactPaths[packageId]}");
     expect(pricingSource).toContain("<ArrowRight aria-hidden=\"true\" />");
-    expect(pricingCss).toMatch(/\.pricing-package-action\s*\{[^}]*width:\s*100%[^}]*min-height:\s*48px/);
+    expect(pricingCss).toMatch(/\.pricing-package-action\s*\{[^}]*width:\s*100%/);
+    expect(pricingCss).toMatch(/\.pricing-package-action\s*\{[^}]*min-height:\s*48px/);
     expect(pricingCss).toMatch(/\.pricing-package-action\[data-featured="true"\]/);
     expect(pricingSource).toContain("data-featured={isStarter}");
   });
@@ -289,13 +293,15 @@ describe("one-DOM responsive comparison", () => {
     expect(pricingSource).toContain('<span className="sr-only">{display.accessibleLabel}</span>');
   });
 
-  it("reflows the same table with a non-sticky mobile header so group controls stay clickable", () => {
+  it("keeps one comfortably scrollable contained table with a non-sticky mobile header", () => {
     const mobileRules = pricingCss.match(/@media \(max-width: 767px\)\s*\{[\s\S]*?(?=@media \(prefers-reduced-motion)/)?.[0] ?? "";
     expect(mobileRules).toMatch(/\.pricing-comparison-table thead\s*\{[\s\S]*position:\s*static/);
     expect(mobileRules).not.toMatch(/\.pricing-comparison-table thead\s*\{[\s\S]*position:\s*sticky/);
-    expect(pricingCss).toMatch(/\.pricing-comparison-table tbody tr\s*\{[\s\S]*grid-template-columns:\s*repeat\(3, minmax\(0, 1fr\)\)/);
-    expect(pricingCss).toMatch(/\.pricing-comparison-table tbody th\s*\{[\s\S]*grid-column:\s*1 \/ -1/);
-    expect(pricingCss).not.toMatch(/\.pricing-comparison-(?:panel|table)[\s\S]{0,120}overflow-x:\s*(?:auto|scroll)/);
+    expect(mobileRules).toMatch(/\.pricing-comparison-panel\s*\{[^}]*overflow-x:\s*auto/);
+    expect(mobileRules).toMatch(/\.pricing-comparison-table\s*\{[^}]*min-width:\s*740px/);
+    expect(pricingCss).toMatch(/\.pricing-comparison-panel\s*\{[^}]*contain:\s*inline-size paint/);
+    expect(pricingSource).toContain('aria-label="Scrollable package comparison" tabIndex={0}');
+    expect(pricingSource).toContain('Scroll sideways to compare all three packages');
   });
 
   it("hides the compact decision nav on mobile instead of creating a clipped tab strip", () => {
@@ -365,21 +371,25 @@ describe("authoritative comparison mapping", () => {
 });
 
 describe("approved secondary facts and service boundary", () => {
-  it("keeps approved package prices, add-ons, hosting, support and payment facts unchanged", () => {
+  it("keeps package, add-on and hosting scope quote-led while preserving support and payment facts", () => {
     expect(PRICING_PACKAGE_ORDER.map((id) => packages[id].price)).toEqual([
-      "From SCR 7,500",
-      "From SCR 12,500",
-      "From SCR 25,000",
+      "Quoted for your project",
+      "Quoted for your project",
+      "Quoted for your project",
     ]);
     expect(addOnItems.map(({ title, price }) => [title, price])).toEqual([
-      ["Additional page", "SCR 2,500 per page"],
-      ["Page content writing support", "SCR 600 per page"],
-      ["Custom booking or enquiry form", "SCR 2,000"],
-      ["Google Business Profile setup", "SCR 2,200"],
-      ["Rush delivery", "+40% of project cost, subject to availability"],
-      ["Content management for Foundation", "SCR 2,500; included in Starter and Growth"],
+      ["Additional page", "Quoted for the additional pages"],
+      ["Page content writing support", "Quoted for your content needs"],
+      ["Custom booking or enquiry form", "Quoted for the agreed form"],
+      ["Google Business Profile setup", "Quoted after an initial discussion"],
+      ["Rush delivery", "Quoted separately, subject to availability"],
+      ["Content management for Foundation", "Quoted for Foundation; included in Starter and Growth"],
     ]);
-    expect(hostingPlan.price).toBe("SCR 2,500 per year");
+    expect(hostingPlan.price).toBe("Quoted for your hosting needs");
+    expect(pricingSource).toContain("Optional hosting, quoted with your project.");
+    expect(pricingSource).not.toMatch(/\b(?:priceCurrency|lowPrice|highPrice):|\bprice:\s*|pkg\.price|item\.price|hostingPlan\.price/);
+    expect(pricingSource).toContain('"@type": "OfferCatalog"');
+    expect(pricingSource).toContain('name: packageById[id].title, description: packageById[id].description');
     expect(stabilisationPlan.title).toBe("At least 30 days of support after launch");
     expect(paymentTerms).toEqual([
       "Foundation and Starter: 50% deposit to start, 50% before launch",

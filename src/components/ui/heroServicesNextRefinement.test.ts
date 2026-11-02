@@ -1,6 +1,7 @@
+const lineMotion = readFileSync(new URL("./heroLineReveal.ts", import.meta.url), "utf8");
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import { HERO_BUILD_EXTRACTION_POLICIES, shouldMountHeroStories } from "./heroBuildExtraction";
+import { HERO_BUILD_EXTRACTION_POLICIES, HERO_WORD_HEADLINE_EFFECT, getHeroWordRevealTiming, shouldMountHeroStories } from "./heroBuildExtraction";
 
 const source = (relativePath: string) => readFileSync(new URL(relativePath, import.meta.url), "utf8");
 const hero = source("./BuildExtractionHero.tsx");
@@ -10,22 +11,22 @@ const services = source("../../pages/Services.tsx");
 const servicesStyles = source("../../pages/ServicePages.css");
 const serviceShowcase = source("./ServicesFamilyShowcase.tsx");
 const indexStyles = source("../../index.css");
-const home = source("../../pages/Home.tsx");
+import { editorialHomeHtml as home } from "../editorial-home/content";
 
 describe("next responsive hero and Services refinement", () => {
   it("does not mount hidden homepage story SVGs below the desktop/tablet breakpoint", () => {
     expect(shouldMountHeroStories(767)).toBe(false);
     expect(shouldMountHeroStories(768)).toBe(true);
     expect(hero).toContain("useHeroStoryMount");
-    expect(hero).toMatch(/mountHeroStories\s*\?[\s\S]*hbe-story-column[\s\S]*:\s*null/);
+    expect(hero).toMatch(/mountHeroStories\s*\?[\s\S]*HeroWebsitePlayback[\s\S]*:\s*null/);
   });
 
   it("restores a slightly faster and cleaner mobile text-only reveal", () => {
-    expect(HERO_BUILD_EXTRACTION_POLICIES.mobile.stages).toEqual([
-      { id: "headline-reveal", start: 0.14, duration: 2.62 },
-      { id: "support", start: 2.86, duration: 0.76 },
-    ]);
-    expect(hero).toContain('filter: "blur(10px)"');
+    const [headline, support] = HERO_BUILD_EXTRACTION_POLICIES.mobile.stages;
+    expect(headline.start + headline.duration).toBeCloseTo(getHeroWordRevealTiming(7).revealEnd);
+    expect(support.start).toBeGreaterThan(headline.start + headline.duration);
+    expect(HERO_WORD_HEADLINE_EFFECT.blur).toBe(6);
+    expect(lineMotion).toContain("HERO_LINE_REVEAL.blur");
     expect(hero).not.toContain('filter: "blur(12px)"');
   });
 
@@ -60,7 +61,8 @@ describe("next responsive hero and Services refinement", () => {
   });
 
   it("shares the homepage atmosphere with Services and establishes it as the route rollout primitive", () => {
-    expect(home).toContain("site-atmosphere");
+    // Services retains its primitive; editorial atmosphere is independently scoped.
+    expect(home).toContain('id="opening"');
     expect(services).toContain("site-atmosphere");
     expect(indexStyles).toContain(".site-atmosphere::before");
     expect(indexStyles).toContain(".site-atmosphere::after");

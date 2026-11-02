@@ -1,7 +1,12 @@
 import { ReactNode, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
-import Footer from "./Footer";
-import Navbar from "./Navbar";
+import Footer from "./EditorialFooter";
+import Navbar from "./EditorialNavbar";
+import AnalyticsConsent from "./AnalyticsConsent";
+import "../styles/editorial-system.css";
+import "../styles/analytics-consent.css";
+import "../styles/footer-refinement.css";
+import "../styles/menu-information.css";
 import { scrollToTopSmooth } from "../lib/utils";
 import { siteConfig } from "../data/site";
 import { trackContactIntent } from "../lib/analytics";
@@ -20,6 +25,7 @@ export default function Layout({ children }: LayoutProps) {
     location.pathname === "/insights" ||
     location.pathname.startsWith("/insights/");
   const mainRef = useRef<HTMLElement | null>(null);
+  const previousPathRef = useRef<string | null>(null);
   const [showTopButton, setShowTopButton] = useState(false);
   const [headerHeight, setHeaderHeight] = useState(88);
 
@@ -88,8 +94,14 @@ export default function Layout({ children }: LayoutProps) {
       if (frameId === null) frameId = window.requestAnimationFrame(updateGlow);
     };
 
+    const handleResize = () => {
+      updateCachedPositions();
+      scheduleUpdate();
+    };
+
     const initObserver = () => {
       if (cancelled) return;
+      observer?.disconnect();
       const cards = Array.from(document.querySelectorAll<HTMLElement>(".scroll-glow"));
       if (!cards.length) return;
 
@@ -117,10 +129,6 @@ export default function Layout({ children }: LayoutProps) {
 
       cards.forEach((card) => observer?.observe(card));
 
-      const handleResize = () => {
-        updateCachedPositions();
-        scheduleUpdate();
-      };
 
       window.addEventListener("scroll", scheduleUpdate, { passive: true });
       window.addEventListener("resize", handleResize, { passive: true });
@@ -144,7 +152,7 @@ export default function Layout({ children }: LayoutProps) {
       mutationObserver?.disconnect();
       observer?.disconnect();
       window.removeEventListener("scroll", scheduleUpdate);
-      window.removeEventListener("resize", updateCachedPositions);
+      window.removeEventListener("resize", handleResize);
       if (frameId !== null) window.cancelAnimationFrame(frameId);
     };
   }, [location.pathname]);
@@ -174,33 +182,49 @@ export default function Layout({ children }: LayoutProps) {
   }, [location.pathname]);
 
   useEffect(() => {
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    window.scrollTo({ top: 0, left: 0, behavior: prefersReducedMotion ? "auto" : "smooth" });
-  }, [location.pathname]);
+    // Query-only configuration changes preserve input focus. Real page changes
+    // orient keyboard/screen-reader users after the lazy destination mounts.
+    const isNavigation = previousPathRef.current !== null && previousPathRef.current !== location.pathname;
+    previousPathRef.current = location.pathname;
+    // Do not focus the hero on first load: focus legitimately settles its
+    // enhancement and would otherwise suppress the accepted entrance.
+    if (!isNavigation && !location.hash) return;
+    if (!location.hash) window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    let frame = 0;
+    const focusDestination = () => {
+      let id = location.hash ? location.hash.slice(1) : null;
+      try { if (id) id = decodeURIComponent(id); } catch { /* A literal malformed hash is not a page error. */ }
+      const target = id ? document.getElementById(id) : mainRef.current?.querySelector<HTMLElement>("h1");
+      if (!target || !target.getClientRects().length) return false;
+      target.setAttribute("tabindex", "-1");
+      target.focus({ preventScroll: true });
+      if (id) target.scrollIntoView({ block: "start", behavior: "auto" });
+      return true;
+    };
+    const observer = new MutationObserver(() => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        if (focusDestination()) observer.disconnect();
+      });
+    });
+    if (mainRef.current) observer.observe(mainRef.current, { childList: true, subtree: true });
+    frame = requestAnimationFrame(() => {
+      if (focusDestination()) observer.disconnect();
+    });
+    return () => { observer.disconnect(); cancelAnimationFrame(frame); };
+  }, [location.pathname, location.hash]);
 
   useEffect(() => {
-    const onScroll = () => setShowTopButton(window.scrollY > 360);
+    const onScroll = () => {
+      const footer = document.getElementById("editorial-site-footer");
+      const footerInView = footer && footer.getBoundingClientRect().top < window.innerHeight;
+      setShowTopButton(window.scrollY > 360 && !footerInView);
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => {
-    if (!location.hash) return;
-
-    const targetId = location.hash.replace("#", "");
-    const scrollToHashTarget = () => {
-      const target = document.getElementById(targetId);
-      if (!target) return;
-      const header = document.querySelector<HTMLElement>("[data-site-header]");
-      const offset = (header?.getBoundingClientRect().height ?? headerHeight) + 14;
-      const top = window.scrollY + target.getBoundingClientRect().top - offset;
-      window.scrollTo({ top, left: 0, behavior: "smooth" });
-    };
-
-    const timer = window.setTimeout(scrollToHashTarget, 30);
-    return () => window.clearTimeout(timer);
-  }, [location.pathname, location.hash, headerHeight]);
 
   const [isTopButtonExpanded, setIsTopButtonExpanded] = useState(false);
 
@@ -214,7 +238,7 @@ export default function Layout({ children }: LayoutProps) {
 
   return (
     <div
-      className={`flex min-h-screen flex-col bg-bg text-text ${
+      className={`${isShowcaseRoute ? "" : "editorial-site"} flex min-h-screen flex-col bg-bg text-text ${
         isInsightsThemeRoute ? "insights-theme-shell" : ""
       }`.trim()}
     >
@@ -229,12 +253,13 @@ export default function Layout({ children }: LayoutProps) {
         id="main-content"
         tabIndex={-1}
         ref={mainRef}
-        className="flex-1 pb-[env(safe-area-inset-bottom)] min-h-[70vh]"
-        style={{ paddingTop: isHomeRoute || isShowcaseRoute ? "0px" : "var(--header-height, 88px)" }}
+        className={`${isShowcaseRoute ? "" : isHomeRoute ? "editorial-home-page" : "editorial-standard-page"} flex-1 pb-[env(safe-area-inset-bottom)] min-h-[70vh]`}
+        style={{ paddingTop: isHomeRoute || isShowcaseRoute ? "0px" : `var(--header-height, ${headerHeight}px)` }}
       >
         {children}
       </main>
       {isShowcaseRoute ? null : <Footer />}
+      <AnalyticsConsent />
       {isShowcaseRoute ? null : (
         <button
           type="button"
@@ -245,6 +270,8 @@ export default function Layout({ children }: LayoutProps) {
             showTopButton ? "opacity-100 translate-y-0" : "pointer-events-none opacity-0 translate-y-4"
           } ${isTopButtonExpanded ? "md:w-52 md:h-12 md:px-6" : "h-11 w-11"}`.trim()}
           aria-label="Back to top"
+          tabIndex={showTopButton ? 0 : -1}
+          aria-hidden={!showTopButton}
         >
           <span className="flex items-center gap-3">
             <span className="text-xl leading-none">↑</span>

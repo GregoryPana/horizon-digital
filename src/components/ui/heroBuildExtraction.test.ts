@@ -1,3 +1,4 @@
+const lineMotion = readFileSync(new URL("./heroLineReveal.ts", import.meta.url), "utf8");
 import { readFileSync } from "node:fs";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
@@ -20,7 +21,6 @@ const sharedHeroStyles = readFileSync(new URL("./heroBuildExtraction.css", impor
 const storySource = readFileSync(new URL("./HeroBuildExtractionStory.tsx", import.meta.url), "utf8");
 const websiteBuildStorySource = readFileSync(new URL("./WebsiteBuildStory.tsx", import.meta.url), "utf8");
 const productionAdapterSource = readFileSync(new URL("./animated-shader-hero.tsx", import.meta.url), "utf8");
-const homeSource = readFileSync(new URL("../../pages/Home.tsx", import.meta.url), "utf8");
 const stripMarkup = (html: string) => html.replace(/<[^>]+>/g, "");
 
 describe("shared BuildExtractionHero integration contract", () => {
@@ -33,10 +33,10 @@ describe("shared BuildExtractionHero integration contract", () => {
   });
 
   it("owns and cleans up its finite scoped mobile timeline", () => {
-    expect(sharedHeroSource).toContain("{ scope: rootRef }");
-    expect(sharedHeroSource).toContain("let timeline: gsap.core.Timeline | undefined;");
-    expect(sharedHeroSource).toContain("timeline?.kill();");
-    expect(sharedHeroSource).toContain("mm.revert();");
+    expect(sharedHeroSource).toContain("scope: rootRef");
+    expect(lineMotion).toContain("let timeline: gsap.core.Timeline | undefined;");
+    expect(lineMotion).toContain("timeline?.kill();");
+    expect(lineMotion).toContain("observer?.disconnect()");
     expect(sharedHeroSource).not.toContain("repeat: -1");
     expect(sharedHeroSource.match(/<h1\b/g)).toHaveLength(1);
   });
@@ -44,7 +44,7 @@ describe("shared BuildExtractionHero integration contract", () => {
   it("keeps each decorative story lightweight without laptop or phone hardware", () => {
     const html = renderToStaticMarkup(createElement(HeroBuildExtractionStory));
     expect(html).toContain("hbe-desktop-build-story");
-    expect(html).toContain("story-wireframe");
+    expect(html).toContain("data-light-workspace");
     expect(html).toContain('data-hbe-device="desktop"');
     expect(html).not.toContain('data-hbe-device="mobile"');
     expect(html).toContain('data-hbe-window="desktop"');
@@ -54,7 +54,7 @@ describe("shared BuildExtractionHero integration contract", () => {
     expect(sharedHeroStyles).not.toContain(".hbe-phone");
   });
 
-  it("renders one semantic headline with normal text and letter-level visual hooks", () => {
+  it("renders one semantic headline with normal text and word-level visual hooks", () => {
     const html = renderToStaticMarkup(
       createElement(MemoryRouter, null, createElement(BuildExtractionHero, {
         headline: "Made in Seychelles",
@@ -62,17 +62,18 @@ describe("shared BuildExtractionHero integration contract", () => {
       })),
     );
     expect(html.match(/<h1\b/g)).toHaveLength(1);
-    expect(html.match(/class="hbe-title-letter"/g)).toHaveLength("MadeinSeychelles".length);
+    expect(html.match(/class="hbe-title-word"/g)).toHaveLength(3);
+    expect(html).not.toContain("hbe-title-letter");
     expect(stripMarkup(html)).toContain("Made in Seychelles");
     expect(html).not.toContain("aria-label=\"Made in Seychelles\"");
   });
 
-  it("runs a slow controlled mobile letter reveal before all supporting elements", () => {
-    expect(sharedHeroSource).toContain('query<HTMLElement>(".hbe-title-letter")');
-    expect(sharedHeroSource).toContain('filter: "blur(10px)"');
-    expect(sharedHeroSource).toContain('filter: "blur(0px)"');
-    expect(sharedHeroSource).toContain('ease: "power2.out"');
-    expect(sharedHeroSource).toMatch(/setPhase\("headline-reveal"\)[\s\S]*\.to\(letters[\s\S]*setPhase\("support"\)/);
+  it("runs a controlled word reveal on both viewports before all supporting elements", () => {
+    expect(lineMotion).toContain('word.getBoundingClientRect().top');
+    expect(lineMotion).toContain("HERO_LINE_REVEAL.blur");
+    expect(lineMotion).toContain('filter: "blur(0px)"');
+    expect(lineMotion).toContain('ease: "power2.out"');
+    expect(lineMotion).toContain('root.dataset.hbePhase = "headline-reveal"');
     expect(sharedHeroSource).not.toContain("elevatedTitleScale");
     expect(sharedHeroSource).not.toContain("data-hbe-headline-slot");
   });
@@ -84,21 +85,14 @@ describe("shared BuildExtractionHero integration contract", () => {
   });
 
   it("keeps desktop static and mobile motion-only at the 768px boundary", () => {
-    expect(sharedHeroSource).toContain('(prefers-reduced-motion: no-preference) and (min-width: 768px)');
-    expect(sharedHeroSource).toContain('(prefers-reduced-motion: no-preference) and (max-width: 767px)');
+    expect(lineMotion).toContain("!animate || media.matches");
+    expect(lineMotion).toContain("!animate || media.matches");
     expect(HERO_BUILD_EXTRACTION_POLICIES.desktop.stages).toEqual([{ id: "screen-build", start: 0, duration: 0 }]);
     expect(HERO_BUILD_EXTRACTION_POLICIES.mobile.stages.some(({ id }) => id === "screen-build")).toBe(false);
   });
 
-  it("preserves exact production copy, links, ReactNode icons and callbacks", () => {
-    expect(homeSource).toContain('lines: ["Your Web Designer of Choice in Seychelles"]');
-    expect(homeSource).toContain('subtitle="Built with you, in Seychelles — made custom for your business, not a template."');
-    expect(homeSource).toContain('text: "Made for your business"');
-    expect(homeSource).toContain('icon: <InteractiveSvgIcon kind="devices"');
-    expect(homeSource).toContain("text: siteConfig.primaryCtaLabel");
-    expect(homeSource).toContain('onClick: () => trackCta("hero_book_call")');
-    expect(homeSource).toContain('onClick: () => trackCta("hero_see_work")');
-  });
+  // Retired Home-only integration: docs/release-evidence/retired-homepage-assertions.md.
+  // Replacement: editorialHome.reconciliation.test.ts (content/route) and editorial runtime tests.
 
   it("adapts the production hero without the old competing narrative", () => {
     expect(productionAdapterSource).toContain('import { BuildExtractionHero } from "./BuildExtractionHero"');
@@ -142,11 +136,11 @@ describe("hero responsive timing policy", () => {
     expect(policy.totalDuration).toBeLessThanOrEqual(5.5);
   });
 
-  it("finishes every letter before support begins", () => {
+  it("finishes every word before support begins", () => {
     const [headline, support] = HERO_BUILD_EXTRACTION_POLICIES.mobile.stages;
     expect(headline.id).toBe("headline-reveal");
-    expect(headline.duration).toBeGreaterThanOrEqual(2.55);
-    expect(headline.duration).toBeLessThanOrEqual(2.7);
+    expect(headline.duration).toBeGreaterThanOrEqual(1.5);
+    expect(headline.duration).toBeLessThanOrEqual(2);
     expect(support.start).toBeGreaterThanOrEqual(headline.start + headline.duration);
     expect(support.duration).toBeGreaterThanOrEqual(0.7);
     expect(support.duration).toBeLessThanOrEqual(0.8);

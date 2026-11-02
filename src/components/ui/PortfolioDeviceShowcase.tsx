@@ -150,8 +150,11 @@ export function PortfolioDeviceShowcase({ id, title, href, active, preload = fal
           </div>
         </div>
       </a>
-      {!reducedMotion && <button type="button" className="portfolio-playback" onClick={toggle} aria-pressed={paused} aria-label={`${paused ? "Play" : "Pause"} ${title} screen previews`}>
-        <span aria-hidden="true">{paused ? "▶" : "Ⅱ"}</span> {paused ? "Play previews" : "Pause previews"}
+      {!reducedMotion && <button type="button" className="portfolio-playback" onClick={toggle} aria-pressed={paused} aria-label={`${paused ? "Play previews" : "Pause previews"} for ${title}`}>
+        <svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
+          {paused ? <path d="M3 1 11 6 3 11Z" /> : <><path d="M2 1H5V11H2Z" /><path d="M7 1H10V11H7Z" /></>}
+        </svg>
+        {paused ? "Play previews" : "Pause previews"}
       </button>}
     </div>
   );

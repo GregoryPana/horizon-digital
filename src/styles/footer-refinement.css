@@ -1,0 +1,43 @@
+/* Owner's footer breathing-room refinement. No functional-page styling. */
+.editorial-footer.editorial-footer-compact {
+ margin-top: clamp(32px,5vw,72px);
+ padding-top: 48px;
+ padding-bottom: 24px;
+}
+.editorial-footer-compact::before {
+ content: ''; position: absolute; inset: 0 12% auto; height: 1px;
+ background: linear-gradient(90deg,transparent,rgba(88,213,227,.42),rgba(54,189,169,.28),transparent);
+}
+.editorial-footer-compact .editorial-footer-middle { margin-top: 32px; padding-block: 20px; }
+.editorial-footer-compact .editorial-footer-top > .editorial-button { align-self: flex-start; margin-top: -4px; }
+.editorial-footer-compact .editorial-footer-base { align-items: center; margin-top: 16px; }
+#editorial-analytics-preferences .analytics-preferences-strip { padding: 0; background: transparent; }
+#editorial-analytics-preferences .analytics-preferences-button {
+ border: 0; background: transparent; border-radius: 6px; padding: 8px 0;
+ font-size: 12px; font-weight: 400; color: #b1bbbf; text-decoration: underline; text-underline-offset: 4px;
+}
+#editorial-analytics-preferences .analytics-preferences-button:hover { color: #58d5e3; }
+.editorial-brand { min-height: 44px; }
+.editorial-menu-primary > .editorial-menu-mobile-services-link { display: none; }
+.editorial-menu-layout { grid-template-columns: 1fr; }
+.editorial-menu-primary { max-width: 680px; width: 100%; }
+@media(max-width:1000px) {
+ .editorial-menu-services { display: none; }
+ .editorial-menu-layout { grid-template-columns: 1fr; }
+ .editorial-menu-primary > .editorial-menu-mobile-services-link { display: flex; }
+ .editorial-menu { padding-bottom: max(36px,calc(env(safe-area-inset-bottom) + 12px)); }
+}
+@media(min-width: 1024px) {
+ .editorial-footer-compact .editorial-footer-wordmark { font-size: 28px; }
+ .editorial-footer-compact .editorial-footer-links { column-gap: 30px; }
+ .editorial-footer-compact .editorial-footer-links a { font-size: 14px; }
+ .editorial-footer-compact .editorial-contact-icons { gap: 12px; }
+}
+@media(max-width:700px) {
+ .editorial-footer.editorial-footer-compact { margin-top: 32px; padding-top: 28px; padding-bottom: 16px; }
+ .editorial-footer-compact .editorial-footer-top { gap: 12px; }
+ .editorial-footer-compact .editorial-footer-top > .editorial-button { margin-top: 0; }
+ .editorial-footer-compact .editorial-footer-middle { margin-top: 20px; padding-block: 16px; }
+ .editorial-footer-compact .editorial-footer-base { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; padding-bottom: 0; }
+ #editorial-analytics-preferences { grid-column: 1 / -1; grid-row: 2; justify-self: start; }
+}

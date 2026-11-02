@@ -1,0 +1,55 @@
+{
+  "satoshi": {
+    "url": "https://api.fontshare.com/v2/fonts/download/satoshi",
+    "archive_sha256": "e80c4edcfb31f5fa8d96a7f31132ebe7976480d46419b652543ee9ae097abb24",
+    "fonts": [
+      {
+        "path": "public/fonts/Satoshi-Variable.woff2",
+        "sha256": "e739aff9b4d02c264341d6d4872edcda28e79373aeda936f659566a1cd3eb47f",
+        "official_exact_match": "Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Variable.woff2"
+      },
+      {
+        "path": "public/editorial-home/Satoshi-Variable.woff2",
+        "sha256": "e739aff9b4d02c264341d6d4872edcda28e79373aeda936f659566a1cd3eb47f",
+        "official_exact_match": "Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Variable.woff2"
+      }
+    ]
+  },
+  "switzer": {
+    "url": "https://api.fontshare.com/v2/fonts/download/switzer",
+    "archive_sha256": "8cd7b821db18d28260765730cf14990c3276f8ce5614a7ccab4c37b57511528d",
+    "fonts": [
+      {
+        "path": "public/fonts/Switzer-Regular.woff2",
+        "sha256": "aefa3d21af6adb6dd53246ff86e1d8e7eaf36a8d792dd59136cced309e3c8862",
+        "official_exact_match": "Switzer_Complete/Fonts/WEB/fonts/Switzer-Regular.woff2"
+      },
+      {
+        "path": "public/fonts/Switzer-Light.woff2",
+        "sha256": "9c05e476f19e546862980b9f5c351dff8de8d48a001c7b66f6d238b68d1f3fd7",
+        "official_exact_match": "Switzer_Complete/Fonts/WEB/fonts/Switzer-Light.woff2"
+      },
+      {
+        "path": "public/fonts/Switzer-Bold.woff2",
+        "sha256": "5cb009dd21317ac095104458dbca8e96b6ac41fdace80ef3b7c53833c44420c7",
+        "official_exact_match": "Switzer_Complete/Fonts/WEB/fonts/Switzer-Bold.woff2"
+      },
+      {
+        "path": "public/editorial-home/Switzer-Regular.woff2",
+        "sha256": "aefa3d21af6adb6dd53246ff86e1d8e7eaf36a8d792dd59136cced309e3c8862",
+        "official_exact_match": "Switzer_Complete/Fonts/WEB/fonts/Switzer-Regular.woff2"
+      }
+    ]
+  },
+  "gambarino": {
+    "url": "https://api.fontshare.com/v2/fonts/download/gambarino",
+    "archive_sha256": "7e27c840a94fbd11901a24acfe8d8906077f4a46934f7f009a916304fe4512aa",
+    "fonts": [
+      {
+        "path": "public/fonts/Gambarino-Regular.woff2",
+        "sha256": "42b9b1445555af9a47ff748332a0da9c7526fc6ecf403c620916640490b4765b",
+        "official_exact_match": "Gambarino_Complete/Fonts/WEB/fonts/Gambarino-Regular.woff2"
+      }
+    ]
+  }
+}

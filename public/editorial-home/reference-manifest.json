@@ -1,0 +1,26 @@
+{
+  "reference": "review-v13b-stability-dist",
+  "files": {
+    "CREDITS.md": "0d75517f82df23af4cb5d80a99ea88c8bdce5aa4cc9e994b32bb47af3ec107f8",
+    "LICENSE": "bf6dc1ef87d6f84fe3962bf6a46179cd9bbeb4c713a6caf024add08be792578b",
+    "horizon.css": "01399e999313046ca3f4a86aac9a95dab311aa90efea265630078fd43b0b86aa",
+    "horizon.js": "654fdfd7176be80d52402cce804aaa9ef14953fec12cde52daaf7e248408380e",
+    "index.html": "45a205ed4e184e6f5e4ca668931d7db82b810557a14f4c3bf9b448c8e30b19fb",
+    "process-scenes.js": "1b4f91adb4aee73262dac04d36cfb072ab918ff2aeb9f93833a8a8e58a4bc0de",
+    "rich-motion.js": "375064f109c8b645ef4b622f5d52a9f636026952e645d28e057ddca9e5cd3474",
+    "service-demos.js": "1bd972e98256cb0ac7c5a618bb90c49eb69fead467c2a98da73ecddca31be8e8",
+    "assets/Satoshi-Variable.woff2": "e739aff9b4d02c264341d6d4872edcda28e79373aeda936f659566a1cd3eb47f",
+    "assets/ScrollTrigger.min.js": "308219390e5e3b84cda0c481e70caa9820883ae10bda44e6e9a149a81aac4b3f",
+    "assets/Switzer-Regular.woff2": "aefa3d21af6adb6dd53246ff86e1d8e7eaf36a8d792dd59136cced309e3c8862",
+    "assets/brand-hero-mobile.webp": "29c7bf2b2404f2605cfa7bf6acea626dc026e77d82145163618b77495addce77",
+    "assets/brand-hero.webp": "59162f74378e19ed32d20ce01ab6700ba46edcd83cd5bd40ec519425de9ee127",
+    "assets/gsap.min.js": "96c01b81f44a3290e2b4532f55e2c9534b2adc43273a19f3756b2cb41f0fd0b6",
+    "assets/lenis.min.js": "80f53e77f1c13e379fc246d2b5e299188e20bcb2b2fe7ebb13e8e8c7563a6da7",
+    "assets/logo.webp": "f1e3c15e42704612a6a26cfa74545516f70aedaf2dd776a3221c7207834cfcf6",
+    "assets/service-design.webp": "2ea65ae240cc305b9ece4b9438cdc05545e16a9ea01f912858e2c51b687d1b9a",
+    "assets/work-auto-scroll.webp": "a74a64e0978c4ec4ff9ea08f94c9c8108f7ae1dff033649d6e01dc99907bc7f5",
+    "assets/work-drake-scroll.webp": "9098f39186351361997d2f0e06fc789b3d66f4d6e0334ca3460ad6d4984a35f1",
+    "assets/work-forma-poster.webp": "7161481e7da5cae80cb71b5b69e5cb5793a5d10d6eb982702eeb0ca10744095c",
+    "assets/work-forma-scroll.webp": "e4a74d0a796823be677f973966618fff6ca01be4b5b523cbf43f1180c95cec06"
+  }
+}

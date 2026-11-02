@@ -6,13 +6,13 @@ import PricingPackageGraphic, {
   PRICING_PACKAGE_GRAPHIC_DETAIL_COUNT,
 } from "./PricingPackageGraphic";
 
-const pricingCss = readFileSync(
-  new URL("./Pricing.css", import.meta.url),
+const pricingSource = readFileSync(
+  new URL("./Pricing.tsx", import.meta.url),
   "utf8",
 );
 
 describe("PricingPackageGraphic", () => {
-  it("renders exactly one decorative, pointer-inert variant per approved tier", () => {
+  it("retains one decorative variant per tier without coupling the quote-led page to retired artwork", () => {
     for (const tier of PRICING_PACKAGE_ORDER) {
       const markup = renderToStaticMarkup(
         <PricingPackageGraphic tier={tier} />,
@@ -23,14 +23,7 @@ describe("PricingPackageGraphic", () => {
       expect(markup).toContain('class="pricing-package-graphic"');
       expect(markup).not.toMatch(/dashboard|integration|ranking|conversion/i);
     }
-    expect(pricingCss).toMatch(
-      /\.pricing-package-graphic\s*\{[^}]*pointer-events:\s*none/,
-    );
-    expect(pricingCss).toMatch(
-      /\.pricing-package-graphic\s*\{[^}]*aspect-ratio:\s*1/,
-    );
-    expect(pricingCss).toContain("--pricing-graphic-size: 7rem");
-    expect(pricingCss).toContain("--pricing-graphic-size: 8rem");
+    expect(pricingSource).not.toContain('<PricingPackageGraphic');
   });
 
   it("uses one same-sized scene whose authored structural detail increases by tier", () => {

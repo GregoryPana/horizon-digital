@@ -155,7 +155,7 @@ export const STATIC_ROUTES: StaticRoute[] = [
     seo: {
       title: "Custom Website Packages & Pricing in Seychelles | Horizon Digital",
       description:
-        "Website packages for Seychelles businesses, with published SCR starting prices, defined inclusions and custom design.",
+        "Compare custom website packages for Seychelles businesses. Explore the features and request a free quote for your project.",
       keywords:
         "custom website packages Seychelles, custom web design pricing Seychelles, bespoke website development Seychelles, tailored web solutions Seychelles",
       robots: DEFAULT_ROBOTS,

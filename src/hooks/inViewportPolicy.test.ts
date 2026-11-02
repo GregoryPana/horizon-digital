@@ -5,7 +5,6 @@ import { describe, expect, it } from "vitest";
 import { InteractiveSvgIcon } from "../components/ui/InteractiveSvgIcon";
 import { shouldAutoplayViewportIcon } from "./inViewportPolicy";
 
-const homeSource = readFileSync(new URL("../pages/Home.tsx", import.meta.url), "utf8");
 const proceduralRevealSource = readFileSync(
   new URL("./useProceduralReveal.ts", import.meta.url),
   "utf8",
@@ -56,6 +55,9 @@ describe("shouldAutoplayViewportIcon", () => {
 });
 
 describe("viewport animation integration contracts", () => {
+  it('keeps the shared procedural reveal plugin dynamically loaded', () => {
+    expect(proceduralRevealSource).toContain('import("gsap/ScrollTrigger")');
+  });
   it("renders icons without autonomous viewport state during SSR", () => {
     const markup = renderToStaticMarkup(createElement(InteractiveSvgIcon, {
       kind: "check",
@@ -78,23 +80,6 @@ describe("viewport animation integration contracts", () => {
     );
   });
 
-  it("loads homepage ScrollTrigger dynamically behind a near-viewport observer", () => {
-    expect(homeSource).not.toMatch(
-      /import\s+[^;]+from\s+["']gsap\/ScrollTrigger["']/,
-    );
-    expect(homeSource).toContain("loadScrollTrigger as loadSharedScrollTrigger");
-    expect(homeSource).toContain("void loadSharedScrollTrigger()");
-    expect(proceduralRevealSource).toContain('import("gsap/ScrollTrigger")');
-    expect(homeSource).toContain("new window.IntersectionObserver(");
-    expect(homeSource).toContain("firstMotionSectionRef");
-    expect(homeSource).toContain("shouldLoadHomeScrollMotion({");
-    expect(homeSource).toContain("firstMotionSection.getBoundingClientRect().top");
-    expect(homeSource).toContain("entry.boundingClientRect.top");
-    expect(homeSource).toContain("if (!scrollTriggerPlugin) return;");
-    expect(homeSource).toContain('trigger: ".home-process-flow-wrap"');
-    expect(homeSource).toContain("scrub: true");
-    expect(homeSource).not.toContain("gsap.timeline({ repeat: -1, repeatDelay");
-    expect(homeSource).toMatch(/setScrollTriggerPlugin\(\(\) => plugin\)/);
-    expect(homeSource).not.toMatch(/setScrollTriggerPlugin\(plugin\)/);
-  });
+  // Retired Home-only integration: docs/release-evidence/retired-homepage-assertions.md.
+  // Replacement: editorialHome.reconciliation.test.ts (content/route) and editorial runtime tests.
 });

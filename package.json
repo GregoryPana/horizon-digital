@@ -5,7 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "fonts:prepare": "python3 scripts/prepare_fonts.py",
+    "fonts:test": "python3 -m unittest discover -s scripts -p 'test_prepare_fonts.py'",
+    "pretest": "npm run fonts:prepare && npm run fonts:test",
+    "prebuild": "npm run fonts:prepare",
     "build": "tsc -b && vite build",
+    "postbuild": "node scripts/verify-accepted-release.mjs dist",
     "preview": "vite preview",
     "test": "npm run knowledge:check && vitest run",
     "knowledge:generate": "node scripts/generate-chatbot-knowledge.mjs",
@@ -20,7 +25,7 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-helmet-async": "^2.0.5",
-    "react-router-dom": "^6.26.2"
+    "react-router-dom": "^7.18.5"
   },
   "devDependencies": {
     "@testing-library/react": "^16.3.0",
@@ -33,7 +38,7 @@
     "sharp": "^0.35.3",
     "tailwindcss": "^3.4.10",
     "typescript": "^5.5.4",
-    "vite": "^5.4.2",
+    "vite": "^7.3.7",
     "vitest": "^4.1.10"
   }
 }

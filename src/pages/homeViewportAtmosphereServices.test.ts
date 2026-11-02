@@ -2,7 +2,6 @@ import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 
 const heroStyles = readFileSync(new URL("../components/ui/heroBuildExtraction.css", import.meta.url), "utf8");
-const homeSource = readFileSync(new URL("./Home.tsx", import.meta.url), "utf8");
 const styles = readFileSync(new URL("../index.css", import.meta.url), "utf8");
 const atmosphereSource = readFileSync(new URL("../components/ui/siteAtmosphere.ts", import.meta.url), "utf8");
 
@@ -15,7 +14,11 @@ describe("full-viewport hero, dark glow field and service reading order", () => 
   });
 
   it("updates pointer coordinates for a glow shared by the hero and later dark sections", () => {
-    expect(homeSource).toContain("updateSiteAtmospherePointer");
+    // Pointer ownership moved to the route-local editorial runtime.
+    const runtime = readFileSync(new URL('../components/editorial-home/runtime.ts', import.meta.url), 'utf8');
+    expect(runtime).toContain("listen(root, 'pointermove', pointer)");
+    expect(runtime).toContain("root.style.removeProperty('--home-pointer-x')");
+    expect(runtime).toContain("root.style.removeProperty('--home-pointer-y')");
     expect(atmosphereSource).toContain("--home-pointer-x");
     expect(atmosphereSource).toContain("--home-pointer-y");
     expect(styles).toContain(".home-neutral-prototype::after");

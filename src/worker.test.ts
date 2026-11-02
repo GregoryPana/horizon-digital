@@ -19,6 +19,7 @@ const SHELL_HTML = `<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Placeholder Title</title>
     <meta name="description" data-rh="true" content="Placeholder description" />
     <meta name="robots" data-rh="true" content="index,follow" />
@@ -122,6 +123,34 @@ describe("injectRouteHtml", () => {
 });
 
 describe("worker fetch handler", () => {
+  it.each(["/", "/?source=delivery-test"])("preloads only the matching responsive homepage picture on %s", async (path) => {
+    const response = await worker.fetch(new Request(`https://horizondigitalsey.com${path}`), makeEnv());
+    const html = await response.text();
+    expect(response.status).toBe(200);
+    expect(html).toContain('href="/editorial-home/brand-hero-mobile.webp" media="(max-width: 767px)" fetchpriority="high"');
+    expect(html).toContain('href="/editorial-home/brand-hero.webp" media="not all and (max-width: 767px)" fetchpriority="high"');
+    expect(html.match(/rel="preload" as="image"/g)).toHaveLength(2);
+    expect(html.indexOf('as="image"')).toBeLessThan(html.indexOf('<title'));
+    expect(html.indexOf('name="viewport"')).toBeLessThan(html.indexOf('as="image"'));
+    expect(response.headers.has("etag")).toBe(false);
+  });
+
+  it.each(["/services", "/contact", "/pricing", "/missing-delivery-route", "/insights/missing-delivery-article"])("does not add homepage payload to %s", async (path) => {
+    const response = await worker.fetch(new Request(`https://horizondigitalsey.com${path}`), makeEnv());
+    expect(await response.text()).not.toContain("brand-hero");
+  });
+
+  it("reuses byte-identical shared fonts without changing editorial aliases or metrics", () => {
+    const css = readFileSync(new URL("./components/editorial-home/editorial-home.css", import.meta.url), "utf8");
+    for (const font of ["Satoshi-Variable.woff2", "Switzer-Regular.woff2"]) {
+      expect(readFileSync(new URL(`../public/fonts/${font}`, import.meta.url))).toEqual(readFileSync(new URL(`../public/editorial-home/${font}`, import.meta.url)));
+      expect(css).toContain(`url('/fonts/${font}')`);
+      expect(css).not.toContain(`url('/editorial-home/${font}')`);
+    }
+    expect(css).toContain("font-family:EditorialSatoshi");
+    expect(css).toContain("font-family:EditorialSwitzer");
+  });
+
   afterEach(() => {
     vi.unstubAllGlobals();
   });

@@ -6,7 +6,7 @@ const hero = readFileSync(new URL("./BuildExtractionHero.tsx", import.meta.url),
 const story = readFileSync(new URL("./HeroBuildExtractionStory.tsx", import.meta.url), "utf8");
 const websiteStory = readFileSync(new URL("./WebsiteBuildStory.tsx", import.meta.url), "utf8");
 const heroStyles = readFileSync(new URL("./heroBuildExtraction.css", import.meta.url), "utf8");
-const home = readFileSync(new URL("../../pages/Home.tsx", import.meta.url), "utf8");
+import { editorialHomeHtml as home } from "../editorial-home/content";
 const site = readFileSync(new URL("../../data/site.ts", import.meta.url), "utf8");
 const globalStyles = readFileSync(new URL("../../index.css", import.meta.url), "utf8");
 
@@ -34,8 +34,8 @@ describe("Phase 3 homepage polish contract", () => {
 
   it("runs the phone-free mobile headline faster before support", () => {
     const [headline, support] = HERO_BUILD_EXTRACTION_POLICIES.mobile.stages;
-    expect(headline.duration).toBeGreaterThanOrEqual(2.55);
-    expect(headline.duration).toBeLessThanOrEqual(2.7);
+    expect(headline.duration).toBeGreaterThanOrEqual(1.5);
+    expect(headline.duration).toBeLessThanOrEqual(2);
     expect(support.start).toBeGreaterThanOrEqual(headline.start + headline.duration);
     expect(websiteStory).toContain("startDelay = 0.12");
     expect(hero).not.toContain("startDelay={supportStage.start}");
@@ -52,8 +52,10 @@ describe("Phase 3 homepage polish contract", () => {
     expect(site).toContain('href: "/work"');
     expect(site).toContain('label: "Seychelles-based studio"');
     expect(site).toContain('value: "Mahé, Seychelles"');
-    expect(home).toContain('"live", "local", "process", "support"');
-    expect(home).toContain('data-proof-visual="local"');
+    expect(home).toContain('Live client project');
+    expect(home).toContain('Concept showcase');
+    expect(home).toContain('Mahé, Seychelles');
+    expect(home).toContain('30, 45 or 60 days');
     expect(home).not.toContain("home-trust-price-ticket");
   });
 });

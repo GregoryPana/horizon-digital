@@ -132,8 +132,9 @@ describe("Work responsive geometry", () => {
 });
 
 describe("Work responsive and typing contracts", () => {
-  it("uses H2 project titles directly beneath the visible page H1", () => {
-    expect(workSource).toMatch(/<h1[\s\S]*?<h2[^>]*>\s*\{proj\.title\}\s*<\/h2>/);
+  it("assigns the single H1 to the visible active scene and H2 to other projects", () => {
+    expect(workSource).toContain('const ProjectHeading = i === (staticPresentation ? 0 : activeProject) ? "h1" : "h2"');
+    expect(workSource).toMatch(/<ProjectHeading[^>]*>\s*\{proj\.title\}\s*<\/ProjectHeading>/);
     expect(workSource).not.toMatch(/<h3[^>]*>\s*\{proj\.title\}\s*<\/h3>/);
   });
 

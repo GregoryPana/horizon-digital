@@ -1,0 +1,117 @@
+/* Business-led wordless concepts; each plan and finish shares identical part geometry. */
+.hwb{position:relative;width:100%;height:100%;overflow:hidden;background:#eef3ef;isolation:isolate}
+.hwb-design,.hwb-page{position:absolute;inset:0;overflow:hidden}
+.hwb-design-b,.hwb-design-c{opacity:0;visibility:hidden}
+.hwb [data-business="coastal-stay"]{--site-paper:#f6f4eb;--site-ink:#203b35;--site-accent:#42776c;--site-accent-ink:#fffef5;--site-line:#a0b2a7}
+.hwb [data-business="coffee-house"]{--site-paper:#f7f0e5;--site-ink:#393e33;--site-accent:#597563;--site-accent-ink:#fffaf0;--site-line:#c2b4a0}
+.hwb [data-business="sailing-charter"]{--site-paper:#f0f4f2;--site-ink:#243c4d;--site-accent:#487f91;--site-accent-ink:#f5fbfa;--site-line:#a2bdc6}
+.hwb-page{color:var(--site-ink);background:var(--site-paper)}
+.hwb-wash-edge{position:absolute;z-index:6;left:-100%;top:0;width:100%;height:100%;pointer-events:none;opacity:0;background:linear-gradient(90deg,transparent 99%,#bce5dfb3)}
+.hwb-guides{position:absolute;z-index:5;inset:4%;opacity:0;pointer-events:none;border:1px solid #6d929980;background:repeating-linear-gradient(90deg,transparent 0 9.9%,#6d929930 10% 10.2%),repeating-linear-gradient(transparent 0 9.9%,#6d929930 10% 10.2%)}
+.hwb-image{position:absolute;overflow:hidden}
+.hwb-image img,.hwb-card-image img{display:block;width:100%;height:100%;object-fit:cover}
+.hwb-header{position:absolute;left:6%;top:4%;width:88%;height:7%;display:flex;align-items:center;justify-content:space-between}
+.hwb-logo{display:flex;align-items:center;gap:12%;width:8%;height:65%;color:var(--site-accent)}
+.hwb-logo span{width:40%;height:100%;border:1.5px solid currentColor;border-radius:50% 50% 0 0}
+.hwb-logo span:last-child{height:65%}
+.hwb-nav{width:57%;height:100%;display:flex;align-items:center;justify-content:flex-end;gap:8%}
+.hwb-nav span{width:14%;height:5%;min-height:1px;background:currentColor;opacity:.6}
+.hwb-nav b{width:26%;height:76%;border-radius:3px;background:var(--site-accent)}
+.hwb-heading,.hwb-lines{position:absolute;display:flex;flex-direction:column}
+.hwb-heading{gap:20%}
+.hwb-heading span{display:block;height:14%;background:currentColor;border-radius:1px}
+.hwb-heading span:nth-child(2){width:88%}
+.hwb-heading span:last-child{width:63%}
+.hwb-lines{gap:24%}
+.hwb-lines span{display:block;height:8%;min-height:1px;background:currentColor;opacity:.5}
+.hwb-lines span:nth-child(2){width:88%}
+.hwb-lines span:last-child{width:65%}
+.hwb-cta{position:absolute;display:flex;align-items:center;justify-content:space-between;padding-inline:3%;color:var(--site-accent-ink);background:var(--site-accent);border-radius:3px}
+.hwb-cta span{width:64%;height:7%;min-height:1px;background:currentColor}
+.hwb-cta b{width:8%;aspect-ratio:1;border-top:1px solid;border-right:1px solid;transform:rotate(45deg)}
+.hwb-editorial{position:absolute;display:flex;align-items:center;gap:7%;padding:3%;border:1px solid var(--site-line);color:var(--site-ink);background:var(--site-paper);border-radius:3px}
+.hwb-editorial i{display:block;flex:none;width:8%;aspect-ratio:1;border:1px solid currentColor;border-top-width:3px;border-radius:2px}
+.hwb-editorial>span{width:26%;height:8%;min-height:1px;background:currentColor;opacity:.6}
+.hwb-editorial>span+span{width:19%}
+.hwb-editorial>b{margin-left:auto;width:18%;height:70%;background:var(--site-accent);border-radius:2px}
+.hwb-inset{position:absolute;display:flex;gap:5%}
+.hwb-card{flex:1;min-width:0;display:flex;gap:8%;align-items:center;padding:0;border-bottom:1px solid var(--site-line)}
+.hwb-card-image{width:40%;height:90%;overflow:hidden;border-radius:3px;flex:none}
+.hwb-card:nth-child(2) img{object-position:75% 50%}
+.hwb-card-copy{flex:1;min-width:0}
+.hwb-card-copy>span{display:block;width:94%;height:2px;margin-bottom:12%;background:currentColor;opacity:.7}
+.hwb-card-copy>span+span{width:65%;height:1px;opacity:.35}
+.hwb-card-copy>b{display:block;width:32%;height:3px;margin-top:18%;background:var(--site-accent)}
+/* A: pool-led coastal stay, overlaid proposition, booking rail and two stay previews. */
+.hwb-design-a .hwb-image{top:15%;left:5%;width:90%;height:48%;border-radius:5px}
+.hwb-design-a .hwb-image::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#102e2bd9,transparent 90%)}
+.hwb-design-a .hwb-heading{top:27%;left:10%;width:40%;height:16%;color:var(--site-accent-ink)}
+.hwb-design-a .hwb-lines{top:44%;left:10%;width:34%;height:5%;color:var(--site-accent-ink)}
+.hwb-design-a .hwb-cta{top:53%;left:10%;width:23%;height:6%;background:var(--site-paper);color:var(--site-ink)}
+.hwb-design-a .hwb-editorial{top:68%;left:12%;width:76%;height:10%}
+.hwb-design-a .hwb-inset{top:83%;left:7%;width:86%;height:13%}
+/* B: warm editorial café with a concrete cup photograph and compact menu/visit cues. */
+.hwb-design-b .hwb-image{top:19%;left:51%;width:43%;height:51%;border-radius:6px}
+.hwb-design-b .hwb-image img{object-position:50% 58%}
+.hwb-design-b .hwb-heading{top:26%;left:7%;width:35%;height:18%}
+.hwb-design-b .hwb-lines{top:46%;left:7%;width:32%;height:6%}
+.hwb-design-b .hwb-cta{top:59%;left:7%;width:28%;height:7%;border-radius:999px}
+.hwb-design-b .hwb-logo span{border-radius:0 0 45% 45%;height:70%}
+.hwb-design-b .hwb-logo span:last-child{width:22%;height:40%;border-left:0;border-radius:0 50% 50% 0}
+.hwb-design-b .hwb-editorial{top:75%;left:7%;width:86%;height:7%;padding:2%;border:0;border-top:1px solid var(--site-line);border-radius:0;background:transparent}
+.hwb-design-b .hwb-editorial i{border-top-width:1px;border-radius:50%;width:4%}
+.hwb-design-b .hwb-inset{top:86%;left:7%;width:86%;height:11%}
+/* C: sailing vessel, dark marine masthead, right-hand enquiry and trip rows. */
+.hwb-design-c .hwb-header{inset:0 0 auto;width:100%;height:13%;padding:3% 6%;color:var(--site-accent-ink);background:var(--site-ink)}
+.hwb-design-c .hwb-logo{color:var(--site-accent-ink)}
+.hwb-design-c .hwb-logo span{border-radius:0;border-width:0 0 1px 1px;transform:skewY(-25deg)}
+.hwb-design-c .hwb-image{top:20%;left:6%;width:52%;height:51%;border-radius:3px}
+.hwb-design-c .hwb-heading{top:24%;left:65%;width:29%;height:17%}
+.hwb-design-c .hwb-lines{top:43%;left:65%;width:27%;height:6%}
+.hwb-design-c .hwb-cta{top:56%;left:65%;width:29%;height:7%}
+.hwb-design-c .hwb-editorial{top:76%;left:6%;width:88%;height:8%;padding:2%;border:0;border-block:1px solid var(--site-line);border-radius:0}
+.hwb-design-c .hwb-editorial i{border-radius:50%;border-top-width:1px;width:4%}
+.hwb-design-c .hwb-inset{top:88%;left:6%;width:88%;height:10%}
+/* Portrait reflow per business, rather than a scaled desktop. */
+.hwb-mobile .hwb-header{top:4%;height:6%;left:8%;width:84%}
+.hwb-mobile .hwb-logo{width:13%}
+.hwb-mobile .hwb-nav{width:55%}
+.hwb-mobile .hwb-nav span:nth-child(2),.hwb-mobile .hwb-nav span:nth-child(3){display:none}
+.hwb-mobile .hwb-nav b{width:38%}
+.hwb-mobile .hwb-design-a .hwb-image{top:15%;left:5%;width:90%;height:48%}
+.hwb-mobile .hwb-design-a .hwb-heading{top:25%;left:11%;width:72%;height:12%}
+.hwb-mobile .hwb-design-a .hwb-lines{top:40%;left:11%;width:63%;height:5%}
+.hwb-mobile .hwb-design-a .hwb-cta{top:50%;left:11%;width:48%;height:5%;padding-inline:6%}
+.hwb-mobile .hwb-design-a .hwb-editorial{top:68%;left:8%;width:84%;height:10%;padding:5%}
+.hwb-mobile .hwb-design-a .hwb-inset{top:84%;left:8%;width:84%;height:12%}
+.hwb-mobile .hwb-design-b .hwb-image{top:14%;left:8%;width:84%;height:35%}
+.hwb-mobile .hwb-design-b .hwb-heading{top:54%;left:8%;width:76%;height:10%}
+.hwb-mobile .hwb-design-b .hwb-lines{top:66%;left:8%;width:70%;height:4%}
+.hwb-mobile .hwb-design-b .hwb-cta{top:74%;left:8%;width:55%;height:5%;padding-inline:6%}
+.hwb-mobile .hwb-design-b .hwb-editorial{top:83%;left:8%;width:84%;height:5%;padding:2%}
+.hwb-mobile .hwb-design-b .hwb-inset{top:91%;left:8%;width:84%;height:7%}
+.hwb-mobile .hwb-design-c .hwb-header{top:0;left:0;width:100%;height:11%;padding:4% 8%}
+.hwb-mobile .hwb-design-c .hwb-image{top:15%;left:8%;width:84%;height:34%}
+.hwb-mobile .hwb-design-c .hwb-heading{top:54%;left:8%;width:76%;height:10%}
+.hwb-mobile .hwb-design-c .hwb-lines{top:66%;left:8%;width:72%;height:4%}
+.hwb-mobile .hwb-design-c .hwb-cta{top:74%;left:8%;width:58%;height:5%;padding-inline:6%}
+.hwb-mobile .hwb-design-c .hwb-editorial{top:83%;left:8%;width:84%;height:5%;padding:2%}
+.hwb-mobile .hwb-design-c .hwb-inset{top:91%;left:8%;width:84%;height:7%}
+.hwb-mobile .hwb-card{gap:5%}
+.hwb-mobile .hwb-card-copy>span{height:1px}
+.hwb-mobile .hwb-card-copy>b{height:2px}
+.hwb-blueprint{background:#e9eff0 !important;color:#71878e !important}
+.hwb-blueprint .hwb-image,.hwb-blueprint .hwb-card-image{border:1px solid #78959b;border-radius:0;background:linear-gradient(to top right,transparent 49.4%,#78959b 49.7% 50.3%,transparent 50.6%),linear-gradient(to bottom right,transparent 49.4%,#78959b 49.7% 50.3%,transparent 50.6%)}
+.hwb-blueprint .hwb-image::after{background:none}
+.hwb-blueprint .hwb-header{background:transparent;color:#71878e;border-bottom:1px solid #78959b66}
+.hwb-blueprint .hwb-logo,.hwb-blueprint .hwb-heading,.hwb-blueprint .hwb-lines{color:#71878e}
+.hwb-blueprint .hwb-nav b,.hwb-blueprint .hwb-cta,.hwb-blueprint .hwb-editorial,.hwb-blueprint .hwb-editorial>b,.hwb-blueprint .hwb-card-copy>b{background:transparent;color:#71878e;outline:1px solid #78959b;border-radius:0}
+.hwb-blueprint .hwb-card{color:#71878e}
+@media (prefers-reduced-motion:reduce){
+  .hwb,.hwb *{transition:none !important;animation:none !important}
+  .hwb [data-build-part]{opacity:1 !important;visibility:visible !important;transform:none !important;clip-path:none !important}
+  .hwb-design-a{opacity:1 !important;visibility:visible !important}
+  .hwb-design-b,.hwb-design-c{opacity:0 !important;visibility:hidden !important}
+  .hwb-guides,.hwb [data-build-skeleton],.hwb-wash-edge{opacity:0 !important}
+  .hwb-finished{clip-path:none !important}
+}

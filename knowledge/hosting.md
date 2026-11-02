@@ -2,7 +2,7 @@
 
 # Managed hosting
 
-**SCR 2,500 per year, billed annually**
+**Quoted for your hosting needs, billed annually**
 
 Hosting keeps the website available online and serves its pages, images and files to visitors.
 

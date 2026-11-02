@@ -2,7 +2,7 @@ import { readFileSync } from "node:fs";
 import { createElement, type ReactElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { HelmetProvider } from "react-helmet-async";
-import { StaticRouter } from "react-router-dom/server";
+import { StaticRouter } from "react-router-dom";
 import { describe, expect, it } from "vitest";
 import { servicePages } from "../data/site";
 import AnalyticsDigitalPresenceSeychelles from "./AnalyticsDigitalPresenceSeychelles";
@@ -115,7 +115,7 @@ describe("service pillar pages", () => {
       throw new Error("Missing authority-backed package fits");
     for (const fit of packageFit.fits ?? [])
       expect(html).toContain(fit.description);
-    expectLink(html, "View package details and starting prices", "/pricing");
+    expectLink(html, "Compare website packages", "/pricing");
     expectLink(html, "See how the project runs", "/process");
     expect(html).not.toContain("Best Value");
   });

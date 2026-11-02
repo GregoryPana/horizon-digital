@@ -30,7 +30,8 @@ describe("full viewport portfolio scenes", () => {
   it("shows Drake and its colour at the top before the first scroll", () => {
     expect(source).toContain("style={{ backgroundColor: projects[0].bgColor }}");
     expect(source).not.toContain("backgroundColor: 'transparent'");
-    expect(source).toContain('className="sr-only" aria-label="Portfolio introduction"');
+    expect(source).not.toContain('className="sr-only" aria-label="Portfolio introduction"');
+    expect(source).toContain('const ProjectHeading = i === (staticPresentation ? 0 : activeProject) ? "h1" : "h2"');
     expect(source).toContain('staticPresentation || i === 0 ? "opacity-100"');
     expect(source).toContain("opacity: i === 0 ? 1 : 0");
     expect(css).toContain("margin-top:calc(-1 * var(--header-height,88px))");

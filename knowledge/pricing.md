@@ -2,11 +2,11 @@
 
 # Website packages and pricing
 
-All prices are in Seychelles rupees (SCR). Package prices are starting points. The written proposal confirms the final scope, price, responsibilities and exclusions.
+Website projects are quoted after a free consultation. Do not provide fixed or starting package prices. Invite the visitor to call, use WhatsApp or request a free quote. The written proposal confirms scope, price, responsibilities and exclusions.
 
 ## Foundation
 
-**From SCR 7,500**
+**Quoted for your project**
 
 A focused custom website for a business establishing or replacing a basic online presence.
 
@@ -20,7 +20,7 @@ A focused custom website for a business establishing or replacing a basic online
 
 ## Starter
 
-**From SCR 12,500**
+**Quoted for your project**
 
 A larger custom website for a growing business with more services or content.
 
@@ -36,7 +36,7 @@ A larger custom website for a growing business with more services or content.
 
 ## Growth
 
-**From SCR 25,000**
+**Quoted for your project**
 
 A more extensive website for businesses with deeper content, service lines or integrations.
 
@@ -71,11 +71,11 @@ For projects whose page count, functionality or integration needs do not fit a s
 
 ## Optional add-ons
 
-- **Additional page:** SCR 2,500 per page
-- **Page content writing support:** SCR 600 per page
-- **Custom booking or enquiry form:** SCR 2,000
-- **Google Business Profile setup:** SCR 2,200
-- **Rush delivery:** +40% of project cost, subject to availability
-- **Content management for Foundation:** SCR 2,500; included in Starter and Growth
+- **Additional page:** Quoted for the additional pages
+- **Page content writing support:** Quoted for your content needs
+- **Custom booking or enquiry form:** Quoted for the agreed form
+- **Google Business Profile setup:** Quoted after an initial discussion
+- **Rush delivery:** Quoted separately, subject to availability
+- **Content management for Foundation:** Quoted for Foundation; included in Starter and Growth
 
 Search rankings, traffic, enquiries, bookings and revenue are not guaranteed.

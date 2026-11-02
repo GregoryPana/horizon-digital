@@ -1,3 +1,5 @@
+import { canReloadWithoutAnalytics, hasAnalyticsConsent, subscribeAnalyticsConsent } from './analyticsConsent';
+
 export const GA_MEASUREMENT_ID = 'G-Z79X024S87';
 const GA_SCRIPT_SRC = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
 const INTERACTION_EVENTS = ['pointerdown', 'keydown', 'touchstart'] as const;
@@ -47,6 +49,7 @@ function isPendingEventRecord(value: unknown): value is PendingEventRecord {
 }
 
 function writePendingEvents(records: PendingEventRecord[]): void {
+  if (!hasAnalyticsConsent()) return;
   if (records.length === 0) {
     window.sessionStorage?.removeItem(PENDING_EVENTS_STORAGE_KEY);
     return;
@@ -55,6 +58,7 @@ function writePendingEvents(records: PendingEventRecord[]): void {
 }
 
 function readPendingEvents(): PendingEventRecord[] {
+  if (!hasAnalyticsConsent()) return [];
   try {
     const serialized = window.sessionStorage?.getItem(PENDING_EVENTS_STORAGE_KEY);
     if (!serialized) return [];
@@ -86,6 +90,7 @@ function createPendingEventId(): string {
 }
 
 function persistPendingEvent(command: any[]): void {
+  if (!hasAnalyticsConsent()) return;
   if (document.querySelector(`script[${ANALYTICS_LOADED_ATTRIBUTE}="true"]`)) return;
   try {
     const record: PendingEventRecord = {
@@ -102,6 +107,7 @@ function persistPendingEvent(command: any[]): void {
 }
 
 function restorePendingEvents(dataLayer: any[]): void {
+  if (!hasAnalyticsConsent()) return;
   for (const pending of readPendingEvents()) {
     if (representedPendingEventIds.has(pending.id)) continue;
     dataLayer.push(pending.command);
@@ -119,6 +125,7 @@ function clearPendingEvents(): void {
 }
 
 function injectAnalyticsScript(): void {
+  if (!hasAnalyticsConsent()) { scheduledCleanup?.(); return; }
   if (!hasAnalyticsScript()) {
     const script = document.createElement('script');
     script.async = true;
@@ -185,9 +192,12 @@ function scheduleAnalyticsScript(): () => void {
   return cleanup;
 }
 
-export function initializeAnalytics(): () => void {
+function startConsentedAnalytics(): void {
+  if (!hasAnalyticsConsent()) return;
+  Object.assign(window, { [`ga-disable-${GA_MEASUREMENT_ID}`]: false });
   window.dataLayer ??= [];
   window.gtag ??= function gtag(...args: any[]) {
+    if (args[0] !== 'consent' && !hasAnalyticsConsent()) return;
     window.dataLayer!.push(args);
     if (args[0] === 'event') persistPendingEvent(args);
   };
@@ -199,12 +209,79 @@ export function initializeAnalytics(): () => void {
 
   restorePendingEvents(window.dataLayer);
 
-  if (hasAnalyticsScript()) return () => undefined;
-  return scheduleAnalyticsScript();
+  if (!hasAnalyticsScript()) scheduleAnalyticsScript();
+}
+
+/** Expire only Google Analytics cookies owned by this site, not unrelated preferences. */
+function expireAnalyticsCookies(): void {
+  const names = document.cookie.split(';').map((cookie) => cookie.trim().split('=')[0])
+    .filter((name) => name === '_ga' || name.startsWith('_ga_') || name === '_gid' || name === '_gat' || name.startsWith('_gat_'));
+  const hostParts = window.location.hostname.split('.');
+  const domains = ['', ...hostParts.map((_, index) => hostParts.slice(index).join('.'))];
+  const segments = window.location.pathname.split('/').filter(Boolean);
+  const paths = new Set(['/']);
+  for (let index = 1; index <= segments.length; index += 1) {
+    const path = '/' + segments.slice(0, index).join('/');
+    paths.add(path);
+    paths.add(path + '/');
+  }
+  for (const name of names) for (const path of paths) for (const domain of domains) {
+    const base = `${name}=; Max-Age=0; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=${path};`;
+    document.cookie = base + (domain ? ` domain=${domain};` : '');
+    if (domain) document.cookie = base + ` domain=.${domain};`;
+  }
+}
+
+let initializationCleanup: (() => void) | undefined;
+
+/** Only the existing production entry guard calls this; the UI cannot enable dev tracking. */
+export function initializeAnalytics({ reload = () => window.location.reload() }: { reload?: () => void } = {}): () => void {
+  if (initializationCleanup) return initializationCleanup;
+  let allowed = hasAnalyticsConsent();
+  let needsRevocationReload = false;
+  const onConsentChange = () => {
+    const nextAllowed = hasAnalyticsConsent();
+    if (nextAllowed === allowed && !(needsRevocationReload && !nextAllowed)) return;
+    if (allowed && !nextAllowed) needsRevocationReload = true;
+    allowed = nextAllowed;
+    if (nextAllowed) {
+      startConsentedAnalytics();
+      // The SPA route effect already ran without consent. Do not replay prior routes.
+      trackPageView({ page_title: document.title, page_location: window.location.href,
+        page_path: window.location.pathname + window.location.search });
+    } else {
+      scheduledCleanup?.();
+      Object.assign(window, { [`ga-disable-${GA_MEASUREMENT_ID}`]: true });
+      window.gtag?.('consent', 'update', {
+        analytics_storage: 'denied', ad_storage: 'denied',
+        ad_user_data: 'denied', ad_personalization: 'denied',
+      });
+      if (window.dataLayer) window.dataLayer.length = 0;
+      delete window.gtag;
+      delete window.dataLayer;
+      clearPendingEvents();
+      document.querySelectorAll(`script[src="${GA_SCRIPT_SRC}"]`).forEach((script) => script.remove());
+      expireAnalyticsCookies();
+      // Removing a script cannot unload executed vendor listeners. Never reload into an old grant.
+      if (canReloadWithoutAnalytics()) {
+        needsRevocationReload = false;
+        reload();
+      }
+    }
+  };
+  const unsubscribe = subscribeAnalyticsConsent(onConsentChange);
+  if (allowed) startConsentedAnalytics();
+  else clearPendingEvents();
+  initializationCleanup = () => {
+    scheduledCleanup?.();
+    unsubscribe();
+    initializationCleanup = undefined;
+  };
+  return initializationCleanup;
 }
 
 export function trackPageView({ page_title, page_location, page_path }: { page_title?: string; page_location?: string; page_path?: string }) {
-  if (!window.gtag) return;
+  if (!hasAnalyticsConsent() || !window.gtag) return;
 
   window.gtag('event', 'page_view', {
     page_title,
@@ -214,7 +291,7 @@ export function trackPageView({ page_title, page_location, page_path }: { page_t
 }
 
 export function trackEvent(eventName: string, params: Record<string, any> = {}) {
-  if (!window.gtag) return;
+  if (!hasAnalyticsConsent() || !window.gtag) return;
 
   window.gtag('event', eventName, params);
 }

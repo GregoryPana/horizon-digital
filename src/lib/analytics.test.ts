@@ -14,6 +14,9 @@ import {
   trackPageView,
 } from './analytics';
 
+const consentStorage = window.localStorage;
+const seedConsent = () => consentStorage.setItem('horizon.analytics.consent.v1', JSON.stringify({ version: 1, choice: 'granted' }));
+
 const projectFile = (path: string) => readFileSync(resolve(process.cwd(), path), 'utf8');
 const scriptSelector = `script[src="https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}"]`;
 
@@ -42,11 +45,13 @@ describe('initializeAnalytics', () => {
     vi.useFakeTimers();
     document.head.innerHTML = '';
     window.sessionStorage.clear();
+    seedConsent();
     delete window.gtag;
     delete window.dataLayer;
   });
 
   afterEach(() => {
+    initializeAnalytics()();
     vi.runOnlyPendingTimers();
     vi.useRealTimers();
     vi.restoreAllMocks();
@@ -224,13 +229,14 @@ describe('initializeAnalytics', () => {
 });
 
 describe('analytics event helpers', () => {
+  beforeEach(seedConsent);
   afterEach(() => {
     vi.unstubAllGlobals();
   });
 
   it('sends SPA page views with the hydrated route identity', () => {
     const gtag = vi.fn();
-    vi.stubGlobal('window', { gtag });
+    vi.stubGlobal('window', { gtag, localStorage: consentStorage });
 
     trackPageView({
       page_title: 'Contact | Horizon Digital',
@@ -247,7 +253,7 @@ describe('analytics event helpers', () => {
 
   it('normalizes contact intent without sending contact details', () => {
     const gtag = vi.fn();
-    vi.stubGlobal('window', { gtag, location: { pathname: '/contact' } });
+    vi.stubGlobal('window', { gtag, localStorage: consentStorage, location: { pathname: '/contact' } });
 
     trackContactIntent({ method: 'whatsapp', source: 'footer' });
 

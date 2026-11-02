@@ -105,7 +105,7 @@ export const homeFaqCategories = businessFacts.homeFaqCategories;
 
 export const trustStatement = [
   "Clear scope",
-  "Published starting prices",
+  "A quote for your project",
   "Defined revisions",
   "Direct communication",
   "Written project terms",

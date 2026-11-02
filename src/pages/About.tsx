@@ -19,8 +19,6 @@ export default function About() {
 
   return (
     <div className="overflow-hidden">
-      <h1 className="sr-only">About Horizon Digital - Custom Website Design studio</h1>
-      <h1 id="about-title" style={{fontSize: 'var(--text-h1)', fontWeight: 700, lineHeight: 1.03, letterSpacing: '-0.04em', textWrap: 'balance', position: 'absolute', width: 1, height: 1, padding: 0, margin: '-1px', overflow: 'hidden', clip: 'rect(0, 0, 0, 0)', whiteSpace: 'nowrap', border: 0}}>About Horizon Digital — Custom Website Design Studio</h1>
       <Seo
         title="Custom Website Design Studio Seychelles | About Horizon Digital"
         description="Horizon Digital is a Mahé-based studio that plans, designs and builds custom websites for Seychelles businesses."
@@ -52,9 +50,9 @@ export default function About() {
         <div className="mx-auto w-full max-w-[92rem] px-6 sm:px-10 lg:px-14">
           <motion.div {...fadeInUp} className="mb-12">
             <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">WHO WE ARE</span>
-            <h2 style={{fontSize: 'var(--text-h2)', fontWeight: 700, lineHeight: 1.07, letterSpacing: '-0.03em', textWrap: 'balance'}}>
+            <h1 id="about-title" style={{fontSize: 'var(--text-h1)', fontWeight: 700, lineHeight: 1.07, letterSpacing: '-0.03em', textWrap: 'balance'}}>
               A Seychelles studio building websites around <span className="text-cyan font-semibold">how local businesses work.</span>
-            </h2>
+            </h1>
           </motion.div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center text-left">
@@ -346,7 +344,7 @@ export default function About() {
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-10 gap-x-6 items-center">
               {[
                 "Performance tested before launch",
-                "Starting prices published in SCR",
+                "Free consultation and a written quote",
                 "Built for Seychelles — in Seychelles",
                 "Structured for Google to understand"
               ].map((text, i) => (

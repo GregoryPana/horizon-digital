@@ -21,10 +21,7 @@ afterEach(() => {
 function Harness({ initialOpen = false }: { initialOpen?: boolean }) {
   const [isMenuOpen, setIsMenuOpen] = useState(initialOpen);
   return (
-    <MemoryRouter
-      initialEntries={["/services"]}
-      future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
-    >
+    <MemoryRouter initialEntries={["/services"]}>
       <NavMenu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
     </MemoryRouter>
   );

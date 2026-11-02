@@ -19,7 +19,7 @@ Do not edit the eight generated knowledge documents directly.
 
 ## Controlled claims
 
-- Package prices are starting prices; the written proposal confirms final scope and price.
+- Website packages are quote-led. Do not publish fixed or starting package, add-on or hosting amounts. Invite a free consultation and quote; the written proposal confirms scope and price. Optional visitor budget inputs are not advertised package prices, and choosing a package must not assign a budget.
 - Foundation, Starter and Growth all include custom design, a mobile-responsive build, a contact form and WhatsApp link, and the same technical and on-page SEO foundation. Search positions are not guaranteed.
 - Starter includes Google Analytics setup. Growth builds on it with one combined Google Analytics and Google Business Profile setup inclusion, subject to the required access, consent setup and verified business details.
 - Standalone SEO consultation/review, separately scoped SEO implementation, analytics and measurement setup, and Google Business Profile setup/optimisation are current services. They can support existing or third-party websites without requiring a Horizon Digital redesign. Standalone implementation requires the necessary third-party access and authority.

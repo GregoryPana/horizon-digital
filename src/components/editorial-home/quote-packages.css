@@ -1,0 +1,17 @@
+/* Quote-led package overview; preserve the accepted homepage system. */
+.editorial-home:not(#editorial-home-specificity#editorial-home-specificity) #membership .mb-plans { gap: 16px; border-top: 0; align-items: stretch; }
+.editorial-home:not(#editorial-home-specificity#editorial-home-specificity) #membership .mb-plan { padding: 54px 28px 28px; gap: 22px; transition: transform 220ms cubic-bezier(.2,.7,.2,1); }
+.editorial-home:not(#editorial-home-specificity#editorial-home-specificity) #membership .mb-plan h3 { font-size: clamp(32px,3vw,46px); line-height: 1.1; letter-spacing: -.035em; }
+.editorial-home:not(#editorial-home-specificity#editorial-home-specificity) #membership .hd-best-value { position: absolute; top: 20px; left: 28px; margin: 0; }
+.editorial-home #membership .mb-shared { max-width: 760px; margin-bottom: 28px; }
+.editorial-home #membership .mb-compare { display: inline-flex; align-items: center; min-height: 44px; margin-top: 24px; }
+@media(hover:hover) and (prefers-reduced-motion:no-preference) {
+ .editorial-home:not(#editorial-home-specificity#editorial-home-specificity) #membership .mb-plan:hover { transform: translateY(-4px); }
+}
+@media(max-width:860px) {
+ .editorial-home:not(#editorial-home-specificity#editorial-home-specificity) #membership .mb-plan { padding: 48px 24px 24px; }
+ .editorial-home:not(#editorial-home-specificity#editorial-home-specificity) #membership .hd-best-value { left: 24px; top: 16px; }
+}
+@media(prefers-reduced-motion:reduce) {
+ .editorial-home:not(#editorial-home-specificity#editorial-home-specificity) #membership .mb-plan { transition: none; }
+}

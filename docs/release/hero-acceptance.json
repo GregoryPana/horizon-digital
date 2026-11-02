@@ -1,0 +1,21 @@
+{
+  "ownerDecision": "Accepted q90 phone and desktop hero images after localhost4273/4274 comparison; preserve originals for potential restoration if other optimization provides sufficient headroom. No publication authority.",
+  "images": [
+    {
+      "path": "public/editorial-home/brand-hero-mobile.webp",
+      "acceptedSha256": "0b4d148d24c8d9b0ef40690c8407ff52b1a57b2b87951b5be40aaccc5193c595",
+      "originalBackup": "source-archive/hero-originals/brand-hero-mobile.webp",
+      "originalSha256": "29c7bf2b2404f2605cfa7bf6acea626dc026e77d82145163618b77495addce77",
+      "originalBytes": 246848,
+      "acceptedBytes": 209266
+    },
+    {
+      "path": "public/editorial-home/brand-hero.webp",
+      "acceptedSha256": "9e17ca45c04127ae5dd0e0a9e9ade1887cbf4eefbc062fe3d1abaffd6f7e1b39",
+      "originalBackup": "source-archive/hero-originals/brand-hero.webp",
+      "originalSha256": "59162f74378e19ed32d20ce01ab6700ba46edcd83cd5bd40ec519425de9ee127",
+      "originalBytes": 113010,
+      "acceptedBytes": 95470
+    }
+  ]
+}

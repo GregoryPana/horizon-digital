@@ -8,6 +8,7 @@ import { useLocation } from "react-router-dom";
 import { trackContactIntent, trackEvent } from "../lib/analytics";
 import { Instagram, Facebook } from "lucide-react";
 import WhatsAppIcon from "../components/ui/WhatsAppIcon";
+import facts from "../data/businessFacts.json";
 
 
 export default function Contact() {
@@ -19,12 +20,18 @@ export default function Contact() {
   );
 
   const allowedBudgets = ["7500-12500", "12500-25000", "25000-plus", "not-sure"];
-  const budgetParam = new URLSearchParams(location.search).get("budget") ?? "";
-  const requestParam = new URLSearchParams(location.search).get("request") ?? "";
+  const params = new URLSearchParams(location.search);
+  const budgetParam = params.get("budget") ?? "";
+  const requestParam = params.get("request") ?? "";
+  // Never echo an unvalidated package query into an enquiry. Titles come only
+  // from governed facts. Choosing a package never declares a visitor's budget.
+  const selectedPackage = facts.packages.find(p => p.id === params.get("package") && ["foundation", "starter", "growth"].includes(p.id));
   const defaultBudget = allowedBudgets.includes(budgetParam) ? budgetParam : "";
-  const defaultMessage = requestParam 
-    ? `I'm interested in a website similar to ${decodeURIComponent(requestParam)}. Please let me know how we can get started.`
-    : "";
+  const defaultMessage = selectedPackage
+    ? `I'd like a free quote for the ${selectedPackage.title} website package. Please let me know how we can arrange a conversation.`
+    : requestParam
+      ? `I'm interested in a website similar to ${requestParam}. Please let me know how we can get started.`
+      : "";
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -75,7 +82,7 @@ Current website (if any): ${website}
 
 Estimated timeline: ${timelineLabel}
 Project budget range: ${budgetLabel}
-Contact email: ${email}
+${selectedPackage ? `Website package: ${selectedPackage.title}\n` : ""}Contact email: ${email}
 
 Main goal details:
 ${message}
@@ -92,7 +99,7 @@ Looking forward to your reply.`;
     <div>
       <Seo
         title="Custom Website Project Seychelles | Horizon Digital"
-        description="Start your custom website project in Seychelles today. We focus on conversion-led design, fixed pricing, and weekly updates to help your business grow online."
+        description="Request a free quote for a custom website in Seychelles. Talk through your goals, compare suitable packages and agree the scope before work begins."
         path="/contact"
         keywords="contact custom web designer Seychelles, start custom website project Seychelles, bespoke web solutions"
         breadcrumbs={[
@@ -127,21 +134,19 @@ Looking forward to your reply.`;
       <Section
         eyebrow="Get in touch"
         title="Let's figure out the right website for you"
-        description="Takes less than 2 minutes. We read every message personally. Just tell us where you're at and we'll suggest the best path forward."
+        description="Call us or share a few details to start a free consultation. We will help you choose a package and prepare a quote for your project."
         headingLevel="h1"
         className="!pt-16 !pb-24 md:!pt-32 md:!pb-32"
       >
         <div className="mx-auto max-w-2xl text-center mt-4 mb-10 lg:max-w-none lg:text-left">
           <p className="text-sm text-text-muted leading-relaxed">
-            Not sure what you need yet? That's completely fine — 
-            most people aren't when they first reach out. 
-            <span className="text-text"> Just tell us about your business 
-            and we'll guide you from there.</span>
+            Tell us about your business and what you want the website to do.
+            <span className="text-text"> We will talk through the options before agreeing the work.</span>
           </p>
         </div>
         <div className="mx-auto grid w-full max-w-2xl min-w-0 items-start gap-10 lg:max-w-none lg:grid-cols-[1.2fr_0.8fr]">
           <Card className="min-w-0 order-last lg:order-first">
-            <form className="grid gap-7" onSubmit={handleSubmit}>
+            <form key={`${defaultBudget}:${requestParam}:${selectedPackage?.id ?? ""}`} className="grid gap-7" onSubmit={handleSubmit}>
               <label className="text-sm font-semibold text-text">
                 Business name
                 <input
@@ -237,7 +242,8 @@ Looking forward to your reply.`;
                 />
               </label>
               <div className="flex flex-col gap-4">
-                <Button label="Send message" type="submit" size="lg" className="w-full md:w-fit" />
+                <Button label="Prepare email" type="submit" size="lg" className="w-full md:w-fit" />
+                <p className="pl-1 text-sm text-text-muted">Opens your email app with your project details. Review and send it there.</p>
                 <p className="pl-1 text-sm text-text-muted">
                   We reply within 24 hours — usually sooner.
                 </p>

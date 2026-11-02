@@ -1,0 +1,74 @@
+/* Consent owns its colours and type, including inside independent showcase routes. */
+.analytics-consent-panel,
+.analytics-preferences-strip {
+  font-family: 'Switzer', Arial, sans-serif;
+  color: #f4f6f6;
+  background: #202426;
+  font-size: 14px;
+  line-height: 1.5;
+  box-sizing: border-box;
+  color-scheme: dark;
+}
+.analytics-consent-panel[hidden],
+.analytics-preferences-strip[hidden],
+body[data-menu-open] .analytics-consent-panel,
+body[data-menu-open] .analytics-preferences-strip { display: none !important; }
+.analytics-consent-panel {
+  position: fixed;
+  z-index: 90;
+  inset-inline: 16px;
+  bottom: calc(96px + env(safe-area-inset-bottom, 0px));
+  width: min(560px, calc(100% - 32px));
+  max-height: calc(100dvh - var(--header-height, 88px) - 112px - env(safe-area-inset-bottom, 0px));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  margin-inline: auto;
+  padding: 20px;
+  border: 1px solid #586264;
+  border-radius: 20px;
+  box-shadow: 0 12px 48px #0005;
+  text-align: left;
+}
+.analytics-consent-heading-row { display: flex; align-items: center; gap: 16px; justify-content: space-between; }
+.analytics-consent-panel h2 { font: 600 18px/1.3 'Switzer', Arial, sans-serif; color: #f4f6f6; margin: 0; letter-spacing: -.02em; }
+.analytics-consent-panel p { font-size: 14px; line-height: 1.5; color: #d7dfe0; margin: 12px 0; }
+.analytics-consent-panel .analytics-consent-note { font-size: 12px; margin-bottom: 0; }
+.analytics-consent-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; }
+.analytics-consent-actions button,
+.analytics-consent-close,
+.analytics-preferences-button {
+  font: 600 14px/1.3 'Switzer', Arial, sans-serif;
+  min-height: 44px;
+  cursor: pointer;
+  border-radius: 12px;
+  border: 1px solid #819c9f;
+  background: #202426;
+  color: #e4fcff;
+  padding: 10px 14px;
+  text-transform: none;
+  letter-spacing: normal;
+}
+.analytics-consent-actions button:hover,
+.analytics-consent-close:hover,
+.analytics-preferences-button:hover { background: #303d40; border-color: #a5e7ee; }
+.analytics-consent-panel :focus-visible,
+.analytics-preferences-strip :focus-visible { outline: 2px solid #7ee5f2; outline-offset: 3px; }
+.analytics-consent-panel h2:focus { outline: none; }
+.analytics-preferences-strip {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px 16px;
+  padding: 8px 24px calc(8px + env(safe-area-inset-bottom, 0px));
+  width: auto;
+  background: transparent;
+}
+.analytics-preferences-strip span { font-size: 12px; color: #d7dfe0; }
+@media (max-width: 480px) {
+  .analytics-consent-panel { padding: 16px; }
+  .analytics-consent-actions { gap: 8px; }
+  .analytics-consent-actions button { padding-inline: 8px; }
+  .analytics-preferences-strip { padding-inline: 72px; }
+}

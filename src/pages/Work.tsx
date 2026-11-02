@@ -249,18 +249,6 @@ export default function Work() {
         ]}
       />
 
-      <section className="sr-only" aria-label="Portfolio introduction">
-        <div className="mb-8 text-center">
-          <span className="mb-5 block text-[11px] font-medium uppercase tracking-[0.2em] leading-none text-cyan section-eyebrow-glow">Selected work and concepts</span>
-          <h1 style={{fontSize: 'var(--text-h1)', fontWeight: 700, lineHeight: 1.03, letterSpacing: '-0.04em', textWrap: 'balance'}}>
-            A live client project, concepts, and demonstrations.
-          </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-[1.1rem] text-text-muted md:text-xl font-normal leading-relaxed">
-            Each entry is labelled so you can distinguish commissioned work from a concept or demonstration.
-          </p>
-        </div>
-      </section>
-
       {/* PINNED MASTER CONTINER */}
       <div ref={containerRef} className="relative w-full z-10">
         <div ref={pinRef} className={staticPresentation
@@ -272,6 +260,9 @@ export default function Work() {
             : "work-presentation relative w-full h-full mx-auto max-w-7xl"}>
             {projects.map((proj, i) => {
               const accessibility = getWorkProjectAccessibility(i, activeProject, Boolean(staticPresentation));
+              // Keep the single H1 on the visible, accessible scene. Static mode
+              // shows every project, so only its first title is the page heading.
+              const ProjectHeading = i === (staticPresentation ? 0 : activeProject) ? "h1" : "h2";
               return (
               <InertDiv
                 key={proj.id}
@@ -288,9 +279,9 @@ export default function Work() {
                   <p className="text-[11px] md:text-xs font-medium uppercase tracking-[0.2em] text-cyan mb-3 md:mb-5 bg-cyan/10 inline-block px-3 py-1.5 rounded-full border border-cyan/20 self-start">
                     {proj.status} · {proj.tier}
                   </p>
-                  <h2 className="font-display text-3xl sm:text-4xl lg:text-[3.5rem] font-medium text-white mb-4 lg:mb-6 leading-[1.05] tracking-tight">
+                  <ProjectHeading className="font-display text-3xl sm:text-4xl lg:text-[3.5rem] font-medium text-white mb-4 lg:mb-6 leading-[1.05] tracking-tight">
                     {proj.title}
-                  </h2>
+                  </ProjectHeading>
                   <p className="text-base md:text-[1.15rem] text-text-muted mb-6 lg:mb-10 leading-relaxed max-w-md font-normal">
                     {proj.body}
                   </p>

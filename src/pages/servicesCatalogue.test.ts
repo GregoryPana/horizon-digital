@@ -2,7 +2,7 @@ import { readFileSync } from "node:fs";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { HelmetProvider } from "react-helmet-async";
-import { StaticRouter } from "react-router-dom/server";
+import { StaticRouter } from "react-router-dom";
 import { describe, expect, it } from "vitest";
 import { clientRouteLoaders } from "../config/clientRouteLoaders";
 import {
@@ -13,7 +13,7 @@ import {
 } from "../data/site";
 import Services from "./Services";
 
-const homeSource = readFileSync(new URL("./Home.tsx", import.meta.url), "utf8");
+import { editorialHomeHtml as homeSource } from "../components/editorial-home/content";
 const servicesSource = readFileSync(
   new URL("./Services.tsx", import.meta.url),
   "utf8",
@@ -66,7 +66,7 @@ describe("canonical standalone service catalogue", () => {
     expect(websiteEntries["contact-enquiry-integrations"]?.description).toMatch(
       /Contact forms.*WhatsApp.*integrations/i,
     );
-    expect(websiteEntries["managed-hosting"]?.price).toBe("SCR 2,500 per year");
+    expect(websiteEntries["managed-hosting"]?.price).toBe("Quoted for your hosting needs");
     expect(websiteEntries["post-launch-support"]?.description).toMatch(
       /30, 45 or 60 days/i,
     );
@@ -162,7 +162,7 @@ describe("existing website support contract", () => {
 describe("Services rendered route", () => {
   it("routes the Home services CTA to the Services decision hub", () => {
     expect(homeSource).toContain(
-      '<Link to="/services" className="reactive-cta',
+      'href="/services"',
     );
     expect(homeSource).toContain("Explore all services");
     expect(homeSource).not.toContain("Explore services and pricing");

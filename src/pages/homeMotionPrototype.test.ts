@@ -1,7 +1,6 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 
-const homeSource = readFileSync(new URL("./Home.tsx", import.meta.url), "utf8");
 const heroSource = readFileSync(new URL("../components/ui/BuildExtractionHero.tsx", import.meta.url), "utf8");
 const globalStyles = readFileSync(new URL("../index.css", import.meta.url), "utf8");
 const heroStyles = readFileSync(
@@ -10,11 +9,8 @@ const heroStyles = readFileSync(
 );
 
 describe("homepage atmospheric motion prototype", () => {
-  it("uses the autonomous WorkMarquee for selected work without replacing other editorial carousels", () => {
-    expect(homeSource).toContain('import { WorkMarquee } from "../components/ui/WorkMarquee"');
-    expect(homeSource).toContain('<WorkMarquee label="Selected work">');
-    expect(homeSource).not.toContain('<FloatingCarousel label="Selected work">');
-  });
+  // Retired Home-only integration: docs/release-evidence/retired-homepage-assertions.md.
+  // Replacement: editorialHome.reconciliation.test.ts (content/route) and editorial runtime tests.
 
   it("uses one continuous atmospheric field behind all dark homepage sections", () => {
     expect(globalStyles).toContain("@keyframes home-continuous-atmosphere");

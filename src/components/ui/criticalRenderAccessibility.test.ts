@@ -1,3 +1,4 @@
+const lineMotion = readFileSync(new URL("./heroLineReveal.ts", import.meta.url), "utf8");
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 
@@ -6,7 +7,6 @@ const source = (relativePath: string) =>
 
 const homeHero = source("./BuildExtractionHero.tsx");
 const servicesHeadline = source("./ServicesHeroHeadline.tsx");
-const homePage = source("../../pages/Home.tsx");
 const workMarquee = source("./WorkMarquee.tsx");
 const floatingCarousel = source("./FloatingCarousel.tsx");
 const globalStyles = source("../../index.css");
@@ -24,18 +24,16 @@ describe("design-agnostic critical render and accessibility contract", () => {
     );
   });
 
-  it("preserves the approved transform, blur and shine enhancement language", () => {
-    expect(homeHero).toContain('filter: "blur(14px)"');
-    expect(homeHero).toContain('filter: "blur(10px)"');
-    expect(homeHero).toContain("rotationX: 12");
+  it("simplifies Home to word blur/fade without changing Services effects", () => {
+    expect(lineMotion).toContain("HERO_LINE_REVEAL.blur");
+    expect(lineMotion).toContain("autoAlpha: 0");
+    expect(homeHero).not.toContain("rotationX");
     expect(servicesHeadline).toContain('filter: "blur(11px)"');
     expect(servicesHeadline).toContain("createCharacterShineTimeline");
   });
 
-  it("keeps the Home Framer runtime route-local and honours reduced motion", () => {
-    expect(homePage).toContain('import { MotionConfig } from "framer-motion"');
-    expect(homePage).toContain('<MotionConfig reducedMotion="user">');
-  });
+  // Retired Home-only integration: docs/release-evidence/retired-homepage-assertions.md.
+  // Replacement: editorialHome.reconciliation.test.ts (content/route) and editorial runtime tests.
 
   it("keeps service journey copy readable in every motion state", () => {
     expect(serviceStyles).toMatch(

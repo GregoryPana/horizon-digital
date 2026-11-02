@@ -6,17 +6,26 @@ export type HeroBuildExtractionStageId =
 export type HeroBuildExtractionMode = "desktop" | "mobile";
 
 export const HERO_DESKTOP_HEADLINE_EFFECT = Object.freeze({
-  wordRevealStart: 0.18,
-  wordDuration: 0.82,
-  wordStagger: 0.09,
-  totalDuration: 1.75,
-  shineDelay: 2.15,
-  shineRepeatDelay: 4.6,
-  shineStagger: 0.045,
-  shineDuration: 0.36,
-  desktopStoryStart: 2.45,
-  mobileStoryStart: 3.1,
+  desktopStoryStart: 0,
+  mobileStoryStart: 0,
 });
+
+/** One finite word reveal on every viewport; no per-letter or recurring work. */
+export const HERO_WORD_HEADLINE_EFFECT = Object.freeze({
+  start: 0.14,
+  duration: 0.22,
+  // Equal start spacing and duration: every word finishes before the next starts.
+  stagger: 0.22,
+  blur: 6,
+  initialOpacity: 0,
+});
+
+export function getHeroWordRevealTiming(wordCount: number) {
+  const revealEnd = HERO_WORD_HEADLINE_EFFECT.start
+    + HERO_WORD_HEADLINE_EFFECT.duration
+    + Math.max(0, wordCount - 1) * HERO_WORD_HEADLINE_EFFECT.stagger;
+  return { revealEnd, supportStart: revealEnd + 0.12 };
+}
 
 export interface HeroBuildExtractionStage {
   readonly id: HeroBuildExtractionStageId;
@@ -53,8 +62,8 @@ const desktopStages: HeroBuildExtractionStage[] = [
 ];
 
 const mobileStages: HeroBuildExtractionStage[] = [
-  { id: "headline-reveal", start: 0.14, duration: 2.62 },
-  { id: "support", start: 2.86, duration: 0.76 },
+  { id: "headline-reveal", start: HERO_WORD_HEADLINE_EFFECT.start, duration: getHeroWordRevealTiming(7).revealEnd - HERO_WORD_HEADLINE_EFFECT.start },
+  { id: "support", start: getHeroWordRevealTiming(7).supportStart, duration: 0.76 },
 ];
 
 export function shouldMountHeroStories(viewportWidth: number): boolean {

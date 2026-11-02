@@ -10,7 +10,7 @@ describe("corrected hero device placement and marquee startup contract", () => {
   it("keeps every build SVG out of the mobile composition", () => {
     expect(hero).not.toContain("hbe-mobile-story-slot");
     expect(hero).toContain("useHeroStoryMount");
-    expect(hero).toMatch(/mountHeroStories\s*\?[\s\S]*hbe-story-column[\s\S]*:\s*null/);
+    expect(hero).toMatch(/mountHeroStories\s*\?[\s\S]*HeroWebsitePlayback[\s\S]*:\s*null/);
     expect(heroStyles).not.toMatch(/\.hbe-story-column\s*\{[^}]*display:\s*none/);
     expect(HERO_BUILD_EXTRACTION_POLICIES.mobile.finalState.device).toBe("absent");
   });

@@ -5,7 +5,7 @@ const floating = readFileSync(new URL("./FloatingCarousel.tsx", import.meta.url)
 const autoTabs = readFileSync(new URL("./useViewportAutoTabs.ts", import.meta.url), "utf8");
 const showcase = readFileSync(new URL("./ServicesFamilyShowcase.tsx", import.meta.url), "utf8");
 const stories = readFileSync(new URL("./ServiceVisualStories.tsx", import.meta.url), "utf8");
-const home = readFileSync(new URL("../../pages/Home.tsx", import.meta.url), "utf8");
+import { editorialHomeHtml as home } from "../editorial-home/content";
 const services = readFileSync(new URL("../../pages/Services.tsx", import.meta.url), "utf8");
 const webDesign = readFileSync(new URL("../../pages/WebDesignSeychelles.tsx", import.meta.url), "utf8");
 const pillar = readFileSync(new URL("../../pages/ServicePillarPage.tsx", import.meta.url), "utf8");
@@ -18,7 +18,8 @@ const factData = JSON.parse(facts);
 
 describe("mobile service tabs and final performance refinement", () => {
   it("uses named service tabs on both routes without decorative category numbering", () => {
-    expect(home).toContain('tabs={["Website", "SEO", "Analytics"]}');
+    // Homepage cards replace the retired tabs; Services tabs remain protected below.
+    for (const label of ['Website design', 'Search optimisation', 'Analytics']) expect(home).toContain(label);
     expect(floating).toContain("floating-carousel-tabs");
     expect(showcase).toContain("services-family-showcase-tabs");
     expect(showcase).not.toContain("services-family-showcase-step-number");

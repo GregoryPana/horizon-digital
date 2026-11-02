@@ -1,9 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useReducedMotion } from "framer-motion";
 import { ArrowRight, Check, ChevronDown } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Seo from "../components/Seo";
-import { useProceduralReveal } from "../hooks/useProceduralReveal";
 import {
   addOnItems,
   customPackage,
@@ -17,14 +16,12 @@ import {
   stabilisationPlan,
   starterPackage,
 } from "../data/site";
-import { trackEvent } from "../lib/analytics";
+import { trackContactIntent, trackEvent } from "../lib/analytics";
 import "./Pricing.css";
-import PricingPackageGraphic from "./PricingPackageGraphic";
 import {
   PRICING_COMPARISON_GROUPS,
   PRICING_DECISIONS,
   PRICING_PACKAGE_FEATURE_ROWS,
-  PRICING_PACKAGE_CUE_INDEXES,
   PRICING_PACKAGE_ORDER,
   PRICING_STARTER_PACKAGE_ID,
   createInitialPricingComparisonGroupState,
@@ -33,7 +30,6 @@ import {
   type PricingComparisonGroupState,
   type PricingDecisionId,
   type PricingPackageId,
-  formatPublishedStartingPrice,
   getPricingPackageComparisonDisplay,
   selectActivePricingDecision,
   togglePricingComparisonGroup,
@@ -47,7 +43,6 @@ type PackageFeature = {
 type PricingPackage = {
   id: string;
   title: string;
-  price: string;
   description: string;
   includes: PackageFeature[];
 };
@@ -59,9 +54,9 @@ const packageById: Record<PricingPackageId, PricingPackage> = {
 };
 
 const packageContactPaths: Record<PricingPackageId, string> = {
-  foundation: "/contact?budget=7500-12500",
-  starter: "/contact?budget=12500-25000",
-  growth: "/contact?budget=25000-plus",
+  foundation: "/contact?package=foundation",
+  starter: "/contact?package=starter",
+  growth: "/contact?package=growth",
 };
 
 const packageProgression: Record<PricingPackageId, string> = {
@@ -70,10 +65,20 @@ const packageProgression: Record<PricingPackageId, string> = {
   growth: "Deeper scope · up to 10–12 pages",
 };
 
-const packageInheritanceLabel: Record<PricingPackageId, string> = {
-  foundation: "Included in Foundation:",
-  starter: "Everything in Foundation, plus:",
-  growth: "Everything in Starter, plus:",
+// Shared inclusions are explained once; cards emphasise meaningful differences.
+const packageHighlightIndexes: Record<PricingPackageId, number[]> = {
+  foundation: [6, 5],
+  starter: [8, 4, 7, 6],
+  growth: [8, 4, 7, 6],
+};
+
+const addOnScopeNotes: Record<string, string> = {
+  "Additional page": "Extend the agreed page range with the content your business needs.",
+  "Page content writing support": "Get support with writing the agreed website pages.",
+  "Custom booking or enquiry form": "Agree the fields and enquiry workflow your website needs.",
+  "Google Business Profile setup": "Setup support subject to account access and verified business details.",
+  "Rush delivery": "Discuss a shorter timeline, subject to availability.",
+  "Content management for Foundation": "Add editing for agreed text and image fields. Included in Starter and Growth.",
 };
 
 const packageInclusions = {
@@ -200,10 +205,8 @@ export default function Pricing() {
   const shouldReduceMotion = useReducedMotion();
   const location = useLocation();
   const navigate = useNavigate();
-  const pageRef = useRef<HTMLDivElement>(null);
   const [activeDecision, setActiveDecision] = useState<PricingDecisionId>(PRICING_DECISIONS[0].id);
   const [comparisonGroupState, setComparisonGroupState] = useState(createInitialPricingComparisonGroupState);
-  useProceduralReveal(pageRef);
 
   useEffect(() => {
     let frame = 0;
@@ -269,14 +272,6 @@ export default function Pricing() {
     setActiveDecision(decisionId);
   };
 
-  const packageOffers = PRICING_PACKAGE_ORDER.map((packageId) => packageById[packageId]).map((pkg) => ({
-    "@type": "Offer" as const,
-    name: pkg.title,
-    priceCurrency: "SCR",
-    price: pkg.price.replace(/[^\d]/g, ""),
-    url: new URL("/pricing", siteConfig.url).toString(),
-  }));
-
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -304,14 +299,10 @@ export default function Pricing() {
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: "Web Design Packages",
-      itemListElement: packageOffers.map((offer) => ({
+      itemListElement: PRICING_PACKAGE_ORDER.map((id) => ({
         "@type": "Offer",
-        itemOffered: { "@type": "Service", name: offer.name },
-        priceSpecification: {
-          "@type": "PriceSpecification",
-          price: offer.price,
-          priceCurrency: offer.priceCurrency,
-        },
+        url: new URL(packageContactPaths[id], siteConfig.url).toString(),
+        itemOffered: { "@type": "Service", name: packageById[id].title, description: packageById[id].description },
       })),
     },
   };
@@ -329,10 +320,10 @@ export default function Pricing() {
   const timelineFaq = faqs.find((faq) => faq.question === "How long does a project take?");
 
   return (
-    <div className="pricing-page" ref={pageRef}>
+    <div className="pricing-page">
       <Seo
         title="Custom Website Packages & Pricing in Seychelles | Horizon Digital"
-        description="Published SCR starting prices for custom website packages in Seychelles, with clear inclusions, hosting, support and payment terms."
+        description="Compare custom website packages in Seychelles and request a free quote. Clear inclusions, optional hosting, support and payment terms."
         path="/pricing"
         keywords="custom website packages Seychelles, custom web design pricing Seychelles, bespoke website development Seychelles, tailored web solutions Seychelles"
         breadcrumbs={[
@@ -363,17 +354,31 @@ export default function Pricing() {
         </div>
       </nav>
 
-      <section id="packages" className="pricing-hero pricing-decision-section pricing-packages-section section-reveal">
+      <section id="packages" className="pricing-hero pricing-decision-section pricing-packages-section">
         <div className="pricing-container">
-          <header className="pricing-hero-copy reveal-heading">
-            <p className="pricing-eyebrow">Website packages · Seychelles</p>
-            <h1>Choose the right website package.</h1>
-            <p className="pricing-hero-lead">{servicesPricingIntro.subtitle}</p>
-            <Link to="/process" className="pricing-process-link focus-ring">
-              See how a website project runs
-              <ArrowRight aria-hidden="true" />
-            </Link>
+          <header className="pricing-hero-copy">
+            <div>
+              <p className="pricing-eyebrow">Website packages · Seychelles</p>
+              <h1>A clear scope.<br /><span>A website that fits.</span></h1>
+            </div>
+            <div className="pricing-hero-intro">
+              <p className="pricing-hero-lead">Start with a free consultation. We’ll match your pages and features to a package, then send a tailored quote.</p>
+              <Link to="/contact" className="pricing-primary-action focus-ring" onClick={() => trackPricingCta("pricing_hero_free_quote")}>
+                Request a free quote <ArrowRight aria-hidden="true" />
+              </Link>
+              <a href={`tel:${siteConfig.phone.replace(/\s+/g, "")}`} className="pricing-call-action focus-ring" onClick={() => trackContactIntent({ method: "phone", source: "pricing_hero" })}>
+                Call for a free quote <span>{siteConfig.phone}</span>
+              </a>
+              <Link to="/process" className="pricing-process-link focus-ring">
+                See how a website project runs <ArrowRight aria-hidden="true" />
+              </Link>
+            </div>
           </header>
+
+          <div className="pricing-package-intro">
+            <p className="pricing-eyebrow">Find your starting point</p>
+            <p>Custom design, a mobile-responsive build, a contact form and WhatsApp link, and the same technical and on-page SEO foundation — in every package.</p>
+          </div>
 
           <div className="pricing-package-grid">
             {PRICING_PACKAGE_ORDER.map((packageId) => {
@@ -382,18 +387,19 @@ export default function Pricing() {
               return (
                 <article
                   key={packageId}
-                  className="pricing-package-card reveal-item"
+                  className="pricing-package-card"
                   data-featured={isStarter}
                   aria-labelledby={`package-${packageId}`}
                 >
-                  <PricingPackageGraphic tier={packageId} />
+                  <div className="pricing-package-kicker">
+                    <span>{packageId === "foundation" ? "The essentials" : packageId === "starter" ? "Room to grow" : "A broader presence"}</span>
+                    {isStarter && <span className="pricing-recommended">Recommended</span>}
+                  </div>
                   <div className="pricing-package-head">
                     <div className="pricing-package-title-row">
                       <h2 id={`package-${packageId}`}>{pkg.title}</h2>
-                      {isStarter && <span className="pricing-best-value">Best Value</span>}
                     </div>
                     <p className="pricing-package-fit">{pkg.description}</p>
-                    <p className="pricing-package-price">{formatPublishedStartingPrice(pkg.price)}</p>
                     <p className="pricing-package-progression">{packageProgression[packageId]}</p>
                   </div>
 
@@ -403,38 +409,41 @@ export default function Pricing() {
                     data-featured={isStarter}
                     onClick={() => trackPricingCta(`pricing_${packageId}_get_started`)}
                   >
-                    Discuss {pkg.title}
+                    Request a free quote
                     <ArrowRight aria-hidden="true" />
                   </Link>
 
-                  <p className="pricing-package-inheritance">{packageInheritanceLabel[packageId]}</p>
+                  <p className="pricing-package-inheritance">{packageId === "foundation" ? "A focused starting scope:" : "Your scope includes:"}</p>
                   <ul className="pricing-package-highlights">
-                    {PRICING_PACKAGE_CUE_INDEXES[packageId].map((featureIndex) => {
+                    {packageHighlightIndexes[packageId].map((featureIndex) => {
                       const feature = pkg.includes[featureIndex];
                       return (
                         <li key={feature.title}>
                           <Check aria-hidden="true" />
                           <span>
                             {feature.title}
-                            {packageId === "growth" && featureIndex === 0 && (
-                              <small>{feature.description}</small>
-                            )}
                           </span>
                         </li>
                       );
                     })}
                   </ul>
+                  {isStarter && <p className="pricing-recommendation">Recommended for editable content and basic visitor measurement.</p>}
                 </article>
               );
             })}
           </div>
 
           <p className="pricing-package-disclaimer reveal-item">
-            All prices are starting points. The written proposal confirms final scope, deliverables, responsibilities, exclusions and price.
+            Your quote is tailored to the project. The written proposal confirms final scope, deliverables, responsibilities, exclusions and price.
           </p>
 
           <div className="pricing-comparison-disclosure reveal-item">
-            <div id="pricing-package-comparison" className="pricing-comparison-panel">
+            <div className="pricing-comparison-intro">
+              <h2>Compare the details.</h2>
+              <p>See exactly what changes between packages. Open or close each group below.</p>
+            </div>
+            <p className="pricing-comparison-scroll-cue">Scroll sideways to compare all three packages <ArrowRight aria-hidden="true" /></p>
+            <div id="pricing-package-comparison" className="pricing-comparison-panel focus-ring" role="region" aria-label="Scrollable package comparison" tabIndex={0}>
               <PricingComparisonTable
                 groupState={comparisonGroupState}
                 onToggle={(groupId, isExpanded) => {
@@ -447,6 +456,7 @@ export default function Pricing() {
                 }}
               />
             </div>
+            <p className="pricing-comparison-note">Analytics setup requires the necessary account access and consent setup. Google Business Profile support also requires verified business details.</p>
           </div>
 
           <aside className="pricing-services-bridge reveal-item" aria-labelledby="pricing-services-bridge-title">
@@ -466,7 +476,7 @@ export default function Pricing() {
           <aside className="pricing-custom-scope reveal-item" aria-labelledby="custom-scope-title">
             <div>
               <p className="pricing-eyebrow">Tailored scope</p>
-              <h3 id="custom-scope-title">{customPackage.title} · {customPackage.price}</h3>
+              <h3 id="custom-scope-title">{customPackage.title} · Built around your brief</h3>
               <p>{customPackage.description}</p>
             </div>
             <Link
@@ -474,32 +484,32 @@ export default function Pricing() {
               className="pricing-secondary-action focus-ring"
               onClick={() => trackPricingCta("pricing_custom_scope_request")}
             >
-              Request a custom scope
+              Request a free quote
             </Link>
           </aside>
         </div>
       </section>
 
-      <section id="addons" className="pricing-decision-section section-light pricing-addons-section section-reveal">
+      <section id="addons" className="pricing-decision-section pricing-addons-section">
         <div className="pricing-container">
           <DecisionHeading
             number="02"
             eyebrow="Add-ons"
             title="Add only what the project needs."
-            description="Optional work is priced clearly and agreed before it is added to the written scope."
+            description="Extend a package where it matters. Optional work is quoted and agreed before it is added to your scope."
           />
           <div className="pricing-addon-list" role="list">
             {addOnItems.map((item) => (
               <div key={item.title} className="pricing-addon-row reveal-item" role="listitem">
                 <h3>{item.title}</h3>
-                <p>{item.price}</p>
+                <p>{("description" in item && typeof item.description === "string" ? item.description : addOnScopeNotes[item.title]) ?? "Defined and quoted in the agreed project scope."}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="hosting-support" className="pricing-decision-section pricing-hosting-section section-reveal">
+      <section id="hosting-support" className="pricing-decision-section pricing-hosting-section">
         <div className="pricing-container">
           <DecisionHeading
             number="03"
@@ -513,8 +523,8 @@ export default function Pricing() {
               <div className="pricing-hosting-price-row">
                 <div>
                   <p className="pricing-eyebrow">{hostingPlan.title}</p>
-                  <h3>{hostingPlan.price}</h3>
-                  <p>{hostingPlan.billing}</p>
+                  <h3>A home for your website.</h3>
+                  <p>Optional hosting, quoted with your project.</p>
                 </div>
               </div>
               <p className="pricing-hosting-summary">{hostingPlan.details[0]}</p>
@@ -577,7 +587,7 @@ export default function Pricing() {
         </div>
       </section>
 
-      <section id="payment-timeline" className="pricing-decision-section section-lagoon pricing-payment-section section-reveal">
+      <section id="payment-timeline" className="pricing-decision-section pricing-payment-section">
         <div className="pricing-container">
           <DecisionHeading
             number="04"
@@ -602,20 +612,20 @@ export default function Pricing() {
               <h3>Typical project timing</h3>
               <p>{timelineFaq?.answer}</p>
               <p className="pricing-proposal-note">
-                Package prices are starting points. The written proposal confirms final scope, deliverables, timing and price.
+                Your quote reflects the agreed project. The written proposal confirms final scope, deliverables, timing and price.
               </p>
             </aside>
           </div>
         </div>
       </section>
 
-      <section id="faq-consultation" className="pricing-decision-section pricing-faq-section section-reveal">
+      <section id="faq-consultation" className="pricing-decision-section pricing-faq-section">
         <div className="pricing-container">
           <DecisionHeading
             number="05"
             eyebrow="FAQ and consultation"
             title="Common questions and what happens next."
-            description="Review the common questions or share your business, goals, preferred timeline and approximate budget."
+            description="Review the details, then tell us about your business, goals and preferred timeline."
           />
           <div className="pricing-faq-layout">
             <div className="pricing-faq-list">
@@ -641,7 +651,7 @@ export default function Pricing() {
                 className="pricing-primary-action consultation-attraction focus-ring"
                 onClick={() => trackPricingCta("pricing_bottom_book_consult")}
               >
-                {siteConfig.primaryCtaLabel}
+                Request a free quote
                 <ArrowRight aria-hidden="true" />
               </Link>
             </aside>

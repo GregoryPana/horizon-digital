@@ -56,7 +56,7 @@ Contact forms and WhatsApp links are included in website packages. Booking, enqu
 
 - **Pathway:** Build or improve your website
 - **Type:** managed-service
-- **Price:** SCR 2,500 per year
+- **Price:** Quoted for your hosting needs
 
 Hosting configuration, SSL setup, regular backups, routine stability and security updates, basic availability checks and a simple monthly website activity update.
 
@@ -152,4 +152,4 @@ Search rankings, traffic, enquiries, bookings, conversions and revenue depend on
 
 Google Ads campaign setup and ongoing advertising management are outside the services advertised here.
 
-Package details and current starting prices are published at https://horizondigitalsey.com/pricing.
+Compare package details and request a free quote at https://horizondigitalsey.com/pricing.

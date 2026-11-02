@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 
-const home = readFileSync(new URL("./Home.tsx", import.meta.url), "utf8");
+import { editorialHomeHtml as home } from "../components/editorial-home/content";
 const styles = readFileSync(new URL("../index.css", import.meta.url), "utf8");
 
 describe("desktop evidence and services refinement", () => {
@@ -15,26 +15,10 @@ describe("desktop evidence and services refinement", () => {
     expect(styles).toMatch(/@media \(min-width:\s*1024px\)[\s\S]*\.service-carousel-item[\s\S]*grid-template-columns:\s*minmax\(320px,\s*1fr\) minmax\(0,\s*1\.12fr\)/);
     expect(styles).toMatch(/@media \(min-width:\s*1024px\)[\s\S]*\.service-story[\s\S]*max-height:\s*500px/);
     expect(styles).toMatch(/@media \(min-width:\s*1024px\) and \(max-height:\s*800px\)[\s\S]*width:\s*min\(100%,\s*550px\)[\s\S]*max-height:\s*440px/);
-    expect(home).toContain('className="service-carousel-fit"');
-    expect(home).toContain('className="service-carousel-title"');
-    expect(home).toContain('className="service-carousel-pricing"');
-    expect(home).toContain("{family.fit}");
-    expect(home).toContain("{family.pricing}");
+    // Editorial Home uses readable service cards, not the retired carousel.
+    for (const label of ['Website design', 'Mobile design', 'Website build', 'Search optimisation', 'Analytics']) expect(home).toContain(label);
   });
 
-  it("replaces repeated line stats with four truthful, differentiated proof visuals", () => {
-    expect(home).not.toContain("LineDrawStat");
-    expect(home).toContain("home-trust-intro");
-    expect(home).toContain("Clear proof, before a sales call.");
-    expect(home).toContain('data-proof-visual="live"');
-    expect(home).toContain('data-proof-visual="local"');
-    expect(home).toContain('data-proof-visual="process"');
-    expect(home).toContain('data-proof-visual="support"');
-    expect(home).toContain('value.split(",")[0]');
-    expect(home).toContain('value.replace(/\\s*days$/i, "")');
-    expect(styles).toContain(".home-trust-proof-visual[data-proof-visual=\"live\"]");
-    expect(styles).toContain(".home-trust-local-marker");
-    expect(styles).toContain(".home-trust-process-nodes");
-    expect(styles).toContain(".home-trust-support-calendar");
-  });
+  // Retired Home-only integration: docs/release-evidence/retired-homepage-assertions.md.
+  // Replacement: editorialHome.reconciliation.test.ts (content/route) and editorial runtime tests.
 });

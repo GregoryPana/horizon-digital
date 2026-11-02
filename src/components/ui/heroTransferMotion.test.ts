@@ -1,3 +1,4 @@
+const lineMotion = readFileSync(new URL("./heroLineReveal.ts", import.meta.url), "utf8");
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 
@@ -18,9 +19,9 @@ const servicesShowcase = source("./ServicesFamilyShowcase.tsx");
 const serviceStyles = source("../../pages/ServicePages.css");
 
 describe("transferable premium hero motion", () => {
-  it("loops a restrained character-level shine rather than illuminating words", () => {
-    expect(hero).toContain('query<HTMLElement>(".hbe-title-letter")');
-    expect(hero).toContain("createCharacterShineTimeline");
+  it("uses finite word-level motion while retaining the unrelated reusable shine helper", () => {
+    expect(lineMotion).toContain("word.getBoundingClientRect().top");
+    expect(hero).not.toContain("createCharacterShineTimeline");
     expect(headlineMotion).toContain("repeat: -1");
     expect(headlineMotion).toContain("repeatDelay");
     expect(headlineMotion).toContain("stagger");
@@ -28,11 +29,11 @@ describe("transferable premium hero motion", () => {
     expect(headlineMotion).not.toContain(".hbe-title-word");
   });
 
-  it("keeps recurring shine out of mobile and reduced-motion branches", () => {
-    expect(hero).toContain('(prefers-reduced-motion: no-preference) and (min-width: 768px)');
-    expect(hero).toContain('(prefers-reduced-motion: no-preference) and (max-width: 767px)');
-    expect(hero).toContain('mm.add("(prefers-reduced-motion: reduce)", setFinal)');
-    expect(hero.match(/createCharacterShineTimeline/g)).toHaveLength(2);
+  it("keeps recurring shine out of every homepage branch", () => {
+    expect(lineMotion).toContain("layout(false)");
+    expect(lineMotion).toContain("layout(false)");
+    expect(lineMotion).toContain("!animate || media.matches");
+    expect(hero).not.toContain("createCharacterShineTimeline");
   });
 
   it("authors independent landscape and portrait SVG narratives", () => {

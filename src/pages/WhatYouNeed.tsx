@@ -55,7 +55,7 @@ export default function WhatYouNeed() {
 
   return (
     <div className="overflow-hidden">
-      <h1 className="sr-only">What Custom Website Does Your Business Need?</h1>
+
       <Seo
         title="Choosing the Right Custom Website | Horizon Digital"
         description="A guide to understanding custom website options for your Seychelles business. Learn about domains, hosting, and finding the perfect custom web solution."
@@ -103,9 +103,9 @@ export default function WhatYouNeed() {
       <section className="pt-32 pb-20 md:pt-40 md:pb-32 text-center px-5 sm:px-8 max-w-5xl mx-auto">
         <motion.div {...fadeInUp} className="mb-20 text-center">
           <span className="mb-4 block text-[11px] font-bold uppercase tracking-[0.3em] leading-none text-deep-teal section-eyebrow-glow">YOUR GUIDE TO GETTING STARTED</span>
-          <h2 className="font-display mx-auto max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl mb-8 text-balance">
+          <h1 className="font-display mx-auto max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl mb-8 text-balance">
             Not sure where to start? Good — <span className="text-cyan font-semibold">most people aren't.</span>
-          </h2>
+          </h1>
           <p className="text-lg md:text-xl text-text-muted max-w-3xl mx-auto leading-relaxed">
             This page explains <span className="text-cyan font-semibold">everything simply</span> — what a website involves, what type suits your business, and how we work together. <span className="text-cyan font-semibold">No jargon, no pressure.</span>
           </p>

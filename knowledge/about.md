@@ -9,7 +9,7 @@ Custom websites built around each business, its customers and its goals.
 ## Working approach
 
 - Direct communication with the person responsible for the build
-- Starting prices published in SCR
+- Free consultation and a written quote
 - A written project scope before implementation
 - Responsive design and technical SEO foundations
 - Post-launch support based on the selected package

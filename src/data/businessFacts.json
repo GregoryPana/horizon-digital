@@ -15,7 +15,7 @@
     "pricingPath": "/pricing",
     "contactPath": "/contact",
     "responseTime": "within 24 hours",
-    "primaryCtaLabel": "Request a free consult"
+    "primaryCtaLabel": "Request a free quote"
   },
   "business": {
     "description": "Horizon Digital is a web design and development studio based on Mahé, Seychelles. We plan, design and build custom websites for local businesses.",
@@ -74,7 +74,7 @@
   "servicesPricingIntro": {
     "title": "Services & Pricing",
     "subtitle": "Websites built around how your business actually works — not copied from a template.",
-    "summary": "Every website is planned around your services, customers and goals. Package prices are starting points; the written scope confirms the final price and deliverables."
+    "summary": "Every website is planned around your services, customers and goals. Start with a free consultation, then receive a quote for the agreed scope."
   },
   "serviceCatalogue": [
     {
@@ -113,7 +113,7 @@
       "serviceType": "managed-service",
       "title": "Managed hosting",
       "description": "Hosting configuration, SSL setup, regular backups, routine stability and security updates, basic availability checks and a simple monthly website activity update.",
-      "price": "SCR 2,500 per year",
+      "price": "Quoted for your hosting needs",
       "websiteRedesignRequired": false,
       "accessRequirement": "Large or complex builds may need a different hosting plan and price. An agreed alternative provider can also be used."
     },
@@ -274,7 +274,7 @@
           "title": "Website design and development",
           "fit": "New website or redesign",
           "body": "Plan and build a custom website around your business and customers, or rebuild a site that needs clearer content or better mobile use.",
-          "pricing": "Website packages have published starting prices.",
+          "pricing": "Compare website packages, then request a free quote for your project.",
           "cta": "Explore website design",
           "path": "/web-design-seychelles"
         },
@@ -313,7 +313,7 @@
         "title": "Tell us what you want to improve.",
         "body": "We will discuss your setup, access and the right next step.",
         "primary": {
-          "label": "Request a free consult",
+          "label": "Request a free quote",
           "path": "/contact"
         },
         "secondary": {
@@ -436,7 +436,7 @@
             }
           ],
           "primary": {
-            "label": "View package details and starting prices",
+            "label": "Compare website packages",
             "path": "/pricing"
           },
           "secondary": {
@@ -718,7 +718,7 @@
     {
       "id": "foundation",
       "title": "Foundation",
-      "price": "From SCR 7,500",
+      "price": "Quoted for your project",
       "description": "A focused custom website for a business establishing or replacing a basic online presence.",
       "includes": [
         {
@@ -754,7 +754,7 @@
     {
       "id": "starter",
       "title": "Starter",
-      "price": "From SCR 12,500",
+      "price": "Quoted for your project",
       "description": "A larger custom website for a growing business with more services or content.",
       "includes": [
         {
@@ -798,7 +798,7 @@
     {
       "id": "growth",
       "title": "Growth",
-      "price": "From SCR 25,000",
+      "price": "Quoted for your project",
       "description": "A more extensive website for businesses with deeper content, service lines or integrations.",
       "includes": [
         {
@@ -873,17 +873,17 @@
     }
   ],
   "addOns": [
-    { "title": "Additional page", "price": "SCR 2,500 per page" },
-    { "title": "Page content writing support", "price": "SCR 600 per page" },
-    { "title": "Custom booking or enquiry form", "price": "SCR 2,000" },
-    { "title": "Google Business Profile setup", "price": "SCR 2,200" },
+    { "title": "Additional page", "price": "Quoted for the additional pages" },
+    { "title": "Page content writing support", "price": "Quoted for your content needs" },
+    { "title": "Custom booking or enquiry form", "price": "Quoted for the agreed form" },
+    { "title": "Google Business Profile setup", "price": "Quoted after an initial discussion" },
     {
       "title": "Rush delivery",
-      "price": "+40% of project cost, subject to availability"
+      "price": "Quoted separately, subject to availability"
     },
     {
       "title": "Content management for Foundation",
-      "price": "SCR 2,500; included in Starter and Growth"
+      "price": "Quoted for Foundation; included in Starter and Growth"
     }
   ],
   "paymentTerms": [
@@ -893,7 +893,7 @@
   ],
   "hosting": {
     "title": "Managed hosting",
-    "price": "SCR 2,500 per year",
+    "price": "Quoted for your hosting needs",
     "billing": "Billed annually",
     "features": [
       "Hosting configuration and SSL setup",
@@ -974,7 +974,7 @@
   "faqs": [
     {
       "question": "How much does a website cost?",
-      "answer": "Packages start at SCR 7,500 for Foundation, SCR 12,500 for Starter and SCR 25,000 for Growth. Custom work is scoped separately. The written proposal confirms the final price."
+      "answer": "Start with a free consultation. We will discuss your goals, recommend a suitable package and prepare a quote for the agreed work. The written proposal confirms the scope and price."
     },
     {
       "question": "What is included in the price?",
@@ -1074,7 +1074,7 @@
         },
         {
           "question": "Where is my website hosted?",
-          "answer": "Managed hosting is available for SCR 2,500 per year, or an alternative provider can be agreed. Large or complex builds may require a different plan."
+          "answer": "Managed hosting can be included in your quote, or an alternative provider can be agreed. The proposal confirms the plan for your website."
         }
       ]
     }
