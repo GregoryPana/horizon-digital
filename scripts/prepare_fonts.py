@@ -109,30 +109,53 @@ def diagnostic_members(data, source):
 
 
 def verified_members(data, source):
-    if len(data) > MAX_ARCHIVE or digest(data) != source['archive_sha256']:
-        diagnostic_members(data, source)
-        raise ValueError('Pinned archive hash mismatch; provider drift requires explicit review')
+    # ZIP timestamps vary by provider response. Authenticate every decompressed
+    # member and exact inventory instead; historical archive SHA is provenance.
+    if len(data) > MAX_ARCHIVE:
+        raise ValueError('Official archive size limit')
+    if not zipfile.is_zipfile(io.BytesIO(data)):
+        raise ValueError('Invalid official archive format')
     result = {}
     with zipfile.ZipFile(io.BytesIO(data)) as archive:
         infos = archive.infolist()
+        if len(infos) > 512 or sum(e.file_size for e in infos) > 128 * 1024 * 1024:
+            raise ValueError('Archive member bounds exceeded')
         names = [entry.filename for entry in infos]
         if len(names) != len(set(names)):
             raise ValueError('Duplicate archive entry')
         for entry in infos:
             path = PurePosixPath(entry.filename)
             mode = entry.external_attr >> 16
-            if path.is_absolute() or '..' in path.parts or '\\' in entry.filename or stat.S_ISLNK(mode):
+            if (len(entry.filename) > 512 or path.is_absolute() or '..' in path.parts
+                    or chr(92) in entry.filename or stat.S_ISLNK(mode)):
                 raise ValueError('Unsafe archive entry')
+        pins = source['archive_members']
+        if not pins or set(names) != set(pins):
+            raise ValueError('Pinned archive member inventory mismatch')
+        bodies = {}
+        for entry in infos:
+            expected = pins[entry.filename]
+            if entry.is_dir() or entry.file_size > 8 * 1024 * 1024:
+                raise ValueError('Invalid archive member size/type')
+            body = archive.read(entry)  # ZipFile additionally checks CRC.
+            if len(body) != expected['bytes'] or digest(body) != expected['sha256']:
+                raise ValueError('Pinned archive member hash/size mismatch')
+            bodies[entry.filename] = body
         for font in source['fonts']:
             if font['path'] not in ALLOWED:
                 raise ValueError('Unapproved output path')
             entry = archive.getinfo(font['official_exact_match'])
             if entry.is_dir() or entry.file_size > MAX_FONT:
                 raise ValueError('Invalid font archive member')
-            body = archive.read(entry)
+            body = bodies[entry.filename]
             if body[:4] != b'wOF2' or digest(body) != font['sha256']:
                 raise ValueError('Pinned font hash/format mismatch')
             result[font['path']] = body
+    print('FONT_CONTENT_VERIFIED ' + json.dumps({
+        'url': source.get('url'), 'archive_sha256': digest(data),
+        'historical_archive_match': digest(data) == source['archive_sha256'],
+        'exact_pinned_members': len(infos), 'approved_outputs': len(result)
+    }, sort_keys=True), flush=True)
     return result
 
 

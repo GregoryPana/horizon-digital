@@ -13,7 +13,261 @@
         "sha256": "e739aff9b4d02c264341d6d4872edcda28e79373aeda936f659566a1cd3eb47f",
         "official_exact_match": "Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Variable.woff2"
       }
-    ]
+    ],
+    "archive_members": {
+      "Satoshi_Complete/Fonts/TTF/Satoshi-VariableItalic.ttf": {
+        "sha256": "cfe8f600aa33dc80075b319a16ae663df30c7901b6cb332e70ea7dfb9c08b6ad",
+        "bytes": 129748
+      },
+      "Satoshi_Complete/Fonts/TTF/Satoshi-Variable.ttf": {
+        "sha256": "02ad131926aa46d282b6af73ad2bcaecb0ec6ef3b830a2f08dcabef44f1140ff",
+        "bytes": 127420
+      },
+      "Satoshi_Complete/Fonts/OTF/Satoshi-BlackItalic.otf": {
+        "sha256": "452bb2dbf019bcd8efe0f0d5f1697574643cf65bc522b7e3c18b84d89be5a8ba",
+        "bytes": 47792
+      },
+      "Satoshi_Complete/Fonts/OTF/Satoshi-Black.otf": {
+        "sha256": "49bdb8b9436b8b9192f6f14b7ce4b96d1a3822e13c504c00c0b2842357d265cc",
+        "bytes": 46928
+      },
+      "Satoshi_Complete/Fonts/OTF/Satoshi-BoldItalic.otf": {
+        "sha256": "b7ae114a1ac1850676e4c89e83ecc4e784409c4044b27622ae042912cc13b864",
+        "bytes": 51524
+      },
+      "Satoshi_Complete/Fonts/OTF/Satoshi-Bold.otf": {
+        "sha256": "50e4f9b7c1864c50761d729d6001bfac708c80457fa6fc41559a8ab1bd2573ff",
+        "bytes": 49668
+      },
+      "Satoshi_Complete/Fonts/OTF/Satoshi-MediumItalic.otf": {
+        "sha256": "9fe8f9b50e84e26dd37641acbc1ee60c8466ecd087213594133d2c29ff73ed57",
+        "bytes": 51500
+      },
+      "Satoshi_Complete/Fonts/OTF/Satoshi-Medium.otf": {
+        "sha256": "93330866d109f6b2e298748958ec6fa4010cacef586783f281a0b268cab7fc6e",
+        "bytes": 50352
+      },
+      "Satoshi_Complete/Fonts/OTF/Satoshi-Italic.otf": {
+        "sha256": "8be5ca91c666e7f697c8db93f1ccf00adbdae7b9309df912ae550371206dddc4",
+        "bytes": 51304
+      },
+      "Satoshi_Complete/Fonts/OTF/Satoshi-Regular.otf": {
+        "sha256": "711c6243cdc5431f9cc966e4de18bfb940365bad81acffd1e7948dbe3f254386",
+        "bytes": 49560
+      },
+      "Satoshi_Complete/Fonts/OTF/Satoshi-LightItalic.otf": {
+        "sha256": "52d316ba2bfbd45baa6a704b9d2a9db55f735703fda382328d44ca0b4568504e",
+        "bytes": 46580
+      },
+      "Satoshi_Complete/Fonts/OTF/Satoshi-Light.otf": {
+        "sha256": "f9b532a143181bc76adf9fd5968708c502c807acf7b7b1f0a0d46aba293dd2ba",
+        "bytes": 45128
+      },
+      "Satoshi_Complete/Fonts/WEB/fonts/Satoshi-VariableItalic.eot": {
+        "sha256": "7d43a67a5f2a452bc0437fd8a8dce4220f8cca5ced09e1aa514e21129bc89625",
+        "bytes": 129984
+      },
+      "Satoshi_Complete/Fonts/WEB/fonts/Satoshi-VariableItalic.woff2": {
+        "sha256": "e7b4e0ec5fbb156df444371d62c3506fe6256db6ffb55c4982dddbb44e2de351",
+        "bytes": 43844
+      },
+      "Satoshi_Complete/Fonts/WEB/fonts/Satoshi-VariableItalic.woff": {
+        "sha256": "eca20790a1e99e2ff9fc2d57385e7c84bf8ad03d95d02c2c357520f848f8fb2a",
+        "bytes": 36428
+      },
+      "Satoshi_Complete/Fonts/WEB/fonts/Satoshi-VariableItalic.ttf": {
+        "sha256": "cfe8f600aa33dc80075b319a16ae663df30c7901b6cb332e70ea7dfb9c08b6ad",
+        "bytes": 129748
+      },
+      "Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Variable.eot": {
+        "sha256": "81de16641ad93c276640991b8d80ffa1e42319394c2d75124fbff60488f2c236",
+        "bytes": 127628
+      },
+      "Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Variable.woff2": {
+        "sha256": "e739aff9b4d02c264341d6d4872edcda28e79373aeda936f659566a1cd3eb47f",
+        "bytes": 42588
+      },
+      "Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Variable.woff": {
+        "sha256": "efaa2b6d6e427aeb119937f505591b459197dc23975b4b8a1d52d2d23212bdde",
+        "bytes": 35128
+      },
+      "Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Variable.ttf": {
+        "sha256": "02ad131926aa46d282b6af73ad2bcaecb0ec6ef3b830a2f08dcabef44f1140ff",
+        "bytes": 127420
+      },
+      "Satoshi_Complete/Fonts/WEB/fonts/Satoshi-BlackItalic.eot": {
+        "sha256": "daceef9ee79cdcbd0d21db6081b92d49006315a7c4240d9e1bbcbca108a76370",
+        "bytes": 48012
+      },
+      "Satoshi_Complete/Fonts/WEB/fonts/Satoshi-BlackItalic.woff2": {
+        "sha256": "c8961b6ef384f3907d499b6787b456cd5753bbb6cef0376751903eee1abcd3e8",
+        "bytes": 25532
+      },
+      "Satoshi_Complete/Fonts/WEB/fonts/Satoshi-BlackItalic.woff": {
+        "sha256": "a7cb6c363fdb97c6928ff8d3d0959fec968e0860f8f1f007951e686c83232c06",
+        "bytes": 31412
+      },
+      "Satoshi_Complete/Fonts/WEB/fonts/Satoshi-BlackItalic.ttf": {
+        "sha256": "ef0df6cf298b5f8ae8c42af2a152ecf66903dc32554b130443f56be235e0495e",
+        "bytes": 75924
+      },
+      "Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Black.eot": {
+        "sha256": "2d06c8d47f1986ac208788d84e48e6aa9f0bb083e77a2245f9318de113aecf1e",
+        "bytes": 47120
+      },
+      "Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Black.woff2": {
+        "sha256": "a4f962f7f9c049b2d58d848746206adf99bb7b89407d6cc29a36b7eb0d77d032",
+        "bytes": 24228
+      },
+      "Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Black.woff": {
+        "sha256": "f8f52594950db56a4be8e3feb78f13477c13a935e5c8b4d4c5d3199cb85128ef",
+        "bytes": 30428
+      },
+      "Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Black.ttf": {
+        "sha256": "aa8747f0b1d944b32e2fa9805b9012253a5807b24e51d89a25b2b18482c6f1f4",
+        "bytes": 73300
+      },
+      "Satoshi_Complete/Fonts/WEB/fonts/Satoshi-BoldItalic.eot": {
+        "sha256": "a225a77d0fd0ee1662b98782efe7fd2958f89563b5900cbc99b82107b1de069f",
+        "bytes": 51724
+      },
+      "Satoshi_Complete/Fonts/WEB/fonts/Satoshi-BoldItalic.woff2": {
+        "sha256": "cdce008b63614513640bfa874e286041445b3035b9f8a200c304e8ef1435fc35",
+        "bytes": 28464
+      },
+      "Satoshi_Complete/Fonts/WEB/fonts/Satoshi-BoldItalic.woff": {
+        "sha256": "ec431b3881e0a10aa8b8dc9359575c5eaa76e1111433b903861102b9e752d363",
+        "bytes": 34388
+      },
+      "Satoshi_Complete/Fonts/WEB/fonts/Satoshi-BoldItalic.ttf": {
+        "sha256": "a1d6d69dc7092d59755790fe1d9f48bbf54573da22a84c3ed830689fb1a823a7",
+        "bytes": 76616
+      },
+      "Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Bold.eot": {
+        "sha256": "d3e8cc17ea7f6cc41a268aea059da3e5b30880fb93b33e04a4147e6f7c529789",
+        "bytes": 49840
+      },
+      "Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Bold.woff2": {
+        "sha256": "6f979e75eb9d6de6af2eacc0c72fd2cbe613922b27db92217dd204c8080de930",
+        "bytes": 26728
+      },
+      "Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Bold.woff": {
+        "sha256": "1bdde067b24b78eaf02d02964856d53747c53343f4bbb1c96b4a3c96208547d3",
+        "bytes": 33028
+      },
+      "Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Bold.ttf": {
+        "sha256": "4b7a5e6f7673cf13e96ec2b8dd20897a6a1ac2e548f1bb78b475ebc4c787deaa",
+        "bytes": 73476
+      },
+      "Satoshi_Complete/Fonts/WEB/fonts/Satoshi-MediumItalic.eot": {
+        "sha256": "a75e8c85b60debcf8f1efa853ea5c17c2fec41bbab891b9cf315f3344986c77b",
+        "bytes": 51724
+      },
+      "Satoshi_Complete/Fonts/WEB/fonts/Satoshi-MediumItalic.woff2": {
+        "sha256": "e4655448c210344d38c855454fa49ddfd3143405e5ed8a65755dccdfc90468db",
+        "bytes": 28536
+      },
+      "Satoshi_Complete/Fonts/WEB/fonts/Satoshi-MediumItalic.woff": {
+        "sha256": "bfbe7ccf76fe12657fb7f1a1cb624e6ccf3015d176e18d341d0726d1e4109b38",
+        "bytes": 34636
+      },
+      "Satoshi_Complete/Fonts/WEB/fonts/Satoshi-MediumItalic.ttf": {
+        "sha256": "e03b7af795e657e043ce2c482c121b557a1fabe386af0f124e297f99b6303280",
+        "bytes": 76868
+      },
+      "Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Medium.eot": {
+        "sha256": "4c388651f59b0afcbc872d159b1ccc123923f4fad3bb2fa6566b4fb6ff33cee9",
+        "bytes": 50548
+      },
+      "Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Medium.woff2": {
+        "sha256": "d492ce178ab9042bd6bcad1b9ef49b1436ba5f4f833dee4a7a2ed94e9d8c922e",
+        "bytes": 27260
+      },
+      "Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Medium.woff": {
+        "sha256": "999bae3e723c41dd439fcb20b0ab2ed864d7b4c3f673973d5b2182128946aeea",
+        "bytes": 33328
+      },
+      "Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Medium.ttf": {
+        "sha256": "1b8add8dd01432467171646ee43f56ef035190f6f5002f80bc1766f03aa0f024",
+        "bytes": 73888
+      },
+      "Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Italic.eot": {
+        "sha256": "243270cd45a0c653fc8c33585b44d44b0f228f88042cfaf3b44223ae1a383de1",
+        "bytes": 51484
+      },
+      "Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Italic.woff2": {
+        "sha256": "a80f3880397bbb8ca56a541908873cedc66eb5bd6a5fef34b56f7531f18231fe",
+        "bytes": 28588
+      },
+      "Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Italic.woff": {
+        "sha256": "d89fb83a9421edb465d6d5f9be77004102f0af734d373267b15d71941dcae27e",
+        "bytes": 34396
+      },
+      "Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Italic.ttf": {
+        "sha256": "9bbc15ca35ac7329f63dc19eb006b90959218768a399463eecdee527d3143fff",
+        "bytes": 76740
+      },
+      "Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Regular.eot": {
+        "sha256": "cf133f8b6d30f38e6a123f52ed5ee87dfa93253e1f37a7f4ef6247f721a7c322",
+        "bytes": 49744
+      },
+      "Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Regular.woff2": {
+        "sha256": "5aa97d938f523dd893c52473c3a021a0bf4ba0f95290edcc0749c088717f951f",
+        "bytes": 27184
+      },
+      "Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Regular.woff": {
+        "sha256": "badbfc69f09a295a62adb2b7e5f9407c057cbce3fcf4ad46d729370cf918a18b",
+        "bytes": 33084
+      },
+      "Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Regular.ttf": {
+        "sha256": "b94308c3dc042ffbca813300ce851412100b6526ee03594c3137a9bbfab60952",
+        "bytes": 73624
+      },
+      "Satoshi_Complete/Fonts/WEB/fonts/Satoshi-LightItalic.eot": {
+        "sha256": "7e298c17e096fa74deeb7e9d319a336f863eccfe03d429ae5089d2f9a8f35d96",
+        "bytes": 46800
+      },
+      "Satoshi_Complete/Fonts/WEB/fonts/Satoshi-LightItalic.woff2": {
+        "sha256": "9c9fc2d9d5010250f785daf945d53506a09bddeac3003ad4e42c6f076509ac7a",
+        "bytes": 24768
+      },
+      "Satoshi_Complete/Fonts/WEB/fonts/Satoshi-LightItalic.woff": {
+        "sha256": "102905d2282421656cf8c56eda4b6a192aa90a9a2e9efcba34f78fcbc2a4e88e",
+        "bytes": 30392
+      },
+      "Satoshi_Complete/Fonts/WEB/fonts/Satoshi-LightItalic.ttf": {
+        "sha256": "ba71612e831b0bb80846fedb092d1b3d7dbd4730800d5bd8039cdda67c14aff0",
+        "bytes": 75564
+      },
+      "Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Light.eot": {
+        "sha256": "053a7ef5bb56faf95e9adbe64d986a915787ca86c1b10ecb44797551ff816ea7",
+        "bytes": 45320
+      },
+      "Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Light.woff2": {
+        "sha256": "28bde2ff554acba1eff96f6cf120e226736286e05c90ececdaa3fafececbd55e",
+        "bytes": 23788
+      },
+      "Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Light.woff": {
+        "sha256": "0b92e19bfba5d646552849f25e8cb52e3187fd463ce4e893695d6c539eacf4e1",
+        "bytes": 29336
+      },
+      "Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Light.ttf": {
+        "sha256": "ca3376c4de409b69cf1973f55ff675141e64f1154fa734b03900b71fbb9e760c",
+        "bytes": 71808
+      },
+      "Satoshi_Complete/Fonts/WEB/css/satoshi.css": {
+        "sha256": "17e8f5d56102c8c6d81f6111b0ee1fddf4ecb14356def0af7d634c6ada5464f8",
+        "bytes": 4419
+      },
+      "Satoshi_Complete/Fonts/WEB/README.md": {
+        "sha256": "8c0f8273366af52acc8d0ea1462652ea3498119224272c3689ba3a4d096cdb71",
+        "bytes": 989
+      },
+      "Satoshi_Complete/License/FFL.txt": {
+        "sha256": "145e7fe2429a3336ba215c070ef722000e01348a3e1baaa127e871bb5012f554",
+        "bytes": 12734
+      }
+    }
   },
   "switzer": {
     "url": "https://api.fontshare.com/v2/fonts/download/switzer",
@@ -39,7 +293,421 @@
         "sha256": "aefa3d21af6adb6dd53246ff86e1d8e7eaf36a8d792dd59136cced309e3c8862",
         "official_exact_match": "Switzer_Complete/Fonts/WEB/fonts/Switzer-Regular.woff2"
       }
-    ]
+    ],
+    "archive_members": {
+      "Switzer_Complete/Fonts/TTF/Switzer-VariableItalic.ttf": {
+        "sha256": "82f143638dc02765a6284a01b15cf89f3a91b2ec97144c0f3b3165ba6fbf6d8a",
+        "bytes": 85128
+      },
+      "Switzer_Complete/Fonts/TTF/Switzer-Variable.ttf": {
+        "sha256": "373c2d2ad8f1f811ca58ae725e9591db2e72cf726dc6e8066cd7f64b4c283cdf",
+        "bytes": 141020
+      },
+      "Switzer_Complete/Fonts/OTF/Switzer-BlackItalic.otf": {
+        "sha256": "5e6f513b6e4f8ab1c21b81cd44de28680b43f5b4c8d070b8912271f342fbf40e",
+        "bytes": 32180
+      },
+      "Switzer_Complete/Fonts/OTF/Switzer-Black.otf": {
+        "sha256": "da2c9c00917469b2baf5f90728063a53e8f299ecc6189148222b13b844882a40",
+        "bytes": 30376
+      },
+      "Switzer_Complete/Fonts/OTF/Switzer-ExtraboldItalic.otf": {
+        "sha256": "e675c41f16fd80dc5b284c9a6c46a336a627e1416839834a5f9edbd75b7a06f9",
+        "bytes": 33144
+      },
+      "Switzer_Complete/Fonts/OTF/Switzer-Extrabold.otf": {
+        "sha256": "648c04b314efd51cd072bac61ffe4a7051222ca73c082e3da1b309470665a986",
+        "bytes": 48492
+      },
+      "Switzer_Complete/Fonts/OTF/Switzer-BoldItalic.otf": {
+        "sha256": "5bdc407ac4044007998ef11cbc0922d975549c9f570d86143f19125002dd52ea",
+        "bytes": 32960
+      },
+      "Switzer_Complete/Fonts/OTF/Switzer-Bold.otf": {
+        "sha256": "b15598c52907497ac7a014658c335e10f8f6b878ea82c79decd117e926a74b02",
+        "bytes": 48112
+      },
+      "Switzer_Complete/Fonts/OTF/Switzer-SemiboldItalic.otf": {
+        "sha256": "abdc91c517980c899af4839572de87cd7912ec195da9e114b3bc30a1b326ab24",
+        "bytes": 33060
+      },
+      "Switzer_Complete/Fonts/OTF/Switzer-Semibold.otf": {
+        "sha256": "0b1652d8384fcd5038dc19317ab0e0c4f4b7317e6a9729d8ef38fba375b01921",
+        "bytes": 48540
+      },
+      "Switzer_Complete/Fonts/OTF/Switzer-MediumItalic.otf": {
+        "sha256": "a02ee86f4e86957378f67714b4b2b1d6a927f1e0ae9168da73413f015492cb4e",
+        "bytes": 32832
+      },
+      "Switzer_Complete/Fonts/OTF/Switzer-Medium.otf": {
+        "sha256": "dc1000a1cfd8e9269bd4c26630966e67f9bbb3abe6689aac3d913e99927c6825",
+        "bytes": 48248
+      },
+      "Switzer_Complete/Fonts/OTF/Switzer-Italic.otf": {
+        "sha256": "7eef7388667e49874687703b16c35ad3b26d0faef7c123597eb73f5c4be8b596",
+        "bytes": 32052
+      },
+      "Switzer_Complete/Fonts/OTF/Switzer-Regular.otf": {
+        "sha256": "6208450253b06898c2b58b38d8dab5f6a35059b3fd9b25ab98c5f25cfeeebee7",
+        "bytes": 34560
+      },
+      "Switzer_Complete/Fonts/OTF/Switzer-LightItalic.otf": {
+        "sha256": "81defa5c44e4b7b7879d6fa22cc4fd3e4fab5e315c1a45fef9852025c2814281",
+        "bytes": 32492
+      },
+      "Switzer_Complete/Fonts/OTF/Switzer-Light.otf": {
+        "sha256": "f2dab46aaf8368cf0182c1ab265f7281479ea82e10e81ec46136da43d46ec1fb",
+        "bytes": 36628
+      },
+      "Switzer_Complete/Fonts/OTF/Switzer-ExtralightItalic.otf": {
+        "sha256": "8248209b649ef4fe75bc608786dd35e6c655d48908159ebfc292a5d1f3a297b1",
+        "bytes": 32820
+      },
+      "Switzer_Complete/Fonts/OTF/Switzer-Extralight.otf": {
+        "sha256": "cbda366facd07270e80ac5581c7dc709edd56f951b6a650f62b27c4850622838",
+        "bytes": 36824
+      },
+      "Switzer_Complete/Fonts/OTF/Switzer-ThinItalic.otf": {
+        "sha256": "35c6559347a67ea23e1181d568db65d749ca9950f07072597f8f7774571dcae0",
+        "bytes": 32268
+      },
+      "Switzer_Complete/Fonts/OTF/Switzer-Thin.otf": {
+        "sha256": "9edd2bdafd1ca4c96833f356d3b7404237a5316330485c9427d51e65eb17b7b0",
+        "bytes": 34864
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-VariableItalic.eot": {
+        "sha256": "7a3386506dd4f4358c21a324b2d60b767f94b31f5cf2a3900cf7875f4f2996dd",
+        "bytes": 85344
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-VariableItalic.woff2": {
+        "sha256": "bf66eb64d539c68c9ebc455e7776cbfcf16cf3cae8b57ce1930e0f0f6ab32a49",
+        "bytes": 33408
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-VariableItalic.woff": {
+        "sha256": "ebf90504ec48a15b5643b29cbe78ee1ecb1e83014e521e09be2d2e65f62ad09c",
+        "bytes": 29684
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-VariableItalic.ttf": {
+        "sha256": "82f143638dc02765a6284a01b15cf89f3a91b2ec97144c0f3b3165ba6fbf6d8a",
+        "bytes": 85128
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-Variable.eot": {
+        "sha256": "bd634cb834559fc9a6c7967c836e0fc8bea2ccd46cb86ea0b7da4b37c5499792",
+        "bytes": 141240
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-Variable.woff2": {
+        "sha256": "d1bf801ffb1a6096def70a7c532255722ad87d948b13a8a586e342f7091f8ee4",
+        "bytes": 43220
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-Variable.woff": {
+        "sha256": "d24407201b6b0cbe157e63a6233a99103da437764f46b600df0b71b42ffb4775",
+        "bytes": 32760
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-Variable.ttf": {
+        "sha256": "373c2d2ad8f1f811ca58ae725e9591db2e72cf726dc6e8066cd7f64b4c283cdf",
+        "bytes": 141020
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-BlackItalic.eot": {
+        "sha256": "fdc670ab209d0f12abd3d7c5aa2009328a214d2a52091c39e4f0decea4e46838",
+        "bytes": 32400
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-BlackItalic.woff2": {
+        "sha256": "92255e7665b88d621d8ce74efc0f52f4438bd5d86a556742455525fb6ca8b953",
+        "bytes": 16368
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-BlackItalic.woff": {
+        "sha256": "9c68fc46e8f5f91f82f547d11054af9fb35fb822737de96a7922d3fb49cbc3ee",
+        "bytes": 19388
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-BlackItalic.ttf": {
+        "sha256": "e8d255b2934ea8fdb8e5f244f604eb6a4d9c35fb43387bfb7ab78b57766b3304",
+        "bytes": 50896
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-Black.eot": {
+        "sha256": "7c08a8f552de9411f0c5f90cc51441af83b7d30873c5b2fbf93afb0c821e1f1a",
+        "bytes": 30568
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-Black.woff2": {
+        "sha256": "b3260f8f52f234f97ce9d58e7c07d8e2777edf7507961d05e5b0f5d22a103255",
+        "bytes": 15088
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-Black.woff": {
+        "sha256": "5fd7c53c5b63b0f6fbbaeaec658915dbf08fc3bbc3a004ecb18860214a550f57",
+        "bytes": 18180
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-Black.ttf": {
+        "sha256": "74be1f570c84852facd62ab142d85ab4ab606b287c8a9a104de2a8b993ae7ac3",
+        "bytes": 47320
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-ExtraboldItalic.eot": {
+        "sha256": "4e2b80ef43d433bcdf42cfb0698ef46f46fbeedf3d259724c638dfb62fde917a",
+        "bytes": 33380
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-ExtraboldItalic.woff2": {
+        "sha256": "066cf492622c7ac389807df31657543814f8d3e6695555ee19dc9254456cacc9",
+        "bytes": 17052
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-ExtraboldItalic.woff": {
+        "sha256": "f374092c5e6f21bb3e96d1fec028bce9c69eb7412b2ad912f03b0bc48a3b5d0c",
+        "bytes": 20288
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-ExtraboldItalic.ttf": {
+        "sha256": "3a7e29e35c6f666d50959428726a6c9beb933871159c70286a587e5eba44d8ba",
+        "bytes": 51592
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-Extrabold.eot": {
+        "sha256": "1fbfa150c4750b46a077a3c5a3e295450f195a5aaa8f7dc52b3e5c832eee3911",
+        "bytes": 48700
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-Extrabold.woff2": {
+        "sha256": "4e661c9bcaf4bac135e1053688af80bb03b48170c2e1e364fd1cc4761757de20",
+        "bytes": 20152
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-Extrabold.woff": {
+        "sha256": "d700c1203035a0828870c21faf06a880d4ec70bfe2c5632375cc428b0b1fdfa5",
+        "bytes": 26804
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-Extrabold.ttf": {
+        "sha256": "7503b15abcf2d6dfaf8d7cd9146648c7c145a9d7125217d79c852475ec41563d",
+        "bytes": 64724
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-BoldItalic.eot": {
+        "sha256": "af6a51b85b247d23b7172b33c3d84144e99f0a7df0e771eeba0b15ffec81b4bd",
+        "bytes": 33160
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-BoldItalic.woff2": {
+        "sha256": "013b4c3894697a48622fd8e10f66f2950f296971903b817e72dfa6e7e081a335",
+        "bytes": 16972
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-BoldItalic.woff": {
+        "sha256": "50011932bd74efdd63db307490f321b7196bc177625133c5b0e2f96a7ea5f0b0",
+        "bytes": 20188
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-BoldItalic.ttf": {
+        "sha256": "437f0a4c8277cb8bc3e2541fde61d8ea1a06e19e98a51dc05ba2aefd7307a100",
+        "bytes": 51728
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-Bold.eot": {
+        "sha256": "2c8383c8c3b6cca99a0ad6bfc006f6bf61799875234ac1279956e1ffa34af466",
+        "bytes": 48284
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-Bold.woff2": {
+        "sha256": "5cb009dd21317ac095104458dbca8e96b6ac41fdace80ef3b7c53833c44420c7",
+        "bytes": 20120
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-Bold.woff": {
+        "sha256": "31d6a40d26179c1dd996df76ea5c24af9ab3b9bb8d2e55579259051f6ae0850c",
+        "bytes": 26748
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-Bold.ttf": {
+        "sha256": "e1f3c6b7c64eeb0b861e6b34d36e4bfa2da4ad5dbb8bf2e6e8cc8ee363b83a5a",
+        "bytes": 64852
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-SemiboldItalic.eot": {
+        "sha256": "5ce61f66ceb0ed123be75f7624aa2e9a1bc664543adee7cedb4d9782c252f764",
+        "bytes": 33292
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-SemiboldItalic.woff2": {
+        "sha256": "5a9edd70a4da40f262cb39438ce529a0237c52c398f6383cf6a580aa2de2d4a7",
+        "bytes": 17048
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-SemiboldItalic.woff": {
+        "sha256": "8d1e5fc46cb34ad6fd02bc710d80f634cf658e321ac4344830b9121ab56b52be",
+        "bytes": 20272
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-SemiboldItalic.ttf": {
+        "sha256": "4cc3e32c68e6d37348343622f0f5a1129ba12b7d7250b0a14a098ced7f0a682e",
+        "bytes": 51992
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-Semibold.eot": {
+        "sha256": "43b026bb0b7ab88bee84f49344dcf43a4f3d1cf0a71575f5d354ff926b788cd9",
+        "bytes": 48744
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-Semibold.woff2": {
+        "sha256": "04084ce10f3b185156408adf5540cabbed149e039d6f3c3e8e5b2fb17f6bdef8",
+        "bytes": 20256
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-Semibold.woff": {
+        "sha256": "47a8e1999c0ece27d9e624865e7e2b4bf9a8e34f0e1aa81b18ffb19cd50cd235",
+        "bytes": 27136
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-Semibold.ttf": {
+        "sha256": "502e77e8d167648953747da89dd18c1d8ac499f8cb263a023dd7eea4384a49a3",
+        "bytes": 65208
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-MediumItalic.eot": {
+        "sha256": "d5212914499f4e902ec5b20674f09ccf52952b4153d12b0f84f9153a85243cc4",
+        "bytes": 33056
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-MediumItalic.woff2": {
+        "sha256": "0f5ede56763b95a91681b41a86802565fadfe52d722a2e5dc7e7400b0ee794b6",
+        "bytes": 17144
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-MediumItalic.woff": {
+        "sha256": "fbb30921278d06d0ce392cdac7c465a6f1989c2258af4aaf6d8c70e3c0b2c52c",
+        "bytes": 20216
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-MediumItalic.ttf": {
+        "sha256": "400bf80862ad814f469ded862227d84c0d8730536757c7e6e8f099a6e1a5c840",
+        "bytes": 52192
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-Medium.eot": {
+        "sha256": "4213ffc21948fb0dba22dc8d6fb3aa22edf1f8fedb5391542908089851a3fe73",
+        "bytes": 48444
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-Medium.woff2": {
+        "sha256": "2ea341e35c0d0d00c13adec869b573297d25326140ca40fbe354a9bee468808e",
+        "bytes": 20324
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-Medium.woff": {
+        "sha256": "92cedba77120ad79371d14dcca7e69a7dd1c7bb4e4bf539e89463baa3c7ca024",
+        "bytes": 26972
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-Medium.ttf": {
+        "sha256": "43a4a031a7757ac6c55b32d503815b6ff1ae6fae8c8a8f13e77a35e1fa38aba1",
+        "bytes": 65412
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-Italic.eot": {
+        "sha256": "a6ea900c0f46b082358473d8363e2e347965d6bbbad5c4f9cf2f2bd281c4d0e1",
+        "bytes": 32232
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-Italic.woff2": {
+        "sha256": "decc4408a5fa8ba96a00060dbfeea2d4f3d8926e39791e49113666a88ee4008e",
+        "bytes": 16392
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-Italic.woff": {
+        "sha256": "95c37b94d9001aadaaf9ab8232c24b8b3995f380f079de7692a8837ee36aaeda",
+        "bytes": 19284
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-Italic.ttf": {
+        "sha256": "3f149ad9771c7aaa930cbc37d244717f788bbd736c621e37116a6e5f48a3988c",
+        "bytes": 51812
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-Regular.eot": {
+        "sha256": "bbc0eb358fed31f292f0931a23e6f369d8f39ff50bbad282fc869ff737b0380f",
+        "bytes": 34744
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-Regular.woff2": {
+        "sha256": "aefa3d21af6adb6dd53246ff86e1d8e7eaf36a8d792dd59136cced309e3c8862",
+        "bytes": 16704
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-Regular.woff": {
+        "sha256": "9b9f735570c08be0b3f4b1c93576ce0484cf3074556b43d843b5eb32f539731a",
+        "bytes": 22400
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-Regular.ttf": {
+        "sha256": "3162f61dbb3106de5d5f2513b663307f7621105437977b0557b346c109705895",
+        "bytes": 52804
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-LightItalic.eot": {
+        "sha256": "b144f7bd3b85d257edb0b9698c35d754a8dcc39c21216266e0befaa588e0d288",
+        "bytes": 32712
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-LightItalic.woff2": {
+        "sha256": "967f7a34c5ef4f1f571be5138b031fc5cad20655430f371d92e1b980d65b038f",
+        "bytes": 16880
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-LightItalic.woff": {
+        "sha256": "0ab74ec7ddf114c710c04396b13c9261abd0a75313ece268295d1ef7741615ae",
+        "bytes": 19936
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-LightItalic.ttf": {
+        "sha256": "e93e1ae2eeea0f8755495b0023e8f038249b7ca0d6c3e3cc9e97dbf7453a0f84",
+        "bytes": 52524
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-Light.eot": {
+        "sha256": "58521c40da8d4248e20301215f8d6d90083392722e53379804fdb9e9411d9924",
+        "bytes": 36820
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-Light.woff2": {
+        "sha256": "9c05e476f19e546862980b9f5c351dff8de8d48a001c7b66f6d238b68d1f3fd7",
+        "bytes": 18380
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-Light.woff": {
+        "sha256": "446130bc7a81283889a05465a017b6efc2f01c0f5389d768e99d4e1eb12af5aa",
+        "bytes": 24616
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-Light.ttf": {
+        "sha256": "efd888aa62f601a58c9a002123bb68ede4039859b235d418fbccb4e9110be978",
+        "bytes": 54004
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-ExtralightItalic.eot": {
+        "sha256": "dc2482823179ba5449b659eafe7d4f0ddfbf61a6e817bd6d5885d23ced75726f",
+        "bytes": 33060
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-ExtralightItalic.woff2": {
+        "sha256": "56a3929b38fb3fe4d98a1b2f1ab2a7b996160fdc94abaefd87150e90b8f37cb0",
+        "bytes": 16892
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-ExtralightItalic.woff": {
+        "sha256": "12ed24a8ffc95578a3e1d68f41eba27464a05e5bae547b46b9b5eeb201823fb4",
+        "bytes": 19992
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-ExtralightItalic.ttf": {
+        "sha256": "acfc4ab661330398134a48b00c2c64d1b99281dec65aa8602a556248e6034f65",
+        "bytes": 52916
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-Extralight.eot": {
+        "sha256": "bbde8338dfcbd854b6b82144a40e9536077bfd06f8e1731723d0481fbde65ea0",
+        "bytes": 37036
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-Extralight.woff2": {
+        "sha256": "436f84b9be1e260a9f4332a41b3ce0b8987dec74a661edff4f118a1f50c8ae3e",
+        "bytes": 18268
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-Extralight.woff": {
+        "sha256": "99f9f3696dc7fe95abb9fb9f83575610572fc4011cfe7f70dda8aa31541d661b",
+        "bytes": 24640
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-Extralight.ttf": {
+        "sha256": "bffb754183dadf7d5362da8f43816f287d6ea419e85a96fc2f0f5d2879c4cfea",
+        "bytes": 54212
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-ThinItalic.eot": {
+        "sha256": "167dff738e6b79754c4c24aa163b91a1309ad30ccb9d07ae7071542540ed87f5",
+        "bytes": 32484
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-ThinItalic.woff2": {
+        "sha256": "a521e9456af63e618b7570252499a8717d2119c20714f3ca7f384a6919d3e463",
+        "bytes": 16148
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-ThinItalic.woff": {
+        "sha256": "ed6782e6f5e74ba43c826b54d1d5d5703b3ed0be275142a122a4e2f1e400b86b",
+        "bytes": 19004
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-ThinItalic.ttf": {
+        "sha256": "d574cc435877a555d9a4f1924e270c9627a27e5b70ed940e86b84c4bcaa3fcd7",
+        "bytes": 52848
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-Thin.eot": {
+        "sha256": "657f7916a81f0dc64dde3d39bca5ddeccc03ac820aa704c0414a883e9c22d02f",
+        "bytes": 35052
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-Thin.woff2": {
+        "sha256": "cc283d4f3f3df3d3123961bc86375a61f8c93c5b1bbde807ec84274001aa5a48",
+        "bytes": 16464
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-Thin.woff": {
+        "sha256": "99c14625291d947b83c81d661f108d8aee1e3ad94b71b17dddec5b27d09519c4",
+        "bytes": 21812
+      },
+      "Switzer_Complete/Fonts/WEB/fonts/Switzer-Thin.ttf": {
+        "sha256": "6bd636de5fc2d98206bcbce70e3fede32d0ad81c8ce0306269f0ffaa5743c950",
+        "bytes": 53612
+      },
+      "Switzer_Complete/Fonts/WEB/css/switzer.css": {
+        "sha256": "be7291e85610fb26cc89246e93996f49557b7c775ae14d4ec8f2ca15b73fe6d9",
+        "bytes": 7109
+      },
+      "Switzer_Complete/Fonts/WEB/README.md": {
+        "sha256": "5414fa7f35b7f4cb2996ff2b406dc5eaff8074414e66cc66e80db12c07a7d855",
+        "bytes": 1259
+      },
+      "Switzer_Complete/License/FFL.txt": {
+        "sha256": "145e7fe2429a3336ba215c070ef722000e01348a3e1baaa127e871bb5012f554",
+        "bytes": 12734
+      }
+    }
   },
   "gambarino": {
     "url": "https://api.fontshare.com/v2/fonts/download/gambarino",
@@ -50,6 +718,40 @@
         "sha256": "42b9b1445555af9a47ff748332a0da9c7526fc6ecf403c620916640490b4765b",
         "official_exact_match": "Gambarino_Complete/Fonts/WEB/fonts/Gambarino-Regular.woff2"
       }
-    ]
+    ],
+    "archive_members": {
+      "Gambarino_Complete/Fonts/OTF/Gambarino-Regular.otf": {
+        "sha256": "3cfc8143b820d4e9e5970748cf6189d0624aeb1f8c5a0138c2c82bbb9b50efdf",
+        "bytes": 25760
+      },
+      "Gambarino_Complete/Fonts/WEB/fonts/Gambarino-Regular.eot": {
+        "sha256": "2f9202c353558a5a5bf3db74929662ba050acd04b7ce58a28fdf65fba97958f1",
+        "bytes": 25952
+      },
+      "Gambarino_Complete/Fonts/WEB/fonts/Gambarino-Regular.woff2": {
+        "sha256": "42b9b1445555af9a47ff748332a0da9c7526fc6ecf403c620916640490b4765b",
+        "bytes": 17104
+      },
+      "Gambarino_Complete/Fonts/WEB/fonts/Gambarino-Regular.woff": {
+        "sha256": "4634ca7849aa3a3fc2d6013f33eb878627446c5ec1287fbdfbced1f530f4ebbb",
+        "bytes": 20172
+      },
+      "Gambarino_Complete/Fonts/WEB/fonts/Gambarino-Regular.ttf": {
+        "sha256": "25c867b2b5da2114fdcd689a8fdbae62ac28afd7474001a22f9182aadafea29d",
+        "bytes": 54984
+      },
+      "Gambarino_Complete/Fonts/WEB/css/gambarino.css": {
+        "sha256": "0f2bcb06b0a76547a5fb1d6a2ef1d30cb1818d89c17d95f2d63bcb8aada58ba6",
+        "bytes": 487
+      },
+      "Gambarino_Complete/Fonts/WEB/README.md": {
+        "sha256": "698dbf18ce59e8d29d01cc78fea0fa6007b4db1429a05b70674add711792f3c5",
+        "bytes": 504
+      },
+      "Gambarino_Complete/License/FFL.txt": {
+        "sha256": "145e7fe2429a3336ba215c070ef722000e01348a3e1baaa127e871bb5012f554",
+        "bytes": 12734
+      }
+    }
   }
 }
