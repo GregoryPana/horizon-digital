@@ -85,6 +85,16 @@ def diagnostic_members(data, source):
                         or '\\\\' in entry.filename or stat.S_ISLNK(entry.external_attr >> 16)):
                     raise ValueError('Unsafe archive entry')
             report['entry_names'] = names
+            if sum(e.file_size for e in infos) > 128 * 1024 * 1024:
+                raise ValueError('Diagnostic uncompressed size limit')
+            report['entry_identities'] = []
+            for entry in infos:
+                if entry.file_size > 8 * 1024 * 1024:
+                    raise ValueError('Diagnostic member size limit')
+                report['entry_identities'].append({'name': entry.filename,
+                    'sha256': digest(archive.read(entry)), 'bytes': entry.file_size,
+                    'date_time': entry.date_time, 'crc': entry.CRC,
+                    'compressed_bytes': entry.compress_size, 'extra_hex': entry.extra.hex()[:512]})
             for font in source['fonts']:
                 entry = archive.getinfo(font['official_exact_match'])
                 if entry.is_dir() or entry.file_size > MAX_FONT:
@@ -144,6 +154,7 @@ def prepare(root=ROOT, fetch=download):
     if len(declared) != len(set(declared)) or set(declared) != ALLOWED:
         raise ValueError('Manifest output inventory mismatch')
     pending = {}
+    failures = []
     for source in sources.values():
         valid = True
         for font in source['fonts']:
@@ -151,7 +162,12 @@ def prepare(root=ROOT, fetch=download):
             if not target.is_file() or digest(target.read_bytes()) != font['sha256']:
                 valid = False
         if not valid:
-            pending.update(verified_members(fetch(source['url']), source))
+            try:
+                pending.update(verified_members(fetch(source['url']), source))
+            except ValueError as error:
+                failures.append(str(error))
+    if failures:
+        raise ValueError('Official font verification failed: ' + '; '.join(failures))
     # Complete all downloads/hash verification before any output write.
     for name, body in pending.items():
         target = destination(root, name)
