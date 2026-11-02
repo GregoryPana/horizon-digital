@@ -73,11 +73,11 @@ describe('consent-first analytics policy', () => {
     consent.setAnalyticsConsent('granted');
     consent.setAnalyticsConsent('granted');
     const events = window.dataLayer?.filter((entry) => entry[0] === 'event');
-    expect(events).toEqual([['event', 'page_view', {
+    expect(events?.map(command => Array.from(command))).toEqual([['event', 'page_view', {
       page_title: document.title, page_location: window.location.href,
       page_path: window.location.pathname + window.location.search,
     }]]);
-    expect(window.dataLayer?.[1]).toEqual(['config', analytics.GA_MEASUREMENT_ID, { send_page_view: false }]);
+    expect(Array.from(window.dataLayer![1])).toEqual(['config', analytics.GA_MEASUREMENT_ID, { send_page_view: false }]);
   });
 
   it('blocks helpers even if a vendor gtag exists without a grant', () => {
@@ -172,7 +172,7 @@ describe('consent-first analytics policy', () => {
     vi.spyOn(window, 'sessionStorage', 'get').mockImplementation(() => { throw new Error('blocked'); });
     start();
     expect(() => analytics.trackEvent('contact_intent', { method: 'email' })).not.toThrow();
-    expect(window.dataLayer?.[window.dataLayer.length - 1]).toEqual(['event', 'contact_intent', { method: 'email' }]);
+    expect(Array.from(window.dataLayer![window.dataLayer!.length - 1])).toEqual(['event', 'contact_intent', { method: 'email' }]);
   });
 });
 
