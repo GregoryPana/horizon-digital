@@ -54,13 +54,53 @@ def download(url):
         if response.status != 200:
             raise ValueError('Official font download did not return HTTP 200')
         data = response.read(MAX_ARCHIVE + 1)
+        print('FONT_RESPONSE ' + json.dumps({
+            'url': response.url, 'status': response.status,
+            'content_type': response.headers.get('Content-Type'),
+            'content_length': response.headers.get('Content-Length'),
+            'bytes': len(data), 'archive_sha256': digest(data),
+        }, sort_keys=True), flush=True)
     if len(data) > MAX_ARCHIVE:
         raise ValueError('Official font archive exceeds size limit')
     return data
 
 
+def diagnostic_members(data, source):
+    """Bounded identity-only report; never authorize or write downloaded bytes."""
+    report = {'expected_archive_sha256': source['archive_sha256'],
+              'actual_archive_sha256': digest(data), 'members': []}
+    try:
+        if len(data) > MAX_ARCHIVE:
+            raise ValueError('Archive size limit')
+        with zipfile.ZipFile(io.BytesIO(data)) as archive:
+            infos = archive.infolist()
+            if len(infos) > 512:
+                raise ValueError('Archive entry count limit')
+            names = [entry.filename for entry in infos]
+            if len(set(names)) != len(names):
+                raise ValueError('Duplicate archive entry')
+            for entry in infos:
+                path = PurePosixPath(entry.filename)
+                if (len(entry.filename) > 512 or path.is_absolute() or '..' in path.parts
+                        or '\\\\' in entry.filename or stat.S_ISLNK(entry.external_attr >> 16)):
+                    raise ValueError('Unsafe archive entry')
+            report['entry_names'] = names
+            for font in source['fonts']:
+                entry = archive.getinfo(font['official_exact_match'])
+                if entry.is_dir() or entry.file_size > MAX_FONT:
+                    raise ValueError('Invalid font archive member')
+                body = archive.read(entry)
+                report['members'].append({'name': entry.filename, 'bytes': len(body),
+                    'sha256': digest(body), 'expected_sha256': font['sha256'],
+                    'matches': digest(body) == font['sha256'], 'woff2': body[:4] == b'wOF2'})
+    except (ValueError, KeyError, zipfile.BadZipFile, RuntimeError, NotImplementedError) as error:
+        report['error_type'] = type(error).__name__
+    print('FONT_DIAGNOSTIC ' + json.dumps(report, sort_keys=True), flush=True)
+
+
 def verified_members(data, source):
     if len(data) > MAX_ARCHIVE or digest(data) != source['archive_sha256']:
+        diagnostic_members(data, source)
         raise ValueError('Pinned archive hash mismatch; provider drift requires explicit review')
     result = {}
     with zipfile.ZipFile(io.BytesIO(data)) as archive:
